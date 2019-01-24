@@ -936,6 +936,7 @@ GameObject:
   - component: {fileID: 2086626864}
   - component: {fileID: 2086626863}
   - component: {fileID: 2086626867}
+  - component: {fileID: 2086626868}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1031,6 +1032,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   botonCargarPartida: {fileID: 1931134290}
+  idioma: {fileID: 2086626868}
+--- !u!114 &2086626868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2086626862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32949225c3ec32942bf29eff691a30eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2134988832
 GameObject:
   m_ObjectHideFlags: 0

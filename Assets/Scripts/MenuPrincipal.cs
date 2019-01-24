@@ -7,6 +7,8 @@ public class MenuPrincipal : MonoBehaviour {
 
     public Button botonCargarPartida;
 
+    public Idiomas idioma;
+
     private void Start()
     {
         if (File.Exists(Application.persistentDataPath + "/guardado.save"))
@@ -14,6 +16,9 @@ public class MenuPrincipal : MonoBehaviour {
             botonCargarPartida.GetComponent<CanvasGroup>().alpha = 1;
             botonCargarPartida.GetComponent<CanvasGroup>().interactable = true;
         }
+
+        idioma.CargarIdioma(Path.Combine(Application.dataPath, "Idiomas/Idiomas.xml"), "Spanish");
+        Debug.Log(idioma.CogerCadena("test"));
     }
 
     public void NuevaPartida()
