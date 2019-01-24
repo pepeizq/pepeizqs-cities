@@ -63,10 +63,15 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\Ciudad.cs" />
-    <Compile Include="Assets\Scripts\Colocar.cs" />
-    <Compile Include="Assets\Scripts\Construccion.cs" />
-    <Compile Include="Assets\Scripts\ConstruccionesManejador.cs" />
-    <Compile Include="Assets\Scripts\UIController.cs" />
+    <Compile Include="Assets\Scripts\Clases\Construccion.cs" />
+    <Compile Include="Assets\Scripts\Clases\Guardado.cs" />
+    <Compile Include="Assets\Scripts\Colocar\Colocar.cs" />
+    <Compile Include="Assets\Scripts\Colocar\ColocarPrevio.cs" />
+    <Compile Include="Assets\Scripts\Colocar\RedondearPosicion.cs" />
+    <Compile Include="Assets\Scripts\Construcciones.cs" />
+    <Compile Include="Assets\Scripts\DiaNoche.cs" />
+    <Compile Include="Assets\Scripts\MenuPrincipal.cs" />
+    <Compile Include="Assets\Scripts\Tooltips.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>E:/Proyectos/Unity/City Builder/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
