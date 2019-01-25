@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <languages>
     <English>
-        <string name="test">ingles</string>
+        <string name="newGame">New Game</string>
+        <string name="loadGame">Load Game</string>
+        <string name="exitGame">Exit</string>
+        <string name="help">Help</string>
+        <string name="day">Day</string>
     </English>
      
     <Spanish>
-        <string name="test">español</string>
+        <string name="newGame">Nueva Partida</string>
+        <string name="loadGame">Cargar Partida</string>
+        <string name="exitGame">Salir</string>
+        <string name="help">Ayuda</string>
+        <string name="day">Día</string>
     </Spanish>
 </languages>

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.IO;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class DiaNoche : MonoBehaviour {
@@ -35,8 +36,12 @@ public class DiaNoche : MonoBehaviour {
 
     private int contadorHoras = 0;
 
+    public Idiomas idioma;
+
     void Start()
     {
+        idioma.CargarIdioma(Path.Combine(Application.dataPath, "Idiomas/Idiomas.xml"), PlayerPrefs.GetString("idioma"));
+
         solIntensidadInicio = sol.intensity;  
     }
 
@@ -54,7 +59,7 @@ public class DiaNoche : MonoBehaviour {
                 tiempoTotalDias += 1;
             }
 
-            dias.text = string.Format("DAY {0}", Mathf.Round(tiempoTotalDias));
+            dias.text = string.Format(idioma.CogerCadena("day").ToUpper() + " {0}", Mathf.Round(tiempoTotalDias));
 
             ActualizarReloj();
             ActualizarSol();

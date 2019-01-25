@@ -261,3 +261,6 @@ __pycache__/
 *.pyc
 /Assets/Materiales/Texturas/Materials/Casa2.mat
 *.mat
+*.clust
+/Library/metadata/02
+/Library/metadata/28

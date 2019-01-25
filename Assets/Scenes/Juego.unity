@@ -3930,6 +3930,7 @@ GameObject:
   - component: {fileID: 1823480781}
   - component: {fileID: 1823480784}
   - component: {fileID: 1823480785}
+  - component: {fileID: 1823480786}
   m_Layer: 0
   m_Name: Suelo
   m_TagString: Untagged
@@ -4079,6 +4080,7 @@ MonoBehaviour:
   botonPlaySprite: {fileID: 21300000, guid: 487913e677b705a47a9d10408c939744, type: 3}
   botonPausaSprite: {fileID: 21300000, guid: d6454f4900baa9542a7a04440fa410f1, type: 3}
   ciudad: {fileID: 185697733}
+  idioma: {fileID: 1823480786}
 --- !u!114 &1823480785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4092,6 +4094,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dinero: {fileID: 350881331}
   panelEdificios: {fileID: 1417709696}
+--- !u!114 &1823480786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1823480776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32949225c3ec32942bf29eff691a30eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1848748467
 GameObject:
   m_ObjectHideFlags: 0
