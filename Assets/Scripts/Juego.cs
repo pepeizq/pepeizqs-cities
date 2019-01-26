@@ -4,7 +4,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class Construcciones : MonoBehaviour {
+public class Juego : MonoBehaviour {
+
+    public TextAsset ficheroIdiomas;
+    public Idiomas idioma;
 
     [SerializeField]
     private Ciudad ciudad;
@@ -35,8 +38,30 @@ public class Construcciones : MonoBehaviour {
 
     public Camera camara;
 
+    public Panel panelConstruir;
+    public Panel panelDemoler;
+    public Panel panelDatos;
+    public Panel panelEdificios;
+    public Panel panelGuardar;
+    public Panel panelTiempo;
+
+    public Panel volverMenu;
+    public Text volverMenuTexto;
+    public Text volverMenuTextoSi;
+    public Text volverMenuTextoNo;
+    public Text volverMenuTextoCancelar;
+
+    public Panel ayuda1;
+    public Text ayuda1Texto;
+    public Panel ayuda2;
+    public Text ayuda2Texto;
+    public Panel ayuda3;
+    public Text ayuda3Texto;
+
     private void Start()
     {
+        idioma.CargarIdioma(ficheroIdiomas, PlayerPrefs.GetString("idioma"));
+
         if (File.Exists(Application.persistentDataPath + "/guardado.save"))
         {
             BinaryFormatter bf = new BinaryFormatter();
@@ -83,10 +108,37 @@ public class Construcciones : MonoBehaviour {
                     i++;
                 }
             }
-        } 
+        }
+
+        volverMenuTexto.text = idioma.CogerCadena("exitQuestion");
+        volverMenuTextoSi.text = idioma.CogerCadena("yes");
+        volverMenuTextoNo.text = idioma.CogerCadena("no");
+        volverMenuTextoCancelar.text = idioma.CogerCadena("cancel");
+
+        if (PlayerPrefs.GetString("ayuda") == "true")
+        {
+            ayuda1.GetComponent<CanvasGroup>().alpha = 1;
+            ayuda1.GetComponent<CanvasGroup>().interactable = true;
+            ayuda1.gameObject.SetActive(true);
+
+            ayuda1Texto.text = idioma.CogerCadena("help1");
+            ayuda2Texto.text = idioma.CogerCadena("help2");
+            ayuda3Texto.text = idioma.CogerCadena("help3");
+
+            diaNoche.ArrancarParar();
+        }
+        else
+        {
+            ayuda1.gameObject.SetActive(false);
+        }
     }
 
-    void Update () {
+    void Update ()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            VolverMenu();
+        }
 
         if (edificioSeleccionado != null)
         {
@@ -133,16 +185,16 @@ public class Construcciones : MonoBehaviour {
                     rotacionColocar = rotaciones[rotacionesPosicion];
                 }
 
-                ColocarPrevio();
+                ColocarEdificioPrevio();
             }
            
             if (Input.GetMouseButton(0) && Input.GetKey(KeyCode.LeftShift))
             {
-                Colocar(0);
+                ColocarEdificio(0);
             }
             else if (Input.GetMouseButtonDown(0))
             {
-                Colocar(0);
+                ColocarEdificio(0);
             }
         }
                   
@@ -152,7 +204,7 @@ public class Construcciones : MonoBehaviour {
 
             if (Input.GetMouseButtonDown(0))
             {
-                Colocar(1);                
+                ColocarEdificio(1);                
             }
         }       
     }
@@ -175,16 +227,16 @@ public class Construcciones : MonoBehaviour {
         }
     }
 
-    public void Seleccionar(int edificio)
+    public void SeleccionarEdificio(int edificio)
     {
         DemolerBoton(false);
 
         edificioSeleccionado = edificios[edificio];
         enseñarPrevio = true;
-        ColocarPrevio();
+        ColocarEdificioPrevio();
     }
 
-    void Colocar(int accion)
+    void ColocarEdificio(int accion)
     {     
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
@@ -219,7 +271,7 @@ public class Construcciones : MonoBehaviour {
         }
     }
 
-    void ColocarPrevio()
+    void ColocarEdificioPrevio()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
@@ -341,6 +393,94 @@ public class Construcciones : MonoBehaviour {
 
     public void VolverMenu()
     {
+        panelConstruir.gameObject.SetActive(false);
+        panelDemoler.gameObject.SetActive(false);
+        panelDatos.gameObject.SetActive(false);
+        panelEdificios.gameObject.SetActive(false);
+        panelGuardar.gameObject.SetActive(false);
+        panelTiempo.gameObject.SetActive(false);
+
+        ayuda1.gameObject.SetActive(false);
+        ayuda2.gameObject.SetActive(false);
+        ayuda3.gameObject.SetActive(false);
+
+        volverMenu.GetComponent<CanvasGroup>().alpha = 1;
+        volverMenu.GetComponent<CanvasGroup>().interactable = true;
+        volverMenu.gameObject.SetActive(true);
+
+        if (diaNoche.parar == false)
+        {
+            diaNoche.ArrancarParar();
+        }
+
+        enseñarPrevio = false;
+    }
+
+    public void VolverMenuSi()
+    {
+        GuardarPartida();
         SceneManager.LoadScene("MenuPrincipal");
+    }
+
+    public void VolverMenuNo()
+    {
+        SceneManager.LoadScene("MenuPrincipal");
+    }
+
+    public void VolverMenuCancelar()
+    {
+        panelConstruir.gameObject.SetActive(true);
+        panelDemoler.gameObject.SetActive(true);
+        panelDatos.gameObject.SetActive(true);
+        panelEdificios.gameObject.SetActive(true);
+        panelGuardar.gameObject.SetActive(true);
+        panelTiempo.gameObject.SetActive(true);
+
+        ayuda1.gameObject.SetActive(true);
+        ayuda2.gameObject.SetActive(true);
+        ayuda3.gameObject.SetActive(true);
+
+        volverMenu.GetComponent<CanvasGroup>().alpha = 0;
+        volverMenu.GetComponent<CanvasGroup>().interactable = false;
+        volverMenu.gameObject.SetActive(false);
+
+        if (diaNoche.parar == true)
+        {
+            diaNoche.ArrancarParar();
+        }
+    }
+
+    public void CerrarAyuda1()
+    {
+        ayuda1.GetComponent<CanvasGroup>().alpha = 0;
+        ayuda1.GetComponent<CanvasGroup>().interactable = false;
+        ayuda1.gameObject.SetActive(false);
+
+        ayuda2.GetComponent<CanvasGroup>().alpha = 1;
+        ayuda2.GetComponent<CanvasGroup>().interactable = true;
+        ayuda2.gameObject.SetActive(true);
+    }
+
+    public void CerrarAyuda2()
+    {
+        ayuda2.GetComponent<CanvasGroup>().alpha = 0;
+        ayuda2.GetComponent<CanvasGroup>().interactable = false;
+        ayuda2.gameObject.SetActive(false);
+
+        ayuda3.GetComponent<CanvasGroup>().alpha = 1;
+        ayuda3.GetComponent<CanvasGroup>().interactable = true;
+        ayuda3.gameObject.SetActive(true);
+    }
+
+    public void CerrarAyuda3()
+    {
+        ayuda3.GetComponent<CanvasGroup>().alpha = 0;
+        ayuda3.GetComponent<CanvasGroup>().interactable = false;
+        ayuda3.gameObject.SetActive(false);
+
+        if (diaNoche.parar == true)
+        {
+            diaNoche.ArrancarParar();
+        }
     }
 }

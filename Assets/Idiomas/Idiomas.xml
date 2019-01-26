@@ -6,6 +6,13 @@
         <string name="exitGame">Exit</string>
         <string name="help">Help</string>
         <string name="day">Day</string>
+        <string name="help1">With the keys W, A, S, D you can move around the map, and if you want to zoom, use the mouse wheel</string>
+        <string name="help2">You can play/stop the time when you want</string>
+        <string name="help3">Build what you want while you have money</string>
+        <string name="exitQuestion">Do you want to save the game before back to the menu?</string>
+        <string name="yes">Yes</string>
+        <string name="no">No</string>
+        <string name="cancel">Cancel</string>
     </English>
      
     <Spanish>
@@ -14,5 +21,12 @@
         <string name="exitGame">Salir</string>
         <string name="help">Ayuda</string>
         <string name="day">Día</string>
+        <string name="help1">Con las teclas W,A,S,D puedes moverte por el mapa, y si quieres hacer zoom usa la rueda del ratón</string>
+        <string name="help2">Puedes iniciar/parar el tiempo cuando quieras</string>
+        <string name="help3">Construye lo que quieras mientras tengas dinero</string>
+        <string name="exitQuestion">¿Quieres guardar la partida antes de volver al menú?</string>
+        <string name="yes">Si</string>
+        <string name="no">No</string>
+        <string name="cancel">Cancelar</string>
     </Spanish>
 </languages>

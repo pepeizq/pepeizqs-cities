@@ -1,8 +1,10 @@
-﻿using System.IO;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class DiaNoche : MonoBehaviour {
+
+    public TextAsset ficheroIdiomas;
+    public Idiomas idioma;
 
     public Light sol;
     public float segundosDia = 360f;
@@ -25,7 +27,7 @@ public class DiaNoche : MonoBehaviour {
     [SerializeField]
     private Text reloj;
 
-    private bool parar = false;
+    public bool parar = false;
 
     public Button botonPlayPausa;
     public Sprite botonPlaySprite;
@@ -36,11 +38,9 @@ public class DiaNoche : MonoBehaviour {
 
     private int contadorHoras = 0;
 
-    public Idiomas idioma;
-
     void Start()
     {
-        idioma.CargarIdioma(Path.Combine(Application.dataPath, "Idiomas/Idiomas.xml"), PlayerPrefs.GetString("idioma"));
+        idioma.CargarIdioma(ficheroIdiomas, PlayerPrefs.GetString("idioma"));
 
         solIntensidadInicio = sol.intensity;  
     }
@@ -57,15 +57,15 @@ public class DiaNoche : MonoBehaviour {
             {
                 tiempoDia = 0;
                 tiempoTotalDias += 1;
-            }
+            } 
+        }
 
-            dias.text = string.Format(idioma.CogerCadena("day").ToUpper() + " {0}", Mathf.Round(tiempoTotalDias));
+        dias.text = string.Format(idioma.CogerCadena("day").ToUpper() + " {0}", Mathf.Round(tiempoTotalDias));
 
-            ActualizarReloj();
-            ActualizarSol();
+        ActualizarReloj();
+        ActualizarSol();
 
-            colocar.ComprobarLuces(tiempoDia);
-        }           
+        colocar.ComprobarLuces(tiempoDia);
     }
 
     void ActualizarReloj()
@@ -121,7 +121,7 @@ public class DiaNoche : MonoBehaviour {
         sol.intensity = solIntensidadInicio * intesidadMultiplicador;
     }
 
-    public void Parar()
+    public void ArrancarParar()
     {
         if (parar == false)
         {

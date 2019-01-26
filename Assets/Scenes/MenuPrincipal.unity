@@ -420,9 +420,9 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: d21f1f39d59a7874fb8400e0eb7f7ba6, type: 3}
     m_FontSize: 18
     m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 1
-    m_MaxSize: 40
+    m_BestFit: 1
+    m_MinSize: 10
+    m_MaxSize: 20
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -1168,9 +1168,9 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: d21f1f39d59a7874fb8400e0eb7f7ba6, type: 3}
     m_FontSize: 22
     m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 2
-    m_MaxSize: 40
+    m_BestFit: 1
+    m_MinSize: 16
+    m_MaxSize: 22
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -1527,9 +1527,9 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: d21f1f39d59a7874fb8400e0eb7f7ba6, type: 3}
     m_FontSize: 22
     m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 2
-    m_MaxSize: 40
+    m_BestFit: 1
+    m_MinSize: 16
+    m_MaxSize: 22
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -1602,9 +1602,9 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: d21f1f39d59a7874fb8400e0eb7f7ba6, type: 3}
     m_FontSize: 18
     m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 1
-    m_MaxSize: 40
+    m_BestFit: 1
+    m_MinSize: 10
+    m_MaxSize: 18
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -1864,6 +1864,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f36af64f9fe22641b8507a556a60c7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ficheroIdiomas: {fileID: 4900000, guid: ec66f605e6547564ab38de4ee124904d, type: 3}
   botonCargarPartida: {fileID: 1931134290}
   idioma: {fileID: 2086626868}
   botonNuevaPartidaTexto: {fileID: 1565379371}

@@ -66,7 +66,11 @@ public class Ciudad : MonoBehaviour {
         }
 
         TrabajosTope = tope;
-        TrabajosActual = Mathf.Min((int)PoblacionActual, TrabajosTope);
+
+        if (PoblacionActual > 0)
+        {
+            TrabajosActual = Mathf.Min((int)PoblacionActual, TrabajosTope);
+        }      
     }
 
     void CalcularDinero()
@@ -127,13 +131,16 @@ public class Ciudad : MonoBehaviour {
 
         PoblacionTope = tope;
 
-        if (Comida >= PoblacionActual && PoblacionActual < PoblacionTope)
+        if (Comida > 0)
         {
-            PoblacionActual = Mathf.Min(PoblacionActual += Comida * .25f, PoblacionTope);
-        }
-        else if(Comida < PoblacionActual)
-        {
-            PoblacionActual -= Comida * 0.15f;
-        }
+            if (Comida >= PoblacionActual && PoblacionActual < PoblacionTope)
+            {
+                PoblacionActual = Mathf.Min(PoblacionActual += Comida * .25f, PoblacionTope);
+            }
+            else if (Comida < PoblacionActual)
+            {
+                PoblacionActual -= Comida * 0.15f;
+            }
+        }      
     }
 }

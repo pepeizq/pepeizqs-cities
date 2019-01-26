@@ -6,24 +6,24 @@ public class Idiomas : MonoBehaviour {
 
     private Hashtable cadenas;
 
-    public void CargarIdioma(string path, string idioma)
+    public void CargarIdioma(TextAsset fichero, string idioma)
     {
-        var xml = new XmlDocument();
-        xml.Load(path);
+        XmlDocument xml = new XmlDocument();
+        xml.LoadXml(fichero.text);
 
         cadenas = new Hashtable();
-        var elemento = xml.DocumentElement[idioma];
+        XmlElement elemento = xml.DocumentElement[idioma];
         if (elemento != null)
         {
-            var elemEnum = elemento.GetEnumerator();
+            IEnumerator elemEnum = elemento.GetEnumerator();
             while (elemEnum.MoveNext())
             {
-                var xmlItem = (XmlElement)elemEnum.Current;
+                XmlElement xmlItem = (XmlElement)elemEnum.Current;
                 cadenas.Add(xmlItem.GetAttribute("name"), xmlItem.InnerText);
             }
         }
     }
-
+ 
     public string CogerCadena(string clave)
     {
         if (cadenas.ContainsKey(clave))

@@ -65,15 +65,18 @@
     <Compile Include="Assets\Scripts\Ciudad.cs" />
     <Compile Include="Assets\Scripts\Clases\Construccion.cs" />
     <Compile Include="Assets\Scripts\Clases\Guardado.cs" />
+    <Compile Include="Assets\Scripts\Clases\Panel.cs" />
     <Compile Include="Assets\Scripts\Colocar\Colocar.cs" />
     <Compile Include="Assets\Scripts\Colocar\ColocarPrevio.cs" />
     <Compile Include="Assets\Scripts\Colocar\RedondearPosicion.cs" />
-    <Compile Include="Assets\Scripts\Construcciones.cs" />
     <Compile Include="Assets\Scripts\DiaNoche.cs" />
     <Compile Include="Assets\Scripts\Idiomas.cs" />
+    <Compile Include="Assets\Scripts\Juego.cs" />
     <Compile Include="Assets\Scripts\MenuPrincipal.cs" />
     <Compile Include="Assets\Scripts\Tooltips.cs" />
-    <None Include="Assets\Idiomas\Idiomas.xml" />
+    <None Include="Assets\Idiomas\Idiomas.xml">
+      <SubType>Designer</SubType>
+    </None>
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>E:/Proyectos/Unity/City Builder/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>

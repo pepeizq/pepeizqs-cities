@@ -5,10 +5,11 @@ using UnityEngine.UI;
 
 public class MenuPrincipal : MonoBehaviour {
 
-    public Button botonCargarPartida;
-
+    public TextAsset ficheroIdiomas;
     public Idiomas idioma;
 
+    public Button botonCargarPartida;
+    
     public Text botonNuevaPartidaTexto;
     public Text botonCargarPartidaTexto;
     public Text botonSalirJuegoTexto;
@@ -17,15 +18,15 @@ public class MenuPrincipal : MonoBehaviour {
     public Toggle toggleAyuda;
 
     private void Start()
-    {    
+    {
         if (PlayerPrefs.HasKey("idioma") == false)
         {
-            idioma.CargarIdioma(Path.Combine(Application.dataPath, "Idiomas/Idiomas.xml"), "English");
+            idioma.CargarIdioma(ficheroIdiomas, "English");
             PlayerPrefs.SetString("idioma", "English");
         }
         else
         {
-            idioma.CargarIdioma(Path.Combine(Application.dataPath, "Idiomas/Idiomas.xml"), PlayerPrefs.GetString("idioma"));
+            idioma.CargarIdioma(ficheroIdiomas, PlayerPrefs.GetString("idioma"));
         }
 
         CargarIdiomaTexto();
@@ -33,6 +34,18 @@ public class MenuPrincipal : MonoBehaviour {
         if (PlayerPrefs.HasKey("ayuda") == false)
         {
             PlayerPrefs.SetString("ayuda", "true");
+            toggleAyuda.isOn = true;
+        }
+        else
+        {
+            if (PlayerPrefs.GetString("ayuda") == "true")
+            {
+                toggleAyuda.isOn = true;
+            }
+            else
+            {
+                toggleAyuda.isOn = false;
+            }
         }
 
         if (File.Exists(Application.persistentDataPath + "/guardado.save"))
@@ -69,14 +82,14 @@ public class MenuPrincipal : MonoBehaviour {
 
     public void CargarIdiomaEnglish()
     {
-        idioma.CargarIdioma(Path.Combine(Application.dataPath, "Idiomas/Idiomas.xml"), "English");
+        idioma.CargarIdioma(ficheroIdiomas, "English");
         PlayerPrefs.SetString("idioma", "English");
         CargarIdiomaTexto();
     }
 
     public void CargarIdiomaSpanish()
     {
-        idioma.CargarIdioma(Path.Combine(Application.dataPath, "Idiomas/Idiomas.xml"), "Spanish");
+        idioma.CargarIdioma(ficheroIdiomas, "Spanish");
         PlayerPrefs.SetString("idioma", "Spanish");
         CargarIdiomaTexto();
     }
