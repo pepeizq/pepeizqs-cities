@@ -10,4 +10,6 @@ public class Construccion : MonoBehaviour
     public int comida;
     public int trabajo;
     public int ingresos;
+
+    public int intesidadLuz;
 }

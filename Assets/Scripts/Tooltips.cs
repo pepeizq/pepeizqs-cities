@@ -12,7 +12,7 @@ public class Tooltips : MonoBehaviour {
         {
             if (panel.gameObject.GetComponent<CanvasGroup>().alpha == 0)
             {
-                Vector3 offset = new Vector3(70, -50, -10);
+                Vector3 offset = new Vector3(30, -20, -10);
 
                 panel.gameObject.GetComponent<CanvasGroup>().alpha = 1;
                 panel.gameObject.GetComponent<CanvasGroup>().interactable = true;

@@ -55,11 +55,11 @@ public class Colocar : MonoBehaviour {
                 {
                     if (tiempoDia >= 0.75f)
                     {
-                        luz.intensity = 2;
+                        luz.intensity = subedificio.intesidadLuz;
                     }
                     else if (tiempoDia <= 0.3f)
                     {
-                        luz.intensity = 2;
+                        luz.intensity = subedificio.intesidadLuz;
                     }
                     else
                     {

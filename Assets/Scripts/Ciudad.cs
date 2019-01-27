@@ -111,7 +111,13 @@ public class Ciudad : MonoBehaviour {
             }
         }
 
-        Comida += cantidad;
+        if (Comida >= 0)
+        {
+            if ((Comida + cantidad) >= 0)
+            {
+                Comida += cantidad;
+            }            
+        }     
     }
 
     void CalcularPoblacion()
@@ -131,16 +137,13 @@ public class Ciudad : MonoBehaviour {
 
         PoblacionTope = tope;
 
-        if (Comida > 0)
+        if (Comida >= PoblacionActual && PoblacionActual < PoblacionTope)
         {
-            if (Comida >= PoblacionActual && PoblacionActual < PoblacionTope)
-            {
-                PoblacionActual = Mathf.Min(PoblacionActual += Comida * .25f, PoblacionTope);
-            }
-            else if (Comida < PoblacionActual)
-            {
-                PoblacionActual -= Comida * 0.15f;
-            }
-        }      
+            PoblacionActual = Mathf.Min(PoblacionActual += Comida * .25f, PoblacionTope);
+        }
+        else if (Comida < PoblacionActual)
+        {
+            PoblacionActual -= Comida * 0.15f;
+        }
     }
 }

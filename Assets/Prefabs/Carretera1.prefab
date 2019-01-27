@@ -98,3 +98,8 @@ MonoBehaviour:
   id: 0
   coste: 5
   nombre: carretera
+  poblacion: 0
+  comida: 0
+  trabajo: 0
+  ingresos: 0
+  intesidadLuz: 0

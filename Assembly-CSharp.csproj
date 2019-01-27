@@ -74,9 +74,7 @@
     <Compile Include="Assets\Scripts\Juego.cs" />
     <Compile Include="Assets\Scripts\MenuPrincipal.cs" />
     <Compile Include="Assets\Scripts\Tooltips.cs" />
-    <None Include="Assets\Idiomas\Idiomas.xml">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="Assets\Idiomas\Idiomas.xml" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>E:/Proyectos/Unity/City Builder/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>

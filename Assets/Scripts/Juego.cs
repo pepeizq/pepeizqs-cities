@@ -9,6 +9,11 @@ public class Juego : MonoBehaviour {
     public TextAsset ficheroIdiomas;
     public Idiomas idioma;
 
+    public AudioSource musicaFondo;
+    public AudioSource sonidoBoton;
+    public AudioSource sonidoBotonConstruir;
+    public AudioSource sonidoBotonDemoler;
+
     [SerializeField]
     private Ciudad ciudad;
 
@@ -119,6 +124,7 @@ public class Juego : MonoBehaviour {
         {
             ayuda1.GetComponent<CanvasGroup>().alpha = 1;
             ayuda1.GetComponent<CanvasGroup>().interactable = true;
+            ayuda1.GetComponent<CanvasGroup>().blocksRaycasts = true;
             ayuda1.gameObject.SetActive(true);
 
             ayuda1Texto.text = idioma.CogerCadena("help1");
@@ -219,11 +225,13 @@ public class Juego : MonoBehaviour {
         {
             panel.gameObject.GetComponent<CanvasGroup>().alpha = 1;
             panel.gameObject.GetComponent<CanvasGroup>().interactable = true;
+            panel.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
         }
         else
         {
             panel.gameObject.GetComponent<CanvasGroup>().alpha = 0;
             panel.gameObject.GetComponent<CanvasGroup>().interactable = false;
+            panel.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
         }
     }
 
@@ -406,6 +414,7 @@ public class Juego : MonoBehaviour {
 
         volverMenu.GetComponent<CanvasGroup>().alpha = 1;
         volverMenu.GetComponent<CanvasGroup>().interactable = true;
+        volverMenu.GetComponent<CanvasGroup>().blocksRaycasts = true;
         volverMenu.gameObject.SetActive(true);
 
         if (diaNoche.parar == false)
@@ -442,6 +451,7 @@ public class Juego : MonoBehaviour {
 
         volverMenu.GetComponent<CanvasGroup>().alpha = 0;
         volverMenu.GetComponent<CanvasGroup>().interactable = false;
+        volverMenu.GetComponent<CanvasGroup>().blocksRaycasts = false;
         volverMenu.gameObject.SetActive(false);
 
         if (diaNoche.parar == true)
@@ -454,10 +464,12 @@ public class Juego : MonoBehaviour {
     {
         ayuda1.GetComponent<CanvasGroup>().alpha = 0;
         ayuda1.GetComponent<CanvasGroup>().interactable = false;
+        ayuda1.GetComponent<CanvasGroup>().blocksRaycasts = false;
         ayuda1.gameObject.SetActive(false);
 
         ayuda2.GetComponent<CanvasGroup>().alpha = 1;
         ayuda2.GetComponent<CanvasGroup>().interactable = true;
+        ayuda2.GetComponent<CanvasGroup>().blocksRaycasts = true;
         ayuda2.gameObject.SetActive(true);
     }
 
@@ -465,10 +477,12 @@ public class Juego : MonoBehaviour {
     {
         ayuda2.GetComponent<CanvasGroup>().alpha = 0;
         ayuda2.GetComponent<CanvasGroup>().interactable = false;
+        ayuda2.GetComponent<CanvasGroup>().blocksRaycasts = false;
         ayuda2.gameObject.SetActive(false);
 
         ayuda3.GetComponent<CanvasGroup>().alpha = 1;
         ayuda3.GetComponent<CanvasGroup>().interactable = true;
+        ayuda3.GetComponent<CanvasGroup>().blocksRaycasts = true;
         ayuda3.gameObject.SetActive(true);
     }
 
@@ -476,11 +490,21 @@ public class Juego : MonoBehaviour {
     {
         ayuda3.GetComponent<CanvasGroup>().alpha = 0;
         ayuda3.GetComponent<CanvasGroup>().interactable = false;
+        ayuda3.GetComponent<CanvasGroup>().blocksRaycasts = false;
         ayuda3.gameObject.SetActive(false);
 
         if (diaNoche.parar == true)
         {
             diaNoche.ArrancarParar();
+        }
+    }
+
+    void Sonido()
+    {
+        if (PlayerPrefs.GetString("sonido") == "true")
+        {
+            musicaFondo.loop = true;
+            musicaFondo.Play();
         }
     }
 }
