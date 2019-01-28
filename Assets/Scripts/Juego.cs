@@ -137,6 +137,9 @@ public class Juego : MonoBehaviour {
         {
             ayuda1.gameObject.SetActive(false);
         }
+
+        musicaFondo.loop = true;
+        musicaFondo.Play();
     }
 
     void Update ()
@@ -194,11 +197,7 @@ public class Juego : MonoBehaviour {
                 ColocarEdificioPrevio();
             }
            
-            if (Input.GetMouseButton(0) && Input.GetKey(KeyCode.LeftShift))
-            {
-                ColocarEdificio(0);
-            }
-            else if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0))
             {
                 ColocarEdificio(0);
             }
@@ -233,6 +232,8 @@ public class Juego : MonoBehaviour {
             panel.gameObject.GetComponent<CanvasGroup>().interactable = false;
             panel.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
         }
+
+        sonidoBoton.Play();
     }
 
     public void SeleccionarEdificio(int edificio)
@@ -242,6 +243,7 @@ public class Juego : MonoBehaviour {
         edificioSeleccionado = edificios[edificio];
         enseñarPrevio = true;
         ColocarEdificioPrevio();
+        sonidoBoton.Play();
     }
 
     void ColocarEdificio(int accion)
@@ -263,7 +265,8 @@ public class Juego : MonoBehaviour {
                         {                          
                             ciudad.DepositoDinero(-edificioSeleccionado.coste);
                             ciudad.ActualizarUI(false);
-                            colocar.AñadirConstruccion(edificioSeleccionado, gridPosicion, rotacionColocar);                           
+                            colocar.AñadirConstruccion(edificioSeleccionado, gridPosicion, rotacionColocar);
+                            sonidoBotonConstruir.Play();
                         }
                     }
                     else if (accion == 1 && colocar.ComprobarConstruccionesPosicion(gridPosicion) != null)
@@ -271,8 +274,8 @@ public class Juego : MonoBehaviour {
                         ciudad.DepositoDinero(colocar.ComprobarConstruccionesPosicion(gridPosicion).coste / 3);
                         ciudad.ActualizarUI(false);
                         colocar.QuitarEdificio(gridPosicion);
-
                         DemolerBoton(false);
+                        sonidoBotonDemoler.Play();
                     }
                 }
             }                 
@@ -423,21 +426,26 @@ public class Juego : MonoBehaviour {
         }
 
         enseñarPrevio = false;
+        sonidoBoton.Play();
     }
 
     public void VolverMenuSi()
     {
+        sonidoBoton.Play();
         GuardarPartida();
         SceneManager.LoadScene("MenuPrincipal");
     }
 
     public void VolverMenuNo()
     {
+        sonidoBoton.Play();
         SceneManager.LoadScene("MenuPrincipal");
     }
 
     public void VolverMenuCancelar()
     {
+        sonidoBoton.Play();
+
         panelConstruir.gameObject.SetActive(true);
         panelDemoler.gameObject.SetActive(true);
         panelDatos.gameObject.SetActive(true);
@@ -462,6 +470,8 @@ public class Juego : MonoBehaviour {
 
     public void CerrarAyuda1()
     {
+        sonidoBoton.Play();
+
         ayuda1.GetComponent<CanvasGroup>().alpha = 0;
         ayuda1.GetComponent<CanvasGroup>().interactable = false;
         ayuda1.GetComponent<CanvasGroup>().blocksRaycasts = false;
@@ -475,6 +485,8 @@ public class Juego : MonoBehaviour {
 
     public void CerrarAyuda2()
     {
+        sonidoBoton.Play();
+
         ayuda2.GetComponent<CanvasGroup>().alpha = 0;
         ayuda2.GetComponent<CanvasGroup>().interactable = false;
         ayuda2.GetComponent<CanvasGroup>().blocksRaycasts = false;
@@ -488,6 +500,8 @@ public class Juego : MonoBehaviour {
 
     public void CerrarAyuda3()
     {
+        sonidoBoton.Play();
+
         ayuda3.GetComponent<CanvasGroup>().alpha = 0;
         ayuda3.GetComponent<CanvasGroup>().interactable = false;
         ayuda3.GetComponent<CanvasGroup>().blocksRaycasts = false;
@@ -496,15 +510,6 @@ public class Juego : MonoBehaviour {
         if (diaNoche.parar == true)
         {
             diaNoche.ArrancarParar();
-        }
-    }
-
-    void Sonido()
-    {
-        if (PlayerPrefs.GetString("sonido") == "true")
-        {
-            musicaFondo.loop = true;
-            musicaFondo.Play();
         }
     }
 }
