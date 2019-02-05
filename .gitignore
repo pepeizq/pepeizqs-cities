@@ -264,3 +264,4 @@ __pycache__/
 *.clust
 /Library/metadata/02
 /Library/metadata/28
+*.info

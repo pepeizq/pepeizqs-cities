@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" xmlns:uap2="http://schemas.microsoft.com/appx/manifest/uap/windows10/2" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3" xmlns:uap4="http://schemas.microsoft.com/appx/manifest/uap/windows10/4" xmlns:iot="http://schemas.microsoft.com/appx/manifest/iot/windows10" xmlns:mobile="http://schemas.microsoft.com/appx/manifest/mobile/windows10" xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" IgnorableNamespaces="uap uap2 uap3 uap4 mp mobile iot">
-  <Identity Name="5078pepeizq.pepeizqsCities" Publisher="CN=C91088FC-231C-4E13-86D1-5F9658173DA7" Version="1.0.0.0" />
+  <Identity Name="5078pepeizq.pepeizqsCities" Publisher="CN=C91088FC-231C-4E13-86D1-5F9658173DA7" Version="1.0.1.0" />
   <mp:PhoneIdentity PhoneProductId="66df871c-6225-4c64-8c3d-d4df02892551" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>pepeizq's Cities</DisplayName>

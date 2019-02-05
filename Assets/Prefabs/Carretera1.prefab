@@ -9,19 +9,19 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1290007011474474}
+  m_RootGameObject: {fileID: 1557149493850042}
   m_IsPrefabAsset: 1
---- !u!1 &1290007011474474
+--- !u!1 &1557149493850042
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4364570742853738}
-  - component: {fileID: 33788955061423650}
-  - component: {fileID: 23861072799999084}
-  - component: {fileID: 114889779570102094}
+  - component: {fileID: 4687191334605828}
+  - component: {fileID: 33288416573135292}
+  - component: {fileID: 23619749545256282}
+  - component: {fileID: 114248158235384772}
   m_Layer: 0
   m_Name: Carretera1
   m_TagString: Untagged
@@ -29,25 +29,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4364570742853738
+--- !u!4 &4687191334605828
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1290007011474474}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_GameObject: {fileID: 1557149493850042}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23861072799999084
+--- !u!23 &23619749545256282
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1290007011474474}
+  m_GameObject: {fileID: 1557149493850042}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -57,7 +57,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: ad69af1ae88ebe14e9b35e600d09a553, type: 2}
+  - {fileID: 2100000, guid: a21c7b4ab81a68e43ace1ce4a3c91fa0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -77,29 +77,32 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33788955061423650
+--- !u!33 &33288416573135292
 MeshFilter:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1290007011474474}
-  m_Mesh: {fileID: 4300000, guid: 2355fab0eb22c9142a6e7924ef832923, type: 3}
---- !u!114 &114889779570102094
+  m_GameObject: {fileID: 1557149493850042}
+  m_Mesh: {fileID: 4300000, guid: d6179140c4d32d9459ec1614f0062801, type: 3}
+--- !u!114 &114248158235384772
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1290007011474474}
+  m_GameObject: {fileID: 1557149493850042}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a8387812f936b974381faf47fb2ca0fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 0
-  coste: 5
-  nombre: carretera
+  categoria: 1
+  id: 1
+  coste: 10
+  nombre: carretera1
   poblacion: 0
   comida: 0
   trabajo: 0
   ingresos: 0
-  intesidadLuz: 0
+  luzIntesidad: 0
+  luzProbabilidad: 0
+  imagen: {fileID: 21300000, guid: 411317d0c54ea0e46adbf5df228463a5, type: 3}

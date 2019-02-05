@@ -51,15 +51,23 @@ public class Colocar : MonoBehaviour {
         {
             if (subedificio != null)
             {
+                int azar = Random.Range(subedificio.luzProbabilidad, 100);
+
                 foreach (Light luz in subedificio.GetComponentsInChildren<Light>())
-                {
+                {                   
                     if (tiempoDia >= 0.75f)
                     {
-                        luz.intensity = subedificio.intesidadLuz;
+                        if (azar > 50)
+                        {
+                            luz.intensity = subedificio.luzIntesidad;
+                        }                       
                     }
                     else if (tiempoDia <= 0.3f)
                     {
-                        luz.intensity = subedificio.intesidadLuz;
+                        if (azar > 50)
+                        {
+                            luz.intensity = subedificio.luzIntesidad;
+                        }                           
                     }
                     else
                     {

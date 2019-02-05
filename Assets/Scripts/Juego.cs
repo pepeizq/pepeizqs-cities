@@ -50,6 +50,12 @@ public class Juego : MonoBehaviour {
     public Panel panelGuardar;
     public Panel panelTiempo;
 
+    public GameObject botonEdificiosPrefab;
+    public Panel panelEdificiosDecoracion;
+    public Panel panelEdificiosCasas;
+    public Panel panelEdificiosComida;
+    public Panel panelEdificiosTrabajo;
+
     public Panel volverMenu;
     public Text volverMenuTexto;
     public Text volverMenuTextoSi;
@@ -66,6 +72,23 @@ public class Juego : MonoBehaviour {
     private void Start()
     {
         idioma.CargarIdioma(ficheroIdiomas, PlayerPrefs.GetString("idioma"));
+
+        foreach (Construccion edificio in edificios)
+        {
+            GameObject botonObjeto = Instantiate(botonEdificiosPrefab);
+
+            if (edificio.categoria == 0)
+            {
+                botonObjeto.transform.SetParent(panelEdificiosDecoracion.transform, false);
+            }
+            
+            Image imagen = botonObjeto.GetComponent<Image>();
+            imagen.sprite = edificio.imagen;
+
+            Button boton = botonObjeto.GetComponent<Button>();
+            boton.onClick.AddListener(() => SeleccionarEdificio(edificio.id));
+            //boton.OnPointerEnter.
+        }
 
         if (File.Exists(Application.persistentDataPath + "/guardado.save"))
         {

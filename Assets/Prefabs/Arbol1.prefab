@@ -9,19 +9,19 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1340487051031392}
+  m_RootGameObject: {fileID: 1991199825618550}
   m_IsPrefabAsset: 1
---- !u!1 &1340487051031392
+--- !u!1 &1991199825618550
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4257535977162978}
-  - component: {fileID: 33893195926525626}
-  - component: {fileID: 23734089319837570}
-  - component: {fileID: 114947905842439082}
+  - component: {fileID: 4408155374942046}
+  - component: {fileID: 33067894371510316}
+  - component: {fileID: 23268122990014050}
+  - component: {fileID: 114652958068430056}
   m_Layer: 0
   m_Name: Arbol1
   m_TagString: Untagged
@@ -29,25 +29,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4257535977162978
+--- !u!4 &4408155374942046
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1340487051031392}
+  m_GameObject: {fileID: 1991199825618550}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23734089319837570
+--- !u!23 &23268122990014050
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1340487051031392}
+  m_GameObject: {fileID: 1991199825618550}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -57,7 +57,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 437b1eb1cd4477c4a996f94e23ff29c4, type: 2}
+  - {fileID: 2100000, guid: 0faef7e76f8882e4cb3014e1687d13d8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -77,24 +77,32 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33893195926525626
+--- !u!33 &33067894371510316
 MeshFilter:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1340487051031392}
-  m_Mesh: {fileID: 4300000, guid: fea070fdabc791e40a86bfa0760a1adb, type: 3}
---- !u!114 &114947905842439082
+  m_GameObject: {fileID: 1991199825618550}
+  m_Mesh: {fileID: 4300000, guid: 289c4309ea79c394d8aad11e70e08778, type: 3}
+--- !u!114 &114652958068430056
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1340487051031392}
+  m_GameObject: {fileID: 1991199825618550}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a8387812f936b974381faf47fb2ca0fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 4
+  categoria: 0
+  id: 1
   coste: 5
-  nombre: arbol
+  nombre: arbol1
+  poblacion: 0
+  comida: 0
+  trabajo: 0
+  ingresos: 0
+  luzIntesidad: 0
+  luzProbabilidad: 0
+  imagen: {fileID: 21300000, guid: 617a11bfae394b04d94d694e653a86d9, type: 3}
