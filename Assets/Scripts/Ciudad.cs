@@ -30,7 +30,7 @@ public class Ciudad : MonoBehaviour {
     {
         if (!File.Exists(Application.persistentDataPath + "/guardado.save"))
         {
-            Dinero = 50;
+            Dinero = 5000;
         }
     }
 

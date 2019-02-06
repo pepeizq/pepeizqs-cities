@@ -694,7 +694,7 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0
   m_Range: 1
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -731,7 +731,7 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0
   m_Range: 1
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -768,7 +768,7 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0
   m_Range: 1
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -805,7 +805,7 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0
   m_Range: 1
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -842,7 +842,7 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0
   m_Range: 1
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -879,7 +879,7 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0
   m_Range: 1
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -916,7 +916,7 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0
   m_Range: 1
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -953,7 +953,7 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0
   m_Range: 1
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -990,7 +990,7 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0
   m_Range: 1
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -1027,7 +1027,7 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0
   m_Range: 1
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -1064,7 +1064,7 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0
   m_Range: 1
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -1101,7 +1101,7 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0
   m_Range: 1
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -1138,7 +1138,7 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0
   m_Range: 1
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -1175,7 +1175,7 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0
   m_Range: 1
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -1212,7 +1212,7 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0
   m_Range: 1
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -1249,7 +1249,7 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0
   m_Range: 1
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -1286,7 +1286,7 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0
   m_Range: 1
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -1323,7 +1323,7 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0
   m_Range: 1
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -1360,7 +1360,7 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0
   m_Range: 1
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -1397,7 +1397,7 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0
   m_Range: 1
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -1435,14 +1435,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8387812f936b974381faf47fb2ca0fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 14
   categoria: 4
-  id: 1
   coste: 100
   nombre: trabajo1
   poblacion: 0
   comida: 0
   trabajo: 20
   ingresos: 10
-  luzIntesidad: 1
+  luzIntesidad: 0.2
   luzProbabilidad: 25
   imagen: {fileID: 21300000, guid: 60052eedb0b856d48a745fd7640f22a5, type: 3}

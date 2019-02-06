@@ -2,8 +2,8 @@
 
 public class Construccion : MonoBehaviour
 {
-    public int categoria; //1 decoracion, 2 casas, 3 comida, 4 trabajo
     public int id;
+    public int categoria; //0 decoracion, 1 carreteras, 2 casas, 3 comida, 4 trabajo
 
     public int coste;
     public string nombre;
@@ -13,7 +13,7 @@ public class Construccion : MonoBehaviour
     public int trabajo;
     public int ingresos;
 
-    public int luzIntesidad;
+    public float luzIntesidad;
     public int luzProbabilidad;
 
     public Sprite imagen;

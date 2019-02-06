@@ -95,8 +95,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8387812f936b974381faf47fb2ca0fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 10
   categoria: 1
-  id: 9
   coste: 10
   nombre: carretera9
   poblacion: 0

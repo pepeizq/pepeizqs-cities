@@ -52,6 +52,7 @@ public class Juego : MonoBehaviour {
 
     public GameObject botonEdificiosPrefab;
     public Panel panelEdificiosDecoracion;
+    public Panel panelEdificiosCarreteras;
     public Panel panelEdificiosCasas;
     public Panel panelEdificiosComida;
     public Panel panelEdificiosTrabajo;
@@ -81,7 +82,23 @@ public class Juego : MonoBehaviour {
             {
                 botonObjeto.transform.SetParent(panelEdificiosDecoracion.transform, false);
             }
-            
+            else if(edificio.categoria == 1)
+            {
+                botonObjeto.transform.SetParent(panelEdificiosCarreteras.transform, false);
+            }
+            else if (edificio.categoria == 2)
+            {
+                botonObjeto.transform.SetParent(panelEdificiosCasas.transform, false);
+            }
+            else if (edificio.categoria == 3)
+            {
+                botonObjeto.transform.SetParent(panelEdificiosComida.transform, false);
+            }
+            else if (edificio.categoria == 4)
+            {
+                botonObjeto.transform.SetParent(panelEdificiosTrabajo.transform, false);
+            }
+
             Image imagen = botonObjeto.GetComponent<Image>();
             imagen.sprite = edificio.imagen;
 
@@ -178,21 +195,11 @@ public class Juego : MonoBehaviour {
             {
                 int[] rotaciones = new int[4];
 
-                if (edificioSeleccionado.nombre == "casa")
-                {
-                    rotaciones[0] = -180;
-                    rotaciones[1] = 0;
-                    rotaciones[2] = 90;
-                    rotaciones[3] = 270;
-                }
-                else
-                {
-                    rotaciones[0] = -180;
-                    rotaciones[1] = -270;
-                    rotaciones[2] = 0;
-                    rotaciones[3] = -90;
-                }
-               
+                rotaciones[0] = -180;
+                rotaciones[1] = -270;
+                rotaciones[2] = 0;
+                rotaciones[3] = -90;
+
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     rotacionesPosicion += 1;
@@ -237,30 +244,47 @@ public class Juego : MonoBehaviour {
         }       
     }
 
-    public void Construir(RectTransform panel)
+    public void Construir()
     {
         DemolerBoton(false);
         enseñarPrevio = false;
         colocarPrevio.QuitarTodosEdificios();
 
-        if (panel.gameObject.GetComponent<CanvasGroup>().alpha == 0)
+        if (panelEdificios.gameObject.GetComponent<CanvasGroup>().alpha == 0)
         {
-            panel.gameObject.GetComponent<CanvasGroup>().alpha = 1;
-            panel.gameObject.GetComponent<CanvasGroup>().interactable = true;
-            panel.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
+            panelEdificios.gameObject.GetComponent<CanvasGroup>().alpha = 1;
+            panelEdificios.gameObject.GetComponent<CanvasGroup>().interactable = true;
+            panelEdificios.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
         }
         else
         {
-            panel.gameObject.GetComponent<CanvasGroup>().alpha = 0;
-            panel.gameObject.GetComponent<CanvasGroup>().interactable = false;
-            panel.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
+            panelEdificios.gameObject.GetComponent<CanvasGroup>().alpha = 0;
+            panelEdificios.gameObject.GetComponent<CanvasGroup>().interactable = false;
+            panelEdificios.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
         }
 
         sonidoBoton.Play();
+       
+        MostrarPanelEdificios(panelEdificiosCarreteras);
+    }
+
+    public void MostrarPanelEdificios(Panel panelVisible)
+    {
+        panelEdificiosDecoracion.gameObject.SetActive(false);
+        panelEdificiosCarreteras.gameObject.SetActive(false);
+        panelEdificiosCasas.gameObject.SetActive(false);
+        panelEdificiosComida.gameObject.SetActive(false);
+        panelEdificiosTrabajo.gameObject.SetActive(false);
+
+        panelVisible.gameObject.SetActive(true);
     }
 
     public void SeleccionarEdificio(int edificio)
     {
+        panelEdificios.gameObject.GetComponent<CanvasGroup>().alpha = 0;
+        panelEdificios.gameObject.GetComponent<CanvasGroup>().interactable = false;
+        panelEdificios.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
+
         DemolerBoton(false);
 
         edificioSeleccionado = edificios[edificio];

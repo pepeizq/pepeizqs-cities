@@ -8,6 +8,11 @@ public class ColocarPrevio : MonoBehaviour
     {
         QuitarTodosEdificios();
 
+        foreach (Light luz in edificio.gameObject.GetComponentsInChildren<Light>())
+        {
+            luz.intensity = 0;
+        }
+
         posicion.y = 1;
         edificiosPrevio[(int)posicion.x, (int)posicion.z] = Instantiate(edificio, posicion, Quaternion.identity);
         edificiosPrevio[(int)posicion.x, (int)posicion.z].transform.rotation = Quaternion.Euler(0, rotacion, 0);
