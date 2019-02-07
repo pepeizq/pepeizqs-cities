@@ -17,4 +17,6 @@ public class Construccion : MonoBehaviour
     public int luzProbabilidad;
 
     public Sprite imagen;
+    public Vector3 dimensiones;
+    public bool construir;
 }

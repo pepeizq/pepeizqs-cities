@@ -344,13 +344,13 @@ public class Juego : MonoBehaviour {
                 {
                     if (colocar.ComprobarConstruccionesPosicion(gridPosicion) == null)
                     {
-                        if (colocarPrevio.ComprobarConstruccionesPosicion(gridPosicion) == null)
+                        if (colocarPrevio.ComprobarConstruccionesPosicion(edificioSeleccionado, gridPosicion) == null)
                         {
                             colocarPrevio.AñadirConstruccion(edificioSeleccionado, gridPosicion, rotacionColocar);
                         }
                         else
                         {
-                            colocarPrevio.QuitarEdificio(gridPosicion);
+                            colocarPrevio.QuitarEdificio(edificioSeleccionado, gridPosicion);
                             colocarPrevio.AñadirConstruccion(edificioSeleccionado, gridPosicion, rotacionColocar);
                         }
                     }

@@ -64,9 +64,9 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1630936280243998}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
   m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4104453218970976}
   m_Father: {fileID: 0}
@@ -124,7 +124,7 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0
   m_Range: 1
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -173,3 +173,5 @@ MonoBehaviour:
   luzIntesidad: 1
   luzProbabilidad: 33
   imagen: {fileID: 21300000, guid: bddc8ab1d4b32f341a9b64d1c93cdb9d, type: 3}
+  dimensiones: {x: 2, y: 2, z: 2}
+  construir: 1

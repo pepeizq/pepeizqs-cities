@@ -106,3 +106,5 @@ MonoBehaviour:
   luzIntesidad: 0
   luzProbabilidad: 0
   imagen: {fileID: 21300000, guid: 8037b32c2ed476347bffef12bd69591e, type: 3}
+  dimensiones: {x: 1, y: 1, z: 1}
+  construir: 1

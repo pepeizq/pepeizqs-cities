@@ -13,10 +13,36 @@ public class ColocarPrevio : MonoBehaviour
             luz.intensity = 0;
         }
 
-        posicion.y = 1;
-        edificiosPrevio[(int)posicion.x, (int)posicion.z] = Instantiate(edificio, posicion, Quaternion.identity);
-        edificiosPrevio[(int)posicion.x, (int)posicion.z].transform.rotation = Quaternion.Euler(0, rotacion, 0);
- 
+        if ((edificio.dimensiones.x == 2) && (edificio.dimensiones.y == 2) && (edificio.dimensiones.z == 2))
+        {
+            posicion.x = posicion.x + 0.5f;
+            posicion.y = 1.5f;
+            posicion.z = posicion.z + 0.5f;
+            edificio.gameObject.transform.localScale = new Vector3(2f, 2f, 2f);
+        }
+        else
+        {
+            posicion.y = 1;
+        }
+
+        if (edificio.construir == true)
+        {
+            Construccion edificioFinal = Instantiate(edificio, posicion, Quaternion.identity);
+            edificioFinal.transform.Rotate(Vector3.up, rotacion, Space.World);
+            edificioFinal.construir = false;
+
+            edificiosPrevio[(int)posicion.x, (int)posicion.z] = edificioFinal;
+
+            if ((edificio.dimensiones.x == 2) && (edificio.dimensiones.y == 2) && (edificio.dimensiones.z == 2))
+            {
+                edificiosPrevio[(int)posicion.x + 1, (int)posicion.z] = edificioFinal;
+                edificiosPrevio[(int)posicion.x, (int)posicion.z + 1] = edificioFinal;
+                edificiosPrevio[(int)posicion.x + 1, (int)posicion.z + 1] = edificioFinal;
+            }
+        }
+
+        //---------------------------------
+
         Material[] materiales = edificiosPrevio[(int)posicion.x, (int)posicion.z].gameObject.GetComponent<MeshRenderer>().materials;
 
         materiales[0].SetFloat("_Mode", 3);
@@ -32,11 +58,38 @@ public class ColocarPrevio : MonoBehaviour
         edificiosPrevio[(int)posicion.x, (int)posicion.z].gameObject.GetComponent<MeshRenderer>().materials = materiales;
     }
 
-    public Construccion ComprobarConstruccionesPosicion(Vector3 posicion)
+    public Construccion ComprobarConstruccionesPosicion(Construccion edificio, Vector3 posicion)
     {
         if (((int)posicion.x > 0) && ((int)posicion.x <= 100) && ((int)posicion.z > 0) && ((int)posicion.z <= 100))
         {
-            return edificiosPrevio[(int)posicion.x, (int)posicion.z];
+            if ((edificio.dimensiones.x == 2) && (edificio.dimensiones.y == 2) && (edificio.dimensiones.z == 2))
+            {
+                if (edificiosPrevio[(int)posicion.x, (int)posicion.z] != null)
+                {
+                    return edificiosPrevio[(int)posicion.x, (int)posicion.z];
+                }
+
+                if (edificiosPrevio[(int)posicion.x + 1, (int)posicion.z] != null)
+                {
+                    return edificiosPrevio[(int)posicion.x + 1, (int)posicion.z];
+                }
+
+                if (edificiosPrevio[(int)posicion.x, (int)posicion.z + 1] != null)
+                {
+                    return edificiosPrevio[(int)posicion.x, (int)posicion.z + 1];
+                }
+
+                if (edificiosPrevio[(int)posicion.x + 1, (int)posicion.z + 1] != null)
+                {
+                    return edificiosPrevio[(int)posicion.x + 1, (int)posicion.z + 1];
+                }
+
+                return null;
+            }
+            else
+            {
+                return edificiosPrevio[(int)posicion.x, (int)posicion.z];
+            }               
         }
         else
         {
@@ -44,10 +97,44 @@ public class ColocarPrevio : MonoBehaviour
         }
     }
 
-    public void QuitarEdificio(Vector3 posicion)
+    public void QuitarEdificio(Construccion edificio, Vector3 posicion)
     {
-        Destroy(edificiosPrevio[(int)posicion.x, (int)posicion.z].gameObject);
-        edificiosPrevio[(int)posicion.x, (int)posicion.z] = null;
+        if ((edificio.dimensiones.x == 2) && (edificio.dimensiones.y == 2) && (edificio.dimensiones.z == 2))
+        {
+            if (edificiosPrevio[(int)posicion.x, (int)posicion.z] != null)
+            {
+                Destroy(edificiosPrevio[(int)posicion.x, (int)posicion.z].gameObject);
+                edificiosPrevio[(int)posicion.x, (int)posicion.z] = null;
+                Debug.Log("00");
+            }
+
+            if (edificiosPrevio[(int)posicion.x + 1, (int)posicion.z] != null)
+            {
+                Destroy(edificiosPrevio[(int)posicion.x + 1, (int)posicion.z].gameObject);
+                edificiosPrevio[(int)posicion.x + 1, (int)posicion.z] = null;
+                Debug.Log("10");
+            }
+
+            if (edificiosPrevio[(int)posicion.x, (int)posicion.z + 1] != null)
+            {
+                Destroy(edificiosPrevio[(int)posicion.x, (int)posicion.z + 1].gameObject);
+                edificiosPrevio[(int)posicion.x, (int)posicion.z + 1] = null;
+                Debug.Log("01");
+            }
+
+            if (edificiosPrevio[(int)posicion.x + 1, (int)posicion.z + 1] != null)
+            {
+                Destroy(edificiosPrevio[(int)posicion.x + 1, (int)posicion.z + 1].gameObject);
+                edificiosPrevio[(int)posicion.x + 1, (int)posicion.z + 1] = null;
+                Debug.Log("11");
+            }
+        }
+        else
+        {
+            Destroy(edificiosPrevio[(int)posicion.x, (int)posicion.z].gameObject);
+            edificiosPrevio[(int)posicion.x, (int)posicion.z] = null;
+        }
+         
         QuitarTodosEdificios();
     }
 
