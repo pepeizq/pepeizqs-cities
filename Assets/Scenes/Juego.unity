@@ -2410,6 +2410,7 @@ MonoBehaviour:
   - {fileID: 114663039440860856, guid: a90ca5e8eb3681d4995c5e33f0d5af6d, type: 2}
   - {fileID: 114142020461635082, guid: 650ca99e652ef4a4d9bcd6dc3c0fff0b, type: 2}
   - {fileID: 114657443359863982, guid: daf0aaaffc21ace4cb5284056c63cd05, type: 2}
+  - {fileID: 114719743380459958, guid: 3f48d98e38cd5db40a4ea6532f118478, type: 2}
   colocar: {fileID: 491194797}
   colocarPrevio: {fileID: 491194796}
   diaNoche: {fileID: 491194794}
@@ -2452,6 +2453,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb81e2875588bd446a9b3103ef29e3d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  edificioVacio: {fileID: 114719743380459958, guid: 3f48d98e38cd5db40a4ea6532f118478,
+    type: 2}
 --- !u!114 &491194797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2463,6 +2466,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 843f2793d74b6274698474fc0ed528fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  edificioVacio: {fileID: 114719743380459958, guid: 3f48d98e38cd5db40a4ea6532f118478,
+    type: 2}
 --- !u!4 &491194798
 Transform:
   m_ObjectHideFlags: 0

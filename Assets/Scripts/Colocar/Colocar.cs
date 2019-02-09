@@ -4,6 +4,8 @@ public class Colocar : MonoBehaviour {
 
     public Construccion[,] edificios = new Construccion[100, 100];
 
+    public Construccion edificioVacio;
+
     public void AñadirConstruccion(Construccion edificio, Vector3 posicion, int rotacion)
     {
         if ((edificio.dimensiones.x == 2) && (edificio.dimensiones.y == 2) && (edificio.dimensiones.z == 2))
@@ -18,28 +20,51 @@ public class Colocar : MonoBehaviour {
             posicion.y = 1;
         }
 
-        if (edificio.construir == true)
+        Construccion edificioFinal = Instantiate(edificio, posicion, Quaternion.identity);
+        edificioFinal.transform.Rotate(Vector3.up, rotacion, Space.World);
+
+        edificios[(int)posicion.x, (int)posicion.z] = edificioFinal;
+
+        if ((edificio.dimensiones.x == 2) && (edificio.dimensiones.y == 2) && (edificio.dimensiones.z == 2))
         {
-            Construccion edificioFinal = Instantiate(edificio, posicion, Quaternion.identity);
-            edificioFinal.transform.Rotate(Vector3.up, rotacion, Space.World);
-            edificioFinal.construir = false;
-
-            edificios[(int)posicion.x, (int)posicion.z] = edificioFinal;
-
-            if ((edificio.dimensiones.x == 2) && (edificio.dimensiones.y == 2) && (edificio.dimensiones.z == 2))
-            {
-                edificios[(int)posicion.x + 1, (int)posicion.z] = edificioFinal;
-                edificios[(int)posicion.x, (int)posicion.z + 1] = edificioFinal;
-                edificios[(int)posicion.x + 1, (int)posicion.z + 1] = edificioFinal;
-            }
-        }           
+            edificios[(int)posicion.x + 1, (int)posicion.z] = Instantiate(edificioVacio);
+            edificios[(int)posicion.x, (int)posicion.z + 1] = Instantiate(edificioVacio);
+            edificios[(int)posicion.x + 1, (int)posicion.z + 1] = Instantiate(edificioVacio);
+        }
     }
 
-    public Construccion ComprobarConstruccionesPosicion(Vector3 posicion)
+    public Construccion ComprobarConstruccionesPosicion(Construccion edificio, Vector3 posicion)
     {
         if (((int)posicion.x > 0) && ((int)posicion.x <= 100) && ((int)posicion.z > 0) && ((int)posicion.z <= 100))
         {
-            return edificios[(int)posicion.x, (int)posicion.z];
+            if ((edificio.dimensiones.x == 2) && (edificio.dimensiones.y == 2) && (edificio.dimensiones.z == 2))
+            {
+                if (edificios[(int)posicion.x, (int)posicion.z] != null)
+                {
+                    return edificios[(int)posicion.x, (int)posicion.z];
+                }
+
+                if (edificios[(int)posicion.x + 1, (int)posicion.z] != null)
+                {
+                    return edificios[(int)posicion.x + 1, (int)posicion.z];
+                }
+
+                if (edificios[(int)posicion.x, (int)posicion.z + 1] != null)
+                {
+                    return edificios[(int)posicion.x, (int)posicion.z + 1];
+                }
+
+                if (edificios[(int)posicion.x + 1, (int)posicion.z + 1] != null)
+                {
+                    return edificios[(int)posicion.x + 1, (int)posicion.z + 1];
+                }
+
+                return null;
+            }
+            else
+            {
+                return edificios[(int)posicion.x, (int)posicion.z];
+            }
         }
         else
         {
@@ -47,10 +72,39 @@ public class Colocar : MonoBehaviour {
         }
     }
 
-    public void QuitarEdificio(Vector3 posicion)
+    public void QuitarEdificio(Construccion edificio, Vector3 posicion)
     {
-        Destroy(edificios[(int)posicion.x, (int)posicion.z].gameObject);
-        edificios[(int)posicion.x, (int)posicion.z] = null;
+        if ((edificio.dimensiones.x == 2) && (edificio.dimensiones.y == 2) && (edificio.dimensiones.z == 2))
+        {
+            if (edificios[(int)posicion.x, (int)posicion.z] != null)
+            {
+                Destroy(edificios[(int)posicion.x, (int)posicion.z].gameObject);
+                edificios[(int)posicion.x, (int)posicion.z] = null;
+            }
+
+            if (edificios[(int)posicion.x + 1, (int)posicion.z] != null)
+            {
+                Destroy(edificios[(int)posicion.x + 1, (int)posicion.z].gameObject);
+                edificios[(int)posicion.x + 1, (int)posicion.z] = null;
+            }
+
+            if (edificios[(int)posicion.x, (int)posicion.z + 1] != null)
+            {
+                Destroy(edificios[(int)posicion.x, (int)posicion.z + 1].gameObject);
+                edificios[(int)posicion.x, (int)posicion.z + 1] = null;
+            }
+
+            if (edificios[(int)posicion.x + 1, (int)posicion.z + 1] != null)
+            {
+                Destroy(edificios[(int)posicion.x + 1, (int)posicion.z + 1].gameObject);
+                edificios[(int)posicion.x + 1, (int)posicion.z + 1] = null;
+            }
+        }
+        else
+        {
+            Destroy(edificios[(int)posicion.x, (int)posicion.z].gameObject);
+            edificios[(int)posicion.x, (int)posicion.z] = null;
+        }
     }
 
     public Construccion[,] DevolverConstrucciones()

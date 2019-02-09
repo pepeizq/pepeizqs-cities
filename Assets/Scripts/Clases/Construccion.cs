@@ -18,5 +18,4 @@ public class Construccion : MonoBehaviour
 
     public Sprite imagen;
     public Vector3 dimensiones;
-    public bool construir;
 }

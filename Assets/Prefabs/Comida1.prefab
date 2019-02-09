@@ -174,4 +174,3 @@ MonoBehaviour:
   luzProbabilidad: 33
   imagen: {fileID: 21300000, guid: bddc8ab1d4b32f341a9b64d1c93cdb9d, type: 3}
   dimensiones: {x: 2, y: 2, z: 2}
-  construir: 1

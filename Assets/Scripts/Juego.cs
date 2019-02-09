@@ -120,6 +120,7 @@ public class Juego : MonoBehaviour {
                 Construccion edificioGuardado = edificios[guardado.edificiosID[i]];
                 Vector3 vector = new Vector3(guardado.edificiosX[i], 1, guardado.edificiosZ[i]);
                 colocar.AñadirConstruccion(edificioGuardado, vector, guardado.edificiosRotacion[i]);
+
                 i++;
             }
 
@@ -146,10 +147,14 @@ public class Juego : MonoBehaviour {
                 {
                     Vector3 posicion = new Vector3(Random.Range(1, 99), 1, Random.Range(1, 99));
 
-                    if (colocar.ComprobarConstruccionesPosicion(posicion) == null)
+                    if (arbolInicio != null)
                     {
-                        colocar.AñadirConstruccion(arbolInicio, posicion, 0);
+                        if (colocar.ComprobarConstruccionesPosicion(arbolInicio, posicion) == null)
+                        {
+                            colocar.AñadirConstruccion(arbolInicio, posicion, 0);
+                        }
                     }
+                    
                     i++;
                 }
             }
@@ -306,7 +311,7 @@ public class Juego : MonoBehaviour {
             {
                 if (!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
                 {                   
-                    if (accion == 0 && colocar.ComprobarConstruccionesPosicion(gridPosicion) == null)
+                    if (accion == 0 && colocar.ComprobarConstruccionesPosicion(edificioSeleccionado,gridPosicion) == null)
                     {                       
                         if (ciudad.Dinero >= edificioSeleccionado.coste)
                         {                          
@@ -316,11 +321,15 @@ public class Juego : MonoBehaviour {
                             sonidoBotonConstruir.Play();
                         }
                     }
-                    else if (accion == 1 && colocar.ComprobarConstruccionesPosicion(gridPosicion) != null)
+                    else if (accion == 1 && colocar.ComprobarConstruccionesPosicion(edificioSeleccionado, gridPosicion) != null)
                     {
-                        ciudad.DepositoDinero(colocar.ComprobarConstruccionesPosicion(gridPosicion).coste / 3);
+                        if (edificioSeleccionado.categoria != 0)
+                        {
+                            ciudad.DepositoDinero(colocar.ComprobarConstruccionesPosicion(edificioSeleccionado, gridPosicion).coste / 3);
+                        }
+                        
                         ciudad.ActualizarUI(false);
-                        colocar.QuitarEdificio(gridPosicion);
+                        colocar.QuitarEdificio(edificioSeleccionado, gridPosicion);
                         DemolerBoton(false);
                         sonidoBotonDemoler.Play();
                     }
@@ -342,7 +351,7 @@ public class Juego : MonoBehaviour {
 
                 if (((int)gridPosicion.x > 0) && ((int)gridPosicion.x < 100) && ((int)gridPosicion.z > 0) && ((int)gridPosicion.z < 100))
                 {
-                    if (colocar.ComprobarConstruccionesPosicion(gridPosicion) == null)
+                    if (colocar.ComprobarConstruccionesPosicion(edificioSeleccionado, gridPosicion) == null)
                     {
                         if (colocarPrevio.ComprobarConstruccionesPosicion(edificioSeleccionado, gridPosicion) == null)
                         {
@@ -382,9 +391,9 @@ public class Juego : MonoBehaviour {
 
                 if (!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
                 {
-                    if (colocar.ComprobarConstruccionesPosicion(gridPosicion) != null)
+                    if (colocar.ComprobarConstruccionesPosicion(edificioSeleccionado, gridPosicion) != null)
                     {
-                        Construccion edificioDemoler = colocar.ComprobarConstruccionesPosicion(gridPosicion);
+                        Construccion edificioDemoler = colocar.ComprobarConstruccionesPosicion(edificioSeleccionado, gridPosicion);
                         edificioDemoler.gameObject.GetComponent<MeshRenderer>().material.color = new Color(255, 0, 0, 0.1f);
                     }
                 }
@@ -415,16 +424,20 @@ public class Juego : MonoBehaviour {
         Guardado guardado = new Guardado();
 
         Construccion[,] edificiosGuardar = colocar.DevolverConstrucciones();
+
         for (int x = 0; x < edificiosGuardar.GetLength(0); x++)
         {
             for (int z = 0; z < edificiosGuardar.GetLength(1); z++)
             {
                 if (edificiosGuardar[x,z] != null)
                 {
-                    guardado.edificiosID.Add(edificiosGuardar[x, z].id);
-                    guardado.edificiosX.Add(x);
-                    guardado.edificiosZ.Add(z);
-                    guardado.edificiosRotacion.Add((int)edificiosGuardar[x, z].gameObject.transform.eulerAngles.y);
+                    if (edificiosGuardar[x, z].id != 99)
+                    {
+                        guardado.edificiosID.Add(edificiosGuardar[x, z].id);
+                        guardado.edificiosX.Add(x);
+                        guardado.edificiosZ.Add(z);
+                        guardado.edificiosRotacion.Add((int)edificiosGuardar[x, z].gameObject.transform.eulerAngles.y);
+                    }                    
                 }
             }
         }
