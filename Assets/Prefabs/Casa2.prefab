@@ -6804,6 +6804,7 @@ MonoBehaviour:
   trabajo: 0
   ingresos: 0
   luzIntesidad: 1
+  luzRango: 1
   luzProbabilidad: 30
   imagen: {fileID: 21300000, guid: 5131e95ad7424ee4fb7cc3260d9a32db, type: 3}
   dimensiones: {x: 2, y: 2, z: 2}

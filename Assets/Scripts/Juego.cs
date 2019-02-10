@@ -128,6 +128,7 @@ public class Juego : MonoBehaviour {
 
             diaNoche.tiempoTotalDias = guardado.dia;
             diaNoche.tiempoDia = guardado.hora;
+            diaNoche.ActualizarLuces();
 
             ciudad.Dinero = guardado.dinero;
             ciudad.PoblacionActual = guardado.poblacionActual;

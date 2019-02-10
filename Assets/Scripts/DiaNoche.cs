@@ -38,11 +38,13 @@ public class DiaNoche : MonoBehaviour {
 
     private int contadorHoras = 0;
 
+    private bool encender;
+
     void Start()
     {
         idioma.CargarIdioma(ficheroIdiomas, PlayerPrefs.GetString("idioma"));
 
-        solIntensidadInicio = sol.intensity;  
+        solIntensidadInicio = sol.intensity;
     }
 
     void Update()
@@ -53,19 +55,34 @@ public class DiaNoche : MonoBehaviour {
         {
             tiempoDia += (Time.deltaTime / segundosDia) * tiempoMultiplicador;
 
-            if (tiempoDia > 0.98)
+            if (tiempoDia > 0.98f)
             {
                 tiempoDia = 0;
                 tiempoTotalDias += 1;
-            } 
+            }
+         
+            if (encender == true)
+            {    
+                if ((tiempoDia > 0.7f && tiempoDia <= 0.99f) || (tiempoDia > 0 && tiempoDia < 0.3f))
+                {
+                    colocar.ComprobarLuces(encender);
+                    encender = false;               
+                }
+            }
+            else
+            {
+                if (tiempoDia <= 0.7f && tiempoDia >= 0.3f)
+                {
+                    colocar.ComprobarLuces(encender);
+                    encender = true;
+                }
+            }
         }
 
         dias.text = string.Format(idioma.CogerCadena("day").ToUpper() + " {0}", Mathf.Round(tiempoTotalDias));
 
         ActualizarReloj();
         ActualizarSol();
-
-        colocar.ComprobarLuces(tiempoDia);
     }
 
     void ActualizarReloj()
@@ -132,6 +149,18 @@ public class DiaNoche : MonoBehaviour {
         {
             parar = false;
             botonPlayPausa.GetComponent<Image>().sprite = botonPausaSprite;
+        }
+    }
+
+    public void ActualizarLuces()
+    {
+        if ((tiempoDia > 0.7f && tiempoDia <= 0.99f) || (tiempoDia > 0 && tiempoDia < 0.3f))
+        {
+            encender = true;
+        }
+        else
+        {
+            encender = false;
         }
     }
 }

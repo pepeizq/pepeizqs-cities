@@ -27,7 +27,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 1
   m_IsActive: 1
 --- !u!4 &4408155374942046
 Transform:
@@ -104,7 +104,7 @@ MonoBehaviour:
   trabajo: 0
   ingresos: 0
   luzIntesidad: 0
+  luzRango: 0
   luzProbabilidad: 0
   imagen: {fileID: 21300000, guid: 617a11bfae394b04d94d694e653a86d9, type: 3}
   dimensiones: {x: 1, y: 1, z: 1}
-  construir: 1

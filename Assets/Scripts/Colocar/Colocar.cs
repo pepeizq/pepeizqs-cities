@@ -123,35 +123,35 @@ public class Colocar : MonoBehaviour {
         }
     }
 
-    public void ComprobarLuces(float tiempoDia)
+    public void ComprobarLuces(bool encendido)
     {
         foreach (Construccion subedificio in edificios)
         {
             if (subedificio != null)
             {
-                int azar = Random.Range(0, subedificio.luzProbabilidad);
+                Light[] luces = subedificio.GetComponentsInChildren<Light>();
+               
+                foreach (Light luz in luces)
+                {
+                    int azar = Random.Range(0, 100 - subedificio.luzProbabilidad);
 
-                foreach (Light luz in subedificio.GetComponentsInChildren<Light>())
-                {                   
-                    if (tiempoDia >= 0.75f)
+                    if (encendido == true)
                     {
                         if ((subedificio.luzProbabilidad == 100) || (azar > 50))
                         {
                             luz.intensity = subedificio.luzIntesidad;
-                            luz.range = 0.5f;
-                        }                       
-                    }
-                    else if (tiempoDia <= 0.3f)
-                    {
-                        if ((subedificio.luzProbabilidad == 100) || (azar > 50))
+                            luz.range = subedificio.luzRango;
+                        }
+                        else
                         {
-                            luz.intensity = subedificio.luzIntesidad;
-                            luz.range = 0.5f;
-                        }                           
+                            luz.intensity = 0;
+                            luz.range = 0;
+                        }
                     }
-                    else
+                    else 
                     {
                         luz.intensity = 0;
+                        luz.range = 0;
                     }
                 }
             }

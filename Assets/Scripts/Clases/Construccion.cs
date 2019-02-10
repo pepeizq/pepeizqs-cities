@@ -14,6 +14,7 @@ public class Construccion : MonoBehaviour
     public int ingresos;
 
     public float luzIntesidad;
+    public float luzRango;
     public int luzProbabilidad;
 
     public Sprite imagen;

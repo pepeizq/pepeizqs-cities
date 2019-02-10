@@ -38,12 +38,12 @@ public class Ciudad : MonoBehaviour {
     {
         if (nuevaHora == true)
         {
-            CalcularDinero();
+            CalcularIngresosDinero();
             CalcularPoblacion();
             CalcularTrabajos();
             CalcularComida();
         }
-       
+
         dineroTexto.text = string.Format("{0}", Dinero);
         poblacionTexto.text = string.Format("{0}/{1}", (int)PoblacionActual, (int)PoblacionTope);
         trabajoTexto.text = string.Format("{0}/{1}", TrabajosActual, TrabajosTope);
@@ -73,7 +73,7 @@ public class Ciudad : MonoBehaviour {
         }      
     }
 
-    void CalcularDinero()
+    void CalcularIngresosDinero()
     {
         int montante = 0;
 
@@ -139,7 +139,7 @@ public class Ciudad : MonoBehaviour {
 
         if (Comida >= PoblacionActual && PoblacionActual < PoblacionTope)
         {
-            PoblacionActual = Mathf.Min(PoblacionActual += Comida * .25f, PoblacionTope);
+            PoblacionActual = Mathf.Min(PoblacionActual += Comida * .05f, PoblacionTope);
         }
         else if (Comida < PoblacionActual)
         {
