@@ -37,29 +37,36 @@ public class Colocar : MonoBehaviour {
     {
         if (((int)posicion.x > 0) && ((int)posicion.x <= 100) && ((int)posicion.z > 0) && ((int)posicion.z <= 100))
         {
-            if ((edificio.dimensiones.x == 2) && (edificio.dimensiones.y == 2) && (edificio.dimensiones.z == 2))
+            if (edificio != null)
             {
-                if (edificios[(int)posicion.x, (int)posicion.z] != null)
+                if ((edificio.dimensiones.x == 2) && (edificio.dimensiones.y == 2) && (edificio.dimensiones.z == 2))
+                {
+                    if (edificios[(int)posicion.x, (int)posicion.z] != null)
+                    {
+                        return edificios[(int)posicion.x, (int)posicion.z];
+                    }
+
+                    if (edificios[(int)posicion.x + 1, (int)posicion.z] != null)
+                    {
+                        return edificios[(int)posicion.x + 1, (int)posicion.z];
+                    }
+
+                    if (edificios[(int)posicion.x, (int)posicion.z + 1] != null)
+                    {
+                        return edificios[(int)posicion.x, (int)posicion.z + 1];
+                    }
+
+                    if (edificios[(int)posicion.x + 1, (int)posicion.z + 1] != null)
+                    {
+                        return edificios[(int)posicion.x + 1, (int)posicion.z + 1];
+                    }
+
+                    return null;
+                }
+                else
                 {
                     return edificios[(int)posicion.x, (int)posicion.z];
                 }
-
-                if (edificios[(int)posicion.x + 1, (int)posicion.z] != null)
-                {
-                    return edificios[(int)posicion.x + 1, (int)posicion.z];
-                }
-
-                if (edificios[(int)posicion.x, (int)posicion.z + 1] != null)
-                {
-                    return edificios[(int)posicion.x, (int)posicion.z + 1];
-                }
-
-                if (edificios[(int)posicion.x + 1, (int)posicion.z + 1] != null)
-                {
-                    return edificios[(int)posicion.x + 1, (int)posicion.z + 1];
-                }
-
-                return null;
             }
             else
             {

@@ -137,13 +137,22 @@ public class Ciudad : MonoBehaviour {
 
         PoblacionTope = tope;
 
-        if (Comida >= PoblacionActual && PoblacionActual < PoblacionTope)
+        if (Comida >= 0)
         {
-            PoblacionActual = Mathf.Min(PoblacionActual += Comida * .05f, PoblacionTope);
+            PoblacionActual = PoblacionActual + (PoblacionTope / 10);
         }
-        else if (Comida < PoblacionActual)
+        else
         {
-            PoblacionActual -= Comida * 0.15f;
+            PoblacionActual = PoblacionActual - (PoblacionActual / 10);
         }
+
+        //if (Comida >= PoblacionActual && PoblacionActual < PoblacionTope)
+        //{
+        //    PoblacionActual = Mathf.Min(PoblacionActual += Comida * .05f, PoblacionTope);
+        //}
+        //else if (Comida < PoblacionActual)
+        //{
+        //    PoblacionActual -= Comida * 0.15f;
+        //}
     }
 }

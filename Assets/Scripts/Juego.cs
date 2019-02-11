@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -56,6 +57,7 @@ public class Juego : MonoBehaviour {
     public Panel panelEdificiosCasas;
     public Panel panelEdificiosComida;
     public Panel panelEdificiosTrabajo;
+    public EdificiosInfo panelEdificiosInfo;
 
     public Panel volverMenu;
     public Text volverMenuTexto;
@@ -104,7 +106,23 @@ public class Juego : MonoBehaviour {
 
             Button boton = botonObjeto.GetComponent<Button>();
             boton.onClick.AddListener(() => SeleccionarEdificio(edificio.id));
-            //boton.OnPointerEnter.
+
+            EventTrigger evento = botonObjeto.AddComponent<EventTrigger>();
+            EventTrigger.Entry pointerEnter = new EventTrigger.Entry
+            {
+                eventID = EventTriggerType.PointerEnter
+            };
+
+            pointerEnter.callback.AddListener((data) => { panelEdificiosInfo.OnPointerEnter((PointerEventData)data, edificio); });
+            evento.triggers.Add(pointerEnter);
+
+            EventTrigger.Entry pointerExit = new EventTrigger.Entry
+            {
+                eventID = EventTriggerType.PointerExit
+            };
+
+            pointerExit.callback.AddListener((data) => { panelEdificiosInfo.OnPointerExit((PointerEventData)data); });
+            evento.triggers.Add(pointerExit);
         }
 
         if (File.Exists(Application.persistentDataPath + "/guardado.save"))
@@ -324,13 +342,15 @@ public class Juego : MonoBehaviour {
                     }
                     else if (accion == 1 && colocar.ComprobarConstruccionesPosicion(edificioSeleccionado, gridPosicion) != null)
                     {
-                        if (edificioSeleccionado.categoria != 0)
+                        Construccion edificioEliminar = colocar.ComprobarConstruccionesPosicion(edificioSeleccionado, gridPosicion);
+
+                        if (edificioEliminar.categoria != 0)
                         {
-                            ciudad.DepositoDinero(colocar.ComprobarConstruccionesPosicion(edificioSeleccionado, gridPosicion).coste / 3);
+                            ciudad.DepositoDinero(edificioEliminar.coste / 3);
                         }
                         
                         ciudad.ActualizarUI(false);
-                        colocar.QuitarEdificio(edificioSeleccionado, gridPosicion);
+                        colocar.QuitarEdificio(edificioEliminar, gridPosicion);
                         DemolerBoton(false);
                         sonidoBotonDemoler.Play();
                     }

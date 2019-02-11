@@ -871,10 +871,10 @@
     <Compile Include="Assets\Scripts\Colocar\ColocarPrevio.cs" />
     <Compile Include="Assets\Scripts\Colocar\RedondearPosicion.cs" />
     <Compile Include="Assets\Scripts\DiaNoche.cs" />
+    <Compile Include="Assets\Scripts\EdificiosInfo.cs" />
     <Compile Include="Assets\Scripts\Idiomas.cs" />
     <Compile Include="Assets\Scripts\Juego.cs" />
     <Compile Include="Assets\Scripts\MenuPrincipal.cs" />
-    <Compile Include="Assets\Scripts\Tooltips.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

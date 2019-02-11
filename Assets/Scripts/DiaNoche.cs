@@ -3,7 +3,6 @@ using UnityEngine.UI;
 
 public class DiaNoche : MonoBehaviour {
 
-    public TextAsset ficheroIdiomas;
     public Idiomas idioma;
 
     public Light sol;
@@ -42,8 +41,6 @@ public class DiaNoche : MonoBehaviour {
 
     void Start()
     {
-        idioma.CargarIdioma(ficheroIdiomas, PlayerPrefs.GetString("idioma"));
-
         solIntensidadInicio = sol.intensity;
     }
 

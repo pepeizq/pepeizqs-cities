@@ -13,6 +13,8 @@
         <string name="yes">Yes</string>
         <string name="no">No</string>
         <string name="cancel">Cancel</string>
+        <string name="cost">Cost</string>
+        <string name="population">Population</string>
     </English>
      
     <Spanish>
@@ -28,5 +30,7 @@
         <string name="yes">Si</string>
         <string name="no">No</string>
         <string name="cancel">Cancelar</string>
+        <string name="cost">Coste</string>
+        <string name="population">Población</string>
     </Spanish>
 </languages>
