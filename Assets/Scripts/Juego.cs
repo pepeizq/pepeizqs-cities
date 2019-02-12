@@ -76,6 +76,8 @@ public class Juego : MonoBehaviour {
     {
         idioma.CargarIdioma(ficheroIdiomas, PlayerPrefs.GetString("idioma"));
 
+        panelEdificiosInfo.Arranque();
+
         foreach (Construccion edificio in edificios)
         {
             GameObject botonObjeto = Instantiate(botonEdificiosPrefab);
@@ -125,82 +127,12 @@ public class Juego : MonoBehaviour {
             evento.triggers.Add(pointerExit);
         }
 
-        if (File.Exists(Application.persistentDataPath + "/guardado.save"))
-        {
-            BinaryFormatter bf = new BinaryFormatter();
-            FileStream fichero = File.Open(Application.persistentDataPath + "/guardado.save", FileMode.Open);
-            Guardado guardado = (Guardado)bf.Deserialize(fichero);
-            fichero.Close();
-
-            int i = 0;
-            while (i < guardado.edificiosID.Count)
-            {
-                Construccion edificioGuardado = edificios[guardado.edificiosID[i]];
-                Vector3 vector = new Vector3(guardado.edificiosX[i], 1, guardado.edificiosZ[i]);
-                colocar.AñadirConstruccion(edificioGuardado, vector, guardado.edificiosRotacion[i]);
-
-                i++;
-            }
-
-            camara.transform.position = new Vector3(guardado.camaraX, guardado.camaraY, guardado.camaraZ);
-
-            diaNoche.tiempoTotalDias = guardado.dia;
-            diaNoche.tiempoDia = guardado.hora;
-            diaNoche.ActualizarLuces();
-
-            ciudad.Dinero = guardado.dinero;
-            ciudad.PoblacionActual = guardado.poblacionActual;
-            ciudad.PoblacionTope = guardado.poblacionTope;
-            ciudad.TrabajosActual = guardado.trabajosActual;
-            ciudad.TrabajosTope = guardado.trabajosTope;
-            ciudad.Comida = guardado.comida;
-        }
-        else
-        {
-            if (arbolInicio != null)
-            {
-                int arbolesColocar = 100;
-
-                int i = 0;
-                while (i < arbolesColocar)
-                {
-                    Vector3 posicion = new Vector3(Random.Range(1, 99), 1, Random.Range(1, 99));
-
-                    if (arbolInicio != null)
-                    {
-                        if (colocar.ComprobarConstruccionesPosicion(arbolInicio, posicion) == null)
-                        {
-                            colocar.AñadirConstruccion(arbolInicio, posicion, 0);
-                        }
-                    }
-                    
-                    i++;
-                }
-            }
-        }
+        CargarPartida();
 
         volverMenuTexto.text = idioma.CogerCadena("exitQuestion");
         volverMenuTextoSi.text = idioma.CogerCadena("yes");
         volverMenuTextoNo.text = idioma.CogerCadena("no");
-        volverMenuTextoCancelar.text = idioma.CogerCadena("cancel");
-
-        if (PlayerPrefs.GetString("ayuda") == "true")
-        {
-            ayuda1.GetComponent<CanvasGroup>().alpha = 1;
-            ayuda1.GetComponent<CanvasGroup>().interactable = true;
-            ayuda1.GetComponent<CanvasGroup>().blocksRaycasts = true;
-            ayuda1.gameObject.SetActive(true);
-
-            ayuda1Texto.text = idioma.CogerCadena("help1");
-            ayuda2Texto.text = idioma.CogerCadena("help2");
-            ayuda3Texto.text = idioma.CogerCadena("help3");
-
-            diaNoche.ArrancarParar();
-        }
-        else
-        {
-            ayuda1.gameObject.SetActive(false);
-        }
+        volverMenuTextoCancelar.text = idioma.CogerCadena("cancel");     
 
         musicaFondo.loop = true;
         musicaFondo.Play();
@@ -366,7 +298,7 @@ public class Juego : MonoBehaviour {
 
         if (Physics.Raycast(ray, out hit))
         {
-            if (!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
+            if (!EventSystem.current.IsPointerOverGameObject())
             {
                 Vector3 gridPosicion = RedondearPosicion.Buscar(hit.point);
 
@@ -410,7 +342,7 @@ public class Juego : MonoBehaviour {
             {
                 colocar.LimpiarColorEdificios();
 
-                if (!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
+                if (!EventSystem.current.IsPointerOverGameObject())
                 {
                     if (colocar.ComprobarConstruccionesPosicion(edificioSeleccionado, gridPosicion) != null)
                     {
@@ -438,6 +370,81 @@ public class Juego : MonoBehaviour {
         }
 
         botonDemoler.colors = color;
+    }
+
+    public void CargarPartida()
+    {
+        if (File.Exists(Application.persistentDataPath + "/guardado.save"))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream fichero = File.Open(Application.persistentDataPath + "/guardado.save", FileMode.Open);
+            Guardado guardado = (Guardado)bf.Deserialize(fichero);
+            fichero.Close();
+
+            int i = 0;
+            while (i < guardado.edificiosID.Count)
+            {
+                Construccion edificioGuardado = edificios[guardado.edificiosID[i]];
+                Vector3 vector = new Vector3(guardado.edificiosX[i], 1, guardado.edificiosZ[i]);
+                colocar.AñadirConstruccion(edificioGuardado, vector, guardado.edificiosRotacion[i]);
+
+                i++;
+            }
+
+            camara.transform.position = new Vector3(guardado.camaraX, guardado.camaraY, guardado.camaraZ);
+
+            diaNoche.tiempoTotalDias = guardado.dia;
+            diaNoche.tiempoDia = guardado.hora;
+            diaNoche.ActualizarLuces();
+
+            ciudad.Dinero = guardado.dinero;
+            ciudad.PoblacionActual = guardado.poblacionActual;
+            ciudad.PoblacionTope = guardado.poblacionTope;
+            ciudad.TrabajosActual = guardado.trabajosActual;
+            ciudad.TrabajosTope = guardado.trabajosTope;
+            ciudad.Comida = guardado.comida;
+        }
+        else
+        {
+            if (arbolInicio != null)
+            {
+                int arbolesColocar = 100;
+
+                int i = 0;
+                while (i < arbolesColocar)
+                {
+                    Vector3 posicion = new Vector3(Random.Range(1, 99), 1, Random.Range(1, 99));
+
+                    if (arbolInicio != null)
+                    {
+                        if (colocar.ComprobarConstruccionesPosicion(arbolInicio, posicion) == null)
+                        {
+                            colocar.AñadirConstruccion(arbolInicio, posicion, 0);
+                        }
+                    }
+
+                    i++;
+                }
+            }
+        }
+
+        if (PlayerPrefs.GetString("ayuda") == "true")
+        {
+            ayuda1.GetComponent<CanvasGroup>().alpha = 1;
+            ayuda1.GetComponent<CanvasGroup>().interactable = true;
+            ayuda1.GetComponent<CanvasGroup>().blocksRaycasts = true;
+            ayuda1.gameObject.SetActive(true);
+
+            ayuda1Texto.text = idioma.CogerCadena("help1");
+            ayuda2Texto.text = idioma.CogerCadena("help2");
+            ayuda3Texto.text = idioma.CogerCadena("help3");
+
+            diaNoche.ArrancarParar();
+        }
+        else
+        {
+            ayuda1.gameObject.SetActive(false);
+        }
     }
 
     public void GuardarPartida()

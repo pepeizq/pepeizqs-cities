@@ -30,7 +30,7 @@ public class Ciudad : MonoBehaviour {
     {
         if (!File.Exists(Application.persistentDataPath + "/guardado.save"))
         {
-            Dinero = 5000;
+            Dinero = 200;
         }
     }
 
@@ -145,14 +145,5 @@ public class Ciudad : MonoBehaviour {
         {
             PoblacionActual = PoblacionActual - (PoblacionActual / 10);
         }
-
-        //if (Comida >= PoblacionActual && PoblacionActual < PoblacionTope)
-        //{
-        //    PoblacionActual = Mathf.Min(PoblacionActual += Comida * .05f, PoblacionTope);
-        //}
-        //else if (Comida < PoblacionActual)
-        //{
-        //    PoblacionActual -= Comida * 0.15f;
-        //}
     }
 }

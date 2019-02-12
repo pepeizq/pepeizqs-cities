@@ -8,6 +8,11 @@ public class MenuPrincipal : MonoBehaviour {
     public TextAsset ficheroIdiomas;
     public Idiomas idioma;
 
+    public Canvas canvasPrincipal;
+    public Canvas canvasOpciones;
+
+    public Text versionTexto;
+
     public bool sonidoParar;
 
     public Button botonSonido;
@@ -21,13 +26,23 @@ public class MenuPrincipal : MonoBehaviour {
     
     public Text botonNuevaPartidaTexto;
     public Text botonCargarPartidaTexto;
+    public Text botonOpcionesTexto;
     public Text botonSalirJuegoTexto;
+    public Text botonVolverTexto;
     public Text toggleAyudaTexto;
+    public Text botonSonidoTexto;
 
     public Toggle toggleAyuda;
 
+    public Construccion arbolInicio;
+
+    [SerializeField]
+    private Colocar colocar;
+
     private void Start()
     {
+        versionTexto.text = "v" + Application.version;
+
         if (PlayerPrefs.HasKey("idioma") == false)
         {
             idioma.CargarIdioma(ficheroIdiomas, "English");
@@ -36,9 +51,7 @@ public class MenuPrincipal : MonoBehaviour {
         else
         {
             idioma.CargarIdioma(ficheroIdiomas, PlayerPrefs.GetString("idioma"));
-        }
-
-        CargarIdiomaTexto();
+        }  
 
         if (PlayerPrefs.HasKey("sonido") == false)
         {
@@ -76,15 +89,36 @@ public class MenuPrincipal : MonoBehaviour {
             }
         }
 
-        if (File.Exists(Application.persistentDataPath + "/guardado.save"))
+        CargarIdiomaTexto();
+
+        if (File.Exists(Application.persistentDataPath + "/guardado.save") == true)
         {
-            botonCargarPartida.GetComponent<CanvasGroup>().alpha = 1;
-            botonCargarPartida.GetComponent<CanvasGroup>().interactable = true;
-            botonCargarPartida.gameObject.SetActive(true);
+            botonCargarPartida.interactable = true;
         }
         else
         {
-            botonCargarPartida.gameObject.SetActive(false);
+            botonCargarPartida.interactable = false;
+        }
+
+        if (arbolInicio != null)
+        {
+            int arbolesColocar = 100;
+
+            int i = 0;
+            while (i < arbolesColocar)
+            {
+                Vector3 posicion = new Vector3(Random.Range(1, 99), 1, Random.Range(1, 99));
+
+                if (arbolInicio != null)
+                {
+                    if (colocar.ComprobarConstruccionesPosicion(arbolInicio, posicion) == null)
+                    {
+                        colocar.AñadirConstruccion(arbolInicio, posicion, 0);
+                    }
+                }
+
+                i++;
+            }
         }
     }
 
@@ -132,8 +166,27 @@ public class MenuPrincipal : MonoBehaviour {
     {
         botonNuevaPartidaTexto.text = idioma.CogerCadena("newGame").ToUpper();
         botonCargarPartidaTexto.text = idioma.CogerCadena("loadGame").ToUpper();
+        botonOpcionesTexto.text = idioma.CogerCadena("options").ToUpper();
         botonSalirJuegoTexto.text = idioma.CogerCadena("exitGame").ToUpper();
-        toggleAyudaTexto.text = idioma.CogerCadena("help").ToUpper();
+        botonVolverTexto.text = idioma.CogerCadena("back").ToUpper();
+
+        if (PlayerPrefs.GetString("ayuda") == "true")
+        {
+            toggleAyudaTexto.text = idioma.CogerCadena("helpYes");
+        }
+        else
+        {
+            toggleAyudaTexto.text = idioma.CogerCadena("helpNo");
+        }
+
+        if (PlayerPrefs.GetString("sonido") == "true")
+        {
+            botonSonidoTexto.text = idioma.CogerCadena("soundYes");
+        }
+        else
+        {
+            botonSonidoTexto.text = idioma.CogerCadena("soundNo");
+        }
     }
 
     public void ActivarAyuda()
@@ -143,10 +196,12 @@ public class MenuPrincipal : MonoBehaviour {
         if (toggleAyuda.isOn == true)
         {          
             PlayerPrefs.SetString("ayuda", "true");
+            toggleAyudaTexto.text = idioma.CogerCadena("helpYes");
         }
         else
         {
             PlayerPrefs.SetString("ayuda", "false");
+            toggleAyudaTexto.text = idioma.CogerCadena("helpNo");
         }
     }
 
@@ -159,6 +214,7 @@ public class MenuPrincipal : MonoBehaviour {
         {
             AudioListener.pause = false;
             botonSonido.GetComponent<Image>().sprite = botonSonidoSiSprite;
+            botonSonidoTexto.text = idioma.CogerCadena("soundYes");
             PlayerPrefs.SetString("sonido", "true");
             sonidoParar = true;
         }
@@ -166,8 +222,33 @@ public class MenuPrincipal : MonoBehaviour {
         {
             AudioListener.pause = true;
             botonSonido.GetComponent<Image>().sprite = botonSonidoNoSprite;
+            botonSonidoTexto.text = idioma.CogerCadena("soundNo");
             PlayerPrefs.SetString("sonido", "false");
             sonidoParar = false;
+        }
+    }
+
+    public void MostrarOpciones()
+    {
+        if (canvasPrincipal.gameObject.GetComponent<CanvasGroup>().alpha == 1)
+        {
+            canvasPrincipal.gameObject.GetComponent<CanvasGroup>().alpha = 0;
+            canvasPrincipal.gameObject.GetComponent<CanvasGroup>().interactable = false;
+            canvasPrincipal.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
+
+            canvasOpciones.gameObject.GetComponent<CanvasGroup>().alpha = 1;
+            canvasOpciones.gameObject.GetComponent<CanvasGroup>().interactable = true;
+            canvasOpciones.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
+        }
+        else
+        {
+            canvasPrincipal.gameObject.GetComponent<CanvasGroup>().alpha = 1;
+            canvasPrincipal.gameObject.GetComponent<CanvasGroup>().interactable = true;
+            canvasPrincipal.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
+
+            canvasOpciones.gameObject.GetComponent<CanvasGroup>().alpha = 0;
+            canvasOpciones.gameObject.GetComponent<CanvasGroup>().interactable = false;
+            canvasOpciones.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
         }
     }
 

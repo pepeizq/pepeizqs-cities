@@ -3,8 +3,13 @@
     <English>
         <string name="newGame">New Game</string>
         <string name="loadGame">Load Game</string>
+        <string name="options">Options</string>
         <string name="exitGame">Exit</string>
-        <string name="help">Help</string>
+        <string name="back">Back</string>
+        <string name="helpYes">Activated Help</string>
+        <string name="helpNo">Disabled Help</string>
+        <string name="soundYes">Activated Sound</string>
+        <string name="soundNo">Disabled Sound</string>
         <string name="day">Day</string>
         <string name="help1">With the keys W, A, S, D you can move around the map, and if you want to zoom, use the mouse wheel</string>
         <string name="help2">You can play/stop the time when you want</string>
@@ -15,13 +20,20 @@
         <string name="cancel">Cancel</string>
         <string name="cost">Cost</string>
         <string name="population">Population</string>
+        <string name="food">Food</string>
+        <string name="jobs">Jobs</string>
     </English>
      
     <Spanish>
         <string name="newGame">Nueva Partida</string>
         <string name="loadGame">Cargar Partida</string>
+        <string name="options">Opciones</string>
         <string name="exitGame">Salir</string>
-        <string name="help">Ayuda</string>
+        <string name="back">Volver</string>
+        <string name="helpYes">Ayuda Activada</string>
+        <string name="helpNo">Ayuda Desactivada</string>
+        <string name="soundYes">Sonido Activado</string>
+        <string name="soundNo">Sonido Desactivado</string>
         <string name="day">Día</string>
         <string name="help1">Con las teclas W,A,S,D puedes moverte por el mapa, y si quieres hacer zoom usa la rueda del ratón</string>
         <string name="help2">Puedes iniciar/parar el tiempo cuando quieras</string>
@@ -32,5 +44,7 @@
         <string name="cancel">Cancelar</string>
         <string name="cost">Coste</string>
         <string name="population">Población</string>
+        <string name="food">Comida</string>
+        <string name="jobs">Trabajo</string>
     </Spanish>
 </languages>
