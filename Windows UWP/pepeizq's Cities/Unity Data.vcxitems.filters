@@ -2,55 +2,61 @@
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Data">
-      <UniqueIdentifier>{84df2ef5-f7d4-4ce7-847c-a852afdc67c3}</UniqueIdentifier>
+      <UniqueIdentifier>{d84191fc-b88c-4abd-bd9e-181ecac5d786}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Data\GI\level0\9c">
+      <UniqueIdentifier>{218773ca-ef96-4f35-a85c-74d610424f26}</UniqueIdentifier>
     </Filter>
     <Filter Include="Data\GI\level1\7a">
-      <UniqueIdentifier>{d7171b93-ad9e-42b5-a5e7-c21ba1389581}</UniqueIdentifier>
+      <UniqueIdentifier>{008cc45f-5247-482d-92fd-395338c5c8ae}</UniqueIdentifier>
     </Filter>
     <Filter Include="Data\il2cpp_data\etc\mono">
-      <UniqueIdentifier>{5de95980-5266-4efd-8d5c-db3ec46b7929}</UniqueIdentifier>
+      <UniqueIdentifier>{26583178-817f-4623-bc00-b19461f0889c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Data\il2cpp_data\etc\mono\2.0">
-      <UniqueIdentifier>{d858dc42-0b27-4b17-ab73-74ff74421180}</UniqueIdentifier>
+      <UniqueIdentifier>{a62fe648-0428-47b4-880a-1c16d54c72db}</UniqueIdentifier>
     </Filter>
     <Filter Include="Data\il2cpp_data\etc\mono\2.0\Browsers">
-      <UniqueIdentifier>{7e356230-c82d-45ea-874c-39dda71a4599}</UniqueIdentifier>
+      <UniqueIdentifier>{867a8ec9-47a3-433a-ab4d-289358af89a8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Data\il2cpp_data\etc\mono\4.0">
-      <UniqueIdentifier>{63cf8913-7334-4c0f-831e-33b16e5c1760}</UniqueIdentifier>
+      <UniqueIdentifier>{7570d444-7e7a-43b4-ad5c-394579f80a8f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Data\il2cpp_data\etc\mono\4.0\Browsers">
-      <UniqueIdentifier>{c9174762-865f-4689-b7d8-4775ca3959df}</UniqueIdentifier>
+      <UniqueIdentifier>{67d944e5-9b04-4c84-86ec-705849e94abe}</UniqueIdentifier>
     </Filter>
     <Filter Include="Data\il2cpp_data\etc\mono\4.5">
-      <UniqueIdentifier>{3f2941ec-581c-46eb-81a2-038c4e71232b}</UniqueIdentifier>
+      <UniqueIdentifier>{a484bdb8-9d16-4b8d-b6f9-46950ef3b1d2}</UniqueIdentifier>
     </Filter>
     <Filter Include="Data\il2cpp_data\etc\mono\4.5\Browsers">
-      <UniqueIdentifier>{e1bcf115-cbbd-43d6-9c88-2d484327a9c2}</UniqueIdentifier>
+      <UniqueIdentifier>{1126ca0f-87e4-48d9-85e2-e5be1199cdaf}</UniqueIdentifier>
     </Filter>
     <Filter Include="Data\il2cpp_data\etc\mono\mconfig">
-      <UniqueIdentifier>{f2b00f5c-d1c6-4052-a723-72b5585835ee}</UniqueIdentifier>
+      <UniqueIdentifier>{665b1286-e7c2-4dd1-ad2c-5a632424dd0b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Data\il2cpp_data\Metadata">
-      <UniqueIdentifier>{44c16b58-d03b-45fc-b41a-6ae98e142a1b}</UniqueIdentifier>
+      <UniqueIdentifier>{967c2f58-8431-4880-b7e8-5a7bf5a45120}</UniqueIdentifier>
     </Filter>
     <Filter Include="Data\il2cpp_data\Resources">
-      <UniqueIdentifier>{fdf4814b-c4c4-4407-937e-de0182c4ae45}</UniqueIdentifier>
+      <UniqueIdentifier>{2e948ea7-4f11-4d54-a56e-31460bea269d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Data\Resources">
-      <UniqueIdentifier>{861e3122-dbc1-47e8-bf39-4d6ca5630d15}</UniqueIdentifier>
+      <UniqueIdentifier>{b92e63a0-682f-4804-b336-db752a1cfc73}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Data\GI\level1">
-      <UniqueIdentifier>{d7612cb6-962b-4893-bb53-ae72d3a5707c}</UniqueIdentifier>
+    <Filter Include="Data\GI\level0">
+      <UniqueIdentifier>{e346d6c0-e873-4bc3-9978-acfc932814a0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Data\GI">
-      <UniqueIdentifier>{c6baf6c2-5ce7-4cde-9b95-dfd51fc30890}</UniqueIdentifier>
+      <UniqueIdentifier>{a1cc4fd3-6c3a-47d7-8ed8-1e86e023262e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Data\GI\level1">
+      <UniqueIdentifier>{227786bc-4e98-46e3-a6a7-743b8f085dad}</UniqueIdentifier>
     </Filter>
     <Filter Include="Data\il2cpp_data\etc">
-      <UniqueIdentifier>{5b8c7298-a675-4b87-a47d-cabcb97dfc38}</UniqueIdentifier>
+      <UniqueIdentifier>{44846306-caad-4e7c-bd9f-57a3d68d9013}</UniqueIdentifier>
     </Filter>
     <Filter Include="Data\il2cpp_data">
-      <UniqueIdentifier>{14c3afa4-235a-4fa2-97d1-a10eeaf5ee42}</UniqueIdentifier>
+      <UniqueIdentifier>{6b54e08c-8753-403d-a661-d7e357c47bed}</UniqueIdentifier>
     </Filter>
     <Resource Include="$(MSBuildThisFileDirectory)Resource.res" />
     <None Include="$(MSBuildThisFileDirectory)StoreManifest.xml" />
@@ -94,6 +100,24 @@
     </None>
     <None Include="$(MSBuildThisFileDirectory)Data\sharedassets1.resource">
       <Filter>Data</Filter>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Data\GI\level0\9c\9ce42ddf2c5fb4d58f65f503d2bbc1f9.caw">
+      <Filter>Data\GI\level0\9c</Filter>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Data\GI\level0\9c\9ce42ddf2c5fb4d58f65f503d2bbc1f9.ecm">
+      <Filter>Data\GI\level0\9c</Filter>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Data\GI\level0\9c\9ce42ddf2c5fb4d58f65f503d2bbc1f9.iws.sse">
+      <Filter>Data\GI\level0\9c</Filter>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Data\GI\level0\9c\9ce42ddf2c5fb4d58f65f503d2bbc1f9.rgb">
+      <Filter>Data\GI\level0\9c</Filter>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Data\GI\level0\9c\9ce42ddf2c5fb4d58f65f503d2bbc1f9.rsc.sse">
+      <Filter>Data\GI\level0\9c</Filter>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Data\GI\level0\9c\9ce42ddf2c5fb4d58f65f503d2bbc1f9.vis">
+      <Filter>Data\GI\level0\9c</Filter>
     </None>
     <None Include="$(MSBuildThisFileDirectory)Data\GI\level1\7a\7a9b2e0bb8d2853c037f7d871fd603bb.caw">
       <Filter>Data\GI\level1\7a</Filter>

@@ -54221,6 +54221,20 @@ void* RuntimeInvoker_Void_t1185182177_RuntimeObject_Vector3_t3722313464_Int32_t2
 	return NULL;
 }
 
+void* RuntimeInvoker_RuntimeObject_RuntimeObject_Vector3_t3722313464 (Il2CppMethodPointer methodPointer, const RuntimeMethod* methodMetadata, void* obj, void** args)
+{
+	typedef RuntimeObject * (*Func)(void* obj, RuntimeObject * p1, Vector3_t3722313464  p2, const RuntimeMethod* method);
+	RuntimeObject * ret = ((Func)methodPointer)(obj, (RuntimeObject *)args[0], *((Vector3_t3722313464 *)args[1]), methodMetadata);
+	return ret;
+}
+
+void* RuntimeInvoker_Void_t1185182177_RuntimeObject_Vector3_t3722313464 (Il2CppMethodPointer methodPointer, const RuntimeMethod* methodMetadata, void* obj, void** args)
+{
+	typedef void (*Func)(void* obj, RuntimeObject * p1, Vector3_t3722313464  p2, const RuntimeMethod* method);
+	((Func)methodPointer)(obj, (RuntimeObject *)args[0], *((Vector3_t3722313464 *)args[1]), methodMetadata);
+	return NULL;
+}
+
 void* RuntimeInvoker_Boolean_t97287965_ValueTuple_2_t3737046821 (Il2CppMethodPointer methodPointer, const RuntimeMethod* methodMetadata, void* obj, void** args)
 {
 	typedef bool (*Func)(void* obj, ValueTuple_2_t3737046821  p1, const RuntimeMethod* method);
@@ -60885,7 +60899,7 @@ void* RuntimeInvoker_RuntimeObject_FloatTween_t1274330004 (Il2CppMethodPointer m
 	return ret;
 }
 
-extern const InvokerMethod g_Il2CppInvokerPointers[3106] = 
+extern const InvokerMethod g_Il2CppInvokerPointers[3108] = 
 {
 	RuntimeInvoker_RuntimeObject_RuntimeObject,
 	RuntimeInvoker_RuntimeObject_RuntimeObject_RuntimeObject,
@@ -63041,6 +63055,8 @@ extern const InvokerMethod g_Il2CppInvokerPointers[3106] =
 	RuntimeInvoker_Void_t1185182177_Int32_t2950945753_Int32_t2950945753_Int64_t3736567304_Int64_t3736567304_SByte_t1669577662,
 	RuntimeInvoker_Void_t1185182177_RuntimeObject_Int32U26_t1369213839_Int32U26_t1369213839_ISO2022JPModeU26_t3152940103_Int32_t2950945753,
 	RuntimeInvoker_Void_t1185182177_RuntimeObject_Vector3_t3722313464_Int32_t2950945753,
+	RuntimeInvoker_RuntimeObject_RuntimeObject_Vector3_t3722313464,
+	RuntimeInvoker_Void_t1185182177_RuntimeObject_Vector3_t3722313464,
 	RuntimeInvoker_Boolean_t97287965_ValueTuple_2_t3737046821,
 	RuntimeInvoker_Int32_t2950945753_ValueTuple_2_t3737046821,
 	RuntimeInvoker_Void_t1185182177_ObjectU5BU5DU26_t712384779_Int32_t2950945753,

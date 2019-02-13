@@ -6114,8 +6114,6 @@ extern "C" IL2CPP_METHOD_ATTR Vector3_t3722313464  Vector3_get_forward_m31008597
 extern "C" IL2CPP_METHOD_ATTR Vector3_t3722313464  Quaternion_op_Multiply_m2607404835 (RuntimeObject * __this /* static, unused */, Quaternion_t2301928331  ___rotation0, Vector3_t3722313464  ___point1, const RuntimeMethod* method);
 // System.Void UnityEngine.Transform::get_rotation_Injected(UnityEngine.Quaternion&)
 extern "C" IL2CPP_METHOD_ATTR void Transform_get_rotation_Injected_m3838128444 (Transform_t3600365921 * __this, Quaternion_t2301928331 * ___ret0, const RuntimeMethod* method);
-// System.Void UnityEngine.Transform::set_rotation_Injected(UnityEngine.Quaternion&)
-extern "C" IL2CPP_METHOD_ATTR void Transform_set_rotation_Injected_m51774119 (Transform_t3600365921 * __this, Quaternion_t2301928331 * ___value0, const RuntimeMethod* method);
 // System.Void UnityEngine.Transform::get_localRotation_Injected(UnityEngine.Quaternion&)
 extern "C" IL2CPP_METHOD_ATTR void Transform_get_localRotation_Injected_m1196986957 (Transform_t3600365921 * __this, Quaternion_t2301928331 * ___ret0, const RuntimeMethod* method);
 // System.Void UnityEngine.Transform::set_localRotation_Injected(UnityEngine.Quaternion&)
@@ -7462,14 +7460,6 @@ extern "C" IL2CPP_METHOD_ATTR Quaternion_t2301928331  Transform_get_rotation_m35
 		return L_0;
 	}
 }
-// System.Void UnityEngine.Transform::set_rotation(UnityEngine.Quaternion)
-extern "C" IL2CPP_METHOD_ATTR void Transform_set_rotation_m3524318132 (Transform_t3600365921 * __this, Quaternion_t2301928331  ___value0, const RuntimeMethod* method)
-{
-	{
-		Transform_set_rotation_Injected_m51774119(__this, (Quaternion_t2301928331 *)(&___value0), /*hidden argument*/NULL);
-		return;
-	}
-}
 // UnityEngine.Quaternion UnityEngine.Transform::get_localRotation()
 extern "C" IL2CPP_METHOD_ATTR Quaternion_t2301928331  Transform_get_localRotation_m3487911431 (Transform_t3600365921 * __this, const RuntimeMethod* method)
 {
@@ -7855,15 +7845,6 @@ extern "C" IL2CPP_METHOD_ATTR void Transform_get_rotation_Injected_m3838128444 (
 	if (!_il2cpp_icall_func)
 	_il2cpp_icall_func = (Transform_get_rotation_Injected_m3838128444_ftn)il2cpp_codegen_resolve_icall ("UnityEngine.Transform::get_rotation_Injected(UnityEngine.Quaternion&)");
 	_il2cpp_icall_func(__this, ___ret0);
-}
-// System.Void UnityEngine.Transform::set_rotation_Injected(UnityEngine.Quaternion&)
-extern "C" IL2CPP_METHOD_ATTR void Transform_set_rotation_Injected_m51774119 (Transform_t3600365921 * __this, Quaternion_t2301928331 * ___value0, const RuntimeMethod* method)
-{
-	typedef void (*Transform_set_rotation_Injected_m51774119_ftn) (Transform_t3600365921 *, Quaternion_t2301928331 *);
-	static Transform_set_rotation_Injected_m51774119_ftn _il2cpp_icall_func;
-	if (!_il2cpp_icall_func)
-	_il2cpp_icall_func = (Transform_set_rotation_Injected_m51774119_ftn)il2cpp_codegen_resolve_icall ("UnityEngine.Transform::set_rotation_Injected(UnityEngine.Quaternion&)");
-	_il2cpp_icall_func(__this, ___value0);
 }
 // System.Void UnityEngine.Transform::get_localRotation_Injected(UnityEngine.Quaternion&)
 extern "C" IL2CPP_METHOD_ATTR void Transform_get_localRotation_Injected_m1196986957 (Transform_t3600365921 * __this, Quaternion_t2301928331 * ___ret0, const RuntimeMethod* method)

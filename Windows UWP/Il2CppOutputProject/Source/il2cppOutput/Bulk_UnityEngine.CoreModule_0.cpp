@@ -20453,6 +20453,16 @@ extern "C" IL2CPP_METHOD_ATTR String_t* Application_get_persistentDataPath_m1428
 	String_t* retVal = _il2cpp_icall_func();
 	return retVal;
 }
+// System.String UnityEngine.Application::get_version()
+extern "C" IL2CPP_METHOD_ATTR String_t* Application_get_version_m2436029190 (RuntimeObject * __this /* static, unused */, const RuntimeMethod* method)
+{
+	typedef String_t* (*Application_get_version_m2436029190_ftn) ();
+	static Application_get_version_m2436029190_ftn _il2cpp_icall_func;
+	if (!_il2cpp_icall_func)
+	_il2cpp_icall_func = (Application_get_version_m2436029190_ftn)il2cpp_codegen_resolve_icall ("UnityEngine.Application::get_version()");
+	String_t* retVal = _il2cpp_icall_func();
+	return retVal;
+}
 // System.Void UnityEngine.Application::OpenURL(System.String)
 extern "C" IL2CPP_METHOD_ATTR void Application_OpenURL_m738341736 (RuntimeObject * __this /* static, unused */, String_t* ___url0, const RuntimeMethod* method)
 {
@@ -31504,6 +31514,15 @@ extern "C" IL2CPP_METHOD_ATTR void Light_set_intensity_m2345549762 (Light_t37568
 	static Light_set_intensity_m2345549762_ftn _il2cpp_icall_func;
 	if (!_il2cpp_icall_func)
 	_il2cpp_icall_func = (Light_set_intensity_m2345549762_ftn)il2cpp_codegen_resolve_icall ("UnityEngine.Light::set_intensity(System.Single)");
+	_il2cpp_icall_func(__this, ___value0);
+}
+// System.Void UnityEngine.Light::set_range(System.Single)
+extern "C" IL2CPP_METHOD_ATTR void Light_set_range_m859514479 (Light_t3756812086 * __this, float ___value0, const RuntimeMethod* method)
+{
+	typedef void (*Light_set_range_m859514479_ftn) (Light_t3756812086 *, float);
+	static Light_set_range_m859514479_ftn _il2cpp_icall_func;
+	if (!_il2cpp_icall_func)
+	_il2cpp_icall_func = (Light_set_range_m859514479_ftn)il2cpp_codegen_resolve_icall ("UnityEngine.Light::set_range(System.Single)");
 	_il2cpp_icall_func(__this, ___value0);
 }
 #ifdef __clang__

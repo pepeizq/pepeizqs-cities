@@ -111,7 +111,7 @@ public class Ciudad : MonoBehaviour {
             }
         }
 
-        if (Comida >= 0)
+        if (Comida >= 0 && Comida <= 1000)
         {
             if ((Comida + cantidad) >= 0)
             {
@@ -139,11 +139,17 @@ public class Ciudad : MonoBehaviour {
 
         if (Comida >= 0)
         {
-            PoblacionActual = PoblacionActual + (PoblacionTope / 10);
+            if (PoblacionActual < PoblacionTope)
+            {
+                PoblacionActual = PoblacionActual + (PoblacionTope / 10);
+            }         
         }
         else
         {
-            PoblacionActual = PoblacionActual - (PoblacionActual / 10);
+            if (PoblacionActual > 0)
+            {
+                PoblacionActual = PoblacionActual - (PoblacionActual / 10);
+            }          
         }
     }
 }

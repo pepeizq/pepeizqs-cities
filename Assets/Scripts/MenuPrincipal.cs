@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -38,6 +39,9 @@ public class MenuPrincipal : MonoBehaviour {
 
     [SerializeField]
     private Colocar colocar;
+
+    [SerializeField]
+    private Construccion[] edificios;
 
     private void Start()
     {
