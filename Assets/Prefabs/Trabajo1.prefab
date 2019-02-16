@@ -430,7 +430,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8387812f936b974381faf47fb2ca0fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 15
+  id: 94
   categoria: 4
   coste: 20
   nombre: trabajo1
@@ -441,5 +441,4 @@ MonoBehaviour:
   luzIntesidad: 0.8
   luzRango: 1
   luzProbabilidad: 25
-  imagen: {fileID: 21300000, guid: 3c86dd706b546ac46b125fc65b12b860, type: 3}
-  dimensiones: {x: 1, y: 1, z: 1}
+  dimensiones: {x: 1, y: 1}

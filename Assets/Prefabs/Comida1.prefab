@@ -162,7 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8387812f936b974381faf47fb2ca0fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 14
+  id: 93
   categoria: 3
   coste: 100
   nombre: comida1
@@ -173,5 +173,4 @@ MonoBehaviour:
   luzIntesidad: 1
   luzRango: 2
   luzProbabilidad: 33
-  imagen: {fileID: 21300000, guid: bddc8ab1d4b32f341a9b64d1c93cdb9d, type: 3}
-  dimensiones: {x: 2, y: 2, z: 2}
+  dimensiones: {x: 2, y: 2}

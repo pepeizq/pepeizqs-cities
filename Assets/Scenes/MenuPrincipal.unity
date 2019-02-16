@@ -1389,6 +1389,7 @@ GameObject:
   - component: {fileID: 894650547}
   - component: {fileID: 894650546}
   - component: {fileID: 894650548}
+  - component: {fileID: 894650549}
   - component: {fileID: 894650545}
   m_Layer: 5
   m_Name: Scripts
@@ -1441,8 +1442,7 @@ MonoBehaviour:
   toggleAyudaTexto: {fileID: 274101960}
   botonSonidoTexto: {fileID: 1582543323}
   toggleAyuda: {fileID: 1604867951}
-  arbolInicio: {fileID: 114145791903194016, guid: 11f688b171cff314391db913b996a9f2,
-    type: 2}
+  arbolesInicio: {fileID: 894650549}
   colocar: {fileID: 894650548}
 --- !u!224 &894650547
 RectTransform:
@@ -1475,6 +1475,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   edificioVacio: {fileID: 114719743380459958, guid: 3f48d98e38cd5db40a4ea6532f118478,
     type: 2}
+--- !u!114 &894650549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 894650544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ed4e33d1fc0b594d8731769dc5bad9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arbolesInicio:
+  - {fileID: 114580379238428524, guid: 86aa7d557c9e4a945902b0c355401665, type: 2}
+  - {fileID: 114364999152907770, guid: 9ec33247f98faee49819ca143c662e4e, type: 2}
 --- !u!1 &933722185
 GameObject:
   m_ObjectHideFlags: 0

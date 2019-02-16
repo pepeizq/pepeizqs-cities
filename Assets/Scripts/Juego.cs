@@ -1,5 +1,7 @@
 ﻿using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Threading;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -38,11 +40,11 @@ public class Juego : MonoBehaviour {
     private bool enseñarPrevio;
     private bool activarDemoler;
 
-    public Button botonDemoler;
-
-    public Construccion arbolInicio;
+    public Button botonDemoler; 
 
     public Camera camara;
+
+    public ArbolesInicio arbolesInicio;
 
     public Panel panelConstruir;
     public Panel panelDemoler;
@@ -104,8 +106,15 @@ public class Juego : MonoBehaviour {
             }
 
             Image imagen = botonObjeto.GetComponent<Image>();
-            imagen.sprite = edificio.imagen;
 
+            Texture2D captura = AssetPreview.GetAssetPreview(edificio.gameObject);
+            Thread.Sleep(80);
+            if (captura != null)
+            {
+                Rect cuadro = new Rect(0, 0, captura.width, captura.height);
+                imagen.sprite = Sprite.Create(captura, cuadro, new Vector2(1, 1), 100);
+            }
+           
             Button boton = botonObjeto.GetComponent<Button>();
             boton.onClick.AddListener(() => SeleccionarEdificio(edificio.id));
 
@@ -260,9 +269,9 @@ public class Juego : MonoBehaviour {
 
             if (((int)gridPosicion.x > 0) && ((int)gridPosicion.x < 100) && ((int)gridPosicion.z > 0) && ((int)gridPosicion.z < 100))
             {
-                if (!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
+                if (!EventSystem.current.IsPointerOverGameObject())
                 {                   
-                    if (accion == 0 && colocar.ComprobarConstruccionesPosicion(edificioSeleccionado,gridPosicion) == null)
+                    if (accion == 0 && colocar.ComprobarConstruccionesPosicion(edificioSeleccionado,gridPosicion, rotacionColocar) == null)
                     {                       
                         if (ciudad.Dinero >= edificioSeleccionado.coste)
                         {                          
@@ -272,9 +281,9 @@ public class Juego : MonoBehaviour {
                             sonidoBotonConstruir.Play();
                         }
                     }
-                    else if (accion == 1 && colocar.ComprobarConstruccionesPosicion(edificioSeleccionado, gridPosicion) != null)
+                    else if (accion == 1 && colocar.ComprobarConstruccionesPosicion(edificioSeleccionado, gridPosicion, rotacionColocar) != null)
                     {
-                        Construccion edificioEliminar = colocar.ComprobarConstruccionesPosicion(edificioSeleccionado, gridPosicion);
+                        Construccion edificioEliminar = colocar.ComprobarConstruccionesPosicion(edificioSeleccionado, gridPosicion, rotacionColocar);
 
                         if (edificioEliminar.categoria != 0)
                         {
@@ -282,7 +291,7 @@ public class Juego : MonoBehaviour {
                         }
                         
                         ciudad.ActualizarUI(false);
-                        colocar.QuitarEdificio(edificioEliminar, gridPosicion);
+                        colocar.QuitarEdificio(edificioEliminar, gridPosicion, rotacionColocar);
                         DemolerBoton(false);
                         sonidoBotonDemoler.Play();
                     }
@@ -304,15 +313,15 @@ public class Juego : MonoBehaviour {
 
                 if (((int)gridPosicion.x > 0) && ((int)gridPosicion.x < 100) && ((int)gridPosicion.z > 0) && ((int)gridPosicion.z < 100))
                 {
-                    if (colocar.ComprobarConstruccionesPosicion(edificioSeleccionado, gridPosicion) == null)
+                    if (colocar.ComprobarConstruccionesPosicion(edificioSeleccionado, gridPosicion, rotacionColocar) == null)
                     {
-                        if (colocarPrevio.ComprobarConstruccionesPosicion(edificioSeleccionado, gridPosicion) == null)
+                        if (colocarPrevio.ComprobarConstruccionesPosicion(edificioSeleccionado, gridPosicion, rotacionColocar) == null)
                         {
                             colocarPrevio.AñadirConstruccion(edificioSeleccionado, gridPosicion, rotacionColocar);
                         }
                         else
                         {
-                            colocarPrevio.QuitarEdificio(edificioSeleccionado, gridPosicion);
+                            colocarPrevio.QuitarEdificio(edificioSeleccionado, gridPosicion, rotacionColocar);
                             colocarPrevio.AñadirConstruccion(edificioSeleccionado, gridPosicion, rotacionColocar);
                         }
                     }
@@ -344,9 +353,9 @@ public class Juego : MonoBehaviour {
 
                 if (!EventSystem.current.IsPointerOverGameObject())
                 {
-                    if (colocar.ComprobarConstruccionesPosicion(edificioSeleccionado, gridPosicion) != null)
+                    if (colocar.ComprobarConstruccionesPosicion(edificioSeleccionado, gridPosicion, rotacionColocar) != null)
                     {
-                        Construccion edificioDemoler = colocar.ComprobarConstruccionesPosicion(edificioSeleccionado, gridPosicion);
+                        Construccion edificioDemoler = colocar.ComprobarConstruccionesPosicion(edificioSeleccionado, gridPosicion, rotacionColocar);
                         edificioDemoler.gameObject.GetComponent<MeshRenderer>().material.color = new Color(255, 0, 0, 0.1f);
                     }
                 }
@@ -406,26 +415,7 @@ public class Juego : MonoBehaviour {
         }
         else
         {
-            if (arbolInicio != null)
-            {
-                int arbolesColocar = 100;
-
-                int i = 0;
-                while (i < arbolesColocar)
-                {
-                    Vector3 posicion = new Vector3(Random.Range(1, 99), 1, Random.Range(1, 99));
-
-                    if (arbolInicio != null)
-                    {
-                        if (colocar.ComprobarConstruccionesPosicion(arbolInicio, posicion) == null)
-                        {
-                            colocar.AñadirConstruccion(arbolInicio, posicion, 0);
-                        }
-                    }
-
-                    i++;
-                }
-            }
+            arbolesInicio.Colocar(colocar);
         }
 
         if (PlayerPrefs.GetString("ayuda") == "true")

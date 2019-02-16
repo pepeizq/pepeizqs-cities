@@ -17,6 +17,5 @@ public class Construccion : MonoBehaviour
     public float luzRango;
     public int luzProbabilidad;
 
-    public Sprite imagen;
-    public Vector3 dimensiones;
+    public Vector2 dimensiones;
 }

@@ -35,13 +35,10 @@ public class MenuPrincipal : MonoBehaviour {
 
     public Toggle toggleAyuda;
 
-    public Construccion arbolInicio;
+    public ArbolesInicio arbolesInicio;
 
     [SerializeField]
     private Colocar colocar;
-
-    [SerializeField]
-    private Construccion[] edificios;
 
     private void Start()
     {
@@ -104,26 +101,7 @@ public class MenuPrincipal : MonoBehaviour {
             botonCargarPartida.interactable = false;
         }
 
-        if (arbolInicio != null)
-        {
-            int arbolesColocar = 100;
-
-            int i = 0;
-            while (i < arbolesColocar)
-            {
-                Vector3 posicion = new Vector3(Random.Range(1, 99), 1, Random.Range(1, 99));
-
-                if (arbolInicio != null)
-                {
-                    if (colocar.ComprobarConstruccionesPosicion(arbolInicio, posicion) == null)
-                    {
-                        colocar.AñadirConstruccion(arbolInicio, posicion, 0);
-                    }
-                }
-
-                i++;
-            }
-        }
+        arbolesInicio.Colocar(colocar);
     }
 
     public void NuevaPartida()

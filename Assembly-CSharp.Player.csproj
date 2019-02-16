@@ -862,12 +862,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\ArbolesInicio.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\Ciudad.cs" />
     <Compile Include="Assets\Scripts\Clases\Construccion.cs" />
     <Compile Include="Assets\Scripts\Clases\Guardado.cs" />
     <Compile Include="Assets\Scripts\Clases\Panel.cs" />
     <Compile Include="Assets\Scripts\Colocar\Colocar.cs" />
+    <Compile Include="Assets\Scripts\Colocar\ColocarFunciones.cs" />
     <Compile Include="Assets\Scripts\Colocar\ColocarPrevio.cs" />
     <Compile Include="Assets\Scripts\Colocar\RedondearPosicion.cs" />
     <Compile Include="Assets\Scripts\DiaNoche.cs" />

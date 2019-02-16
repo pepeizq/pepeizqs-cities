@@ -8,110 +8,24 @@ public class Colocar : MonoBehaviour {
 
     public void AñadirConstruccion(Construccion edificio, Vector3 posicion, int rotacion)
     {
-        if ((edificio.dimensiones.x == 2) && (edificio.dimensiones.y == 2) && (edificio.dimensiones.z == 2))
-        {
-            posicion.x = posicion.x + 0.5f;
-            posicion.y = 1.5f;
-            posicion.z = posicion.z + 0.5f;
-            edificio.gameObject.transform.localScale = new Vector3(2f, 2f, 2f);
-        }
-        else
-        {
-            posicion.y = 1;
-        }
+        posicion = ColocarFunciones.PosicionEdificio(edificio, posicion, rotacion);
 
         Construccion edificioFinal = Instantiate(edificio, posicion, Quaternion.identity);
         edificioFinal.transform.Rotate(Vector3.up, rotacion, Space.World);
 
         edificios[(int)posicion.x, (int)posicion.z] = edificioFinal;
 
-        if ((edificio.dimensiones.x == 2) && (edificio.dimensiones.y == 2) && (edificio.dimensiones.z == 2))
-        {
-            edificios[(int)posicion.x + 1, (int)posicion.z] = Instantiate(edificioVacio);
-            edificios[(int)posicion.x, (int)posicion.z + 1] = Instantiate(edificioVacio);
-            edificios[(int)posicion.x + 1, (int)posicion.z + 1] = Instantiate(edificioVacio);
-        }
+        edificios = ColocarFunciones.RellenarEdificioVacio(edificios, edificio, posicion, rotacion, edificioVacio);
     }
 
-    public Construccion ComprobarConstruccionesPosicion(Construccion edificio, Vector3 posicion)
+    public Construccion ComprobarConstruccionesPosicion(Construccion edificio, Vector3 posicion, int rotacion)
     {
-        if (((int)posicion.x > 0) && ((int)posicion.x <= 100) && ((int)posicion.z > 0) && ((int)posicion.z <= 100))
-        {
-            if (edificio != null)
-            {
-                if ((edificio.dimensiones.x == 2) && (edificio.dimensiones.y == 2) && (edificio.dimensiones.z == 2))
-                {
-                    if (edificios[(int)posicion.x, (int)posicion.z] != null)
-                    {
-                        return edificios[(int)posicion.x, (int)posicion.z];
-                    }
-
-                    if (edificios[(int)posicion.x + 1, (int)posicion.z] != null)
-                    {
-                        return edificios[(int)posicion.x + 1, (int)posicion.z];
-                    }
-
-                    if (edificios[(int)posicion.x, (int)posicion.z + 1] != null)
-                    {
-                        return edificios[(int)posicion.x, (int)posicion.z + 1];
-                    }
-
-                    if (edificios[(int)posicion.x + 1, (int)posicion.z + 1] != null)
-                    {
-                        return edificios[(int)posicion.x + 1, (int)posicion.z + 1];
-                    }
-
-                    return null;
-                }
-                else
-                {
-                    return edificios[(int)posicion.x, (int)posicion.z];
-                }
-            }
-            else
-            {
-                return edificios[(int)posicion.x, (int)posicion.z];
-            }
-        }
-        else
-        {
-            return null;
-        }
+        return ColocarFunciones.ComprobarPosicion(edificios, edificio, posicion, rotacion);
     }
 
-    public void QuitarEdificio(Construccion edificio, Vector3 posicion)
+    public void QuitarEdificio(Construccion edificio, Vector3 posicion, int rotacion)
     {
-        if ((edificio.dimensiones.x == 2) && (edificio.dimensiones.y == 2) && (edificio.dimensiones.z == 2))
-        {
-            if (edificios[(int)posicion.x, (int)posicion.z] != null)
-            {
-                Destroy(edificios[(int)posicion.x, (int)posicion.z].gameObject);
-                edificios[(int)posicion.x, (int)posicion.z] = null;
-            }
-
-            if (edificios[(int)posicion.x + 1, (int)posicion.z] != null)
-            {
-                Destroy(edificios[(int)posicion.x + 1, (int)posicion.z].gameObject);
-                edificios[(int)posicion.x + 1, (int)posicion.z] = null;
-            }
-
-            if (edificios[(int)posicion.x, (int)posicion.z + 1] != null)
-            {
-                Destroy(edificios[(int)posicion.x, (int)posicion.z + 1].gameObject);
-                edificios[(int)posicion.x, (int)posicion.z + 1] = null;
-            }
-
-            if (edificios[(int)posicion.x + 1, (int)posicion.z + 1] != null)
-            {
-                Destroy(edificios[(int)posicion.x + 1, (int)posicion.z + 1].gameObject);
-                edificios[(int)posicion.x + 1, (int)posicion.z + 1] = null;
-            }
-        }
-        else
-        {
-            Destroy(edificios[(int)posicion.x, (int)posicion.z].gameObject);
-            edificios[(int)posicion.x, (int)posicion.z] = null;
-        }
+        edificios = ColocarFunciones.QuitarEdificios(edificios, edificio, posicion, rotacion);
     }
 
     public Construccion[,] DevolverConstrucciones()
