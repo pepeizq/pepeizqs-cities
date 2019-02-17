@@ -6,26 +6,28 @@ public class Colocar : MonoBehaviour {
 
     public Construccion edificioVacio;
 
-    public void AñadirConstruccion(Construccion edificio, Vector3 posicion, int rotacion)
+    public void AñadirConstruccion(Construccion edificio, Vector3 posicion)
     {
-        posicion = ColocarFunciones.PosicionEdificio(edificio, posicion, rotacion);
+        edificio.GetComponent<Renderer>().receiveShadows = true;
+        edificio.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
+
+        posicion = ColocarFunciones.PosicionEdificio(edificio, posicion, edificio.rotacionColocacion);
 
         Construccion edificioFinal = Instantiate(edificio, posicion, Quaternion.identity);
-        edificioFinal.transform.Rotate(Vector3.up, rotacion, Space.World);
+        edificioFinal.transform.Rotate(Vector3.up, edificio.rotacionAdicional + edificio.rotacionColocacion, Space.World);
 
         edificios[(int)posicion.x, (int)posicion.z] = edificioFinal;
-
-        edificios = ColocarFunciones.RellenarEdificioVacio(edificios, edificio, posicion, rotacion, edificioVacio);
+        edificios = ColocarFunciones.RellenarEdificioVacio(edificios, edificio, posicion, edificio.rotacionColocacion, edificioVacio);
     }
 
-    public Construccion ComprobarConstruccionesPosicion(Construccion edificio, Vector3 posicion, int rotacion)
+    public Construccion ComprobarConstruccionesPosicion(Construccion edificio, Vector3 posicion)
     {
-        return ColocarFunciones.ComprobarPosicion(edificios, edificio, posicion, rotacion);
+        return ColocarFunciones.ComprobarPosicion(edificios, edificio, posicion);
     }
 
-    public void QuitarEdificio(Construccion edificio, Vector3 posicion, int rotacion)
+    public void QuitarEdificio(Construccion edificio, Vector3 posicion)
     {
-        edificios = ColocarFunciones.QuitarEdificios(edificios, edificio, posicion, rotacion);
+        edificios = ColocarFunciones.QuitarEdificios(edificios, edificio, posicion, edificio.rotacionColocacion);
     }
 
     public Construccion[,] DevolverConstrucciones()

@@ -20,9 +20,9 @@ public class ArbolesInicio : MonoBehaviour {
 
                     if (arbolesInicio[j] != null)
                     {
-                        if (colocar.ComprobarConstruccionesPosicion(arbolesInicio[j], posicion, 0) == null)
+                        if (colocar.ComprobarConstruccionesPosicion(arbolesInicio[j], posicion) == null)
                         {
-                            colocar.AñadirConstruccion(arbolesInicio[j], posicion, 0);
+                            colocar.AñadirConstruccion(arbolesInicio[j], posicion);
                         }
                     }
                     i++;

@@ -6,7 +6,7 @@ public class ColocarPrevio : MonoBehaviour
 
     public Construccion edificioVacio;
 
-    public void AñadirConstruccion(Construccion edificio, Vector3 posicion, int rotacion)
+    public void AñadirConstruccion(Construccion edificio, Vector3 posicion)
     {
         QuitarTodosEdificios();
 
@@ -15,14 +15,16 @@ public class ColocarPrevio : MonoBehaviour
             luz.intensity = 0;
         }
 
-        posicion = ColocarFunciones.PosicionEdificio(edificio, posicion, rotacion);
+        edificio.GetComponent<Renderer>().receiveShadows = false;
+        edificio.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+
+        posicion = ColocarFunciones.PosicionEdificio(edificio, posicion, edificio.rotacionColocacion);
 
         Construccion edificioFinal = Instantiate(edificio, posicion, Quaternion.identity);
-        edificioFinal.transform.Rotate(Vector3.up, rotacion, Space.World);
+        edificioFinal.transform.Rotate(Vector3.up, edificio.rotacionAdicional + edificio.rotacionColocacion, Space.World);
 
         edificiosPrevio[(int)posicion.x, (int)posicion.z] = edificioFinal;
-
-        edificiosPrevio = ColocarFunciones.RellenarEdificioVacio(edificiosPrevio, edificio, posicion, rotacion, edificioVacio);
+        edificiosPrevio = ColocarFunciones.RellenarEdificioVacio(edificiosPrevio, edificio, posicion, edificio.rotacionColocacion, edificioVacio);
 
         //---------------------------------
 
@@ -41,25 +43,29 @@ public class ColocarPrevio : MonoBehaviour
         edificiosPrevio[(int)posicion.x, (int)posicion.z].gameObject.GetComponent<MeshRenderer>().materials = materiales;
     }
 
-    public Construccion ComprobarConstruccionesPosicion(Construccion edificio, Vector3 posicion, int rotacion)
+    public Construccion ComprobarConstruccionesPosicion(Construccion edificio, Vector3 posicion)
     {
-        return ColocarFunciones.ComprobarPosicion(edificiosPrevio, edificio, posicion, rotacion);       
+        return ColocarFunciones.ComprobarPosicion(edificiosPrevio, edificio, posicion);
     }
 
-    public void QuitarEdificio(Construccion edificio, Vector3 posicion, int rotacion)
+    public void QuitarEdificio(Construccion edificio, Vector3 posicion)
     {
-        edificiosPrevio = ColocarFunciones.QuitarEdificios(edificiosPrevio, edificio, posicion, rotacion);
+        edificiosPrevio = ColocarFunciones.QuitarEdificios(edificiosPrevio, edificio, posicion, edificio.rotacionColocacion);
          
         QuitarTodosEdificios();
     }
 
     public void QuitarTodosEdificios()
     {
-        foreach (Construccion subedificio in edificiosPrevio)
+        for (int x = 0; x < edificiosPrevio.GetLength(0); x++)
         {
-            if (subedificio != null)
+            for (int z = 0; z < edificiosPrevio.GetLength(1); z++)
             {
-                Destroy(subedificio.gameObject);
+                if (edificiosPrevio[x, z] != null)
+                {
+                    Destroy(edificiosPrevio[x, z].gameObject);
+                    edificiosPrevio[x, z] = null;
+                }
             }
         }
     }

@@ -769,8 +769,8 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1948886890569370}
   m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -1715,3 +1715,5 @@ MonoBehaviour:
   luzRango: 1
   luzProbabilidad: 100
   dimensiones: {x: 1, y: 1}
+  rotacionColocacion: -180
+  rotacionAdicional: 0
