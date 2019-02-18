@@ -137,7 +137,7 @@ public class Ciudad : MonoBehaviour {
 
         PoblacionTope = tope;
 
-        if (Comida >= 0)
+        if (Comida > 0)
         {
             if (PoblacionActual < PoblacionTope)
             {

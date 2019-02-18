@@ -25,11 +25,11 @@ public static class ColocarFunciones {
             }
             else if (rotacion == 0)
             {
-                posicion.x = posicion.x - 0.5f;
+                posicion.x = posicion.x + 0.5f;
             }
             else if (rotacion == -90)
             {
-                posicion.z = posicion.z - 0.5f;
+                posicion.z = posicion.z + 0.5f;
             }
         }
         else if ((edificio.dimensiones.x == 2) && (edificio.dimensiones.y == 2))
@@ -73,11 +73,11 @@ public static class ColocarFunciones {
             }
             else if (rotacion == 0)
             {
-                edificios[(int)posicion.x - 1, (int)posicion.z] = Object.Instantiate(edificioVacio);
+                edificios[(int)posicion.x + 1, (int)posicion.z] = Object.Instantiate(edificioVacio);
             }
             else if (rotacion == -90)
             {
-                edificios[(int)posicion.x, (int)posicion.z - 1] = Object.Instantiate(edificioVacio);
+                edificios[(int)posicion.x, (int)posicion.z + 1] = Object.Instantiate(edificioVacio);
             }
         }
         else if ((edificio.dimensiones.x == 2) && (edificio.dimensiones.y == 2))
@@ -119,16 +119,16 @@ public static class ColocarFunciones {
                     }
                     else if (edificio.rotacionColocacion == 0)
                     {
-                        if (edificios[(int)posicion.x - 1, (int)posicion.z] != null)
+                        if (edificios[(int)posicion.x + 1, (int)posicion.z] != null)
                         {
-                            return edificios[(int)posicion.x - 1, (int)posicion.z];
+                            return edificios[(int)posicion.x + 1, (int)posicion.z];
                         }
                     }
                     else if (edificio.rotacionColocacion == -90)
                     {
-                        if (edificios[(int)posicion.x, (int)posicion.z - 1] != null)
+                        if (edificios[(int)posicion.x, (int)posicion.z + 1] != null)
                         {
-                            return edificios[(int)posicion.x, (int)posicion.z - 1];
+                            return edificios[(int)posicion.x, (int)posicion.z + 1];
                         }
                     }
 
@@ -193,18 +193,18 @@ public static class ColocarFunciones {
             }
             else if (rotacion == 0)
             {
-                if (edificios[(int)posicion.x - 1, (int)posicion.z] != null)
+                if (edificios[(int)posicion.x + 1, (int)posicion.z] != null)
                 {
-                    Object.Destroy(edificios[(int)posicion.x - 1, (int)posicion.z].gameObject);
-                    edificios[(int)posicion.x - 1, (int)posicion.z] = null;
+                    Object.Destroy(edificios[(int)posicion.x + 1, (int)posicion.z].gameObject);
+                    edificios[(int)posicion.x + 1, (int)posicion.z] = null;
                 }
             }
             else if (rotacion == -90)
             {
-                if (edificios[(int)posicion.x, (int)posicion.z - 1] != null)
+                if (edificios[(int)posicion.x, (int)posicion.z + 1] != null)
                 {
-                    Object.Destroy(edificios[(int)posicion.x, (int)posicion.z - 1].gameObject);
-                    edificios[(int)posicion.x, (int)posicion.z - 1] = null;
+                    Object.Destroy(edificios[(int)posicion.x, (int)posicion.z + 1].gameObject);
+                    edificios[(int)posicion.x, (int)posicion.z + 1] = null;
                 }
             }
         }

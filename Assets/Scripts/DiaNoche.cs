@@ -5,6 +5,12 @@ public class DiaNoche : MonoBehaviour {
 
     public Idiomas idioma;
 
+    public Gradient luzColorDia;
+
+    public float maximaIntensidad = 1f;
+    public float minimaIntensidad = 0f;
+    public float minimoPunto = -0.2f;
+
     public Light sol;
     public float segundosDia = 360f;
 
@@ -14,8 +20,6 @@ public class DiaNoche : MonoBehaviour {
 
     [HideInInspector]
     public float tiempoMultiplicador = 1f;
-
-    float solIntensidadInicio;
 
     [SerializeField]
     private Colocar colocar;
@@ -38,11 +42,6 @@ public class DiaNoche : MonoBehaviour {
     private int contadorHoras = 0;
 
     private bool encender;
-
-    void Start()
-    {
-        solIntensidadInicio = sol.intensity;
-    }
 
     void Update()
     {
@@ -117,22 +116,14 @@ public class DiaNoche : MonoBehaviour {
     {
         sol.transform.localRotation = Quaternion.Euler((tiempoDia * 360f) - 90, 0, 0);
 
-        float intesidadMultiplicador = 1;
+        float dot = Mathf.Clamp01((Vector3.Dot(sol.transform.forward, Vector3.down) - minimoPunto) / tiempoDia);
+        float i = ((maximaIntensidad - minimaIntensidad) * dot) + minimaIntensidad;
 
-        if (tiempoDia >= 0.25f || tiempoDia <= 0.65f)
-        {
-            intesidadMultiplicador = 1;
-        }
-        else if (tiempoDia <= 0.25f)
-        {
-            intesidadMultiplicador = Mathf.Clamp01((tiempoDia - 0.25f) * (1 / 0.02f));
-        }
-        else if (tiempoDia >= 0.65f)
-        {
-            intesidadMultiplicador = Mathf.Clamp01(1 - ((tiempoDia - 0.65f) * (1 / 0.02f)));
-        }
+        sol.intensity = i;
 
-        sol.intensity = solIntensidadInicio * intesidadMultiplicador;
+        sol.color = luzColorDia.Evaluate(dot);
+
+        RenderSettings.ambientLight = sol.color;
     }
 
     public void ArrancarParar()
