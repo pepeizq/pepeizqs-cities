@@ -83,11 +83,11 @@
     <Reference Include="Unity.PackageManagerUI.Editor">
       <HintPath>E:/Proyectos/Unity/City Builder/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.TextMeshPro">
-      <HintPath>E:/Proyectos/Unity/City Builder/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
       <HintPath>E:/Proyectos/Unity/City Builder/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>E:/Proyectos/Unity/City Builder/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.DataPrivacy">
       <HintPath>E:/Proyectos/Unity/City Builder/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>

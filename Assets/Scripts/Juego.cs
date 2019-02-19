@@ -1,7 +1,5 @@
 ﻿using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Threading;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -54,11 +52,37 @@ public class Juego : MonoBehaviour {
     public Panel panelTiempo;
 
     public GameObject botonEdificiosPrefab;
-    public Panel panelEdificiosDecoracion;
+
     public Panel panelEdificiosCarreteras;
+    public Button botonEdificiosCarreteras;
+    public Sprite botonEdificiosCarreterasSprite1;
+    public Sprite botonEdificiosCarreterasSprite2;
+
     public Panel panelEdificiosCasas;
+    public Button botonEdificiosCasas;
+    public Sprite botonEdificiosCasasSprite1;
+    public Sprite botonEdificiosCasasSprite2;
+
     public Panel panelEdificiosComida;
-    public Panel panelEdificiosTrabajo;
+    public Button botonEdificiosComida;
+    public Sprite botonEdificiosComidaSprite1;
+    public Sprite botonEdificiosComidaSprite2;
+
+    public Panel panelEdificiosTiendas;
+    public Button botonEdificiosTiendas;
+    public Sprite botonEdificiosTiendasSprite1;
+    public Sprite botonEdificiosTiendasSprite2;
+
+    public Panel panelEdificiosIndustria;
+    public Button botonEdificiosIndustria;
+    public Sprite botonEdificiosIndustriaSprite1;
+    public Sprite botonEdificiosIndustriaSprite2;
+
+    public Panel panelEdificiosDecoracion;
+    public Button botonEdificiosDecoracion;
+    public Sprite botonEdificiosDecoracionSprite1;
+    public Sprite botonEdificiosDecoracionSprite2;
+
     public EdificiosInfo panelEdificiosInfo;
 
     public Panel volverMenu;
@@ -102,19 +126,16 @@ public class Juego : MonoBehaviour {
             }
             else if (edificio.categoria == 4)
             {
-                botonObjeto.transform.SetParent(panelEdificiosTrabajo.transform, false);
+                botonObjeto.transform.SetParent(panelEdificiosTiendas.transform, false);
+            }
+            else if (edificio.categoria == 5)
+            {
+                botonObjeto.transform.SetParent(panelEdificiosIndustria.transform, false);
             }
 
             Image imagen = botonObjeto.GetComponent<Image>();
+            imagen.sprite = edificio.botonImagen;
 
-            Texture2D captura = AssetPreview.GetAssetPreview(edificio.gameObject);
-            Thread.Sleep(80);
-            if (captura != null)
-            {
-                Rect cuadro = new Rect(0, 0, captura.width, captura.height);
-                imagen.sprite = Sprite.Create(captura, cuadro, new Vector2(1, 1), 100);
-            }
-           
             Button boton = botonObjeto.GetComponent<Button>();
             boton.onClick.AddListener(() => SeleccionarEdificio(edificio.id));
 
@@ -234,14 +255,47 @@ public class Juego : MonoBehaviour {
     }
 
     public void MostrarPanelEdificios(Panel panelVisible)
-    {
-        panelEdificiosDecoracion.gameObject.SetActive(false);
+    {        
         panelEdificiosCarreteras.gameObject.SetActive(false);
         panelEdificiosCasas.gameObject.SetActive(false);
         panelEdificiosComida.gameObject.SetActive(false);
-        panelEdificiosTrabajo.gameObject.SetActive(false);
+        panelEdificiosTiendas.gameObject.SetActive(false);
+        panelEdificiosIndustria.gameObject.SetActive(false);
+        panelEdificiosDecoracion.gameObject.SetActive(false);
 
         panelVisible.gameObject.SetActive(true);
+
+        botonEdificiosCarreteras.GetComponent<Image>().sprite = botonEdificiosCarreterasSprite2;
+        botonEdificiosCasas.GetComponent<Image>().sprite = botonEdificiosCasasSprite2;
+        botonEdificiosComida.GetComponent<Image>().sprite = botonEdificiosComidaSprite2;
+        botonEdificiosTiendas.GetComponent<Image>().sprite = botonEdificiosTiendasSprite2;
+        botonEdificiosIndustria.GetComponent<Image>().sprite = botonEdificiosIndustriaSprite2;
+        botonEdificiosDecoracion.GetComponent<Image>().sprite = botonEdificiosDecoracionSprite2;
+
+        if (panelVisible.nombre == "carreteras")
+        {
+            botonEdificiosCarreteras.GetComponent<Image>().sprite = botonEdificiosCarreterasSprite1;
+        }
+        else if (panelVisible.nombre == "casas")
+        {
+            botonEdificiosCasas.GetComponent<Image>().sprite = botonEdificiosCasasSprite1;
+        }
+        else if (panelVisible.nombre == "comida")
+        {
+            botonEdificiosComida.GetComponent<Image>().sprite = botonEdificiosComidaSprite1;
+        }
+        else if(panelVisible.nombre == "tiendas")
+        {
+            botonEdificiosTiendas.GetComponent<Image>().sprite = botonEdificiosTiendasSprite1;
+        }
+        else if (panelVisible.nombre == "industria")
+        {
+            botonEdificiosIndustria.GetComponent<Image>().sprite = botonEdificiosIndustriaSprite1;
+        }
+        else if (panelVisible.nombre == "decoracion")
+        {
+            botonEdificiosDecoracion.GetComponent<Image>().sprite = botonEdificiosDecoracionSprite1;
+        }        
     }
 
     public void SeleccionarEdificio(int edificio)

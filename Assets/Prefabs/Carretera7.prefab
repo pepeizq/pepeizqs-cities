@@ -98,6 +98,7 @@ MonoBehaviour:
   comida: 0
   trabajo: 0
   ingresos: 0
+  botonImagen: {fileID: 21300000, guid: 6b3bc8e599d034a4f89c195111726b30, type: 3}
   luzIntesidad: 0
   luzRango: 0
   luzProbabilidad: 0
