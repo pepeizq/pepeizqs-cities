@@ -1002,7 +1002,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 29
   categoria: 4
-  coste: 0
+  coste: 10
   nombre: tienda4
   poblacion: 0
   comida: 0

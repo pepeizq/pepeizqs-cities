@@ -8,6 +8,10 @@ public static class ColocarFunciones {
         {
             posicion.y = 1f;
         }
+        else if (edificio.categoria == 3)
+        {
+            posicion.y = 1f;
+        }
         else
         {
             posicion.y = 0.5f;
