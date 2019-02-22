@@ -14,17 +14,28 @@ public class CameraController : MonoBehaviour
         {
             transform.Translate(new Vector3(velocidad * Time.deltaTime, 0, 0));
         }
-        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
+        else if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
         {
             transform.Translate(new Vector3(-velocidad * Time.deltaTime, 0, 0));
         }
-        if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
+        else if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
         {
             transform.Translate(new Vector3(0, -velocidad * Time.deltaTime, 0));
         }
-        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
+        else if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
         {
             transform.Translate(new Vector3(0, velocidad * Time.deltaTime, 0));
+        }
+
+        if (Input.GetKey(KeyCode.F1))
+        {
+            transform.position = new Vector3(20, 60, 20);
+            transform.eulerAngles = new Vector3(45, 45, 0);
+        }
+        else if (Input.GetKey(KeyCode.F2))
+        {
+            transform.position = new Vector3(80, 60, 20);
+            transform.eulerAngles = new Vector3(-225, -225, 180);
         }
     }
 

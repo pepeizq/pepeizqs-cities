@@ -84,11 +84,38 @@ static MonoGenericInst* GetSharedGenericInst(MonoGenericInst* inst)
         }
         else if (mono_unity_type_is_enum_type(type) && s_Il2CppCodeGenOptions.enablePrimitiveValueTypeGenericSharing)
         {
-            types.push_back(mono_class_get_type(mono_unity_type_get_element_class(type)));
-        }
-        else if (mono_unity_type_is_boolean(type) && s_Il2CppCodeGenOptions.enablePrimitiveValueTypeGenericSharing)
-        {
-            types.push_back(mono_class_get_type(mono_unity_defaults_get_byte_class()));
+            MonoType* underlyingType = mono_type_get_underlying_type(type);
+            switch (underlyingType->type)
+            {
+                case IL2CPP_TYPE_I1:
+                    type = mono_class_get_type(mono_class_from_name(mono_get_corlib(), "System", "SByteEnum"));
+                    break;
+                case IL2CPP_TYPE_I2:
+                    type = mono_class_get_type(mono_class_from_name(mono_get_corlib(), "System", "Int16Enum"));
+                    break;
+                case IL2CPP_TYPE_I4:
+                    type = mono_class_get_type(mono_class_from_name(mono_get_corlib(), "System", "Int32Enum"));
+                    break;
+                case IL2CPP_TYPE_I8:
+                    type = mono_class_get_type(mono_class_from_name(mono_get_corlib(), "System", "Int64Enum"));
+                    break;
+                case IL2CPP_TYPE_U1:
+                    type = mono_class_get_type(mono_class_from_name(mono_get_corlib(), "System", "ByteEnum"));
+                    break;
+                case IL2CPP_TYPE_U2:
+                    type = mono_class_get_type(mono_class_from_name(mono_get_corlib(), "System", "UInt16Enum"));
+                    break;
+                case IL2CPP_TYPE_U4:
+                    type = mono_class_get_type(mono_class_from_name(mono_get_corlib(), "System", "UInt32Enum"));
+                    break;
+                case IL2CPP_TYPE_U8:
+                    type = mono_class_get_type(mono_class_from_name(mono_get_corlib(), "System", "UInt64Enum"));
+                    break;
+                default:
+                    IL2CPP_ASSERT(0 && "Invalid enum underlying type");
+                    break;
+            }
+            types.push_back(type);
         }
         else
         {

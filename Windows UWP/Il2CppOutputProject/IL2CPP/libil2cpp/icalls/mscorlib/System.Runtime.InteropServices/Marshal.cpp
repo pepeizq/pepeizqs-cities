@@ -7,6 +7,7 @@
 
 #include "gc/GarbageCollector.h"
 #include "metadata/FieldLayout.h"
+#include "os/Atomic.h"
 #include "vm/Array.h"
 #include "vm/CCW.h"
 #include "vm/Class.h"
@@ -350,17 +351,21 @@ namespace InteropServices
         // There's a check in mscorlib before calling this internal icall, so assert instead of full check is OK here.
         IL2CPP_ASSERT(co->klass->is_import_or_windows_runtime);
 
-        // We can't really release the COM object directly, because it might have additional
-        // fields that cache different interfaces. So let's just call its finalizer here.
-        // In order to deal with the fact that this may get called from different threads
-        // at the same time, we (atomically) register a NULL finalizer, and if another finalizer
-        // was already registered, we call it. If there was no finalizer registered, it means
-        // that we lost the race and we should just carry on.
-        gc::GarbageCollector::FinalizerCallback oldFinalizer = gc::GarbageCollector::RegisterFinalizerWithCallback(co, NULL);
-        if (oldFinalizer != NULL)
-            oldFinalizer(co, NULL);
+        int32_t newRefCount = os::Atomic::Decrement(&static_cast<Il2CppComObject*>(co)->refCount);
+        if (newRefCount == 0)
+        {
+            // We can't really release the COM object directly, because it might have additional
+            // fields that cache different interfaces. So let's just call its finalizer here.
+            // In order to deal with the fact that this may get called from different threads
+            // at the same time, we (atomically) register a NULL finalizer, and if another finalizer
+            // was already registered, we call it. If there was no finalizer registered, it means
+            // that we lost the race and we should just carry on.
+            gc::GarbageCollector::FinalizerCallback oldFinalizer = gc::GarbageCollector::RegisterFinalizerWithCallback(co, NULL);
+            if (oldFinalizer != NULL)
+                oldFinalizer(co, NULL);
+        }
 
-        return 0;
+        return newRefCount;
     }
 
     int Marshal::SizeOf(Il2CppReflectionType* rtype)

@@ -27,10 +27,13 @@
 /* for GC and the client otherwise GC_thread_exit_proc() is not         */
 /* guaranteed to be invoked (see the comments in pthread_start.c).      */
 
-
-#define GC_INNER STATIC
-#define GC_EXTERN GC_INNER
+#ifndef __cplusplus
+  /* static is desirable here for more efficient linkage.               */
+  /* TODO: Enable this in case of the compilation as C++ code.          */
+# define GC_INNER STATIC
+# define GC_EXTERN GC_INNER
                 /* STATIC is defined in gcconfig.h. */
+#endif
 
 /* Small files go first... */
 #include "../backgraph.c"
@@ -38,17 +41,17 @@
 #include "../checksums.c"
 #include "../gcj_mlc.c"
 #include "../headers.c"
-#include "../malloc.c"
 #include "../new_hblk.c"
 #include "../obj_map.c"
 #include "../ptr_chck.c"
-#include "../stubborn.c"
 
+#include "gc_inline.h"
 #include "../allchblk.c"
 #include "../alloc.c"
 #include "../dbg_mlc.c"
 #include "../finalize.c"
 #include "../fnlz_mlc.c"
+#include "../malloc.c"
 #include "../mallocx.c"
 #include "../mark.c"
 #include "../mark_rts.c"
@@ -67,7 +70,6 @@
 #include "../dyn_load.c"
 #include "../gc_dlopen.c"
 #include "../mach_dep.c"
-#include "../pcr_interface.c"
 #include "../pthread_stop_world.c"
 #include "../pthread_support.c"
 #include "../specific.c"
@@ -82,7 +84,8 @@
 /* This is only useful if directly included from application    */
 /* (instead of linking gc).                                     */
 #ifndef GC_NO_THREAD_REDIRECTS
+# define GC_PTHREAD_REDIRECTS_ONLY
 # include "gc_pthread_redirects.h"
 #endif
 
-/* real_malloc.c, extra/MacOS.c, extra/msvc_dbg.c are not included. */
+/* The files from "extra" folder are not included. */

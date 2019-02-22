@@ -51,7 +51,40 @@ BOOL WINAPI GetComputerNameW(LPWSTR lpBuffer, LPDWORD nSize)
 
 #undef ERROR_CHECK
 
-    return CopyHStringToBuffer(displayName, lpBuffer, nSize);
+    unsigned int sourceLength;
+    auto sourceBuffer = displayName.GetRawBuffer(&sourceLength);
+
+    // NetBIOS caps at 15 characters, not including the null terminator
+    DWORD finalSize = sourceLength > 15 ? 15 : sourceLength;
+
+    // Cap at the first period
+    for (DWORD i = 0; i < finalSize; ++i)
+        if (sourceBuffer[i] == '.')
+            finalSize = i;
+
+    // Error and return the size if the buffer is not large enough
+    if (finalSize + 1 > *nSize)
+    {
+        SetLastError(ERROR_BUFFER_OVERFLOW);
+        *nSize = finalSize + 1;
+        return FALSE;
+    }
+
+    if (lpBuffer != nullptr)
+    {
+        memset(lpBuffer, 0, *nSize);
+
+        // Copy the characters and make them uppercase
+        for (DWORD i = 0; i < finalSize; ++i)
+            lpBuffer[i] = toupper(sourceBuffer[i]);
+
+        *nSize = finalSize;
+
+        return TRUE;
+    }
+
+    *nSize = finalSize;
+    return FALSE;
 }
 } // extern "C"
 

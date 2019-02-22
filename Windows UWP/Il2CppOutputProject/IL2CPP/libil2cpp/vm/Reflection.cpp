@@ -605,27 +605,27 @@ namespace vm
 
     CustomAttributesCache* Reflection::GetCustomAttributesCacheFor(Il2CppClass *klass)
     {
-        return MetadataCache::GenerateCustomAttributesCache(klass->customAttributeIndex);
+        return MetadataCache::GenerateCustomAttributesCache(klass->image, klass->token);
     }
 
     CustomAttributesCache* Reflection::GetCustomAttributesCacheFor(const MethodInfo *method)
     {
-        return MetadataCache::GenerateCustomAttributesCache(method->customAttributeIndex);
+        return MetadataCache::GenerateCustomAttributesCache(method->klass->image, method->token);
     }
 
     CustomAttributesCache* Reflection::GetCustomAttributesCacheFor(const PropertyInfo *property)
     {
-        return MetadataCache::GenerateCustomAttributesCache(property->customAttributeIndex);
+        return MetadataCache::GenerateCustomAttributesCache(property->parent->image, property->token);
     }
 
     CustomAttributesCache* Reflection::GetCustomAttributesCacheFor(FieldInfo *field)
     {
-        return MetadataCache::GenerateCustomAttributesCache(field->customAttributeIndex);
+        return MetadataCache::GenerateCustomAttributesCache(field->parent->image, field->token);
     }
 
     CustomAttributesCache* Reflection::GetCustomAttributesCacheFor(const EventInfo *event)
     {
-        return MetadataCache::GenerateCustomAttributesCache(event->customAttributeIndex);
+        return MetadataCache::GenerateCustomAttributesCache(event->parent->image, event->token);
     }
 
     CustomAttributesCache* Reflection::GetCustomAttributesCacheFor(Il2CppReflectionParameter *parameter)
@@ -644,31 +644,31 @@ namespace vm
             methodWithParameterAttributeInformation = method->method->genericMethod->methodDefinition;
 
         const ::ParameterInfo* info = &methodWithParameterAttributeInformation->parameters[parameter->PositionImpl];
-        return MetadataCache::GenerateCustomAttributesCache(info->customAttributeIndex);
+        return MetadataCache::GenerateCustomAttributesCache(methodWithParameterAttributeInformation->klass->image, info->token);
     }
 
-    CustomAttributeTypeCache* Reflection::GetCustomAttributeTypeCacheFor(Il2CppReflectionParameter *parameter)
+    bool Reflection::HasAttribute(Il2CppReflectionParameter *parameter, Il2CppClass* attribute)
     {
         Il2CppReflectionMethod* method = (Il2CppReflectionMethod*)parameter->MemberImpl;
 
         if (method->method->parameters == NULL)
-            return NULL;
+            return false;
 
         IL2CPP_NOT_IMPLEMENTED_NO_ASSERT(Reflection::GetCustomAttributeTypeCacheFor, "-1 represents the return value. Need to emit custom attribute information for that.")
         if (parameter->PositionImpl == -1)
-            return NULL;
+            return false;
 
         const MethodInfo* methodWithParameterAttributeInformation = method->method;
         if (method->method->is_inflated)
             methodWithParameterAttributeInformation = method->method->genericMethod->methodDefinition;
 
         const ::ParameterInfo* info = &methodWithParameterAttributeInformation->parameters[parameter->PositionImpl];
-        return MetadataCache::GenerateCustomAttributeTypeCache(info->customAttributeIndex);
+        return MetadataCache::HasAttribute(methodWithParameterAttributeInformation->klass->image, info->token, attribute);
     }
 
     CustomAttributesCache* Reflection::GetCustomAttributesCacheFor(const Il2CppAssembly *assembly)
     {
-        return MetadataCache::GenerateCustomAttributesCache(assembly->customAttributeIndex);
+        return MetadataCache::GenerateCustomAttributesCache(assembly->image, assembly->token);
     }
 
     CustomAttributesCache* Reflection::GetCustomAttrsInfo(Il2CppObject *obj)
@@ -698,31 +698,62 @@ namespace vm
         return GetCustomAttributesCacheFor(klass);
     }
 
-    CustomAttributeTypeCache* Reflection::GetCustomAttrsTypeInfo(Il2CppObject *obj)
+    bool Reflection::HasAttribute(Il2CppObject *obj, Il2CppClass* attribute)
     {
         if (IsMethod(obj) || IsCMethod(obj) || IsGenericMethod(obj) || IsGenericCMethod(obj))
-            return MetadataCache::GenerateCustomAttributeTypeCache((((Il2CppReflectionMethod*)obj)->method)->customAttributeIndex);
+            return MetadataCache::HasAttribute((((Il2CppReflectionMethod*)obj)->method)->klass->image, (((Il2CppReflectionMethod*)obj)->method)->token, attribute);
 
         if (IsProperty(obj))
-            return MetadataCache::GenerateCustomAttributeTypeCache((((Il2CppReflectionProperty*)obj)->property)->customAttributeIndex);
+            return MetadataCache::HasAttribute((((Il2CppReflectionProperty*)obj)->property)->parent->image, (((Il2CppReflectionProperty*)obj)->property)->token, attribute);
 
         if (IsField(obj))
-            return MetadataCache::GenerateCustomAttributeTypeCache((((Il2CppReflectionField*)obj)->field)->customAttributeIndex);
+            return MetadataCache::HasAttribute((((Il2CppReflectionField*)obj)->field)->parent->image, (((Il2CppReflectionField*)obj)->field)->token, attribute);
 
         if (IsEvent(obj))
-            return MetadataCache::GenerateCustomAttributeTypeCache((((Il2CppReflectionMonoEvent*)obj)->eventInfo)->customAttributeIndex);
+            return MetadataCache::HasAttribute((((Il2CppReflectionMonoEvent*)obj)->eventInfo)->parent->image, (((Il2CppReflectionMonoEvent*)obj)->eventInfo)->token, attribute);
 
         if (IsParameter(obj))
-            return GetCustomAttributeTypeCacheFor((Il2CppReflectionParameter*)obj);
+            return HasAttribute((Il2CppReflectionParameter*)obj, attribute);
 
         if (IsAssembly(obj))
-            return MetadataCache::GenerateCustomAttributeTypeCache((((Il2CppReflectionAssembly*)obj)->assembly)->customAttributeIndex);
+            return MetadataCache::HasAttribute((((Il2CppReflectionAssembly*)obj)->assembly)->image, (((Il2CppReflectionAssembly*)obj)->assembly)->token, attribute);
 
         Il2CppClass *klass = IsType(obj)
             ? Class::FromSystemType((Il2CppReflectionType*)obj)
             : obj->klass;
 
-        return MetadataCache::GenerateCustomAttributeTypeCache(klass->customAttributeIndex);
+        return MetadataCache::HasAttribute(klass->image, klass->token, attribute);
+    }
+
+    Il2CppObject* Reflection::GetCustomAttribute(CustomAttributeIndex index, Il2CppClass* attribute)
+    {
+        CustomAttributesCache* cache = MetadataCache::GenerateCustomAttributesCache(index);
+        if (cache == NULL)
+            return NULL;
+
+        for (int32_t i = 0; i < cache->count; i++)
+        {
+            Il2CppObject* obj = cache->attributes[i];
+            Il2CppClass* klass = Object::GetClass(obj);
+
+            if (Class::HasParent(klass, attribute) || (Class::IsInterface(attribute) && Class::IsAssignableFrom(attribute, klass)))
+                return obj;
+        }
+
+        return NULL;
+    }
+
+    Il2CppArray* Reflection::ConstructCustomAttributes(CustomAttributeIndex index)
+    {
+        CustomAttributesCache* cache = MetadataCache::GenerateCustomAttributesCache(index);
+        if (cache == NULL)
+            return il2cpp::vm::Array::New(il2cpp_defaults.attribute_class, 0);
+
+        Il2CppArray* result = il2cpp::vm::Array::New(il2cpp_defaults.attribute_class, cache->count);
+        for (int32_t i = 0; i < cache->count; i++)
+            il2cpp_array_setref(result, i, cache->attributes[i]);
+
+        return result;
     }
 
     void Reflection::Initialize()
@@ -739,59 +770,19 @@ namespace vm
         s_MonoAssemblyNameMap = new MonoAssemblyNameMap();
     }
 
-    bool Reflection::CustomAttrsHasAttr(CustomAttributeTypeCache *ainfo, Il2CppClass *attr_klass)
-    {
-        IL2CPP_ASSERT(ainfo);
-        IL2CPP_ASSERT(attr_klass);
-
-        int i;
-        Il2CppClass *klass;
-
-        for (i = 0; i < ainfo->count; ++i)
-        {
-            klass = ainfo->attributeTypes[i];
-
-            if (Class::HasParent(klass, attr_klass) || (Class::IsInterface(attr_klass) && Class::IsAssignableFrom(attr_klass, klass)))
-                return true;
-        }
-        return false;
-    }
-
-    bool Reflection::HasAttribute(Il2CppObject *obj, Il2CppClass *attribute)
-    {
-        CustomAttributeTypeCache* attrs = GetCustomAttrsTypeInfo(obj);
-        if (!attrs)
-            return false;
-
-        return CustomAttrsHasAttr(attrs, attribute);
-    }
-
     bool Reflection::HasAttribute(FieldInfo *field, Il2CppClass *attribute)
     {
-        CustomAttributeTypeCache* attrs = MetadataCache::GenerateCustomAttributeTypeCache(field->customAttributeIndex);
-        if (!attrs)
-            return false;
-
-
-        return CustomAttrsHasAttr(attrs, attribute);
+        return MetadataCache::HasAttribute(field->parent->image, field->token, attribute);
     }
 
     bool Reflection::HasAttribute(const MethodInfo *method, Il2CppClass *attribute)
     {
-        CustomAttributeTypeCache* attrs = MetadataCache::GenerateCustomAttributeTypeCache(method->customAttributeIndex);
-        if (!attrs)
-            return false;
-
-        return CustomAttrsHasAttr(attrs, attribute);
+        return MetadataCache::HasAttribute(method->klass->image, method->token, attribute);
     }
 
     bool Reflection::HasAttribute(Il2CppClass *klass, Il2CppClass *attribute)
     {
-        CustomAttributeTypeCache* attrs = MetadataCache::GenerateCustomAttributeTypeCache(klass->customAttributeIndex);
-        if (!attrs)
-            return false;
-
-        return CustomAttrsHasAttr(attrs, attribute);
+        return MetadataCache::HasAttribute(klass->image, klass->token, attribute);
     }
 
     Il2CppClass* Reflection::TypeGetHandle(Il2CppReflectionType* ref)

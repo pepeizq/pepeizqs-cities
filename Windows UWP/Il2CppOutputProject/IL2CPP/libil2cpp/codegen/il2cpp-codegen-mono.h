@@ -434,6 +434,13 @@ inline T* il2cpp_codegen_marshal_allocate_array(size_t length)
     return (T*)mono_marshal_alloc((il2cpp_array_size_t)(sizeof(T) * length), &unused);
 }
 
+template<typename T>
+inline T* il2cpp_codegen_marshal_allocate()
+{
+    MonoError unused;
+    return (T*)mono_marshal_alloc(sizeof(T), &unused);
+}
+
 inline char* il2cpp_codegen_marshal_string(String_t* string)
 {
     return mono::vm::PlatformInvoke::MarshalCSharpStringToCppString((RuntimeString*)string);
@@ -681,37 +688,37 @@ inline MethodBase_t* il2cpp_codegen_get_method_object(const RuntimeMethod* metho
 
 inline Type_t* il2cpp_codegen_get_type(Il2CppMethodPointer getTypeFunction, String_t* typeName, const char* assemblyName)
 {
-    typedef Type_t* (*getTypeFuncType)(RuntimeObject*, String_t*, const RuntimeMethod*);
+    typedef Type_t* (*getTypeFuncType)(String_t*, const RuntimeMethod*);
     MonoString* assemblyQualifiedTypeName = mono_unity_string_append_assembly_name_if_necessary((MonoString*)typeName, assemblyName);
 
     // Try to find the type using a hint about about calling assembly. If it is not found, fall back to calling GetType without the hint.
-    Type_t* type = ((getTypeFuncType)getTypeFunction)(NULL, (String_t*)assemblyQualifiedTypeName, NULL);
+    Type_t* type = ((getTypeFuncType)getTypeFunction)((String_t*)assemblyQualifiedTypeName, NULL);
     if (type == NULL)
-        return ((getTypeFuncType)getTypeFunction)(NULL, typeName, NULL);
+        return ((getTypeFuncType)getTypeFunction)(typeName, NULL);
     return type;
 }
 
 inline Type_t* il2cpp_codegen_get_type(Il2CppMethodPointer getTypeFunction, String_t* typeName, bool throwOnError, const char* assemblyName)
 {
-    typedef Type_t* (*getTypeFuncType)(RuntimeObject*, String_t*, bool, const RuntimeMethod*);
+    typedef Type_t* (*getTypeFuncType)(String_t*, bool, const RuntimeMethod*);
     MonoString* assemblyQualifiedTypeName = mono_unity_string_append_assembly_name_if_necessary((MonoString*)typeName, assemblyName);
 
     // Try to find the type using a hint about about calling assembly. If it is not found, fall back to calling GetType without the hint.
-    Type_t* type = ((getTypeFuncType)getTypeFunction)(NULL, (String_t*)assemblyQualifiedTypeName, throwOnError, NULL);
+    Type_t* type = ((getTypeFuncType)getTypeFunction)((String_t*)assemblyQualifiedTypeName, throwOnError, NULL);
     if (type == NULL)
-        return ((getTypeFuncType)getTypeFunction)(NULL, typeName, throwOnError, NULL);
+        return ((getTypeFuncType)getTypeFunction)(typeName, throwOnError, NULL);
     return type;
 }
 
 inline Type_t* il2cpp_codegen_get_type(Il2CppMethodPointer getTypeFunction, String_t* typeName, bool throwOnError, bool ignoreCase, const char* assemblyName)
 {
-    typedef Type_t* (*getTypeFuncType)(RuntimeObject*, String_t*, bool, bool, const RuntimeMethod*);
+    typedef Type_t* (*getTypeFuncType)(String_t*, bool, bool, const RuntimeMethod*);
     MonoString* assemblyQualifiedTypeName = mono_unity_string_append_assembly_name_if_necessary((MonoString*)typeName, assemblyName);
 
     // Try to find the type using a hint about about calling assembly. If it is not found, fall back to calling GetType without the hint.
-    Type_t* type = ((getTypeFuncType)getTypeFunction)(NULL, (String_t*)assemblyQualifiedTypeName, throwOnError, ignoreCase, NULL);
+    Type_t* type = ((getTypeFuncType)getTypeFunction)((String_t*)assemblyQualifiedTypeName, throwOnError, ignoreCase, NULL);
     if (type == NULL)
-        return ((getTypeFuncType)getTypeFunction)(NULL, typeName, throwOnError, ignoreCase, NULL);
+        return ((getTypeFuncType)getTypeFunction)(typeName, throwOnError, ignoreCase, NULL);
     return type;
 }
 
@@ -980,4 +987,9 @@ inline intptr_t il2cpp_codegen_get_com_interface_for_object(RuntimeObject* objec
 {
     assert(0 && "Not implemented yet.");
     return 0;
+}
+
+inline NORETURN void il2cpp_codegen_raise_profile_exception(const RuntimeMethod* method)
+{
+    il2cpp_codegen_raise_exception(il2cpp_codegen_get_not_supported_exception(mono_unity_method_get_name(method)));
 }

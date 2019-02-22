@@ -106,9 +106,13 @@ namespace vm
 
         static const TypeDefinitionIndex GetIndexForTypeDefinition(const Il2CppClass* typeDefinition);
         static const GenericParameterIndex GetIndexForGenericParameter(const Il2CppGenericParameter* genericParameter);
+        static const MethodIndex GetIndexForMethodDefinition(const MethodInfo* method);
 
+        static CustomAttributeIndex GetCustomAttributeIndex(const Il2CppImage* image, uint32_t token);
         static CustomAttributesCache* GenerateCustomAttributesCache(CustomAttributeIndex index);
-        static CustomAttributeTypeCache* GenerateCustomAttributeTypeCache(CustomAttributeIndex index);
+        static CustomAttributesCache* GenerateCustomAttributesCache(const Il2CppImage* image, uint32_t token);
+        static bool HasAttribute(CustomAttributeIndex index, Il2CppClass* attribute);
+        static bool HasAttribute(const Il2CppImage* image, uint32_t token, Il2CppClass* attribute);
 
         typedef void(*WalkTypesCallback)(Il2CppClass* type, void* context);
         static void WalkPointerTypes(WalkTypesCallback callback, void* context);

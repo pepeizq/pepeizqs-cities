@@ -1953,7 +1953,7 @@ namespace os
                 break;
 #if IL2CPP_SUPPORT_IPV6
             case kSocketOptionLevelIPv6:
-        #ifdef SOL_IP
+        #ifdef SOL_IPV6
                 *system_level = SOL_IPV6;
         #else
                 *system_level = IPPROTO_IPV6;
@@ -1979,13 +1979,13 @@ namespace os
                     case kSocketOptionNamePacketInformation:
 #ifdef HAVE_IPV6_PKTINFO
                         *system_name = IPV6_PKTINFO;
-#endif
                         break;
+#endif
                     case kSocketOptionNameIPv6Only:
 #ifdef IPV6_V6ONLY
                         *system_name = IPV6_V6ONLY;
-#endif
                         break;
+#endif
                     case kSocketOptionNameHeaderIncluded:
                     case kSocketOptionNameIPOptions:
                     case kSocketOptionNameTypeOfService:

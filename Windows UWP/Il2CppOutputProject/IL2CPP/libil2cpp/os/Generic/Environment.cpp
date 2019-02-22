@@ -52,7 +52,6 @@ namespace os
 
     std::vector<std::string> Environment::GetLogicalDrives()
     {
-        IL2CPP_NOT_IMPLEMENTED_ICALL(Environment::GetLogicalDrives);
         return std::vector<std::string>();
     }
 

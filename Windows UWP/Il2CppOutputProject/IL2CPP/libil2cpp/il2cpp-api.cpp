@@ -656,6 +656,11 @@ void il2cpp_gc_disable()
     GarbageCollector::Disable();
 }
 
+bool il2cpp_gc_is_disabled()
+{
+    return GarbageCollector::IsDisabled();
+}
+
 int64_t il2cpp_gc_get_used_size()
 {
     return GarbageCollector::GetUsedHeapSize();
@@ -681,6 +686,12 @@ uint32_t il2cpp_gchandle_new_weakref(Il2CppObject *obj, bool track_resurrection)
 Il2CppObject* il2cpp_gchandle_get_target(uint32_t gchandle)
 {
     return GCHandle::GetTarget(gchandle);
+}
+
+void il2cpp_gc_wbarrier_set_field(Il2CppObject *obj, void **targetAddress, void *object)
+{
+    *targetAddress = object;
+    GarbageCollector::SetWriteBarrier(targetAddress);
 }
 
 void il2cpp_gchandle_free(uint32_t gchandle)
@@ -822,6 +833,11 @@ void il2cpp_profiler_install_gc(Il2CppProfileGCFunc callback, Il2CppProfileGCRes
 void il2cpp_profiler_install_fileio(Il2CppProfileFileIOFunc callback)
 {
     Profiler::InstallFileIO(callback);
+}
+
+void il2cpp_profiler_install_thread(Il2CppProfileThreadFunc start, Il2CppProfileThreadFunc end)
+{
+    Profiler::InstallThread(start, end);
 }
 
 #endif
@@ -1165,6 +1181,16 @@ const MethodInfo* il2cpp_image_get_entry_point(const Il2CppImage *image)
     return Image::GetEntryPoint(image);
 }
 
+size_t il2cpp_image_get_class_count(const Il2CppImage * image)
+{
+    return Image::GetNumTypes(image);
+}
+
+const Il2CppClass* il2cpp_image_get_class(const Il2CppImage * image, size_t index)
+{
+    return Image::GetType(image, index);
+}
+
 Il2CppManagedMemorySnapshot* il2cpp_capture_memory_snapshot()
 {
     return MemoryInformation::CaptureManagedMemorySnapshot();
@@ -1203,4 +1229,35 @@ bool il2cpp_is_debugger_attached()
 void il2cpp_unity_install_unitytls_interface(const void* unitytlsInterfaceStruct)
 {
     il2cpp::vm::Runtime::SetUnityTlsInterface(unitytlsInterfaceStruct);
+}
+
+// Custom Attributes
+Il2CppCustomAttrInfo* il2cpp_custom_attrs_from_class(Il2CppClass *klass)
+{
+    return (Il2CppCustomAttrInfo*)(uintptr_t)MetadataCache::GetCustomAttributeIndex(klass->image, klass->token);
+}
+
+Il2CppCustomAttrInfo* il2cpp_custom_attrs_from_method(const MethodInfo * method)
+{
+    return (Il2CppCustomAttrInfo*)(uintptr_t)MetadataCache::GetCustomAttributeIndex(method->klass->image, method->token);
+}
+
+bool il2cpp_custom_attrs_has_attr(Il2CppCustomAttrInfo *ainfo, Il2CppClass *attr_klass)
+{
+    return MetadataCache::HasAttribute((CustomAttributeIndex)(uintptr_t)ainfo, attr_klass);
+}
+
+Il2CppObject* il2cpp_custom_attrs_get_attr(Il2CppCustomAttrInfo *ainfo, Il2CppClass *attr_klass)
+{
+    return Reflection::GetCustomAttribute((CustomAttributeIndex)(uintptr_t)ainfo, attr_klass);
+}
+
+Il2CppArray*  il2cpp_custom_attrs_construct(Il2CppCustomAttrInfo *ainfo)
+{
+    return Reflection::ConstructCustomAttributes((CustomAttributeIndex)(uintptr_t)ainfo);
+}
+
+void il2cpp_custom_attrs_free(Il2CppCustomAttrInfo *ainfo)
+{
+    // nothing to free, we cache everything
 }

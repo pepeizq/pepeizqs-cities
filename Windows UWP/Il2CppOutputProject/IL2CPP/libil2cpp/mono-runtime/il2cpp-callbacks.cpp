@@ -283,9 +283,9 @@ char* il2cpp_mono_get_runtime_build_info()
 }
 
 #if IL2CPP_MONO_DEBUGGER
-void il2cpp_debugger_save_thread_context(Il2CppThreadUnwindState* context)
+void il2cpp_debugger_save_thread_context(Il2CppThreadUnwindState* context, int frameCountAdjust)
 {
-    il2cpp::utils::Debugger::SaveThreadContext(context);
+    il2cpp::utils::Debugger::SaveThreadContext(context, frameCountAdjust);
 }
 
 #endif

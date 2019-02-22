@@ -25,7 +25,7 @@ namespace metadata
             uint8_t minimumAlignment;
         };
 
-        static void LayoutFields(size_t parentSize, size_t actualParentSize, size_t parentAlignment, const Il2CppTypeVector& fieldTypes, FieldLayoutData& data);
+        static void LayoutFields(size_t parentSize, size_t actualParentSize, size_t parentAlignment, uint8_t packing, const Il2CppTypeVector& fieldTypes, FieldLayoutData& data);
         static SizeAndAlignment GetTypeSizeAndAlignment(const Il2CppType* type);
     };
 } /* namespace metadata */

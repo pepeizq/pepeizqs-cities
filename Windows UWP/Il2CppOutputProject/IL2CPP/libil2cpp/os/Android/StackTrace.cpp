@@ -45,16 +45,12 @@ namespace
         return slash && strcmp(slash + 1, "libunity.so") == 0;
     }
 
-    // Disable optimizations for a few methods to work around what seems to be a
-    // linker bug in the r13b NDK. See https://fogbugz.unity3d.com/f/cases/1052529/
-    // for complete details.
-
     struct AndroidStackTrace
     {
         size_t size;
         Il2CppMethodPointer addrs[kMaxStackFrames];
 
-        bool PushStackFrameAddress(const uintptr_t addr) __attribute__((optnone))
+        bool PushStackFrameAddress(const uintptr_t addr)
         {
             if (size >= kMaxStackFrames)
                 return false;
@@ -63,7 +59,7 @@ namespace
             return true;
         }
 
-        static _Unwind_Reason_Code Callback(struct _Unwind_Context* context, void* self) __attribute__((optnone))
+        static _Unwind_Reason_Code Callback(struct _Unwind_Context* context, void* self)
         {
             const uintptr_t addr = _Unwind_GetIP(context);
 
@@ -79,7 +75,7 @@ namespace
     };
 }
 
-    void StackTrace::WalkStack(WalkStackCallback callback, void* context, WalkOrder walkOrder) __attribute__((optnone))
+    void StackTrace::WalkStack(WalkStackCallback callback, void* context, WalkOrder walkOrder)
     {
         AndroidStackTrace callstack = {};
         _Unwind_Backtrace(AndroidStackTrace::Callback, &callstack);

@@ -42,6 +42,7 @@ namespace vm
         context->context_id = 0;
 
         domain->default_context = context;
+        gc::GarbageCollector::SetWriteBarrier((void**)&domain->default_context);
     }
 
     void Domain::ContextSet(Il2CppAppContext* context)

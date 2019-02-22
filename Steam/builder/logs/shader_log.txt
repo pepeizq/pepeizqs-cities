@@ -1,0 +1,126 @@
+
+
+[2019-02-22 17:01:01] Attempting to find current bucket; temporary dir: C:\Users\pepeizq\Downloads\sdk\tools\ContentBuilder\builder\shader_cache_temp_dir_gl_64
+[2019-02-22 17:01:01] Creating shader cache directory: C:\Users\pepeizq\Downloads\sdk\tools\ContentBuilder\builder\shader_cache_temp_dir_gl_64
+[2019-02-22 17:01:02] Unknown shader cache type, ignoring.
+[2019-02-22 17:01:02] Attempting to find current bucket; temporary dir: C:\Users\pepeizq\Downloads\sdk\tools\ContentBuilder\builder\shader_cache_temp_dir_gl_32
+[2019-02-22 17:01:02] Creating shader cache directory: C:\Users\pepeizq\Downloads\sdk\tools\ContentBuilder\builder\shader_cache_temp_dir_gl_32
+[2019-02-22 17:01:02] Unknown shader cache type, ignoring.
+[2019-02-22 17:01:03] Found 0 current buckets:
+
+
+[2019-02-22 17:18:44] Attempting to find current bucket; temporary dir: E:\Proyectos\Unity\City Builder\Steam\builder\shader_cache_temp_dir_gl_64
+[2019-02-22 17:18:44] Creating shader cache directory: E:\Proyectos\Unity\City Builder\Steam\builder\shader_cache_temp_dir_gl_64
+[2019-02-22 17:18:44] Unknown shader cache type, ignoring.
+[2019-02-22 17:18:45] Attempting to find current bucket; temporary dir: E:\Proyectos\Unity\City Builder\Steam\builder\shader_cache_temp_dir_gl_32
+[2019-02-22 17:18:45] Creating shader cache directory: E:\Proyectos\Unity\City Builder\Steam\builder\shader_cache_temp_dir_gl_32
+[2019-02-22 17:18:45] Unknown shader cache type, ignoring.
+[2019-02-22 17:18:45] Found 0 current buckets:
+
+
+[2019-02-22 17:19:52] Attempting to find current bucket; temporary dir: E:\Proyectos\Unity\City Builder\Steam\builder\shader_cache_temp_dir_gl_64
+[2019-02-22 17:19:52] Creating shader cache directory: E:\Proyectos\Unity\City Builder\Steam\builder\shader_cache_temp_dir_gl_64
+[2019-02-22 17:19:52] Unknown shader cache type, ignoring.
+[2019-02-22 17:19:53] Attempting to find current bucket; temporary dir: E:\Proyectos\Unity\City Builder\Steam\builder\shader_cache_temp_dir_gl_32
+[2019-02-22 17:19:53] Creating shader cache directory: E:\Proyectos\Unity\City Builder\Steam\builder\shader_cache_temp_dir_gl_32
+[2019-02-22 17:19:53] Unknown shader cache type, ignoring.
+[2019-02-22 17:19:53] Found 0 current buckets:
+
+
+[2019-02-22 17:22:22] Attempting to find current bucket; temporary dir: E:\Proyectos\Unity\City Builder\Steam\builder\shader_cache_temp_dir_gl_64
+[2019-02-22 17:22:22] Creating shader cache directory: E:\Proyectos\Unity\City Builder\Steam\builder\shader_cache_temp_dir_gl_64
+[2019-02-22 17:22:22] Unknown shader cache type, ignoring.
+[2019-02-22 17:22:22] Attempting to find current bucket; temporary dir: E:\Proyectos\Unity\City Builder\Steam\builder\shader_cache_temp_dir_gl_32
+[2019-02-22 17:22:22] Creating shader cache directory: E:\Proyectos\Unity\City Builder\Steam\builder\shader_cache_temp_dir_gl_32
+[2019-02-22 17:22:22] Unknown shader cache type, ignoring.
+[2019-02-22 17:22:23] Found 0 current buckets:
+
+
+[2019-02-22 17:25:43] Attempting to find current bucket; temporary dir: E:\Proyectos\Unity\City Builder\Steam\builder\shader_cache_temp_dir_gl_64
+[2019-02-22 17:25:43] Creating shader cache directory: E:\Proyectos\Unity\City Builder\Steam\builder\shader_cache_temp_dir_gl_64
+[2019-02-22 17:25:43] Unknown shader cache type, ignoring.
+[2019-02-22 17:25:44] Attempting to find current bucket; temporary dir: E:\Proyectos\Unity\City Builder\Steam\builder\shader_cache_temp_dir_gl_32
+[2019-02-22 17:25:44] Creating shader cache directory: E:\Proyectos\Unity\City Builder\Steam\builder\shader_cache_temp_dir_gl_32
+[2019-02-22 17:25:44] Unknown shader cache type, ignoring.
+[2019-02-22 17:25:45] Found 0 current buckets:
+
+
+[2019-02-22 17:28:32] Attempting to find current bucket; temporary dir: E:\Proyectos\Unity\City Builder\Steam\builder\shader_cache_temp_dir_gl_64
+[2019-02-22 17:28:32] Creating shader cache directory: E:\Proyectos\Unity\City Builder\Steam\builder\shader_cache_temp_dir_gl_64
+[2019-02-22 17:28:33] Unknown shader cache type, ignoring.
+[2019-02-22 17:28:33] Attempting to find current bucket; temporary dir: E:\Proyectos\Unity\City Builder\Steam\builder\shader_cache_temp_dir_gl_32
+[2019-02-22 17:28:33] Creating shader cache directory: E:\Proyectos\Unity\City Builder\Steam\builder\shader_cache_temp_dir_gl_32
+[2019-02-22 17:28:33] Unknown shader cache type, ignoring.
+[2019-02-22 17:28:34] Found 0 current buckets:
+
+
+[2019-02-22 17:29:03] Attempting to find current bucket; temporary dir: E:\Proyectos\Unity\City Builder\Steam\builder\shader_cache_temp_dir_gl_64
+[2019-02-22 17:29:03] Creating shader cache directory: E:\Proyectos\Unity\City Builder\Steam\builder\shader_cache_temp_dir_gl_64
+[2019-02-22 17:29:04] Unknown shader cache type, ignoring.
+[2019-02-22 17:29:04] Attempting to find current bucket; temporary dir: E:\Proyectos\Unity\City Builder\Steam\builder\shader_cache_temp_dir_gl_32
+[2019-02-22 17:29:04] Creating shader cache directory: E:\Proyectos\Unity\City Builder\Steam\builder\shader_cache_temp_dir_gl_32
+[2019-02-22 17:29:04] Unknown shader cache type, ignoring.
+[2019-02-22 17:29:04] Found 0 current buckets:
+
+
+[2019-02-22 17:29:21] Attempting to find current bucket; temporary dir: E:\Proyectos\Unity\City Builder\Steam\builder\shader_cache_temp_dir_gl_64
+[2019-02-22 17:29:21] Creating shader cache directory: E:\Proyectos\Unity\City Builder\Steam\builder\shader_cache_temp_dir_gl_64
+[2019-02-22 17:29:21] Unknown shader cache type, ignoring.
+[2019-02-22 17:29:21] Attempting to find current bucket; temporary dir: E:\Proyectos\Unity\City Builder\Steam\builder\shader_cache_temp_dir_gl_32
+[2019-02-22 17:29:21] Creating shader cache directory: E:\Proyectos\Unity\City Builder\Steam\builder\shader_cache_temp_dir_gl_32
+[2019-02-22 17:29:21] Unknown shader cache type, ignoring.
+[2019-02-22 17:29:22] Found 0 current buckets:
+
+
+[2019-02-22 17:29:44] Attempting to find current bucket; temporary dir: E:\Proyectos\Unity\City Builder\Steam\builder\shader_cache_temp_dir_gl_64
+[2019-02-22 17:29:44] Creating shader cache directory: E:\Proyectos\Unity\City Builder\Steam\builder\shader_cache_temp_dir_gl_64
+[2019-02-22 17:29:44] Unknown shader cache type, ignoring.
+[2019-02-22 17:29:44] Attempting to find current bucket; temporary dir: E:\Proyectos\Unity\City Builder\Steam\builder\shader_cache_temp_dir_gl_32
+[2019-02-22 17:29:44] Creating shader cache directory: E:\Proyectos\Unity\City Builder\Steam\builder\shader_cache_temp_dir_gl_32
+[2019-02-22 17:29:44] Unknown shader cache type, ignoring.
+[2019-02-22 17:29:45] Found 0 current buckets:
+
+
+[2019-02-22 17:30:42] Attempting to find current bucket; temporary dir: E:\Proyectos\Unity\City Builder\Steam\builder\shader_cache_temp_dir_gl_64
+[2019-02-22 17:30:42] Creating shader cache directory: E:\Proyectos\Unity\City Builder\Steam\builder\shader_cache_temp_dir_gl_64
+[2019-02-22 17:30:43] Unknown shader cache type, ignoring.
+[2019-02-22 17:30:43] Attempting to find current bucket; temporary dir: E:\Proyectos\Unity\City Builder\Steam\builder\shader_cache_temp_dir_gl_32
+[2019-02-22 17:30:43] Creating shader cache directory: E:\Proyectos\Unity\City Builder\Steam\builder\shader_cache_temp_dir_gl_32
+[2019-02-22 17:30:43] Unknown shader cache type, ignoring.
+[2019-02-22 17:30:44] Found 0 current buckets:
+
+
+[2019-02-22 17:31:31] Attempting to find current bucket; temporary dir: E:\Proyectos\Unity\City Builder\Steam\builder\shader_cache_temp_dir_gl_64
+[2019-02-22 17:31:31] Creating shader cache directory: E:\Proyectos\Unity\City Builder\Steam\builder\shader_cache_temp_dir_gl_64
+[2019-02-22 17:31:32] Unknown shader cache type, ignoring.
+[2019-02-22 17:31:32] Attempting to find current bucket; temporary dir: E:\Proyectos\Unity\City Builder\Steam\builder\shader_cache_temp_dir_gl_32
+[2019-02-22 17:31:32] Creating shader cache directory: E:\Proyectos\Unity\City Builder\Steam\builder\shader_cache_temp_dir_gl_32
+[2019-02-22 17:31:32] Unknown shader cache type, ignoring.
+[2019-02-22 17:31:33] Found 0 current buckets:
+
+
+[2019-02-22 17:32:03] Attempting to find current bucket; temporary dir: E:\Proyectos\Unity\City Builder\Steam\builder\shader_cache_temp_dir_gl_64
+[2019-02-22 17:32:03] Creating shader cache directory: E:\Proyectos\Unity\City Builder\Steam\builder\shader_cache_temp_dir_gl_64
+[2019-02-22 17:32:04] Unknown shader cache type, ignoring.
+[2019-02-22 17:32:04] Attempting to find current bucket; temporary dir: E:\Proyectos\Unity\City Builder\Steam\builder\shader_cache_temp_dir_gl_32
+[2019-02-22 17:32:04] Creating shader cache directory: E:\Proyectos\Unity\City Builder\Steam\builder\shader_cache_temp_dir_gl_32
+[2019-02-22 17:32:04] Unknown shader cache type, ignoring.
+[2019-02-22 17:32:04] Found 0 current buckets:
+
+
+[2019-02-22 17:32:57] Attempting to find current bucket; temporary dir: E:\Proyectos\Unity\City Builder\Steam\builder\shader_cache_temp_dir_gl_64
+[2019-02-22 17:32:57] Creating shader cache directory: E:\Proyectos\Unity\City Builder\Steam\builder\shader_cache_temp_dir_gl_64
+[2019-02-22 17:32:58] Unknown shader cache type, ignoring.
+[2019-02-22 17:32:58] Attempting to find current bucket; temporary dir: E:\Proyectos\Unity\City Builder\Steam\builder\shader_cache_temp_dir_gl_32
+[2019-02-22 17:32:58] Creating shader cache directory: E:\Proyectos\Unity\City Builder\Steam\builder\shader_cache_temp_dir_gl_32
+[2019-02-22 17:32:58] Unknown shader cache type, ignoring.
+[2019-02-22 17:32:59] Found 0 current buckets:
+
+
+[2019-02-22 17:34:32] Attempting to find current bucket; temporary dir: E:\Proyectos\Unity\City Builder\Steam\builder\shader_cache_temp_dir_gl_64
+[2019-02-22 17:34:32] Creating shader cache directory: E:\Proyectos\Unity\City Builder\Steam\builder\shader_cache_temp_dir_gl_64
+[2019-02-22 17:34:32] Unknown shader cache type, ignoring.
+[2019-02-22 17:34:33] Attempting to find current bucket; temporary dir: E:\Proyectos\Unity\City Builder\Steam\builder\shader_cache_temp_dir_gl_32
+[2019-02-22 17:34:33] Creating shader cache directory: E:\Proyectos\Unity\City Builder\Steam\builder\shader_cache_temp_dir_gl_32
+[2019-02-22 17:34:33] Unknown shader cache type, ignoring.
+[2019-02-22 17:34:33] Found 0 current buckets:

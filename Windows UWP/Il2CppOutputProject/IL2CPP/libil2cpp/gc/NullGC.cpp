@@ -123,6 +123,12 @@ il2cpp::gc::GarbageCollector::Disable()
 {
 }
 
+bool
+il2cpp::gc::GarbageCollector::IsDisabled()
+{
+    return true;
+}
+
 int64_t
 il2cpp::gc::GarbageCollector::GetUsedHeapSize(void)
 {

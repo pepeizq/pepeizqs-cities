@@ -140,19 +140,73 @@ public static class ColocarFunciones {
                 }
                 else if ((edificio.dimensiones.x == 2) && (edificio.dimensiones.y == 2))
                 {
-                    if (edificios[(int)posicion.x + 1, (int)posicion.z] != null)
+                    if (edificio.rotacionColocacion == -180)
                     {
-                        return edificios[(int)posicion.x + 1, (int)posicion.z];
-                    }
+                        if (edificios[(int)posicion.x + 1, (int)posicion.z] != null)
+                        {
+                            return edificios[(int)posicion.x + 1, (int)posicion.z];
+                        }
 
-                    if (edificios[(int)posicion.x, (int)posicion.z + 1] != null)
-                    {
-                        return edificios[(int)posicion.x, (int)posicion.z + 1];
-                    }
+                        if (edificios[(int)posicion.x, (int)posicion.z + 1] != null)
+                        {
+                            return edificios[(int)posicion.x, (int)posicion.z + 1];
+                        }
 
-                    if (edificios[(int)posicion.x + 1, (int)posicion.z + 1] != null)
+                        if (edificios[(int)posicion.x + 1, (int)posicion.z + 1] != null)
+                        {
+                            return edificios[(int)posicion.x + 1, (int)posicion.z + 1];
+                        }
+                    }
+                    else if (edificio.rotacionColocacion == -270)
                     {
-                        return edificios[(int)posicion.x + 1, (int)posicion.z + 1];
+                        if (edificios[(int)posicion.x - 1, (int)posicion.z] != null)
+                        {
+                            return edificios[(int)posicion.x - 1, (int)posicion.z];
+                        }
+
+                        if (edificios[(int)posicion.x, (int)posicion.z + 1] != null)
+                        {
+                            return edificios[(int)posicion.x, (int)posicion.z + 1];
+                        }
+
+                        if (edificios[(int)posicion.x - 1, (int)posicion.z + 1] != null)
+                        {
+                            return edificios[(int)posicion.x - 1, (int)posicion.z + 1];
+                        }
+                    }
+                    else if (edificio.rotacionColocacion == 0)
+                    {
+                        if (edificios[(int)posicion.x - 1, (int)posicion.z] != null)
+                        {
+                            return edificios[(int)posicion.x - 1, (int)posicion.z];
+                        }
+
+                        if (edificios[(int)posicion.x, (int)posicion.z - 1] != null)
+                        {
+                            return edificios[(int)posicion.x, (int)posicion.z - 1];
+                        }
+
+                        if (edificios[(int)posicion.x - 1, (int)posicion.z - 1] != null)
+                        {
+                            return edificios[(int)posicion.x - 1, (int)posicion.z - 1];
+                        }
+                    }
+                    else if (edificio.rotacionColocacion == -90)
+                    {
+                        if (edificios[(int)posicion.x + 1, (int)posicion.z] != null)
+                        {
+                            return edificios[(int)posicion.x + 1, (int)posicion.z];
+                        }
+
+                        if (edificios[(int)posicion.x, (int)posicion.z - 1] != null)
+                        {
+                            return edificios[(int)posicion.x, (int)posicion.z - 1];
+                        }
+
+                        if (edificios[(int)posicion.x + 1, (int)posicion.z - 1] != null)
+                        {
+                            return edificios[(int)posicion.x + 1, (int)posicion.z - 1];
+                        }
                     }
 
                     return null;

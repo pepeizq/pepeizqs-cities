@@ -134,7 +134,7 @@ MonoBehaviour:
   luzRango: 0
   luzProbabilidad: 0
   dimensiones: {x: 2, y: 2}
-  rotacionColocacion: 0
+  rotacionColocacion: -90
   rotacionAdicional: 0
 --- !u!1001 &1835378217
 PrefabInstance:

@@ -35,6 +35,19 @@ namespace os
         if (posix_locale == NULL)
             return std::string();
 
+#if IL2CPP_TARGET_JAVASCRIPT
+        // This code is here due to a few factors:
+        //   1. Emscripten gives us a "C" locale (the POSIX default).
+        //   2. The Mono class library code uses managed exceptions for flow control.
+        //   3. We need to support Emscripten builds with exceptions disabled.
+        //   4. Our localization tables don't have any entry for the "C" locale.
+        // These factors mean that with Emscripten, the class library code _always_
+        // throws a managed exception to due CultureInfo processing. To make this
+        // work without exceptions enabled, let's map "C" -> "en-us" for Emscripten.
+        if (strcmp(posix_locale, "C.UTF-8") == 0)
+            posix_locale = "en-us";
+#endif
+
         if ((strcmp("C", posix_locale) == 0) || (strchr(posix_locale, ' ') != NULL)
             || (strchr(posix_locale, '/') != NULL))
         {

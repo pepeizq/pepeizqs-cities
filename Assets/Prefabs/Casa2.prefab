@@ -112,11 +112,11 @@ MonoBehaviour:
   trabajo: 0
   ingresos: 0
   botonImagen: {fileID: 21300000, guid: b7d0ff92e93b9db4187f042c4af33fff, type: 3}
-  luzIntesidad: 0.5
-  luzRango: 1
+  luzIntesidad: 3
+  luzRango: 0.5
   luzProbabilidad: 20
   dimensiones: {x: 2, y: 1}
-  rotacionColocacion: -180
+  rotacionColocacion: -90
   rotacionAdicional: 90
 --- !u!1 &1086771040718178
 GameObject:

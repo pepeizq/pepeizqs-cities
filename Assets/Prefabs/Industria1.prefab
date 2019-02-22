@@ -1644,7 +1644,7 @@ MonoBehaviour:
   trabajo: 150
   ingresos: 180
   botonImagen: {fileID: 21300000, guid: c1b81b12d6aae2b4e82974521cc14043, type: 3}
-  luzIntesidad: 1
+  luzIntesidad: 1.5
   luzRango: 0.5
   luzProbabilidad: 20
   dimensiones: {x: 2, y: 2}

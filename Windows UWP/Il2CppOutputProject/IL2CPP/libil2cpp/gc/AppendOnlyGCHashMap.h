@@ -62,6 +62,9 @@ namespace gc
                 il2cpp::gc::GarbageCollector::CallWithAllocLockHeld(&CopyValues, &memCpyData);
 
                 il2cpp::gc::GarbageCollector::FreeFixed(m_Data);
+
+                GarbageCollector::SetWriteBarrier((void**)newData, m_Size * sizeof(T));
+
                 m_Size = newSize;
                 m_Data = newData;
                 assert(m_Data);
@@ -70,6 +73,9 @@ namespace gc
             size_t index = m_Map.size();
             m_Map.insert(std::make_pair(k, index));
             m_Data[index] = value;
+
+            GarbageCollector::SetWriteBarrier((void**)(m_Data + index));
+
             assert(m_Map.size() <= m_Size);
             return true;
         }

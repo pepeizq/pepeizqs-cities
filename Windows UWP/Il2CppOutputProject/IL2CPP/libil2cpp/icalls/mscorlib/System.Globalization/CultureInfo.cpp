@@ -105,7 +105,11 @@ namespace Globalization
         Il2CppArray* ret = il2cpp_array_new_specific(il2cpp_array_class_get(il2cpp_defaults.string_class, 1), len);
 
         for (int i = 0; i < len; i++)
+#if !NET_4_0
             il2cpp_array_setref(ret, i, il2cpp_string_new(idx2string(names[i])));
+#else
+            il2cpp_array_setref(ret, i, il2cpp_string_new(dtidx2string(names[i])));
+#endif
 
         return ret;
     }

@@ -9,6 +9,7 @@
 #include "vm/Exception.h"
 #include "vm/Object.h"
 #include "vm/Object.h"
+#include "vm/Profiler.h"
 #include "vm/Runtime.h"
 #include "vm/StackTrace.h"
 #include "vm/Thread.h"
@@ -58,6 +59,12 @@ namespace vm
     static ThreadLocalValue s_CurrentThread;
 
     static volatile int32_t s_NextManagedThreadId = 0;
+
+    static void
+    set_wbarrier_for_attached_threads()
+    {
+        GarbageCollector::SetWriteBarrier((void**)&(*s_AttachedThreads->begin()), sizeof(Il2CppThread*) * s_AttachedThreads->size());
+    }
 
     static void
     thread_cleanup_on_cancel(void* arg)
@@ -110,6 +117,7 @@ namespace vm
         thread = (Il2CppThread*)Object::New(il2cpp_defaults.thread_class);
 #if NET_4_0
         thread->internal_thread = (Il2CppInternalThread*)Object::New(il2cpp_defaults.internal_thread_class);
+        GarbageCollector::SetWriteBarrier((void**)&thread->internal_thread);
 #endif
         thread->GetInternalThread()->handle = osThread;
         thread->GetInternalThread()->state = kThreadStateRunning;
@@ -148,6 +156,10 @@ namespace vm
         MONO_PROFILER_RAISE(thread_started, ((uintptr_t)thread->GetInternalThread()->tid));
 #endif
 
+#if IL2CPP_ENABLE_PROFILER
+        vm::Profiler::ThreadStart(((unsigned long)thread->GetInternalThread()->tid));
+#endif
+
         // Sync thread name.
         if (thread->GetInternalThread()->name)
         {
@@ -178,6 +190,10 @@ namespace vm
 
         if (!GarbageCollector::UnregisterThread())
             IL2CPP_ASSERT(0 && "GarbageCollector::UnregisterThread failed");
+
+#if IL2CPP_ENABLE_PROFILER
+        vm::Profiler::ThreadEnd(((unsigned long)thread->GetInternalThread()->tid));
+#endif
 
 #if IL2CPP_MONO_DEBUGGER
         MONO_PROFILER_RAISE(thread_stopped, ((uintptr_t)thread->GetInternalThread()->tid));
@@ -305,6 +321,7 @@ namespace vm
             s_AttachedThreads->push_back(gcFinalizerThread);
         if (currentThread)
             s_AttachedThreads->push_back(currentThread);
+        set_wbarrier_for_attached_threads();
 #endif
     }
 
@@ -457,7 +474,10 @@ namespace vm
         if (s_BlockNewThreads)
             TerminateBackgroundThread(NULL);
         else
+        {
             s_AttachedThreads->push_back(thread);
+            set_wbarrier_for_attached_threads();
+        }
     }
 
     void Thread::Unregister(Il2CppThread *thread)
@@ -466,6 +486,7 @@ namespace vm
         GCTrackedThreadVector::iterator it = std::find(s_AttachedThreads->begin(), s_AttachedThreads->end(), thread);
         IL2CPP_ASSERT(it != s_AttachedThreads->end() && "Vm thread not found in list of attached threads.");
         s_AttachedThreads->erase(it);
+        set_wbarrier_for_attached_threads();
     }
 
     bool Thread::IsVmThread(Il2CppThread *thread)

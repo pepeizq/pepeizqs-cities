@@ -1,0 +1,76 @@
+
+
+[2019-02-22 17:26:01] Failed to get ParentalSettings\Settings from config file for account ID 14380902
+[2019-02-22 17:26:01] Got parental settings for account ID 14380902
+
+
+[2019-02-22 17:28:49] Validating parental settings
+[2019-02-22 17:28:49] Settings dump:
+[2019-02-22 17:28:49] 	Account ID: 14380902
+[2019-02-22 17:28:49] 	Enabled: false
+[2019-02-22 17:28:49] 	Base list: 0 ()
+[2019-02-22 17:28:49] 	No custom list
+[2019-02-22 17:28:49] 	No enabled features
+
+
+[2019-02-22 17:29:16] Validating parental settings
+[2019-02-22 17:29:16] Settings dump:
+[2019-02-22 17:29:16] 	Account ID: 14380902
+[2019-02-22 17:29:16] 	Enabled: false
+[2019-02-22 17:29:16] 	Base list: 0 ()
+[2019-02-22 17:29:16] 	No custom list
+[2019-02-22 17:29:16] 	No enabled features
+
+
+[2019-02-22 17:29:58] Validating parental settings
+[2019-02-22 17:29:58] Settings dump:
+[2019-02-22 17:29:58] 	Account ID: 14380902
+[2019-02-22 17:29:58] 	Enabled: false
+[2019-02-22 17:29:58] 	Base list: 0 ()
+[2019-02-22 17:29:58] 	No custom list
+[2019-02-22 17:29:58] 	No enabled features
+
+
+[2019-02-22 17:30:58] Validating parental settings
+[2019-02-22 17:30:58] Settings dump:
+[2019-02-22 17:30:58] 	Account ID: 14380902
+[2019-02-22 17:30:58] 	Enabled: false
+[2019-02-22 17:30:58] 	Base list: 0 ()
+[2019-02-22 17:30:58] 	No custom list
+[2019-02-22 17:30:58] 	No enabled features
+
+
+[2019-02-22 17:31:46] Validating parental settings
+[2019-02-22 17:31:46] Settings dump:
+[2019-02-22 17:31:46] 	Account ID: 14380902
+[2019-02-22 17:31:46] 	Enabled: false
+[2019-02-22 17:31:46] 	Base list: 0 ()
+[2019-02-22 17:31:46] 	No custom list
+[2019-02-22 17:31:46] 	No enabled features
+
+
+[2019-02-22 17:32:18] Validating parental settings
+[2019-02-22 17:32:18] Settings dump:
+[2019-02-22 17:32:18] 	Account ID: 14380902
+[2019-02-22 17:32:18] 	Enabled: false
+[2019-02-22 17:32:18] 	Base list: 0 ()
+[2019-02-22 17:32:18] 	No custom list
+[2019-02-22 17:32:18] 	No enabled features
+
+
+[2019-02-22 17:33:09] Validating parental settings
+[2019-02-22 17:33:09] Settings dump:
+[2019-02-22 17:33:09] 	Account ID: 14380902
+[2019-02-22 17:33:09] 	Enabled: false
+[2019-02-22 17:33:09] 	Base list: 0 ()
+[2019-02-22 17:33:09] 	No custom list
+[2019-02-22 17:33:09] 	No enabled features
+
+
+[2019-02-22 17:34:41] Validating parental settings
+[2019-02-22 17:34:41] Settings dump:
+[2019-02-22 17:34:41] 	Account ID: 14380902
+[2019-02-22 17:34:41] 	Enabled: false
+[2019-02-22 17:34:41] 	Base list: 0 ()
+[2019-02-22 17:34:41] 	No custom list
+[2019-02-22 17:34:41] 	No enabled features

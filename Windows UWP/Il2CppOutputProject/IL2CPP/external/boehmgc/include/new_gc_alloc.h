@@ -12,15 +12,15 @@
  */
 
 //
-// This is a revision of gc_alloc.h for SGI STL versions > 3.0
-// Unlike earlier versions, it supplements the standard "alloc.h"
+// This is a revision of gc_allocator.h for SGI STL versions > 3.0.
+// Unlike earlier versions, it supplements the standard (STL) alloc.h
 // instead of replacing it.
 //
 // This is sloppy about variable names used in header files.
 // It also doesn't yet understand the new header file names or
 // namespaces.
 //
-// This assumes the collector has been compiled with -DATOMIC_UNCOLLECTABLE.
+// This assumes the collector has been compiled with -DGC_ATOMIC_UNCOLLECTABLE.
 // The user should also consider -DREDIRECT_MALLOC=GC_uncollectable_malloc,
 // to ensure that object allocated through malloc are traced.
 //
@@ -48,23 +48,22 @@
 
 #include "gc.h"
 
-#if (__GNUC__ < 3)
-# include <stack>  // A more portable way to get stl_alloc.h .
-#else
+#if GC_GNUC_PREREQ(3, 0)
 # include <bits/stl_alloc.h>
 # ifndef __STL_BEGIN_NAMESPACE
-# define __STL_BEGIN_NAMESPACE namespace std {
-# define __STL_END_NAMESPACE };
+#   define __STL_BEGIN_NAMESPACE namespace std {
+#   define __STL_END_NAMESPACE };
 # endif
-#ifndef __STL_USE_STD_ALLOCATORS
-#define __STL_USE_STD_ALLOCATORS
-#endif
+# ifndef __STL_USE_STD_ALLOCATORS
+#   define __STL_USE_STD_ALLOCATORS
+# endif
+#else
+# include <stack>   // A more portable way to get stl_alloc.h file.
 #endif
 
 /* A hack to deal with gcc 3.1.  If you are using gcc3.1 and later,     */
 /* you should probably really use gc_allocator.h instead.               */
-#if defined (__GNUC__) && \
-    (__GNUC__ > 3 || (__GNUC__ == 3 && (__GNUC_MINOR__ >= 1)))
+#if GC_GNUC_PREREQ(3, 1)
 # define simple_alloc __simple_alloc
 #endif
 
@@ -73,22 +72,11 @@
 #include <stddef.h>
 #include <string.h>
 
-// The following need to match collector data structures.
 // We can't include gc_priv.h, since that pulls in way too much stuff.
-// This should eventually be factored out into another include file.
+#include "gc_alloc_ptrs.h"
 
-extern "C" {
-    GC_API void ** const GC_objfreelist_ptr;
-    GC_API void ** const GC_aobjfreelist_ptr;
-    GC_API void ** const GC_uobjfreelist_ptr;
-    GC_API void ** const GC_auobjfreelist_ptr;
-
-    GC_API void GC_CALL GC_incr_bytes_allocd(size_t bytes);
-    GC_API void GC_CALL GC_incr_bytes_freed(size_t bytes);
-
-    GC_API char * GC_CALL GC_generic_malloc_words_small(size_t word, int kind);
-                /* FIXME: Doesn't exist anymore.        */
-}
+#define GC_generic_malloc_words_small(lw, k) \
+                        GC_generic_malloc((lw) * sizeof(GC_word), k)
 
 // Object kinds; must match PTRFREE, NORMAL, UNCOLLECTABLE, and
 // AUNCOLLECTABLE in gc_priv.h.
@@ -98,11 +86,15 @@ enum { GC_PTRFREE = 0, GC_NORMAL = 1, GC_UNCOLLECTABLE = 2,
 
 enum { GC_max_fast_bytes = 255 };
 
-enum { GC_bytes_per_word = sizeof(char *) };
-
 enum { GC_byte_alignment = 8 };
 
-enum { GC_word_alignment = GC_byte_alignment/GC_bytes_per_word };
+#if defined(CPPCHECK)
+  const unsigned GC_bytes_per_word = sizeof(char *);
+  const unsigned GC_word_alignment = GC_byte_alignment/GC_bytes_per_word;
+#else
+  enum { GC_bytes_per_word = sizeof(char *) };
+  enum { GC_word_alignment = GC_byte_alignment/GC_bytes_per_word };
+#endif
 
 inline void * &GC_obj_link(void * p)
 {   return *reinterpret_cast<void **>(p);  }
@@ -190,8 +182,9 @@ class single_client_gc_alloc_template {
             void * op;
 
             if (n > GC_max_fast_bytes) return GC_malloc(n);
-            flh = GC_objfreelist_ptr + nwords;
-            if (0 == (op = *flh)) {
+            flh = &GC_objfreelist_ptr[nwords];
+            op = *flh;
+            if (0 == op) {
                 return GC_aux::GC_out_of_line_malloc(nwords, GC_NORMAL);
             }
             *flh = GC_obj_link(op);
@@ -205,8 +198,9 @@ class single_client_gc_alloc_template {
             void * op;
 
             if (n > GC_max_fast_bytes) return GC_malloc_atomic(n);
-            flh = GC_aobjfreelist_ptr + nwords;
-            if (0 == (op = *flh)) {
+            flh = &GC_aobjfreelist_ptr[nwords];
+            op = *flh;
+            if (0 == op) {
                 return GC_aux::GC_out_of_line_malloc(nwords, GC_PTRFREE);
             }
             *flh = GC_obj_link(op);
@@ -215,13 +209,12 @@ class single_client_gc_alloc_template {
         }
         static void deallocate(void *p, size_t n)
         {
-            size_t nwords = GC_round_up(n);
-            void ** flh;
-
             if (n > GC_max_fast_bytes)  {
                 GC_free(p);
             } else {
-                flh = GC_objfreelist_ptr + nwords;
+                size_t nwords = GC_round_up(n);
+                void ** flh = &GC_objfreelist_ptr[nwords];
+
                 GC_obj_link(p) = *flh;
                 memset(reinterpret_cast<char *>(p) + GC_bytes_per_word, 0,
                        GC_bytes_per_word * (nwords - 1));
@@ -231,13 +224,12 @@ class single_client_gc_alloc_template {
         }
         static void ptr_free_deallocate(void *p, size_t n)
         {
-            size_t nwords = GC_round_up(n);
-            void ** flh;
-
             if (n > GC_max_fast_bytes) {
                 GC_free(p);
             } else {
-                flh = GC_aobjfreelist_ptr + nwords;
+                size_t nwords = GC_round_up(n);
+                void ** flh = &GC_aobjfreelist_ptr[nwords];
+
                 GC_obj_link(p) = *flh;
                 *flh = p;
                 GC_aux::GC_bytes_recently_freed += nwords * GC_bytes_per_word;
@@ -258,8 +250,9 @@ class single_client_traceable_alloc_template {
             void * op;
 
             if (n > GC_max_fast_bytes) return GC_malloc_uncollectable(n);
-            flh = GC_uobjfreelist_ptr + nwords;
-            if (0 == (op = *flh)) {
+            flh = &GC_uobjfreelist_ptr[nwords];
+            op = *flh;
+            if (0 == op) {
                 return GC_aux::GC_out_of_line_malloc(nwords, GC_UNCOLLECTABLE);
             }
             *flh = GC_obj_link(op);
@@ -274,8 +267,9 @@ class single_client_traceable_alloc_template {
             void * op;
 
             if (n > GC_max_fast_bytes) return GC_malloc_atomic_uncollectable(n);
-            flh = GC_auobjfreelist_ptr + nwords;
-            if (0 == (op = *flh)) {
+            flh = &GC_auobjfreelist_ptr[nwords];
+            op = *flh;
+            if (0 == op) {
                 return GC_aux::GC_out_of_line_malloc(nwords, GC_AUNCOLLECTABLE);
             }
             *flh = GC_obj_link(op);
@@ -285,13 +279,12 @@ class single_client_traceable_alloc_template {
         }
         static void deallocate(void *p, size_t n)
         {
-            size_t nwords = GC_round_up_uncollectable(n);
-            void ** flh;
-
             if (n > GC_max_fast_bytes)  {
                 GC_free(p);
             } else {
-                flh = GC_uobjfreelist_ptr + nwords;
+                size_t nwords = GC_round_up_uncollectable(n);
+                void ** flh = &GC_uobjfreelist_ptr[nwords];
+
                 GC_obj_link(p) = *flh;
                 *flh = p;
                 GC_aux::GC_uncollectable_bytes_recently_freed +=
@@ -300,13 +293,12 @@ class single_client_traceable_alloc_template {
         }
         static void ptr_free_deallocate(void *p, size_t n)
         {
-            size_t nwords = GC_round_up_uncollectable(n);
-            void ** flh;
-
             if (n > GC_max_fast_bytes) {
                 GC_free(p);
             } else {
-                flh = GC_auobjfreelist_ptr + nwords;
+                size_t nwords = GC_round_up_uncollectable(n);
+                void ** flh = &GC_auobjfreelist_ptr[nwords];
+
                 GC_obj_link(p) = *flh;
                 *flh = p;
                 GC_aux::GC_uncollectable_bytes_recently_freed +=

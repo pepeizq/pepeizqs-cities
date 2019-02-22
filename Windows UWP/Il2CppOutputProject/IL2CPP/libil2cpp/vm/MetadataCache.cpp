@@ -119,7 +119,6 @@ static const Il2CppCodeRegistration * s_Il2CppCodeRegistration;
 static const Il2CppMetadataRegistration * s_Il2CppMetadataRegistration;
 static const Il2CppCodeGenOptions* s_Il2CppCodeGenOptions;
 static CustomAttributesCache** s_CustomAttributesCaches;
-static CustomAttributeTypeCache** s_CustomAttributeTypeCaches;
 
 static WindowsRuntimeTypeNameToClassMap s_WindowsRuntimeTypeNameToClassMap;
 static ClassToWindowsRuntimeTypeNameMap s_ClassToWindowsRuntimeTypeNameMap;
@@ -199,6 +198,8 @@ void MetadataCache::Initialize()
         image->exportedTypeCount = imageDefinition->exportedTypeCount;
         image->entryPointIndex = imageDefinition->entryPointIndex;
         image->token = imageDefinition->token;
+        image->customAttributeStart = imageDefinition->customAttributeStart;
+        image->customAttributeCount = imageDefinition->customAttributeCount;
         image->dynamic = false;
     }
 
@@ -210,7 +211,7 @@ void MetadataCache::Initialize()
         Il2CppAssembly* assembly = s_AssembliesTable + assemblyIndex;
 
         assembly->image = MetadataCache::GetImageFromIndex(assemblyDefinition->imageIndex);
-        assembly->customAttributeIndex = assemblyDefinition->customAttributeIndex;
+        assembly->token = assemblyDefinition->token;
         assembly->referencedAssemblyStart = assemblyDefinition->referencedAssemblyStart;
         assembly->referencedAssemblyCount = assemblyDefinition->referencedAssemblyCount;
 
@@ -308,8 +309,16 @@ void MetadataCache::InitializeWindowsRuntimeTypeNamesTables()
         Il2CppWindowsRuntimeTypeNamePair typeNamePair = windowsRuntimeTypeNames[i];
         const char* name = GetStringFromIndex(typeNamePair.nameIndex);
         const Il2CppType* type = GetIl2CppTypeFromIndex(typeNamePair.typeIndex);
-        s_WindowsRuntimeTypeNameToClassMap.insert(std::make_pair(name, Class::FromIl2CppType(type)));
-        s_ClassToWindowsRuntimeTypeNameMap.insert(std::make_pair(Class::FromIl2CppType(type), name));
+        Il2CppClass* klass = il2cpp::vm::Class::FromIl2CppType(type);
+
+        if (!Class::IsNullable(klass))
+        {
+            // Don't add nullable types to name -> klass map because IReference`1<T> and Nullable`1<T>
+            // share windows runtime type names, and that would cause a collision.
+            s_WindowsRuntimeTypeNameToClassMap.insert(std::make_pair(name, klass));
+        }
+
+        s_ClassToWindowsRuntimeTypeNameMap.insert(std::make_pair(klass, name));
     }
 }
 
@@ -493,6 +502,23 @@ const Il2CppGenericMethod* MetadataCache::GetGenericMethod(const MethodInfo* met
     return newMethod;
 }
 
+static bool IsShareableEnum(const Il2CppType* type)
+{
+    // Base case for recursion - we've found an enum.
+    if (il2cpp::vm::Type::IsEnum(type))
+        return true;
+
+    if (il2cpp::vm::Type::IsGenericInstance(type))
+    {
+        // Recursive case - look "inside" the generic instance type to see if this is a nested enum.
+        Il2CppClass* definition = il2cpp::vm::GenericClass::GetTypeDefinition(type->data.generic_class);
+        return IsShareableEnum(il2cpp::vm::Class::GetType(definition));
+    }
+
+    // Base case for recurion - this is not an enum or a generic instance type.
+    return false;
+}
+
 // this logic must match the C# logic in GenericSharingAnalysis.GetSharedTypeForGenericParameter
 static const Il2CppGenericInst* GetSharedInst(const Il2CppGenericInst* inst)
 {
@@ -507,14 +533,45 @@ static const Il2CppGenericInst* GetSharedInst(const Il2CppGenericInst* inst)
         else
         {
             const Il2CppType* type = inst->type_argv[i];
+#if NET_4_0
             if (s_Il2CppCodeGenOptions->enablePrimitiveValueTypeGenericSharing)
             {
-                type = Type::GetUnderlyingType(type);
-                if (type->type == IL2CPP_TYPE_BOOLEAN)
-                    type = &il2cpp_defaults.byte_class->byval_arg;
-                else if (type->type == IL2CPP_TYPE_CHAR)
-                    type = &il2cpp_defaults.uint16_class->byval_arg;
+                if (IsShareableEnum(type))
+                {
+                    const Il2CppType* underlyingType = il2cpp::vm::Type::GetUnderlyingType(type);
+                    switch (underlyingType->type)
+                    {
+                        case IL2CPP_TYPE_I1:
+                            type = &il2cpp_defaults.sbyte_shared_enum->byval_arg;
+                            break;
+                        case IL2CPP_TYPE_I2:
+                            type = &il2cpp_defaults.int16_shared_enum->byval_arg;
+                            break;
+                        case IL2CPP_TYPE_I4:
+                            type = &il2cpp_defaults.int32_shared_enum->byval_arg;
+                            break;
+                        case IL2CPP_TYPE_I8:
+                            type = &il2cpp_defaults.int64_shared_enum->byval_arg;
+                            break;
+                        case IL2CPP_TYPE_U1:
+                            type = &il2cpp_defaults.byte_shared_enum->byval_arg;
+                            break;
+                        case IL2CPP_TYPE_U2:
+                            type = &il2cpp_defaults.uint16_shared_enum->byval_arg;
+                            break;
+                        case IL2CPP_TYPE_U4:
+                            type = &il2cpp_defaults.uint32_shared_enum->byval_arg;
+                            break;
+                        case IL2CPP_TYPE_U8:
+                            type = &il2cpp_defaults.uint64_shared_enum->byval_arg;
+                            break;
+                        default:
+                            IL2CPP_ASSERT(0 && "Invalid enum underlying type");
+                            break;
+                    }
+                }
             }
+#endif
 
             if (Type::IsGenericInstance(type))
             {
@@ -817,7 +874,6 @@ static Il2CppClass* FromTypeDefinition(TypeDefinitionIndex index)
     typeInfo->image = GetImageForTypeDefinitionIndex(index);
     typeInfo->name = MetadataCache::GetStringFromIndex(typeDefinition->nameIndex);
     typeInfo->namespaze = MetadataCache::GetStringFromIndex(typeDefinition->namespaceIndex);
-    typeInfo->customAttributeIndex = typeDefinition->customAttributeIndex;
     typeInfo->byval_arg = *MetadataCache::GetIl2CppTypeFromIndex(typeDefinition->byvalTypeIndex);
     typeInfo->this_arg = *MetadataCache::GetIl2CppTypeFromIndex(typeDefinition->byrefTypeIndex);
     typeInfo->typeDefinition = typeDefinition;
@@ -1193,21 +1249,32 @@ const GenericParameterIndex MetadataCache::GetIndexForGenericParameter(const Il2
     return static_cast<GenericParameterIndex>(index);
 }
 
+const MethodIndex MetadataCache::GetIndexForMethodDefinition(const MethodInfo* method)
+{
+    IL2CPP_ASSERT(!method->is_inflated);
+    const Il2CppMethodDefinition* methodDefinitions = (const Il2CppMethodDefinition*)((const char*)s_GlobalMetadata + s_GlobalMetadataHeader->methodsOffset);
+
+    IL2CPP_ASSERT(method->methodDefinition >= methodDefinitions && method->methodDefinition < methodDefinitions + s_GlobalMetadataHeader->methodsCount);
+
+    ptrdiff_t index = method->methodDefinition - methodDefinitions;
+    IL2CPP_ASSERT(index <= std::numeric_limits<MethodIndex>::max());
+    return static_cast<MethodIndex>(index);
+}
+
 static OnceFlag s_CustomAttributesOnceFlag;
 
 static void InitializeCustomAttributesCaches(void* arg)
 {
     s_CustomAttributesCaches = (CustomAttributesCache**)IL2CPP_CALLOC(s_Il2CppCodeRegistration->customAttributeCount, sizeof(CustomAttributesCache*));
-    s_CustomAttributeTypeCaches = (CustomAttributeTypeCache**)IL2CPP_CALLOC(s_Il2CppCodeRegistration->customAttributeCount, sizeof(CustomAttributeTypeCache*));
 }
 
 CustomAttributesCache* MetadataCache::GenerateCustomAttributesCache(CustomAttributeIndex index)
 {
-    if (index == 0)
+    if (index == kCustomAttributeIndexInvalid)
         return NULL;
 
-    IL2CPP_ASSERT(index > 0 && index <= s_Il2CppCodeRegistration->customAttributeCount);
-    IL2CPP_ASSERT(index > 0 && index <= static_cast<int32_t>(s_GlobalMetadataHeader->attributesInfoCount / sizeof(Il2CppCustomAttributeTypeRange)));
+    IL2CPP_ASSERT(index >= 0 && index < s_Il2CppCodeRegistration->customAttributeCount);
+    IL2CPP_ASSERT(index >= 0 && index < static_cast<int32_t>(s_GlobalMetadataHeader->attributesInfoCount / sizeof(Il2CppCustomAttributeTypeRange)));
 
     CallOnce(s_CustomAttributesOnceFlag, &InitializeCustomAttributesCaches, NULL);
 
@@ -1226,6 +1293,7 @@ CustomAttributesCache* MetadataCache::GenerateCustomAttributesCache(CustomAttrib
             IL2CPP_ASSERT(attributeTypeRange->start + i < s_GlobalMetadataHeader->attributeTypesCount);
             TypeIndex typeIndex = *MetadataOffset<TypeIndex*>(s_GlobalMetadata, s_GlobalMetadataHeader->attributeTypesOffset, attributeTypeRange->start + i);
             cache->attributes[i] = il2cpp::vm::Object::New(GetTypeInfoFromTypeIndex(typeIndex));
+            GarbageCollector::SetWriteBarrier((void**)cache->attributes + i);
         }
 
         // generated code calls the attribute constructor and sets any fields/properties
@@ -1246,46 +1314,61 @@ CustomAttributesCache* MetadataCache::GenerateCustomAttributesCache(CustomAttrib
     return cache;
 }
 
-CustomAttributeTypeCache* MetadataCache::GenerateCustomAttributeTypeCache(CustomAttributeIndex index)
+static int CompareTokens(const void* pkey, const void* pelem)
 {
-    if (index == 0)
-        return NULL;
+    return (int)(((Il2CppCustomAttributeTypeRange*)pkey)->token - ((Il2CppCustomAttributeTypeRange*)pelem)->token);
+}
 
-    IL2CPP_ASSERT(index > 0 && index <= s_Il2CppCodeRegistration->customAttributeCount);
-    IL2CPP_ASSERT(index > 0 && index <= static_cast<int32_t>(s_GlobalMetadataHeader->attributesInfoCount / sizeof(Il2CppCustomAttributeTypeRange)));
+CustomAttributeIndex MetadataCache::GetCustomAttributeIndex(const Il2CppImage* image, uint32_t token)
+{
+    const Il2CppCustomAttributeTypeRange* attributeTypeRange = MetadataOffset<const Il2CppCustomAttributeTypeRange*>(s_GlobalMetadata, s_GlobalMetadataHeader->attributesInfoOffset, 0);
 
-    CallOnce(s_CustomAttributesOnceFlag, &InitializeCustomAttributesCaches, NULL);
+    Il2CppCustomAttributeTypeRange key;
+    memset(&key, 0, sizeof(Il2CppCustomAttributeTypeRange));
+    key.token = token;
 
-    // use atomics rather than a Mutex here to avoid deadlock. The attribute generators call arbitrary managed code
-    CustomAttributeTypeCache* cache = Atomic::ReadPointer(&s_CustomAttributeTypeCaches[index]);
-    if (cache == NULL)
+    const Il2CppCustomAttributeTypeRange* res = (const Il2CppCustomAttributeTypeRange*)bsearch(&key, attributeTypeRange + image->customAttributeStart, image->customAttributeCount, sizeof(Il2CppCustomAttributeTypeRange), CompareTokens);
+
+    if (res == NULL)
+        return kCustomAttributeIndexInvalid;
+
+    CustomAttributeIndex index = (CustomAttributeIndex)(res - attributeTypeRange);
+
+    IL2CPP_ASSERT(index >= 0 && index < static_cast<int32_t>(s_GlobalMetadataHeader->attributesInfoCount / sizeof(Il2CppCustomAttributeTypeRange)));
+
+    return index;
+}
+
+CustomAttributesCache* MetadataCache::GenerateCustomAttributesCache(const Il2CppImage* image, uint32_t token)
+{
+    return GenerateCustomAttributesCache(GetCustomAttributeIndex(image, token));
+}
+
+bool MetadataCache::HasAttribute(CustomAttributeIndex index, Il2CppClass* attribute)
+{
+    if (index == kCustomAttributeIndexInvalid)
+        return false;
+
+    IL2CPP_ASSERT(attribute);
+
+    const Il2CppCustomAttributeTypeRange* attributeTypeRange = MetadataOffset<const Il2CppCustomAttributeTypeRange*>(s_GlobalMetadata, s_GlobalMetadataHeader->attributesInfoOffset, index);
+
+    for (int32_t i = 0; i < attributeTypeRange->count; i++)
     {
-        const Il2CppCustomAttributeTypeRange* attributeTypeRange = MetadataOffset<const Il2CppCustomAttributeTypeRange*>(s_GlobalMetadata, s_GlobalMetadataHeader->attributesInfoOffset, index);
+        IL2CPP_ASSERT(attributeTypeRange->start + i < s_GlobalMetadataHeader->attributeTypesCount);
+        TypeIndex typeIndex = *MetadataOffset<TypeIndex*>(s_GlobalMetadata, s_GlobalMetadataHeader->attributeTypesOffset, attributeTypeRange->start + i);
+        Il2CppClass* klass = GetTypeInfoFromTypeIndex(typeIndex);
 
-        cache = (CustomAttributeTypeCache*)IL2CPP_CALLOC(1, sizeof(CustomAttributeTypeCache));
-        cache->count = attributeTypeRange->count;
-        cache->attributeTypes = (Il2CppClass**)IL2CPP_CALLOC(cache->count, sizeof(Il2CppClass*));
-
-        for (int32_t i = 0; i < attributeTypeRange->count; i++)
-        {
-            IL2CPP_ASSERT(attributeTypeRange->start + i < s_GlobalMetadataHeader->attributeTypesCount);
-            TypeIndex typeIndex = *MetadataOffset<TypeIndex*>(s_GlobalMetadata, s_GlobalMetadataHeader->attributeTypesOffset, attributeTypeRange->start + i);
-            cache->attributeTypes[i] = GetTypeInfoFromTypeIndex(typeIndex);
-        }
-
-        CustomAttributeTypeCache* original = Atomic::CompareExchangePointer(&s_CustomAttributeTypeCaches[index], cache, (CustomAttributeTypeCache*)NULL);
-        if (original)
-        {
-            // A non-NULL return value indicates some other thread already generated this cache.
-            // We need to cleanup the resources we allocated
-            IL2CPP_FREE(cache->attributeTypes);
-            IL2CPP_FREE(cache);
-
-            cache = original;
-        }
+        if (Class::HasParent(klass, attribute) || (Class::IsInterface(attribute) && Class::IsAssignableFrom(attribute, klass)))
+            return true;
     }
 
-    return cache;
+    return false;
+}
+
+bool MetadataCache::HasAttribute(const Il2CppImage* image, uint32_t token, Il2CppClass* attribute)
+{
+    return HasAttribute(GetCustomAttributeIndex(image, token), attribute);
 }
 
 Il2CppString* MetadataCache::GetStringLiteralFromIndex(StringLiteralIndex index)
@@ -1300,6 +1383,7 @@ Il2CppString* MetadataCache::GetStringLiteralFromIndex(StringLiteralIndex index)
 
     const Il2CppStringLiteral* stringLiteral = (const Il2CppStringLiteral*)((const char*)s_GlobalMetadata + s_GlobalMetadataHeader->stringLiteralOffset) + index;
     s_StringLiteralTable[index] = String::NewLen((const char*)s_GlobalMetadata + s_GlobalMetadataHeader->stringLiteralDataOffset + stringLiteral->dataIndex, stringLiteral->length);
+    GarbageCollector::SetWriteBarrier((void**)s_StringLiteralTable + index);
 
     return s_StringLiteralTable[index];
 }

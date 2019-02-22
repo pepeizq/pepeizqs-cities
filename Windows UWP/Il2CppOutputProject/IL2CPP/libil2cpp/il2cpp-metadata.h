@@ -41,6 +41,7 @@ typedef int32_t InteropDataIndex;
 const TypeIndex kTypeIndexInvalid = -1;
 const TypeDefinitionIndex kTypeDefinitionIndexInvalid = -1;
 const DefaultValueDataIndex kDefaultValueIndexNull = -1;
+const CustomAttributeIndex kCustomAttributeIndexInvalid = -1;
 const EventIndex kEventIndexInvalid = -1;
 const FieldIndex kFieldIndexInvalid = -1;
 const MethodIndex kMethodIndexInvalid = -1;
@@ -125,7 +126,6 @@ typedef struct Il2CppTypeDefinition
 {
     StringIndex nameIndex;
     StringIndex namespaceIndex;
-    CustomAttributeIndex customAttributeIndex;
     TypeIndex byvalTypeIndex;
     TypeIndex byrefTypeIndex;
 
@@ -174,7 +174,6 @@ typedef struct Il2CppFieldDefinition
 {
     StringIndex nameIndex;
     TypeIndex typeIndex;
-    CustomAttributeIndex customAttributeIndex;
     uint32_t token;
 } Il2CppFieldDefinition;
 
@@ -202,7 +201,6 @@ typedef struct Il2CppParameterDefinition
 {
     StringIndex nameIndex;
     uint32_t token;
-    CustomAttributeIndex customAttributeIndex;
     TypeIndex typeIndex;
 } Il2CppParameterDefinition;
 
@@ -219,7 +217,6 @@ typedef struct Il2CppMethodDefinition
     TypeDefinitionIndex declaringType;
     TypeIndex returnType;
     ParameterIndex parameterStart;
-    CustomAttributeIndex customAttributeIndex;
     GenericContainerIndex genericContainerIndex;
     MethodIndex methodIndex;
     MethodIndex invokerIndex;
@@ -240,7 +237,6 @@ typedef struct Il2CppEventDefinition
     MethodIndex add;
     MethodIndex remove;
     MethodIndex raise;
-    CustomAttributeIndex customAttributeIndex;
     uint32_t token;
 } Il2CppEventDefinition;
 
@@ -250,7 +246,6 @@ typedef struct Il2CppPropertyDefinition
     MethodIndex get;
     MethodIndex set;
     uint32_t attrs;
-    CustomAttributeIndex customAttributeIndex;
     uint32_t token;
 } Il2CppPropertyDefinition;
 
@@ -311,12 +306,15 @@ typedef struct Il2CppImageDefinition
 
     MethodIndex entryPointIndex;
     uint32_t token;
+
+    CustomAttributeIndex customAttributeStart;
+    uint32_t customAttributeCount;
 } Il2CppImageDefinition;
 
 typedef struct Il2CppAssemblyDefinition
 {
     ImageIndex imageIndex;
-    CustomAttributeIndex customAttributeIndex;
+    uint32_t token;
     int32_t referencedAssemblyStart;
     int32_t referencedAssemblyCount;
     Il2CppAssemblyNameDefinition aname;
@@ -336,6 +334,7 @@ typedef struct Il2CppMetadataUsagePair
 
 typedef struct Il2CppCustomAttributeTypeRange
 {
+    uint32_t token;
     int32_t start;
     int32_t count;
 } Il2CppCustomAttributeTypeRange;

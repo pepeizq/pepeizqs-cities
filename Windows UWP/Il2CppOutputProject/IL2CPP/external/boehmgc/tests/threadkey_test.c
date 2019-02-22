@@ -11,6 +11,9 @@
 
 #include "gc.h"
 
+#include <stdio.h>
+#include <stdlib.h>
+
 #if (!defined(GC_PTHREADS) || defined(GC_SOLARIS_THREADS) \
      || defined(__native_client__)) && !defined(SKIP_THREADKEY_TEST)
   /* FIXME: Skip this test on Solaris for now.  The test may fail on    */
@@ -20,8 +23,6 @@
 #endif
 
 #ifdef SKIP_THREADKEY_TEST
-
-#include <stdio.h>
 
 int main (void)
 {
@@ -54,8 +55,15 @@ void * GC_CALLBACK on_thread_exit_inner (struct GC_stack_base * sb, void * arg)
   pthread_t t;
   int creation_res;     /* Used to suppress a warning about     */
                         /* unchecked pthread_create() result.   */
+  pthread_attr_t attr;
 
-  creation_res = GC_pthread_create (&t, NULL, entry, NULL);
+  if (pthread_attr_init(&attr) != 0
+      || pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED) != 0) {
+    fprintf(stderr, "Thread attribute init or setdetachstate failed\n");
+    exit(2);
+  }
+  creation_res = GC_pthread_create(&t, &attr, entry, NULL);
+  (void)pthread_attr_destroy(&attr);
   if (res == GC_SUCCESS)
     GC_unregister_my_thread ();
 
@@ -72,8 +80,8 @@ void make_key (void)
   pthread_key_create (&key, on_thread_exit);
 }
 
-#ifndef LIMIT
-# define LIMIT 30
+#ifndef NTHREADS
+# define NTHREADS 30 /* number of initial threads */
 #endif
 
 int main (void)
@@ -86,12 +94,19 @@ int main (void)
 # else
     pthread_once (&key_once, make_key);
 # endif
-  for (i = 0; i < LIMIT; i++) {
+  for (i = 0; i < NTHREADS; i++) {
     pthread_t t;
-    void *res;
-    if (GC_pthread_create (&t, NULL, entry, NULL) == 0
-        && (i & 1) != 0) {
-      (void)GC_pthread_join(t, &res);
+
+    if (GC_pthread_create(&t, NULL, entry, NULL) == 0) {
+      void *res;
+      int code = (i & 1) != 0 ? GC_pthread_join(t, &res)
+                                : GC_pthread_detach(t);
+
+      if (code != 0) {
+        fprintf(stderr, "Thread %s failed %d\n",
+                (i & 1) != 0 ? "join" : "detach", code);
+        exit(2);
+      }
     }
   }
   return 0;

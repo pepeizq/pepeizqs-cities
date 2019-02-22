@@ -99,7 +99,7 @@ namespace System
         if (!customAttributeDataConstructor)
             customAttributeDataConstructor = vm::Class::GetMethodFromName(il2cpp_defaults.customattribute_data_class, ".ctor", 4);
 
-        const MethodInfo* attributeConstructor = vm::Class::GetMethodFromName(attribute->klass, ".ctor", 0);
+        const MethodInfo* attributeConstructor = vm::Class::GetMethodFromNameFlags(attribute->klass, ".ctor", vm::Class::IgnoreNumberOfArguments, METHOD_ATTRIBUTE_PUBLIC);
 
         if (attributeConstructor == NULL)
             IL2CPP_NOT_IMPLEMENTED_ICALL(MonoCustomAttrs::GetCustomAttributesDataInternal);

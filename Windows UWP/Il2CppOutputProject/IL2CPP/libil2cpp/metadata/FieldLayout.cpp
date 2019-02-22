@@ -145,7 +145,7 @@ namespace metadata
         return size;
     }
 
-    void FieldLayout::LayoutFields(size_t parentSize, size_t actualParentSize, size_t parentAlignment, const metadata::Il2CppTypeVector& fieldTypes, FieldLayoutData& data)
+    void FieldLayout::LayoutFields(size_t parentSize, size_t actualParentSize, size_t parentAlignment, uint8_t packing, const metadata::Il2CppTypeVector& fieldTypes, FieldLayoutData& data)
     {
         data.classSize = parentSize;
         data.actualClassSize = actualParentSize;
@@ -154,14 +154,15 @@ namespace metadata
         for (Il2CppTypeVector::const_iterator iter = fieldTypes.begin(); iter != fieldTypes.end(); ++iter)
         {
             SizeAndAlignment sa = GetTypeSizeAndAlignment(*iter);
+            uint8_t alignment = packing != 0 ? std::min(sa.alignment, packing) : sa.alignment;
             size_t offset = data.actualClassSize;
 
-            offset += sa.alignment - 1;
-            offset &= ~(sa.alignment - 1);
+            offset += alignment - 1;
+            offset &= ~(alignment - 1);
 
             data.FieldOffsets.push_back(offset);
             data.actualClassSize = offset + std::max(sa.size, (size_t)1);
-            data.minimumAlignment = std::max(data.minimumAlignment, (uint8_t)sa.alignment);
+            data.minimumAlignment = std::max(data.minimumAlignment, (uint8_t)alignment);
         }
 
         data.classSize = AlignTo(data.actualClassSize, data.minimumAlignment);

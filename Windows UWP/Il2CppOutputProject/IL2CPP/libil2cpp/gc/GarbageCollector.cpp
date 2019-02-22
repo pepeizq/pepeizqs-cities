@@ -315,6 +315,19 @@ namespace gc
         return result;
     }
 
+#if IL2CPP_ENABLE_WRITE_BARRIERS
+    void il2cpp::gc::GarbageCollector::SetWriteBarrier(void **ptr, size_t size)
+    {
+#if IL2CPP_ENABLE_STRICT_WRITE_BARRIERS
+        for (size_t i = 0; i < size / sizeof(void**); i++)
+            SetWriteBarrier(ptr + i);
+#else
+        SetWriteBarrier(ptr);
+#endif
+    }
+
+#endif
+
 #if NET_4_0
     void il2cpp::gc::GarbageCollector::SetSkipThread(bool skip)
     {

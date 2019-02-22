@@ -23,7 +23,7 @@ namespace il2cpp
 {
 namespace vm
 {
-    NORETURN void Exception::Raise(Il2CppException* ex, Il2CppSequencePoint *seqPoint, MethodInfo* lastManagedFrame)
+    void Exception::PrepareExceptionForThrow(Il2CppException* ex, Il2CppSequencePoint* seqPoint, MethodInfo* lastManagedFrame)
     {
 #if IL2CPP_MONO_DEBUGGER
         il2cpp::utils::Debugger::HandleException(ex, seqPoint);
@@ -57,7 +57,11 @@ namespace vm
             IL2CPP_ASSERT(ips != NULL);
             IL2CPP_OBJECT_SETREF(ex, trace_ips, ips);
         }
+    }
 
+    NORETURN void Exception::Raise(Il2CppException* ex, Il2CppSequencePoint *seqPoint, MethodInfo* lastManagedFrame)
+    {
+        PrepareExceptionForThrow(ex, seqPoint, lastManagedFrame);
         throw Il2CppExceptionWrapper(ex);
     }
 

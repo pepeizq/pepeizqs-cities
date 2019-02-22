@@ -134,7 +134,7 @@ namespace Reflection
             }
 
             // method is inflated because it's owner is a generic instance type, extract method definition out of the method
-            IL2CPP_ASSERT(methodInfo->is_generic);
+            IL2CPP_ASSERT(methodInfo->is_generic || methodInfo->is_inflated);
             methodInfo = methodInfo->genericMethod->methodDefinition;
         }
 
@@ -363,44 +363,57 @@ namespace Reflection
         /*if(klass->generic_class)
         klass = klass->generic_class->container_class;*/
 
-        if (definition)
+        const MethodInfo *result;
+        bool found = true;
+
+        do
         {
-            for (Il2CppClass* parent = klass->parent; parent != NULL; parent = parent->parent)
+            if (definition)
             {
-                if (parent->vtable_count <= method2->slot)
-                    break;
-                klass = parent;
+                for (Il2CppClass* parent = klass->parent; parent != NULL; parent = parent->parent)
+                {
+                    if (parent->vtable_count <= method2->slot)
+                        break;
+
+                    klass = parent;
+                }
             }
-        }
-        else
-        {
-            if (!klass->parent)
+            else
             {
-                IL2CPP_ASSERT(klass == il2cpp_defaults.object_class);
+                if (!klass->parent)
+                {
+                    IL2CPP_ASSERT(klass == il2cpp_defaults.object_class);
+                    return method;
+                }
+
+                klass = klass->parent;
+            }
+
+            if (klass == method2->klass)
                 return method;
+
+            il2cpp::vm::Class::Init(klass);
+
+            result = klass->vtable[method2->slot].method;
+
+            if (result == NULL)
+            {
+                void *iterator = NULL;
+                found = false;
+
+                for (result = Class::GetMethods(klass, &iterator); result != NULL; result = Class::GetMethods(klass, &iterator))
+                {
+                    if (result->slot == method2->slot)
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+
+                IL2CPP_ASSERT(!(definition && !found));
             }
-
-            klass = klass->parent;
         }
-
-        if (klass == method2->klass)
-            return method;
-
-        il2cpp::vm::Class::Init(klass);
-
-        const MethodInfo *result = klass->vtable[method2->slot].method;
-
-        if (result == NULL)
-        {
-            void *iterator = NULL;
-
-            for (result = Class::GetMethods(klass, &iterator); result != NULL; result = Class::GetMethods(klass, &iterator))
-                if (result->slot == method2->slot)
-                    break;
-        }
-
-        if (result == NULL)
-            return method;
+        while (!found);
 
         return il2cpp::vm::Reflection::GetMethodObject(result, klass);
     }

@@ -122,8 +122,8 @@ typedef struct Il2CppDefaults
     Il2CppClass *iunknown_class;
     Il2CppClass *idispatch_class;
     Il2CppClass *safehandle_class;
-    Il2CppClass *handleref_class;
-    Il2CppClass *attribute_class;*/
+    Il2CppClass *handleref_class;*/
+    Il2CppClass *attribute_class;
     Il2CppClass *customattribute_data_class;
     //Il2CppClass *critical_finalizer_object;
     Il2CppClass *version;
@@ -166,6 +166,8 @@ typedef struct Il2CppDefaults
 
     // Windows.Foundation.IReference`1<T>
     Il2CppClass* ireference_class;
+    // Windows.Foundation.IReferenceArray`1<T>
+    Il2CppClass* ireferencearray_class;
     // Windows.Foundation.Collections.IKeyValuePair`2<K, V>
     Il2CppClass* ikey_value_pair_class;
     // System.Collections.Generic.KeyValuePair`2<K, V>
@@ -178,6 +180,18 @@ typedef struct Il2CppDefaults
     Il2CppClass* system_uri_class;
     // System.Guid
     Il2CppClass* system_guid_class;
+
+#if NET_4_0
+    Il2CppClass* sbyte_shared_enum;
+    Il2CppClass* int16_shared_enum;
+    Il2CppClass* int32_shared_enum;
+    Il2CppClass* int64_shared_enum;
+
+    Il2CppClass* byte_shared_enum;
+    Il2CppClass* uint16_shared_enum;
+    Il2CppClass* uint32_shared_enum;
+    Il2CppClass* uint64_shared_enum;
+#endif
 } Il2CppDefaults;
 
 extern LIBIL2CPP_CODEGEN_API Il2CppDefaults il2cpp_defaults;
@@ -194,12 +208,6 @@ typedef struct CustomAttributesCache
     Il2CppObject** attributes;
 } CustomAttributesCache;
 
-typedef struct CustomAttributeTypeCache
-{
-    int count;
-    Il2CppClass** attributeTypes;
-} CustomAttributeTypeCache;
-
 typedef void (*CustomAttributesCacheGenerator)(CustomAttributesCache*);
 
 const int THREAD_STATIC_FIELD_OFFSET = -1;
@@ -210,7 +218,6 @@ typedef struct FieldInfo
     const Il2CppType* type;
     Il2CppClass *parent;
     int32_t offset; // If offset is -1, then it's thread static
-    CustomAttributeIndex customAttributeIndex;
     uint32_t token;
 } FieldInfo;
 
@@ -221,7 +228,6 @@ typedef struct PropertyInfo
     const MethodInfo *get;
     const MethodInfo *set;
     uint32_t attrs;
-    CustomAttributeIndex customAttributeIndex;
     uint32_t token;
 } PropertyInfo;
 
@@ -233,7 +239,6 @@ typedef struct EventInfo
     const MethodInfo* add;
     const MethodInfo* remove;
     const MethodInfo* raise;
-    CustomAttributeIndex customAttributeIndex;
     uint32_t token;
 } EventInfo;
 
@@ -242,7 +247,6 @@ typedef struct ParameterInfo
     const char* name;
     int32_t position;
     uint32_t token;
-    CustomAttributeIndex customAttributeIndex;
     const Il2CppType* parameter_type;
 } ParameterInfo;
 
@@ -269,9 +273,7 @@ typedef struct Il2CppMethodExecutionContextInfo
 {
     TypeIndex typeIndex;
     int32_t nameIndex;
-    MethodVariableKind variableKind;
-    int32_t startOffset;
-    int32_t endOffset;
+    int32_t scopeIndex;
 } Il2CppMethodExecutionContextInfo;
 
 typedef struct Il2CppMethodExecutionContextInfoIndex
@@ -314,9 +316,7 @@ typedef struct Il2CppTypeSourceFilePair
 
 typedef struct Il2CppSequencePoint
 {
-    MethodIndex methodIndex;
-    EncodedMethodIndex methodMetadataIndex;
-    const MethodInfo *method_;
+    MethodIndex methodDefinitionIndex;
     TypeIndex catchTypeIndex;
     int32_t sourceFileIndex;
     int32_t lineStart, lineEnd;
@@ -373,7 +373,6 @@ typedef struct MethodInfo
         const Il2CppGenericContainer* genericContainer; /* is_inflated is false and is_generic is true */
     };
 
-    CustomAttributeIndex customAttributeIndex;
     uint32_t token;
     uint16_t flags;
     uint16_t iflags;
@@ -465,7 +464,6 @@ typedef struct Il2CppClass
 
     // Remaining fields are always valid except where noted
     GenericContainerIndex genericContainerIndex;
-    CustomAttributeIndex customAttributeIndex;
     uint32_t instance_size;
     uint32_t actualSize;
     uint32_t element_size;
@@ -490,6 +488,10 @@ typedef struct Il2CppClass
     uint8_t rank;
     uint8_t minimumAlignment;
     uint8_t packingSize;
+
+    // this is critical for performance of Class::InitFromCodegen. Equals to initialized && !has_initialization_error at all times.
+    // Use Class::UpdateInitializedAndNoError to update
+    uint8_t initialized_and_no_error : 1;
 
     uint8_t valuetype : 1;
     uint8_t initialized : 1;
@@ -564,6 +566,9 @@ typedef struct Il2CppImage
     TypeDefinitionIndex exportedTypeStart;
     uint32_t exportedTypeCount;
 
+    CustomAttributeIndex customAttributeStart;
+    uint32_t customAttributeCount;
+
     MethodIndex entryPointIndex;
 
 #ifdef __cplusplus
@@ -578,7 +583,7 @@ typedef struct Il2CppImage
 typedef struct Il2CppAssembly
 {
     Il2CppImage* image;
-    CustomAttributeIndex customAttributeIndex;
+    uint32_t token;
     int32_t referencedAssemblyStart;
     int32_t referencedAssemblyCount;
     Il2CppAssemblyName aname;

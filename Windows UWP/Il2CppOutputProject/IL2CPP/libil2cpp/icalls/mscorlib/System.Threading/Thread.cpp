@@ -189,10 +189,14 @@ namespace Threading
 
         // use fixed GC memory since we are storing managed object pointers
         StartData* startData = (StartData*)GarbageCollector::AllocateFixed(sizeof(StartData), NULL);
+
         startData->m_Thread = thisPtr;
+        GarbageCollector::SetWriteBarrier((void**)&startData->m_Thread);
         startData->m_Domain = Domain::GetCurrent();
         startData->m_Delegate = start;
+        GarbageCollector::SetWriteBarrier((void**)&startData->m_Delegate);
         startData->m_StartArg = thisPtr->start_obj;
+        GarbageCollector::SetWriteBarrier((void**)&startData->m_StartArg);
         startData->m_Semaphore = new il2cpp::os::Semaphore(0);
 
         il2cpp::os::Thread* thread = new il2cpp::os::Thread();
@@ -212,7 +216,8 @@ namespace Threading
         thisPtr->GetInternalThread()->handle = thread;
         thisPtr->GetInternalThread()->state &= ~kThreadStateUnstarted;
         thisPtr->GetInternalThread()->tid = thread->Id();
-        thisPtr->GetInternalThread()->managed_id = il2cpp::vm::Thread::GetNewManagedId();
+        if (!thisPtr->GetInternalThread()->managed_id)
+            thisPtr->GetInternalThread()->managed_id = il2cpp::vm::Thread::GetNewManagedId();
 
         startData->m_Semaphore->Post(1, NULL);
 
@@ -533,8 +538,7 @@ namespace Threading
 
     int32_t Thread::SystemMaxStackStize()
     {
-        IL2CPP_NOT_IMPLEMENTED_ICALL(Thread::SystemMaxStackStize);
-        IL2CPP_UNREACHABLE;
+        return il2cpp::os::Thread::GetMaxStackSize();
     }
 
     Il2CppString* Thread::GetName_internal40(Il2CppInternalThread* thread)

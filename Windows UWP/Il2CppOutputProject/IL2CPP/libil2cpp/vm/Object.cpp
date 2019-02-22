@@ -18,6 +18,8 @@
 #include "gc/gc_wrapper.h"
 #include "gc/GarbageCollector.h"
 #include "il2cpp-tabledefs.h"
+#include "vm/Method.h"
+#include "metadata/GenericMethod.h"
 
 #if IL2CPP_GC_BOEHM
 #define ALLOC_PTRFREE(obj, vt, size) do { (obj) = (Il2CppObject*)GC_MALLOC_ATOMIC ((size)); (obj)->klass = (vt); (obj)->monitor = NULL;} while (0)
@@ -90,7 +92,7 @@ namespace vm
 
                 All value types have an operation called box. Boxing a value of any value type produces its boxed value;
                 i.e., a value of the corresponding boxed type containing a bitwise copy of the original value. If the
-                value type is a nullable type—defined as an instantiation of the value type System.Nullable<T> — the result
+                value type is a nullable type defined as an instantiation of the value type System.Nullable<T> the result
                 is a null reference or bitwise copy of its Value property of type T, depending on its HasValue property
                 (false and true, respectively).
             */
@@ -109,6 +111,7 @@ namespace vm
         size = size - sizeof(Il2CppObject);
 
         memcpy(((char*)obj) + sizeof(Il2CppObject), val, size);
+        gc::GarbageCollector::SetWriteBarrier((void**)(((char*)obj) + sizeof(Il2CppObject)), size);
         return obj;
     }
 
@@ -127,6 +130,8 @@ namespace vm
         o = Allocate(size, obj->klass);
         /* do not copy the sync state */
         memcpy((char*)o + sizeof(Il2CppObject), (char*)obj + sizeof(Il2CppObject), size - sizeof(Il2CppObject));
+
+        gc::GarbageCollector::SetWriteBarrier((void**)(((char*)o) + sizeof(Il2CppObject)), size);
 
 //#ifdef HAVE_SGEN_GC
 //  if (obj->vtable->klass->has_references)
@@ -194,10 +199,39 @@ namespace vm
             return method;
 
         Il2CppClass* methodDeclaringType = method->klass;
-        if (!Class::IsInterface(methodDeclaringType))
-            return obj->klass->vtable[method->slot].method;
+        if (Class::IsInterface(methodDeclaringType))
+        {
+            const MethodInfo* itfMethod = Class::GetInterfaceInvokeDataFromVTable(obj, methodDeclaringType, method->slot).method;
+            if (Method::IsGenericInstance(method))
+            {
+                if (itfMethod->methodPointer)
+                    return itfMethod;
 
-        return Class::GetInterfaceInvokeDataFromVTable(obj, methodDeclaringType, method->slot).method;
+                Il2CppGenericMethod gmethod;
+                gmethod.context = method->genericMethod->context;
+                gmethod.methodDefinition = itfMethod;
+                return il2cpp::metadata::GenericMethod::GetMethod(&gmethod);
+            }
+            else
+            {
+                return itfMethod;
+            }
+        }
+
+        if (Method::IsGenericInstance(method))
+        {
+            if (method->methodPointer)
+                return method;
+
+            Il2CppGenericMethod gmethod;
+            gmethod.context = method->genericMethod->context;
+            gmethod.methodDefinition = obj->klass->vtable[method->slot].method;
+            return il2cpp::metadata::GenericMethod::GetMethod(&gmethod);
+        }
+        else
+        {
+            return obj->klass->vtable[method->slot].method;
+        }
     }
 
     Il2CppObject* Object::IsInst(Il2CppObject *obj, Il2CppClass *klass)

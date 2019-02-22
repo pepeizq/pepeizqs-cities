@@ -1,9 +1,23 @@
 # Boehm-Demers-Weiser Garbage Collector
 
-This is version 7.4.0 of a conservative garbage collector for C and C++.
+[![Travis-CI build status](https://travis-ci.org/ivmai/bdwgc.svg?branch=master)](https://travis-ci.org/ivmai/bdwgc)
+[![AppVeyor CI build status](https://ci.appveyor.com/api/projects/status/github/ivmai/bdwgc?branch=master&svg=true)](https://ci.appveyor.com/project/ivmai/bdwgc)
+[![Coveralls test coverage status](https://coveralls.io/repos/github/ivmai/bdwgc/badge.png?branch=master)](https://coveralls.io/github/ivmai/bdwgc)
+[![Coverity Scan build status](https://scan.coverity.com/projects/10813/badge.svg)](https://scan.coverity.com/projects/ivmai-bdwgc)
 
-You might find a more recent version
-[here](http://www.hpl.hp.com/personal/Hans_Boehm/gc).
+This is version 7.7.0 (next release development) of a conservative garbage
+collector for C and C++.
+
+
+## Download
+
+You might find a more recent/stable version on the
+[Download](https://github.com/ivmai/bdwgc/wiki/Download) page, or
+[BDWGC site](http://www.hboehm.info/gc/).
+
+Also, the latest bug fixes and new features are available in the
+[development repository](https://github.com/ivmai/bdwgc).
+
 
 ## Overview
 
@@ -35,9 +49,6 @@ and
  * Boehm H., "Simple GC-safe Compilation", Proceedings of the ACM SIGPLAN '96
    Conference on Programming Language Design and Implementation.
 
-(Some of these are also available from
-[here](http://www.hpl.hp.com/personal/Hans_Boehm/papers/), among other places.)
-
 Unlike the collector described in the second reference, this collector
 operates either with the mutator stopped during the entire collection
 (default) or incrementally during allocations.  (The latter is supported
@@ -54,16 +65,16 @@ CSL 84-7).  Doug McIlroy wrote a simpler fully conservative collector that
 was part of version 8 UNIX (tm), but appears to not have received
 widespread use.
 
-Rudimentary tools for use of the collector as a leak detector are included
-([link](http://www.hpl.hp.com/personal/Hans_Boehm/gc/leak.html)),
+Rudimentary tools for use of the collector as a
+[leak detector](doc/leak.md) are included,
 as is a fairly sophisticated string package "cord" that makes use of the
 collector.  (See doc/README.cords and H.-J. Boehm, R. Atkinson, and M. Plass,
 "Ropes: An Alternative to Strings", Software Practice and Experience 25, 12
 (December 1995), pp. 1315-1330.  This is very similar to the "rope" package
 in Xerox Cedar, or the "rope" package in the SGI STL or the g++ distribution.)
 
-Further collector documentation can be found
-[here](http://www.hpl.hp.com/personal/Hans_Boehm/gc).
+Further collector documentation can be found in the
+[overview](doc/overview.md).
 
 
 ## General Description
@@ -103,7 +114,7 @@ large objects to be disregarded, greatly reducing the probability of
 accidental retention of large objects.  For most purposes it seems
 best to compile with `ALL_INTERIOR_POINTERS` and to use
 `GC_malloc_ignore_off_page` if you get collector warnings from
-allocations of very large objects.  See doc/debugging.html for details.
+allocations of very large objects.  See [here](doc/debugging.md) for details.
 
 _WARNING_: pointers inside memory allocated by the standard `malloc` are not
 seen by the garbage collector.  Thus objects pointed to only from such a
@@ -149,6 +160,7 @@ ensure that any pointers stored in thread-local storage are also
 stored on the thread's stack for the duration of their lifetime.
 (This is arguably a longstanding bug, but it hasn't been fixed yet.)
 
+
 ## Installation and Portability
 
 As distributed, the collector operates silently
@@ -161,13 +173,31 @@ fragmentation losses.  These are probably much more significant for the
 contrived program "test.c" than for your application.)
 
 On most Unix-like platforms, the collector can be built either using a
-GNU autoconf-based build infrastructure (type `configure; make` in the
+GNU autoconf-based build infrastructure (type `./configure; make` in the
 simplest case), or with a classic makefile by itself (type
-`make -f Makefile.direct`).  Here we focus on the latter option.
-On other platforms, typically only the latter option is available, though
-with a different supplied Makefile.)
+`make -f Makefile.direct`).
 
-For the Makefile.direct-based process, typing `make test` instead of `make`
+Please note that the collector source repository does not contain configure
+and similar auto-generated files, thus the full procedure of autoconf-based
+build of `master` branch of the collector could look like:
+
+    git clone git://github.com/ivmai/bdwgc.git
+    cd bdwgc
+    git clone git://github.com/ivmai/libatomic_ops.git
+    ./autogen.sh
+    ./configure
+    make -j
+    make check
+
+Cloning of `libatomic_ops` is now optional provided the compiler supports
+atomic intrinsics.
+
+If you are getting "syntax error near unexpected token ATOMIC_OPS" during
+configure execution, this means pkg.m4 cannot be found, most probably
+you should run `pkg-config` once before running `./autogen.sh` (autoreconf).
+
+Below we focus on the collector build using classic makefile.
+For the Makefile.direct-based process, typing `make check` instead of `make`
 will automatically build the collector and then run `setjmp_test` and `gctest`.
 `Setjmp_test` will give you information about configuring the collector, which is
 useful primarily if you have a machine that's not already supported.  Gctest is
@@ -233,7 +263,8 @@ or 64 bit addresses will require a major effort.  A port to plain MSDOS
 or win16 is hard.
 
 For machines not already mentioned, or for nonstandard compilers,
-some porting suggestions are provided in doc/porting.html.
+some porting suggestions are provided [here](doc/porting.md).
+
 
 ## The C Interface to the Allocator
 
@@ -348,6 +379,7 @@ accessing garbage collector routines or variables.
 There are provisions for allocation with explicit type information.
 This is rarely necessary.  Details can be found in gc_typed.h.
 
+
 ## The C++ Interface to the Allocator
 
 The Ellis-Hull C++ interface to the collector is included in
@@ -361,6 +393,7 @@ Very often it will also be necessary to use gc_allocator.h and the
 allocator declared there to construct STL data structures.  Otherwise
 subobjects of STL data structures will be allocated using a system
 allocator, and objects they refer to may be prematurely collected.
+
 
 ## Use as Leak Detector
 
@@ -387,6 +420,7 @@ leak finding mode, `GC_debug_free` actually results in reuse of the object.
 (Otherwise the object is simply marked invalid.)  Also note that the test
 program is not designed to run meaningfully in `FIND_LEAK` mode.
 Use "make gc.a" to build the collector.
+
 
 ## Debugging Facilities
 
@@ -435,7 +469,8 @@ equivalents.  (`GC_REGISTER_FINALIZER` is necessary, since pointers to
 objects with debugging information are really pointers to a displacement
 of 16 bytes form the object beginning, and some translation is necessary
 when finalization routines are invoked.  For details, about what's stored
-in the header, see the definition of the type oh in debug_malloc.c)
+in the header, see the definition of the type oh in dbg_mlc.c file.)
+
 
 ## Incremental/Generational Collection
 
@@ -464,34 +499,11 @@ of information:
    (other than read) be handled specially by client code.
    See os_dep.c for details.
 
-2. Information supplied by the programmer.  We define "stubborn"
-   objects to be objects that are rarely changed.  Such an object
-   can be allocated (and enabled for writing) with `GC_malloc_stubborn`.
-   Once it has been initialized, the collector should be informed with
-   a call to `GC_end_stubborn_change`.  Subsequent writes that store
-   pointers into the object must be preceded by a call to
-   `GC_change_stubborn`.
-
-This mechanism performs best for objects that are written only for
-initialization, and such that only one stubborn object is writable
-at once.  It is typically not worth using for short-lived
-objects.  Stubborn objects are treated less efficiently than pointer-free
-(atomic) objects.
-
-A rough rule of thumb is that, in the absence of VM information, garbage
-collection pauses are proportional to the amount of pointerful storage
-plus the amount of modified "stubborn" storage that is reachable during
-the collection.
-
-Initial allocation of stubborn objects takes longer than allocation
-of other objects, since other data structures need to be maintained.
-
-We recommend against random use of stubborn objects in client
-code, since bugs caused by inappropriate writes to stubborn objects
-are likely to be very infrequently observed and hard to trace.
-However, their use may be appropriate in a few carefully written
-library routines that do not make the objects themselves available
-for writing by client code.
+2. Information supplied by the programmer.  The object is considered dirty
+   after a call to `GC_end_stubborn_change` provided the library has been
+   compiled suitably. It is typically not worth using for short-lived objects.
+   Note that bugs caused by a missing `GC_end_stubborn_change` call are
+   likely to be observed very infrequently and hard to trace.
 
 
 ## Bugs
@@ -515,9 +527,31 @@ per MB of accessible memory that needs to be scanned and processor.
 Your mileage may vary.)  The incremental/generational collection facility
 may help in some cases.
 
-Please address bug reports [here](mailto:gc@linux.hpl.hp.com).  If you are
-contemplating a major addition, you might also send mail to ask whether
-it's already been done (or whether we tried and discarded it).
+
+## Feedback, Contribution, Questions and Notifications
+
+Please address bug reports and new feature ideas to
+[GitHub issues](https://github.com/ivmai/bdwgc/issues).  Before the
+submission please check that it has not been done yet by someone else.
+
+If you want to contribute, submit
+a [pull request](https://github.com/ivmai/bdwgc/pulls) to GitHub.
+
+If you need help, use
+[Stack Overflow](https://stackoverflow.com/questions/tagged/boehm-gc).
+Older technical discussions are available in `bdwgc` mailing list archive - it
+can be downloaded as a
+[compressed file](https://github.com/ivmai/bdwgc/files/1038163/bdwgc-mailing-list-archive-2017_04.tar.gz)
+or browsed at [Narkive](http://bdwgc.opendylan.narkive.com).
+
+To get new release announcements, subscribe to
+[RSS feed](https://github.com/ivmai/bdwgc/releases.atom).
+(To receive the notifications by email, a 3rd-party free service like
+[IFTTT RSS Feed](https://ifttt.com/feed) can be setup.)
+To be notified on all issues, please
+[watch](https://github.com/ivmai/bdwgc/watchers) the project on
+GitHub.
+
 
 ## Copyright & Warranty
 
@@ -526,7 +560,7 @@ it's already been done (or whether we tried and discarded it).
  * Copyright (c) 1996-1999 by Silicon Graphics.  All rights reserved.
  * Copyright (c) 1999-2011 by Hewlett-Packard Development Company.
 
-The file linux_threads.c is also
+The files pthread_stop_world.c and pthread_support.c are also
 
  * Copyright (c) 1998 by Fergus Henderson.  All rights reserved.
 

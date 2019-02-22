@@ -390,7 +390,11 @@ namespace vm
             return 0;
 
         if (d->method->is_inflated)
-            vm::Exception::Raise(vm::Exception::GetNotSupportedException("IL2CPP does not support marshaling delegates that point to generic methods."));
+        {
+            std::string methodName = il2cpp::vm::Method::GetFullName(d->method);
+            std::string errorMessage = "IL2CPP does not support marshaling delegates that point to generic methods. The generic method we're attemping to marshal is: " + methodName;
+            vm::Exception::Raise(vm::Exception::GetNotSupportedException(errorMessage.c_str()));
+        }
 
         if (IsFakeDelegateMethodMarshaledFromNativeCode(d->method))
             return reinterpret_cast<intptr_t>(d->method->methodPointer);

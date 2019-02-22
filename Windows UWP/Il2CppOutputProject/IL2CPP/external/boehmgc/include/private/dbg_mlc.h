@@ -30,6 +30,8 @@
 # include "gc_backptr.h"
 #endif
 
+EXTERN_C_BEGIN
+
 #if CPP_WORDSZ == 32
 # define START_FLAG (word)0xfedcedcb
 # define END_FLAG (word)0xbcdecdef
@@ -78,7 +80,7 @@ typedef struct {
     /* We're careful never to overwrite a value with lsb 0.     */
 #   if ALIGNMENT == 1
       /* Fudge back pointer to be even. */
-#     define HIDE_BACK_PTR(p) GC_HIDE_POINTER(~1 & (GC_word)(p))
+#     define HIDE_BACK_PTR(p) GC_HIDE_POINTER(~1 & (word)(p))
 #   else
 #     define HIDE_BACK_PTR(p) GC_HIDE_POINTER(p)
 #   endif
@@ -121,8 +123,7 @@ typedef struct {
 #define SIMPLE_ROUNDED_UP_WORDS(n) BYTES_TO_WORDS((n) + WORDS_TO_BYTES(1) - 1)
 
 /* ADD_CALL_CHAIN stores a (partial) call chain into an object  */
-/* header.  It may be called with or without the allocation     */
-/* lock.                                                        */
+/* header; it should be called with the allocation lock held.   */
 /* PRINT_CALL_CHAIN prints the call chain stored in an object   */
 /* to stderr.  It requires that we do not hold the lock.        */
 #if defined(SAVE_CALL_CHAIN)
@@ -157,10 +158,25 @@ typedef struct {
 #endif
 
 #if defined(KEEP_BACK_PTRS) || defined(MAKE_BACK_GRAPH)
-# define GC_HAS_DEBUG_INFO(p) \
-        ((*((word *)p) & 1) && GC_has_other_debug_info(p) > 0)
+# ifdef SHORT_DBG_HDRS
+#   error Non-ptr stored in object results in GC_HAS_DEBUG_INFO malfunction
+    /* We may mistakenly conclude that p has a debugging wrapper.       */
+# endif
+# if defined(PARALLEL_MARK) && defined(KEEP_BACK_PTRS)
+#   define GC_HAS_DEBUG_INFO(p) \
+                ((AO_load((volatile AO_t *)(p)) & 1) != 0 \
+                 && GC_has_other_debug_info(p) > 0)
+                        /* Atomic load is used as GC_store_back_pointer */
+                        /* stores oh_back_ptr atomically (p might point */
+                        /* to the field); this prevents a TSan warning. */
+# else
+#   define GC_HAS_DEBUG_INFO(p) \
+                ((*(word *)(p) & 1) && GC_has_other_debug_info(p) > 0)
+# endif
 #else
 # define GC_HAS_DEBUG_INFO(p) (GC_has_other_debug_info(p) > 0)
-#endif
+#endif /* !KEEP_BACK_PTRS && !MAKE_BACK_GRAPH */
+
+EXTERN_C_END
 
 #endif /* _DBG_MLC_H */

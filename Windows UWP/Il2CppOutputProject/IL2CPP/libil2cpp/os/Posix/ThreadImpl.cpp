@@ -135,6 +135,23 @@ namespace os
         m_StackSize = newsize;
     }
 
+    int ThreadImpl::GetMaxStackSize()
+    {
+#if IL2CPP_TARGET_DARWIN || IL2CPP_TARGET_LINUX
+        struct rlimit lim;
+
+        /* If getrlimit fails, we don't enforce any limits. */
+        if (getrlimit(RLIMIT_STACK, &lim))
+            return INT_MAX;
+        /* rlim_t is an unsigned long long on 64bits OSX but we want an int response. */
+        if (lim.rlim_max > (rlim_t)INT_MAX)
+            return INT_MAX;
+        return (int)lim.rlim_max;
+#else
+        return INT_MAX;
+#endif
+    }
+
     void ThreadImpl::SetPriority(ThreadPriority priority)
     {
         ////TODO

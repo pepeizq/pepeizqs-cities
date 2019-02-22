@@ -1,0 +1,2 @@
+\src\tier0\threadtools.cpp (3220) : Assertion Failed: Illegal termination of worker thread 'SocketThread'
+\src\tier0\threadtools.cpp (3220) : Assertion Failed: Illegal termination of worker thread 'Thread(0x38AA5A90/0x00000790/0x'

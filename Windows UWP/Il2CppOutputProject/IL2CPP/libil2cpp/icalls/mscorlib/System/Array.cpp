@@ -2,6 +2,7 @@
 #include <memory>
 #include "il2cpp-object-internals.h"
 #include "il2cpp-class-internals.h"
+#include "gc/GarbageCollector.h"
 #include "icalls/mscorlib/System/Array.h"
 #include "utils/Exception.h"
 #include "vm/Array.h"
@@ -60,7 +61,7 @@ namespace System
         if (bounds != NULL)
             i32bounds = (int32_t*)il2cpp_array_addr(bounds, int32_t, 0);
 
-        Il2CppClass* arrayType = il2cpp::vm::Class::GetArrayClassCached(il2cpp::vm::Class::FromIl2CppType(elementType->type), il2cpp::vm::Array::GetLength(lengths));
+        Il2CppClass* arrayType = il2cpp::vm::Class::GetArrayClassCached(il2cpp::vm::Class::FromIl2CppType(elementType->type), il2cpp::vm::Array::GetLength(lengths), bounds != NULL);
 
         if (arrayType == NULL)
             vm::Exception::Raise(vm::Exception::GetInvalidOperationException(FormatCreateInstanceException(elementType->type).c_str()));
@@ -137,6 +138,7 @@ namespace System
                 IL2CPP_NOT_IMPLEMENTED_ICALL_NO_ASSERT(Array::FastCopy, "Need GC write barrier");
                 memcpy(il2cpp_array_addr_with_size(dest, element_size, dest_idx + i), Object::Unbox(elem), element_size);
             }
+            gc::GarbageCollector::SetWriteBarrier((void**)il2cpp_array_addr_with_size(dest, element_size, dest_idx + i), element_size * length);
             return true;
         }
 
@@ -163,13 +165,17 @@ namespace System
             IL2CPP_ASSERT(Type::IsReference(&dest_class->byval_arg));
         }
 
-        IL2CPP_ASSERT(il2cpp_array_element_size(dest->klass) == il2cpp_array_element_size(source->klass));
+        element_size = il2cpp_array_element_size(dest->klass);
+
+        IL2CPP_ASSERT(element_size == il2cpp_array_element_size(source->klass));
 
         IL2CPP_NOT_IMPLEMENTED_ICALL_NO_ASSERT(Array::FastCopy, "Need GC write barrier");
         memmove(
-            il2cpp_array_addr_with_size(dest, il2cpp_array_element_size(dest->klass), dest_idx),
-            il2cpp_array_addr_with_size(source, il2cpp_array_element_size(source->klass), source_idx),
-            length * il2cpp_array_element_size(dest->klass));
+            il2cpp_array_addr_with_size(dest, element_size, dest_idx),
+            il2cpp_array_addr_with_size(source, element_size, source_idx),
+            length * element_size);
+
+        gc::GarbageCollector::SetWriteBarrier((void**)il2cpp_array_addr_with_size(dest, element_size, dest_idx), length * element_size);
 
         return true;
     }
@@ -496,8 +502,8 @@ namespace System
 
         if (Object::IsInst(value, elementClass))
         {
-            // write barrier
             memcpy(elementAddress, Object::Unbox(value), elementSize);
+            gc::GarbageCollector::SetWriteBarrier((void**)elementAddress, elementSize);
             return;
         }
 

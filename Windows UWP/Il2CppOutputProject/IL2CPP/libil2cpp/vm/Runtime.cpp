@@ -254,6 +254,7 @@ namespace vm
         DEFAULTS_INIT(dbnull_class, "System", "DBNull");
         DEFAULTS_INIT_TYPE_OPTIONAL(error_wrapper_class, "System.Runtime.InteropServices", "ErrorWrapper", Il2CppErrorWrapper);
         DEFAULTS_INIT(missing_class, "System.Reflection", "Missing");
+        DEFAULTS_INIT(attribute_class, "System", "Attribute");
         DEFAULTS_INIT(customattribute_data_class, "System.Reflection", "CustomAttributeData");
         DEFAULTS_INIT(value_type_class, "System", "ValueType");
         DEFAULTS_INIT(key_value_pair_class, "System.Collections.Generic", "KeyValuePair`2");
@@ -267,6 +268,19 @@ namespace vm
                 il2cpp_defaults.threadpool_wait_callback_class, "PerformWaitCallback", 0);
 #endif
 
+#if NET_4_0
+        DEFAULTS_INIT_OPTIONAL(sbyte_shared_enum, "System", "SByteEnum");
+        DEFAULTS_INIT_OPTIONAL(int16_shared_enum, "System", "Int16Enum");
+        DEFAULTS_INIT_OPTIONAL(int32_shared_enum, "System", "Int32Enum");
+        DEFAULTS_INIT_OPTIONAL(int64_shared_enum, "System", "Int64Enum");
+
+        DEFAULTS_INIT_OPTIONAL(byte_shared_enum, "System", "ByteEnum");
+        DEFAULTS_INIT_OPTIONAL(uint16_shared_enum, "System", "UInt16Enum");
+        DEFAULTS_INIT_OPTIONAL(uint32_shared_enum, "System", "UInt32Enum");
+        DEFAULTS_INIT_OPTIONAL(uint64_shared_enum, "System", "UInt64Enum");
+#endif
+
+
         Image::InitNestedTypes(il2cpp_defaults.corlib);
 
         const Il2CppAssembly* systemDll = Assembly::Load("System");
@@ -279,6 +293,7 @@ namespace vm
         {
             const Il2CppImage* windowsRuntimeMetadataImage = Assembly::GetImage(windowsRuntimeMetadataAssembly);
             il2cpp_defaults.ireference_class = Class::FromName(windowsRuntimeMetadataImage, "Windows.Foundation", "IReference`1");
+            il2cpp_defaults.ireferencearray_class = Class::FromName(windowsRuntimeMetadataImage, "Windows.Foundation", "IReferenceArray`1");
             il2cpp_defaults.ikey_value_pair_class = Class::FromName(windowsRuntimeMetadataImage, "Windows.Foundation.Collections", "IKeyValuePair`2");
             il2cpp_defaults.ikey_value_pair_class = Class::FromName(windowsRuntimeMetadataImage, "Windows.Foundation.Collections", "IKeyValuePair`2");
             il2cpp_defaults.windows_foundation_uri_class = Class::FromName(windowsRuntimeMetadataImage, "Windows.Foundation", "Uri");
@@ -302,8 +317,11 @@ namespace vm
 
         Il2CppAppDomain* ad = (Il2CppAppDomain*)Object::NewPinned(il2cpp_defaults.appdomain_class);
         ad->data = domain;
+        gc::GarbageCollector::SetWriteBarrier((void**)&ad->data);
         domain->domain = ad;
+        gc::GarbageCollector::SetWriteBarrier((void**)&domain->domain);
         domain->setup = setup;
+        gc::GarbageCollector::SetWriteBarrier((void**)&domain->setup);
         domain->domain_id = 1; // Only have a single domain ATM.
 
         domain->friendly_name = basepath(filename);

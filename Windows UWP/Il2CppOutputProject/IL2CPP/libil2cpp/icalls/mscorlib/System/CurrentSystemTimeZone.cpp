@@ -20,7 +20,7 @@ namespace mscorlib
 namespace System
 {
 #if NET_4_0
-    bool CurrentSystemTimeZone::GetTimeZoneData(int year, Il2CppArray** data, Il2CppArray** names, bool* daylight_inverted)
+    bool CurrentSystemTimeZone::GetTimeZoneData40(int year, Il2CppArray** data, Il2CppArray** names, bool* daylight_inverted)
 #else
     bool CurrentSystemTimeZone::GetTimeZoneData(int year, Il2CppArray** data, Il2CppArray** names)
 #endif

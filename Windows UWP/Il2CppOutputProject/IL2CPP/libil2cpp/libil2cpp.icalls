@@ -109,7 +109,7 @@ System.Convert::InternalFromBase64String(System.String,System.Boolean) mscorlib:
 System.CurrentSystemTimeZone::GetTimeZoneData(System.Int32,System.Int64[]&,System.String[]&) mscorlib::System::CurrentSystemTimeZone::GetTimeZoneData
 
 // System.CurrentSystemTimeZone 4.0
-System.CurrentSystemTimeZone::GetTimeZoneData(System.Int32,System.Int64[]&,System.String[]&,System.Boolean&) mscorlib::System::CurrentSystemTimeZone::GetTimeZoneData
+System.CurrentSystemTimeZone::GetTimeZoneData(System.Int32,System.Int64[]&,System.String[]&,System.Boolean&) mscorlib::System::CurrentSystemTimeZone::GetTimeZoneData40
 
 // System.ComponentModel.Win32Exception
 System.ComponentModel.Win32Exception::W32ErrorMessage(System.Int32) System::System::ComponentModel::Win32Exception::W32ErrorMessage
@@ -533,8 +533,8 @@ System.Reflection.Emit.CustomAttributeBuilder::GetBlob(System.Reflection.Assembl
 System.Reflection.Emit.DerivedType::create_unmanaged_type(System.Type) mscorlib::System::Reflection::Emit::DerivedType::create_unmanaged_type
 
 // System.Reflection.Emit.DynamicMethod
-System.Reflection.Emit.DynamicMethod::create_dynamic_method(System.Reflection.Emit.DynamicMethod) mscorlib::System::Reflection::Emit::DynamicMethod::create_dynamic_method
-System.Reflection.Emit.DynamicMethod::destroy_dynamic_method(System.Reflection.Emit.DynamicMethod) mscorlib::System::Reflection::Emit::DynamicMethod::destroy_dynamic_method
+System.Reflection.Emit.DynamicMethod::create_dynamic_method(System.Reflection.Emit.DynamicMethod, System.Reflection.Emit.DynamicMethod) mscorlib::System::Reflection::Emit::DynamicMethod::create_dynamic_method
+System.Reflection.Emit.DynamicMethod::destroy_dynamic_method(System.Reflection.Emit.DynamicMethod, System.Reflection.Emit.DynamicMethod) mscorlib::System::Reflection::Emit::DynamicMethod::destroy_dynamic_method
 
 // System.Reflection.Emit.EnumBuilder
 System.Reflection.Emit.EnumBuilder::setup_enum_type(System.Type) mscorlib::System::Reflection::Emit::EnumBuilder::setup_enum_type

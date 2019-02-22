@@ -1653,8 +1653,8 @@ MonoBehaviour:
   trabajo: 0
   ingresos: 0
   botonImagen: {fileID: 21300000, guid: ca2c403a82d2dc14691628c6af5b0f60, type: 3}
-  luzIntesidad: 1
-  luzRango: 0.5
+  luzIntesidad: 2
+  luzRango: 0.3
   luzProbabilidad: 10
   dimensiones: {x: 1, y: 1}
   rotacionColocacion: -90

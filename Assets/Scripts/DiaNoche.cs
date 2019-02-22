@@ -142,7 +142,7 @@ public class DiaNoche : MonoBehaviour {
 
     public void ActualizarLuces()
     {
-        if ((tiempoDia > 0.7f && tiempoDia <= 0.99f) || (tiempoDia > 0 && tiempoDia < 0.3f))
+        if ((tiempoDia > 0.7f && tiempoDia <= 0.99f) || (tiempoDia > 0 && tiempoDia < 0.25f))
         {
             encender = true;
         }

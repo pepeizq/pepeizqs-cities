@@ -145,6 +145,11 @@ namespace os
         ::QueueUserAPC(reinterpret_cast<PAPCFUNC>(func), m_ThreadHandle, reinterpret_cast<ULONG_PTR>(context));
     }
 
+    int ThreadImpl::GetMaxStackSize()
+    {
+        return INT_MAX;
+    }
+
 namespace
 {
     // It would be nice to always use CoGetApartmentType but it's only available on Windows 7 and later.

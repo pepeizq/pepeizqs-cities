@@ -109,6 +109,9 @@ namespace gc
                 void* *entries;
                 entries = (void**)GarbageCollector::AllocateFixed(sizeof(void*) * new_size, NULL);
                 memcpy(entries, handles->entries, sizeof(void*) * handles->size);
+
+                GarbageCollector::SetWriteBarrier(entries, sizeof(void*) * handles->size);
+
                 void** previous_entries = handles->entries;
                 handles->entries = entries;
                 GarbageCollector::FreeFixed(previous_entries);
@@ -151,6 +154,8 @@ namespace gc
         handles->bitmap[slot] |= 1 << i;
         slot = slot * 32 + i;
         handles->entries[slot] = obj;
+        GarbageCollector::SetWriteBarrier(handles->entries + slot);
+
         if (handles->type <= HANDLE_WEAK_TRACK)
         {
             if (obj)

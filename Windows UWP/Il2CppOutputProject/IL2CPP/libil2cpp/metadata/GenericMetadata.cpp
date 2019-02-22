@@ -143,7 +143,7 @@ namespace metadata
     static Il2CppGenericClassSet s_GenericClassSet;
 
 
-    Il2CppGenericClass* GenericMetadata::GetGenericClass(Il2CppClass* containerClass, const Il2CppGenericInst* inst)
+    Il2CppGenericClass* GenericMetadata::GetGenericClass(const Il2CppClass* containerClass, const Il2CppGenericInst* inst)
     {
         return GetGenericClass(MetadataCache::GetIndexForTypeDefinition(containerClass), inst);
     }

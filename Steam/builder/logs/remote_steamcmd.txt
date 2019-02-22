@@ -1,0 +1,53 @@
+
+
+[2019-02-22 17:26:01] Generated client id: 18124827777590915272
+[2019-02-22 17:26:01] Listening for IPv4 broadcast on: 27036
+[2019-02-22 17:26:01] Listening for connections on: 0.0.0.0:27037
+[2019-02-22 17:26:01] Received broadcast message from client 14016551356113722758 (LAPTOP-DP9MR9G9): 192.168.1.34:27036
+[2019-02-22 17:26:05] Received broadcast message from client 14016551356113722758 (LAPTOP-DP9MR9G9): 192.168.1.34:27036
+[2019-02-22 17:26:28] Received broadcast message from client 14016551356113722758 (LAPTOP-DP9MR9G9): 192.168.1.34:27036
+
+
+[2019-02-22 17:28:33] Loaded client id: 18124827777590915272
+[2019-02-22 17:28:33] Listening for IPv4/IPv6 broadcast on: 27036
+[2019-02-22 17:28:33] Listening for connections on: 0.0.0.0:27036
+
+
+[2019-02-22 17:29:04] Loaded client id: 18124827777590915272
+[2019-02-22 17:29:04] Listening for IPv4/IPv6 broadcast on: 27036
+[2019-02-22 17:29:04] Listening for connections on: 0.0.0.0:27036
+
+
+[2019-02-22 17:29:21] Loaded client id: 18124827777590915272
+[2019-02-22 17:29:21] Listening for IPv4/IPv6 broadcast on: 27036
+[2019-02-22 17:29:21] Listening for connections on: 0.0.0.0:27036
+
+
+[2019-02-22 17:29:58] Loaded client id: 18124827777590915272
+[2019-02-22 17:29:58] Listening for IPv4/IPv6 broadcast on: 27036
+[2019-02-22 17:29:58] Listening for connections on: 0.0.0.0:27036
+
+
+[2019-02-22 17:30:43] Loaded client id: 18124827777590915272
+[2019-02-22 17:30:43] Listening for IPv4/IPv6 broadcast on: 27036
+[2019-02-22 17:30:43] Listening for connections on: 0.0.0.0:27036
+
+
+[2019-02-22 17:31:32] Loaded client id: 18124827777590915272
+[2019-02-22 17:31:32] Listening for IPv4/IPv6 broadcast on: 27036
+[2019-02-22 17:31:32] Listening for connections on: 0.0.0.0:27036
+
+
+[2019-02-22 17:32:04] Loaded client id: 18124827777590915272
+[2019-02-22 17:32:04] Listening for IPv4/IPv6 broadcast on: 27036
+[2019-02-22 17:32:04] Listening for connections on: 0.0.0.0:27036
+
+
+[2019-02-22 17:32:58] Loaded client id: 18124827777590915272
+[2019-02-22 17:32:58] Listening for IPv4/IPv6 broadcast on: 27036
+[2019-02-22 17:32:58] Listening for connections on: 0.0.0.0:27036
+
+
+[2019-02-22 17:34:32] Loaded client id: 18124827777590915272
+[2019-02-22 17:34:32] Listening for IPv4/IPv6 broadcast on: 27036
+[2019-02-22 17:34:32] Listening for connections on: 0.0.0.0:27036

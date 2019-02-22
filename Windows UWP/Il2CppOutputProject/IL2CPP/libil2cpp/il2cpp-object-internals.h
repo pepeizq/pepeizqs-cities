@@ -5,6 +5,18 @@
 #include <stddef.h>
 #include "il2cpp-class-internals.h"
 
+#if defined(__cplusplus)
+extern "C"
+{
+#endif // __cplusplus
+// We cannot include il2cpp-api.h here because generated code contains il2cpp
+// api declarations with mismatching parameter declarations (char* vs const char*).
+// So we only declare il2cpp_gc_wbarrier_set_field here.
+IL2CPP_EXPORT void il2cpp_gc_wbarrier_set_field(Il2CppObject * obj, void **targetAddress, void *object);
+#if defined(__cplusplus)
+}
+#endif // __cplusplus
+
 typedef struct Il2CppClass Il2CppClass;
 typedef struct MethodInfo MethodInfo;
 typedef struct PropertyInfo PropertyInfo;
@@ -113,14 +125,12 @@ typedef struct Il2CppString
 #endif
 
 #define IL2CPP_OBJECT_SETREF(obj, fieldname, value) do {\
-        /* mono_gc_wbarrier_set_field ((MonoObject*)(obj), &((obj)->fieldname), (MonoObject*)value); */ \
-        (obj)->fieldname = (value); \
+        il2cpp_gc_wbarrier_set_field((Il2CppObject *)(obj), (void**)&(obj)->fieldname, (value));\
     } while (0)
 
 /* This should be used if 's' can reside on the heap */
 #define IL2CPP_STRUCT_SETREF(s, field, value) do {\
-        /* mono_gc_wbarrier_generic_store (&((s)->field), (MonoObject*)(value)); */ \
-        (s)->field = (value); \
+        il2cpp_gc_wbarrier_set_field((Il2CppObject *)(s), (void**)&(s)->field, (value));\
     } while (0)
 
 typedef struct Il2CppReflectionType
@@ -672,6 +682,21 @@ typedef struct Il2CppMarshalByRefObject
 struct Il2CppComObject : Il2CppObject
 {
     Il2CppIUnknown* identity;
+
+    // Same native object can be marshaled to managed code several times. If that happens,
+    // we have to marshal it to the same RCW (same Il2CppComObject). We use a map of
+    // IUnknown pointer -> weak GC handles to achieve it, and that works. When managed code
+    // stops referencing the RCW, GC just garbage collects it and the finalizer will clean it
+    // from our map. So far so good, eh?
+    //
+    // Enter Marshal.ReleaseComObject. This beast is designed to release the underlying COM object,
+    // but ONLY after we used N amount of times (where N is the amount of times we marshaled
+    // IUnknown into Il2CppComObject). In order to make it work, we need to implement ref counting.
+    // This ref count gets incremented each time we marshal IUnknown to Il2CppComObject,
+    // and gets decremented when Marshal.ReleaseComObject gets called. Fortunately, since we
+    // live in a world of fairies and garbage collectors, we don't actually have to release it
+    // manually in order for it to get cleaned up automatically in the future.
+    volatile int32_t refCount;
 };
 #endif //__cplusplus
 

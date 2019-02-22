@@ -248,6 +248,7 @@
 #define mono_class_get_element_class il2cpp_class_get_element_class
 #define mono_class_get_type_token il2cpp_class_get_type_token
 #define mono_type_is_byref il2cpp_type_is_byref
+#define mono_type_get_attrs il2cpp_type_get_attrs
 #define mono_class_is_enum il2cpp_class_is_enum
 #define mono_method_get_flags il2cpp_method_get_flags
 #define mono_method_get_token il2cpp_method_get_token
@@ -458,5 +459,8 @@ char* il2cpp_assembly_get_full_name(MonoAssembly *assembly);
 const MonoMethod* il2cpp_get_seq_point_method(Il2CppSequencePoint *seqPoint);
 const MonoClass* il2cpp_get_class_from_index(int index);
 const MonoType* il2cpp_get_type_from_index(int index);
-
+const MonoType* il2cpp_get_type_from_method_context(MonoType* type, const MonoMethod* method);
+const MonoType* il2cpp_type_inflate(MonoType* type, const MonoGenericContext* context);
+void il2cpp_debugger_get_method_execution_context_and_header_Info(const MonoMethod* method, uint32_t* executionContextInfoCount, const Il2CppMethodExecutionContextInfo **executionContextInfo, const Il2CppMethodHeaderInfo **headerInfo, const Il2CppMethodScope **scopes);
+Il2CppThreadUnwindState* il2cpp_debugger_get_thread_context ();
 #endif // RUNTIME_IL2CPP

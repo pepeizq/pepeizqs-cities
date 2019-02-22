@@ -12,6 +12,12 @@
       .pdb;
     </AllowedReferenceRelatedFileExtensions>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'!='MasterWithLTCG'">
+    <UnityPlayerConfiguration>$(Configuration)</UnityPlayerConfiguration>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='MasterWithLTCG'">
+    <UnityPlayerConfiguration>Master</UnityPlayerConfiguration>
+  </PropertyGroup>
   <ItemGroup>
     <Resource Include="$(MSBuildThisFileDirectory)Resource.res">
     </Resource>
@@ -207,10 +213,6 @@
       <DeploymentContent>true</DeploymentContent>
       <ExcludeFromResourceIndex>true</ExcludeFromResourceIndex>
     </None>
-    <None Include="$(MSBuildThisFileDirectory)Data\il2cpp_data\Resources\System.dll-resources.dat">
-      <DeploymentContent>true</DeploymentContent>
-      <ExcludeFromResourceIndex>true</ExcludeFromResourceIndex>
-    </None>
     <None Include="$(MSBuildThisFileDirectory)Data\Resources\unity default resources">
       <DeploymentContent>true</DeploymentContent>
       <ExcludeFromResourceIndex>true</ExcludeFromResourceIndex>
@@ -221,7 +223,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="$(UnityWSAPlayerDir)Players\UAP\il2cpp\$(PlatformTarget)\$(Configuration)\UnityPlayer.winmd">
+    <Reference Include="$(UnityWSAPlayerDir)Players\UAP\il2cpp\$(PlatformTarget)\$(UnityPlayerConfiguration)\UnityPlayer.winmd">
       <IsWinMDFile>true</IsWinMDFile>
     </Reference>
     <None Include="$(OutDir)GameAssembly.dll">
@@ -230,12 +232,9 @@
     <None Include="$(OutDir)GameAssembly.pdb">
       <DeploymentContent>true</DeploymentContent>
     </None>
-    <None Include="$(OutDir)SymbolMap">
-      <DeploymentContent>true</DeploymentContent>
-    </None>
   </ItemGroup>
   <ItemGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64' OR '$(Configuration)|$(Platform)'=='Release|x64'">
-    <None Include="$(UnityWSAPlayerDir)Players\UAP\il2cpp\$(PlatformTarget)\$(Configuration)\WinPixEventRuntime_UAP.dll">
+    <None Include="$(UnityWSAPlayerDir)Players\UAP\il2cpp\$(PlatformTarget)\$(UnityPlayerConfiguration)\WinPixEventRuntime_UAP.dll">
       <DeploymentContent>true</DeploymentContent>
     </None>
   </ItemGroup>

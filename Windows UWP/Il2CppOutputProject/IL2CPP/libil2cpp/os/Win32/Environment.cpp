@@ -77,31 +77,27 @@ namespace os
 
     std::string Environment::GetEnvironmentVariable(const std::string& name)
     {
-        Il2CppChar buffer[BUFFER_SIZE];
+        std::vector<Il2CppChar> buffer(BUFFER_SIZE);
 
         const UTF16String varName = utils::StringUtils::Utf8ToUtf16(name.c_str());
 
-        DWORD ret = GetEnvironmentVariableW(varName.c_str(), buffer, BUFFER_SIZE);
+        DWORD ret = GetEnvironmentVariableW(varName.c_str(), &buffer[0], BUFFER_SIZE);
 
         if (ret == 0) // Not found
             return std::string();
 
         if (ret < BUFFER_SIZE) // Found and fits into buffer
-            return utils::StringUtils::Utf16ToUtf8(buffer);
+            return utils::StringUtils::Utf16ToUtf8(&buffer[0]);
 
         // Requires bigger buffer
         IL2CPP_ASSERT(ret >= BUFFER_SIZE);
 
-        Il2CppChar* bigbuffer = new Il2CppChar[ret + 1];
+        buffer.resize(ret + 1);
 
-        ret = GetEnvironmentVariableW(varName.c_str(), bigbuffer, ret + 1);
+        ret = GetEnvironmentVariableW(varName.c_str(), &buffer[0], ret + 1);
         IL2CPP_ASSERT(ret != 0);
 
-        std::string variableValue(utils::StringUtils::Utf16ToUtf8(bigbuffer));
-
-        delete bigbuffer;
-
-        return variableValue;
+        return utils::StringUtils::Utf16ToUtf8(&buffer[0]);
     }
 
     void Environment::SetEnvironmentVariable(const std::string& name, const std::string& value)
@@ -183,10 +179,45 @@ namespace os
 #endif
     }
 
+    std::vector<std::string> SplitLogicalDriveString(Il2CppChar *buffer, DWORD size)
+    {
+        std::vector<std::string> retVal;
+        Il2CppChar *ptr = buffer;
+
+        for (DWORD i = 0; i < size; ++i)
+        {
+            Il2CppChar c = buffer[i];
+            if (c == 0)
+            {
+                retVal.push_back(utils::StringUtils::Utf16ToUtf8(ptr));
+                ptr = &buffer[i + 1];
+            }
+        }
+
+        return retVal;
+    }
+
     std::vector<std::string> Environment::GetLogicalDrives()
     {
-        IL2CPP_NOT_IMPLEMENTED_ICALL(Environment::GetLogicalDrives);
+#if IL2CPP_TARGET_WINDOWS_DESKTOP
+        std::vector<Il2CppChar> buffer(BUFFER_SIZE);
+
+        DWORD size = GetLogicalDriveStringsW(BUFFER_SIZE, &buffer[0]);
+
+        if (size == 0)
+            return std::vector<std::string>();
+
+        if (size > BUFFER_SIZE)
+        {
+            buffer.resize(size + 1);
+            size = GetLogicalDriveStringsW(size + 1, &buffer[0]);
+            IL2CPP_ASSERT(size != 0);
+        }
+
+        return SplitLogicalDriveString(&buffer[0], size);
+#else
         return std::vector<std::string>();
+#endif
     }
 
     void Environment::Exit(int result)

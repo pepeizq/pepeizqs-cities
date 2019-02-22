@@ -159,7 +159,7 @@ void (GC_CALLBACK *GC_is_visible_print_proc)(void * p) =
 
 #ifndef THREADS
 /* Could p be a stack address? */
-   STATIC GC_bool GC_on_stack(ptr_t p)
+   STATIC GC_bool GC_on_stack(void *p)
    {
 #    ifdef STACK_GROWS_DOWN
        if ((word)p >= (word)GC_approx_sp()
@@ -178,7 +178,7 @@ void (GC_CALLBACK *GC_is_visible_print_proc)(void * p) =
 
 /* Check that p is visible                                              */
 /* to the collector as a possibly pointer containing location.          */
-/* If it isn't invoke *GC_is_visible_print_proc.                        */
+/* If it isn't, invoke *GC_is_visible_print_proc.                       */
 /* Returns the argument in all cases.  May erroneously succeed          */
 /* in hard cases.  (This is intended for debugging use with             */
 /* untyped allocations.  The idea is that it should be possible, though */
@@ -215,7 +215,7 @@ GC_API void * GC_CALL GC_is_visible(void *p)
         } else {
             /* p points to the heap. */
             word descr;
-            ptr_t base = GC_base(p);    /* Should be manually inlined? */
+            ptr_t base = (ptr_t)GC_base(p); /* Should be manually inlined? */
 
             if (base == 0) goto fail;
             if (HBLKPTR(base) != HBLKPTR(p)) hhdr = HDR((word)p);

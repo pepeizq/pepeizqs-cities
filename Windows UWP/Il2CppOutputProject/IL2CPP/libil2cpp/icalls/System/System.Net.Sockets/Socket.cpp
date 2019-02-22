@@ -1751,7 +1751,17 @@ namespace Sockets
 
     bool Socket::IsProtocolSupported_internal(int32_t networkInterface)
     {
+        // The networkInterface argument is from the
+        // System.Net.NetworkInformation.NetworkInterfaceComponent enum
+        // 0 => IPv4
+        // 1 => IPv6
+#if IL2CPP_SUPPORT_IPV6
+        // This platform supports both IPv6 and IPv4.
         return true;
+#else
+        // This platform only supports IPv4.
+        return networkInterface == 0;
+#endif
     }
 
 #endif

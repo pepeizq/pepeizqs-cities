@@ -31,6 +31,11 @@
 #ifndef GC_H
 #define GC_H
 
+/* Help debug mixed up preprocessor symbols.    */
+#if (defined(WIN64) && !defined(_WIN64)) && defined(_MSC_VER)
+#pragma message("Warning: Expecting _WIN64 for x64 targets! Notice the leading underscore!")
+#endif
+
 #include "gc_version.h"
         /* Define version numbers here to allow test on build machine   */
         /* for cross-builds.  Note that this defines the header         */
@@ -54,7 +59,7 @@ typedef void * GC_PTR;  /* preserved only for backward compatibility    */
 /* better choices.  But those had incorrect definitions on some older   */
 /* systems.  Notably "typedef int size_t" is WRONG.                     */
 #ifdef _WIN64
-# ifdef __int64
+# if defined(__int64) && !defined(CPPCHECK)
     typedef unsigned __int64 GC_word;
     typedef __int64 GC_signed_word;
 # else
@@ -130,31 +135,49 @@ GC_API GC_on_heap_resize_proc GC_CALL GC_get_on_heap_resize(void);
                         /* acquire the GC lock (to avoid data races).   */
 
 typedef enum {
-    GC_EVENT_START,
+    GC_EVENT_START /* COLLECTION */,
     GC_EVENT_MARK_START,
     GC_EVENT_MARK_END,
     GC_EVENT_RECLAIM_START,
     GC_EVENT_RECLAIM_END,
-    GC_EVENT_END,
-    GC_EVENT_PRE_STOP_WORLD,
-    GC_EVENT_POST_STOP_WORLD,
-    GC_EVENT_PRE_START_WORLD,
-    GC_EVENT_POST_START_WORLD
-} GCEventType;
+    GC_EVENT_END /* COLLECTION */,
+    GC_EVENT_PRE_STOP_WORLD /* STOPWORLD_BEGIN */,
+    GC_EVENT_POST_STOP_WORLD /* STOPWORLD_END */,
+    GC_EVENT_PRE_START_WORLD /* STARTWORLD_BEGIN */,
+    GC_EVENT_POST_START_WORLD /* STARTWORLD_END */,
+    GC_EVENT_THREAD_SUSPENDED,
+    GC_EVENT_THREAD_UNSUSPENDED
+} GC_EventType;
 
-typedef void (GC_CALLBACK * GC_on_event_proc)(GCEventType /* event_type */);
-                        /* Invoked when the heap grows or shrinks.      */
-                        /* Called with the world stopped (and the       */
-                        /* allocation lock held).  May be 0.            */
-GC_API void GC_CALL GC_set_on_event(GC_on_event_proc);
-GC_API GC_on_event_proc GC_CALL GC_get_on_event(void);
+typedef void (GC_CALLBACK * GC_on_collection_event_proc)(GC_EventType);
+                        /* Invoked to indicate progress through the     */
+                        /* collection process.  Not used for thread     */
+                        /* suspend/resume notifications.  Called with   */
+                        /* the GC lock held (or, even, the world        */
+                        /* stopped).  May be 0 (means no notifier).     */
+GC_API void GC_CALL GC_set_on_collection_event(GC_on_collection_event_proc);
+GC_API GC_on_collection_event_proc GC_CALL GC_get_on_collection_event(void);
                         /* Both the supplied setter and the getter      */
                         /* acquire the GC lock (to avoid data races).   */
 
+#if defined(GC_THREADS) || defined(NN_PLATFORM_CTR) || defined(NN_BUILD_TARGET_PLATFORM_NX)
+  typedef void (GC_CALLBACK * GC_on_thread_event_proc)(GC_EventType,
+                                                void * /* thread_id */);
+                        /* Invoked when a thread is suspended or        */
+                        /* resumed during collection.  Called with the  */
+                        /* GC lock held (and the world stopped          */
+                        /* partially).  May be 0 (means no notifier).   */
+  GC_API void GC_CALL GC_set_on_thread_event(GC_on_thread_event_proc);
+  GC_API GC_on_thread_event_proc GC_CALL GC_get_on_thread_event(void);
+                        /* Both the supplied setter and the getter      */
+                        /* acquire the GC lock (to avoid data races).   */
+#endif
+
 GC_API GC_ATTR_DEPRECATED int GC_find_leak;
-                        /* Do not actually garbage collect, but simply  */
+                        /* Set to true to turn on the leak-finding mode */
+                        /* (do not actually garbage collect, but simply */
                         /* report inaccessible memory that was not      */
-                        /* deallocated with GC_free.  Initial value     */
+                        /* deallocated with GC_FREE).  Initial value    */
                         /* is determined by FIND_LEAK macro.            */
                         /* The value should not typically be modified   */
                         /* after GC initialization (and, thus, it does  */
@@ -249,7 +272,7 @@ GC_API GC_ATTR_DEPRECATED int GC_use_entire_heap;
 GC_API GC_ATTR_DEPRECATED int GC_full_freq;
                             /* Number of partial collections between    */
                             /* full collections.  Matters only if       */
-                            /* GC_incremental is set.                   */
+                            /* GC_is_incremental_mode().                */
                             /* Full collections are also triggered if   */
                             /* the collector detects a substantial      */
                             /* increase in the number of in-use heap    */
@@ -296,7 +319,7 @@ GC_API GC_ATTR_DEPRECATED GC_word GC_free_space_divisor;
                         /* bytes (bytes in "atomic" objects), plus      */
                         /* a rough estimate of the root set size.       */
                         /* N approximates GC tracing work per GC.       */
-                        /* Initially, GC_free_space_divisor = 3.        */
+                        /* The initial value is GC_FREE_SPACE_DIVISOR.  */
                         /* Increasing its value will use less space     */
                         /* but more collection time.  Decreasing it     */
                         /* will appreciably decrease collection time    */
@@ -305,6 +328,8 @@ GC_API GC_ATTR_DEPRECATED GC_word GC_free_space_divisor;
                         /* GC_call_with_alloc_lock() is required to     */
                         /* avoid data races (if the value is modified   */
                         /* after the GC is put to multi-threaded mode). */
+                        /* In version 7.1 (and before), the setter      */
+                        /* returned the old value.                      */
 GC_API void GC_CALL GC_set_free_space_divisor(GC_word);
 GC_API GC_word GC_CALL GC_get_free_space_divisor(void);
 
@@ -372,6 +397,20 @@ GC_API unsigned long GC_CALL GC_get_time_limit(void);
 
 /* Public procedures */
 
+/* Tell the collector to start various performance measurements.        */
+/* Only the total time taken by full collections is calculated, as      */
+/* of now.  And, currently, there is no way to stop the measurements.   */
+/* The function does not use any synchronization.  Defined only if the  */
+/* library has been compiled without NO_CLOCK.                          */
+GC_API void GC_CALL GC_start_performance_measurement(void);
+
+/* Get the total time of all full collections since the start of the    */
+/* performance measurements.  The measurement unit is one millisecond.  */
+/* Note that the returned value wraps around on overflow.               */
+/* The function does not use any synchronization.  Defined only if the  */
+/* library has been compiled without NO_CLOCK.                          */
+GC_API unsigned long GC_CALL GC_get_full_gc_total_time(void);
+
 /* Set whether the GC will allocate executable memory pages or not.     */
 /* A non-zero argument instructs the collector to allocate memory with  */
 /* the executable flag on.  Must be called before the collector is      */
@@ -387,6 +426,22 @@ GC_API void GC_CALL GC_set_pages_executable(int);
 /* GC_INIT) unless the former has no effect on the platform.  Does not  */
 /* use or need synchronization (i.e. acquiring the allocator lock).     */
 GC_API int GC_CALL GC_get_pages_executable(void);
+
+/* The setter and getter of the minimum value returned by the internal  */
+/* min_bytes_allocd().  The value should not be zero; the default value */
+/* is one.  Not synchronized.                                           */
+GC_API void GC_CALL GC_set_min_bytes_allocd(size_t);
+GC_API size_t GC_CALL GC_get_min_bytes_allocd(void);
+
+/* Set/get the size in pages of units operated by GC_collect_a_little.  */
+/* The value should not be zero.  Not synchronized.                     */
+GC_API void GC_CALL GC_set_rate(int);
+GC_API int GC_CALL GC_get_rate(void);
+
+/* Set/get the maximum number of prior attempts at the world-stop       */
+/* marking.  Not synchronized.                                          */
+GC_API void GC_CALL GC_set_max_prior_attempts(int);
+GC_API int GC_CALL GC_get_max_prior_attempts(void);
 
 /* Overrides the default handle-fork mode.  Non-zero value means GC     */
 /* should install proper pthread_atfork handlers.  Has effect only if   */
@@ -417,21 +472,24 @@ GC_API void GC_CALL GC_atfork_child(void);
 /* from the main program instead.                                       */
 GC_API void GC_CALL GC_init(void);
 
+/* Returns non-zero (TRUE) if and only if the collector is initialized  */
+/* (or, at least, the initialization is in progress).                   */
+GC_API int GC_CALL GC_is_init_called(void);
+
+/* Perform the collector shutdown.  (E.g. dispose critical sections on  */
+/* Win32 target.)  A duplicate invocation is a no-op.  GC_INIT should   */
+/* not be called after the shutdown.  See also GC_win32_free_heap().    */
 GC_API void GC_CALL GC_deinit(void);
 
 /* General purpose allocation routines, with roughly malloc calling     */
 /* conv.  The atomic versions promise that no relevant pointers are     */
 /* contained in the object.  The non-atomic versions guarantee that the */
-/* new object is cleared.  GC_malloc_stubborn promises that no changes  */
-/* to the object will occur after GC_end_stubborn_change has been       */
-/* called on the result of GC_malloc_stubborn.  GC_malloc_uncollectable */
-/* allocates an object that is scanned for pointers to collectible      */
+/* new object is cleared.  GC_malloc_uncollectable allocates            */
+/* an object that is scanned for pointers to collectible                */
 /* objects, but is not itself collectible.  The object is scanned even  */
 /* if it does not appear to be reachable.  GC_malloc_uncollectable and  */
 /* GC_free called on the resulting object implicitly update             */
 /* GC_non_gc_bytes appropriately.                                       */
-/* Note that the GC_malloc_stubborn support doesn't really exist        */
-/* anymore.  MANUAL_VDB provides comparable functionality.              */
 GC_API GC_ATTR_MALLOC GC_ATTR_ALLOC_SIZE(1) void * GC_CALL
         GC_malloc(size_t /* size_in_bytes */);
 GC_API GC_ATTR_MALLOC GC_ATTR_ALLOC_SIZE(1) void * GC_CALL
@@ -441,8 +499,7 @@ GC_API GC_ATTR_MALLOC char * GC_CALL
         GC_strndup(const char *, size_t) GC_ATTR_NONNULL(1);
 GC_API GC_ATTR_MALLOC GC_ATTR_ALLOC_SIZE(1) void * GC_CALL
         GC_malloc_uncollectable(size_t /* size_in_bytes */);
-GC_API GC_ATTR_MALLOC GC_ATTR_ALLOC_SIZE(1) void * GC_CALL
-        GC_malloc_stubborn(size_t /* size_in_bytes */);
+GC_API GC_ATTR_DEPRECATED void * GC_CALL GC_malloc_stubborn(size_t);
 
 /* GC_memalign() is not well tested.                                    */
 GC_API GC_ATTR_MALLOC GC_ATTR_ALLOC_SIZE(2) void * GC_CALL
@@ -452,26 +509,23 @@ GC_API int GC_CALL GC_posix_memalign(void ** /* memptr */, size_t /* align */,
 
 /* Explicitly deallocate an object.  Dangerous if used incorrectly.     */
 /* Requires a pointer to the base of an object.                         */
-/* If the argument is stubborn, it should not be changeable when freed. */
-/* An object should not be enabled for finalization when it is          */
+/* An object should not be enabled for finalization (and it should not  */
+/* contain registered disappearing links of any kind) when it is        */
 /* explicitly deallocated.                                              */
 /* GC_free(0) is a no-op, as required by ANSI C for free.               */
 GC_API void GC_CALL GC_free(void *);
 
-/* Stubborn objects may be changed only if the collector is explicitly  */
-/* informed.  The collector is implicitly informed of coming change     */
-/* when such an object is first allocated.  The following routines      */
-/* inform the collector that an object will no longer be changed, or    */
-/* that it will once again be changed.  Only non-NULL pointer stores    */
-/* into the object are considered to be changes.  The argument to       */
-/* GC_end_stubborn_change must be exactly the value returned by         */
-/* GC_malloc_stubborn or passed to GC_change_stubborn.  (In the second  */
-/* case, it may be an interior pointer within 512 bytes of the          */
-/* beginning of the objects.)  There is a performance penalty for       */
-/* allowing more than one stubborn object to be changed at once, but it */
-/* is acceptable to do so.  The same applies to dropping stubborn       */
-/* objects that are still changeable.                                   */
-GC_API void GC_CALL GC_change_stubborn(const void *) GC_ATTR_NONNULL(1);
+/* The "stubborn" objects allocation is not supported anymore.  Exists  */
+/* only for the backward compatibility.                                 */
+#define GC_MALLOC_STUBBORN(sz)  GC_MALLOC(sz)
+#define GC_NEW_STUBBORN(t)      GC_NEW(t)
+#define GC_CHANGE_STUBBORN(p)   GC_change_stubborn(p)
+GC_API GC_ATTR_DEPRECATED void GC_CALL GC_change_stubborn(const void *);
+
+/* Inform the collector that the object has been changed.               */
+/* Only non-NULL pointer stores into the object are considered to be    */
+/* changes.  Matters only if the library has been compiled with         */
+/* MANUAL_VDB defined (otherwise the function does nothing).            */
 GC_API void GC_CALL GC_end_stubborn_change(const void *) GC_ATTR_NONNULL(1);
 
 /* Return a pointer to the base (lowest address) of an object given     */
@@ -503,9 +557,21 @@ GC_API size_t GC_CALL GC_size(const void * /* obj_addr */) GC_ATTR_NONNULL(1);
 /* or with the standard C library, your code is broken.  In my          */
 /* opinion, it shouldn't have been invented, but now we're stuck. -HB   */
 /* The resulting object has the same kind as the original.              */
-/* If the argument is stubborn, the result will have changes enabled.   */
 /* It is an error to have changes enabled for the original object.      */
-/* Follows ANSI conventions for NULL old_object.                        */
+/* It does not change the content of the object from its beginning to   */
+/* the minimum of old size and new_size_in_bytes; the content above in  */
+/* case of object size growth is initialized to zero (not guaranteed    */
+/* for atomic object type).  The function follows ANSI conventions for  */
+/* NULL old_object (i.e., equivalent to GC_malloc regardless of new     */
+/* size).  If new size is zero (and old_object is non-NULL) then the    */
+/* call is equivalent to GC_free (and NULL is returned).  If old_object */
+/* is non-NULL, it must have been returned by an earlier call to        */
+/* GC_malloc* or GC_realloc.  In case of the allocation failure, the    */
+/* memory pointed by old_object is untouched (and not freed).           */
+/* If the returned pointer is not the same as old_object and both of    */
+/* them are non-NULL then old_object is freed.  Returns either NULL (in */
+/* case of the allocation failure or zero new size) or pointer to the   */
+/* allocated memory.                                                    */
 GC_API void * GC_CALL GC_realloc(void * /* old_object */,
                                  size_t /* new_size_in_bytes */)
                         /* 'realloc' attr */ GC_ATTR_ALLOC_SIZE(2);
@@ -608,7 +674,7 @@ GC_API GC_stop_func GC_CALL GC_get_stop_func(void);
 /* This getter remains lock-free (unsynchronized) for compatibility     */
 /* reason since some existing clients call it from a GC callback        */
 /* holding the allocator lock.  (This API function and the following    */
-/* four ones bellow were made thread-safe in GC v7.2alpha1 and          */
+/* four ones below were made thread-safe in GC v7.2alpha1 and          */
 /* reverted back in v7.2alpha7 for the reason described.)               */
 GC_API size_t GC_CALL GC_get_heap_size(void);
 
@@ -627,6 +693,10 @@ GC_API size_t GC_CALL GC_get_unmapped_bytes(void);
 /* This is an unsynchronized getter (see GC_get_heap_size comment       */
 /* regarding thread-safety).                                            */
 GC_API size_t GC_CALL GC_get_bytes_since_gc(void);
+
+/* Return the number of explicitly deallocated bytes of memory since    */
+/* the recent collection.  This is an unsynchronized getter.            */
+GC_API size_t GC_CALL GC_get_expl_freed_bytes_since_gc(void);
 
 /* Return the total number of bytes allocated in this process.          */
 /* Never decreases, except due to wrapping.  This is an unsynchronized  */
@@ -682,6 +752,9 @@ struct GC_prof_stats_s {
   GC_word reclaimed_bytes_before_gc;
             /* Approximate number of bytes reclaimed before the recent  */
             /* garbage collection.  The value may wrap.                 */
+  GC_word expl_freed_bytes_since_gc;
+            /* Number of bytes freed explicitly since the recent GC.    */
+            /* Same as returned by GC_get_expl_freed_bytes_since_gc().  */
 };
 
 /* Atomically get GC statistics (various global counters).  Clients     */
@@ -702,6 +775,18 @@ GC_API size_t GC_CALL GC_get_prof_stats(struct GC_prof_stats_s *,
   GC_API size_t GC_CALL GC_get_prof_stats_unsafe(struct GC_prof_stats_s *,
                                                  size_t /* stats_sz */);
 #endif
+
+/* Get the element value (converted to bytes) at a given index of       */
+/* size_map table which provides requested-to-actual allocation size    */
+/* mapping.  Assumes the collector is initialized.  Returns -1 if the   */
+/* index is out of size_map table bounds. Does not use synchronization, */
+/* thus clients should call it using GC_call_with_alloc_lock typically  */
+/* to avoid data races on multiprocessors.                              */
+GC_API size_t GC_CALL GC_get_size_map_at(int i);
+
+/* Count total memory use in bytes by all allocated blocks.  Acquires   */
+/* the lock.                                                            */
+GC_API size_t GC_CALL GC_get_memory_use(void);
 
 /* Disable garbage collection.  Even GC_gcollect calls will be          */
 /* ineffective.                                                         */
@@ -729,9 +814,13 @@ GC_API void GC_CALL GC_enable(void);
 /* Safe to call before GC_INIT().  Includes a  GC_init() call.          */
 GC_API void GC_CALL GC_enable_incremental(void);
 
+/* Return non-zero (TRUE) if and only if the incremental mode is on.    */
+/* Does not acquire the lock.                                           */
+GC_API int GC_CALL GC_is_incremental_mode(void);
+
 /* Does incremental mode write-protect pages?  Returns zero or  */
 /* more of the following, or'ed together:                       */
-#define GC_PROTECTS_POINTER_HEAP  1 /* May protect non-atomic objs.     */
+#define GC_PROTECTS_POINTER_HEAP  1 /* May protect non-atomic objects.  */
 #define GC_PROTECTS_PTRFREE_HEAP  2
 #define GC_PROTECTS_STATIC_DATA   4 /* Currently never.                 */
 #define GC_PROTECTS_STACK         8 /* Probably impractical.            */
@@ -741,7 +830,8 @@ GC_API void GC_CALL GC_enable_incremental(void);
 GC_API int GC_CALL GC_incremental_protection_needs(void);
 
 /* Perform some garbage collection work, if appropriate.        */
-/* Return 0 if there is no more work to be done.                */
+/* Return 0 if there is no more work to be done (including the  */
+/* case when garbage collection is not appropriate).            */
 /* Typically performs an amount of work corresponding roughly   */
 /* to marking from one page.  May do more work if further       */
 /* progress requires it, e.g. if incremental collection is      */
@@ -797,7 +887,7 @@ GC_API GC_ATTR_MALLOC char * GC_CALL
 GC_API GC_ATTR_MALLOC GC_ATTR_ALLOC_SIZE(1) void * GC_CALL
         GC_debug_malloc_uncollectable(size_t /* size_in_bytes */,
                                       GC_EXTRA_PARAMS);
-GC_API GC_ATTR_MALLOC GC_ATTR_ALLOC_SIZE(1) void * GC_CALL
+GC_API GC_ATTR_DEPRECATED void * GC_CALL
         GC_debug_malloc_stubborn(size_t /* size_in_bytes */, GC_EXTRA_PARAMS);
 GC_API GC_ATTR_MALLOC GC_ATTR_ALLOC_SIZE(1) void * GC_CALL
         GC_debug_malloc_ignore_off_page(size_t /* size_in_bytes */,
@@ -809,7 +899,11 @@ GC_API void GC_CALL GC_debug_free(void *);
 GC_API void * GC_CALL GC_debug_realloc(void * /* old_object */,
                         size_t /* new_size_in_bytes */, GC_EXTRA_PARAMS)
                         /* 'realloc' attr */ GC_ATTR_ALLOC_SIZE(2);
-GC_API void GC_CALL GC_debug_change_stubborn(const void *) GC_ATTR_NONNULL(1);
+GC_API
+#if !defined(CPPCHECK)
+  GC_ATTR_DEPRECATED
+#endif
+void GC_CALL GC_debug_change_stubborn(const void *);
 GC_API void GC_CALL GC_debug_end_stubborn_change(const void *)
                                                         GC_ATTR_NONNULL(1);
 
@@ -863,8 +957,6 @@ GC_API /* 'realloc' attr */ GC_ATTR_ALLOC_SIZE(2) void * GC_CALL
       GC_debug_register_finalizer_no_order(p, f, d, of, od)
 # define GC_REGISTER_FINALIZER_UNREACHABLE(p, f, d, of, od) \
       GC_debug_register_finalizer_unreachable(p, f, d, of, od)
-# define GC_MALLOC_STUBBORN(sz) GC_debug_malloc_stubborn(sz, GC_EXTRAS)
-# define GC_CHANGE_STUBBORN(p) GC_debug_change_stubborn(p)
 # define GC_END_STUBBORN_CHANGE(p) GC_debug_end_stubborn_change(p)
 # define GC_GENERAL_REGISTER_DISAPPEARING_LINK(link, obj) \
       GC_general_register_disappearing_link(link, \
@@ -891,8 +983,6 @@ GC_API /* 'realloc' attr */ GC_ATTR_ALLOC_SIZE(2) void * GC_CALL
       GC_register_finalizer_no_order(p, f, d, of, od)
 # define GC_REGISTER_FINALIZER_UNREACHABLE(p, f, d, of, od) \
       GC_register_finalizer_unreachable(p, f, d, of, od)
-# define GC_MALLOC_STUBBORN(sz) GC_malloc_stubborn(sz)
-# define GC_CHANGE_STUBBORN(p) GC_change_stubborn(p)
 # define GC_END_STUBBORN_CHANGE(p) GC_end_stubborn_change(p)
 # define GC_GENERAL_REGISTER_DISAPPEARING_LINK(link, obj) \
       GC_general_register_disappearing_link(link, obj)
@@ -908,7 +998,6 @@ GC_API /* 'realloc' attr */ GC_ATTR_ALLOC_SIZE(2) void * GC_CALL
 /* may return NULL (if out of memory).                                  */
 #define GC_NEW(t)               ((t*)GC_MALLOC(sizeof(t)))
 #define GC_NEW_ATOMIC(t)        ((t*)GC_MALLOC_ATOMIC(sizeof(t)))
-#define GC_NEW_STUBBORN(t)      ((t*)GC_MALLOC_STUBBORN(sizeof(t)))
 #define GC_NEW_UNCOLLECTABLE(t) ((t*)GC_MALLOC_UNCOLLECTABLE(sizeof(t)))
 
 #ifdef GC_REQUIRE_WCSDUP
@@ -956,6 +1045,7 @@ GC_API void GC_CALL GC_debug_register_finalizer(void * /* obj */,
         /* be avoided, or broken by disappearing links.         */
         /* All but the last finalizer registered for an object  */
         /* is ignored.                                          */
+        /* No-op in the leak-finding mode.                      */
         /* Finalization may be removed by passing 0 as fn.      */
         /* Finalizers are implicitly unregistered when they are */
         /* enqueued for finalization (i.e. become ready to be   */
@@ -1086,10 +1176,14 @@ GC_API int GC_CALL GC_general_register_disappearing_link(void ** /* link */,
         /* email discussion with John Ellis.                    */
         /* link must be non-NULL (and be properly aligned).     */
         /* obj must be a pointer to the first word of an object */
-        /* allocated by GC_malloc or friends.  It is unsafe to  */
+        /* allocated by GC_malloc or friends.   A link          */
+        /* disappears when it is unregistered manually, or when */
+        /* (*link) is cleared, or when the object containing    */
+        /* this link is garbage collected.  It is unsafe to     */
         /* explicitly deallocate the object containing link.    */
         /* Explicit deallocation of obj may or may not cause    */
         /* link to eventually be cleared.                       */
+        /* No-op in the leak-finding mode.                      */
         /* This function can be used to implement certain types */
         /* of weak pointers.  Note, however, this generally     */
         /* requires that the allocation lock is held (see       */
@@ -1101,7 +1195,8 @@ GC_API int GC_CALL GC_general_register_disappearing_link(void ** /* link */,
         /* succeeded (a new link is registered), GC_DUPLICATE   */
         /* if link was already registered (with some object),   */
         /* GC_NO_MEMORY if registration failed for lack of      */
-        /* memory (and GC_oom_fn did not handle the problem).   */
+        /* memory (and GC_oom_fn did not handle the problem),   */
+        /* GC_UNIMPLEMENTED if GC_find_leak is true.            */
 
 GC_API int GC_CALL GC_move_disappearing_link(void ** /* link */,
                                              void ** /* new_link */)
@@ -1144,7 +1239,54 @@ GC_API int GC_CALL GC_unregister_long_link(void ** /* link */);
         /* Similar to GC_unregister_disappearing_link but for a */
         /* registration by either of the above two routines.    */
 
+/* Support of toggle-ref style of external memory management    */
+/* without hooking up to the host retain/release machinery.     */
+/* The idea of toggle-ref is that an external reference to      */
+/* an object is kept and it can be either a strong or weak      */
+/* reference; a weak reference is used when the external peer   */
+/* has no interest in the object, and a strong otherwise.       */
+typedef enum {
+   GC_TOGGLE_REF_DROP,
+   GC_TOGGLE_REF_STRONG,
+   GC_TOGGLE_REF_WEAK
+} GC_ToggleRefStatus;
+
+/* The callback is to decide (return) the new state of a given  */
+/* object.  Invoked by the collector for all objects registered */
+/* for toggle-ref processing.  Invoked with the allocation lock */
+/* held (but the "world" is running).                           */
+typedef GC_ToggleRefStatus (GC_CALLBACK *GC_toggleref_func)(void * /* obj */);
+
+/* Set (register) a callback that decides the state of a given  */
+/* object (by, probably, inspecting its native state).          */
+/* The argument may be 0 (means no callback).  Both the setter  */
+/* and the getter acquire the allocation lock (to avoid data    */
+/* races).                                                      */
+GC_API void GC_CALL GC_set_toggleref_func(GC_toggleref_func);
+GC_API GC_toggleref_func GC_CALL GC_get_toggleref_func(void);
+
+/* Register a given object for toggle-ref processing.  It will  */
+/* be stored internally and the toggle-ref callback will be     */
+/* invoked on the object until the callback returns             */
+/* GC_TOGGLE_REF_DROP or the object is collected.  If is_strong */
+/* is true then the object is registered with a strong ref,     */
+/* a weak one otherwise.  Returns GC_SUCCESS if registration    */
+/* succeeded (or no callback registered yet), GC_NO_MEMORY if   */
+/* it failed for lack of memory.                                */
+GC_API int GC_CALL GC_toggleref_add(void * /* obj */, int /* is_strong */)
+                                                GC_ATTR_NONNULL(1);
+
+/* Finalizer callback support.  Invoked by the collector (with  */
+/* the allocation lock held) for each unreachable object        */
+/* enqueued for finalization.                                   */
+typedef void (GC_CALLBACK * GC_await_finalize_proc)(void * /* obj */);
+GC_API void GC_CALL GC_set_await_finalize_proc(GC_await_finalize_proc);
+GC_API GC_await_finalize_proc GC_CALL GC_get_await_finalize_proc(void);
+                        /* Zero means no callback.  The setter  */
+                        /* and getter acquire the lock too.     */
+
 /* Returns !=0 if GC_invoke_finalizers has something to do.     */
+/* Does not use any synchronization.                            */
 GC_API int GC_CALL GC_should_invoke_finalizers(void);
 
 GC_API int GC_CALL GC_invoke_finalizers(void);
@@ -1175,7 +1317,8 @@ GC_API int GC_CALL GC_invoke_finalizers(void);
 /* GC_set_warn_proc can be used to redirect or filter warning messages. */
 /* p may not be a NULL pointer.  msg is printf format string (arg must  */
 /* match the format).  Both the setter and the getter acquire the GC    */
-/* lock (to avoid data races).                                          */
+/* lock (to avoid data races).  In version 7.1 (and before), the setter */
+/* returned the old warn_proc value.                                    */
 typedef void (GC_CALLBACK * GC_warn_proc)(char * /* msg */,
                                           GC_word /* arg */);
 GC_API void GC_CALL GC_set_warn_proc(GC_warn_proc /* p */) GC_ATTR_NONNULL(1);
@@ -1185,6 +1328,9 @@ GC_API GC_warn_proc GC_CALL GC_get_warn_proc(void);
 /* GC_ignore_warn_proc may be used as an argument for GC_set_warn_proc  */
 /* to suppress all warnings (unless statistics printing is turned on).  */
 GC_API void GC_CALLBACK GC_ignore_warn_proc(char *, GC_word);
+
+/* Change file descriptor of GC log.  Unavailable on some targets.      */
+GC_API void GC_CALL GC_set_log_fd(int);
 
 /* abort_func is invoked on GC fatal aborts (just before OS-dependent   */
 /* abort or exit(1) is called).  Must be non-NULL.  The default one     */
@@ -1293,8 +1439,9 @@ GC_API void * GC_CALL GC_call_with_stack_base(GC_stack_base_func /* fn */,
 
   /* Explicitly enable GC_register_my_thread() invocation.              */
   /* Done implicitly if a GC thread-creation function is called (or     */
-  /* implicit thread registration is activated).  Otherwise, it must    */
-  /* be called from the main (or any previously registered) thread      */
+  /* implicit thread registration is activated, or the collector is     */
+  /* compiled with GC_ALWAYS_MULTITHREADED defined).  Otherwise, it     */
+  /* must be called from the main (or any previously registered) thread */
   /* between the collector initialization and the first explicit        */
   /* registering of a thread (it should be called as late as possible). */
   GC_API void GC_CALL GC_allow_register_threads(void);
@@ -1311,7 +1458,7 @@ GC_API void * GC_CALL GC_call_with_stack_base(GC_stack_base_func /* fn */,
   /* functions are called to create the thread, e.g. by including gc.h  */
   /* (which redefines some system functions) before calling the system  */
   /* thread creation function.  Nonetheless, thread cleanup routines    */
-  /* (eg., pthread key destructor) typically require manual thread      */
+  /* (e.g., pthread key destructor) typically require manual thread     */
   /* registering (and unregistering) if pointers to GC-allocated        */
   /* objects are manipulated inside.                                    */
   /* It is also always done implicitly on some platforms if             */
@@ -1319,12 +1466,21 @@ GC_API void * GC_CALL GC_call_with_stack_base(GC_stack_base_func /* fn */,
   /* latter case, the explicit call is normally required for threads    */
   /* created by third-party libraries.                                  */
   /* A manually registered thread requires manual unregistering.        */
+  /* Returns GC_SUCCESS on success, GC_DUPLICATE if already registered. */
   GC_API int GC_CALL GC_register_my_thread(const struct GC_stack_base *)
                                                         GC_ATTR_NONNULL(1);
 
   /* Return non-zero (TRUE) if and only if the calling thread is        */
   /* registered with the garbage collector.                             */
   GC_API int GC_CALL GC_thread_is_registered(void);
+
+  /* Notify the collector about the stack and the alt-stack of the      */
+  /* current thread.  stack_start/size is used to determine the stack   */
+  /* boundaries when a thread is suspended while it is on an alt-stack. */
+  GC_API void GC_CALL GC_register_altstack(void * /* stack_start */,
+                                           GC_word /* stack_size */,
+                                           void * /* altstack_base */,
+                                           GC_word /* altstack_size */);
 
   /* Unregister the current thread.  Only an explicitly registered      */
   /* thread (i.e. for which GC_register_my_thread() returns GC_SUCCESS) */
@@ -1415,8 +1571,26 @@ GC_API void * GC_CALL GC_is_valid_displacement(void * /* p */);
 /* Explicitly dump the GC state.  This is most often called from the    */
 /* debugger, or by setting the GC_DUMP_REGULARLY environment variable,  */
 /* but it may be useful to call it from client code during debugging.   */
+/* The current collection number is printed in the header of the dump.  */
+/* Acquires the GC lock to avoid data races.                            */
 /* Defined only if the library has been compiled without NO_DEBUGGING.  */
 GC_API void GC_CALL GC_dump(void);
+
+/* The same as GC_dump but allows to specify the name of dump and does  */
+/* not acquire the lock.  If name is non-NULL, it is printed to help    */
+/* identifying individual dumps.  Otherwise the current collection      */
+/* number is used as the name.                                          */
+/* Defined only if the library has been compiled without NO_DEBUGGING.  */
+GC_API void GC_CALL GC_dump_named(const char * /* name */);
+
+/* Dump information about each block of every GC memory section.        */
+/* Defined only if the library has been compiled without NO_DEBUGGING.  */
+GC_API void GC_CALL GC_dump_regions(void);
+
+/* Dump information about every registered disappearing link and        */
+/* finalizable object.                                                  */
+/* Defined only if the library has been compiled without NO_DEBUGGING.  */
+GC_API void GC_CALL GC_dump_finalization(void);
 
 /* Safer, but slow, pointer addition.  Probably useful mainly with      */
 /* a preprocessor.  Useful only for heap pointers.                      */
@@ -1464,7 +1638,13 @@ GC_API void (GC_CALLBACK * GC_is_visible_print_proc)(void *);
 #ifdef GC_PTHREADS
   /* For pthread support, we generally need to intercept a number of    */
   /* thread library calls.  We do that here by macro defining them.     */
+# ifdef __cplusplus
+    } /* extern "C" */
+# endif
 # include "gc_pthread_redirects.h"
+# ifdef __cplusplus
+    extern "C" {
+# endif
 #endif
 
 /* This returns a list of objects, linked through their first word.     */
@@ -1494,9 +1674,15 @@ typedef int (GC_CALLBACK * GC_has_static_roots_func)(
 GC_API void GC_CALL GC_register_has_static_roots_callback(
                                         GC_has_static_roots_func);
 
+#if !defined(CPPCHECK) && !defined(GC_WINDOWS_H_INCLUDED) && defined(WINAPI)
+  /* windows.h is included before gc.h */
+# define GC_WINDOWS_H_INCLUDED
+#endif
+
 #if defined(GC_WIN32_THREADS) \
-    && (!defined(GC_PTHREADS) || defined(GC_BUILD) || defined(WINAPI))
-                /* Note: for Cygwin and win32-pthread, this is skipped  */
+    && (!defined(GC_PTHREADS) || defined(GC_BUILD) \
+        || defined(GC_WINDOWS_H_INCLUDED))
+                /* Note: for Cygwin and pthreads-win32, this is skipped */
                 /* unless windows.h is included before gc.h.            */
 
 # if !defined(GC_NO_THREAD_DECLS) || defined(GC_BUILD)
@@ -1509,10 +1695,13 @@ GC_API void GC_CALL GC_register_has_static_roots_callback(
 #     include <process.h> /* For _beginthreadex, _endthreadex */
 #   endif
 
-#   ifndef WIN32_LEAN_AND_MEAN
-#   define WIN32_LEAN_AND_MEAN
+#   if defined(GC_BUILD) || !defined(GC_DONT_INCLUDE_WINDOWS_H)
+#     ifndef WIN32_LEAN_AND_MEAN
+#     define WIN32_LEAN_AND_MEAN
+#     endif
+#     include <windows.h>
+#     define GC_WINDOWS_H_INCLUDED
 #   endif
-#   include <windows.h>
 
 #   ifdef __cplusplus
       extern "C" {
@@ -1525,14 +1714,14 @@ GC_API void GC_CALL GC_register_has_static_roots_callback(
 #     define GC_ExitThread _GC_ExitThread
 #   endif
 
-#   ifdef GC_INSIDE_DLL
-      /* Export GC DllMain to be invoked from client DllMain.   */
-#     ifdef GC_UNDERSCORE_STDCALL
-#       define GC_DllMain _GC_DllMain
+#   ifndef DECLSPEC_NORETURN
+      /* Typically defined in winnt.h. */
+#     ifdef GC_WINDOWS_H_INCLUDED
+#       define DECLSPEC_NORETURN /* empty */
+#     else
+#       define DECLSPEC_NORETURN __declspec(noreturn)
 #     endif
-      GC_API BOOL WINAPI GC_DllMain(HINSTANCE /* inst */, ULONG /* reason */,
-                                    LPVOID /* reserved */);
-#   endif /* GC_INSIDE_DLL */
+#   endif
 
 #   if !defined(_UINTPTR_T) && !defined(_UINTPTR_T_DEFINED) \
        && !defined(UINTPTR_MAX)
@@ -1540,7 +1729,28 @@ GC_API void GC_CALL GC_register_has_static_roots_callback(
 #   else
       typedef uintptr_t GC_uintptr_t;
 #   endif
-#   define GC_WIN32_SIZE_T GC_uintptr_t
+
+#   ifdef _WIN64
+#     define GC_WIN32_SIZE_T GC_uintptr_t
+#   elif defined(GC_WINDOWS_H_INCLUDED)
+#     define GC_WIN32_SIZE_T DWORD
+#   else
+#     define GC_WIN32_SIZE_T unsigned long
+#   endif
+
+#   ifdef GC_INSIDE_DLL
+      /* Export GC DllMain to be invoked from client DllMain.   */
+#     ifdef GC_UNDERSCORE_STDCALL
+#       define GC_DllMain _GC_DllMain
+#     endif
+#     ifdef GC_WINDOWS_H_INCLUDED
+        GC_API BOOL WINAPI GC_DllMain(HINSTANCE /* inst */,
+                                      ULONG /* reason */,
+                                      LPVOID /* reserved */);
+#     else
+        GC_API int __stdcall GC_DllMain(void *, unsigned long, void *);
+#     endif
+#   endif /* GC_INSIDE_DLL */
 
     /* All threads must be created using GC_CreateThread or             */
     /* GC_beginthreadex, or must explicitly call GC_register_my_thread  */
@@ -1552,20 +1762,24 @@ GC_API void GC_CALL GC_register_has_static_roots_callback(
     /* Currently the collector expects all threads to fall through and  */
     /* terminate normally, or call GC_endthreadex() or GC_ExitThread,   */
     /* so that the thread is properly unregistered.                     */
-    GC_API HANDLE WINAPI GC_CreateThread(
+#   ifdef GC_WINDOWS_H_INCLUDED
+      GC_API HANDLE WINAPI GC_CreateThread(
                 LPSECURITY_ATTRIBUTES /* lpThreadAttributes */,
                 GC_WIN32_SIZE_T /* dwStackSize */,
                 LPTHREAD_START_ROUTINE /* lpStartAddress */,
                 LPVOID /* lpParameter */, DWORD /* dwCreationFlags */,
                 LPDWORD /* lpThreadId */);
 
-#   ifndef DECLSPEC_NORETURN
-      /* Typically defined in winnt.h. */
-#     define DECLSPEC_NORETURN /* empty */
-#   endif
-
-    GC_API DECLSPEC_NORETURN void WINAPI GC_ExitThread(
+      GC_API DECLSPEC_NORETURN void WINAPI GC_ExitThread(
                                                 DWORD /* dwExitCode */);
+#   else
+      struct _SECURITY_ATTRIBUTES;
+      GC_API void *__stdcall GC_CreateThread(struct _SECURITY_ATTRIBUTES *,
+                                GC_WIN32_SIZE_T,
+                                unsigned long (__stdcall *)(void *),
+                                void *, unsigned long, unsigned long *);
+      GC_API DECLSPEC_NORETURN void __stdcall GC_ExitThread(unsigned long);
+#   endif
 
 #   if !defined(_WIN32_WCE) && !defined(__CEGCC__)
       GC_API GC_uintptr_t GC_CALL GC_beginthreadex(
@@ -1619,14 +1833,24 @@ GC_API int GC_CALL GC_get_force_unmap_on_gcollect(void);
 /* THREAD_LOCAL_ALLOC defined and the initial allocation call is not    */
 /* to GC_malloc() or GC_malloc_atomic().                                */
 
-#ifdef __CYGWIN32__
+#if defined(__CYGWIN32__) || defined(__CYGWIN__)
   /* Similarly gnu-win32 DLLs need explicit initialization from the     */
   /* main program, as does AIX.                                         */
-  extern int _data_start__[], _data_end__[], _bss_start__[], _bss_end__[];
-# define GC_DATASTART ((GC_word)_data_start__ < (GC_word)_bss_start__ ? \
-                       (void *)_data_start__ : (void *)_bss_start__)
-# define GC_DATAEND ((GC_word)_data_end__ > (GC_word)_bss_end__ ? \
-                     (void *)_data_end__ : (void *)_bss_end__)
+# ifdef __x86_64__
+    /* Cygwin/x64 does not add leading underscore to symbols anymore.   */
+    extern int __data_start__[], __data_end__[];
+    extern int __bss_start__[], __bss_end__[];
+#   define GC_DATASTART ((GC_word)__data_start__ < (GC_word)__bss_start__ \
+                         ? (void *)__data_start__ : (void *)__bss_start__)
+#   define GC_DATAEND ((GC_word)__data_end__ > (GC_word)__bss_end__ \
+                       ? (void *)__data_end__ : (void *)__bss_end__)
+# else
+    extern int _data_start__[], _data_end__[], _bss_start__[], _bss_end__[];
+#   define GC_DATASTART ((GC_word)_data_start__ < (GC_word)_bss_start__ \
+                         ? (void *)_data_start__ : (void *)_bss_start__)
+#  define GC_DATAEND ((GC_word)_data_end__ > (GC_word)_bss_end__ \
+                      ? (void *)_data_end__ : (void *)_bss_end__)
+# endif /* !__x86_64__ */
 # define GC_INIT_CONF_ROOTS GC_add_roots(GC_DATASTART, GC_DATAEND); \
                                  GC_gcollect() /* For blacklisting. */
         /* Required at least if GC is in a DLL.  And doesn't hurt. */
@@ -1635,22 +1859,35 @@ GC_API int GC_CALL GC_get_force_unmap_on_gcollect(void);
 # define GC_DATASTART ((void *)((ulong)_data))
 # define GC_DATAEND ((void *)((ulong)_end))
 # define GC_INIT_CONF_ROOTS GC_add_roots(GC_DATASTART, GC_DATAEND)
-/*
-Enabling this section of code will cause the entire binary section of memory
-to be pushed as a root, which is not correct. Boehm does this to be conservative
-and find static data. This is a bad idea though because on some Android devices
-we're seeing some of the binary data become unmapped, so when we go to scan it
-we get a signal like this: signal 11 (SIGSEGV), code 1 (SEGV_MAPERR). There is
-no need for us to push all of this data as a root, we know where the static
-data is already.
-*/
-//#elif (defined(PLATFORM_ANDROID) || defined(__ANDROID__)) \
-//      && !defined(GC_NOT_DLL)
-//  /* Required if GC is built as shared lib with -D IGNORE_DYNAMIC_LOADING. */
-//# pragma weak __data_start
-//  extern int __data_start[], _end[];
-//# define GC_INIT_CONF_ROOTS (void)((GC_word)(__data_start) != 0 ? \
-//                                (GC_add_roots(__data_start, _end), 0) : 0)
+#elif (defined(HOST_ANDROID) || defined(__ANDROID__)) \
+      && !defined(GC_NOT_DLL) && defined(IGNORE_DYNAMIC_LOADING)
+  /* It causes the entire binary section of memory be pushed as a root. */
+  /* This might be a bad idea though because on some Android devices    */
+  /* some of the binary data might become unmapped thus causing SIGSEGV */
+  /* with code SEGV_MAPERR.                                             */
+# pragma weak _etext
+# pragma weak __data_start
+# pragma weak __dso_handle
+  extern int _etext[], __data_start[], __dso_handle[];
+# pragma weak __end__
+  extern int __end__[], _end[];
+  /* Explicitly register caller static data roots.  Workaround for      */
+  /* __data_start: NDK "gold" linker might miss it or place it          */
+  /* incorrectly, __dso_handle is an alternative data start reference.  */
+  /* Workaround for _end: NDK Clang 3.5+ does not place it at correct   */
+  /* offset (as of NDK r10e) but "bfd" linker provides __end__ symbol   */
+  /* that could be used instead.                                        */
+# define GC_INIT_CONF_ROOTS \
+                (void)((GC_word)__data_start < (GC_word)_etext \
+                        && (GC_word)_etext < (GC_word)__dso_handle \
+                        ? (__end__ != 0 \
+                            ? (GC_add_roots(__dso_handle, __end__), 0) \
+                            : (GC_word)__dso_handle < (GC_word)_end \
+                            ? (GC_add_roots(__dso_handle, _end), 0) : 0) \
+                        : __data_start != 0 ? (__end__ != 0 \
+                            ? (GC_add_roots(__data_start, __end__), 0) \
+                            : (GC_word)__data_start < (GC_word)_end \
+                            ? (GC_add_roots(__data_start, _end), 0) : 0) : 0)
 #else
 # define GC_INIT_CONF_ROOTS /* empty */
 #endif
@@ -1674,14 +1911,14 @@ data is already.
   /* This is for debugging only (useful if environment variables are    */
   /* unsupported); cannot call GC_disable as goes before GC_init.       */
 # define GC_INIT_CONF_MAX_RETRIES (void)(GC_dont_gc = 1)
-#elif defined(GC_MAX_RETRIES)
+#elif defined(GC_MAX_RETRIES) && !defined(CPPCHECK)
   /* Set GC_max_retries to the desired value at start-up */
 # define GC_INIT_CONF_MAX_RETRIES GC_set_max_retries(GC_MAX_RETRIES)
 #else
 # define GC_INIT_CONF_MAX_RETRIES /* empty */
 #endif
 
-#ifdef GC_FREE_SPACE_DIVISOR
+#if defined(GC_FREE_SPACE_DIVISOR) && !defined(CPPCHECK)
   /* Set GC_free_space_divisor to the desired value at start-up */
 # define GC_INIT_CONF_FREE_SPACE_DIVISOR \
                 GC_set_free_space_divisor(GC_FREE_SPACE_DIVISOR)
@@ -1689,34 +1926,34 @@ data is already.
 # define GC_INIT_CONF_FREE_SPACE_DIVISOR /* empty */
 #endif
 
-#ifdef GC_FULL_FREQ
+#if defined(GC_FULL_FREQ) && !defined(CPPCHECK)
   /* Set GC_full_freq to the desired value at start-up */
 # define GC_INIT_CONF_FULL_FREQ GC_set_full_freq(GC_FULL_FREQ)
 #else
 # define GC_INIT_CONF_FULL_FREQ /* empty */
 #endif
 
-#ifdef GC_TIME_LIMIT
+#if defined(GC_TIME_LIMIT) && !defined(CPPCHECK)
   /* Set GC_time_limit to the desired value at start-up */
 # define GC_INIT_CONF_TIME_LIMIT GC_set_time_limit(GC_TIME_LIMIT)
 #else
 # define GC_INIT_CONF_TIME_LIMIT /* empty */
 #endif
 
-#if defined(GC_SIG_SUSPEND) && defined(GC_THREADS)
+#if defined(GC_SIG_SUSPEND) && defined(GC_THREADS) && !defined(CPPCHECK)
 # define GC_INIT_CONF_SUSPEND_SIGNAL GC_set_suspend_signal(GC_SIG_SUSPEND)
 #else
 # define GC_INIT_CONF_SUSPEND_SIGNAL /* empty */
 #endif
 
-#if defined(GC_SIG_THR_RESTART) && defined(GC_THREADS)
+#if defined(GC_SIG_THR_RESTART) && defined(GC_THREADS) && !defined(CPPCHECK)
 # define GC_INIT_CONF_THR_RESTART_SIGNAL \
                 GC_set_thr_restart_signal(GC_SIG_THR_RESTART)
 #else
 # define GC_INIT_CONF_THR_RESTART_SIGNAL /* empty */
 #endif
 
-#ifdef GC_MAXIMUM_HEAP_SIZE
+#if defined(GC_MAXIMUM_HEAP_SIZE) && !defined(CPPCHECK)
   /* Limit the heap size to the desired value (useful for debugging).   */
   /* The limit could be overridden either at the program start-up by    */
   /* the similar environment variable or anytime later by the           */
@@ -1734,7 +1971,7 @@ data is already.
 # define GC_INIT_CONF_IGNORE_WARN /* empty */
 #endif
 
-#ifdef GC_INITIAL_HEAP_SIZE
+#if defined(GC_INITIAL_HEAP_SIZE) && !defined(CPPCHECK)
   /* Set heap size to the desired value at start-up */
 # define GC_INIT_CONF_INITIAL_HEAP_SIZE \
                 { size_t heap_size = GC_get_heap_size(); \
@@ -1782,8 +2019,6 @@ GC_API void GC_CALL GC_win32_free_heap(void);
         (*GC_amiga_allocwrapper_do)(a,GC_malloc_atomic)
 # define GC_malloc_uncollectable(a) \
         (*GC_amiga_allocwrapper_do)(a,GC_malloc_uncollectable)
-# define GC_malloc_stubborn(a) \
-        (*GC_amiga_allocwrapper_do)(a,GC_malloc_stubborn)
 # define GC_malloc_atomic_uncollectable(a) \
         (*GC_amiga_allocwrapper_do)(a,GC_malloc_atomic_uncollectable)
 # define GC_malloc_ignore_off_page(a) \
@@ -1803,7 +2038,7 @@ GC_API void GC_foreach_heap_section(void* user_data, GC_heap_section_proc callba
 GC_API GC_word GC_get_heap_section_count();
 
 #ifdef __cplusplus
-  }  /* end of extern "C" */
+  } /* extern "C" */
 #endif
 
 #endif /* GC_H */

@@ -25,6 +25,18 @@
       <Configuration>Master</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="MasterWithLTCG|ARM">
+      <Configuration>MasterWithLTCG</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MasterWithLTCG|Win32">
+      <Configuration>MasterWithLTCG</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MasterWithLTCG|x64">
+      <Configuration>MasterWithLTCG</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Release|ARM">
       <Configuration>Release</Configuration>
       <Platform>ARM</Platform>
@@ -50,6 +62,8 @@
     <ClCompile Include="Source\il2cppOutput\Bulk_Generics_11.cpp">
     </ClCompile>
     <ClCompile Include="Source\il2cppOutput\Bulk_Generics_12.cpp">
+    </ClCompile>
+    <ClCompile Include="Source\il2cppOutput\Bulk_Generics_13.cpp">
     </ClCompile>
     <ClCompile Include="Source\il2cppOutput\Bulk_Generics_2.cpp">
     </ClCompile>
@@ -82,6 +96,8 @@
     <ClCompile Include="Source\il2cppOutput\Bulk_I18N_0.cpp">
     </ClCompile>
     <ClCompile Include="Source\il2cppOutput\Bulk_Mono.Security_0.cpp">
+    </ClCompile>
+    <ClCompile Include="Source\il2cppOutput\Bulk_Mono.Security_1.cpp">
     </ClCompile>
     <ClCompile Include="Source\il2cppOutput\Bulk_mscorlib_0.cpp">
     </ClCompile>
@@ -137,10 +153,6 @@
     </ClCompile>
     <ClCompile Include="Source\il2cppOutput\Bulk_System.Xml_5.cpp">
     </ClCompile>
-    <ClCompile Include="Source\il2cppOutput\Bulk_System.Xml_6.cpp">
-    </ClCompile>
-    <ClCompile Include="Source\il2cppOutput\Bulk_System.Xml_7.cpp">
-    </ClCompile>
     <ClCompile Include="Source\il2cppOutput\Bulk_System_0.cpp">
     </ClCompile>
     <ClCompile Include="Source\il2cppOutput\Bulk_System_1.cpp">
@@ -154,10 +166,6 @@
     <ClCompile Include="Source\il2cppOutput\Bulk_System_5.cpp">
     </ClCompile>
     <ClCompile Include="Source\il2cppOutput\Bulk_System_6.cpp">
-    </ClCompile>
-    <ClCompile Include="Source\il2cppOutput\Bulk_System_7.cpp">
-    </ClCompile>
-    <ClCompile Include="Source\il2cppOutput\Bulk_System_8.cpp">
     </ClCompile>
     <ClCompile Include="Source\il2cppOutput\Bulk_UnityEngine.AIModule_0.cpp">
     </ClCompile>
@@ -203,9 +211,13 @@
     </ClCompile>
     <ClCompile Include="Source\il2cppOutput\Bulk_UnityEngine.UI_2.cpp">
     </ClCompile>
+    <ClCompile Include="Source\il2cppOutput\Bulk_UnityEngine.UI_3.cpp">
+    </ClCompile>
     <ClCompile Include="Source\il2cppOutput\Bulk_UnityEngine.UnityAnalyticsModule_0.cpp">
     </ClCompile>
     <ClCompile Include="Source\il2cppOutput\Bulk_UnityEngine.UnityWebRequestModule_0.cpp">
+    </ClCompile>
+    <ClCompile Include="Source\il2cppOutput\Bulk_UnityEngine.VFXModule_0.cpp">
     </ClCompile>
     <ClCompile Include="Source\il2cppOutput\Bulk_UnityEngine.VideoModule_0.cpp">
     </ClCompile>
@@ -221,13 +233,9 @@
     </ClCompile>
     <ClCompile Include="Source\il2cppOutput\GenericMethods2.cpp">
     </ClCompile>
-    <ClCompile Include="Source\il2cppOutput\GenericMethods3.cpp">
-    </ClCompile>
     <ClCompile Include="Source\il2cppOutput\Il2CppAttributes.cpp">
     </ClCompile>
     <ClCompile Include="Source\il2cppOutput\Il2CppCodeRegistration.cpp">
-    </ClCompile>
-    <ClCompile Include="Source\il2cppOutput\Il2CppComCallableWrappers0.cpp">
     </ClCompile>
     <ClCompile Include="Source\il2cppOutput\Il2CppCompilerCalculateTypeValuesTable.cpp">
     </ClCompile>
@@ -291,17 +299,7 @@
     </ClCompile>
     <ClCompile Include="Source\il2cppOutput\Il2CppCompilerCalculateTypeValues_36Table.cpp">
     </ClCompile>
-    <ClCompile Include="Source\il2cppOutput\Il2CppCompilerCalculateTypeValues_37Table.cpp">
-    </ClCompile>
-    <ClCompile Include="Source\il2cppOutput\Il2CppCompilerCalculateTypeValues_38Table.cpp">
-    </ClCompile>
-    <ClCompile Include="Source\il2cppOutput\Il2CppCompilerCalculateTypeValues_39Table.cpp">
-    </ClCompile>
     <ClCompile Include="Source\il2cppOutput\Il2CppCompilerCalculateTypeValues_3Table.cpp">
-    </ClCompile>
-    <ClCompile Include="Source\il2cppOutput\Il2CppCompilerCalculateTypeValues_40Table.cpp">
-    </ClCompile>
-    <ClCompile Include="Source\il2cppOutput\Il2CppCompilerCalculateTypeValues_41Table.cpp">
     </ClCompile>
     <ClCompile Include="Source\il2cppOutput\Il2CppCompilerCalculateTypeValues_4Table.cpp">
     </ClCompile>
@@ -435,6 +433,10 @@
     </ClCompile>
     <ClCompile Include="IL2CPP\external\boehmgc\extra\msvc_dbg.c">
     </ClCompile>
+    <ClCompile Include="IL2CPP\external\boehmgc\extra\pcr_interface.c">
+    </ClCompile>
+    <ClCompile Include="IL2CPP\external\boehmgc\extra\real_malloc.c">
+    </ClCompile>
     <ClCompile Include="IL2CPP\external\boehmgc\extra\Mac_files\dataend.c">
     </ClCompile>
     <ClCompile Include="IL2CPP\external\boehmgc\extra\Mac_files\datastart.c">
@@ -475,15 +477,13 @@
     </ClCompile>
     <ClCompile Include="IL2CPP\external\boehmgc\tests\test.c">
     </ClCompile>
+    <ClCompile Include="IL2CPP\external\boehmgc\tests\test_atomic_ops.c">
+    </ClCompile>
     <ClCompile Include="IL2CPP\external\boehmgc\tests\threadkey_test.c">
     </ClCompile>
     <ClCompile Include="IL2CPP\external\boehmgc\tests\thread_leak_test.c">
     </ClCompile>
     <ClCompile Include="IL2CPP\external\boehmgc\tests\trace_test.c">
-    </ClCompile>
-    <ClCompile Include="IL2CPP\external\boehmgc\tools\add_gc_prefix.c">
-    </ClCompile>
-    <ClCompile Include="IL2CPP\external\boehmgc\tools\gcname.c">
     </ClCompile>
     <ClCompile Include="IL2CPP\external\boehmgc\tools\if_mach.c">
     </ClCompile>
@@ -1017,7 +1017,13 @@
     </ClCompile>
     <ClCompile Include="IL2CPP\libil2cpp\external\zlib\deflate.c">
     </ClCompile>
-    <ClCompile Include="IL2CPP\libil2cpp\external\zlib\gzio.c">
+    <ClCompile Include="IL2CPP\libil2cpp\external\zlib\gzclose.c">
+    </ClCompile>
+    <ClCompile Include="IL2CPP\libil2cpp\external\zlib\gzlib.c">
+    </ClCompile>
+    <ClCompile Include="IL2CPP\libil2cpp\external\zlib\gzread.c">
+    </ClCompile>
+    <ClCompile Include="IL2CPP\libil2cpp\external\zlib\gzwrite.c">
     </ClCompile>
     <ClCompile Include="IL2CPP\libil2cpp\external\zlib\infback.c">
     </ClCompile>
@@ -1416,6 +1422,10 @@
     <ClCompile Include="IL2CPP\libil2cpp\os\Thread.cpp">
     </ClCompile>
     <ClCompile Include="IL2CPP\libil2cpp\os\ThreadLocalValue.cpp">
+    </ClCompile>
+    <ClCompile Include="IL2CPP\libil2cpp\os\Android\Image.cpp">
+    </ClCompile>
+    <ClCompile Include="IL2CPP\libil2cpp\os\Android\Initialize.cpp">
     </ClCompile>
     <ClCompile Include="IL2CPP\libil2cpp\os\Android\StackTrace.cpp">
     </ClCompile>
@@ -1875,6 +1885,8 @@
     </ClInclude>
     <ClInclude Include="IL2CPP\external\boehmgc\include\gc_allocator.h">
     </ClInclude>
+    <ClInclude Include="IL2CPP\external\boehmgc\include\gc_alloc_ptrs.h">
+    </ClInclude>
     <ClInclude Include="IL2CPP\external\boehmgc\include\gc_backptr.h">
     </ClInclude>
     <ClInclude Include="IL2CPP\external\boehmgc\include\gc_config_macros.h">
@@ -1916,6 +1928,8 @@
     <ClInclude Include="IL2CPP\external\boehmgc\include\private\dbg_mlc.h">
     </ClInclude>
     <ClInclude Include="IL2CPP\external\boehmgc\include\private\gcconfig.h">
+    </ClInclude>
+    <ClInclude Include="IL2CPP\external\boehmgc\include\private\gc_atomic_ops.h">
     </ClInclude>
     <ClInclude Include="IL2CPP\external\boehmgc\include\private\gc_hdrs.h">
     </ClInclude>
@@ -2638,6 +2652,8 @@
     <ClInclude Include="IL2CPP\libil2cpp\external\zlib\crc32.h">
     </ClInclude>
     <ClInclude Include="IL2CPP\libil2cpp\external\zlib\deflate.h">
+    </ClInclude>
+    <ClInclude Include="IL2CPP\libil2cpp\external\zlib\gzguts.h">
     </ClInclude>
     <ClInclude Include="IL2CPP\libil2cpp\external\zlib\inffast.h">
     </ClInclude>
@@ -3471,15 +3487,15 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">
-    <NMakePreprocessorDefinitions>_DEBUG;DEBUG;WINAPI_FAMILY=WINAPI_FAMILY_APP;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;WIN32;WINDOWS;_UNICODE;UNICODE;ALL_INTERIOR_POINTERS=1;GC_GCJ_SUPPORT=1;JAVA_FINALIZATION=1;NO_EXECUTE_PERMISSION=1;GC_NO_THREADS_DISCOVERY=1;IGNORE_DYNAMIC_LOADING=1;GC_DONT_REGISTER_MAIN_STATIC_DATA=1;GC_VERSION_MAJOR=7;GC_VERSION_MINOR=4;GC_VERSION_MICRO=0;GC_THREADS=1;USE_MMAP=1;USE_MUNMAP=1;NET_4_0=1;UNITY_JIT=1;WINDOWS_UWP;UNITY_UWP;UNITY_WSA_10_0;UNITY_WSA;UNITY_WINRT;PLATFORM_WINRT</NMakePreprocessorDefinitions>
+    <NMakePreprocessorDefinitions>_DEBUG;DEBUG;WINAPI_FAMILY=WINAPI_FAMILY_APP;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;WIN32;WINDOWS;_UNICODE;UNICODE;ALL_INTERIOR_POINTERS=1;GC_GCJ_SUPPORT=1;JAVA_FINALIZATION=1;NO_EXECUTE_PERMISSION=1;GC_NO_THREADS_DISCOVERY=1;IGNORE_DYNAMIC_LOADING=1;GC_DONT_REGISTER_MAIN_STATIC_DATA=1;GC_VERSION_MAJOR=7;GC_VERSION_MINOR=7;GC_VERSION_MICRO=0;GC_THREADS=1;USE_MMAP=1;USE_MUNMAP=1;NET_4_0=1;UNITY_JIT=1;WINDOWS_UWP;UNITY_UWP;UNITY_WSA_10_0;UNITY_WSA;UNITY_WINRT;PLATFORM_WINRT</NMakePreprocessorDefinitions>
     <BuilderConfiguration>Debug</BuilderConfiguration>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)'=='Release'">
-    <NMakePreprocessorDefinitions>_NDEBUG;NDEBUG;WINAPI_FAMILY=WINAPI_FAMILY_APP;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;WIN32;WINDOWS;_UNICODE;UNICODE;ALL_INTERIOR_POINTERS=1;GC_GCJ_SUPPORT=1;JAVA_FINALIZATION=1;NO_EXECUTE_PERMISSION=1;GC_NO_THREADS_DISCOVERY=1;IGNORE_DYNAMIC_LOADING=1;GC_DONT_REGISTER_MAIN_STATIC_DATA=1;GC_VERSION_MAJOR=7;GC_VERSION_MINOR=4;GC_VERSION_MICRO=0;GC_THREADS=1;USE_MMAP=1;USE_MUNMAP=1;NET_4_0=1;UNITY_JIT=1;WINDOWS_UWP;UNITY_UWP;UNITY_WSA_10_0;UNITY_WSA;UNITY_WINRT;PLATFORM_WINRT</NMakePreprocessorDefinitions>
+  <PropertyGroup Condition="'$(Configuration)'=='Release' OR '$(Configuration)'=='Master'">
+    <NMakePreprocessorDefinitions>_NDEBUG;NDEBUG;WINAPI_FAMILY=WINAPI_FAMILY_APP;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;WIN32;WINDOWS;_UNICODE;UNICODE;ALL_INTERIOR_POINTERS=1;GC_GCJ_SUPPORT=1;JAVA_FINALIZATION=1;NO_EXECUTE_PERMISSION=1;GC_NO_THREADS_DISCOVERY=1;IGNORE_DYNAMIC_LOADING=1;GC_DONT_REGISTER_MAIN_STATIC_DATA=1;GC_VERSION_MAJOR=7;GC_VERSION_MINOR=7;GC_VERSION_MICRO=0;GC_THREADS=1;USE_MMAP=1;USE_MUNMAP=1;NET_4_0=1;UNITY_JIT=1;WINDOWS_UWP;UNITY_UWP;UNITY_WSA_10_0;UNITY_WSA;UNITY_WINRT;PLATFORM_WINRT</NMakePreprocessorDefinitions>
     <BuilderConfiguration>Release</BuilderConfiguration>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)'=='Master'">
-    <NMakePreprocessorDefinitions>_NDEBUG;NDEBUG;WINAPI_FAMILY=WINAPI_FAMILY_APP;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;WIN32;WINDOWS;_UNICODE;UNICODE;ALL_INTERIOR_POINTERS=1;GC_GCJ_SUPPORT=1;JAVA_FINALIZATION=1;NO_EXECUTE_PERMISSION=1;GC_NO_THREADS_DISCOVERY=1;IGNORE_DYNAMIC_LOADING=1;GC_DONT_REGISTER_MAIN_STATIC_DATA=1;GC_VERSION_MAJOR=7;GC_VERSION_MINOR=4;GC_VERSION_MICRO=0;GC_THREADS=1;USE_MMAP=1;USE_MUNMAP=1;NET_4_0=1;UNITY_JIT=1;WINDOWS_UWP;UNITY_UWP;UNITY_WSA_10_0;UNITY_WSA;UNITY_WINRT;PLATFORM_WINRT</NMakePreprocessorDefinitions>
+  <PropertyGroup Condition="'$(Configuration)'=='MasterWithLTCG'">
+    <NMakePreprocessorDefinitions>_NDEBUG;NDEBUG;WINAPI_FAMILY=WINAPI_FAMILY_APP;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;WIN32;WINDOWS;_UNICODE;UNICODE;ALL_INTERIOR_POINTERS=1;GC_GCJ_SUPPORT=1;JAVA_FINALIZATION=1;NO_EXECUTE_PERMISSION=1;GC_NO_THREADS_DISCOVERY=1;IGNORE_DYNAMIC_LOADING=1;GC_DONT_REGISTER_MAIN_STATIC_DATA=1;GC_VERSION_MAJOR=7;GC_VERSION_MINOR=7;GC_VERSION_MICRO=0;GC_THREADS=1;USE_MMAP=1;USE_MUNMAP=1;NET_4_0=1;UNITY_JIT=1;WINDOWS_UWP;UNITY_UWP;UNITY_WSA_10_0;UNITY_WSA;UNITY_WINRT;PLATFORM_WINRT</NMakePreprocessorDefinitions>
     <BuilderConfiguration>ReleasePlus</BuilderConfiguration>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Platform)'=='ARM'">
@@ -3496,7 +3512,7 @@
     <IntDir>$(SolutionDir)\build\obj\il2cppOutputProject\$(Platform)\$(Configuration)\</IntDir>
     <NMakeOutput>$(OutDir)GameAssembly.dll</NMakeOutput>
     <IncludePath>$(VC_IncludePath);$(UniversalCRT_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)\IL2CPP\libil2cpp;$(ProjectDir)\IL2CPP\external\boehmgc\include</IncludePath>
-    <NMakeBuildCommandLine>"$(ProjectDir)\IL2CPP\build\il2cpp.exe" --libil2cpp-static --compile-cpp -architecture=$(BuilderArchitecture) -configuration=$(BuilderConfiguration) -platform=winrt -outputpath="$(NMakeOutput)" --data-folder="$(OutDir)\" -cachedirectory="$(IntDir)\" -generatedcppdir="$(ProjectDir)\Source" --additional-defines=WINDOWS_UWP --additional-defines=UNITY_UWP --additional-defines=UNITY_WSA_10_0 --additional-defines=UNITY_WSA --additional-defines=UNITY_WINRT --additional-defines=PLATFORM_WINRT -dotnetprofile=unityjit -verbose --map-file-parser="$(ProjectDir)\IL2CPP\MapFileParser\MapFileParser.exe"</NMakeBuildCommandLine>
+    <NMakeBuildCommandLine>"$(ProjectDir)\IL2CPP\build\il2cpp.exe" --libil2cpp-static --compile-cpp -architecture=$(BuilderArchitecture) -configuration=$(BuilderConfiguration) -platform=winrt -outputpath="$(NMakeOutput)" --data-folder="$(OutDir)\" -cachedirectory="$(IntDir)\" -generatedcppdir="$(ProjectDir)\Source" --additional-defines=WINDOWS_UWP --additional-defines=UNITY_UWP --additional-defines=UNITY_WSA_10_0 --additional-defines=UNITY_WSA --additional-defines=UNITY_WINRT --additional-defines=PLATFORM_WINRT -dotnetprofile=unityaot -verbose --map-file-parser="$(ProjectDir)\IL2CPP\MapFileParser\MapFileParser.exe"</NMakeBuildCommandLine>
     <NMakeReBuildCommandLine>$(NMakeBuildCommandLine) -forcerebuild</NMakeReBuildCommandLine>
     <NMakeCleanCommandLine>del "$(NMakeOutput)"</NMakeCleanCommandLine>
   </PropertyGroup>

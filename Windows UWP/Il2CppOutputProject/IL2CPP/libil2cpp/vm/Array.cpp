@@ -1,5 +1,6 @@
 #include "il2cpp-config.h"
 #include "gc/gc_wrapper.h"
+#include "gc/GarbageCollector.h"
 #include "vm/Array.h"
 #include "vm/Class.h"
 #include "vm/Exception.h"
@@ -25,6 +26,8 @@ namespace vm
             Il2CppArray *clone = (Il2CppArray*)il2cpp::vm::Array::NewFull(typeInfo, &len, NULL);
             memcpy(il2cpp::vm::Array::GetFirstElementAddress(clone), il2cpp::vm::Array::GetFirstElementAddress(arr), elem_size * len);
 
+            gc::GarbageCollector::SetWriteBarrier((void**)il2cpp::vm::Array::GetFirstElementAddress(clone), elem_size * len);
+
             return clone;
         }
 
@@ -41,6 +44,8 @@ namespace vm
 
         Il2CppArray* clone = il2cpp::vm::Array::NewFull(typeInfo, &lengths[0], &lowerBounds[0]);
         memcpy(il2cpp::vm::Array::GetFirstElementAddress(clone), il2cpp::vm::Array::GetFirstElementAddress(arr), size);
+
+        gc::GarbageCollector::SetWriteBarrier((void**)il2cpp::vm::Array::GetFirstElementAddress(clone), size);
 
         return clone;
     }

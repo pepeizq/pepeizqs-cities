@@ -48,7 +48,6 @@ namespace vm
         newProperty->attrs = propertyDefinition->attrs;
         newProperty->parent = declaringClass;
         newProperty->name = propertyDefinition->name;
-        newProperty->customAttributeIndex = propertyDefinition->customAttributeIndex;
         newProperty->token = propertyDefinition->token;
 
         if (propertyDefinition->get)
@@ -86,7 +85,6 @@ namespace vm
         newEvent->eventType = GenericMetadata::InflateIfNeeded(eventDefinition->eventType, context, false);
         newEvent->name = eventDefinition->name;
         newEvent->parent = declaringClass;
-        newEvent->customAttributeIndex = eventDefinition->customAttributeIndex;
         newEvent->token = eventDefinition->token;
 
         if (eventDefinition->add)
@@ -127,7 +125,6 @@ namespace vm
         newField->name = fieldDefinition->name;
         newField->parent = declaringClass;
         newField->offset = fieldDefinition->offset;
-        newField->customAttributeIndex = fieldDefinition->customAttributeIndex;
         newField->token = fieldDefinition->token;
 
         return newField;
@@ -203,7 +200,6 @@ namespace vm
             klass->has_cctor = definition->has_cctor;
             klass->has_finalize = definition->has_finalize;
             klass->native_size = klass->thread_static_fields_offset = -1;
-            klass->customAttributeIndex = definition->customAttributeIndex;
             klass->token = definition->token;
             klass->interopData = MetadataCache::GetInteropDataForType(&klass->byval_arg);
 

@@ -17,6 +17,10 @@
 
 #include "gc.h"
 
+#ifdef __cplusplus
+  extern "C" {
+#endif
+
 /* This API is defined only if the library has been suitably compiled   */
 /* (i.e. with ENABLE_DISCLAIM defined).                                 */
 
@@ -48,8 +52,15 @@ struct GC_finalizer_closure {
 /* dedicated object kind with a disclaim procedure, and is more         */
 /* efficient than GC_register_finalizer and friends.                    */
 /* GC_init_finalized_malloc must be called before using this.           */
+/* Note that GC_size (applied to such allocated object) returns a value */
+/* slightly bigger than the specified allocation size, and that GC_base */
+/* result points to a word prior to the start of the allocated object.  */
 GC_API GC_ATTR_MALLOC GC_ATTR_ALLOC_SIZE(1) void * GC_CALL
         GC_finalized_malloc(size_t /*size*/,
                             const struct GC_finalizer_closure * /*fc*/);
+
+#ifdef __cplusplus
+  } /* extern "C" */
+#endif
 
 #endif

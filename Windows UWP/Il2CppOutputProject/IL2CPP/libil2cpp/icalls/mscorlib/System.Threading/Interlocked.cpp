@@ -1,4 +1,5 @@
 #include "il2cpp-config.h"
+#include "gc/GarbageCollector.h"
 #include "icalls/mscorlib/System.Threading/Interlocked.h"
 #include <ctype.h>
 #include "os/Atomic.h"
@@ -35,7 +36,9 @@ namespace Threading
 
     void* Interlocked::CompareExchange_T(void** location, void* value, void* comparand)
     {
-        return Atomic::CompareExchangePointer(location, value, comparand);
+        void* retval = Atomic::CompareExchangePointer(location, value, comparand);
+        gc::GarbageCollector::SetWriteBarrier(location);
+        return retval;
     }
 
     intptr_t Interlocked::CompareExchangeIntPtr(intptr_t* location, intptr_t value, intptr_t comparand)

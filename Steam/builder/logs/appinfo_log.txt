@@ -1,0 +1,76 @@
+
+
+[2019-02-22 17:26:01] RequestAppInfoUpdate: nNumAppIDs 1
+[2019-02-22 17:26:01] Change number 0->5856689, apps: 0/0, packages: 0/0
+[2019-02-22 17:26:02] Requesting 1 apps, 2343 packages (meta data, 1024 prev attempts)
+[2019-02-22 17:26:03] Requesting 1 apps, 2343 packages (full data, 1024 prev attempts)
+[2019-02-22 17:26:07] UpdatesJob: finished OK, nAppsUpdated 1 (2 KB), nPackagesUpdated 2343 (424 KB)
+[2019-02-22 17:26:08] Requesting 4097 apps, 0 packages (meta data, 1024 prev attempts)
+[2019-02-22 17:26:10] Requested 411 access tokens, 275 received, 136 denied
+[2019-02-22 17:26:10] Updated SHAs with 275 new access tokens
+[2019-02-22 17:26:13] Downloaded 324 apps via HTTP, 7939 KB (2086 KB compressed)
+[2019-02-22 17:26:13] Requesting 3773 apps, 0 packages (full data, 1024 prev attempts)
+[2019-02-22 17:26:22] Starting async write E:\Proyectos\Unity\City Builder\Steam\builder/appcache/appinfo.vdf (7034014 bytes)
+[2019-02-22 17:26:53] UpdatesJob: finished OK, nAppsUpdated 4097 (17861 KB), nPackagesUpdated 0 (0 KB)
+[2019-02-22 17:26:53] Starting async write E:\Proyectos\Unity\City Builder\Steam\builder/appcache/appinfo.vdf (13094666 bytes)
+
+
+[2019-02-22 17:28:49] RequestAppInfoUpdate: nNumAppIDs 1
+[2019-02-22 17:28:50] Apps changed: 
+[2019-02-22 17:28:50] Change number 5856689->5856702, apps: 0/10, packages: 0/0
+[2019-02-22 17:28:50] Requesting 137 apps, 0 packages (meta data, 1024 prev attempts)
+[2019-02-22 17:28:50] UpdatesJob: finished Failure, nAppsUpdated 0 (0 KB), nPackagesUpdated 0 (0 KB)
+
+
+[2019-02-22 17:29:16] RequestAppInfoUpdate: nNumAppIDs 1
+[2019-02-22 17:29:17] Apps changed: 
+[2019-02-22 17:29:17] Change number 5856689->5856706, apps: 0/13, packages: 0/0
+[2019-02-22 17:29:17] Requesting 137 apps, 0 packages (meta data, 1024 prev attempts)
+[2019-02-22 17:29:17] UpdatesJob: finished Failure, nAppsUpdated 0 (0 KB), nPackagesUpdated 0 (0 KB)
+
+
+[2019-02-22 17:29:58] RequestAppInfoUpdate: nNumAppIDs 1
+[2019-02-22 17:29:58] Change number 0->5856712, apps: 0/0, packages: 0/0
+[2019-02-22 17:29:58] Requesting 4098 apps, 2343 packages (meta data, 1024 prev attempts)
+[2019-02-22 17:29:59] UpdatesJob: finished Failure, nAppsUpdated 0 (0 KB), nPackagesUpdated 0 (0 KB)
+
+
+[2019-02-22 17:30:59] RequestAppInfoUpdate: nNumAppIDs 1
+[2019-02-22 17:30:59] Apps changed: 
+[2019-02-22 17:30:59] Change number 5856689->5856716, apps: 0/24, packages: 0/0
+[2019-02-22 17:30:59] Requesting 137 apps, 0 packages (meta data, 1024 prev attempts)
+[2019-02-22 17:31:00] UpdatesJob: finished Failure, nAppsUpdated 0 (0 KB), nPackagesUpdated 0 (0 KB)
+
+
+[2019-02-22 17:31:46] RequestAppInfoUpdate: nNumAppIDs 1
+[2019-02-22 17:31:47] Apps changed: 
+[2019-02-22 17:31:47] Change number 5856689->5856721, apps: 0/28, packages: 0/0
+[2019-02-22 17:31:47] Requesting 137 apps, 0 packages (meta data, 1024 prev attempts)
+[2019-02-22 17:31:47] UpdatesJob: finished Failure, nAppsUpdated 0 (0 KB), nPackagesUpdated 0 (0 KB)
+
+
+[2019-02-22 17:32:18] RequestAppInfoUpdate: nNumAppIDs 1
+[2019-02-22 17:32:18] Apps changed: 4000=5856722,
+[2019-02-22 17:32:18] Change number 5856689->5856728, apps: 1/32, packages: 0/0
+[2019-02-22 17:32:19] Requesting 138 apps, 0 packages (meta data, 1024 prev attempts)
+[2019-02-22 17:32:19] Requested 136 access tokens, 0 received, 136 denied
+[2019-02-22 17:32:19] Requesting 1 apps, 0 packages (full data, 1024 prev attempts)
+[2019-02-22 17:32:20] UpdatesJob: finished OK, nAppsUpdated 1 (7 KB), nPackagesUpdated 0 (0 KB)
+[2019-02-22 17:32:35] Starting async write E:\Proyectos\Unity\City Builder\Steam\builder/appcache/appinfo.vdf (13094665 bytes)
+
+
+[2019-02-22 17:33:09] RequestAppInfoUpdate: nNumAppIDs 1
+[2019-02-22 17:33:10] Apps changed: 
+[2019-02-22 17:33:10] Change number 5856728->5856734, apps: 0/6, packages: 0/0
+[2019-02-22 17:33:10] Requesting 137 apps, 0 packages (meta data, 1024 prev attempts)
+[2019-02-22 17:33:11] Requested 136 access tokens, 0 received, 136 denied
+[2019-02-22 17:33:11] UpdatesJob: finished OK, nAppsUpdated 0 (0 KB), nPackagesUpdated 0 (0 KB)
+
+
+[2019-02-22 17:34:41] RequestAppInfoUpdate: nNumAppIDs 1
+[2019-02-22 17:34:43] Packages changed: 
+[2019-02-22 17:34:43] Apps changed: 234430=5856744,233450=5856744,
+[2019-02-22 17:34:43] Change number 5856734->5856744, apps: 2/13, packages: 0/2
+[2019-02-22 17:34:43] Requesting 139 apps, 0 packages (meta data, 1024 prev attempts)
+[2019-02-22 17:34:44] Requested 136 access tokens, 0 received, 136 denied
+[2019-02-22 17:34:44] UpdatesJob: finished OK, nAppsUpdated 0 (0 KB), nPackagesUpdated 0 (0 KB)

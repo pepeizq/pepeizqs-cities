@@ -118,8 +118,10 @@ DO_API(void, il2cpp_gc_collect, (int maxGenerations));
 DO_API(int32_t, il2cpp_gc_collect_a_little, ());
 DO_API(void, il2cpp_gc_disable, ());
 DO_API(void, il2cpp_gc_enable, ());
+DO_API(bool, il2cpp_gc_is_disabled, ());
 DO_API(int64_t, il2cpp_gc_get_used_size, ());
 DO_API(int64_t, il2cpp_gc_get_heap_size, ());
+DO_API(void, il2cpp_gc_wbarrier_set_field, (Il2CppObject * obj, void **targetAddress, void *object));
 
 // gchandle
 DO_API(uint32_t, il2cpp_gchandle_new, (Il2CppObject * obj, bool pinned));
@@ -159,6 +161,7 @@ DO_API(void, il2cpp_profiler_install_enter_leave, (Il2CppProfileMethodFunc enter
 DO_API(void, il2cpp_profiler_install_allocation, (Il2CppProfileAllocFunc callback));
 DO_API(void, il2cpp_profiler_install_gc, (Il2CppProfileGCFunc callback, Il2CppProfileGCResizeFunc heap_resize_callback));
 DO_API(void, il2cpp_profiler_install_fileio, (Il2CppProfileFileIOFunc callback));
+DO_API(void, il2cpp_profiler_install_thread, (Il2CppProfileThreadFunc start, Il2CppProfileThreadFunc end));
 
 #endif
 
@@ -241,6 +244,9 @@ DO_API(const char*, il2cpp_image_get_name, (const Il2CppImage * image));
 DO_API(const char*, il2cpp_image_get_filename, (const Il2CppImage * image));
 DO_API(const MethodInfo*, il2cpp_image_get_entry_point, (const Il2CppImage * image));
 
+DO_API(size_t, il2cpp_image_get_class_count, (const Il2CppImage * image));
+DO_API(const Il2CppClass*, il2cpp_image_get_class, (const Il2CppImage * image, size_t index));
+
 // Memory information
 DO_API(Il2CppManagedMemorySnapshot*, il2cpp_capture_memory_snapshot, ());
 DO_API(void, il2cpp_free_captured_memory_snapshot, (Il2CppManagedMemorySnapshot * snapshot));
@@ -256,3 +262,13 @@ DO_API(bool, il2cpp_is_debugger_attached, ());
 
 // TLS module
 DO_API(void, il2cpp_unity_install_unitytls_interface, (const void* unitytlsInterfaceStruct));
+
+// custom attributes
+DO_API(Il2CppCustomAttrInfo*, il2cpp_custom_attrs_from_class, (Il2CppClass * klass));
+DO_API(Il2CppCustomAttrInfo*, il2cpp_custom_attrs_from_method, (const MethodInfo * method));
+
+DO_API(Il2CppObject*, il2cpp_custom_attrs_get_attr, (Il2CppCustomAttrInfo * ainfo, Il2CppClass * attr_klass));
+DO_API(bool, il2cpp_custom_attrs_has_attr, (Il2CppCustomAttrInfo * ainfo, Il2CppClass * attr_klass));
+DO_API(Il2CppArray*,  il2cpp_custom_attrs_construct, (Il2CppCustomAttrInfo * cinfo));
+
+DO_API(void, il2cpp_custom_attrs_free, (Il2CppCustomAttrInfo * ainfo));
