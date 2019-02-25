@@ -862,6 +862,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="City Builder.Plugins.Player.csproj">
+      <Project>{05E97BB8-5B8C-ED72-D45E-8A8803AC8C83}</Project>
+      <Name>City Builder.Plugins.Player</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.TextMeshPro.Player.csproj">
       <Project>{F1CA471D-22AC-18A9-132D-9C670FF66678}</Project>
       <Name>Unity.TextMeshPro.Player</Name>
@@ -887,9 +891,11 @@
     <Compile Include="Assets\Scripts\Idiomas.cs" />
     <Compile Include="Assets\Scripts\Juego.cs" />
     <Compile Include="Assets\Scripts\MenuPrincipal.cs" />
+    <Compile Include="Assets\Scripts\Steamworks.NET\SteamManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Idiomas\Idiomas.xml" />
+    <None Include="Assets\Plugins\Steamworks.NET\redist\steam_appid.txt" />
     <None Include="Packages\com.unity.collab-proxy\Editor\Resources\Styles\CollabHistoryCommon.uss" />
     <None Include="Packages\com.unity.collab-proxy\Editor\Resources\Styles\CollabHistoryDark.uss" />
     <None Include="Packages\com.unity.collab-proxy\Editor\Resources\Styles\CollabHistoryLight.uss" />

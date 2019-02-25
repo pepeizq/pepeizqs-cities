@@ -17,7 +17,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 1
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &4352010992888630
 Transform:
@@ -103,5 +103,5 @@ MonoBehaviour:
   luzRango: 0
   luzProbabilidad: 0
   dimensiones: {x: 1, y: 1}
-  rotacionColocacion: 0
+  rotacionColocacion: -180
   rotacionAdicional: 0

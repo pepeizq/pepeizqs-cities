@@ -41,7 +41,7 @@ public class DiaNoche : MonoBehaviour {
 
     private int contadorHoras = 0;
 
-    private bool encender;
+    public bool encender;
 
     void Update()
     {
@@ -149,6 +149,18 @@ public class DiaNoche : MonoBehaviour {
         else
         {
             encender = false;
+        }
+    }
+
+    public bool EstadoEncendidoLuces()
+    {
+        if ((tiempoDia > 0.7f && tiempoDia <= 0.99f) || (tiempoDia > 0 && tiempoDia < 0.25f))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 }

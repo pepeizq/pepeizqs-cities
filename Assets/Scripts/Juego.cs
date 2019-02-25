@@ -333,10 +333,10 @@ public class Juego : MonoBehaviour {
                     if (accion == 0 && colocar.ComprobarConstruccionesPosicion(edificioSeleccionado, gridPosicion) == null)
                     {                       
                         if (ciudad.Dinero >= edificioSeleccionado.coste)
-                        {                        
+                        {                    
                             ciudad.DepositoDinero(-edificioSeleccionado.coste);
                             ciudad.ActualizarUI(false);
-                            colocar.AñadirConstruccion(edificioSeleccionado, gridPosicion);
+                            colocar.AñadirConstruccion(edificioSeleccionado, gridPosicion, diaNoche.EstadoEncendidoLuces());
                             sonidoBotonConstruir.Play();
                         }
                     }
@@ -455,6 +455,10 @@ public class Juego : MonoBehaviour {
             Guardado guardado = (Guardado)bf.Deserialize(fichero);
             fichero.Close();
 
+            diaNoche.tiempoTotalDias = guardado.dia;
+            diaNoche.tiempoDia = guardado.hora;
+            diaNoche.ActualizarLuces();
+         
             int i = 0;
             while (i < guardado.edificiosID.Count)
             {
@@ -462,16 +466,12 @@ public class Juego : MonoBehaviour {
                 edificioGuardado.rotacionColocacion = guardado.edificiosRotacion[i];
 
                 Vector3 vector = new Vector3(guardado.edificiosX[i], 1, guardado.edificiosZ[i]);
-                colocar.AñadirConstruccion(edificioGuardado, vector);
+                colocar.AñadirConstruccion(edificioGuardado, vector, diaNoche.encender);
 
                 i++;
             }
 
             camara.transform.position = new Vector3(guardado.camaraX, guardado.camaraY, guardado.camaraZ);
-
-            diaNoche.tiempoTotalDias = guardado.dia;
-            diaNoche.tiempoDia = guardado.hora;
-            diaNoche.ActualizarLuces();
 
             ciudad.Dinero = guardado.dinero;
             ciudad.PoblacionActual = guardado.poblacionActual;

@@ -22,7 +22,7 @@ public class ArbolesInicio : MonoBehaviour {
                     {
                         if (colocar.ComprobarConstruccionesPosicion(arbolesInicio[j], posicion) == null)
                         {
-                            colocar.AñadirConstruccion(arbolesInicio[j], posicion);
+                            colocar.AñadirConstruccion(arbolesInicio[j], posicion, false);
                         }
                     }
                     i++;
