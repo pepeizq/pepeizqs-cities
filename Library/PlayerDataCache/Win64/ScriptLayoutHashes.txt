@@ -1,6 +1,6 @@
 Win64
 PlayerPath?
-E:/Proyectos/Unity/City Builder/Windows/pepeizq's Cities.exe
+E:/Proyectos/Unity/City Builder Builds/Steam/content/pepeizq's Cities.exe
 SceneListBegin?
 Assets/Scenes/MenuPrincipal.unity
 Assets/Scenes/Juego.unity
@@ -126,7 +126,7 @@ b3ab2106268377ffe25dd18ac23dca28 Unity.TextMeshPro.dll:TMPro.TMP_Asset
 1e7de45d81d51d373843330450e71ceb Assembly-CSharp.dll:.ColocarPrevio
 71bb6a6b6c8f052f948db64c7dd3ca4f Unity.TextMeshPro.dll:TMPro.TMP_SpriteAnimator
 4fd8bf02e3089425d3502e26c44ba31a Unity.TextMeshPro.dll:TMPro.TextContainer
-3670373624fcb2bed1817f685297da61 Assembly-CSharp.dll:.DiaNoche
+4d7da583fa486609b5e940c246726e8b Assembly-CSharp.dll:.DiaNoche
 e6ae40841db498b6e673877ac45ad208 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
 71bb6a6b6c8f052f948db64c7dd3ca4f UnityEngine.Networking.dll:UnityEngine.Networking.NetworkBehaviour
 1dcb82730d983b77cec736c6ef19f814 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkDiscovery
