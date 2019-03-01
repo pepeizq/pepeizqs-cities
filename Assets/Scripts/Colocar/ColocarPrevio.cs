@@ -24,7 +24,7 @@ public class ColocarPrevio : MonoBehaviour
         edificioFinal.transform.Rotate(Vector3.up, edificio.rotacionAdicional + edificio.rotacionColocacion, Space.World);
 
         edificiosPrevio[(int)posicion.x, (int)posicion.z] = edificioFinal;
-        edificiosPrevio = ColocarFunciones.RellenarEdificioVacio(edificiosPrevio, edificio, posicion, edificio.rotacionColocacion, edificioVacio);
+        //edificiosPrevio = ColocarFunciones.RellenarEdificioVacio(edificiosPrevio, edificio, posicion, edificio.rotacionColocacion, edificioVacio);
 
         //---------------------------------
 

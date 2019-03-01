@@ -319,7 +319,7 @@ public class Juego : MonoBehaviour {
 
         if (Physics.Raycast(ray, out hit))
         {            
-            Vector3 gridPosicion = RedondearPosicion.Buscar(hit.point);
+            Vector3 gridPosicion = RedondearPosicion.Buscar(hit.point, edificioSeleccionado);
 
             if (((int)gridPosicion.x > 0) && ((int)gridPosicion.x < 100) && ((int)gridPosicion.z > 0) && ((int)gridPosicion.z < 100))
             {
@@ -368,7 +368,7 @@ public class Juego : MonoBehaviour {
         {
             if (!EventSystem.current.IsPointerOverGameObject())
             {
-                Vector3 gridPosicion = RedondearPosicion.Buscar(hit.point);
+                Vector3 gridPosicion = RedondearPosicion.Buscar(hit.point, edificioSeleccionado);
 
                 if (((int)gridPosicion.x > 0) && ((int)gridPosicion.x < 100) && ((int)gridPosicion.z > 0) && ((int)gridPosicion.z < 100))
                 {
@@ -409,7 +409,7 @@ public class Juego : MonoBehaviour {
 
         if (Physics.Raycast(ray, out hit))
         {
-            Vector3 gridPosicion = RedondearPosicion.Buscar(hit.point);
+            Vector3 gridPosicion = RedondearPosicion.Buscar(hit.point, edificioSeleccionado);
 
             if (((int)gridPosicion.x > 0) && ((int)gridPosicion.x < 100) && ((int)gridPosicion.z > 0) && ((int)gridPosicion.z < 100))
             {

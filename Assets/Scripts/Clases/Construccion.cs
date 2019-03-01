@@ -20,6 +20,7 @@ public class Construccion : MonoBehaviour
     public int luzProbabilidad;
 
     public Vector2 dimensiones;
+
     public int rotacionColocacion = 0;
     public int rotacionAdicional;
 }
