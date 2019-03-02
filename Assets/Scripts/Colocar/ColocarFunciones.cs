@@ -90,31 +90,50 @@ public static class ColocarFunciones {
 
     public static Construccion[,] RellenarEdificioVacio(Construccion[,] edificios, Construccion edificio, Vector3 posicion, int rotacion, Construccion edificioVacio)
     {
-        if ((edificio.dimensiones.x == 2) && (edificio.dimensiones.y == 1))
+        int topeX = 0;
+        int i = 0;
+
+        int topeZ = 0;
+        int j = 0;
+
+        if ((edificio.rotacionColocacion == -270) || (edificio.rotacionColocacion == -90))
         {
-            if (rotacion == -180)
-            {
-                edificios[(int)posicion.x + 1, (int)posicion.z] = Object.Instantiate(edificioVacio);
-            }
-            else if (rotacion == -270)
-            {
-                edificios[(int)posicion.x, (int)posicion.z + 1] = Object.Instantiate(edificioVacio);
-            }
-            else if (rotacion == 0)
-            {
-                edificios[(int)posicion.x + 1, (int)posicion.z] = Object.Instantiate(edificioVacio);
-            }
-            else if (rotacion == -90)
-            {
-                edificios[(int)posicion.x, (int)posicion.z + 1] = Object.Instantiate(edificioVacio);
-            }
+            topeX = (int)edificio.dimensiones.y;
+            topeZ = (int)edificio.dimensiones.x;
         }
-        else if ((edificio.dimensiones.x == 2) && (edificio.dimensiones.y == 2))
+        else
         {
-            edificios[(int)posicion.x + 1, (int)posicion.z] = Object.Instantiate(edificioVacio);
-            edificios[(int)posicion.x, (int)posicion.z + 1] = Object.Instantiate(edificioVacio);
-            edificios[(int)posicion.x + 1, (int)posicion.z + 1] = Object.Instantiate(edificioVacio);
+            topeX = (int)edificio.dimensiones.x;
+            topeZ = (int)edificio.dimensiones.y;
         }
+
+
+
+            //if ((edificio.dimensiones.x == 2) && (edificio.dimensiones.y == 1))
+            //{
+            //    if (rotacion == -180)
+            //    {
+            //        edificios[(int)posicion.x + 1, (int)posicion.z] = Object.Instantiate(edificioVacio);
+            //    }
+            //    else if (rotacion == -270)
+            //    {
+            //        edificios[(int)posicion.x, (int)posicion.z + 1] = Object.Instantiate(edificioVacio);
+            //    }
+            //    else if (rotacion == 0)
+            //    {
+            //        edificios[(int)posicion.x + 1, (int)posicion.z] = Object.Instantiate(edificioVacio);
+            //    }
+            //    else if (rotacion == -90)
+            //    {
+            //        edificios[(int)posicion.x, (int)posicion.z + 1] = Object.Instantiate(edificioVacio);
+            //    }
+            //}
+            //else if ((edificio.dimensiones.x == 2) && (edificio.dimensiones.y == 2))
+            //{
+            //    edificios[(int)posicion.x + 1, (int)posicion.z] = Object.Instantiate(edificioVacio);
+            //    edificios[(int)posicion.x, (int)posicion.z + 1] = Object.Instantiate(edificioVacio);
+            //    edificios[(int)posicion.x + 1, (int)posicion.z + 1] = Object.Instantiate(edificioVacio);
+            //}
 
         return edificios;
     }
@@ -123,29 +142,101 @@ public static class ColocarFunciones {
     {
         if (((int)posicion.x > 0) && ((int)posicion.x <= 100) && ((int)posicion.z > 0) && ((int)posicion.z <= 100))
         {
-            //foreach (Construccion subedificio in edificios)
-            //{
-            //    if (subedificio != null)
-            //    {
-            //        float edificioPosicionXa = subedificio.gameObject.transform.position.x;
-            //        float edificioPosicionXb = subedificio.gameObject.transform.position.x + subedificio.dimensiones.x;
-            //        float edificioPosicionZa = subedificio.gameObject.transform.position.z;
-            //        float edificioPosicionZb = subedificio.gameObject.transform.position.z + subedificio.dimensiones.y;
+            int topeX = 0;
+            int i = 0;
 
-            //        if ((posicion.x >= edificioPosicionXa) && (posicion.x <= edificioPosicionXb))
-            //        {
-            //            return subedificio;
-            //        }
+            if ((edificio.rotacionColocacion == -270) || (edificio.rotacionColocacion == -90))
+            {
+                if ((int)edificio.dimensiones.y > 1)
+                {
+                    topeX = (int)Mathf.Round(edificio.dimensiones.y / 2);
+                    i = 0 - ((int)Mathf.Round(edificio.dimensiones.y / 2));
+                }
+                else
+                {
+                    topeX = (int)edificio.dimensiones.y;
+                }
+            }
+            else
+            {
+                if ((int)edificio.dimensiones.x > 1)
+                {
+                    topeX = (int)Mathf.Round(edificio.dimensiones.x / 2);
+                    i = 0 - ((int)Mathf.Round(edificio.dimensiones.x / 2));
+                }
+                else
+                {
+                    topeX = (int)edificio.dimensiones.x;
+                }
+            }
+            
+            int topeZ = 0;
+            int j = 0;
 
-            //        if ((posicion.z >= edificioPosicionZa) && (posicion.z <= edificioPosicionZb))
-            //        {
-            //            return subedificio;
-            //        }
-            //    }
-            //}
+            if ((edificio.rotacionColocacion == -270) || (edificio.rotacionColocacion == -90))
+            {
+                if ((int)edificio.dimensiones.x > 1)
+                {
+                    topeZ = (int)Mathf.Round(edificio.dimensiones.x / 2);
+                    j = 0 - ((int)Mathf.Round(edificio.dimensiones.x / 2));
+                }
+                else
+                {
+                    topeZ = (int)edificio.dimensiones.x;
+                }
+            }
+            else
+            {
+                if ((int)edificio.dimensiones.y > 1)
+                {
+                    topeZ = (int)Mathf.Round(edificio.dimensiones.y / 2);
+                    j = 0 - ((int)Mathf.Round(edificio.dimensiones.y / 2));
+                }
+                else
+                {
+                    topeZ = (int)edificio.dimensiones.y;
+                }
+            }
 
+            int ib = i;
+            int jb = j;
 
-            return edificios[(int)posicion.x, (int)posicion.z];
+            while (i < topeX)
+            {
+                if (edificios[(int)posicion.x + i, (int)posicion.z] != null)
+                {
+                    return edificios[(int)posicion.x + i, (int)posicion.z];
+                }
+
+                i += 1;
+            }
+
+            while (j < topeZ)
+            {
+                if (edificios[(int)posicion.x, (int)posicion.z + j] != null)
+                {
+                    return edificios[(int)posicion.x, (int)posicion.z + j];
+                }
+
+                j += 1;
+            }
+
+            while (ib < topeX)
+            {
+                while (jb < topeZ)
+                {
+                    if (edificios[(int)posicion.x + ib, (int)posicion.z + jb] != null)
+                    {
+                        return edificios[(int)posicion.x + ib, (int)posicion.z + jb];
+                    }
+
+                    jb += 1;
+                }
+                    
+                ib += 1;
+            }
+
+            return null;
 
             //if (edificios[(int)posicion.x, (int)posicion.z] != null)
             //{
