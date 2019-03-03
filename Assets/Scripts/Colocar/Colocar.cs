@@ -18,7 +18,7 @@ public class Colocar : MonoBehaviour {
         edificioFinal.transform.Rotate(Vector3.up, edificio.rotacionAdicional + edificio.rotacionColocacion, Space.World);
 
         edificios[(int)posicion.x, (int)posicion.z] = edificioFinal;
-        edificios = ColocarFunciones.RellenarEdificioVacio(edificios, edificio, posicion, edificio.rotacionColocacion, edificioVacio);
+        edificios = ColocarFunciones.RellenarEdificioVacio(edificios, edificio, posicion, edificioVacio);
     }
 
     public Construccion ComprobarConstruccionesPosicion(Construccion edificio, Vector3 posicion)
