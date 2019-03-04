@@ -50,7 +50,7 @@ public class ColocarPrevio : MonoBehaviour
 
     public void QuitarEdificio(Construccion edificio, Vector3 posicion)
     {
-        edificiosPrevio = ColocarFunciones.QuitarEdificios(edificiosPrevio, edificio, posicion, edificio.rotacionColocacion);
+        edificiosPrevio = ColocarFunciones.QuitarEdificios(edificiosPrevio, edificio, posicion);
          
         QuitarTodosEdificios();
     }

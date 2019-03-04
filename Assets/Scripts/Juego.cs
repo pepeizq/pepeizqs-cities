@@ -413,16 +413,26 @@ public class Juego : MonoBehaviour {
 
             if (((int)gridPosicion.x > 0) && ((int)gridPosicion.x < 100) && ((int)gridPosicion.z > 0) && ((int)gridPosicion.z < 100))
             {
-                colocar.LimpiarColorEdificios();
-
                 if (!EventSystem.current.IsPointerOverGameObject())
                 {
+                    colocar.LimpiarColorEdificios();
                     edificioSeleccionado = colocar.ComprobarConstruccionesPosicion(null, gridPosicion);
 
                     if (edificioSeleccionado != null)
                     {
-                        edificioSeleccionado.gameObject.GetComponent<MeshRenderer>().material.color = new Color(255, 0, 0, 0.1f);
-                    }                    
+                        if (edificioSeleccionado.id == 99)
+                        {
+                            edificioSeleccionado = colocar.QuitarEdificioBuscar(edificioSeleccionado, gridPosicion);
+                        }              
+                    }
+                    
+                    if (edificioSeleccionado != null)
+                    {
+                        if (edificioSeleccionado.id != 99)
+                        {
+                            edificioSeleccionado.gameObject.GetComponent<MeshRenderer>().material.color = new Color(255, 0, 0, 0.1f);
+                        }
+                    }                 
                 }
             }
         }

@@ -89,7 +89,10 @@ public class Ciudad : MonoBehaviour {
             }
         }
 
-        Dinero += montante;
+        if (TrabajosActual > 0)
+        {
+            Dinero = Dinero + (montante * (TrabajosActual/TrabajosTope));
+        }      
     }
 
     public void DepositoDinero(int cantidad)

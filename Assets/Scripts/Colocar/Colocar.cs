@@ -28,7 +28,12 @@ public class Colocar : MonoBehaviour {
 
     public void QuitarEdificio(Construccion edificio, Vector3 posicion)
     {
-        edificios = ColocarFunciones.QuitarEdificios(edificios, edificio, posicion, edificio.rotacionColocacion);
+        edificios = ColocarFunciones.QuitarEdificios(edificios, edificio, posicion);
+    }
+
+    public Construccion QuitarEdificioBuscar(Construccion edificio, Vector3 posicion)
+    {
+        return ColocarFunciones.QuitarEdificiosBuscar(edificios, edificio, posicion);
     }
 
     public Construccion[,] DevolverConstrucciones()
