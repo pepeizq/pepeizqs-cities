@@ -1,5 +1,4 @@
 ﻿using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -40,7 +39,7 @@ public class MenuPrincipal : MonoBehaviour {
     [SerializeField]
     private Colocar colocar;
 
-    private void Start()
+    public void OnEnable()
     {
         versionTexto.text = "v" + Application.version;
 
@@ -52,7 +51,7 @@ public class MenuPrincipal : MonoBehaviour {
         else
         {
             idioma.CargarIdioma(ficheroIdiomas, PlayerPrefs.GetString("idioma"));
-        }  
+        }
 
         if (PlayerPrefs.HasKey("sonido") == false)
         {
@@ -189,9 +188,12 @@ public class MenuPrincipal : MonoBehaviour {
 
     public void Sonido()
     {
-        musicaFondo.loop = true;
-        musicaFondo.Play();
-
+        if (musicaFondo != null)
+        {
+            musicaFondo.loop = true;
+            musicaFondo.Play();
+        }
+       
         if (sonidoParar == false)
         {
             AudioListener.pause = false;
