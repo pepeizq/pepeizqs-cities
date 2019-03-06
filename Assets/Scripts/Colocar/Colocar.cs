@@ -36,6 +36,21 @@ public class Colocar : MonoBehaviour {
         return ColocarFunciones.QuitarEdificiosBuscar(edificios, edificio, posicion);
     }
 
+    public void QuitarTodosEdicios()
+    {
+        for (int x = 0; x < edificios.GetLength(0); x++)
+        {
+            for (int z = 0; z < edificios.GetLength(1); z++)
+            {
+                if (edificios[x, z] != null)
+                {
+                    Object.Destroy(edificios[x, z].gameObject);
+                    edificios[x, z] = null;
+                }
+            }
+        }
+    }
+
     public Construccion[,] DevolverConstrucciones()
     {
         return edificios;

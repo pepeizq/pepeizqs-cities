@@ -363,6 +363,11 @@ public static class ColocarFunciones {
     {
         int sueloX = 0;
 
+        if (topeX == 2)
+        {
+            sueloX = -1;
+        }
+
         if (topeX == 3)
         {
             sueloX = -1;
@@ -394,6 +399,11 @@ public static class ColocarFunciones {
 
     private static int TopeX2(int topeX)
     {
+        if (topeX == 2)
+        {
+            topeX = 1;
+        }
+
         if (topeX == 3)
         {
             topeX = 2;
@@ -410,6 +420,11 @@ public static class ColocarFunciones {
     private static int SueloZ(int topeZ)
     {
         int sueloZ = 0;
+
+        if (topeZ == 2)
+        {
+            sueloZ = -1;
+        }
 
         if (topeZ == 3)
         {
@@ -442,6 +457,11 @@ public static class ColocarFunciones {
 
     private static int TopeZ2(int topeZ)
     {
+        if (topeZ == 2)
+        {
+            topeZ = 1;
+        }
+
         if (topeZ == 3)
         {
             topeZ = 2;
@@ -453,6 +473,44 @@ public static class ColocarFunciones {
         }
 
         return topeZ;
+    }
+
+    public static int RotacionGuardadoX(int x, Construccion edificio)
+    {
+        if (edificio.dimensiones.x == 2 && edificio.dimensiones.y == 2)
+        {
+            if (edificio.rotacionColocacion == -270)
+            {
+                x = x + 1;
+            }
+            else if (edificio.rotacionColocacion == 0)
+            {
+                x = x + 1;
+            }
+        }
+        else if (edificio.dimensiones.x == 4 && edificio.dimensiones.y == 3)
+        {
+
+        }
+
+        return x;
+    }
+
+    public static int RotacionGuardadoZ(int z, Construccion edificio)
+    {
+        if (edificio.dimensiones.x == 2 && edificio.dimensiones.y == 2)
+        {
+            if (edificio.rotacionColocacion == 0)
+            {
+                z = z + 1;
+            }
+            else if (edificio.rotacionColocacion == -90)
+            {
+                z = z + 1;
+            }
+        }
+
+        return z;
     }
 }
 
