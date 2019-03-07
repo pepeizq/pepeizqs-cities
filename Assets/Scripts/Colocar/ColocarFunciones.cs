@@ -69,11 +69,11 @@ public static class ColocarFunciones {
                         edificios[(int)posicion.x + i, (int)posicion.z] = Object.Instantiate(edificioVacio);
                     }
                 }
-                
+
                 i += 1;
             }
         }
-        
+
         if (topeZ > 1)
         {
             while (j < topeZ)
@@ -85,11 +85,11 @@ public static class ColocarFunciones {
                         edificios[(int)posicion.x, (int)posicion.z + j] = Object.Instantiate(edificioVacio);
                     }
                 }
-               
+
                 j += 1;
             }
         }
-       
+
         if (topeX > 1 && topeZ > 1)
         {
             while (ib < topeX)
@@ -305,7 +305,7 @@ public static class ColocarFunciones {
                 }
             }
 
-            if (topeX > 1 && topeZ > 1)
+            if (topeX > 1 || topeZ > 1)
             {
                 while (ib < topeX)
                 {
@@ -314,14 +314,26 @@ public static class ColocarFunciones {
                     {
                         if (edificios[(int)posicion.x + ib, (int)posicion.z + jc] != null)
                         {
-                            Object.Destroy(edificios[(int)posicion.x + ib, (int)posicion.z + jc].gameObject);
-                            edificios[(int)posicion.x + ib, (int)posicion.z + jc] = null;
+                            if ((edificios[(int)posicion.x + ib, (int)posicion.z + jc].id == edificio.id) || (edificios[(int)posicion.x + ib, (int)posicion.z + jc].id == 99))
+                            {
+                                Object.Destroy(edificios[(int)posicion.x + ib, (int)posicion.z + jc].gameObject);
+                                edificios[(int)posicion.x + ib, (int)posicion.z + jc] = null;
+                            }                           
                         }
 
                         jc += 1;
                     }
 
                     ib += 1;
+                }
+            }
+
+            if ((topeX == 1) && (topeZ == 1))
+            {
+                if (edificios[(int)posicion.x, (int)posicion.z] != null)
+                {
+                    Object.Destroy(edificios[(int)posicion.x, (int)posicion.z].gameObject);
+                    edificios[(int)posicion.x, (int)posicion.z] = null;
                 }
             }
         }
@@ -363,11 +375,6 @@ public static class ColocarFunciones {
     {
         int sueloX = 0;
 
-        if (topeX == 2)
-        {
-            sueloX = -1;
-        }
-
         if (topeX == 3)
         {
             sueloX = -1;
@@ -375,7 +382,7 @@ public static class ColocarFunciones {
 
         if (topeX == 4)
         {
-            sueloX = -1;
+            sueloX = -2;
         }
 
         return sueloX;
@@ -399,11 +406,6 @@ public static class ColocarFunciones {
 
     private static int TopeX2(int topeX)
     {
-        if (topeX == 2)
-        {
-            topeX = 1;
-        }
-
         if (topeX == 3)
         {
             topeX = 2;
@@ -411,7 +413,7 @@ public static class ColocarFunciones {
 
         if (topeX == 4)
         {
-            topeX = 3;
+            topeX = 2;
         }
 
         return topeX;
@@ -421,11 +423,6 @@ public static class ColocarFunciones {
     {
         int sueloZ = 0;
 
-        if (topeZ == 2)
-        {
-            sueloZ = -1;
-        }
-
         if (topeZ == 3)
         {
             sueloZ = -1;
@@ -433,7 +430,7 @@ public static class ColocarFunciones {
 
         if (topeZ == 4)
         {
-            sueloZ = -1;
+            sueloZ = -2;
         }
 
         return sueloZ;
@@ -457,11 +454,6 @@ public static class ColocarFunciones {
 
     private static int TopeZ2(int topeZ)
     {
-        if (topeZ == 2)
-        {
-            topeZ = 1;
-        }
-
         if (topeZ == 3)
         {
             topeZ = 2;
@@ -469,28 +461,28 @@ public static class ColocarFunciones {
 
         if (topeZ == 4)
         {
-            topeZ = 3;
+            topeZ = 2;
         }
 
         return topeZ;
     }
 
     public static int RotacionGuardadoX(int x, Construccion edificio)
-    {
+    {       
         if (edificio.dimensiones.x == 2 && edificio.dimensiones.y == 2)
         {
-            if (edificio.rotacionColocacion == -270)
-            {
-                x = x + 1;
-            }
-            else if (edificio.rotacionColocacion == 0)
-            {
-                x = x + 1;
-            }
+            x = x + 1;
         }
         else if (edificio.dimensiones.x == 4 && edificio.dimensiones.y == 3)
         {
-
+            if (edificio.rotacionColocacion == -180 || edificio.rotacionColocacion == 0)
+            {
+                x = x + 2;
+            }
+            else 
+            {
+                x = x + 1;
+            }
         }
 
         return x;
@@ -500,14 +492,18 @@ public static class ColocarFunciones {
     {
         if (edificio.dimensiones.x == 2 && edificio.dimensiones.y == 2)
         {
-            if (edificio.rotacionColocacion == 0)
+            z = z + 1;
+        }
+        else if (edificio.dimensiones.x == 4 && edificio.dimensiones.y == 3)
+        {
+            if (edificio.rotacionColocacion == -180 || edificio.rotacionColocacion == 0)
             {
                 z = z + 1;
             }
-            else if (edificio.rotacionColocacion == -90)
+            else
             {
-                z = z + 1;
-            }
+                z = z + 2;
+            }              
         }
 
         return z;

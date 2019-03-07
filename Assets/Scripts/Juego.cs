@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections;
+using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -175,8 +176,16 @@ public class Juego : MonoBehaviour {
             }
         }
 
-        CargarIdiomaTexto();     
-        CargarEdificios(false);
+        CargarIdiomaTexto();
+
+        if (File.Exists(Application.persistentDataPath + "/guardado.save"))
+        {
+            CargarEdificios(false);
+        }
+        else
+        {
+            arbolesInicio.Colocar(colocar);
+        }            
     }
 
     public void Sonido()
@@ -375,7 +384,9 @@ public class Juego : MonoBehaviour {
             File.Delete(Application.persistentDataPath + "/guardado.save");
         }
 
+        diaNoche.tiempoDia = 0.4f;
         colocar.QuitarTodosEdicios();
+        arbolesInicio.Colocar(colocar);
         CargarDatosPartida();
     }
 
@@ -383,6 +394,8 @@ public class Juego : MonoBehaviour {
     {
         menuPrincipal = false;
         sonidoBoton.Play();
+        colocar.QuitarTodosEdicios();
+        CargarEdificios(true);
         CargarDatosPartida();
     }
 
@@ -476,8 +489,6 @@ public class Juego : MonoBehaviour {
             pointerExit.callback.AddListener((data) => { panelEdificiosInfo.OnPointerExit((PointerEventData)data); });
             evento.triggers.Add(pointerExit);
         }
-
-        CargarEdificios(true);
 
         volverMenuTexto.text = idioma.CogerCadena("exitQuestion");
         volverMenuTextoSi.text = idioma.CogerCadena("yes");
@@ -663,20 +674,24 @@ public class Juego : MonoBehaviour {
                             sonidoBotonConstruir.Play();
                         }
                     }
-                    else if (accion == 1 && colocar.ComprobarConstruccionesPosicion(edificioSeleccionado, gridPosicion) != null)
-                    {
-                        Construccion edificioEliminar = colocar.ComprobarConstruccionesPosicion(edificioSeleccionado, gridPosicion);
 
-                        if (edificioEliminar.categoria != 0)
+                    if (edificioSeleccionado != null)
+                    {
+                        if (accion == 1)
                         {
-                            ciudad.DepositoDinero(edificioEliminar.coste / 3);
+                            Construccion edificioEliminar = edificioSeleccionado;
+
+                            if (edificioEliminar.categoria != 0)
+                            {
+                                ciudad.DepositoDinero(edificioEliminar.coste / 3);
+                            }
+
+                            ciudad.ActualizarUI(false);
+                            colocar.QuitarEdificio(edificioEliminar, gridPosicion);
+                            DemolerBoton(false);
+                            sonidoBotonDemoler.Play();
                         }
-                        
-                        ciudad.ActualizarUI(false);
-                        colocar.QuitarEdificio(edificioEliminar, gridPosicion);
-                        DemolerBoton(false);
-                        sonidoBotonDemoler.Play();
-                    }
+                    }                   
                 }
             }                 
         }
@@ -737,28 +752,37 @@ public class Juego : MonoBehaviour {
             if (((int)gridPosicion.x > 0) && ((int)gridPosicion.x < 100) && ((int)gridPosicion.z > 0) && ((int)gridPosicion.z < 100))
             {
                 if (!EventSystem.current.IsPointerOverGameObject())
-                {
-                    colocar.LimpiarColorEdificios();
+                {                  
                     edificioSeleccionado = colocar.ComprobarConstruccionesPosicion(null, gridPosicion);
+
+                    //if (edificioSeleccionado != null)
+                    //{       
+                    //    if (edificioSeleccionado.id == 99)
+                    //    {
+                    //        Debug.Log(edificioSeleccionado.id);
+                    //        edificioSeleccionado = colocar.QuitarEdificioBuscar(edificioSeleccionado, gridPosicion);
+                    //    }
+                    //}
 
                     if (edificioSeleccionado != null)
                     {
-                        if (edificioSeleccionado.id == 99)
-                        {
-                            edificioSeleccionado = colocar.QuitarEdificioBuscar(edificioSeleccionado, gridPosicion);
-                        }              
-                    }
-                    
-                    if (edificioSeleccionado != null)
-                    {
+                        colocar.LimpiarColorEdificios();
+
                         if (edificioSeleccionado.id != 99)
                         {
                             edificioSeleccionado.gameObject.GetComponent<MeshRenderer>().material.color = new Color(255, 0, 0, 0.1f);
-                        }
+                            StartCoroutine(EsperaLimpiarColor());
+                            edificioSeleccionado.gameObject.GetComponent<MeshRenderer>().material.color = Color.white;
+                        } 
                     }                 
                 }
             }
         }
+    }
+
+    IEnumerator EsperaLimpiarColor()
+    {
+        yield return new WaitForSeconds(1f);
     }
 
     void DemolerBoton(bool estado)
@@ -812,10 +836,6 @@ public class Juego : MonoBehaviour {
             ciudad.TrabajosActual = guardado.trabajosActual;
             ciudad.TrabajosTope = guardado.trabajosTope;
             ciudad.Comida = guardado.comida;
-        }
-        else
-        {
-            arbolesInicio.Colocar(colocar);
         }
 
         if (mostrarAyuda == true)
@@ -906,6 +926,7 @@ public class Juego : MonoBehaviour {
         sonidoBoton.Play();
         menuPrincipal = true;
         GuardarPartida();
+        colocarPrevio.QuitarTodosEdificios();
 
         if (diaNoche.parar == false)
         {
@@ -924,6 +945,7 @@ public class Juego : MonoBehaviour {
     {
         sonidoBoton.Play();
         menuPrincipal = true;
+        colocarPrevio.QuitarTodosEdificios();
 
         if (diaNoche.parar == false)
         {

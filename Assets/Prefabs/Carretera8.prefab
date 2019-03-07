@@ -103,5 +103,5 @@ MonoBehaviour:
   luzRango: 0
   luzProbabilidad: 0
   dimensiones: {x: 1, y: 1}
-  rotacionColocacion: 0
+  rotacionColocacion: -270
   rotacionAdicional: 0
