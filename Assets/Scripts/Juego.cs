@@ -755,34 +755,26 @@ public class Juego : MonoBehaviour {
                 {                  
                     edificioSeleccionado = colocar.ComprobarConstruccionesPosicion(null, gridPosicion);
 
-                    //if (edificioSeleccionado != null)
-                    //{       
-                    //    if (edificioSeleccionado.id == 99)
-                    //    {
-                    //        Debug.Log(edificioSeleccionado.id);
-                    //        edificioSeleccionado = colocar.QuitarEdificioBuscar(edificioSeleccionado, gridPosicion);
-                    //    }
-                    //}
+                    if (edificioSeleccionado != null)
+                    {
+                        if (edificioSeleccionado.id > 99)
+                        {
+                            edificioSeleccionado = colocar.QuitarEdificioBuscar(edificioSeleccionado, gridPosicion);
+                        }
+                    }
 
                     if (edificioSeleccionado != null)
                     {
                         colocar.LimpiarColorEdificios();
 
-                        if (edificioSeleccionado.id != 99)
+                        if (edificioSeleccionado.id < 99)
                         {
-                            edificioSeleccionado.gameObject.GetComponent<MeshRenderer>().material.color = new Color(255, 0, 0, 0.1f);
-                            StartCoroutine(EsperaLimpiarColor());
-                            edificioSeleccionado.gameObject.GetComponent<MeshRenderer>().material.color = Color.white;
+                            edificioSeleccionado.gameObject.GetComponent<MeshRenderer>().material.color = new Color(255, 0, 0, 1f);
                         } 
                     }                 
                 }
             }
         }
-    }
-
-    IEnumerator EsperaLimpiarColor()
-    {
-        yield return new WaitForSeconds(1f);
     }
 
     void DemolerBoton(bool estado)
