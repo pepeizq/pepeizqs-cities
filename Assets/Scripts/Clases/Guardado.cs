@@ -8,9 +8,13 @@ public class Guardado
     public List<int> edificiosZ = new List<int>();
     public List<int> edificiosRotacion = new List<int>();
 
-    public int camaraX = 0;
-    public int camaraY = 0;
-    public int camaraZ = 0;
+    public float camaraPosicionX = 0;
+    public float camaraPosicionY = 0;
+    public float camaraPosicionZ = 0;
+
+    public float camaraRotacionX = 0;
+    public float camaraRotacionY = 0;
+    public float camaraRotacionZ = 0;
 
     public int dia = 0;
     public float hora = 0f;

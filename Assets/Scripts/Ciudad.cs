@@ -26,15 +26,6 @@ public class Ciudad : MonoBehaviour {
     public int TrabajosTope { get; set; }
     public float Comida { get; set; }
 
-    void Start ()
-    {
-        if (!File.Exists(Application.persistentDataPath + "/guardado.save"))
-        {
-            Dinero = 2000000;
-            //Dinero = 200;
-        }
-    }
-
     public void ActualizarUI(bool nuevaHora)
     {
         if (nuevaHora == true)

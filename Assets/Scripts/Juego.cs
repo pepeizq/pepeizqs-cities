@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.IO;
+﻿using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -385,9 +384,17 @@ public class Juego : MonoBehaviour {
         }
 
         diaNoche.tiempoDia = 0.4f;
+        ciudad.Dinero = 2000000;
+        //ciudad.Dinero = 200;
+        ciudad.PoblacionActual = 0f;
+        ciudad.PoblacionTope = 0f;
+        ciudad.TrabajosActual = 0;
+        ciudad.TrabajosTope = 0;
+        ciudad.Comida = 0f;
+
         colocar.QuitarTodosEdicios();
         arbolesInicio.Colocar(colocar);
-        CargarDatosPartida();
+        CargarInterfaz();
     }
 
     public void CargarPartida()
@@ -396,10 +403,10 @@ public class Juego : MonoBehaviour {
         sonidoBoton.Play();
         colocar.QuitarTodosEdicios();
         CargarEdificios(true);
-        CargarDatosPartida();
+        CargarInterfaz();
     }
 
-    private void CargarDatosPartida()
+    private void CargarInterfaz()
     {
         diaNoche.ArrancarParar();
 
@@ -769,9 +776,9 @@ public class Juego : MonoBehaviour {
 
                         if (edificioSeleccionado.id < 99)
                         {
-                            edificioSeleccionado.gameObject.GetComponent<MeshRenderer>().material.color = new Color(255, 0, 0, 1f);
+                            edificioSeleccionado.gameObject.GetComponent<MeshRenderer>().material.color = new Color(255, 0, 0, 0.1f);                           
                         } 
-                    }                 
+                    }   
                 }
             }
         }
@@ -820,7 +827,8 @@ public class Juego : MonoBehaviour {
                 i++;
             }
 
-            camara.transform.position = new Vector3(guardado.camaraX, guardado.camaraY, guardado.camaraZ);
+            camara.transform.position = new Vector3(guardado.camaraPosicionX, guardado.camaraPosicionY, guardado.camaraPosicionZ);
+            camara.transform.Rotate(new Vector3(guardado.camaraRotacionX, guardado.camaraRotacionY, guardado.camaraRotacionZ));
 
             ciudad.Dinero = guardado.dinero;
             ciudad.PoblacionActual = guardado.poblacionActual;
@@ -875,9 +883,13 @@ public class Juego : MonoBehaviour {
             }
         }
 
-        guardado.camaraX = (int)camara.transform.position.x;
-        guardado.camaraY = (int)camara.transform.position.y;
-        guardado.camaraZ = (int)camara.transform.position.z;
+        guardado.camaraPosicionX = camara.transform.position.x;
+        guardado.camaraPosicionY = camara.transform.position.y;
+        guardado.camaraPosicionZ = camara.transform.position.z;
+
+        guardado.camaraRotacionX = camara.transform.rotation.x;
+        guardado.camaraRotacionY = camara.transform.rotation.y;
+        guardado.camaraRotacionZ = camara.transform.rotation.z;
 
         guardado.dia = (int)diaNoche.tiempoTotalDias;
         guardado.hora = diaNoche.tiempoDia;

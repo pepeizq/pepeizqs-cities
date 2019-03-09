@@ -31,15 +31,26 @@ public class Camara : MonoBehaviour
                 transform.Translate(new Vector3(0, velocidad * Time.deltaTime, 0));
             }
 
-            if (Input.GetKey(KeyCode.F1))
+            Rotacion();               
+        }
+    }
+
+    private void Rotacion()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(new Vector2(Screen.width / 2, Screen.height / 2));
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            Vector3 posicion = hit.point;
+
+            if (Input.GetKeyDown(KeyCode.F1))
             {
-                transform.position = new Vector3(20, 60, 20);
-                transform.eulerAngles = new Vector3(45, 45, 0);
+                transform.RotateAround(posicion, Vector3.up, -90);
             }
-            else if (Input.GetKey(KeyCode.F2))
+            else if (Input.GetKeyDown(KeyCode.F2))
             {
-                transform.position = new Vector3(80, 60, 20);
-                transform.eulerAngles = new Vector3(-225, -225, 180);
+                transform.RotateAround(posicion, Vector3.up, 90);
             }
         }
     }

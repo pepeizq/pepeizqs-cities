@@ -2,7 +2,7 @@
 <languages>
     <English>
         <string name="newGame">New Game</string>
-        <string name="loadGame">Load Game</string>
+        <string name="loadGame">Continue Game</string>
         <string name="options">Options</string>
         <string name="exitGame">Exit</string>
         <string name="back">Back</string>
@@ -26,7 +26,7 @@
      
     <Spanish>
         <string name="newGame">Nueva Partida</string>
-        <string name="loadGame">Cargar Partida</string>
+        <string name="loadGame">Continuar Partida</string>
         <string name="options">Opciones</string>
         <string name="exitGame">Salir</string>
         <string name="back">Volver</string>
