@@ -47,6 +47,11 @@ public class DiaNoche : MonoBehaviour {
     {
         ciudad.ActualizarUI(false);
 
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            ArrancarParar();
+        }
+
         if (parar == false)
         {
             tiempoDia += (Time.deltaTime / segundosDia) * tiempoMultiplicador;

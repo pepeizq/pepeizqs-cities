@@ -177,12 +177,14 @@ public class Juego : MonoBehaviour {
 
         CargarIdiomaTexto();
 
-        if (File.Exists(Application.persistentDataPath + "/guardado.save"))
+        if (DetectarPartidaGuardada() != null)
         {
+            botonCargarPartida.interactable = true;
             CargarEdificios(false);
         }
         else
         {
+            botonCargarPartida.interactable = false;
             arbolesInicio.Colocar(colocar);
         }            
     }
@@ -290,7 +292,7 @@ public class Juego : MonoBehaviour {
             canvasMenuPrincipal.gameObject.GetComponent<CanvasGroup>().interactable = true;
             canvasMenuPrincipal.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
 
-            if (File.Exists(Application.persistentDataPath + "/guardado.save") == true)
+            if (DetectarPartidaGuardada() != null)
             {
                 botonCargarPartida.interactable = true;
             }
@@ -325,7 +327,7 @@ public class Juego : MonoBehaviour {
             canvasMenuPrincipal.gameObject.GetComponent<CanvasGroup>().interactable = true;
             canvasMenuPrincipal.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
 
-            if (File.Exists(Application.persistentDataPath + "/guardado.save") == true)
+            if (DetectarPartidaGuardada() != null)
             {
                 botonCargarPartida.interactable = true;
             }
@@ -392,6 +394,7 @@ public class Juego : MonoBehaviour {
         ciudad.TrabajosTope = 0;
         ciudad.Comida = 0f;
 
+        camara.transform.position = new Vector3(20, 60, 20);
         colocar.QuitarTodosEdicios();
         arbolesInicio.Colocar(colocar);
         CargarInterfaz();
@@ -800,6 +803,30 @@ public class Juego : MonoBehaviour {
         }
 
         botonDemoler.colors = color;
+    }
+
+    public Guardado DetectarPartidaGuardada()
+    {
+        if (File.Exists(Application.persistentDataPath + "/guardado.save"))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream fichero = File.Open(Application.persistentDataPath + "/guardado.save", FileMode.Open);
+            Guardado guardado = (Guardado)bf.Deserialize(fichero);
+            fichero.Close();
+            Debug.Log(guardado.edificiosID.Count);
+            if (guardado.edificiosID.Count > 0)
+            {
+                return guardado;
+            }
+            else
+            {
+                return null;
+            }
+        }
+        else
+        {
+            return null;
+        }
     }
 
     public void CargarEdificios(bool mostrarAyuda)
