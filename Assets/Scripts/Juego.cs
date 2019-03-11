@@ -124,6 +124,7 @@ public class Juego : MonoBehaviour {
 
     private void Start()
     {
+        //File.Delete(Application.persistentDataPath + "/guardado.save");
         menuPrincipal = true;
         diaNoche.ArrancarParar();
 
@@ -394,7 +395,7 @@ public class Juego : MonoBehaviour {
         ciudad.TrabajosTope = 0;
         ciudad.Comida = 0f;
 
-        camara.transform.position = new Vector3(20, 60, 20);
+        camara.transform.position = new Vector3(10, 60, 10);
         colocar.QuitarTodosEdicios();
         arbolesInicio.Colocar(colocar);
         CargarInterfaz();
@@ -717,7 +718,7 @@ public class Juego : MonoBehaviour {
             if (!EventSystem.current.IsPointerOverGameObject())
             {
                 Vector3 gridPosicion = RedondearPosicion.Buscar(hit.point, edificioSeleccionado);
-          
+
                 if (((int)gridPosicion.x > 0) && ((int)gridPosicion.x < 100) && ((int)gridPosicion.z > 0) && ((int)gridPosicion.z < 100))
                 {
                     if (edificioSeleccionado != null)
@@ -813,7 +814,7 @@ public class Juego : MonoBehaviour {
             FileStream fichero = File.Open(Application.persistentDataPath + "/guardado.save", FileMode.Open);
             Guardado guardado = (Guardado)bf.Deserialize(fichero);
             fichero.Close();
-            Debug.Log(guardado.edificiosID.Count);
+
             if (guardado.edificiosID.Count > 0)
             {
                 return guardado;
@@ -841,7 +842,7 @@ public class Juego : MonoBehaviour {
             diaNoche.tiempoTotalDias = guardado.dia;
             diaNoche.tiempoDia = guardado.hora;
             diaNoche.ActualizarLuces();
-         
+
             int i = 0;
             while (i < guardado.edificiosID.Count)
             {
@@ -899,7 +900,7 @@ public class Juego : MonoBehaviour {
             {
                 if (edificiosGuardar[x,z] != null)
                 {
-                    if (edificiosGuardar[x, z].id != 99)
+                    if (edificiosGuardar[x, z].id < 100)
                     {
                         guardado.edificiosID.Add(edificiosGuardar[x, z].id);                       
                         guardado.edificiosRotacion.Add(edificiosGuardar[x,z].rotacionColocacion);

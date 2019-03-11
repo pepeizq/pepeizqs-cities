@@ -71,12 +71,14 @@
     <Compile Include="Assets\Scripts\Colocar\ColocarFunciones.cs" />
     <Compile Include="Assets\Scripts\Colocar\ColocarPrevio.cs" />
     <Compile Include="Assets\Scripts\Colocar\RedondearPosicion.cs" />
+    <Compile Include="Assets\Scripts\ColorSuite.cs" />
     <Compile Include="Assets\Scripts\DiaNoche.cs" />
     <Compile Include="Assets\Scripts\EdificiosInfo.cs" />
     <Compile Include="Assets\Scripts\Idiomas.cs" />
     <Compile Include="Assets\Scripts\Juego.cs" />
     <Compile Include="Assets\Scripts\Steamworks.NET\SteamManager.cs" />
     <None Include="Assets\Idiomas\Idiomas.xml" />
+    <None Include="Assets\Scripts\ColorSuite.shader" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>E:/Proyectos/Unity/City Builder/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>

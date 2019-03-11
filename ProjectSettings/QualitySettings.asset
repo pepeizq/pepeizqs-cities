@@ -150,7 +150,7 @@ QualitySettings:
     name: Very High
     pixelLightCount: 4
     shadows: 1
-    shadowResolution: 1
+    shadowResolution: 0
     shadowProjection: 1
     shadowCascades: 4
     shadowDistance: 180

@@ -283,12 +283,12 @@ public static class ColocarFunciones {
             {
                 while (i < topeX)
                 {
-                    if (edificios[(int)edificio.gameObject.transform.position.x + i, (int)edificio.gameObject.transform.position.z] != null)
+                    if (edificios[(int)posicion.x + i, (int)posicion.z] != null)
                     {
-                        if ((edificios[(int)edificio.gameObject.transform.position.x + i, (int)edificio.gameObject.transform.position.z].id == (edificio.id - 99)) || (edificios[(int)edificio.gameObject.transform.position.x + i, (int)edificio.gameObject.transform.position.z].id == edificio.id))
+                        if ((edificios[(int)posicion.x + i, (int)posicion.z].id == (edificio.id - 99)) || (edificios[(int)posicion.x + i, (int)posicion.z].id == edificio.id))
                         {
-                            Object.Destroy(edificios[(int)edificio.gameObject.transform.position.x + i, (int)edificio.gameObject.transform.position.z].gameObject);
-                            edificios[(int)edificio.gameObject.transform.position.x + i, (int)edificio.gameObject.transform.position.z] = null;
+                            Object.Destroy(edificios[(int)posicion.x + i, (int)posicion.z].gameObject);
+                            edificios[(int)posicion.x + i, (int)posicion.z] = null;
                         }                            
                     }
 
@@ -300,13 +300,13 @@ public static class ColocarFunciones {
             {
                 while (j < topeZ)
                 {
-                    if (edificios[(int)edificio.gameObject.transform.position.x, (int)edificio.gameObject.transform.position.z + j] != null)
+                    if (edificios[(int)posicion.x, (int)posicion.z + j] != null)
                     {
-                        if ((edificios[(int)edificio.gameObject.transform.position.x, (int)edificio.gameObject.transform.position.z + j].id == (edificio.id - 99)) || (edificios[(int)edificio.gameObject.transform.position.x, (int)edificio.gameObject.transform.position.z + j].id == edificio.id))
+                        if ((edificios[(int)posicion.x, (int)posicion.z + j].id == (edificio.id - 99)) || (edificios[(int)posicion.x, (int)posicion.z + j].id == edificio.id))
                         {
-                            Object.Destroy(edificios[(int)edificio.gameObject.transform.position.x, (int)edificio.gameObject.transform.position.z + j].gameObject);
-                            edificios[(int)edificio.gameObject.transform.position.x, (int)edificio.gameObject.transform.position.z + j] = null;
-                        }                            
+                            Object.Destroy(edificios[(int)posicion.x, (int)posicion.z + j].gameObject);
+                            edificios[(int)posicion.x, (int)posicion.z + j] = null;
+                        }
                     }
 
                     j += 1;
@@ -320,12 +320,12 @@ public static class ColocarFunciones {
                     int jc = jb;
                     while (jc < topeZ)
                     {
-                        if (edificios[(int)edificio.gameObject.transform.position.x + ib, (int)edificio.gameObject.transform.position.z + jc] != null)
+                        if (edificios[(int)posicion.x + ib, (int)posicion.z + jc] != null)
                         {
-                            if ((edificios[(int)edificio.gameObject.transform.position.x + ib, (int)edificio.gameObject.transform.position.z + jc].id == (edificio.id - 99)) || (edificios[(int)edificio.gameObject.transform.position.x + ib, (int)edificio.gameObject.transform.position.z + jc].id == edificio.id))
+                            if ((edificios[(int)posicion.x + ib, (int)posicion.z + jc].id == (edificio.id - 99)) || (edificios[(int)posicion.x + ib, (int)posicion.z + jc].id == edificio.id))
                             {
-                                Object.Destroy(edificios[(int)edificio.gameObject.transform.position.x + ib, (int)edificio.gameObject.transform.position.z + jc].gameObject);
-                                edificios[(int)edificio.gameObject.transform.position.x + ib, (int)edificio.gameObject.transform.position.z + jc] = null;
+                                Object.Destroy(edificios[(int)posicion.x + ib, (int)posicion.z + jc].gameObject);
+                                edificios[(int)posicion.x + ib, (int)posicion.z + jc] = null;
                             }                           
                         }
 
@@ -338,12 +338,12 @@ public static class ColocarFunciones {
 
             if ((topeX == 1) && (topeZ == 1))
             {
-                if (edificios[(int)edificio.gameObject.transform.position.x, (int)edificio.gameObject.transform.position.z] != null)
+                if (edificios[(int)posicion.x, (int)posicion.z] != null)
                 {
-                    if ((edificios[(int)edificio.gameObject.transform.position.x, (int)edificio.gameObject.transform.position.z].id == (edificio.id - 99)) || (edificios[(int)edificio.gameObject.transform.position.x + ib, (int)edificio.gameObject.transform.position.z].id == edificio.id))
+                    if ((edificios[(int)posicion.x, (int)posicion.z].id == (edificio.id - 99)) || (edificios[(int)posicion.x + ib, (int)posicion.z].id == edificio.id))
                     {
-                        Object.Destroy(edificios[(int)edificio.gameObject.transform.position.x, (int)edificio.gameObject.transform.position.z].gameObject);
-                        edificios[(int)edificio.gameObject.transform.position.x, (int)edificio.gameObject.transform.position.z] = null;
+                        Object.Destroy(edificios[(int)posicion.x, (int)posicion.z].gameObject);
+                        edificios[(int)posicion.x, (int)posicion.z] = null;
                     }          
                 }
             }

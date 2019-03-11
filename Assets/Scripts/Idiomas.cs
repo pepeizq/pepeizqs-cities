@@ -26,13 +26,14 @@ public class Idiomas : MonoBehaviour {
  
     public string CogerCadena(string clave)
     {
-        if (cadenas.ContainsKey(clave))
+        if (cadenas != null)
         {
-            return (string)cadenas[clave];
+            if (cadenas.ContainsKey(clave))
+            {
+                return (string)cadenas[clave];
+            }
         }
-        else
-        {
-            return null;
-        }       
+
+        return null;
     }
 }

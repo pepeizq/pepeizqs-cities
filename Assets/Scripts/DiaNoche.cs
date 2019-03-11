@@ -54,7 +54,7 @@ public class DiaNoche : MonoBehaviour {
 
         if (parar == false)
         {
-            tiempoDia += (Time.deltaTime / segundosDia) * tiempoMultiplicador;
+            tiempoDia += (Time.deltaTime / segundosDia);
 
             if (tiempoDia > 0.98f)
             {
@@ -125,8 +125,7 @@ public class DiaNoche : MonoBehaviour {
         float i = ((maximaIntensidad - minimaIntensidad) * dot) + minimaIntensidad;
 
         sol.intensity = i;
-
-        sol.color = luzColorDia.Evaluate(dot);
+        sol.color = luzColorDia.Evaluate(tiempoDia);
 
         RenderSettings.ambientLight = sol.color;
     }

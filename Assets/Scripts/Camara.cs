@@ -8,6 +8,13 @@ public class Camara : MonoBehaviour
     private Vector3 offset;
     private bool arrastrando;
 
+    private int rotacion;
+
+    private void Start()
+    {
+        rotacion = 0;
+    }
+
     void Update()
     {
         if (canvasJuego.gameObject.GetComponent<CanvasGroup>().alpha == 1)
@@ -52,6 +59,12 @@ public class Camara : MonoBehaviour
             Vector3 posicion = hit.point;
 
             transform.RotateAround(posicion, Vector3.up, -90);
+            rotacion -= 90;
+
+            if (rotacion > -270)
+            {
+                rotacion = 0;
+            }
         }
     }
 
@@ -65,6 +78,12 @@ public class Camara : MonoBehaviour
             Vector3 posicion = hit.point;
 
             transform.RotateAround(posicion, Vector3.up, 90);
+            rotacion += 90;
+
+            if (rotacion > 270)
+            {
+                rotacion = 0;
+            }
         }
     }
 
@@ -92,7 +111,23 @@ public class Camara : MonoBehaviour
 
             if (arrastrando == true)
             {
-                transform.position = ratonOrigenPunto - offset;
+                Vector3 posicionFinal = ratonOrigenPunto - offset;
+                //transform.position = new Vector3(posicionFinal.x, 60, posicionFinal.z);
+                Debug.Log(string.Format("{0}  {1}  {2}", posicionFinal.x, posicionFinal.y, posicionFinal.z));
+
+                if (rotacion == 0)
+                {
+                    if ((posicionFinal.x > -40) && (posicionFinal.z > -40) && (posicionFinal.x < 60) && (posicionFinal.z < 60))
+                    {
+                        transform.position = new Vector3(posicionFinal.x, 60, posicionFinal.z);
+                    }              
+                }
+                else if ((rotacion == 90) || (rotacion == -270))
+                {
+
+                }
+
+
             }
         }       
     }

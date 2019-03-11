@@ -116,7 +116,7 @@ MonoBehaviour:
   luzRango: 0.5
   luzProbabilidad: 20
   dimensiones: {x: 2, y: 1}
-  rotacionColocacion: -180
+  rotacionColocacion: -270
   rotacionAdicional: 90
 --- !u!1 &1086771040718178
 GameObject:
