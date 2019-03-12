@@ -80,7 +80,10 @@ public class DiaNoche : MonoBehaviour {
             }
         }
 
-        dias.text = string.Format(idioma.CogerCadena("day").ToUpper() + " {0}", Mathf.Round(tiempoTotalDias));
+        if (idioma.CogerCadena("day") != null)
+        {
+            dias.text = string.Format(idioma.CogerCadena("day").ToUpper() + " {0}", Mathf.Round(tiempoTotalDias));
+        }       
 
         ActualizarReloj();
         ActualizarSol();

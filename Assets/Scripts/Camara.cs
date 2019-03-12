@@ -20,22 +20,22 @@ public class Camara : MonoBehaviour
         if (canvasJuego.gameObject.GetComponent<CanvasGroup>().alpha == 1)
         {
             int velocidad = 15;
-
+          
             if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
             {
-                transform.Translate(new Vector3(velocidad * Time.deltaTime, 0, 0));
+                Movimiento(velocidad * Time.deltaTime, 0);
             }
             else if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
             {
-                transform.Translate(new Vector3(-velocidad * Time.deltaTime, 0, 0));
+                Movimiento(-velocidad * Time.deltaTime, 0);
             }
             else if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
             {
-                transform.Translate(new Vector3(0, -velocidad * Time.deltaTime, 0));
+                Movimiento(0, -velocidad * Time.deltaTime);
             }
             else if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
             {
-                transform.Translate(new Vector3(0, velocidad * Time.deltaTime, 0));
+                Movimiento(0, velocidad * Time.deltaTime);
             }
 
             if (Input.GetKeyDown(KeyCode.F1))
@@ -47,6 +47,56 @@ public class Camara : MonoBehaviour
                 RotacionDerecha();
             }
         }
+    }
+
+    private void Movimiento(float x, float y)
+    {      
+        Transform posicionFinal = transform;
+
+        if (rotacion == 0)
+        {     
+            if ((posicionFinal.position.x > -40) && (posicionFinal.position.z > -40) && (posicionFinal.position.x < 60) && (posicionFinal.position.z < 60))
+            {
+                transform.Translate(new Vector3(x, y, 0));
+            }
+            else
+            {
+                transform.Translate(new Vector3(-x, -y, 0));
+            }
+        }
+        else if ((rotacion == 90) || (rotacion == -270))
+        {
+            if ((posicionFinal.position.x > -40) && (posicionFinal.position.z > 40) && (posicionFinal.position.x < 60) && (posicionFinal.position.z < 135))
+            {
+                transform.Translate(new Vector3(x, y, 0));
+            }
+            else
+            {
+                transform.Translate(new Vector3(-x, -y, 0));
+            }
+        }
+        else if ((rotacion == 180) || (rotacion == -180))
+        {
+            if ((posicionFinal.position.x > 40) && (posicionFinal.position.z > 40) && (posicionFinal.position.x < 135) && (posicionFinal.position.z < 135))
+            {
+                transform.Translate(new Vector3(x, y, 0));
+            }
+            else
+            {
+                transform.Translate(new Vector3(-x, -y, 0));
+            }
+        }
+        else if ((rotacion == 270) || (rotacion == -90))
+        {
+            if ((posicionFinal.position.x > 40) && (posicionFinal.position.z > -40) && (posicionFinal.position.x < 140) && (posicionFinal.position.z < 60))
+            {
+                transform.Translate(new Vector3(x, y, 0));
+            }
+            else
+            {
+                transform.Translate(new Vector3(-x, -y, 0));
+            }
+        }      
     }
 
     public void RotacionIzquierda()
@@ -61,7 +111,7 @@ public class Camara : MonoBehaviour
             transform.RotateAround(posicion, Vector3.up, -90);
             rotacion -= 90;
 
-            if (rotacion > -270)
+            if (rotacion < -270)
             {
                 rotacion = 0;
             }
@@ -83,7 +133,7 @@ public class Camara : MonoBehaviour
             if (rotacion > 270)
             {
                 rotacion = 0;
-            }
+            }         
         }
     }
 
@@ -112,9 +162,7 @@ public class Camara : MonoBehaviour
             if (arrastrando == true)
             {
                 Vector3 posicionFinal = ratonOrigenPunto - offset;
-                //transform.position = new Vector3(posicionFinal.x, 60, posicionFinal.z);
-                Debug.Log(string.Format("{0}  {1}  {2}", posicionFinal.x, posicionFinal.y, posicionFinal.z));
-
+          
                 if (rotacion == 0)
                 {
                     if ((posicionFinal.x > -40) && (posicionFinal.z > -40) && (posicionFinal.x < 60) && (posicionFinal.z < 60))
@@ -124,10 +172,25 @@ public class Camara : MonoBehaviour
                 }
                 else if ((rotacion == 90) || (rotacion == -270))
                 {
-
+                    if ((posicionFinal.x > -40) && (posicionFinal.z > 40) && (posicionFinal.x < 60) && (posicionFinal.z < 135))
+                    {
+                        transform.position = new Vector3(posicionFinal.x, 60, posicionFinal.z);
+                    }
                 }
-
-
+                else if ((rotacion == 180) || (rotacion == -180))
+                {
+                    if ((posicionFinal.x > 40) && (posicionFinal.z > 40) && (posicionFinal.x < 135) && (posicionFinal.z < 135))
+                    {
+                        transform.position = new Vector3(posicionFinal.x, 60, posicionFinal.z);
+                    }
+                }
+                else if ((rotacion == 270) || (rotacion == -90))
+                {
+                    if ((posicionFinal.x > 40) && (posicionFinal.z > -40) && (posicionFinal.x < 140) && (posicionFinal.z < 60))
+                    {
+                        transform.position = new Vector3(posicionFinal.x, 60, posicionFinal.z);
+                    }
+                }
             }
         }       
     }

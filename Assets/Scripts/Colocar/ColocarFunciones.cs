@@ -396,7 +396,7 @@ public static class ColocarFunciones {
 
         if (topeX == 4)
         {
-            sueloX = -2;
+            sueloX = -1;
         }
 
         return sueloX;
@@ -427,7 +427,7 @@ public static class ColocarFunciones {
 
         if (topeX == 4)
         {
-            topeX = 2;
+            topeX = 3;
         }
 
         return topeX;
