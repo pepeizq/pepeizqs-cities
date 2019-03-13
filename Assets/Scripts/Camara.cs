@@ -61,7 +61,7 @@ public class Camara : MonoBehaviour
             }
             else
             {
-                transform.Translate(new Vector3(-x, -y, 0));
+                transform.Translate(new Vector3(-x * 2, -y * 2, 0));
             }
         }
         else if ((rotacion == 90) || (rotacion == -270))
@@ -72,7 +72,7 @@ public class Camara : MonoBehaviour
             }
             else
             {
-                transform.Translate(new Vector3(-x, -y, 0));
+                transform.Translate(new Vector3(-x * 2, -y * 2, 0));
             }
         }
         else if ((rotacion == 180) || (rotacion == -180))
@@ -83,7 +83,7 @@ public class Camara : MonoBehaviour
             }
             else
             {
-                transform.Translate(new Vector3(-x, -y, 0));
+                transform.Translate(new Vector3(-x * 2, -y * 2, 0));
             }
         }
         else if ((rotacion == 270) || (rotacion == -90))
@@ -94,7 +94,7 @@ public class Camara : MonoBehaviour
             }
             else
             {
-                transform.Translate(new Vector3(-x, -y, 0));
+                transform.Translate(new Vector3(-x * 2, -y * 2, 0));
             }
         }      
     }
