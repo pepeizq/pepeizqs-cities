@@ -75,6 +75,7 @@
     <Compile Include="Assets\Scripts\EdificiosInfo.cs" />
     <Compile Include="Assets\Scripts\Idiomas.cs" />
     <Compile Include="Assets\Scripts\Juego.cs" />
+    <Compile Include="Assets\Scripts\Opciones.cs" />
     <Compile Include="Assets\Scripts\Steamworks.NET\SteamManager.cs" />
     <None Include="Assets\Idiomas\Idiomas.xml" />
     <Reference Include="Unity.TextMeshPro.Editor">
