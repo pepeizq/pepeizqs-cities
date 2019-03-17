@@ -219,6 +219,9 @@ public class Juego : MonoBehaviour {
     {
         sonidoBoton.Play();
         Application.OpenURL("https://pepeizqapps.com/");
+
+        //Steamworks.SteamUserStats.SetAchievement("ACHIEVEMENT UNIQUE ID");
+        //Steamworks.SteamUserStats.StoreStats();
     }
 
     public void AbrirWeb2()
