@@ -219,15 +219,14 @@ public class Juego : MonoBehaviour {
     {
         sonidoBoton.Play();
         Application.OpenURL("https://pepeizqapps.com/");
-
-        //Steamworks.SteamUserStats.SetAchievement("ACHIEVEMENT UNIQUE ID");
-        //Steamworks.SteamUserStats.StoreStats();
+        Logros.Steam("pepeizqcities1");
     }
 
     public void AbrirWeb2()
     {
         sonidoBoton.Play();
         Application.OpenURL("https://pepeizqdeals.com/");
+        Logros.Steam("pepeizqcities2");
     }
 
     public void SalirJuego()
