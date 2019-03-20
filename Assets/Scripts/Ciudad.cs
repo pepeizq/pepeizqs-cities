@@ -1,5 +1,4 @@
-﻿using System.IO;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class Ciudad : MonoBehaviour {
@@ -63,6 +62,19 @@ public class Ciudad : MonoBehaviour {
         {
             TrabajosActual = Mathf.Min((int)PoblacionActual, TrabajosTope);
         }      
+
+        if (TrabajosActual >= 100 && TrabajosActual < 500)
+        {
+            Logros.Steam("pepeizqcities6");
+        }
+        else if (TrabajosActual >= 500 && TrabajosActual < 1000)
+        {
+            Logros.Steam("pepeizqcities7");
+        }
+        else if (TrabajosActual >= 1000)
+        {
+            Logros.Steam("pepeizqcities8");
+        }
     }
 
     void CalcularIngresosDinero()
@@ -80,10 +92,25 @@ public class Ciudad : MonoBehaviour {
             }
         }
 
+        int montanteFinal = (montante * (TrabajosActual / TrabajosTope));
+
         if (TrabajosActual > 0)
         {
-            Dinero = Dinero + (montante * (TrabajosActual/TrabajosTope));
+            Dinero = Dinero + montanteFinal;
         }      
+
+        if (montanteFinal >= 100 && montanteFinal < 1000)
+        {
+            Logros.Steam("pepeizqcities3");
+        }
+        else if (montanteFinal >= 1000 && montanteFinal < 10000)
+        {
+            Logros.Steam("pepeizqcities4");
+        }
+        else if (montanteFinal >= 10000)
+        {
+            Logros.Steam("pepeizqcities5");
+        }
     }
 
     public void DepositoDinero(int cantidad)
@@ -145,6 +172,19 @@ public class Ciudad : MonoBehaviour {
             {
                 PoblacionActual = PoblacionActual - (PoblacionActual / 10);
             }          
+        }
+
+        if (PoblacionActual >= 100 && PoblacionActual < 500)
+        {
+            Logros.Steam("pepeizqcities9");
+        }
+        else if (PoblacionActual >= 500 && PoblacionActual < 1000)
+        {
+            Logros.Steam("pepeizqcities10");
+        }
+        else if (PoblacionActual >= 1000)
+        {
+            Logros.Steam("pepeizqcities11");
         }
     }
 }

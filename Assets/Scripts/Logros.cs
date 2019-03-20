@@ -2,7 +2,10 @@
 {
     public static void Steam(string id)
     {
-        Steamworks.SteamUserStats.SetAchievement(id);
-        Steamworks.SteamUserStats.StoreStats();
+        if (SteamManager.Initialized)
+        {
+            Steamworks.SteamUserStats.SetAchievement(id);
+            Steamworks.SteamUserStats.StoreStats();
+        }           
     }
 }
