@@ -167,5 +167,5 @@ c6666661329916e218bee7f5e79e60f5 Unity.TextMeshPro.dll:TMPro.TextMeshPro
 f8fd6214ccb51e573bc6ccda669756dd Assembly-CSharp.dll:.Ciudad
 3165968ba45c74472d279ba04455fccb Unity.TextMeshPro.dll:TMPro.TMP_ColorGradient
 badf99abcd8b616fc5557981a7b1674e Assembly-CSharp.dll:.Camara
-5878637a35c39b13ca83bf8df1bc216f Assembly-CSharp.dll:.Opciones
+c2e090d95c53d74209e1e675a0f5db3c Assembly-CSharp.dll:.Opciones
 8649814970b42d345b89944b862453cc Unity.TextMeshPro.dll:TMPro.TMP_SubMesh

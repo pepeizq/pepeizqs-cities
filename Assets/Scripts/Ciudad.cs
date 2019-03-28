@@ -92,8 +92,13 @@ public class Ciudad : MonoBehaviour {
             }
         }
 
-        int montanteFinal = (montante * (TrabajosActual / TrabajosTope));
+        int montanteFinal = 0;
 
+        if (TrabajosTope > 0)
+        {
+            TrabajosTope = (montante * (TrabajosActual / TrabajosTope));
+        }
+       
         if (TrabajosActual > 0)
         {
             Dinero = Dinero + montanteFinal;
