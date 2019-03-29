@@ -9,6 +9,7 @@ public class Juego : MonoBehaviour {
     public Idiomas idioma;
 
     public Opciones opciones;
+    public Ayuda ayuda;
 
     public Canvas canvasMenuPrincipal;
     public Canvas canvasMenuOpciones;
@@ -100,13 +101,6 @@ public class Juego : MonoBehaviour {
     public Text volverMenuTextoNo;
     public Text volverMenuTextoCancelar;
 
-    public Panel ayuda1;
-    public Text ayuda1Texto;
-    public Panel ayuda2;
-    public Text ayuda2Texto;
-    public Panel ayuda3;
-    public Text ayuda3Texto;
-
     private void Start()
     {
         //File.Delete(Application.persistentDataPath + "/guardado.save");
@@ -122,7 +116,8 @@ public class Juego : MonoBehaviour {
         if (DetectarPartidaGuardada() != null)
         {
             botonCargarPartida.interactable = true;
-            CargarEdificios(false);
+            CargarEdificios();
+            ayuda.Cargar(false);
         }
         else
         {
@@ -210,9 +205,7 @@ public class Juego : MonoBehaviour {
         panelGuardar.gameObject.SetActive(estado);
         panelTiempo.gameObject.SetActive(estado);
 
-        ayuda1.gameObject.SetActive(estado);
-        ayuda2.gameObject.SetActive(estado);
-        ayuda3.gameObject.SetActive(estado);
+        ayuda.EstadoCajas(estado);
     }
 
     public void AbrirWeb1()
@@ -257,6 +250,7 @@ public class Juego : MonoBehaviour {
         colocar.QuitarTodosEdicios();
         arbolesInicio.Colocar(colocar);
         CargarInterfaz();
+        ayuda.Cargar(true);
     }
 
     public void CargarPartida()
@@ -264,8 +258,9 @@ public class Juego : MonoBehaviour {
         menuPrincipal = false;
         sonidoBoton.Play();
         colocar.QuitarTodosEdicios();
-        CargarEdificios(true);
+        CargarEdificios();
         CargarInterfaz();
+        ayuda.Cargar(true);
     }
 
     private void CargarInterfaz()
@@ -688,7 +683,7 @@ public class Juego : MonoBehaviour {
         }
     }
 
-    public void CargarEdificios(bool mostrarAyuda)
+    public void CargarEdificios()
     {
         if (File.Exists(Application.persistentDataPath + "/guardado.save"))
         {
@@ -723,27 +718,6 @@ public class Juego : MonoBehaviour {
             ciudad.TrabajosTope = guardado.trabajosTope;
             ciudad.Comida = guardado.comida;
         }
-
-        if (mostrarAyuda == true)
-        {
-            if (PlayerPrefs.GetString("ayuda") == "true")
-            {
-                ayuda1.GetComponent<CanvasGroup>().alpha = 1;
-                ayuda1.GetComponent<CanvasGroup>().interactable = true;
-                ayuda1.GetComponent<CanvasGroup>().blocksRaycasts = true;
-                ayuda1.gameObject.SetActive(true);
-
-                ayuda1Texto.text = idioma.CogerCadena("help1");
-                ayuda2Texto.text = idioma.CogerCadena("help2");
-                ayuda3Texto.text = idioma.CogerCadena("help3");
-
-                diaNoche.ArrancarParar();
-            }
-            else
-            {
-                ayuda1.gameObject.SetActive(false);
-            }
-        }      
     }
 
     public void GuardarPartida()
@@ -866,49 +840,5 @@ public class Juego : MonoBehaviour {
             diaNoche.ArrancarParar();
         }
     }
-
-    public void CerrarAyuda1()
-    {
-        sonidoBoton.Play();
-
-        ayuda1.GetComponent<CanvasGroup>().alpha = 0;
-        ayuda1.GetComponent<CanvasGroup>().interactable = false;
-        ayuda1.GetComponent<CanvasGroup>().blocksRaycasts = false;
-        ayuda1.gameObject.SetActive(false);
-
-        ayuda2.GetComponent<CanvasGroup>().alpha = 1;
-        ayuda2.GetComponent<CanvasGroup>().interactable = true;
-        ayuda2.GetComponent<CanvasGroup>().blocksRaycasts = true;
-        ayuda2.gameObject.SetActive(true);
-    }
-
-    public void CerrarAyuda2()
-    {
-        sonidoBoton.Play();
-
-        ayuda2.GetComponent<CanvasGroup>().alpha = 0;
-        ayuda2.GetComponent<CanvasGroup>().interactable = false;
-        ayuda2.GetComponent<CanvasGroup>().blocksRaycasts = false;
-        ayuda2.gameObject.SetActive(false);
-
-        ayuda3.GetComponent<CanvasGroup>().alpha = 1;
-        ayuda3.GetComponent<CanvasGroup>().interactable = true;
-        ayuda3.GetComponent<CanvasGroup>().blocksRaycasts = true;
-        ayuda3.gameObject.SetActive(true);
-    }
-
-    public void CerrarAyuda3()
-    {
-        sonidoBoton.Play();
-
-        ayuda3.GetComponent<CanvasGroup>().alpha = 0;
-        ayuda3.GetComponent<CanvasGroup>().interactable = false;
-        ayuda3.GetComponent<CanvasGroup>().blocksRaycasts = false;
-        ayuda3.gameObject.SetActive(false);
-
-        if (diaNoche.parar == true)
-        {
-            diaNoche.ArrancarParar();
-        }
-    }
+  
 }

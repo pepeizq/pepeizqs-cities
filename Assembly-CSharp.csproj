@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\ArbolesInicio.cs" />
+    <Compile Include="Assets\Scripts\Ayuda.cs" />
     <Compile Include="Assets\Scripts\Camara.cs" />
     <Compile Include="Assets\Scripts\Ciudad.cs" />
     <Compile Include="Assets\Scripts\Clases\Construccion.cs" />
@@ -78,7 +79,9 @@
     <Compile Include="Assets\Scripts\Logros.cs" />
     <Compile Include="Assets\Scripts\Opciones.cs" />
     <Compile Include="Assets\Scripts\Steamworks.NET\SteamManager.cs" />
-    <None Include="Assets\Idiomas\Idiomas.xml" />
+    <None Include="Assets\Idiomas\Idiomas.xml">
+      <SubType>Designer</SubType>
+    </None>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>E:/Proyectos/Unity/City Builder/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>

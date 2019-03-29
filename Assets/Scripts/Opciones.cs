@@ -12,12 +12,13 @@ public class Opciones : MonoBehaviour
     public Button botonGraficos;
     public Text botonGraficosTexto;
 
-    public Button botonTeclado;
-    public Text botonTecladoTexto;
+    //public Button botonTeclado;
+    //public Text botonTecladoTexto;
 
     public Panel panelGeneral;
     public Panel panelGraficos;
-    public Panel panelTeclado;
+    public Panel panelGraficosSombrasCalidad;
+    //public Panel panelTeclado;
 
     public AudioSource musicaFondo;
     public AudioSource sonidoBoton;
@@ -27,6 +28,7 @@ public class Opciones : MonoBehaviour
     public Sprite botonSonidoNoSprite;
 
     public Toggle toggleAyuda;
+    public Toggle toggleSombras;
 
     public bool sonidoParar;
 
@@ -35,6 +37,7 @@ public class Opciones : MonoBehaviour
 
     public Dropdown dpSombras;
     public Dropdown dpTexturas;
+    public Dropdown dpAntiAliasing;
 
     public Text botonNuevaPartidaTexto;
     public Text botonCargarPartidaTexto;
@@ -46,14 +49,18 @@ public class Opciones : MonoBehaviour
     public Text toggleOpcionesAyudaTexto;
     public Text botonOpcionesSonidoTexto;
     public Text botonOpcionesSonidoVolumenTexto;
+    public Text toggleOpcionesSombrasTexto;
     public Text dpOpcionesSombrasTexto;
     public Text dpOpcionesTexturasTexto;
+    public Text dpOpcionesAntiAliasingTexto;
 
     public void CargarInicio()
     {
         MostrarPanelColorBoton(botonGeneral, new Color(0.08f, 0.4f, 0.58f));
         panelGraficos.gameObject.SetActive(false);
-        panelTeclado.gameObject.SetActive(false);
+        //panelTeclado.gameObject.SetActive(false);
+
+        //-----------------------------------------------------------
 
         if (PlayerPrefs.HasKey("idioma") == false)
         {
@@ -64,6 +71,8 @@ public class Opciones : MonoBehaviour
         {
             idioma.CargarIdioma(ficheroIdiomas, PlayerPrefs.GetString("idioma"));
         }
+
+        //-----------------------------------------------------------
 
         if (PlayerPrefs.HasKey("sonido") == false)
         {
@@ -82,6 +91,8 @@ public class Opciones : MonoBehaviour
             }
         }
 
+        //-----------------------------------------------------------
+
         if (PlayerPrefs.HasKey("volumen") == false)
         {
             PlayerPrefs.SetFloat("volumen", 0.7f);
@@ -91,6 +102,8 @@ public class Opciones : MonoBehaviour
         {
             sliderVolumen.value = PlayerPrefs.GetFloat("volumen");
         }
+
+        //-----------------------------------------------------------
 
         if (PlayerPrefs.HasKey("ayuda") == false)
         {
@@ -109,17 +122,55 @@ public class Opciones : MonoBehaviour
             }
         }
 
-        dpSombras.options.Add(new Dropdown.OptionData() { text = idioma.CogerCadena("low") });
-        dpSombras.options.Add(new Dropdown.OptionData() { text = idioma.CogerCadena("high") });
+        //-----------------------------------------------------------
 
         if (PlayerPrefs.HasKey("sombras") == false)
         {
             PlayerPrefs.SetInt("sombras", 1);
+            toggleSombras.isOn = true;
+        }
+        else
+        {
+            if (PlayerPrefs.GetInt("sombras") == 0)
+            {
+                toggleSombras.isOn = false;
+            }
+            else
+            {
+                toggleSombras.isOn = true;
+            }
+        }
+
+        if (toggleSombras.isOn == true)
+        {
+            QualitySettings.shadows = ShadowQuality.HardOnly;
+
+            panelGraficosSombrasCalidad.gameObject.GetComponent<CanvasGroup>().alpha = 1;
+            panelGraficosSombrasCalidad.gameObject.GetComponent<CanvasGroup>().interactable = true;
+            panelGraficosSombrasCalidad.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
+        }
+        else
+        {
+            QualitySettings.shadows = ShadowQuality.Disable;
+
+            panelGraficosSombrasCalidad.gameObject.GetComponent<CanvasGroup>().alpha = 0;
+            panelGraficosSombrasCalidad.gameObject.GetComponent<CanvasGroup>().interactable = false;
+            panelGraficosSombrasCalidad.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
+        }
+
+        //-----------------------------------------------------------
+
+        dpSombras.options.Add(new Dropdown.OptionData() { text = idioma.CogerCadena("low") });
+        dpSombras.options.Add(new Dropdown.OptionData() { text = idioma.CogerCadena("high") });
+
+        if (PlayerPrefs.HasKey("sombrasCalidad") == false)
+        {
+            PlayerPrefs.SetInt("sombrasCalidad", 1);
             dpSombras.value = 1;
         }
         else
         {
-            dpSombras.value = PlayerPrefs.GetInt("sombras");
+            dpSombras.value = PlayerPrefs.GetInt("sombrasCalidad");
         }
 
         if (dpSombras.value == 0)
@@ -130,6 +181,8 @@ public class Opciones : MonoBehaviour
         {
             QualitySettings.shadowProjection = ShadowProjection.CloseFit;
         }
+
+        //-----------------------------------------------------------
 
         dpTexturas.options.Add(new Dropdown.OptionData() { text = "Full Res" });
         dpTexturas.options.Add(new Dropdown.OptionData() { text = "Half Res" });
@@ -147,6 +200,40 @@ public class Opciones : MonoBehaviour
         }
 
         QualitySettings.masterTextureLimit = dpTexturas.value;
+
+        //-----------------------------------------------------------
+
+        dpAntiAliasing.options.Add(new Dropdown.OptionData() { text = "Disasbled" });
+        dpAntiAliasing.options.Add(new Dropdown.OptionData() { text = "2x" });
+        dpAntiAliasing.options.Add(new Dropdown.OptionData() { text = "4x" });
+        dpAntiAliasing.options.Add(new Dropdown.OptionData() { text = "8x" });
+
+        if (PlayerPrefs.HasKey("antiAliasing") == false)
+        {
+            PlayerPrefs.SetInt("antiAliasing", 1);
+            dpAntiAliasing.value = 1;
+        }
+        else
+        {
+            dpAntiAliasing.value = PlayerPrefs.GetInt("antiAliasing");
+        }
+
+        if (dpAntiAliasing.value == 0)
+        {
+            QualitySettings.antiAliasing = 0;
+        }
+        else if (dpAntiAliasing.value == 1)
+        {
+            QualitySettings.antiAliasing = 2;
+        }
+        else if (dpAntiAliasing.value == 2)
+        {
+            QualitySettings.antiAliasing = 4;
+        }
+        else if (dpAntiAliasing.value == 3)
+        {
+            QualitySettings.antiAliasing = 8;
+        }
     }
 
     public void MostrarPanel(Panel panelEnseñar)
@@ -163,10 +250,10 @@ public class Opciones : MonoBehaviour
         panelGraficos.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
         panelGraficos.gameObject.SetActive(false);
 
-        panelTeclado.gameObject.GetComponent<CanvasGroup>().alpha = 0;
-        panelTeclado.gameObject.GetComponent<CanvasGroup>().interactable = false;
-        panelTeclado.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
-        panelTeclado.gameObject.SetActive(false);
+        //panelTeclado.gameObject.GetComponent<CanvasGroup>().alpha = 0;
+        //panelTeclado.gameObject.GetComponent<CanvasGroup>().interactable = false;
+        //panelTeclado.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
+        //panelTeclado.gameObject.SetActive(false);
 
         panelEnseñar.gameObject.GetComponent<CanvasGroup>().alpha = 1;
         panelEnseñar.gameObject.GetComponent<CanvasGroup>().interactable = true;
@@ -191,14 +278,14 @@ public class Opciones : MonoBehaviour
             MostrarPanelColorBoton(botonGraficos, Color.white);
         }
 
-        if (panelEnseñar.nombre == "teclado")
-        {
-            MostrarPanelColorBoton(botonTeclado, new Color(0.08f, 0.4f, 0.58f));
-        }
-        else
-        {
-            MostrarPanelColorBoton(botonTeclado, Color.white);
-        }
+        //if (panelEnseñar.nombre == "teclado")
+        //{
+        //    MostrarPanelColorBoton(botonTeclado, new Color(0.08f, 0.4f, 0.58f));
+        //}
+        //else
+        //{
+        //    MostrarPanelColorBoton(botonTeclado, Color.white);
+        //}
     }
 
     private void MostrarPanelColorBoton(Button boton, Color color)
@@ -218,14 +305,16 @@ public class Opciones : MonoBehaviour
 
         botonGeneralTexto.text = idioma.CogerCadena("general");
         botonGraficosTexto.text = idioma.CogerCadena("graphics");
-        botonTecladoTexto.text = idioma.CogerCadena("keyboard");
+        //botonTecladoTexto.text = idioma.CogerCadena("keyboard");
 
         botonOpcionesIdiomaTexto.text = idioma.CogerCadena("languages");
         toggleOpcionesAyudaTexto.text = idioma.CogerCadena("help");
         botonOpcionesSonidoTexto.text = idioma.CogerCadena("sound");
         botonOpcionesSonidoVolumenTexto.text = idioma.CogerCadena("soundVolume");
-        dpOpcionesSombrasTexto.text = idioma.CogerCadena("shadows");
+        toggleOpcionesSombrasTexto.text = idioma.CogerCadena("shadows");
+        dpOpcionesSombrasTexto.text = idioma.CogerCadena("shadowsQuality");
         dpOpcionesTexturasTexto.text = idioma.CogerCadena("textures");
+        dpOpcionesAntiAliasingTexto.text = idioma.CogerCadena("antiAliasing");
     }
 
     public void CargarIdiomaEnglish()
@@ -290,9 +379,29 @@ public class Opciones : MonoBehaviour
         AudioListener.volume = slider.value;
     }
 
-    public void ControlSombras(Dropdown dp)
+    public void ControlSombras(Toggle toggle)
     {
-        PlayerPrefs.SetInt("sombras", dp.value);
+        if (toggle.isOn == true)
+        {
+            PlayerPrefs.SetInt("sombras", 1);
+            QualitySettings.shadows = ShadowQuality.HardOnly;
+
+            panelGraficosSombrasCalidad.gameObject.GetComponent<CanvasGroup>().interactable = true;
+            panelGraficosSombrasCalidad.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
+        }
+        else
+        {
+            PlayerPrefs.SetInt("sombras", 0);
+            QualitySettings.shadows = ShadowQuality.Disable;
+
+            panelGraficosSombrasCalidad.gameObject.GetComponent<CanvasGroup>().interactable = false;
+            panelGraficosSombrasCalidad.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
+        }
+    }
+
+    public void ControlSombrasCalidad(Dropdown dp)
+    {
+        PlayerPrefs.SetInt("sombrasCalidad", dp.value);
 
         if (dp.value == 0)
         {
@@ -308,5 +417,27 @@ public class Opciones : MonoBehaviour
     {
         PlayerPrefs.SetInt("texturas", dp.value);
         QualitySettings.masterTextureLimit = dp.value;
+    }
+
+    public void ControlAntiAliasing(Dropdown dp)
+    {
+        PlayerPrefs.SetInt("antiAliasing", dp.value);
+
+        if (dp.value == 0)
+        {
+            QualitySettings.antiAliasing = 0;
+        }
+        else if (dp.value == 1)
+        {
+            QualitySettings.antiAliasing = 2;
+        }
+        else if (dp.value == 2)
+        {
+            QualitySettings.antiAliasing = 4;
+        }
+        else if (dp.value == 3)
+        {
+            QualitySettings.antiAliasing = 8;
+        }
     }
 }
