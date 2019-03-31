@@ -79,9 +79,7 @@
     <Compile Include="Assets\Scripts\Logros.cs" />
     <Compile Include="Assets\Scripts\Opciones.cs" />
     <Compile Include="Assets\Scripts\Steamworks.NET\SteamManager.cs" />
-    <None Include="Assets\Idiomas\Idiomas.xml">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="Assets\Idiomas\Idiomas.xml" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>E:/Proyectos/Unity/City Builder/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>

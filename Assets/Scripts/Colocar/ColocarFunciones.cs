@@ -46,8 +46,6 @@ public static class ColocarFunciones {
 
     public static Construccion[,] RellenarEdificioVacio(Construccion[,] edificios, Construccion edificio, Vector3 posicion, Construccion edificioVacio)
     {
-        edificioVacio.id = 99 + edificio.id;
-
         int topeX = TopeX(edificio);
         int i = SueloX(topeX, edificio);
 
@@ -267,120 +265,25 @@ public static class ColocarFunciones {
     {
         if (edificio != null)
         {
-            int topeX = TopeX(edificio);
-            int i = SueloX(topeX, edificio);
+            int id2 = edificio.id2;
 
-            int topeZ = TopeZ(edificio);
-            int j = SueloZ(topeZ, edificio);
-
-            topeX = TopeX2(topeX, edificio);
-            topeZ = TopeZ2(topeZ, edificio);
-                
-            int ib = i;
-            int jb = j;
-
-            if (topeX > 1)
+            foreach (Construccion subedificio in edificios)
             {
-                while (i < topeX)
+                if (subedificio != null)
                 {
-                    if (edificios[(int)posicion.x + i, (int)posicion.z] != null)
+                    if (id2 == subedificio.id2)
                     {
-                        if ((edificios[(int)posicion.x + i, (int)posicion.z].id == (edificio.id - 99)) || (edificios[(int)posicion.x + i, (int)posicion.z].id == edificio.id))
-                        {
-                            Object.Destroy(edificios[(int)posicion.x + i, (int)posicion.z].gameObject);
-                            edificios[(int)posicion.x + i, (int)posicion.z] = null;
-                        }                            
+                        int x = subedificio.posicionX;
+                        int z = subedificio.posicionZ;
+
+                        Object.Destroy(subedificio.gameObject);
+                        edificios[x, z] = null;
                     }
-
-                    i += 1;
-                }
-            }
-
-            if (topeZ > 1)
-            {
-                while (j < topeZ)
-                {
-                    if (edificios[(int)posicion.x, (int)posicion.z + j] != null)
-                    {
-                        if ((edificios[(int)posicion.x, (int)posicion.z + j].id == (edificio.id - 99)) || (edificios[(int)posicion.x, (int)posicion.z + j].id == edificio.id))
-                        {
-                            Object.Destroy(edificios[(int)posicion.x, (int)posicion.z + j].gameObject);
-                            edificios[(int)posicion.x, (int)posicion.z + j] = null;
-                        }
-                    }
-
-                    j += 1;
-                }
-            }
-
-            if (topeX > 1 || topeZ > 1)
-            {
-                while (ib < topeX)
-                {
-                    int jc = jb;
-                    while (jc < topeZ)
-                    {
-                        if (edificios[(int)posicion.x + ib, (int)posicion.z + jc] != null)
-                        {
-                            if ((edificios[(int)posicion.x + ib, (int)posicion.z + jc].id == (edificio.id - 99)) || (edificios[(int)posicion.x + ib, (int)posicion.z + jc].id == edificio.id))
-                            {
-                                Object.Destroy(edificios[(int)posicion.x + ib, (int)posicion.z + jc].gameObject);
-                                edificios[(int)posicion.x + ib, (int)posicion.z + jc] = null;
-                            }                           
-                        }
-
-                        jc += 1;
-                    }
-
-                    ib += 1;
-                }
-            }
-
-            if ((topeX == 1) && (topeZ == 1))
-            {
-                if (edificios[(int)posicion.x, (int)posicion.z] != null)
-                {
-                    if ((edificios[(int)posicion.x, (int)posicion.z].id == (edificio.id - 99)) || (edificios[(int)posicion.x + ib, (int)posicion.z].id == edificio.id))
-                    {
-                        Object.Destroy(edificios[(int)posicion.x, (int)posicion.z].gameObject);
-                        edificios[(int)posicion.x, (int)posicion.z] = null;
-                    }          
-                }
+                }               
             }
         }
 
         return edificios;
-    }
-
-    public static Construccion QuitarEdificiosBuscar(Construccion[,] edificios, Construccion edificio, Vector3 posicion)
-    {
-        int i = -1;
-        while (i < 1)
-        {
-            int j = -1;
-            while (j < 1)
-            {
-                if ((i != 0) && (j != 0))
-                {
-                    if (edificios[(int)posicion.x + i, (int)posicion.z + j] != null)
-                    {
-                        if (edificios[(int)posicion.x + i, (int)posicion.z + j].id == (edificio.id - 99))
-                        {
-                            if (edificios[(int)posicion.x + i, (int)posicion.z + j].dimensiones.x > 1 || edificios[(int)posicion.x + i, (int)posicion.z + j].dimensiones.y > 1)
-                            {
-                                return edificios[(int)posicion.x + i, (int)posicion.z + j];
-                            }
-                        }
-                    }
-                }
-                
-                j += 1;
-            }
-
-            i += 1;
-        }
-
-        return null;
     }
 
     //------------------------------------

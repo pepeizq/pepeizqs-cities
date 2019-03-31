@@ -247,7 +247,7 @@ public class Juego : MonoBehaviour {
         ciudad.Comida = 0f;
 
         camara.transform.position = new Vector3(10, 60, 10);
-        colocar.QuitarTodosEdicios();
+        colocar.QuitarTodosEdificios();
         arbolesInicio.Colocar(colocar);
         CargarInterfaz();
         ayuda.Cargar(true);
@@ -257,7 +257,7 @@ public class Juego : MonoBehaviour {
     {
         menuPrincipal = false;
         sonidoBoton.Play();
-        colocar.QuitarTodosEdicios();
+        colocar.QuitarTodosEdificios();
         CargarEdificios();
         CargarInterfaz();
         ayuda.Cargar(true);
@@ -552,7 +552,7 @@ public class Juego : MonoBehaviour {
 
                             ciudad.ActualizarUI(false);
                             colocar.QuitarEdificio(edificioEliminar, gridPosicion);
-                            DemolerBoton(false);
+                            //DemolerBoton(false);
                             sonidoBotonDemoler.Play();
                         }
                     }                   
@@ -621,20 +621,8 @@ public class Juego : MonoBehaviour {
 
                     if (edificioSeleccionado != null)
                     {
-                        if (edificioSeleccionado.id > 99)
-                        {
-                            edificioSeleccionado = colocar.QuitarEdificioBuscar(edificioSeleccionado, gridPosicion);
-                        }
-                    }
-
-                    if (edificioSeleccionado != null)
-                    {
-                        colocar.LimpiarColorEdificios();
-
-                        if (edificioSeleccionado.id < 99)
-                        {
-                            edificioSeleccionado.gameObject.GetComponent<MeshRenderer>().material.color = new Color(255, 0, 0, 0.1f);                           
-                        } 
+                        colocar.DemolerColorQuitar();
+                        colocar.DemolerColorRojo(edificioSeleccionado.id2);
                     }   
                 }
             }

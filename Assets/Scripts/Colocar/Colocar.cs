@@ -2,9 +2,16 @@
 
 public class Colocar : MonoBehaviour {
 
+    private int contadorIds;
+
     public Construccion[,] edificios = new Construccion[100, 100];
 
     public Construccion edificioVacio;
+
+    private void Start()
+    {
+        contadorIds = 0;
+    }
 
     public void AñadirConstruccion(Construccion edificio, Vector3 posicion, bool encender)
     {
@@ -16,6 +23,12 @@ public class Colocar : MonoBehaviour {
 
         Construccion edificioFinal = Instantiate(edificio, posicion, Quaternion.identity);      
         edificioFinal.transform.Rotate(Vector3.up, edificio.rotacionAdicional + edificio.rotacionColocacion, Space.World);
+        edificioFinal.posicionX = (int)posicion.x;
+        edificioFinal.posicionZ = (int)posicion.z;
+        edificioFinal.id2 = contadorIds;
+        contadorIds += 1;
+
+        edificioVacio.id2 = edificioFinal.id2;
 
         edificios[(int)posicion.x, (int)posicion.z] = edificioFinal;
         edificios = ColocarFunciones.RellenarEdificioVacio(edificios, edificio, posicion, edificioVacio);
@@ -31,12 +44,7 @@ public class Colocar : MonoBehaviour {
         edificios = ColocarFunciones.QuitarEdificios(edificios, edificio, posicion);
     }
 
-    public Construccion QuitarEdificioBuscar(Construccion edificio, Vector3 posicion)
-    {
-        return ColocarFunciones.QuitarEdificiosBuscar(edificios, edificio, posicion);
-    }
-
-    public void QuitarTodosEdicios()
+    public void QuitarTodosEdificios()
     {
         for (int x = 0; x < edificios.GetLength(0); x++)
         {
@@ -56,7 +64,24 @@ public class Colocar : MonoBehaviour {
         return edificios;
     }
 
-    public void LimpiarColorEdificios()
+    public void DemolerColorRojo(int id2)
+    {
+        foreach (Construccion subedificio in edificios)
+        {
+            if (subedificio != null)
+            {
+                if (subedificio.id != 99)
+                {
+                    if (subedificio.id2 == id2)
+                    {
+                        subedificio.gameObject.GetComponent<MeshRenderer>().material.color = new Color(255f / 255f, 98f / 255f, 98f / 255f);
+                    }
+                }
+            }
+        }
+    }
+
+    public void DemolerColorQuitar()
     {
         foreach (Construccion subedificio in edificios)
         {
