@@ -618,10 +618,10 @@ public class Juego : MonoBehaviour {
                 if (!EventSystem.current.IsPointerOverGameObject())
                 {                  
                     edificioSeleccionado = colocar.ComprobarConstruccionesPosicion(null, gridPosicion);
+                    colocar.DemolerColorQuitar();
 
                     if (edificioSeleccionado != null)
-                    {
-                        colocar.DemolerColorQuitar();
+                    {                      
                         colocar.DemolerColorRojo(edificioSeleccionado.id2);
                     }   
                 }

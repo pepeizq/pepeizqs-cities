@@ -21,47 +21,50 @@ public class Camara : MonoBehaviour
         {
             int velocidad = 15;
           
-            if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
+            if (arrastrando == false)
             {
-                Movimiento(velocidad * Time.deltaTime, 0);
-            }
-            else if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
-            {
-                Movimiento(-velocidad * Time.deltaTime, 0);
-            }
-            else if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
-            {
-                Movimiento(0, -velocidad * Time.deltaTime);
-            }
-            else if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
-            {
-                Movimiento(0, velocidad * Time.deltaTime);
-            }
+                if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
+                {
+                    Movimiento(velocidad * Time.deltaTime, 0);
+                }
+                else if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
+                {
+                    Movimiento(-velocidad * Time.deltaTime, 0);
+                }
+                else if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
+                {
+                    Movimiento(0, -velocidad * Time.deltaTime);
+                }
+                else if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
+                {
+                    Movimiento(0, velocidad * Time.deltaTime);
+                }
 
-            if (Input.GetKeyDown(KeyCode.F1))
-            {
-                RotacionIzquierda();
-            }
-            else if (Input.GetKeyDown(KeyCode.F2))
-            {
-                RotacionDerecha();
+                if (Input.GetKeyDown(KeyCode.F1))
+                {
+                    RotacionIzquierda();
+                }
+                else if (Input.GetKeyDown(KeyCode.F2))
+                {
+                    RotacionDerecha();
+                }
             }
         }
     }
 
     private void Movimiento(float x, float y)
-    {      
+    {
         Transform posicionFinal = transform;
 
         if (rotacion == 0)
-        {     
+        {
             if ((posicionFinal.position.x > -40) && (posicionFinal.position.z > -40) && (posicionFinal.position.x < 60) && (posicionFinal.position.z < 60))
             {
                 transform.Translate(new Vector3(x, y, 0));
             }
             else
             {
-                transform.Translate(new Vector3(-x * 2, -y * 2, 0));
+                transform.Translate(new Vector3(-x * 20, -y * 20, 0));
             }
         }
         else if ((rotacion == 90) || (rotacion == -270))
@@ -72,7 +75,7 @@ public class Camara : MonoBehaviour
             }
             else
             {
-                transform.Translate(new Vector3(-x * 2, -y * 2, 0));
+                transform.Translate(new Vector3(-x * 20, -y * 20, 0));
             }
         }
         else if ((rotacion == 180) || (rotacion == -180))
@@ -83,7 +86,7 @@ public class Camara : MonoBehaviour
             }
             else
             {
-                transform.Translate(new Vector3(-x * 2, -y * 2, 0));
+                transform.Translate(new Vector3(-x * 20, -y * 20, 0));
             }
         }
         else if ((rotacion == 270) || (rotacion == -90))
@@ -94,7 +97,7 @@ public class Camara : MonoBehaviour
             }
             else
             {
-                transform.Translate(new Vector3(-x * 2, -y * 2, 0));
+                transform.Translate(new Vector3(-x * 20, -y * 20, 0));
             }
         }      
     }
