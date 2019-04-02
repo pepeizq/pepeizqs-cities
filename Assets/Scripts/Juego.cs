@@ -8,12 +8,12 @@ public class Juego : MonoBehaviour {
 
     public Idiomas idioma;
 
+    public Canvas canvas;
+
+    public MenuPrincipal menuPrincipal;
     public Opciones opciones;
     public Ayuda ayuda;
-
-    public Canvas canvasMenuPrincipal;
-    public Canvas canvasMenuOpciones;
-    public Canvas canvasJuego;
+    public MenuJuego menuJuego;
 
     public Text versionTexto;
 
@@ -44,7 +44,6 @@ public class Juego : MonoBehaviour {
     private int rotacionColocar = -180;
     private int rotacionesPosicion = 0;
 
-    private bool menuPrincipal;
     private bool enseñarPrevio;
     private bool activarDemoler;
 
@@ -95,23 +94,15 @@ public class Juego : MonoBehaviour {
 
     public EdificiosInfo panelEdificiosInfo;
 
-    public Panel volverMenu;
-    public Text volverMenuTexto;
-    public Text volverMenuTextoSi;
-    public Text volverMenuTextoNo;
-    public Text volverMenuTextoCancelar;
-
     private void Start()
     {
-        //File.Delete(Application.persistentDataPath + "/guardado.save");
-        menuPrincipal = true;
-        diaNoche.ArrancarParar();
-
-        versionTexto.text = "v" + Application.version;
-
         opciones.CargarInicio();
         opciones.Sonido();
-        opciones.CargarIdiomaTexto();
+        idioma.CargarTextos();
+
+        File.Delete(Application.persistentDataPath + "/guardado.save");
+        diaNoche.ArrancarParar();
+        versionTexto.text = "v" + Application.version;
 
         if (DetectarPartidaGuardada() != null)
         {
@@ -125,111 +116,9 @@ public class Juego : MonoBehaviour {
             arbolesInicio.Colocar(colocar);
         }            
     }
-  
-    public void MostrarCanvasOpciones()
-    {
-        if (canvasMenuPrincipal.gameObject.GetComponent<CanvasGroup>().alpha == 1)
-        {
-            canvasMenuPrincipal.gameObject.GetComponent<CanvasGroup>().alpha = 0;
-            canvasMenuPrincipal.gameObject.GetComponent<CanvasGroup>().interactable = false;
-            canvasMenuPrincipal.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
-
-            canvasMenuOpciones.gameObject.GetComponent<CanvasGroup>().alpha = 1;
-            canvasMenuOpciones.gameObject.GetComponent<CanvasGroup>().interactable = true;
-            canvasMenuOpciones.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
-        }
-        else
-        {
-            canvasMenuPrincipal.gameObject.GetComponent<CanvasGroup>().alpha = 1;
-            canvasMenuPrincipal.gameObject.GetComponent<CanvasGroup>().interactable = true;
-            canvasMenuPrincipal.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
-
-            if (DetectarPartidaGuardada() != null)
-            {
-                botonCargarPartida.interactable = true;
-            }
-            else
-            {
-                botonCargarPartida.interactable = false;
-            }
-
-            canvasMenuOpciones.gameObject.GetComponent<CanvasGroup>().alpha = 0;
-            canvasMenuOpciones.gameObject.GetComponent<CanvasGroup>().interactable = false;
-            canvasMenuOpciones.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
-        }
-    }
-
-    public void MostrarCanvasJuego()
-    {
-        if (canvasMenuPrincipal.gameObject.GetComponent<CanvasGroup>().alpha == 1)
-        {
-            canvasMenuPrincipal.gameObject.GetComponent<CanvasGroup>().alpha = 0;
-            canvasMenuPrincipal.gameObject.GetComponent<CanvasGroup>().interactable = false;
-            canvasMenuPrincipal.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
-
-            canvasJuego.gameObject.GetComponent<CanvasGroup>().alpha = 1;
-            canvasJuego.gameObject.GetComponent<CanvasGroup>().interactable = true;
-            canvasJuego.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
-
-            MostrarCanvasJuegoCajas(true);
-        }
-        else
-        {
-            canvasMenuPrincipal.gameObject.GetComponent<CanvasGroup>().alpha = 1;
-            canvasMenuPrincipal.gameObject.GetComponent<CanvasGroup>().interactable = true;
-            canvasMenuPrincipal.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
-
-            if (DetectarPartidaGuardada() != null)
-            {
-                botonCargarPartida.interactable = true;
-            }
-            else
-            {
-                botonCargarPartida.interactable = false;
-            }
-
-            canvasJuego.gameObject.GetComponent<CanvasGroup>().alpha = 0;
-            canvasJuego.gameObject.GetComponent<CanvasGroup>().interactable = false;
-            canvasJuego.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
-
-            MostrarCanvasJuegoCajas(false);
-        }
-    }
-
-    public void MostrarCanvasJuegoCajas(bool estado)
-    {
-        panelConstruir.gameObject.SetActive(estado);
-        panelDemoler.gameObject.SetActive(estado);
-        panelDatos.gameObject.SetActive(estado);
-        panelEdificios.gameObject.SetActive(estado);
-        panelGuardar.gameObject.SetActive(estado);
-        panelTiempo.gameObject.SetActive(estado);
-
-        ayuda.EstadoCajas(estado);
-    }
-
-    public void AbrirWeb1()
-    {
-        sonidoBoton.Play();
-        Application.OpenURL("https://pepeizqapps.com/");
-        Logros.Steam("pepeizqcities1");
-    }
-
-    public void AbrirWeb2()
-    {
-        sonidoBoton.Play();
-        Application.OpenURL("https://pepeizqdeals.com/");
-        Logros.Steam("pepeizqcities2");
-    }
-
-    public void SalirJuego()
-    {
-        Application.Quit();
-    }
 
     public void NuevaPartida()
     {
-        menuPrincipal = false;
         sonidoBoton.Play();
 
         if (File.Exists(Application.persistentDataPath + "/guardado.save"))
@@ -250,26 +139,26 @@ public class Juego : MonoBehaviour {
         colocar.QuitarTodosEdificios();
         arbolesInicio.Colocar(colocar);
         CargarInterfaz();
-        ayuda.Cargar(true);
     }
 
     public void CargarPartida()
     {
-        menuPrincipal = false;
         sonidoBoton.Play();
         colocar.QuitarTodosEdificios();
         CargarEdificios();
-        CargarInterfaz();
-        ayuda.Cargar(true);
+        CargarInterfaz();      
     }
 
     private void CargarInterfaz()
     {
+        menuPrincipal.MostrarJuego();
+        ayuda.Cargar(true);
         diaNoche.ArrancarParar();
-
-        MostrarCanvasJuego();
-
         panelEdificiosInfo.Arranque();
+
+        musicaFondo.loop = true;
+        musicaFondo.Play();
+        enseñarPrevio = false;
 
         foreach (Transform boton in panelEdificiosDecoracion.gameObject.transform)
         {
@@ -353,23 +242,20 @@ public class Juego : MonoBehaviour {
             pointerExit.callback.AddListener((data) => { panelEdificiosInfo.OnPointerExit((PointerEventData)data); });
             evento.triggers.Add(pointerExit);
         }
-
-        volverMenuTexto.text = idioma.CogerCadena("exitQuestion");
-        volverMenuTextoSi.text = idioma.CogerCadena("yes");
-        volverMenuTextoNo.text = idioma.CogerCadena("no");
-        volverMenuTextoCancelar.text = idioma.CogerCadena("cancel");
-
-        musicaFondo.loop = true;
-        musicaFondo.Play();
     }
 
     void Update ()
     {
-        if (menuPrincipal == false)
+        if (canvas.gameObject.GetComponent<CanvasGroup>().alpha == 1)
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                VolverMenu();
+                menuJuego.MostrarMenu();
+            }
+
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                enseñarPrevio = false;
             }
 
             if (edificioSeleccionado != null)
@@ -503,7 +389,6 @@ public class Juego : MonoBehaviour {
         panelEdificios.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
 
         DemolerBoton(false);
-
         edificioSeleccionado = edificios[edificio];
         enseñarPrevio = true;
         ColocarEdificioPrevio();
@@ -565,7 +450,7 @@ public class Juego : MonoBehaviour {
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-  
+
         if (Physics.Raycast(ray, out hit))
         {
             if (!EventSystem.current.IsPointerOverGameObject())
@@ -578,7 +463,7 @@ public class Juego : MonoBehaviour {
                     {
                         edificioSeleccionado.rotacionColocacion = rotacionColocar;
                     }
-
+           
                     if (colocar.ComprobarConstruccionesPosicion(edificioSeleccionado, gridPosicion) == null)
                     {
                         if (colocarPrevio.ComprobarConstruccionesPosicion(edificioSeleccionado, gridPosicion) == null)
@@ -754,79 +639,4 @@ public class Juego : MonoBehaviour {
         bf.Serialize(fichero, guardado);
         fichero.Close();
     }
-
-    public void VolverMenu()
-    {
-        MostrarCanvasJuegoCajas(false);
-
-        volverMenu.GetComponent<CanvasGroup>().alpha = 1;
-        volverMenu.GetComponent<CanvasGroup>().interactable = true;
-        volverMenu.GetComponent<CanvasGroup>().blocksRaycasts = true;
-        volverMenu.gameObject.SetActive(true);
-
-        if (diaNoche.parar == false)
-        {
-            diaNoche.ArrancarParar();
-        }
-
-        enseñarPrevio = false;
-        sonidoBoton.Play();
-    }
-
-    public void VolverMenuSi()
-    {
-        sonidoBoton.Play();
-        menuPrincipal = true;
-        GuardarPartida();
-        colocarPrevio.QuitarTodosEdificios();
-
-        if (diaNoche.parar == false)
-        {
-            diaNoche.ArrancarParar();
-        }
-
-        MostrarCanvasJuego();
-
-        volverMenu.GetComponent<CanvasGroup>().alpha = 0;
-        volverMenu.GetComponent<CanvasGroup>().interactable = false;
-        volverMenu.GetComponent<CanvasGroup>().blocksRaycasts = false;
-        volverMenu.gameObject.SetActive(false);
-    }
-
-    public void VolverMenuNo()
-    {
-        sonidoBoton.Play();
-        menuPrincipal = true;
-        colocarPrevio.QuitarTodosEdificios();
-
-        if (diaNoche.parar == false)
-        {
-            diaNoche.ArrancarParar();
-        }
-
-        MostrarCanvasJuego();
-
-        volverMenu.GetComponent<CanvasGroup>().alpha = 0;
-        volverMenu.GetComponent<CanvasGroup>().interactable = false;
-        volverMenu.GetComponent<CanvasGroup>().blocksRaycasts = false;
-        volverMenu.gameObject.SetActive(false);
-    }
-
-    public void VolverMenuCancelar()
-    {
-        sonidoBoton.Play();
-
-        MostrarCanvasJuegoCajas(true);
-
-        volverMenu.GetComponent<CanvasGroup>().alpha = 0;
-        volverMenu.GetComponent<CanvasGroup>().interactable = false;
-        volverMenu.GetComponent<CanvasGroup>().blocksRaycasts = false;
-        volverMenu.gameObject.SetActive(false);
-
-        if (diaNoche.parar == true)
-        {
-            diaNoche.ArrancarParar();
-        }
-    }
-  
 }

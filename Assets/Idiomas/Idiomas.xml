@@ -5,6 +5,7 @@
         <string name="loadGame">Continue Game</string>
         <string name="options">Options</string>
         <string name="exitGame">Exit</string>
+        <string name="warning">The game is still in development, there are still things to add to the game and there may be bugs</string>
         <string name="back">Back</string>
         <string name="general">General</string>
         <string name="graphics">Graphics</string>
@@ -25,14 +26,17 @@
         <string name="help3">You can play/stop the time when you want clicking on this button or Space</string>
         <string name="help4">You can rotate the camera by clicking on these two buttons or using F1 and F2</string>
         <string name="help5">Build what you want while you have money, you can rotate the buildings with the keys Q and E</string>
-        <string name="exitQuestion">Do you want to save the game before back to the menu?</string>
-        <string name="yes">Yes</string>
-        <string name="no">No</string>
-        <string name="cancel">Cancel</string>
         <string name="cost">Cost</string>
         <string name="population">Population</string>
         <string name="food">Food</string>
         <string name="jobs">Jobs</string>
+        <string name="backGame">Back to the Game</string>
+        <string name="backMenu">Back to the Main Menu</string>
+        <string name="exitGame2">Exit to Desktop</string>
+        <string name="exitQuestion">Do you want to save the game before back to the main menu?</string>
+        <string name="exitQuestion2">Do you want to save the game before going to the desktop?</string>
+        <string name="yes">Yes</string>
+        <string name="no">No</string>
     </English>
      
     <Spanish>
@@ -40,6 +44,7 @@
         <string name="loadGame">Continuar Partida</string>
         <string name="options">Opciones</string>
         <string name="exitGame">Salir</string>
+        <string name="warning">El juego aun se encuentra en desarrollo, quedan cosas por añadir al juego y puede haber fallos</string>
         <string name="back">Volver</string>
         <string name="general">General</string>
         <string name="graphics">Gráficos</string>
@@ -60,13 +65,16 @@
         <string name="help3">Puedes iniciar/parar el tiempo cuando quieras pulsando este botón o Espacio</string>
         <string name="help4">Puedes rotar la cámara pulsando en estos dos botones o usando F1 y F2</string>
         <string name="help5">Construye lo que quieras mientras tengas dinero, puedes rotar los edificios con las teclas Q y E</string>
-        <string name="exitQuestion">¿Quieres guardar la partida antes de volver al menú?</string>
-        <string name="yes">Si</string>
-        <string name="no">No</string>
-        <string name="cancel">Cancelar</string>
         <string name="cost">Coste</string>
         <string name="population">Población</string>
         <string name="food">Comida</string>
         <string name="jobs">Trabajo</string>
+        <string name="backGame">Volver al Juego</string>
+        <string name="backMenu">Volver al Menu Principal</string>
+        <string name="exitGame2">Salir al Escritorio</string>
+        <string name="exitQuestion">¿Quieres guardar la partida antes de volver al menú principal?</string>
+        <string name="exitQuestion2">¿Quieres guardar la partida antes de salir al escritorio?</string>
+        <string name="yes">Si</string>
+        <string name="no">No</string>
     </Spanish>
 </languages>
