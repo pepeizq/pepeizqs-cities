@@ -44,8 +44,9 @@ public class Juego : MonoBehaviour {
     private int rotacionColocar = -180;
     private int rotacionesPosicion = 0;
 
-    private bool enseñarPrevio;
-    private bool activarDemoler;
+    private bool construirActivar;
+    private bool construirColor;
+    private bool demolerActivar;
 
     public Button botonDemoler; 
 
@@ -54,7 +55,9 @@ public class Juego : MonoBehaviour {
     public ArbolesInicio arbolesInicio;
 
     public Panel panelConstruir;
+    public Panel panelConstruirSub;
     public Panel panelDemoler;
+    public Panel panelDemolerSub;
     public Panel panelDatos;
     public Panel panelEdificios;
     public Panel panelGuardar;
@@ -156,9 +159,15 @@ public class Juego : MonoBehaviour {
         diaNoche.ArrancarParar();
         panelEdificiosInfo.Arranque();
 
+        construirActivar = false;
+        construirColor = false;
+        ConstruirCambiarColor();
+
+        demolerActivar = false;
+        DemolerCambiarColor();
+
         musicaFondo.loop = true;
-        musicaFondo.Play();
-        enseñarPrevio = false;
+        musicaFondo.Play();   
 
         foreach (Transform boton in panelEdificiosDecoracion.gameObject.transform)
         {
@@ -223,7 +232,7 @@ public class Juego : MonoBehaviour {
             imagen.sprite = edificio.botonImagen;
 
             Button boton = botonObjeto.GetComponent<Button>();
-            boton.onClick.AddListener(() => SeleccionarEdificio(edificio.id));
+            boton.onClick.AddListener(() => ConstruirSeleccionarEdificio(edificio.id));
 
             EventTrigger evento = botonObjeto.AddComponent<EventTrigger>();
             EventTrigger.Entry pointerEnter = new EventTrigger.Entry
@@ -255,12 +264,28 @@ public class Juego : MonoBehaviour {
 
             if (Input.GetKeyDown(KeyCode.F))
             {
-                enseñarPrevio = false;
+                
+            }
+
+            if (Input.GetMouseButtonDown(1))
+            {
+                if (construirColor == true)
+                {
+                    construirActivar = false;
+                    construirColor = false;
+                    ConstruirCambiarColor();
+                }
+
+                if (demolerActivar == true)
+                {
+                    demolerActivar = false;
+                    DemolerCambiarColor();
+                }
             }
 
             if (edificioSeleccionado != null)
             {
-                if (enseñarPrevio == true)
+                if (construirActivar == true)
                 {
                     int[] rotaciones = new int[4];
 
@@ -302,7 +327,7 @@ public class Juego : MonoBehaviour {
                 }
             }
 
-            if (activarDemoler == true)
+            if (demolerActivar == true)
             {
                 DemolerPrevio();
 
@@ -316,9 +341,31 @@ public class Juego : MonoBehaviour {
 
     public void Construir()
     {
-        DemolerBoton(false);
-        enseñarPrevio = false;
+        sonidoBoton.Play();
+
+        demolerActivar = false;
+        DemolerCambiarColor();
+
+        construirActivar = false;
         colocarPrevio.QuitarTodosEdificios();
+
+        if (construirColor == true)
+        {
+            construirColor = false;
+        }
+        else
+        {
+            construirColor = true;
+        }
+
+        if (construirColor == true)
+        {
+            panelConstruirSub.gameObject.GetComponent<Image>().color = new Color(118f / 255f, 118f / 255f, 118f / 255f, 255f);
+        }
+        else
+        {
+            panelConstruirSub.gameObject.GetComponent<Image>().color = new Color(255f, 255f, 255f, 50f / 255f);
+        }
 
         if (panelEdificios.gameObject.GetComponent<CanvasGroup>().alpha == 0)
         {
@@ -332,13 +379,35 @@ public class Juego : MonoBehaviour {
             panelEdificios.gameObject.GetComponent<CanvasGroup>().interactable = false;
             panelEdificios.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
         }
-
-        sonidoBoton.Play();
        
-        MostrarPanelEdificios(panelEdificiosCarreteras);
+        ConstruirMostrarPanelEdificios(panelEdificiosCarreteras);
     }
 
-    public void MostrarPanelEdificios(Panel panelVisible)
+    public void ConstruirRatonEntra()
+    {
+        if (construirColor == false)
+        {
+            panelConstruirSub.gameObject.GetComponent<Image>().color = new Color(118f / 255f, 118f / 255f, 118f / 255f, 255f);
+        }
+        else
+        {
+            panelConstruirSub.gameObject.GetComponent<Image>().color = new Color(255f, 255f, 255f, 50f / 255f);
+        }
+    }
+
+    public void ConstruirCambiarColor()
+    {
+        if (construirColor == true)
+        {
+            panelConstruirSub.gameObject.GetComponent<Image>().color = new Color(118f / 255f, 118f / 255f, 118f / 255f, 255f);
+        }
+        else
+        {
+            panelConstruirSub.gameObject.GetComponent<Image>().color = new Color(255f, 255f, 255f, 50f / 255f);
+        }
+    }
+
+    public void ConstruirMostrarPanelEdificios(Panel panelVisible)
     {        
         panelEdificiosCarreteras.gameObject.SetActive(false);
         panelEdificiosCasas.gameObject.SetActive(false);
@@ -382,16 +451,19 @@ public class Juego : MonoBehaviour {
         }        
     }
 
-    public void SeleccionarEdificio(int edificio)
+    public void ConstruirSeleccionarEdificio(int edificio)
     {
         panelEdificios.gameObject.GetComponent<CanvasGroup>().alpha = 0;
         panelEdificios.gameObject.GetComponent<CanvasGroup>().interactable = false;
         panelEdificios.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
 
-        DemolerBoton(false);
-        edificioSeleccionado = edificios[edificio];
-        enseñarPrevio = true;
+        demolerActivar = false;
+        DemolerCambiarColor();
+
+        construirActivar = true;
         ColocarEdificioPrevio();
+
+        edificioSeleccionado = edificios[edificio]; 
         sonidoBoton.Play();
     }
 
@@ -420,6 +492,7 @@ public class Juego : MonoBehaviour {
                             ciudad.DepositoDinero(-edificioSeleccionado.coste);
                             ciudad.ActualizarUI(false);
                             colocar.AñadirConstruccion(edificioSeleccionado, gridPosicion, diaNoche.EstadoEncendidoLuces());
+                            construirColor = false;
                             sonidoBotonConstruir.Play();
                         }
                     }
@@ -437,7 +510,6 @@ public class Juego : MonoBehaviour {
 
                             ciudad.ActualizarUI(false);
                             colocar.QuitarEdificio(edificioEliminar, gridPosicion);
-                            //DemolerBoton(false);
                             sonidoBotonDemoler.Play();
                         }
                     }                   
@@ -483,10 +555,53 @@ public class Juego : MonoBehaviour {
 
     public void Demoler()
     {
-        enseñarPrevio = false;
+        sonidoBoton.Play();
+
+        construirActivar = false;
+        construirColor = false;
         colocarPrevio.QuitarTodosEdificios();
 
-        DemolerBoton(true);
+        if (demolerActivar == true)
+        {
+            demolerActivar = false;
+        }
+        else
+        {
+            demolerActivar = true;
+        }
+
+        if (demolerActivar == true)
+        {
+            panelDemolerSub.gameObject.GetComponent<Image>().color = new Color(255f / 255f, 98f / 255f, 98f / 255f, 255f);
+        }
+        else
+        {
+            panelDemolerSub.gameObject.GetComponent<Image>().color = new Color(255f, 255f, 255f, 50f / 255f);
+        }
+    }
+
+    public void DemolerRatonEntra()
+    {
+        if (demolerActivar == false)
+        {
+            panelDemolerSub.gameObject.GetComponent<Image>().color = new Color(255f / 255f, 98f / 255f, 98f / 255f, 255f);
+        }
+        else
+        {
+            panelDemolerSub.gameObject.GetComponent<Image>().color = new Color(255f, 255f, 255f, 50f / 255f);
+        }
+    }
+
+    public void DemolerCambiarColor()
+    {
+        if (demolerActivar == true)
+        {
+            panelDemolerSub.gameObject.GetComponent<Image>().color = new Color(255f / 255f, 98f / 255f, 98f / 255f, 255f);
+        }
+        else
+        {
+            panelDemolerSub.gameObject.GetComponent<Image>().color = new Color(255f, 255f, 255f, 50f / 255f);
+        }
     }
 
     void DemolerPrevio()
@@ -512,24 +627,6 @@ public class Juego : MonoBehaviour {
                 }
             }
         }
-    }
-
-    void DemolerBoton(bool estado)
-    {
-        activarDemoler = estado;
-
-        ColorBlock color = botonDemoler.colors;
-
-        if (estado == true)
-        {           
-            color.normalColor = new Color32(159, 0, 0, 255);        
-        }
-        else
-        {
-            color.normalColor = Color.white;
-        }
-
-        botonDemoler.colors = color;
     }
 
     public Guardado DetectarPartidaGuardada()
