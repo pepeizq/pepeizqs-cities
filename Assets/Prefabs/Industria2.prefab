@@ -1212,6 +1212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 35
+  id2: 0
   categoria: 5
   coste: 200
   nombre: industria2
@@ -1226,3 +1227,5 @@ MonoBehaviour:
   dimensiones: {x: 4, y: 3}
   rotacionColocacion: -180
   rotacionAdicional: 0
+  posicionX: 0
+  posicionZ: 0

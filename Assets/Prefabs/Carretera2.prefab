@@ -231,6 +231,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 7
+  id2: 0
   categoria: 1
   coste: 15
   nombre: carretera2
@@ -243,5 +244,7 @@ MonoBehaviour:
   luzRango: 1
   luzProbabilidad: 100
   dimensiones: {x: 1, y: 1}
-  rotacionColocacion: -270
+  rotacionColocacion: -180
   rotacionAdicional: 0
+  posicionX: 0
+  posicionZ: 0

@@ -165,7 +165,7 @@ d251bf88db6c95a6b1aa0b69298da9ef UnityEngine.SpatialTracking.dll:UnityEngine.Spa
 d791aa6007fa3640be1164ea75bb087d Unity.TextMeshPro.dll:TMPro.TMP_StyleSheet
 7bf046c69dd0a2eafe7445ed859e90c9 Assembly-CSharp.dll:.MenuJuego
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.SteamManager
-2a9f3b7b599d08fc7f99d0a674ea7833 Assembly-CSharp.dll:.Juego
+257264afae272e1bb0b982f9a27cb3b2 Assembly-CSharp.dll:.Juego
 c6666661329916e218bee7f5e79e60f5 Unity.TextMeshPro.dll:TMPro.TextMeshPro
 f8fd6214ccb51e573bc6ccda669756dd Assembly-CSharp.dll:.Ciudad
 3165968ba45c74472d279ba04455fccb Unity.TextMeshPro.dll:TMPro.TMP_ColorGradient

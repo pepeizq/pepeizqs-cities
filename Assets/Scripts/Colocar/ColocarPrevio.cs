@@ -8,8 +8,6 @@ public class ColocarPrevio : MonoBehaviour
 
     public void AñadirConstruccion(Construccion edificio, Vector3 posicion)
     {
-        QuitarTodosEdificios();
-
         foreach (Light luz in edificio.gameObject.GetComponentsInChildren<Light>())
         {
             luz.intensity = 0;
