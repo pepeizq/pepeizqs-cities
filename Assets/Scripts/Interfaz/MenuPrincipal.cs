@@ -18,9 +18,7 @@ public class MenuPrincipal : MonoBehaviour
 
         juego.canvas.gameObject.GetComponent<CanvasGroup>().alpha = 1;
         juego.canvas.gameObject.GetComponent<CanvasGroup>().interactable = true;
-        juego.canvas.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
-
-        ayuda.EstadoCajas(true);
+        juego.canvas.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true; 
     }
 
     public void MostrarOpciones()

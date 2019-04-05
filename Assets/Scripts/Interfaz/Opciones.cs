@@ -63,9 +63,9 @@ public class Opciones : MonoBehaviour
         }
         else if (canvasOrigen == 2)
         {
-            menuJuego.canvas.gameObject.GetComponent<CanvasGroup>().alpha = 1;
-            menuJuego.canvas.gameObject.GetComponent<CanvasGroup>().interactable = true;
-            menuJuego.canvas.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
+            juego.canvas.gameObject.GetComponent<CanvasGroup>().alpha = 1;
+            juego.canvas.gameObject.GetComponent<CanvasGroup>().interactable = true;
+            juego.canvas.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
         }
     }
 

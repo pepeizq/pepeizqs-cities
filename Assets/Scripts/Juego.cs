@@ -47,7 +47,6 @@ public class Juego : MonoBehaviour {
     private int rotacionesPosicion = 0;
 
     private bool construirActivar;
-    private bool construirColor;
     private bool demolerActivar;
 
     public Button botonDemoler; 
@@ -158,11 +157,11 @@ public class Juego : MonoBehaviour {
     {
         menuPrincipal.MostrarJuego();
         ayuda.Cargar(true);
+        ayuda.EstadoCajas(true);
         diaNoche.ArrancarParar();
         panelEdificiosInfo.Arranque();
 
         construirActivar = false;
-        construirColor = false;
         ConstruirCambiarColor();
 
         demolerActivar = false;
@@ -266,10 +265,9 @@ public class Juego : MonoBehaviour {
 
             if (Input.GetMouseButtonDown(1))
             {
-                if (construirColor == true)
+                if (construirActivar == true)
                 {
                     construirActivar = false;
-                    construirColor = false;
                     ConstruirCambiarColor();
                     ConstruirOcultarPanelEdificios();
                     colocarPrevio.QuitarTodosEdificios();
@@ -358,19 +356,19 @@ public class Juego : MonoBehaviour {
         demolerActivar = false;
         DemolerCambiarColor();
 
-        construirActivar = false;
         colocarPrevio.QuitarTodosEdificios();
+        menuJuego.CerrarPanel();
 
-        if (construirColor == true)
+        if (construirActivar == true)
         {
-            construirColor = false;
+            construirActivar = false;
         }
         else
         {
-            construirColor = true;
+            construirActivar = true;
         }
 
-        if (construirColor == true)
+        if (construirActivar == true)
         {
             panelConstruirSub.gameObject.GetComponent<Image>().color = new Color(118f / 255f, 118f / 255f, 118f / 255f, 255f);
         }
@@ -397,7 +395,7 @@ public class Juego : MonoBehaviour {
 
     public void ConstruirRatonEntra()
     {
-        if (construirColor == false)
+        if (construirActivar == false)
         {
             panelConstruirSub.gameObject.GetComponent<Image>().color = new Color(118f / 255f, 118f / 255f, 118f / 255f, 255f);
         }
@@ -409,7 +407,7 @@ public class Juego : MonoBehaviour {
 
     public void ConstruirCambiarColor()
     {
-        if (construirColor == true)
+        if (construirActivar == true)
         {
             panelConstruirSub.gameObject.GetComponent<Image>().color = new Color(118f / 255f, 118f / 255f, 118f / 255f, 255f);
         }
@@ -506,7 +504,6 @@ public class Juego : MonoBehaviour {
                         ciudad.DepositoDinero(-edificioSeleccionado.coste);
                         ciudad.ActualizarUI(false);
                         colocar.AñadirConstruccion(edificioSeleccionado, gridPosicion, diaNoche.EstadoEncendidoLuces());
-                        construirColor = false;
                         sonidoBotonConstruir.Play();
                     }
                 }
@@ -590,11 +587,11 @@ public class Juego : MonoBehaviour {
         sonidoBoton.Play();
 
         construirActivar = false;
-        construirColor = false;
         ConstruirCambiarColor();
         ConstruirOcultarPanelEdificios();
 
         colocarPrevio.QuitarTodosEdificios();
+        menuJuego.CerrarPanel();
 
         if (demolerActivar == true)
         {

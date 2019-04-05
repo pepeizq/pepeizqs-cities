@@ -35,7 +35,7 @@ public class Idiomas : MonoBehaviour {
     public Text ayuda4;
     public Text ayuda5;
 
-    public Text menuJuegoVolverJuego;
+    public Text menuJuegoGuardarPartida;
     public Text menuJuegoOpciones;
     public Text menuJuegoVolverMenuPrincipal;
     public Text menuJuegoSalir;
@@ -73,7 +73,7 @@ public class Idiomas : MonoBehaviour {
         ayuda4.text = CogerCadena("help4");
         ayuda5.text = CogerCadena("help5");
 
-        menuJuegoVolverJuego.text = CogerCadena("backGame");
+        menuJuegoGuardarPartida.text = CogerCadena("saveGame");
         menuJuegoOpciones.text = CogerCadena("options");
         menuJuegoVolverMenuPrincipal.text = CogerCadena("backMenu");
         menuJuegoSalir.text = CogerCadena("exitGame2");

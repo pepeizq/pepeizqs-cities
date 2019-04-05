@@ -30,7 +30,7 @@
         <string name="population">Population</string>
         <string name="food">Food</string>
         <string name="jobs">Jobs</string>
-        <string name="backGame">Back to the Game</string>
+        <string name="saveGame">Save Game</string>
         <string name="backMenu">Back to the Main Menu</string>
         <string name="exitGame2">Exit to Desktop</string>
         <string name="exitQuestion">Do you want to save the game before back to the main menu?</string>
@@ -69,7 +69,7 @@
         <string name="population">Población</string>
         <string name="food">Comida</string>
         <string name="jobs">Trabajo</string>
-        <string name="backGame">Volver al Juego</string>
+        <string name="saveGame">Guardar Partida</string>
         <string name="backMenu">Volver al Menu Principal</string>
         <string name="exitGame2">Salir al Escritorio</string>
         <string name="exitQuestion">¿Quieres guardar la partida antes de volver al menú principal?</string>
