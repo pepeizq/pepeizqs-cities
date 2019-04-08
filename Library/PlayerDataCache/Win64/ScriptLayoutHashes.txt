@@ -117,7 +117,7 @@ ad9173d3a69d99153f38ed4b62226129 UnityEngine.Networking.dll:UnityEngine.Networki
 d251bf88db6c95a6b1aa0b69298da9ef UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
 303ad70ce203ad874efe2965d0fbcff9 Unity.Analytics.Tracker.dll:UnityEngine.Analytics.AnalyticsEventTracker
 7fb9de8dcf73854b6b328eca1f7a6e6d Unity.Analytics.Tracker.dll:UnityEngine.Analytics.AnalyticsTracker
-7bbfa3c9c516bf20e8937f0fbb5ff4f7 Assembly-CSharp.dll:.Idiomas
+a576f91e423cb10210472b0cdb19d9ec Assembly-CSharp.dll:.Idiomas
 d56e10611b9359bf47aa421791008eb4 Assembly-CSharp.dll:.Ayuda
 94017dcc9f00fe671ea7dc427b4da011 Unity.TextMeshPro.dll:TMPro.TMP_SpriteAsset
 b3ab2106268377ffe25dd18ac23dca28 Unity.TextMeshPro.dll:TMPro.TMP_Asset
@@ -163,7 +163,7 @@ a4f0a4f62100f1a4fb5cbe0e00dde83f Unity.TextMeshPro.dll:TMPro.TextMeshProUGUI
 d251bf88db6c95a6b1aa0b69298da9ef UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
 1af0d77edcc5fcedfbce24280eb2ef8f Assembly-CSharp.dll:.ArbolesInicio
 d791aa6007fa3640be1164ea75bb087d Unity.TextMeshPro.dll:TMPro.TMP_StyleSheet
-7bf046c69dd0a2eafe7445ed859e90c9 Assembly-CSharp.dll:.MenuJuego
+8579c5fc25e342799dd148294635f805 Assembly-CSharp.dll:.MenuJuego
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.SteamManager
 257264afae272e1bb0b982f9a27cb3b2 Assembly-CSharp.dll:.Juego
 c6666661329916e218bee7f5e79e60f5 Unity.TextMeshPro.dll:TMPro.TextMeshPro
