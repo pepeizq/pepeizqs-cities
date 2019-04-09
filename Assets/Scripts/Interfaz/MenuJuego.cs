@@ -25,45 +25,33 @@ public class MenuJuego : MonoBehaviour
 
         if (panel.gameObject.GetComponent<CanvasGroup>().alpha == 0)
         {
-            CambiarColor(true);
+            PanelCambiarColor(panelSub);
             panel.gameObject.GetComponent<CanvasGroup>().alpha = 1;
             panel.gameObject.GetComponent<CanvasGroup>().interactable = true;
             panel.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
         }
         else
         {
-            CambiarColor(false);
+            PanelVolverColor(panelSub);
             panel.gameObject.GetComponent<CanvasGroup>().alpha = 0;
             panel.gameObject.GetComponent<CanvasGroup>().interactable = false;
             panel.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
         }
     }
 
-    public void CambiarColor(bool estado)
+    public void PanelCambiarColor(Panel panel)
     {
-        if (estado == true)
-        {
-            panelSub.gameObject.GetComponent<Image>().color = new Color(0.08f, 0.4f, 0.58f);
-        }
-        else
-        {
-            panelSub.gameObject.GetComponent<Image>().color = new Color(255f, 255f, 255f, 50f / 255f);
-        }
+        panel.gameObject.GetComponent<Image>().color = new Color(0.08f, 0.4f, 0.58f);
     }
 
-    public void CambiarColorRatonEntra()
+    public void PanelVolverColor(Panel panel)
     {
-        CambiarColor(true);
-    }
-
-    public void CambiarColorRatonSale()
-    {
-        CambiarColor(false);
+        panel.gameObject.GetComponent<Image>().color = new Color(255f, 255f, 255f, 50f / 255f);
     }
 
     public void CerrarPanel()
     {
-        CambiarColor(false);
+        PanelVolverColor(panelSub);
         panel.gameObject.GetComponent<CanvasGroup>().alpha = 0;
         panel.gameObject.GetComponent<CanvasGroup>().interactable = false;
         panel.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
@@ -75,7 +63,7 @@ public class MenuJuego : MonoBehaviour
 
         juego.GuardarPartida();
 
-        CambiarColor(false);
+        PanelVolverColor(panelSub);
         panel.gameObject.GetComponent<CanvasGroup>().alpha = 0;
         panel.gameObject.GetComponent<CanvasGroup>().interactable = false;
         panel.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
