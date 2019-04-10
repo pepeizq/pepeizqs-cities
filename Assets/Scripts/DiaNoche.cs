@@ -12,7 +12,8 @@ public class DiaNoche : MonoBehaviour {
     public float minimoPunto = -0.2f;
 
     public Light sol;
-    public float segundosDia = 360f;
+    public float segundosDiaVelocidad1 = 720f;
+    public float segundosDiaVelocidad2 = 360f;
 
     [Range(0, 1)]
     public float tiempoDia = 0;
@@ -30,11 +31,7 @@ public class DiaNoche : MonoBehaviour {
     [SerializeField]
     private Text reloj;
 
-    public bool parar = false;
-
-    public Button botonPlayPausa;
-    public Sprite botonPlaySprite;
-    public Sprite botonPausaSprite;
+    public int velocidad;
 
     [SerializeField]
     private Ciudad ciudad;
@@ -43,17 +40,39 @@ public class DiaNoche : MonoBehaviour {
 
     public bool encender;
 
+    public Panel panelPausa;
+    public Panel panelPlay1;
+    public Panel panelPlay2;
+
     void Update()
     {
         ciudad.ActualizarUI(false);
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            ArrancarParar();
+            if (velocidad != 0)
+            {
+                velocidad = 0;
+            }
+            else
+            {
+                velocidad = 1;
+            }
         }
 
-        if (parar == false)
+        if (velocidad != 0)
         {
+            float segundosDia = 0f;
+
+            if (velocidad == 1)
+            {
+                segundosDia = segundosDiaVelocidad1;
+            }
+            else if (velocidad == 2)
+            {
+                segundosDia = segundosDiaVelocidad2;
+            }
+
             tiempoDia += (Time.deltaTime / segundosDia);
 
             if (tiempoDia > 0.98f)
@@ -133,17 +152,32 @@ public class DiaNoche : MonoBehaviour {
         RenderSettings.ambientLight = sol.color;
     }
 
-    public void ArrancarParar()
+    public void VelocidadMarchas(int nuevaVelocidad)
     {
-        if (parar == false)
+        velocidad = nuevaVelocidad;
+
+        panelPausa.gameObject.GetComponent<Image>().color = new Color(255f, 255f, 255f, 50f / 255f);
+        panelPlay1.gameObject.GetComponent<Image>().color = new Color(255f, 255f, 255f, 50f / 255f);
+        panelPlay2.gameObject.GetComponent<Image>().color = new Color(255f, 255f, 255f, 50f / 255f);
+
+        panelPausa.volverColor = false;
+        panelPlay1.volverColor = false;
+        panelPlay2.volverColor = false;
+
+        if (nuevaVelocidad == 0)
         {
-            parar = true;
-            botonPlayPausa.GetComponent<Image>().sprite = botonPlaySprite;
+            panelPausa.gameObject.GetComponent<Image>().color = new Color(0.08f, 0.4f, 0.58f);
+            panelPausa.volverColor = true;
         }
-        else
+        else if (nuevaVelocidad == 1)
         {
-            parar = false;
-            botonPlayPausa.GetComponent<Image>().sprite = botonPausaSprite;
+            panelPlay1.gameObject.GetComponent<Image>().color = new Color(0.08f, 0.4f, 0.58f);
+            panelPlay1.volverColor = true;
+        }
+        else if (nuevaVelocidad == 2)
+        {
+            panelPlay2.gameObject.GetComponent<Image>().color = new Color(0.08f, 0.4f, 0.58f);
+            panelPlay2.volverColor = true;
         }
     }
 

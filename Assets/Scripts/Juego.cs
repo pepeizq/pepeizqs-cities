@@ -108,7 +108,7 @@ public class Juego : MonoBehaviour {
         idioma.CargarTextos();
 
        //File.Delete(Application.persistentDataPath + "/guardado.save");
-        diaNoche.ArrancarParar();
+        diaNoche.VelocidadMarchas(0);
         versionTexto.text = "v" + Application.version;
 
         if (DetectarPartidaGuardada() != null)
@@ -161,7 +161,7 @@ public class Juego : MonoBehaviour {
         menuPrincipal.MostrarJuego();
         ayuda.Cargar(true);
         ayuda.EstadoCajas(true);
-        diaNoche.ArrancarParar();
+        diaNoche.VelocidadMarchas(1);
         panelEdificiosInfo.Arranque();
 
         construirActivar = false;

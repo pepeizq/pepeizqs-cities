@@ -25,6 +25,7 @@ public class MenuJuego : MonoBehaviour
 
         if (panel.gameObject.GetComponent<CanvasGroup>().alpha == 0)
         {
+            panelSub.volverColor = true;
             PanelCambiarColor(panelSub);
             panel.gameObject.GetComponent<CanvasGroup>().alpha = 1;
             panel.gameObject.GetComponent<CanvasGroup>().interactable = true;
@@ -32,6 +33,7 @@ public class MenuJuego : MonoBehaviour
         }
         else
         {
+            panelSub.volverColor = false;
             PanelVolverColor(panelSub);
             panel.gameObject.GetComponent<CanvasGroup>().alpha = 0;
             panel.gameObject.GetComponent<CanvasGroup>().interactable = false;
@@ -41,12 +43,18 @@ public class MenuJuego : MonoBehaviour
 
     public void PanelCambiarColor(Panel panel)
     {
-        panel.gameObject.GetComponent<Image>().color = new Color(0.08f, 0.4f, 0.58f);
+        if (panel.volverColor == false)
+        {
+            panel.gameObject.GetComponent<Image>().color = new Color(0.08f, 0.4f, 0.58f);
+        }        
     }
 
     public void PanelVolverColor(Panel panel)
     {
-        panel.gameObject.GetComponent<Image>().color = new Color(255f, 255f, 255f, 50f / 255f);
+        if (panel.volverColor == false)
+        {
+            panel.gameObject.GetComponent<Image>().color = new Color(255f, 255f, 255f, 50f / 255f);
+        }     
     }
 
     public void CerrarPanel()

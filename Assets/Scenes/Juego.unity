@@ -377,7 +377,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 70, y: 70}
+  m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &48967471
 MonoBehaviour:
@@ -392,6 +392,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: guardarSub
+  volverColor: 0
 --- !u!114 &48967472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -623,6 +624,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: volver
+  volverColor: 0
 --- !u!114 &91196227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1121,7 +1123,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 50, y: 50}
+  m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &205063804
 MonoBehaviour:
@@ -1198,7 +1200,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 58104f72b6acd7346a6e2aafeefd48b4, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -1372,7 +1374,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 50, y: 50}
+  m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &207693810
 MonoBehaviour:
@@ -1462,9 +1464,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 534669906}
-        m_MethodName: RotacionIzquierda
-        m_Mode: 1
+      - m_Target: {fileID: 491194794}
+        m_MethodName: VelocidadMarchas
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1497,7 +1499,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: a0d7d7add82ad6342b662b53ab5a7861, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -1693,6 +1695,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: casas
+  volverColor: 0
 --- !u!114 &218682819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2470,6 +2473,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: guardarMenuPrincipal
+  volverColor: 0
 --- !u!1 &268006759
 GameObject:
   m_ObjectHideFlags: 0
@@ -2525,6 +2529,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: volumen
+  volverColor: 0
 --- !u!114 &268006762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2842,7 +2847,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 70, y: 70}
+  m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &279043533
 MonoBehaviour:
@@ -2880,6 +2885,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: opcionesSub
+  volverColor: 0
 --- !u!114 &279043535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3512,6 +3518,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: ayuda1
+  volverColor: 0
 --- !u!225 &328185949
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -3840,6 +3847,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: ayuda3
+  volverColor: 0
 --- !u!225 &365307432
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -3926,7 +3934,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 50, y: 50}
+  m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &368135566
 MonoBehaviour:
@@ -4016,13 +4024,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 534669906}
-        m_MethodName: RotacionIzquierda
-        m_Mode: 1
+      - m_Target: {fileID: 491194794}
+        m_MethodName: VelocidadMarchas
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -4051,7 +4059,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: d16d48abac6769b4183e2071bbabb560, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -4956,7 +4964,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 70, y: 70}
+  m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &442590642
 MonoBehaviour:
@@ -5031,6 +5039,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: rotacionder
+  volverColor: 0
 --- !u!1 &443282294
 GameObject:
   m_ObjectHideFlags: 0
@@ -5073,8 +5082,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -180, y: -35}
-  m_SizeDelta: {x: 550, y: 70}
+  m_AnchoredPosition: {x: -250, y: -30}
+  m_SizeDelta: {x: 500, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &443282296
 MonoBehaviour:
@@ -5149,6 +5158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: tiempo
+  volverColor: 0
 --- !u!1 &444695290
 GameObject:
   m_ObjectHideFlags: 0
@@ -5263,6 +5273,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: comida
+  volverColor: 0
 --- !u!1 &444759771
 GameObject:
   m_ObjectHideFlags: 0
@@ -5758,6 +5769,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: carreteras
+  volverColor: 0
 --- !u!114 &473335018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5939,19 +5951,20 @@ MonoBehaviour:
   minimaIntensidad: 0
   minimoPunto: -0.2
   sol: {fileID: 170076734}
-  segundosDia: 300
+  segundosDiaVelocidad1: 720
+  segundosDiaVelocidad2: 360
   tiempoDia: 0.4
   tiempoTotalDias: 1
   tiempoMultiplicador: 1
   colocar: {fileID: 491194797}
   dias: {fileID: 759195943}
   reloj: {fileID: 594246345}
-  parar: 0
-  botonPlayPausa: {fileID: 0}
-  botonPlaySprite: {fileID: 21300000, guid: 487913e677b705a47a9d10408c939744, type: 3}
-  botonPausaSprite: {fileID: 21300000, guid: d6454f4900baa9542a7a04440fa410f1, type: 3}
+  velocidad: 0
   ciudad: {fileID: 491194799}
   encender: 0
+  panelPausa: {fileID: 1902478201}
+  panelPlay1: {fileID: 1473876393}
+  panelPlay2: {fileID: 1889835196}
 --- !u!114 &491194795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6354,6 +6367,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: decoracion
+  volverColor: 0
 --- !u!1 &523417433
 GameObject:
   m_ObjectHideFlags: 0
@@ -6471,7 +6485,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 70, y: 70}
+  m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &525479516
 MonoBehaviour:
@@ -6486,6 +6500,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: rotacionizq
+  volverColor: 0
 --- !u!114 &525479517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6877,6 +6892,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: trabajo
+  volverColor: 0
 --- !u!1 &573373121
 GameObject:
   m_ObjectHideFlags: 0
@@ -7481,6 +7497,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: opcionesExtendidoSub
+  volverColor: 0
 --- !u!1 &594246343
 GameObject:
   m_ObjectHideFlags: 0
@@ -7513,10 +7530,10 @@ RectTransform:
   m_Father: {fileID: 2071710745}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -70, y: -35}
-  m_SizeDelta: {x: 60, y: 30}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 70, y: 30}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &594246345
 MonoBehaviour:
@@ -7687,6 +7704,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: ayuda2
+  volverColor: 0
 --- !u!1 &601687781
 GameObject:
   m_ObjectHideFlags: 0
@@ -8249,6 +8267,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: general
+  volverColor: 0
 --- !u!1 &656046411
 GameObject:
   m_ObjectHideFlags: 0
@@ -9441,10 +9460,10 @@ RectTransform:
   m_Father: {fileID: 2071710745}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -145, y: -35}
-  m_SizeDelta: {x: 65, y: 30}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 75, y: 30}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &759195943
 MonoBehaviour:
@@ -10585,6 +10604,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: volver
+  volverColor: 0
 --- !u!114 &994539547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11008,6 +11028,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: comida
+  volverColor: 0
 --- !u!114 &1036808848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11780,7 +11801,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 50, y: 50}
+  m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1123789507
 MonoBehaviour:
@@ -12141,7 +12162,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 50, y: 50}
+  m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1159523894
 MonoBehaviour:
@@ -12231,13 +12252,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 534669906}
-        m_MethodName: RotacionIzquierda
-        m_Mode: 1
+      - m_Target: {fileID: 491194794}
+        m_MethodName: VelocidadMarchas
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -12266,7 +12287,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 276870dc3b2e55b4bb768ce1d066ae82, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -12318,7 +12339,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 50, y: 50}
+  m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1164419160
 MonoBehaviour:
@@ -12625,8 +12646,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 70, y: -35}
-  m_SizeDelta: {x: 140, y: 70}
+  m_AnchoredPosition: {x: 60, y: -30}
+  m_SizeDelta: {x: 120, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1187012638
 MonoBehaviour:
@@ -12701,6 +12722,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: guardar
+  volverColor: 0
 --- !u!1 &1208253507
 GameObject:
   m_ObjectHideFlags: 0
@@ -13038,6 +13060,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: info
+  volverColor: 0
 --- !u!1 &1228360359
 GameObject:
   m_ObjectHideFlags: 0
@@ -14579,6 +14602,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: industria
+  volverColor: 0
 --- !u!114 &1365827942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14895,6 +14919,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: tiendas
+  volverColor: 0
 --- !u!114 &1378280040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14993,7 +15018,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 50, y: 50}
+  m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1382726907
 MonoBehaviour:
@@ -15070,7 +15095,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: db225b1e808784748a7115d1495dbbbe, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -15350,6 +15375,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: demolerSub
+  volverColor: 0
 --- !u!1 &1399330003
 GameObject:
   m_ObjectHideFlags: 0
@@ -15580,6 +15606,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: datos
+  volverColor: 0
 --- !u!1 &1417709695
 GameObject:
   m_ObjectHideFlags: 0
@@ -15708,6 +15735,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: edificios
+  volverColor: 0
 --- !u!1 &1418736980
 GameObject:
   m_ObjectHideFlags: 0
@@ -16439,7 +16467,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 70, y: 70}
+  m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1473876393
 MonoBehaviour:
@@ -16454,6 +16482,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: pausa
+  volverColor: 0
 --- !u!114 &1473876394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16756,6 +16785,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: poblacion
+  volverColor: 0
 --- !u!1 &1520326086
 GameObject:
   m_ObjectHideFlags: 0
@@ -17454,6 +17484,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: demoler
+  volverColor: 0
 --- !u!1 &1604015662
 GameObject:
   m_ObjectHideFlags: 0
@@ -18284,6 +18315,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: coste
+  volverColor: 0
 --- !u!1 &1674407173
 GameObject:
   m_ObjectHideFlags: 0
@@ -18602,6 +18634,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: graficos
+  volverColor: 0
 --- !u!1 &1746031367
 GameObject:
   m_ObjectHideFlags: 0
@@ -18730,6 +18763,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: ayuda1
+  volverColor: 0
 --- !u!1 &1749333858
 GameObject:
   m_ObjectHideFlags: 0
@@ -18971,6 +19005,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: volver
+  volverColor: 0
 --- !u!114 &1770297839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19544,6 +19579,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: ayuda2
+  volverColor: 0
 --- !u!225 &1829193824
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -19856,6 +19892,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: construir
+  volverColor: 0
 --- !u!1 &1889835194
 GameObject:
   m_ObjectHideFlags: 0
@@ -19894,7 +19931,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 70, y: 70}
+  m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1889835196
 MonoBehaviour:
@@ -19909,6 +19946,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: pausa
+  volverColor: 0
 --- !u!114 &1889835197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20107,7 +20145,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 70, y: 70}
+  m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1902478201
 MonoBehaviour:
@@ -20122,6 +20160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: pausa
+  volverColor: 0
 --- !u!114 &1902478202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20707,6 +20746,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: opcionesExtendido
+  volverColor: 0
 --- !u!225 &1938532098
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -22183,6 +22223,7 @@ GameObject:
   - component: {fileID: 2071710745}
   - component: {fileID: 2071710747}
   - component: {fileID: 2071710746}
+  - component: {fileID: 2071710748}
   m_Layer: 5
   m_Name: PanelTiempo2
   m_TagString: Untagged
@@ -22248,6 +22289,29 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2071710744}
   m_CullTransparentMesh: 0
+--- !u!114 &2071710748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2071710744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -405508275, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 4
+  m_Spacing: 10
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
 --- !u!1 &2072296273
 GameObject:
   m_ObjectHideFlags: 0
@@ -22300,6 +22364,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: construirSub
+  volverColor: 0
 --- !u!114 &2072296276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22509,6 +22574,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: guardarSalir
+  volverColor: 0
 --- !u!225 &2075409595
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -23353,6 +23419,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: volver
+  volverColor: 0
 --- !u!114 &2110141443
 MonoBehaviour:
   m_ObjectHideFlags: 0

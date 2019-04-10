@@ -27,7 +27,7 @@ public class Ayuda : MonoBehaviour
                 ayuda1.GetComponent<CanvasGroup>().blocksRaycasts = true;
                 ayuda1.gameObject.SetActive(true);
 
-                diaNoche.ArrancarParar();
+                diaNoche.VelocidadMarchas(0);
             }
             else
             {
@@ -114,9 +114,6 @@ public class Ayuda : MonoBehaviour
         ayuda5.GetComponent<CanvasGroup>().blocksRaycasts = false;
         ayuda5.gameObject.SetActive(false);
 
-        if (diaNoche.parar == true)
-        {
-            diaNoche.ArrancarParar();
-        }
+        diaNoche.VelocidadMarchas(1);
     }
 }
