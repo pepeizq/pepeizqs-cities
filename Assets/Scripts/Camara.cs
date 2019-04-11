@@ -10,6 +10,8 @@ public class Camara : MonoBehaviour
 
     private int rotacion;
 
+    public AudioSource sonidoBoton;
+
     private void Start()
     {
         rotacion = 0;
@@ -42,11 +44,11 @@ public class Camara : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.F1))
                 {
-                    RotacionIzquierda();
+                    RotacionIzquierda(false);
                 }
                 else if (Input.GetKeyDown(KeyCode.F2))
                 {
-                    RotacionDerecha();
+                    RotacionDerecha(false);
                 }
             }
         }
@@ -102,8 +104,13 @@ public class Camara : MonoBehaviour
         }      
     }
 
-    public void RotacionIzquierda()
+    public void RotacionIzquierda(bool sonido)
     {
+        if (sonido == true)
+        {
+            sonidoBoton.Play();
+        }
+
         Ray ray = Camera.main.ScreenPointToRay(new Vector2(Screen.width / 2, Screen.height / 2));
         RaycastHit hit;
 
@@ -121,8 +128,13 @@ public class Camara : MonoBehaviour
         }
     }
 
-    public void RotacionDerecha()
+    public void RotacionDerecha(bool sonido)
     {
+        if (sonido == true)
+        {
+            sonidoBoton.Play();
+        }
+
         Ray ray = Camera.main.ScreenPointToRay(new Vector2(Screen.width / 2, Screen.height / 2));
         RaycastHit hit;
 

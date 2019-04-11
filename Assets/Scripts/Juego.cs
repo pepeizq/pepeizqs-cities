@@ -68,31 +68,37 @@ public class Juego : MonoBehaviour {
 
     public Panel panelEdificiosCarreteras;
     public Button botonEdificiosCarreteras;
+    public Image botonEdificiosCarreterasImagen;
     public Sprite botonEdificiosCarreterasSprite1;
     public Sprite botonEdificiosCarreterasSprite2;
 
     public Panel panelEdificiosCasas;
     public Button botonEdificiosCasas;
+    public Image botonEdificiosCasasImagen;
     public Sprite botonEdificiosCasasSprite1;
     public Sprite botonEdificiosCasasSprite2;
 
     public Panel panelEdificiosComida;
     public Button botonEdificiosComida;
+    public Image botonEdificiosComidaImagen;
     public Sprite botonEdificiosComidaSprite1;
     public Sprite botonEdificiosComidaSprite2;
 
     public Panel panelEdificiosTiendas;
     public Button botonEdificiosTiendas;
+    public Image botonEdificiosTiendasImagen;
     public Sprite botonEdificiosTiendasSprite1;
     public Sprite botonEdificiosTiendasSprite2;
 
     public Panel panelEdificiosIndustria;
     public Button botonEdificiosIndustria;
+    public Image botonEdificiosIndustriaImagen;
     public Sprite botonEdificiosIndustriaSprite1;
     public Sprite botonEdificiosIndustriaSprite2;
 
     public Panel panelEdificiosDecoracion;
     public Button botonEdificiosDecoracion;
+    public Image botonEdificiosDecoracionImagen;
     public Sprite botonEdificiosDecoracionSprite1;
     public Sprite botonEdificiosDecoracionSprite2;
 
@@ -355,6 +361,11 @@ public class Juego : MonoBehaviour {
                     ColocarEdificio(1);
                 }
             }
+
+            if (Input.GetKeyDown(KeyCode.F8))
+            {
+                InterfazOcultar();
+            }
         }      
     }
 
@@ -439,36 +450,49 @@ public class Juego : MonoBehaviour {
 
         panelVisible.gameObject.SetActive(true);
 
-        botonEdificiosCarreteras.GetComponent<Image>().sprite = botonEdificiosCarreterasSprite2;
-        botonEdificiosCasas.GetComponent<Image>().sprite = botonEdificiosCasasSprite2;
-        botonEdificiosComida.GetComponent<Image>().sprite = botonEdificiosComidaSprite2;
-        botonEdificiosTiendas.GetComponent<Image>().sprite = botonEdificiosTiendasSprite2;
-        botonEdificiosIndustria.GetComponent<Image>().sprite = botonEdificiosIndustriaSprite2;
-        botonEdificiosDecoracion.GetComponent<Image>().sprite = botonEdificiosDecoracionSprite2;
+        botonEdificiosCarreteras.gameObject.GetComponent<Image>().color = new Color(255f, 255f, 255f, 0f / 255f);
+        botonEdificiosCasas.gameObject.GetComponent<Image>().color = new Color(255f, 255f, 255f, 0f / 255f);
+        botonEdificiosComida.gameObject.GetComponent<Image>().color = new Color(255f, 255f, 255f, 0f / 255f);
+        botonEdificiosTiendas.gameObject.GetComponent<Image>().color = new Color(255f, 255f, 255f, 0f / 255f);
+        botonEdificiosIndustria.gameObject.GetComponent<Image>().color = new Color(255f, 255f, 255f, 0f / 255f);
+        botonEdificiosDecoracion.gameObject.GetComponent<Image>().color = new Color(255f, 255f, 255f, 0f / 255f);
+
+        botonEdificiosCarreterasImagen.GetComponent<Image>().sprite = botonEdificiosCarreterasSprite1;
+        botonEdificiosCasasImagen.GetComponent<Image>().sprite = botonEdificiosCasasSprite1;
+        botonEdificiosComidaImagen.GetComponent<Image>().sprite = botonEdificiosComidaSprite1;
+        botonEdificiosTiendasImagen.GetComponent<Image>().sprite = botonEdificiosTiendasSprite1;
+        botonEdificiosIndustriaImagen.GetComponent<Image>().sprite = botonEdificiosIndustriaSprite1;
+        botonEdificiosDecoracionImagen.GetComponent<Image>().sprite = botonEdificiosDecoracionSprite1;
 
         if (panelVisible.nombre == "carreteras")
         {
-            botonEdificiosCarreteras.GetComponent<Image>().sprite = botonEdificiosCarreterasSprite1;
+            botonEdificiosCarreteras.gameObject.GetComponent<Image>().color = new Color(0.08f, 0.4f, 0.58f);
+            botonEdificiosCarreterasImagen.GetComponent<Image>().sprite = botonEdificiosCarreterasSprite2;
         }
         else if (panelVisible.nombre == "casas")
         {
-            botonEdificiosCasas.GetComponent<Image>().sprite = botonEdificiosCasasSprite1;
+            botonEdificiosCasas.gameObject.GetComponent<Image>().color = new Color(0.08f, 0.4f, 0.58f);
+            botonEdificiosCasasImagen.GetComponent<Image>().sprite = botonEdificiosCasasSprite2;
         }
         else if (panelVisible.nombre == "comida")
         {
-            botonEdificiosComida.GetComponent<Image>().sprite = botonEdificiosComidaSprite1;
+            botonEdificiosComida.gameObject.GetComponent<Image>().color = new Color(0.08f, 0.4f, 0.58f);
+            botonEdificiosComidaImagen.GetComponent<Image>().sprite = botonEdificiosComidaSprite2;
         }
         else if(panelVisible.nombre == "tiendas")
         {
-            botonEdificiosTiendas.GetComponent<Image>().sprite = botonEdificiosTiendasSprite1;
+            botonEdificiosTiendas.gameObject.GetComponent<Image>().color = new Color(0.08f, 0.4f, 0.58f);
+            botonEdificiosTiendasImagen.GetComponent<Image>().sprite = botonEdificiosTiendasSprite2;
         }
         else if (panelVisible.nombre == "industria")
         {
-            botonEdificiosIndustria.GetComponent<Image>().sprite = botonEdificiosIndustriaSprite1;
+            botonEdificiosIndustria.gameObject.GetComponent<Image>().color = new Color(0.08f, 0.4f, 0.58f);
+            botonEdificiosIndustriaImagen.GetComponent<Image>().sprite = botonEdificiosIndustriaSprite2;
         }
         else if (panelVisible.nombre == "decoracion")
         {
-            botonEdificiosDecoracion.GetComponent<Image>().sprite = botonEdificiosDecoracionSprite1;
+            botonEdificiosDecoracion.gameObject.GetComponent<Image>().color = new Color(0.08f, 0.4f, 0.58f);
+            botonEdificiosDecoracionImagen.GetComponent<Image>().sprite = botonEdificiosDecoracionSprite2;
         }        
     }
 
@@ -836,5 +860,21 @@ public class Juego : MonoBehaviour {
         FileStream fichero = File.Create(Application.persistentDataPath + "/guardado.save");
         bf.Serialize(fichero, guardado);
         fichero.Close();
+    }
+
+    public void InterfazOcultar()
+    {
+        if (canvas.gameObject.GetComponent<CanvasGroup>().alpha == 1)
+        {
+            canvas.gameObject.GetComponent<CanvasGroup>().alpha = 0;
+            canvas.gameObject.GetComponent<CanvasGroup>().interactable = false;
+            canvas.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
+        }
+        else
+        {
+            canvas.gameObject.GetComponent<CanvasGroup>().alpha = 1;
+            canvas.gameObject.GetComponent<CanvasGroup>().interactable = true;
+            canvas.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
+        }
     }
 }

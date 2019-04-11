@@ -65,15 +65,15 @@ public class Ciudad : MonoBehaviour {
 
         if (TrabajosActual >= 100 && TrabajosActual < 500)
         {
-            Logros.Steam("pepeizqcities6");
+            Steam.Logros("pepeizqcities6");
         }
         else if (TrabajosActual >= 500 && TrabajosActual < 1000)
         {
-            Logros.Steam("pepeizqcities7");
+            Steam.Logros("pepeizqcities7");
         }
         else if (TrabajosActual >= 1000)
         {
-            Logros.Steam("pepeizqcities8");
+            Steam.Logros("pepeizqcities8");
         }
     }
 
@@ -106,15 +106,15 @@ public class Ciudad : MonoBehaviour {
 
         if (montanteFinal >= 100 && montanteFinal < 1000)
         {
-            Logros.Steam("pepeizqcities3");
+            Steam.Logros("pepeizqcities3");
         }
         else if (montanteFinal >= 1000 && montanteFinal < 10000)
         {
-            Logros.Steam("pepeizqcities4");
+            Steam.Logros("pepeizqcities4");
         }
         else if (montanteFinal >= 10000)
         {
-            Logros.Steam("pepeizqcities5");
+            Steam.Logros("pepeizqcities5");
         }
     }
 
@@ -181,15 +181,15 @@ public class Ciudad : MonoBehaviour {
 
         if (PoblacionActual >= 100 && PoblacionActual < 500)
         {
-            Logros.Steam("pepeizqcities9");
+            Steam.Logros("pepeizqcities9");
         }
         else if (PoblacionActual >= 500 && PoblacionActual < 1000)
         {
-            Logros.Steam("pepeizqcities10");
+            Steam.Logros("pepeizqcities10");
         }
         else if (PoblacionActual >= 1000)
         {
-            Logros.Steam("pepeizqcities11");
+            Steam.Logros("pepeizqcities11");
         }
     }
 }

@@ -73,14 +73,14 @@
     <Compile Include="Assets\Scripts\Colocar\ColocarPrevio.cs" />
     <Compile Include="Assets\Scripts\Colocar\Posicion.cs" />
     <Compile Include="Assets\Scripts\DiaNoche.cs" />
-    <Compile Include="Assets\Scripts\EdificiosInfo.cs" />
     <Compile Include="Assets\Scripts\Idiomas.cs" />
     <Compile Include="Assets\Scripts\Interfaz\Ayuda.cs" />
+    <Compile Include="Assets\Scripts\Interfaz\EdificiosInfo.cs" />
     <Compile Include="Assets\Scripts\Interfaz\MenuJuego.cs" />
     <Compile Include="Assets\Scripts\Interfaz\MenuPrincipal.cs" />
     <Compile Include="Assets\Scripts\Interfaz\Opciones.cs" />
     <Compile Include="Assets\Scripts\Juego.cs" />
-    <Compile Include="Assets\Scripts\Logros.cs" />
+    <Compile Include="Assets\Scripts\Steam.cs" />
     <Compile Include="Assets\Scripts\Steamworks.NET\SteamManager.cs" />
     <None Include="Assets\Idiomas\Idiomas.xml" />
     <Reference Include="Unity.TextMeshPro.Editor">

@@ -39,15 +39,15 @@ public class MenuPrincipal : MonoBehaviour
     public void AbrirWeb1()
     {
         sonidoBoton.Play();
-        Application.OpenURL("https://pepeizqapps.com/");
-        Logros.Steam("pepeizqcities1");
+        Steam.AbrirWeb("https://pepeizqapps.com/");
+        Steam.Logros("pepeizqcities1");
     }
 
     public void AbrirWeb2()
     {
         sonidoBoton.Play();
-        Application.OpenURL("https://pepeizqdeals.com/");
-        Logros.Steam("pepeizqcities2");
+        Steam.AbrirWeb("https://pepeizqdeals.com/");
+        Steam.Logros("pepeizqcities2");
     }
 
     public void SalirJuego()

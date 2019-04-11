@@ -15,6 +15,9 @@ public class MenuJuego : MonoBehaviour
     [SerializeField]
     private ColocarPrevio colocarPrevio;
 
+    [SerializeField]
+    private DiaNoche diaNoche;
+
     public Panel panelGuardarMenuPrincipal;
     public Panel panelGuardarSalir;
 
@@ -27,6 +30,7 @@ public class MenuJuego : MonoBehaviour
         {
             panelSub.volverColor = true;
             PanelCambiarColor(panelSub);
+            diaNoche.VelocidadMarchas(0);
             panel.gameObject.GetComponent<CanvasGroup>().alpha = 1;
             panel.gameObject.GetComponent<CanvasGroup>().interactable = true;
             panel.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
@@ -35,6 +39,7 @@ public class MenuJuego : MonoBehaviour
         {
             panelSub.volverColor = false;
             PanelVolverColor(panelSub);
+            diaNoche.VelocidadMarchas(1);
             panel.gameObject.GetComponent<CanvasGroup>().alpha = 0;
             panel.gameObject.GetComponent<CanvasGroup>().interactable = false;
             panel.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
@@ -127,6 +132,14 @@ public class MenuJuego : MonoBehaviour
         panelGuardarMenuPrincipal.gameObject.GetComponent<CanvasGroup>().alpha = 0;
         panelGuardarMenuPrincipal.gameObject.GetComponent<CanvasGroup>().interactable = false;
         panelGuardarMenuPrincipal.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
+
+        juego.canvas.gameObject.GetComponent<CanvasGroup>().alpha = 0;
+        juego.canvas.gameObject.GetComponent<CanvasGroup>().interactable = false;
+        juego.canvas.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
+
+        menuPrincipal.canvas.gameObject.GetComponent<CanvasGroup>().alpha = 1;
+        menuPrincipal.canvas.gameObject.GetComponent<CanvasGroup>().interactable = true;
+        menuPrincipal.canvas.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
     }
 
     public void SalirJuego()

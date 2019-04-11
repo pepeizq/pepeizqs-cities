@@ -14,12 +14,12 @@ public class Opciones : MonoBehaviour
 
     public Button botonGeneral;
     public Button botonGraficos;
-    //public Button botonTeclado;
+    public Button botonTeclado;
 
     public Panel panelGeneral;
     public Panel panelGraficos;
     public Panel panelGraficosSombrasCalidad;
-    //public Panel panelTeclado;
+    public Panel panelTeclado;
 
     public AudioSource musicaFondo;
     public AudioSource sonidoBoton;
@@ -73,7 +73,7 @@ public class Opciones : MonoBehaviour
     {
         MostrarPanelColorBoton(botonGeneral, new Color(0.08f, 0.4f, 0.58f));
         panelGraficos.gameObject.SetActive(false);
-        //panelTeclado.gameObject.SetActive(false);
+        panelTeclado.gameObject.SetActive(false);
 
         //-----------------------------------------------------------
 
@@ -265,10 +265,10 @@ public class Opciones : MonoBehaviour
         panelGraficos.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
         panelGraficos.gameObject.SetActive(false);
 
-        //panelTeclado.gameObject.GetComponent<CanvasGroup>().alpha = 0;
-        //panelTeclado.gameObject.GetComponent<CanvasGroup>().interactable = false;
-        //panelTeclado.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
-        //panelTeclado.gameObject.SetActive(false);
+        panelTeclado.gameObject.GetComponent<CanvasGroup>().alpha = 0;
+        panelTeclado.gameObject.GetComponent<CanvasGroup>().interactable = false;
+        panelTeclado.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
+        panelTeclado.gameObject.SetActive(false);
 
         panelEnseñar.gameObject.GetComponent<CanvasGroup>().alpha = 1;
         panelEnseñar.gameObject.GetComponent<CanvasGroup>().interactable = true;
@@ -293,14 +293,14 @@ public class Opciones : MonoBehaviour
             MostrarPanelColorBoton(botonGraficos, Color.white);
         }
 
-        //if (panelEnseñar.nombre == "teclado")
-        //{
-        //    MostrarPanelColorBoton(botonTeclado, new Color(0.08f, 0.4f, 0.58f));
-        //}
-        //else
-        //{
-        //    MostrarPanelColorBoton(botonTeclado, Color.white);
-        //}
+        if (panelEnseñar.nombre == "teclado")
+        {
+            MostrarPanelColorBoton(botonTeclado, new Color(0.08f, 0.4f, 0.58f));
+        }
+        else
+        {
+            MostrarPanelColorBoton(botonTeclado, Color.white);
+        }
     }
 
     private void MostrarPanelColorBoton(Button boton, Color color)

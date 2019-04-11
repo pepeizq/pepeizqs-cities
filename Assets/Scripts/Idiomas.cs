@@ -20,6 +20,7 @@ public class Idiomas : MonoBehaviour {
     public Text opcionesVolver;
     public Text opcionesGeneral;
     public Text opcionesGraficos;
+    public Text opcionesTeclado;
     public Text opcionesIdiomas;
     public Text opcionesAyuda;
     public Text opcionesSonido;
@@ -57,6 +58,7 @@ public class Idiomas : MonoBehaviour {
         opcionesVolver.text = CogerCadena("back");
         opcionesGeneral.text = CogerCadena("general");
         opcionesGraficos.text = CogerCadena("graphics");
+        opcionesTeclado.text = CogerCadena("keyboard");
 
         opcionesIdiomas.text = CogerCadena("languages");
         opcionesAyuda.text = CogerCadena("help");

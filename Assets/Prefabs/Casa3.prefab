@@ -2424,6 +2424,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 17
+  id2: 0
   categoria: 2
   coste: 100
   nombre: casa3
@@ -2438,6 +2439,8 @@ MonoBehaviour:
   dimensiones: {x: 2, y: 2}
   rotacionColocacion: -180
   rotacionAdicional: 0
+  posicionX: 0
+  posicionZ: 0
 --- !u!1 &1585250889314210
 GameObject:
   m_ObjectHideFlags: 0
