@@ -140,8 +140,8 @@ public class Juego : MonoBehaviour {
         }
 
         diaNoche.tiempoDia = 0.4f;
-        ciudad.Dinero = 2000000;
-        //ciudad.Dinero = 200;
+        //ciudad.Dinero = 2000000;
+        ciudad.Dinero = 200;
         ciudad.PoblacionActual = 0f;
         ciudad.PoblacionTope = 0f;
         ciudad.TrabajosActual = 0;
@@ -803,8 +803,8 @@ public class Juego : MonoBehaviour {
                 i++;
             }
 
-            camara.transform.position = new Vector3(guardado.camaraPosicionX, guardado.camaraPosicionY, guardado.camaraPosicionZ);
-            camara.transform.Rotate(new Vector3(guardado.camaraRotacionX, guardado.camaraRotacionY, guardado.camaraRotacionZ));
+            //camara.transform.position = new Vector3(guardado.camaraPosicionX, guardado.camaraPosicionY, guardado.camaraPosicionZ);
+            //camara.transform.Rotate(new Vector3(guardado.camaraRotacionX, guardado.camaraRotacionY, guardado.camaraRotacionZ));
 
             ciudad.Dinero = guardado.dinero;
             ciudad.PoblacionActual = guardado.poblacionActual;

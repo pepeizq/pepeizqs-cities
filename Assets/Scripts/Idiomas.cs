@@ -29,6 +29,8 @@ public class Idiomas : MonoBehaviour {
     public Text opcionesSombrasCalidad;
     public Text opcionesTexturas;
     public Text opcionesAntiAliasing;
+    public Text opcionesTecladoMensaje;
+    public Text opcionesTecladoMensajeBoton;
 
     public Text ayuda1;
     public Text ayuda2;
@@ -68,6 +70,8 @@ public class Idiomas : MonoBehaviour {
         opcionesSombrasCalidad.text = CogerCadena("shadowsQuality");
         opcionesTexturas.text = CogerCadena("textures");
         opcionesAntiAliasing.text = CogerCadena("antiAliasing");
+        opcionesTecladoMensaje.text = CogerCadena("messageKeyboard");
+        opcionesTecladoMensajeBoton.text = CogerCadena("messageKeyboardOpen");
 
         ayuda1.text = CogerCadena("help1");
         ayuda2.text = CogerCadena("help2");

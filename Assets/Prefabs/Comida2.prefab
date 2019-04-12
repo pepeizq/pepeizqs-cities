@@ -127,6 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 38
+  id2: 0
   categoria: 3
   coste: 100
   nombre: comida2
@@ -141,6 +142,8 @@ MonoBehaviour:
   dimensiones: {x: 2, y: 2}
   rotacionColocacion: 0
   rotacionAdicional: 0
+  posicionX: 0
+  posicionZ: 0
 --- !u!1001 &96396540078591369
 PrefabInstance:
   m_ObjectHideFlags: 0

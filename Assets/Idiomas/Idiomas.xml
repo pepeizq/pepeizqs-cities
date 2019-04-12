@@ -21,6 +21,8 @@
         <string name="low">Low</string>
         <string name="high">High</string>
         <string name="day">Day</string>
+        <string name="messageKeyboard">In the future I will implement the key bindings, meanwhile you can check which keys use the game opening the web</string>
+        <string name="messageKeyboardOpen">Open Web</string>
         <string name="help1">With the keys W, A, S, D you can move around the map, and if you want to zoom, use the mouse wheel</string>
         <string name="help2">You can also move it by pressing the button on the mouse wheel and moving the mouse</string>
         <string name="help3">You can play/stop the time when you want clicking on this button or Space</string>
@@ -60,6 +62,8 @@
         <string name="low">Baja</string>
         <string name="high">Alta</string>
         <string name="day">Día</string>
+        <string name="messageKeyboard">En un futuro implementare las asignaciones de teclado, mientras tanto puedes consultar que teclas usa el juego abriendo la web</string>
+        <string name="messageKeyboardOpen">Abrir Web</string>
         <string name="help1">Con las teclas W,A,S,D puedes moverte por el mapa, y si quieres hacer zoom usa la rueda del ratón</string>
         <string name="help2">También te puedes mover pulsando el botón de la rueda del ratón y desplazando el ratón</string>
         <string name="help3">Puedes iniciar/parar el tiempo cuando quieras pulsando este botón o Espacio</string>

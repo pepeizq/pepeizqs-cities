@@ -417,4 +417,9 @@ public class Opciones : MonoBehaviour
             QualitySettings.antiAliasing = 8;
         }
     }
+
+    public void AbrirWebTeclado()
+    {
+        Steam.AbrirWeb("https://pepeizqapps.com/app/pepeizqs-cities/#controls");
+    }
 }

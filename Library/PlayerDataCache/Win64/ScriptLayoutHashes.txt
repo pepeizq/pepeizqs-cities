@@ -99,7 +99,7 @@ e1bbf0ab858085e38fae6b12ebbdcd35 UnityEngine.Timeline.dll:UnityEngine.Timeline.P
 201e3fde670b00545944bb3db215c80a UnityEngine.Timeline.dll:UnityEngine.Timeline.TimelineAsset
 00274a21279f5cb831ce20f895049e38 Unity.TextMeshPro.dll:TMPro.TMP_SubMeshUI
 1e7de45d81d51d373843330450e71ceb Assembly-CSharp.dll:.Colocar
-2af3cf33471bb02f9c7113fd1783284a Assembly-CSharp.dll:.Panel
+f494c0c49bb18d6aae34fdf3e73c60ac Assembly-CSharp.dll:.Panel
 e6ae40841db498b6e673877ac45ad208 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
 71bb6a6b6c8f052f948db64c7dd3ca4f UnityEngine.Networking.dll:UnityEngine.Networking.NetworkBehaviour
 1dcb82730d983b77cec736c6ef19f814 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkDiscovery
@@ -117,7 +117,7 @@ ad9173d3a69d99153f38ed4b62226129 UnityEngine.Networking.dll:UnityEngine.Networki
 d251bf88db6c95a6b1aa0b69298da9ef UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
 303ad70ce203ad874efe2965d0fbcff9 Unity.Analytics.Tracker.dll:UnityEngine.Analytics.AnalyticsEventTracker
 7fb9de8dcf73854b6b328eca1f7a6e6d Unity.Analytics.Tracker.dll:UnityEngine.Analytics.AnalyticsTracker
-a576f91e423cb10210472b0cdb19d9ec Assembly-CSharp.dll:.Idiomas
+16919ce91d0394f852801d4ee3cb5787 Assembly-CSharp.dll:.Idiomas
 d56e10611b9359bf47aa421791008eb4 Assembly-CSharp.dll:.Ayuda
 94017dcc9f00fe671ea7dc427b4da011 Unity.TextMeshPro.dll:TMPro.TMP_SpriteAsset
 b3ab2106268377ffe25dd18ac23dca28 Unity.TextMeshPro.dll:TMPro.TMP_Asset
@@ -125,7 +125,7 @@ b3ab2106268377ffe25dd18ac23dca28 Unity.TextMeshPro.dll:TMPro.TMP_Asset
 1e7de45d81d51d373843330450e71ceb Assembly-CSharp.dll:.ColocarPrevio
 71bb6a6b6c8f052f948db64c7dd3ca4f Unity.TextMeshPro.dll:TMPro.TMP_SpriteAnimator
 4fd8bf02e3089425d3502e26c44ba31a Unity.TextMeshPro.dll:TMPro.TextContainer
-4d7da583fa486609b5e940c246726e8b Assembly-CSharp.dll:.DiaNoche
+e9439f3364f095ed02e4568f538098d4 Assembly-CSharp.dll:.DiaNoche
 e6ae40841db498b6e673877ac45ad208 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
 71bb6a6b6c8f052f948db64c7dd3ca4f UnityEngine.Networking.dll:UnityEngine.Networking.NetworkBehaviour
 1dcb82730d983b77cec736c6ef19f814 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkDiscovery
@@ -163,12 +163,12 @@ a4f0a4f62100f1a4fb5cbe0e00dde83f Unity.TextMeshPro.dll:TMPro.TextMeshProUGUI
 d251bf88db6c95a6b1aa0b69298da9ef UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
 1af0d77edcc5fcedfbce24280eb2ef8f Assembly-CSharp.dll:.ArbolesInicio
 d791aa6007fa3640be1164ea75bb087d Unity.TextMeshPro.dll:TMPro.TMP_StyleSheet
-8579c5fc25e342799dd148294635f805 Assembly-CSharp.dll:.MenuJuego
+2a2aa0236baa12eaab0779f7865b83eb Assembly-CSharp.dll:.MenuJuego
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.SteamManager
-257264afae272e1bb0b982f9a27cb3b2 Assembly-CSharp.dll:.Juego
+59f7ad467d025ebfb8eb0a8fa78312e2 Assembly-CSharp.dll:.Juego
 c6666661329916e218bee7f5e79e60f5 Unity.TextMeshPro.dll:TMPro.TextMeshPro
 f8fd6214ccb51e573bc6ccda669756dd Assembly-CSharp.dll:.Ciudad
 3165968ba45c74472d279ba04455fccb Unity.TextMeshPro.dll:TMPro.TMP_ColorGradient
-badf99abcd8b616fc5557981a7b1674e Assembly-CSharp.dll:.Camara
-2ec0f59a4594a156fd94a6bae0104ddf Assembly-CSharp.dll:.Opciones
+11eb2f00b289672335dca02b5413448d Assembly-CSharp.dll:.Camara
+44357051ce88a4c1affcbca415ba32a2 Assembly-CSharp.dll:.Opciones
 8649814970b42d345b89944b862453cc Unity.TextMeshPro.dll:TMPro.TMP_SubMesh
