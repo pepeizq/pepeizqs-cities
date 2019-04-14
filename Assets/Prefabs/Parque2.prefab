@@ -91,6 +91,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 25
+  id2: 0
   categoria: 0
   coste: 20
   nombre: parque2
@@ -103,5 +104,7 @@ MonoBehaviour:
   luzRango: 0
   luzProbabilidad: 0
   dimensiones: {x: 1, y: 1}
-  rotacionColocacion: 0
+  rotacionColocacion: -180
   rotacionAdicional: 0
+  posicionX: 0
+  posicionZ: 0

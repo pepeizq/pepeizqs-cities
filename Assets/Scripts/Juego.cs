@@ -168,6 +168,7 @@ public class Juego : MonoBehaviour {
         ayuda.Cargar(true);
         ayuda.EstadoCajas(true);
         diaNoche.VelocidadMarchas(1);
+        colocarPrevio.QuitarTodosEdificios();
         panelEdificiosInfo.Arranque();
 
         construirActivar = false;

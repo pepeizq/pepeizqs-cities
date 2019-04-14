@@ -91,6 +91,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 24
+  id2: 0
   categoria: 0
   coste: 20
   nombre: parque1
@@ -105,3 +106,5 @@ MonoBehaviour:
   dimensiones: {x: 1, y: 1}
   rotacionColocacion: -180
   rotacionAdicional: 0
+  posicionX: 0
+  posicionZ: 0

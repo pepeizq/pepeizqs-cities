@@ -409,8 +409,15 @@ public static class ColocarFunciones {
     }
 
     public static int RotacionGuardadoX(int x, Construccion edificio)
-    {       
-        if (edificio.dimensiones.x == 2 && edificio.dimensiones.y == 2)
+    {
+        if (edificio.dimensiones.x == 2 && edificio.dimensiones.y == 1)
+        {
+            if (edificio.rotacionColocacion == -180 || edificio.rotacionColocacion == 0)
+            {
+                x = x + 1;
+            }              
+        }
+        else if (edificio.dimensiones.x == 2 && edificio.dimensiones.y == 2)
         {
             x = x + 1;
         }
@@ -431,7 +438,14 @@ public static class ColocarFunciones {
 
     public static int RotacionGuardadoZ(int z, Construccion edificio)
     {
-        if (edificio.dimensiones.x == 2 && edificio.dimensiones.y == 2)
+        if (edificio.dimensiones.x == 2 && edificio.dimensiones.y == 1)
+        {
+            if (edificio.rotacionColocacion == -270 || edificio.rotacionColocacion == -90)
+            {
+                z = z + 1;
+            }
+        }
+        else if (edificio.dimensiones.x == 2 && edificio.dimensiones.y == 2)
         {
             z = z + 1;
         }
