@@ -98,6 +98,11 @@ public class MenuJuego : MonoBehaviour
         opciones.canvasOrigen = 2;
     }
 
+    public void ReportarFallos()
+    {
+        Steam.AbrirWeb("https://pepeizqapps.com/contact/");
+    }
+
     public void VolverMenuPrincipal()
     {
         sonidoBoton.Play();
