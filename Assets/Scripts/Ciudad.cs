@@ -79,7 +79,7 @@ public class Ciudad : MonoBehaviour {
 
     void CalcularIngresosDinero()
     {
-        int montante = 0;
+        int montante = 1;
 
         foreach (Construccion edificio in colocar.edificios)
         {
@@ -92,17 +92,14 @@ public class Ciudad : MonoBehaviour {
             }
         }
 
-        int montanteFinal = 0;
+        float porcentajeMontante = (100 * TrabajosActual) / TrabajosTope;
+        porcentajeMontante = porcentajeMontante / 100;
+        float montanteFinal = montante * porcentajeMontante;
 
-        if (TrabajosTope > 0)
+        if (TrabajosActual >= 0)
         {
-            TrabajosTope = (montante * (TrabajosActual / TrabajosTope));
+            Dinero = Dinero + (int)montanteFinal;
         }
-       
-        if (TrabajosActual > 0)
-        {
-            Dinero = Dinero + montanteFinal;
-        }      
 
         if (montanteFinal >= 100 && montanteFinal < 1000)
         {
