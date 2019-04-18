@@ -3167,6 +3167,7 @@ GameObject:
   - component: {fileID: 303482652}
   - component: {fileID: 303482651}
   - component: {fileID: 303482650}
+  - component: {fileID: 303482653}
   m_Layer: 5
   m_Name: BotonIndustria
   m_TagString: Untagged
@@ -3215,8 +3216,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.112273075, g: 0.5643519, b: 0.8207547, a: 1}
-    m_PressedColor: {r: 0.033107866, g: 0.15645632, b: 0.2264151, a: 1}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -3234,8 +3235,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 491194795}
-        m_MethodName: ConstruirMostrarPanelEdificios
+      - m_Target: {fileID: 491194793}
+        m_MethodName: ConstruirMostrarPanel
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1365827941}
@@ -3284,6 +3285,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 303482648}
   m_CullTransparentMesh: 0
+--- !u!114 &303482653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 303482648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 491194793}
+          m_MethodName: CursorEntraEdificioSuperior
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 4
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 491194793}
+          m_MethodName: CursorSaleEdificioSuperior
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 4
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
 --- !u!1 &310050806
 GameObject:
   m_ObjectHideFlags: 0
@@ -4964,6 +5013,7 @@ GameObject:
   - component: {fileID: 422088126}
   - component: {fileID: 422088125}
   - component: {fileID: 422088124}
+  - component: {fileID: 422088127}
   m_Layer: 5
   m_Name: BotonCarreteras
   m_TagString: Untagged
@@ -5031,8 +5081,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 491194795}
-        m_MethodName: ConstruirMostrarPanelEdificios
+      - m_Target: {fileID: 491194793}
+        m_MethodName: ConstruirMostrarPanel
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 473335017}
@@ -5081,6 +5131,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 422088122}
   m_CullTransparentMesh: 0
+--- !u!114 &422088127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 422088122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 491194793}
+          m_MethodName: CursorEntraEdificioSuperior
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 491194793}
+          m_MethodName: CursorSaleEdificioSuperior
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
 --- !u!1 &442590640
 GameObject:
   m_ObjectHideFlags: 0
@@ -6102,12 +6200,12 @@ GameObject:
   - component: {fileID: 491194795}
   - component: {fileID: 491194799}
   - component: {fileID: 491194794}
-  - component: {fileID: 491194793}
   - component: {fileID: 491194797}
   - component: {fileID: 491194796}
   - component: {fileID: 491194800}
   - component: {fileID: 491194803}
   - component: {fileID: 491194801}
+  - component: {fileID: 491194793}
   - component: {fileID: 491194802}
   - component: {fileID: 491194804}
   - component: {fileID: 491194792}
@@ -6180,16 +6278,60 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   idioma: {fileID: 491194792}
-  panelCoste: {fileID: 1673777288}
+  sonidoBoton: {fileID: 1088383249}
+  juego: {fileID: 491194795}
+  botonEdificiosPrefab: {fileID: 1717032355784232, guid: 28143567465f73f429ecde28b0c114f7,
+    type: 3}
+  panelCarreteras: {fileID: 473335017}
+  botonCarreteras: {fileID: 422088124}
+  botonCarreterasImagen: {fileID: 1519847433}
+  botonCarreterasSprite1: {fileID: 21300000, guid: 38dbcaa7f7015bd42b5bbbf368e727af,
+    type: 3}
+  botonCarreterasSprite2: {fileID: 21300000, guid: 61761b8febf6b8b45bb7b96154458608,
+    type: 3}
+  panelPoblacion: {fileID: 218682818}
+  botonPoblacion: {fileID: 1384727330}
+  botonPoblacionImagen: {fileID: 136939776}
+  botonPoblacionSprite1: {fileID: 21300000, guid: ef6ff95d149a0fc469163b2f922c120a,
+    type: 3}
+  botonPoblacionSprite2: {fileID: 21300000, guid: 331fa4dfc42f05d4883c3c9669fe28a9,
+    type: 3}
+  panelComida: {fileID: 1036808847}
+  botonComida: {fileID: 1672579453}
+  botonComidaImagen: {fileID: 1817097447}
+  botonComidaSprite1: {fileID: 21300000, guid: be0769ca792a3904c9ca2cef31dfc106, type: 3}
+  botonComidaSprite2: {fileID: 21300000, guid: f1bd63103c44b9d4ba3227cb2b791cbe, type: 3}
+  panelTiendas: {fileID: 1378280039}
+  botonTiendas: {fileID: 1970140914}
+  botonTiendasImagen: {fileID: 629163587}
+  botonTiendasSprite1: {fileID: 21300000, guid: 1909740f07595954c97ca10f28377b2f,
+    type: 3}
+  botonTiendasSprite2: {fileID: 21300000, guid: 5256a85603d487d48820f6f3ff9db2e8,
+    type: 3}
+  panelIndustria: {fileID: 1365827941}
+  botonIndustria: {fileID: 303482650}
+  botonIndustriaImagen: {fileID: 788289148}
+  botonIndustriaSprite1: {fileID: 21300000, guid: 99c6ac4911514414e83135ed26b9d73b,
+    type: 3}
+  botonIndustriaSprite2: {fileID: 21300000, guid: 158271b9c41b9e447aa4874c9b0e649b,
+    type: 3}
+  panelDecoracion: {fileID: 511642605}
+  botonDecoracion: {fileID: 601687783}
+  botonDecoracionImagen: {fileID: 960896581}
+  botonDecoracionSprite1: {fileID: 21300000, guid: 6edcb0c9bb261fe4186e1060b3a72eed,
+    type: 3}
+  botonDecoracionSprite2: {fileID: 21300000, guid: dcee010d6bdac344daff2c410e7381a5,
+    type: 3}
+  panelCantidadDinero: {fileID: 1673777288}
   costeTexto: {fileID: 1263092610}
   costeCantidad: {fileID: 1928249846}
-  panelPoblacion: {fileID: 1487240155}
+  panelCantidadPoblacion: {fileID: 1487240155}
   poblacionTexto: {fileID: 259485305}
   poblacionCantidad: {fileID: 860675259}
-  panelComida: {fileID: 444695295}
+  panelCantidadComida: {fileID: 444695295}
   comidaTexto: {fileID: 1772990662}
   comidaCantidad: {fileID: 1628949629}
-  panelTrabajo: {fileID: 557794208}
+  panelCantidadTrabajo: {fileID: 557794208}
   trabajoTexto: {fileID: 224243219}
   trabajoCantidad: {fileID: 1929294638}
 --- !u!114 &491194794
@@ -6332,51 +6474,8 @@ MonoBehaviour:
   panelEdificios: {fileID: 1417709701}
   panelGuardar: {fileID: 1187012641}
   panelTiempo: {fileID: 443282299}
-  botonEdificiosPrefab: {fileID: 1717032355784232, guid: 28143567465f73f429ecde28b0c114f7,
-    type: 3}
-  panelEdificiosCarreteras: {fileID: 473335017}
-  botonEdificiosCarreteras: {fileID: 422088124}
-  botonEdificiosCarreterasImagen: {fileID: 1519847433}
-  botonEdificiosCarreterasSprite1: {fileID: 21300000, guid: 38dbcaa7f7015bd42b5bbbf368e727af,
-    type: 3}
-  botonEdificiosCarreterasSprite2: {fileID: 21300000, guid: 61761b8febf6b8b45bb7b96154458608,
-    type: 3}
-  panelEdificiosCasas: {fileID: 218682818}
-  botonEdificiosCasas: {fileID: 1384727330}
-  botonEdificiosCasasImagen: {fileID: 136939776}
-  botonEdificiosCasasSprite1: {fileID: 21300000, guid: ef6ff95d149a0fc469163b2f922c120a,
-    type: 3}
-  botonEdificiosCasasSprite2: {fileID: 21300000, guid: 331fa4dfc42f05d4883c3c9669fe28a9,
-    type: 3}
-  panelEdificiosComida: {fileID: 1036808847}
-  botonEdificiosComida: {fileID: 1672579453}
-  botonEdificiosComidaImagen: {fileID: 1817097447}
-  botonEdificiosComidaSprite1: {fileID: 21300000, guid: be0769ca792a3904c9ca2cef31dfc106,
-    type: 3}
-  botonEdificiosComidaSprite2: {fileID: 21300000, guid: f1bd63103c44b9d4ba3227cb2b791cbe,
-    type: 3}
-  panelEdificiosTiendas: {fileID: 1378280039}
-  botonEdificiosTiendas: {fileID: 1970140914}
-  botonEdificiosTiendasImagen: {fileID: 629163587}
-  botonEdificiosTiendasSprite1: {fileID: 21300000, guid: 1909740f07595954c97ca10f28377b2f,
-    type: 3}
-  botonEdificiosTiendasSprite2: {fileID: 21300000, guid: 5256a85603d487d48820f6f3ff9db2e8,
-    type: 3}
-  panelEdificiosIndustria: {fileID: 1365827941}
-  botonEdificiosIndustria: {fileID: 303482650}
-  botonEdificiosIndustriaImagen: {fileID: 788289148}
-  botonEdificiosIndustriaSprite1: {fileID: 21300000, guid: 99c6ac4911514414e83135ed26b9d73b,
-    type: 3}
-  botonEdificiosIndustriaSprite2: {fileID: 21300000, guid: 158271b9c41b9e447aa4874c9b0e649b,
-    type: 3}
-  panelEdificiosDecoracion: {fileID: 511642605}
-  botonEdificiosDecoracion: {fileID: 601687783}
-  botonEdificiosDecoracionImagen: {fileID: 960896581}
-  botonEdificiosDecoracionSprite1: {fileID: 21300000, guid: 6edcb0c9bb261fe4186e1060b3a72eed,
-    type: 3}
-  botonEdificiosDecoracionSprite2: {fileID: 21300000, guid: dcee010d6bdac344daff2c410e7381a5,
-    type: 3}
-  panelEdificiosInfo: {fileID: 491194793}
+  panelEdificios2: {fileID: 491194793}
+  panelCarreteras: {fileID: 473335017}
 --- !u!114 &491194796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8144,6 +8243,7 @@ GameObject:
   - component: {fileID: 601687785}
   - component: {fileID: 601687784}
   - component: {fileID: 601687783}
+  - component: {fileID: 601687786}
   m_Layer: 5
   m_Name: BotonDecoracion
   m_TagString: Untagged
@@ -8192,8 +8292,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.112273075, g: 0.5643519, b: 0.8207547, a: 1}
-    m_PressedColor: {r: 0.033107866, g: 0.15645632, b: 0.2264151, a: 1}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -8211,8 +8311,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 491194795}
-        m_MethodName: ConstruirMostrarPanelEdificios
+      - m_Target: {fileID: 491194793}
+        m_MethodName: ConstruirMostrarPanel
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 511642605}
@@ -8261,6 +8361,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 601687781}
   m_CullTransparentMesh: 0
+--- !u!114 &601687786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 601687781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 491194793}
+          m_MethodName: CursorEntraEdificioSuperior
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 5
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 491194793}
+          m_MethodName: CursorSaleEdificioSuperior
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 5
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
 --- !u!1 &613313299
 GameObject:
   m_ObjectHideFlags: 0
@@ -16159,6 +16307,7 @@ GameObject:
   - component: {fileID: 1384727332}
   - component: {fileID: 1384727331}
   - component: {fileID: 1384727330}
+  - component: {fileID: 1384727333}
   m_Layer: 5
   m_Name: BotonPoblacion
   m_TagString: Untagged
@@ -16207,8 +16356,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.112273075, g: 0.5643519, b: 0.8207547, a: 1}
-    m_PressedColor: {r: 0.033107866, g: 0.15645632, b: 0.2264151, a: 1}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -16226,8 +16375,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 491194795}
-        m_MethodName: ConstruirMostrarPanelEdificios
+      - m_Target: {fileID: 491194793}
+        m_MethodName: ConstruirMostrarPanel
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 218682818}
@@ -16276,6 +16425,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1384727328}
   m_CullTransparentMesh: 0
+--- !u!114 &1384727333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1384727328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 491194793}
+          m_MethodName: CursorEntraEdificioSuperior
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 491194793}
+          m_MethodName: CursorSaleEdificioSuperior
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
 --- !u!1 &1384731081
 GameObject:
   m_ObjectHideFlags: 0
@@ -19149,6 +19346,7 @@ GameObject:
   - component: {fileID: 1672579455}
   - component: {fileID: 1672579454}
   - component: {fileID: 1672579453}
+  - component: {fileID: 1672579456}
   m_Layer: 5
   m_Name: BotonComida
   m_TagString: Untagged
@@ -19197,8 +19395,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.112273075, g: 0.5643519, b: 0.8207547, a: 1}
-    m_PressedColor: {r: 0.033107866, g: 0.15645632, b: 0.2264151, a: 1}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -19216,8 +19414,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 491194795}
-        m_MethodName: ConstruirMostrarPanelEdificios
+      - m_Target: {fileID: 491194793}
+        m_MethodName: ConstruirMostrarPanel
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1036808847}
@@ -19266,6 +19464,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1672579451}
   m_CullTransparentMesh: 0
+--- !u!114 &1672579456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1672579451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 491194793}
+          m_MethodName: CursorEntraEdificioSuperior
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 2
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 491194793}
+          m_MethodName: CursorSaleEdificioSuperior
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 2
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
 --- !u!1 &1673777283
 GameObject:
   m_ObjectHideFlags: 0
@@ -22524,6 +22770,7 @@ GameObject:
   - component: {fileID: 1970140916}
   - component: {fileID: 1970140915}
   - component: {fileID: 1970140914}
+  - component: {fileID: 1970140917}
   m_Layer: 5
   m_Name: BotonTiendas
   m_TagString: Untagged
@@ -22572,8 +22819,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.112273075, g: 0.5643519, b: 0.8207547, a: 1}
-    m_PressedColor: {r: 0.033107866, g: 0.15645632, b: 0.2264151, a: 1}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
+    m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -22591,8 +22838,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 491194795}
-        m_MethodName: ConstruirMostrarPanelEdificios
+      - m_Target: {fileID: 491194793}
+        m_MethodName: ConstruirMostrarPanel
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1378280039}
@@ -22641,6 +22888,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1970140912}
   m_CullTransparentMesh: 0
+--- !u!114 &1970140917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1970140912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 491194793}
+          m_MethodName: CursorEntraEdificioSuperior
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 3
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 491194793}
+          m_MethodName: CursorSaleEdificioSuperior
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 3
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
 --- !u!1 &1978531842
 GameObject:
   m_ObjectHideFlags: 0

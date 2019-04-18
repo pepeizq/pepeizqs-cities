@@ -1,175 +1,179 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class MenuJuego : MonoBehaviour
+namespace Interfaz
 {
-    public Panel panel;
-    public Panel panelSub;
-
-    public MenuPrincipal menuPrincipal;
-    public Juego juego;
-    public Opciones opciones;
-
-    public AudioSource sonidoBoton;
-
-    [SerializeField]
-    private ColocarPrevio colocarPrevio;
-
-    [SerializeField]
-    private DiaNoche diaNoche;
-
-    public Panel panelGuardarMenuPrincipal;
-    public Panel panelGuardarSalir;
-
-    public void MostrarMenu()
+    public class MenuJuego : MonoBehaviour
     {
-        sonidoBoton.Play();
-        colocarPrevio.QuitarTodosEdificios();
-        juego.ConstruirOcultarPanelEdificios();
+        public Panel panel;
+        public Panel panelSub;
 
-        if (panel.gameObject.GetComponent<CanvasGroup>().alpha == 0)
+        public MenuPrincipal menuPrincipal;
+        public Juego juego;
+        public Opciones opciones;
+
+        public AudioSource sonidoBoton;
+
+        [SerializeField]
+        private ColocarPrevio colocarPrevio;
+
+        [SerializeField]
+        private DiaNoche diaNoche;
+
+        public Panel panelGuardarMenuPrincipal;
+        public Panel panelGuardarSalir;
+
+        public void MostrarMenu()
         {
-            panelSub.volverColor = true;
-            PanelCambiarColor(panelSub);
-            diaNoche.VelocidadMarchas(0);
-            panel.gameObject.GetComponent<CanvasGroup>().alpha = 1;
-            panel.gameObject.GetComponent<CanvasGroup>().interactable = true;
-            panel.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
+            sonidoBoton.Play();
+            colocarPrevio.QuitarTodosEdificios();
+            juego.ConstruirOcultarPanelEdificios();
+
+            if (panel.gameObject.GetComponent<CanvasGroup>().alpha == 0)
+            {
+                panelSub.volverColor = true;
+                PanelCambiarColor(panelSub);
+                diaNoche.VelocidadMarchas(0);
+                panel.gameObject.GetComponent<CanvasGroup>().alpha = 1;
+                panel.gameObject.GetComponent<CanvasGroup>().interactable = true;
+                panel.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
+            }
+            else
+            {
+                panelSub.volverColor = false;
+                PanelVolverColor(panelSub);
+                diaNoche.VelocidadMarchas(1);
+                panel.gameObject.GetComponent<CanvasGroup>().alpha = 0;
+                panel.gameObject.GetComponent<CanvasGroup>().interactable = false;
+                panel.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
+            }
         }
-        else
+
+        public void PanelCambiarColor(Panel panel)
         {
-            panelSub.volverColor = false;
+            if (panel.volverColor == false)
+            {
+                panel.gameObject.GetComponent<Image>().color = new Color(0.08f, 0.4f, 0.58f);
+            }
+        }
+
+        public void PanelVolverColor(Panel panel)
+        {
+            if (panel.volverColor == false)
+            {
+                panel.gameObject.GetComponent<Image>().color = new Color(255f, 255f, 255f, 50f / 255f);
+            }
+        }
+
+        public void CerrarPanel()
+        {
             PanelVolverColor(panelSub);
-            diaNoche.VelocidadMarchas(1);
             panel.gameObject.GetComponent<CanvasGroup>().alpha = 0;
             panel.gameObject.GetComponent<CanvasGroup>().interactable = false;
             panel.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
         }
-    }
 
-    public void PanelCambiarColor(Panel panel)
-    {
-        if (panel.volverColor == false)
+        public void GuardarPartida()
         {
-            panel.gameObject.GetComponent<Image>().color = new Color(0.08f, 0.4f, 0.58f);
-        }        
-    }
+            sonidoBoton.Play();
 
-    public void PanelVolverColor(Panel panel)
-    {
-        if (panel.volverColor == false)
+            juego.GuardarPartida();
+
+            PanelVolverColor(panelSub);
+            panel.gameObject.GetComponent<CanvasGroup>().alpha = 0;
+            panel.gameObject.GetComponent<CanvasGroup>().interactable = false;
+            panel.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
+        }
+
+        public void MostrarOpciones()
         {
-            panel.gameObject.GetComponent<Image>().color = new Color(255f, 255f, 255f, 50f / 255f);
-        }     
-    }
+            sonidoBoton.Play();
 
-    public void CerrarPanel()
-    {
-        PanelVolverColor(panelSub);
-        panel.gameObject.GetComponent<CanvasGroup>().alpha = 0;
-        panel.gameObject.GetComponent<CanvasGroup>().interactable = false;
-        panel.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
-    }
+            juego.canvas.gameObject.GetComponent<CanvasGroup>().alpha = 0;
+            juego.canvas.gameObject.GetComponent<CanvasGroup>().interactable = false;
+            juego.canvas.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
 
-    public void GuardarPartida()
-    {
-        sonidoBoton.Play();
+            opciones.canvas.gameObject.GetComponent<CanvasGroup>().alpha = 1;
+            opciones.canvas.gameObject.GetComponent<CanvasGroup>().interactable = true;
+            opciones.canvas.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
 
-        juego.GuardarPartida();
+            opciones.canvasOrigen = 2;
+        }
 
-        PanelVolverColor(panelSub);
-        panel.gameObject.GetComponent<CanvasGroup>().alpha = 0;
-        panel.gameObject.GetComponent<CanvasGroup>().interactable = false;
-        panel.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
-    }
+        public void ReportarFallos()
+        {
+            Steam.AbrirWeb("https://pepeizqapps.com/contact/");
+        }
 
-    public void MostrarOpciones()
-    {
-        sonidoBoton.Play();
+        public void VolverMenuPrincipal()
+        {
+            sonidoBoton.Play();
 
-        juego.canvas.gameObject.GetComponent<CanvasGroup>().alpha = 0;
-        juego.canvas.gameObject.GetComponent<CanvasGroup>().interactable = false;
-        juego.canvas.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
+            panel.gameObject.GetComponent<CanvasGroup>().alpha = 0;
+            panel.gameObject.GetComponent<CanvasGroup>().interactable = false;
+            panel.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
 
-        opciones.canvas.gameObject.GetComponent<CanvasGroup>().alpha = 1;
-        opciones.canvas.gameObject.GetComponent<CanvasGroup>().interactable = true;
-        opciones.canvas.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
+            panelGuardarMenuPrincipal.gameObject.GetComponent<CanvasGroup>().alpha = 1;
+            panelGuardarMenuPrincipal.gameObject.GetComponent<CanvasGroup>().interactable = true;
+            panelGuardarMenuPrincipal.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
+        }
 
-        opciones.canvasOrigen = 2;
-    }
+        public void VolverMenuPrincipalGuardarSi()
+        {
+            juego.GuardarPartida();
 
-    public void ReportarFallos()
-    {
-        Steam.AbrirWeb("https://pepeizqapps.com/contact/");
-    }
+            juego.canvas.gameObject.GetComponent<CanvasGroup>().alpha = 0;
+            juego.canvas.gameObject.GetComponent<CanvasGroup>().interactable = false;
+            juego.canvas.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
 
-    public void VolverMenuPrincipal()
-    {
-        sonidoBoton.Play();
+            panelGuardarMenuPrincipal.gameObject.GetComponent<CanvasGroup>().alpha = 0;
+            panelGuardarMenuPrincipal.gameObject.GetComponent<CanvasGroup>().interactable = false;
+            panelGuardarMenuPrincipal.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
 
-        panel.gameObject.GetComponent<CanvasGroup>().alpha = 0;
-        panel.gameObject.GetComponent<CanvasGroup>().interactable = false;
-        panel.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
+            menuPrincipal.canvas.gameObject.GetComponent<CanvasGroup>().alpha = 1;
+            menuPrincipal.canvas.gameObject.GetComponent<CanvasGroup>().interactable = true;
+            menuPrincipal.canvas.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
+        }
 
-        panelGuardarMenuPrincipal.gameObject.GetComponent<CanvasGroup>().alpha = 1;
-        panelGuardarMenuPrincipal.gameObject.GetComponent<CanvasGroup>().interactable = true;
-        panelGuardarMenuPrincipal.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
-    }
+        public void VolverMenuPrincipalGuardarNo()
+        {
+            panelGuardarMenuPrincipal.gameObject.GetComponent<CanvasGroup>().alpha = 0;
+            panelGuardarMenuPrincipal.gameObject.GetComponent<CanvasGroup>().interactable = false;
+            panelGuardarMenuPrincipal.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
 
-    public void VolverMenuPrincipalGuardarSi()
-    {
-        juego.GuardarPartida();
+            juego.canvas.gameObject.GetComponent<CanvasGroup>().alpha = 0;
+            juego.canvas.gameObject.GetComponent<CanvasGroup>().interactable = false;
+            juego.canvas.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
 
-        juego.canvas.gameObject.GetComponent<CanvasGroup>().alpha = 0;
-        juego.canvas.gameObject.GetComponent<CanvasGroup>().interactable = false;
-        juego.canvas.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
+            menuPrincipal.canvas.gameObject.GetComponent<CanvasGroup>().alpha = 1;
+            menuPrincipal.canvas.gameObject.GetComponent<CanvasGroup>().interactable = true;
+            menuPrincipal.canvas.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
+        }
 
-        panelGuardarMenuPrincipal.gameObject.GetComponent<CanvasGroup>().alpha = 0;
-        panelGuardarMenuPrincipal.gameObject.GetComponent<CanvasGroup>().interactable = false;
-        panelGuardarMenuPrincipal.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
+        public void SalirJuego()
+        {
+            sonidoBoton.Play();
 
-        menuPrincipal.canvas.gameObject.GetComponent<CanvasGroup>().alpha = 1;
-        menuPrincipal.canvas.gameObject.GetComponent<CanvasGroup>().interactable = true;
-        menuPrincipal.canvas.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
-    }
+            panel.gameObject.GetComponent<CanvasGroup>().alpha = 0;
+            panel.gameObject.GetComponent<CanvasGroup>().interactable = false;
+            panel.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
 
-    public void VolverMenuPrincipalGuardarNo()
-    {
-        panelGuardarMenuPrincipal.gameObject.GetComponent<CanvasGroup>().alpha = 0;
-        panelGuardarMenuPrincipal.gameObject.GetComponent<CanvasGroup>().interactable = false;
-        panelGuardarMenuPrincipal.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
+            panelGuardarSalir.gameObject.GetComponent<CanvasGroup>().alpha = 1;
+            panelGuardarSalir.gameObject.GetComponent<CanvasGroup>().interactable = true;
+            panelGuardarSalir.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
+        }
 
-        juego.canvas.gameObject.GetComponent<CanvasGroup>().alpha = 0;
-        juego.canvas.gameObject.GetComponent<CanvasGroup>().interactable = false;
-        juego.canvas.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
+        public void SalirJuegoGuardarSi()
+        {
+            juego.GuardarPartida();
 
-        menuPrincipal.canvas.gameObject.GetComponent<CanvasGroup>().alpha = 1;
-        menuPrincipal.canvas.gameObject.GetComponent<CanvasGroup>().interactable = true;
-        menuPrincipal.canvas.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
-    }
+            Application.Quit();
+        }
 
-    public void SalirJuego()
-    {
-        sonidoBoton.Play();
-
-        panel.gameObject.GetComponent<CanvasGroup>().alpha = 0;
-        panel.gameObject.GetComponent<CanvasGroup>().interactable = false;
-        panel.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
-
-        panelGuardarSalir.gameObject.GetComponent<CanvasGroup>().alpha = 1;
-        panelGuardarSalir.gameObject.GetComponent<CanvasGroup>().interactable = true;
-        panelGuardarSalir.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
-    }
-
-    public void SalirJuegoGuardarSi()
-    {
-        juego.GuardarPartida();
-
-        Application.Quit();
-    }
-
-    public void SalirJuegoGuardarNo()
-    {
-        Application.Quit();
+        public void SalirJuegoGuardarNo()
+        {
+            Application.Quit();
+        }
     }
 }
+
