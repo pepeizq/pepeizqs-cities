@@ -6,8 +6,6 @@ namespace Interfaz
 {
     public class Edificios : MonoBehaviour
     {
-        public Idiomas idioma;
-
         public AudioSource sonidoBoton;
 
         public Juego juego;
@@ -53,19 +51,15 @@ namespace Interfaz
         public Sprite botonDecoracionSprite2;
 
         public Panel panelCantidadDinero;
-        public Text costeTexto;
         public Text costeCantidad;
 
         public Panel panelCantidadPoblacion;
-        public Text poblacionTexto;
         public Text poblacionCantidad;
 
         public Panel panelCantidadComida;
-        public Text comidaTexto;
         public Text comidaCantidad;
 
         public Panel panelCantidadTrabajo;
-        public Text trabajoTexto;
         public Text trabajoCantidad;
 
         public void Arranque(Construccion[] edificios)
@@ -303,7 +297,6 @@ namespace Interfaz
             if (edificio.coste != 0)
             {
                 panelCantidadDinero.gameObject.SetActive(true);
-                costeTexto.text = idioma.CogerCadena("cost");
                 costeCantidad.text = string.Format("-{0} €", edificio.coste);
                 costeCantidad.color = new Color(157.0f, 0f, 0f);
             }
@@ -315,7 +308,6 @@ namespace Interfaz
             if (edificio.poblacion != 0)
             {
                 panelCantidadPoblacion.gameObject.SetActive(true);
-                poblacionTexto.text = idioma.CogerCadena("population");
                 poblacionCantidad.text = string.Format("{0}", edificio.poblacion);
 
                 if (edificio.poblacion > 0)
@@ -334,8 +326,7 @@ namespace Interfaz
 
             if (edificio.comida != 0)
             {
-                panelCantidadComida.gameObject.SetActive(true);
-                comidaTexto.text = idioma.CogerCadena("food");
+                panelCantidadComida.gameObject.SetActive(true);              
                 comidaCantidad.text = string.Format("{0}", edificio.comida);
 
                 if (edificio.comida > 0)
@@ -355,7 +346,6 @@ namespace Interfaz
             if (edificio.trabajo != 0)
             {
                 panelCantidadTrabajo.gameObject.SetActive(true);
-                trabajoTexto.text = idioma.CogerCadena("jobs");
                 trabajoCantidad.text = string.Format("{0}", edificio.trabajo);
 
                 if (edificio.trabajo > 0)
@@ -376,19 +366,15 @@ namespace Interfaz
         public void CursorSaleEdificioInferior(PointerEventData eventData)
         {
             panelCantidadDinero.gameObject.SetActive(false);
-            costeTexto.text = null;
             costeCantidad.text = null;
 
             panelCantidadPoblacion.gameObject.SetActive(false);
-            poblacionTexto.text = null;
             poblacionCantidad.text = null;
 
             panelCantidadComida.gameObject.SetActive(false);
-            comidaTexto.text = null;
             comidaCantidad.text = null;
 
             panelCantidadTrabajo.gameObject.SetActive(false);
-            trabajoTexto.text = null;
             trabajoCantidad.text = null;
         }
     }

@@ -6254,6 +6254,10 @@ MonoBehaviour:
   ayuda3: {fileID: 1462241776}
   ayuda4: {fileID: 1276635007}
   ayuda5: {fileID: 998685844}
+  edificiosCoste: {fileID: 1263092610}
+  edificiosPoblacion: {fileID: 259485305}
+  edificiosComida: {fileID: 1772990662}
+  edificiosTrabajo: {fileID: 224243219}
   menuJuegoGuardarPartida: {fileID: 2018471264}
   menuJuegoOpciones: {fileID: 338312347}
   menuJuegoReportarFallo: {fileID: 2136868949}
@@ -6323,16 +6327,12 @@ MonoBehaviour:
   botonDecoracionSprite2: {fileID: 21300000, guid: dcee010d6bdac344daff2c410e7381a5,
     type: 3}
   panelCantidadDinero: {fileID: 1673777288}
-  costeTexto: {fileID: 1263092610}
   costeCantidad: {fileID: 1928249846}
   panelCantidadPoblacion: {fileID: 1487240155}
-  poblacionTexto: {fileID: 259485305}
   poblacionCantidad: {fileID: 860675259}
   panelCantidadComida: {fileID: 444695295}
-  comidaTexto: {fileID: 1772990662}
   comidaCantidad: {fileID: 1628949629}
   panelCantidadTrabajo: {fileID: 557794208}
-  trabajoTexto: {fileID: 224243219}
   trabajoCantidad: {fileID: 1929294638}
 --- !u!114 &491194794
 MonoBehaviour:
