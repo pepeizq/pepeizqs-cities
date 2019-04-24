@@ -4,6 +4,14 @@ public class Camara : MonoBehaviour
 {
     public Canvas canvasJuego;
 
+    public KeyCode teclaMovimientoIzquierda;
+    public KeyCode teclaMovimientoArriba;
+    public KeyCode teclaMovimientoDerecha;
+    public KeyCode teclaMovimientoAbajo;
+
+    public KeyCode teclaRotacionIzquierda;
+    public KeyCode teclaRotacionDerecha;
+
     private Vector3 ratonOrigenPunto;
     private Vector3 offset;
     private bool arrastrando;
@@ -25,28 +33,28 @@ public class Camara : MonoBehaviour
           
             if (arrastrando == false)
             {
-                if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
+                if (Input.GetKey(teclaMovimientoDerecha))
                 {
                     Movimiento(velocidad * Time.deltaTime, 0);
                 }
-                else if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
+                else if (Input.GetKey(teclaMovimientoIzquierda))
                 {
                     Movimiento(-velocidad * Time.deltaTime, 0);
                 }
-                else if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
+                else if (Input.GetKey(teclaMovimientoAbajo))
                 {
                     Movimiento(0, -velocidad * Time.deltaTime);
                 }
-                else if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
+                else if (Input.GetKey(teclaMovimientoArriba))
                 {
                     Movimiento(0, velocidad * Time.deltaTime);
                 }
 
-                if (Input.GetKeyDown(KeyCode.F1))
+                if (Input.GetKeyDown(teclaRotacionIzquierda))
                 {
                     RotacionIzquierda(false);
                 }
-                else if (Input.GetKeyDown(KeyCode.F2))
+                else if (Input.GetKeyDown(teclaRotacionDerecha))
                 {
                     RotacionDerecha(false);
                 }

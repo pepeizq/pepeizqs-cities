@@ -10,6 +10,8 @@ public class Juego : MonoBehaviour {
 
     public Canvas canvas;
 
+    public KeyCode teclaMenu;
+
     public Interfaz.MenuPrincipal menuPrincipal;
     public Interfaz.Opciones opciones;
     public Interfaz.Ayuda ayuda;
@@ -147,7 +149,7 @@ public class Juego : MonoBehaviour {
     {
         if (canvas.gameObject.GetComponent<CanvasGroup>().alpha == 1)
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(teclaMenu))
             {
                 menuJuego.MostrarMenu();
             }

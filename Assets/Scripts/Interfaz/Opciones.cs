@@ -18,6 +18,9 @@ namespace Interfaz
         public Button botonGraficos;
         public Button botonTeclado;
 
+        public Scrollbar scrollbar;
+
+        public Panel panelMedio;
         public Panel panelGeneral;
         public Panel panelGraficos;
         public Panel panelGraficosSombrasCalidad;
@@ -38,9 +41,12 @@ namespace Interfaz
         public Panel panelVolumen;
         public Slider sliderVolumen;
 
+        public Dropdown dpPantalla;
         public Dropdown dpSombras;
         public Dropdown dpTexturas;
         public Dropdown dpAntiAliasing;
+
+        public Teclado teclado;
 
         public void Volver()
         {
@@ -74,6 +80,7 @@ namespace Interfaz
         public void CargarInicio()
         {
             MostrarPanelColorBoton(botonGeneral, new Color(0.08f, 0.4f, 0.58f));
+            panelMedio.gameObject.GetComponent<ScrollRect>().content = panelGeneral.GetComponent<RectTransform>();
             panelGraficos.gameObject.SetActive(false);
             panelTeclado.gameObject.SetActive(false);
 
@@ -137,6 +144,21 @@ namespace Interfaz
                 {
                     toggleAyuda.isOn = false;
                 }
+            }
+
+            //-----------------------------------------------------------
+
+            dpPantalla.options.Add(new Dropdown.OptionData() { text = idioma.CogerCadena("screenMode1") });
+            dpPantalla.options.Add(new Dropdown.OptionData() { text = idioma.CogerCadena("screenMode2") });
+            dpPantalla.options.Add(new Dropdown.OptionData() { text = idioma.CogerCadena("screenMode3") });
+
+            if (PlayerPrefs.HasKey("pantalla") == false)
+            {
+                PlayerPrefs.SetInt("pantalla", 1);
+            }
+            else
+            {
+                dpPantalla.value = PlayerPrefs.GetInt("pantalla");
             }
 
             //-----------------------------------------------------------
@@ -251,11 +273,20 @@ namespace Interfaz
             {
                 QualitySettings.antiAliasing = 8;
             }
+
+            //-----------------------------------------------------------
+
+            teclado.CargarInicio();
         }
 
         public void MostrarPanel(Panel panelEnseñar)
         {
             sonidoBoton.Play();
+
+            scrollbar.gameObject.GetComponent<CanvasGroup>().alpha = 0;
+            scrollbar.gameObject.GetComponent<CanvasGroup>().interactable = false;
+            scrollbar.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
+            scrollbar.gameObject.SetActive(false);
 
             panelGeneral.gameObject.GetComponent<CanvasGroup>().alpha = 0;
             panelGeneral.gameObject.GetComponent<CanvasGroup>().interactable = false;
@@ -280,6 +311,13 @@ namespace Interfaz
             if (panelEnseñar.nombre == "general")
             {
                 MostrarPanelColorBoton(botonGeneral, new Color(0.08f, 0.4f, 0.58f));
+
+                scrollbar.gameObject.GetComponent<CanvasGroup>().alpha = 1;
+                scrollbar.gameObject.GetComponent<CanvasGroup>().interactable = true;
+                scrollbar.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
+                scrollbar.gameObject.SetActive(true);
+
+                panelMedio.gameObject.GetComponent<ScrollRect>().content = panelGeneral.GetComponent<RectTransform>();
             }
             else
             {
@@ -298,6 +336,13 @@ namespace Interfaz
             if (panelEnseñar.nombre == "teclado")
             {
                 MostrarPanelColorBoton(botonTeclado, new Color(0.08f, 0.4f, 0.58f));
+
+                scrollbar.gameObject.GetComponent<CanvasGroup>().alpha = 1;
+                scrollbar.gameObject.GetComponent<CanvasGroup>().interactable = true;
+                scrollbar.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
+                scrollbar.gameObject.SetActive(true);
+
+                panelMedio.gameObject.GetComponent<ScrollRect>().content = panelTeclado.GetComponent<RectTransform>();
             }
             else
             {
@@ -356,6 +401,24 @@ namespace Interfaz
         {
             PlayerPrefs.SetFloat("volumen", slider.value);
             AudioListener.volume = slider.value;
+        }
+
+        public void ControlPantalla(Dropdown dp)
+        {
+            PlayerPrefs.SetInt("pantalla", dp.value);
+
+            if (dp.value == 0)
+            {
+                Screen.SetResolution(Screen.width, Screen.height, FullScreenMode.FullScreenWindow);
+            }
+            else if (dp.value == 1)
+            {
+                Screen.SetResolution(Screen.width, Screen.height, FullScreenMode.MaximizedWindow);
+            }
+            else if (dp.value == 2)
+            {
+                Screen.SetResolution(Screen.width, Screen.height, FullScreenMode.Windowed);
+            }
         }
 
         public void ControlSombras(Toggle toggle)
@@ -418,11 +481,6 @@ namespace Interfaz
             {
                 QualitySettings.antiAliasing = 8;
             }
-        }
-
-        public void AbrirWebTeclado()
-        {
-            Steam.AbrirWeb("https://pepeizqapps.com/app/pepeizqs-cities/#controls");
         }
     }
 }

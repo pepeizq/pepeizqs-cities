@@ -25,12 +25,19 @@ public class Idiomas : MonoBehaviour {
     public Text opcionesAyuda;
     public Text opcionesSonido;
     public Text opcionesSonidoVolumen;
+    public Text opcionesPantalla;
     public Text opcionesSombras;
     public Text opcionesSombrasCalidad;
     public Text opcionesTexturas;
     public Text opcionesAntiAliasing;
-    public Text opcionesTecladoMensaje;
-    public Text opcionesTecladoMensajeBoton;
+
+    public Text opcionesTecladoCamara;
+    public Text opcionesTecladoIzquierda;
+    public Text opcionesTecladoArriba;
+    public Text opcionesTecladoDerecha;
+    public Text opcionesTecladoAbajo;
+    public Text opcionesTecladoRotarIzquierda;
+    public Text opcionesTecladoRotarDerecha;
 
     public Text ayuda1;
     public Text ayuda2;
@@ -72,12 +79,19 @@ public class Idiomas : MonoBehaviour {
         opcionesAyuda.text = CogerCadena("help");
         opcionesSonido.text = CogerCadena("sound");
         opcionesSonidoVolumen.text = CogerCadena("soundVolume");
+        opcionesPantalla.text = CogerCadena("screen");
         opcionesSombras.text = CogerCadena("shadows");
         opcionesSombrasCalidad.text = CogerCadena("shadowsQuality");
         opcionesTexturas.text = CogerCadena("textures");
         opcionesAntiAliasing.text = CogerCadena("antiAliasing");
-        opcionesTecladoMensaje.text = CogerCadena("messageKeyboard");
-        opcionesTecladoMensajeBoton.text = CogerCadena("messageKeyboardOpen");
+
+        opcionesTecladoCamara.text = CogerCadena("keyboardCamera");
+        opcionesTecladoIzquierda.text = CogerCadena("keyboardLeft");
+        opcionesTecladoArriba.text = CogerCadena("keyboardUp");
+        opcionesTecladoDerecha.text = CogerCadena("keyboardRight");
+        opcionesTecladoAbajo.text = CogerCadena("keyboardDown");
+        opcionesTecladoRotarIzquierda.text = CogerCadena("keyboardRotateLeft");
+        opcionesTecladoRotarDerecha.text = CogerCadena("keyboardRotateRight");
 
         ayuda1.text = CogerCadena("help1");
         ayuda2.text = CogerCadena("help2");
