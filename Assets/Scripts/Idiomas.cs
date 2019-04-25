@@ -39,6 +39,11 @@ public class Idiomas : MonoBehaviour {
     public Text opcionesTecladoRotarIzquierda;
     public Text opcionesTecladoRotarDerecha;
 
+    public Text opcionesTecladoJuego;
+    public Text opcionesTecladoEnseñarMenu;
+    public Text opcionesTecladoRotacionEdificioIzquierda;
+    public Text opcionesTecladoRotacionEdificioDerecha;
+
     public Text ayuda1;
     public Text ayuda2;
     public Text ayuda3;
@@ -92,6 +97,11 @@ public class Idiomas : MonoBehaviour {
         opcionesTecladoAbajo.text = CogerCadena("keyboardDown");
         opcionesTecladoRotarIzquierda.text = CogerCadena("keyboardRotateLeft");
         opcionesTecladoRotarDerecha.text = CogerCadena("keyboardRotateRight");
+
+        opcionesTecladoJuego.text = CogerCadena("keyboardGame");
+        opcionesTecladoEnseñarMenu.text = CogerCadena("keyboardShowMenu");
+        opcionesTecladoRotacionEdificioIzquierda.text = CogerCadena("keyboardRotateBuildingLeft");
+        opcionesTecladoRotacionEdificioDerecha.text = CogerCadena("keyboardRotateBuildingRight");
 
         ayuda1.text = CogerCadena("help1");
         ayuda2.text = CogerCadena("help2");

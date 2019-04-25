@@ -11,6 +11,8 @@ public class Juego : MonoBehaviour {
     public Canvas canvas;
 
     public KeyCode teclaMenu;
+    public KeyCode teclaRotacionEdificioIzquierda;
+    public KeyCode teclaRotacionEdificioDerecha;
 
     public Interfaz.MenuPrincipal menuPrincipal;
     public Interfaz.Opciones opciones;
@@ -182,7 +184,7 @@ public class Juego : MonoBehaviour {
                     rotaciones[2] = 0;
                     rotaciones[3] = -90;
 
-                    if (Input.GetKeyDown(KeyCode.E))
+                    if (Input.GetKeyDown(teclaRotacionEdificioDerecha))
                     {
                         rotacionesPosicion += 1;
 
@@ -194,7 +196,7 @@ public class Juego : MonoBehaviour {
                         rotacionColocar = rotaciones[rotacionesPosicion];
                     }
 
-                    if (Input.GetKeyDown(KeyCode.Q))
+                    if (Input.GetKeyDown(teclaRotacionEdificioIzquierda))
                     {
                         rotacionesPosicion -= 1;
 

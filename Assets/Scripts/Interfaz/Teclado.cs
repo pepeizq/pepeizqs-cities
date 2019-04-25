@@ -24,6 +24,16 @@ namespace Interfaz
         public Text textoRotacionIzquierda;
         public Text textoRotacionDerecha;
 
+        public Juego juego;
+
+        public Button botonMenuJuego;
+        public Button botonRotacionEdificioIzquierda;
+        public Button botonRotacionEdificioDerecha;
+
+        public Text textoMenuJuego;
+        public Text textoRotacionEdificioIzquierda;
+        public Text textoRotacionEdificioDerecha;
+
         public void CargarInicio()
         {
             if (PlayerPrefs.HasKey("tecladoMovimientoIzquierda") == false)
@@ -115,6 +125,51 @@ namespace Interfaz
             camara.teclaRotacionDerecha = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("tecladoRotacionDerecha"));
 
             //-------------------------------------
+
+            if (PlayerPrefs.HasKey("tecladoMenuJuego") == false)
+            {
+                KeyCode tecla = KeyCode.Escape;
+                PlayerPrefs.SetString("tecladoMenuJuego", tecla.ToString());
+                textoMenuJuego.text = tecla.ToString();
+            }
+            else
+            {
+                textoMenuJuego.text = PlayerPrefs.GetString("tecladoMenuJuego");
+            }
+
+            juego.teclaMenu = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("tecladoMenuJuego"));
+
+            //-------------------------------------
+
+            if (PlayerPrefs.HasKey("tecladoRotacionEdificioIzquierda") == false)
+            {
+                KeyCode tecla = KeyCode.Q;
+                PlayerPrefs.SetString("tecladoRotacionEdificioIzquierda", tecla.ToString());
+                textoRotacionEdificioIzquierda.text = tecla.ToString();
+            }
+            else
+            {
+                textoRotacionEdificioIzquierda.text = PlayerPrefs.GetString("tecladoRotacionEdificioIzquierda");
+            }
+
+            juego.teclaRotacionEdificioIzquierda = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("tecladoRotacionEdificioIzquierda"));
+
+            //-------------------------------------
+
+            if (PlayerPrefs.HasKey("tecladoRotacionEdificioDerecha") == false)
+            {
+                KeyCode tecla = KeyCode.E;
+                PlayerPrefs.SetString("tecladoRotacionEdificioDerecha", tecla.ToString());
+                textoRotacionEdificioDerecha.text = tecla.ToString();
+            }
+            else
+            {
+                textoRotacionEdificioDerecha.text = PlayerPrefs.GetString("tecladoRotacionEdificioDerecha");
+            }
+
+            juego.teclaRotacionEdificioDerecha = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("tecladoRotacionEdificioDerecha"));
+
+            //-------------------------------------
         }
 
         public void PulsarBoton(int botonPulsado)
@@ -145,6 +200,18 @@ namespace Interfaz
             else if (boton == 5)
             {
                 textoRotacionDerecha.text = null;
+            }
+            else if (boton == 6)
+            {
+                textoMenuJuego.text = null;
+            }
+            else if (boton == 7)
+            {
+                textoRotacionEdificioIzquierda.text = null;
+            }
+            else if (boton == 8)
+            {
+                textoRotacionEdificioDerecha.text = null;
             }
         }
 
@@ -194,6 +261,24 @@ namespace Interfaz
                         PlayerPrefs.SetString("tecladoRotacionDerecha", tecla.ToString());
                         textoRotacionDerecha.text = tecla.ToString();
                         camara.teclaRotacionDerecha = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("tecladoRotacionDerecha"));
+                    }
+                    else if (boton == 6)
+                    {
+                        PlayerPrefs.SetString("tecladoMenuJuego", tecla.ToString());
+                        textoMenuJuego.text = tecla.ToString();
+                        juego.teclaMenu = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("tecladoMenuJuego"));
+                    }
+                    else if (boton == 7)
+                    {
+                        PlayerPrefs.SetString("tecladoRotacionEdificioIzquierda", tecla.ToString());
+                        textoRotacionEdificioIzquierda.text = tecla.ToString();
+                        juego.teclaRotacionEdificioIzquierda = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("tecladoRotacionEdificioIzquierda"));
+                    }
+                    else if (boton == 8)
+                    {
+                        PlayerPrefs.SetString("tecladoRotacionEdificioDerecha", tecla.ToString());
+                        textoRotacionEdificioDerecha.text = tecla.ToString();
+                        juego.teclaRotacionEdificioDerecha = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("tecladoRotacionEdificioDerecha"));
                     }
                 }      
             }
