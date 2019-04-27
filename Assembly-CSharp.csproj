@@ -79,7 +79,9 @@
     <Compile Include="Assets\Scripts\Interfaz\MenuJuego.cs" />
     <Compile Include="Assets\Scripts\Interfaz\MenuPrincipal.cs" />
     <Compile Include="Assets\Scripts\Interfaz\Opciones.cs" />
-    <Compile Include="Assets\Scripts\Interfaz\Teclado.cs" />
+    <Compile Include="Assets\Scripts\Interfaz\Opciones\General.cs" />
+    <Compile Include="Assets\Scripts\Interfaz\Opciones\Graficos.cs" />
+    <Compile Include="Assets\Scripts\Interfaz\Opciones\Teclado.cs" />
     <Compile Include="Assets\Scripts\Juego.cs" />
     <Compile Include="Assets\Scripts\Steam.cs" />
     <Compile Include="Assets\Scripts\Steamworks.NET\SteamManager.cs" />

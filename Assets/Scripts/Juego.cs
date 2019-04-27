@@ -13,9 +13,11 @@ public class Juego : MonoBehaviour {
     public KeyCode teclaMenu;
     public KeyCode teclaRotacionEdificioIzquierda;
     public KeyCode teclaRotacionEdificioDerecha;
+    public KeyCode teclaArrastrarConstruccion;
 
     public Interfaz.MenuPrincipal menuPrincipal;
     public Interfaz.Opciones opciones;
+    public Interfaz.Opciones2.General opcionesGeneral;
     public Interfaz.Ayuda ayuda;
     public Interfaz.MenuJuego menuJuego;
 
@@ -76,7 +78,7 @@ public class Juego : MonoBehaviour {
     private void Start()
     {
         opciones.CargarInicio();
-        opciones.Sonido();
+        opcionesGeneral.Sonido();
         idioma.CargarTextos();
 
        //File.Delete(Application.persistentDataPath + "/guardado.save");
@@ -208,7 +210,7 @@ public class Juego : MonoBehaviour {
                         rotacionColocar = rotaciones[rotacionesPosicion];
                     }
 
-                    if (Input.GetKey(KeyCode.LeftControl))
+                    if (Input.GetKey(teclaArrastrarConstruccion))
                     {
                         if ((edificioSeleccionado.id == 6) || (edificioSeleccionado.id == 12))
                         {

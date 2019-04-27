@@ -4,6 +4,7 @@ E:/Proyectos/Unity/City Builder Builds/Steam/content/pepeizq's Cities.exe
 SceneListBegin?
 Assets/Scenes/Juego.unity
 SceneListEnd?
+e46840fc1dc66dba8e4cf1cef92a66a8 Assembly-CSharp.dll:Interfaz.Opciones2.Teclado
 984dcc0ba3707b7691fbdca8ff508d28 Unity.TextMeshPro.dll:TMPro.TMP_SelectionCaret
 01aa15e337e3a9c62f15153dfac6d589 Unity.TextMeshPro.dll:TMPro.TMP_Dropdown
 71bb6a6b6c8f052f948db64c7dd3ca4f UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
@@ -117,7 +118,7 @@ ad9173d3a69d99153f38ed4b62226129 UnityEngine.Networking.dll:UnityEngine.Networki
 d251bf88db6c95a6b1aa0b69298da9ef UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
 303ad70ce203ad874efe2965d0fbcff9 Unity.Analytics.Tracker.dll:UnityEngine.Analytics.AnalyticsEventTracker
 7fb9de8dcf73854b6b328eca1f7a6e6d Unity.Analytics.Tracker.dll:UnityEngine.Analytics.AnalyticsTracker
-8158b3c24443a1ff11e9c19d8c86a33e Assembly-CSharp.dll:.Idiomas
+84ffd3b0f600029f69619e58c0428d96 Assembly-CSharp.dll:.Idiomas
 d56e10611b9359bf47aa421791008eb4 Assembly-CSharp.dll:Interfaz.Ayuda
 94017dcc9f00fe671ea7dc427b4da011 Unity.TextMeshPro.dll:TMPro.TMP_SpriteAsset
 b3ab2106268377ffe25dd18ac23dca28 Unity.TextMeshPro.dll:TMPro.TMP_Asset
@@ -165,10 +166,12 @@ d251bf88db6c95a6b1aa0b69298da9ef UnityEngine.SpatialTracking.dll:UnityEngine.Spa
 d791aa6007fa3640be1164ea75bb087d Unity.TextMeshPro.dll:TMPro.TMP_StyleSheet
 2a2aa0236baa12eaab0779f7865b83eb Assembly-CSharp.dll:Interfaz.MenuJuego
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.SteamManager
-d2630203c758e6382aba2997764ac1a2 Assembly-CSharp.dll:.Juego
+fe273b29b9d905acd15a82cb6b306a72 Assembly-CSharp.dll:.Juego
 c6666661329916e218bee7f5e79e60f5 Unity.TextMeshPro.dll:TMPro.TextMeshPro
 f8fd6214ccb51e573bc6ccda669756dd Assembly-CSharp.dll:.Ciudad
 3165968ba45c74472d279ba04455fccb Unity.TextMeshPro.dll:TMPro.TMP_ColorGradient
-11eb2f00b289672335dca02b5413448d Assembly-CSharp.dll:.Camara
-e4eddde00d2c6be40b6c3a24961084e2 Assembly-CSharp.dll:Interfaz.Opciones
+5665e874e9ddbfe252d133bdc844f743 Assembly-CSharp.dll:.Camara
+7d05b3a5717f2baaf61b2516ff52ad44 Assembly-CSharp.dll:Interfaz.Opciones
 8649814970b42d345b89944b862453cc Unity.TextMeshPro.dll:TMPro.TMP_SubMesh
+bfd9e942ae059a37697e8b7107b750ad Assembly-CSharp.dll:Interfaz.Opciones2.General
+05d617bcb608f5ffd8b70a2ddbc12776 Assembly-CSharp.dll:Interfaz.Opciones2.Graficos

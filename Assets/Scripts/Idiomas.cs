@@ -21,12 +21,16 @@ public class Idiomas : MonoBehaviour {
     public Text opcionesGeneral;
     public Text opcionesGraficos;
     public Text opcionesTeclado;
+
     public Text opcionesIdiomas;
     public Text opcionesAyuda;
     public Text opcionesSonido;
     public Text opcionesSonidoVolumen;
     public Text opcionesPantalla;
+    public Dropdown opcionesDpPantalla;
+
     public Text opcionesSombras;
+    public Dropdown opcionesDpSombras;  
     public Text opcionesSombrasCalidad;
     public Text opcionesTexturas;
     public Text opcionesAntiAliasing;
@@ -43,6 +47,7 @@ public class Idiomas : MonoBehaviour {
     public Text opcionesTecladoEnseñarMenu;
     public Text opcionesTecladoRotacionEdificioIzquierda;
     public Text opcionesTecladoRotacionEdificioDerecha;
+    public Text opcionesTecladoArrastrarConstruccion;
 
     public Text ayuda1;
     public Text ayuda2;
@@ -85,7 +90,16 @@ public class Idiomas : MonoBehaviour {
         opcionesSonido.text = CogerCadena("sound");
         opcionesSonidoVolumen.text = CogerCadena("soundVolume");
         opcionesPantalla.text = CogerCadena("screen");
+        opcionesDpPantalla.options.Clear();
+        opcionesDpPantalla.options.Add(new Dropdown.OptionData() { text = CogerCadena("screenMode1") });
+        opcionesDpPantalla.options.Add(new Dropdown.OptionData() { text = CogerCadena("screenMode2") });
+        opcionesDpPantalla.options.Add(new Dropdown.OptionData() { text = CogerCadena("screenMode3") });
+        opcionesDpPantalla.value = 
+
         opcionesSombras.text = CogerCadena("shadows");
+        opcionesDpSombras.options.Clear();
+        opcionesDpSombras.options.Add(new Dropdown.OptionData() { text = CogerCadena("low") });
+        opcionesDpSombras.options.Add(new Dropdown.OptionData() { text = CogerCadena("high") });
         opcionesSombrasCalidad.text = CogerCadena("shadowsQuality");
         opcionesTexturas.text = CogerCadena("textures");
         opcionesAntiAliasing.text = CogerCadena("antiAliasing");
@@ -102,6 +116,7 @@ public class Idiomas : MonoBehaviour {
         opcionesTecladoEnseñarMenu.text = CogerCadena("keyboardShowMenu");
         opcionesTecladoRotacionEdificioIzquierda.text = CogerCadena("keyboardRotateBuildingLeft");
         opcionesTecladoRotacionEdificioDerecha.text = CogerCadena("keyboardRotateBuildingRight");
+        opcionesTecladoArrastrarConstruccion.text = CogerCadena("keyboardDragBuilding");
 
         ayuda1.text = CogerCadena("help1");
         ayuda2.text = CogerCadena("help2");
