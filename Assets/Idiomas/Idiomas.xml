@@ -18,6 +18,7 @@
         <string name="screenMode1">Full Screen</string>
         <string name="screenMode2">Maximized Window</string>
         <string name="screenMode3">Windowed</string>
+        <string name="resolution">Resolution</string>
         <string name="shadows">Shadows</string>
         <string name="shadowsQuality">Shadows Quality</string>
         <string name="textures">Textures</string>
@@ -74,6 +75,7 @@
         <string name="screenMode1">Pantalla Completa</string>
         <string name="screenMode2">Ventana Ampliada</string>
         <string name="screenMode3">Ventana</string>
+        <string name="resolution">Resolución</string>
         <string name="shadows">Sombras</string>
         <string name="shadowsQuality">Sombras Calidad</string>
         <string name="textures">Texturas</string>

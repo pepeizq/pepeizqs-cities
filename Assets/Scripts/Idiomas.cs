@@ -28,6 +28,7 @@ public class Idiomas : MonoBehaviour {
     public Text opcionesSonidoVolumen;
     public Text opcionesPantalla;
     public Dropdown opcionesDpPantalla;
+    public Text opcionesResolucion;
 
     public Text opcionesSombras;
     public Dropdown opcionesDpSombras;  
@@ -90,16 +91,11 @@ public class Idiomas : MonoBehaviour {
         opcionesSonido.text = CogerCadena("sound");
         opcionesSonidoVolumen.text = CogerCadena("soundVolume");
         opcionesPantalla.text = CogerCadena("screen");
-        opcionesDpPantalla.options.Clear();
-        opcionesDpPantalla.options.Add(new Dropdown.OptionData() { text = CogerCadena("screenMode1") });
-        opcionesDpPantalla.options.Add(new Dropdown.OptionData() { text = CogerCadena("screenMode2") });
-        opcionesDpPantalla.options.Add(new Dropdown.OptionData() { text = CogerCadena("screenMode3") });
-        opcionesDpPantalla.value = 
+        TraduccionesDpPantalla();
+        opcionesResolucion.text = CogerCadena("resolution");
 
         opcionesSombras.text = CogerCadena("shadows");
-        opcionesDpSombras.options.Clear();
-        opcionesDpSombras.options.Add(new Dropdown.OptionData() { text = CogerCadena("low") });
-        opcionesDpSombras.options.Add(new Dropdown.OptionData() { text = CogerCadena("high") });
+        TraduccionesDpSombras();
         opcionesSombrasCalidad.text = CogerCadena("shadowsQuality");
         opcionesTexturas.text = CogerCadena("textures");
         opcionesAntiAliasing.text = CogerCadena("antiAliasing");
@@ -187,5 +183,22 @@ public class Idiomas : MonoBehaviour {
         }
 
         return null;
+    }
+
+    public void TraduccionesDpPantalla()
+    {
+        opcionesDpPantalla.options.Clear();
+        opcionesDpPantalla.options.Add(new Dropdown.OptionData() { text = CogerCadena("screenMode1") });
+        opcionesDpPantalla.options.Add(new Dropdown.OptionData() { text = CogerCadena("screenMode2") });
+        opcionesDpPantalla.options.Add(new Dropdown.OptionData() { text = CogerCadena("screenMode3") });
+        opcionesDpPantalla.RefreshShownValue();
+    }
+
+    public void TraduccionesDpSombras()
+    {
+        opcionesDpSombras.options.Clear();
+        opcionesDpSombras.options.Add(new Dropdown.OptionData() { text = CogerCadena("low") });
+        opcionesDpSombras.options.Add(new Dropdown.OptionData() { text = CogerCadena("high") });
+        opcionesDpSombras.RefreshShownValue();
     }
 }

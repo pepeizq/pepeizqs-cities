@@ -18,6 +18,8 @@ public class Juego : MonoBehaviour {
     public Interfaz.MenuPrincipal menuPrincipal;
     public Interfaz.Opciones opciones;
     public Interfaz.Opciones2.General opcionesGeneral;
+    public Interfaz.Opciones2.Graficos opcionesGraficos;
+    public Interfaz.Opciones2.Teclado opcionesTeclado;
     public Interfaz.Ayuda ayuda;
     public Interfaz.MenuJuego menuJuego;
 
@@ -78,6 +80,10 @@ public class Juego : MonoBehaviour {
     private void Start()
     {
         opciones.CargarInicio();
+        opcionesGeneral.CargarInicio();
+        opcionesGraficos.CargarInicio();
+        opcionesTeclado.CargarInicio();
+
         opcionesGeneral.Sonido();
         idioma.CargarTextos();
 

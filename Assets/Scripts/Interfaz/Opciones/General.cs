@@ -21,6 +21,7 @@ namespace Interfaz.Opciones2
 
         public Toggle toggleAyuda;
         public Dropdown dpPantalla;
+        public Dropdown dpResoluciones;
 
         public void CargarInicio()
         {
@@ -83,6 +84,8 @@ namespace Interfaz.Opciones2
 
             //-----------------------------------------------------------
 
+            idioma.TraduccionesDpPantalla();
+
             if (PlayerPrefs.HasKey("pantalla") == false)
             {
                 PlayerPrefs.SetInt("pantalla", 1);
@@ -91,6 +94,20 @@ namespace Interfaz.Opciones2
             dpPantalla.value = PlayerPrefs.GetInt("pantalla");
 
             //-----------------------------------------------------------
+
+            Resolution[] resoluciones = Screen.resolutions;
+
+            foreach (Resolution resolucion in resoluciones)
+            {
+                dpResoluciones.options.Add(new Dropdown.OptionData() { text = string.Format("{0}x{1}", resolucion.width, resolucion.height) });
+            }
+
+            if (PlayerPrefs.HasKey("resolucion") == false)
+            {
+                PlayerPrefs.SetInt("resolucion", dpResoluciones.options.Count - 1);
+            }
+
+            dpResoluciones.value = PlayerPrefs.GetInt("resolucion");
         }
 
         public void Sonido()
@@ -142,18 +159,44 @@ namespace Interfaz.Opciones2
         public void ControlPantalla(Dropdown dp)
         {
             PlayerPrefs.SetInt("pantalla", dp.value);
-       
+
+            Resolution[] resoluciones = Screen.resolutions;
+
+            int resolucion = PlayerPrefs.GetInt("resolucion");
+
             if (dp.value == 0)
             {
-                Screen.SetResolution(Screen.width, Screen.height, FullScreenMode.FullScreenWindow);
+                Screen.SetResolution(resoluciones[resolucion].width, resoluciones[resolucion].height, FullScreenMode.FullScreenWindow);
             }
             else if (dp.value == 1)
             {
-                Screen.SetResolution(Screen.width, Screen.height, FullScreenMode.MaximizedWindow);
+                Screen.SetResolution(resoluciones[resolucion].width, resoluciones[resolucion].height, FullScreenMode.MaximizedWindow);
             }
             else if (dp.value == 2)
             {
-                Screen.SetResolution(Screen.width, Screen.height, FullScreenMode.Windowed);
+                Screen.SetResolution(resoluciones[resolucion].width, resoluciones[resolucion].height, FullScreenMode.Windowed);
+            }
+        }
+
+        public void ControlResolucion(Dropdown dp)
+        {
+            PlayerPrefs.SetInt("resolucion", dp.value);
+
+            Resolution[] resoluciones = Screen.resolutions;
+
+            int modo = PlayerPrefs.GetInt("pantalla");
+
+            if (modo == 0)
+            {
+                Screen.SetResolution(resoluciones[dp.value].width, resoluciones[dp.value].height, FullScreenMode.FullScreenWindow);
+            }
+            else if (modo == 1)
+            {
+                Screen.SetResolution(resoluciones[dp.value].width, resoluciones[dp.value].height, FullScreenMode.MaximizedWindow);
+            }
+            else if (modo == 2)
+            {
+                Screen.SetResolution(resoluciones[dp.value].width, resoluciones[dp.value].height, FullScreenMode.Windowed);
             }
         }
     }

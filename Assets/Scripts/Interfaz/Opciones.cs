@@ -25,10 +25,6 @@ namespace Interfaz
 
         public AudioSource sonidoBoton;
 
-        public Opciones2.General general;
-        public Opciones2.Graficos graficos;
-        public Opciones2.Teclado teclado;
-
         public void Volver()
         {
             canvas.gameObject.GetComponent<CanvasGroup>().alpha = 0;
@@ -64,10 +60,6 @@ namespace Interfaz
             panelMedio.gameObject.GetComponent<ScrollRect>().content = panelGeneral.GetComponent<RectTransform>();
             panelGraficos.gameObject.SetActive(false);
             panelTeclado.gameObject.SetActive(false);
-
-            general.CargarInicio();
-            graficos.CargarInicio();
-            teclado.CargarInicio();
         }
 
         public void MostrarPanel(Panel panelEnseñar)

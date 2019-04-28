@@ -5,6 +5,8 @@ namespace Interfaz.Opciones2
 {
     public class Graficos : MonoBehaviour
     {
+        public Idiomas idioma;
+
         public Panel panelGraficosSombrasCalidad;
 
         public Toggle toggleSombras;
@@ -51,15 +53,14 @@ namespace Interfaz.Opciones2
 
             //-----------------------------------------------------------
 
+            idioma.TraduccionesDpSombras();
+
             if (PlayerPrefs.HasKey("sombrasCalidad") == false)
             {
                 PlayerPrefs.SetInt("sombrasCalidad", 1);
-                dpSombras.value = 1;
             }
-            else
-            {
-                dpSombras.value = PlayerPrefs.GetInt("sombrasCalidad");
-            }
+
+            dpSombras.value = PlayerPrefs.GetInt("sombrasCalidad");
 
             if (dpSombras.value == 0)
             {
@@ -80,12 +81,9 @@ namespace Interfaz.Opciones2
             if (PlayerPrefs.HasKey("texturas") == false)
             {
                 PlayerPrefs.SetInt("texturas", 0);
-                dpTexturas.value = 0;
             }
-            else
-            {
-                dpTexturas.value = PlayerPrefs.GetInt("texturas");
-            }
+
+            dpTexturas.value = PlayerPrefs.GetInt("texturas");
 
             QualitySettings.masterTextureLimit = dpTexturas.value;
 
