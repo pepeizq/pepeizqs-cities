@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class Camara : MonoBehaviour
 {
@@ -14,7 +15,9 @@ public class Camara : MonoBehaviour
 
     private Vector3 ratonOrigenPunto;
     private Vector3 offset;
+
     private bool arrastrando;
+    private bool rotando;
 
     private int rotacion;
 
@@ -30,35 +33,38 @@ public class Camara : MonoBehaviour
         if (canvasJuego.gameObject.GetComponent<CanvasGroup>().alpha == 1)
         {
             int velocidad = 15;
-          
-            if (arrastrando == false)
-            {
-                if (Input.GetKey(teclaMovimientoDerecha))
-                {
-                    Movimiento(velocidad * Time.deltaTime, 0);
-                }
-                else if (Input.GetKey(teclaMovimientoIzquierda))
-                {
-                    Movimiento(-velocidad * Time.deltaTime, 0);
-                }
-                else if (Input.GetKey(teclaMovimientoAbajo))
-                {
-                    Movimiento(0, -velocidad * Time.deltaTime);
-                }
-                else if (Input.GetKey(teclaMovimientoArriba))
-                {
-                    Movimiento(0, velocidad * Time.deltaTime);
-                }
 
-                if (Input.GetKeyDown(teclaRotacionIzquierda))
+            if (rotando == false)
+            {
+                if (arrastrando == false)
                 {
-                    RotacionIzquierda(false);
+                    if (Input.GetKey(teclaMovimientoDerecha))
+                    {
+                        Movimiento(velocidad * Time.deltaTime, 0);
+                    }
+                    else if (Input.GetKey(teclaMovimientoIzquierda))
+                    {
+                        Movimiento(-velocidad * Time.deltaTime, 0);
+                    }
+                    else if (Input.GetKey(teclaMovimientoAbajo))
+                    {
+                        Movimiento(0, -velocidad * Time.deltaTime);
+                    }
+                    else if (Input.GetKey(teclaMovimientoArriba))
+                    {
+                        Movimiento(0, velocidad * Time.deltaTime);
+                    }
+
+                    if (Input.GetKeyDown(teclaRotacionIzquierda))
+                    {
+                        RotacionIzquierda(false);
+                    }
+                    else if (Input.GetKeyDown(teclaRotacionDerecha))
+                    {
+                        RotacionDerecha(false);
+                    }
                 }
-                else if (Input.GetKeyDown(teclaRotacionDerecha))
-                {
-                    RotacionDerecha(false);
-                }
-            }
+            }          
         }
     }
 
@@ -126,7 +132,7 @@ public class Camara : MonoBehaviour
         {
             Vector3 posicion = hit.point;
 
-            transform.RotateAround(posicion, Vector3.up, -90);
+            StartCoroutine(Rotar(posicion, -2));
             rotacion -= 90;
 
             if (rotacion < -270)
@@ -150,7 +156,7 @@ public class Camara : MonoBehaviour
         {
             Vector3 posicion = hit.point;
 
-            transform.RotateAround(posicion, Vector3.up, 90);
+            StartCoroutine(Rotar(posicion, 2));
             rotacion += 90;
 
             if (rotacion > 270)
@@ -160,28 +166,42 @@ public class Camara : MonoBehaviour
         }
     }
 
+    private IEnumerator Rotar(Vector3 posicion, int cantidad)
+    {
+        rotando = true;
+        for (float t = 0; t < 45; t += 1)
+        {
+            transform.RotateAround(posicion, Vector3.up, cantidad);
+            yield return null;
+        }
+        rotando = false;
+    }
+
     private void LateUpdate()
     {
         if (canvasJuego.gameObject.GetComponent<CanvasGroup>().alpha == 1)
         {
-            Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize -= Input.GetAxis("Mouse ScrollWheel") *
-            (10f * Camera.main.orthographicSize * .1f), 2f, 15f);
-
-            if (Input.GetMouseButton(2))
+            if (rotando == false)
             {
-                offset = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position);
+                Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize -= Input.GetAxis("Mouse ScrollWheel") *
+                    (10f * Camera.main.orthographicSize * .1f), 2f, 15f);
 
-                if (arrastrando == false)
+                if (Input.GetMouseButton(2))
                 {
-                    arrastrando = true;
-                    ratonOrigenPunto = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    offset = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position);
+
+                    if (arrastrando == false)
+                    {
+                        arrastrando = true;
+                        ratonOrigenPunto = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    }
+                }
+                else
+                {
+                    arrastrando = false;
                 }
             }
-            else
-            {
-                arrastrando = false;
-            }
-
+           
             if (arrastrando == true)
             {
                 Vector3 posicionFinal = ratonOrigenPunto - offset;
