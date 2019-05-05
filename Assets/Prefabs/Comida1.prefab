@@ -1805,6 +1805,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5532889725999949246}
     m_Modifications:
+    - target: {fileID: 100000, guid: cd66b230c79dc2745b8c611fad04ffdf, type: 3}
+      propertyPath: m_Name
+      value: Comida1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: cd66b230c79dc2745b8c611fad04ffdf, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cd66b230c79dc2745b8c611fad04ffdf, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.053220898
@@ -1860,14 +1868,6 @@ PrefabInstance:
     - target: {fileID: 400000, guid: cd66b230c79dc2745b8c611fad04ffdf, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.3703704
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: cd66b230c79dc2745b8c611fad04ffdf, type: 3}
-      propertyPath: m_Name
-      value: Comida1
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: cd66b230c79dc2745b8c611fad04ffdf, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd66b230c79dc2745b8c611fad04ffdf, type: 3}
