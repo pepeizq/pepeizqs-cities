@@ -220,7 +220,7 @@ public class Juego : MonoBehaviour {
                     {
                         if ((edificioSeleccionado.id == 6) || (edificioSeleccionado.id == 12))
                         {
-                            ColocarEdificioPrevio(true);
+                            ColocarEdificioPrevio(true, 1);
                         }                           
                     }
                     else
@@ -234,7 +234,7 @@ public class Juego : MonoBehaviour {
                         }
 
                         edificiosSeleccionados.Clear();
-                        ColocarEdificioPrevio(false);
+                        ColocarEdificioPrevio(false, 0);
                     }
                 }
 
@@ -360,32 +360,11 @@ public class Juego : MonoBehaviour {
             {
                 if (edificiosSeleccionados.Count > 0)
                 {
-                    int coste = 0;
-
-                    foreach (Construccion2 edificio in edificiosSeleccionados)
+                    if (edificiosSeleccionados[0].edificio.categoria == 1)
                     {
-                        coste = coste + edificio.edificio.coste;
+                        Carreteras.Colocar(edificiosSeleccionados, ciudad, colocar, diaNoche, edificios, sonidoBotonConstruir);
                     }
-
-                    if (ciudad.Dinero >= coste)
-                    {
-                        if (accion == 0)
-                        {
-                            sonidoBotonConstruir.Play();
-
-                            foreach (Construccion2 edificio in edificiosSeleccionados)
-                            {
-                                if (colocar.ComprobarConstruccionesPosicion(edificio.edificio, edificio.posicion) == null)
-                                {
-                                    colocar.AñadirConstruccion(edificio.edificio, edificio.posicion, diaNoche.EstadoEncendidoLuces());
-                                }
-                            }
-
-                            ciudad.DepositoDinero(-coste);
-                            ciudad.ActualizarUI(false);
-                        }         
-                    }      
-                }
+                }     
                 else
                 {
                     if (edificioSeleccionado != null)
@@ -425,7 +404,7 @@ public class Juego : MonoBehaviour {
         }
     }
 
-    void ColocarEdificioPrevio(bool mantener)
+    void ColocarEdificioPrevio(bool mantener, int modo)
     {
         Vector3 raton = Posicion.Raton();
 
@@ -439,192 +418,10 @@ public class Juego : MonoBehaviour {
 
                 if (mantener == true)
                 {
-                    if (edificiosSeleccionados.Count == 0)
+                    if (modo == 1)
                     {
-                        if (colocar.ComprobarConstruccionesPosicion(edificioSeleccionado, gridPosicion) == null)
-                        {
-                            if (colocarPrevio.ComprobarConstruccionesPosicion(edificioSeleccionado, gridPosicion) == null)
-                            {
-                                edificiosSeleccionados.Add(new Construccion2(edificioSeleccionado, gridPosicion));
-                            }
-                        }
-                    }
-                    else if (edificiosSeleccionados.Count > 0)
-                    {
-                        if (mantenerEjeX == true)
-                        {
-                            if (((edificiosSeleccionados[0].posicion.z == gridPosicion.z) && (edificiosSeleccionados[0].posicion.x < gridPosicion.x)) || ((edificiosSeleccionados[0].posicion.z == gridPosicion.z) && (edificiosSeleccionados[0].posicion.x > gridPosicion.x)))
-                            {
-                                if (edificioSeleccionado.id == 6)
-                                {
-                                    edificioSeleccionado.rotacionColocacion = -270;
-                                }
-
-                                float mantenerOrigenX = edificiosSeleccionados[0].posicion.x;
-                                float mantenerDestinoX = gridPosicion.x;
-                                Vector3 nuevaPosicion = edificiosSeleccionados[0].posicion;
-
-                                if (mantenerDestinoX > mantenerOrigenX)
-                                {
-                                    while (nuevaPosicion.x <= mantenerDestinoX)
-                                    {
-                                        bool añadir = true;
-
-                                        foreach (Construccion2 edificio in edificiosSeleccionados)
-                                        {
-                                            if (edificio.posicion == nuevaPosicion)
-                                            {
-                                                añadir = false;
-                                            }
-                                        }
-
-                                        if (añadir == true)
-                                        {
-                                            edificiosSeleccionados.Add(new Construccion2(edificioSeleccionado, nuevaPosicion));    
-                                        }
-
-                                        nuevaPosicion.x = nuevaPosicion.x + 1;
-                                    }
-                                }
-                                else
-                                {
-                                    while (nuevaPosicion.x >= mantenerDestinoX)
-                                    {
-                                        bool añadir = true;
-
-                                        foreach (Construccion2 edificio in edificiosSeleccionados)
-                                        {
-                                            if (edificio.posicion == nuevaPosicion)
-                                            {
-                                                añadir = false;
-                                            }
-                                        }
-
-                                        if (añadir == true)
-                                        {
-                                            edificiosSeleccionados.Add(new Construccion2(edificioSeleccionado, nuevaPosicion));
-                                        }
-
-                                        nuevaPosicion.x = nuevaPosicion.x - 1;
-                                    }
-                                }
-
-                                mantenerEjeZ = false;
-                            }
-                        }
-
-                        if (mantenerEjeZ == true)
-                        {
-                            if (((edificiosSeleccionados[0].posicion.x == gridPosicion.x) && (edificiosSeleccionados[0].posicion.z < gridPosicion.z)) || ((edificiosSeleccionados[0].posicion.x == gridPosicion.x) && (edificiosSeleccionados[0].posicion.z > gridPosicion.z)))
-                            {
-                                if (edificioSeleccionado.id == 6)
-                                {
-                                    edificioSeleccionado.rotacionColocacion = 0;
-                                }
-
-                                float mantenerOrigenZ = edificiosSeleccionados[0].posicion.z;
-                                float mantenerDestinoZ = gridPosicion.z;
-                                Vector3 nuevaPosicion = edificiosSeleccionados[0].posicion;
-
-                                if (mantenerDestinoZ > mantenerOrigenZ)
-                                {
-                                    while (nuevaPosicion.z <= mantenerDestinoZ)
-                                    {
-                                        bool añadir = true;
-
-                                        foreach (Construccion2 edificio in edificiosSeleccionados)
-                                        {
-                                            if (edificio.posicion == nuevaPosicion)
-                                            {
-                                                añadir = false;
-                                            }
-                                        }
-
-                                        if (añadir == true)
-                                        {
-                                            edificiosSeleccionados.Add(new Construccion2(edificioSeleccionado, nuevaPosicion));
-                                        }
-
-                                        nuevaPosicion.z = nuevaPosicion.z + 1;
-                                    }
-                                }
-                                else
-                                {
-                                    while (nuevaPosicion.z >= mantenerDestinoZ)
-                                    {
-                                        bool añadir = true;
-
-                                        foreach (Construccion2 edificio in edificiosSeleccionados)
-                                        {
-                                            if (edificio.posicion == nuevaPosicion)
-                                            {
-                                                añadir = false;
-                                            }
-                                        }
-
-                                        if (añadir == true)
-                                        {
-                                            edificiosSeleccionados.Add(new Construccion2(edificioSeleccionado, nuevaPosicion));
-                                        }
-
-                                        nuevaPosicion.z = nuevaPosicion.z - 1;
-                                    }
-                                }
-
-                                mantenerEjeX = false;
-                            }
-                        }
-                    }
-
-                    foreach (Construccion2 edificio in edificiosSeleccionados)
-                    {
-                        if (colocar.ComprobarConstruccionesPosicion(edificio.edificio, edificio.posicion) == null)
-                        {
-                            if (colocarPrevio.ComprobarConstruccionesPosicion(edificio.edificio, edificio.posicion) == null)
-                            {
-                                colocarPrevio.AñadirConstruccion(edificio.edificio, edificio.posicion);
-                            }
-                        } 
-                        else
-                        {
-                            Construccion edificioEncontrado = colocar.ComprobarConstruccionesPosicion(edificio.edificio, edificio.posicion);
-
-                            if (edificioEncontrado.categoria == 1)
-                            {
-                                bool eliminar = false;
-
-                                if (edificioEncontrado.id != edificio.edificio.id)
-                                {
-                                    eliminar = true;
-                                }
-                                else
-                                {
-                                    if (edificioEncontrado.rotacionColocacion != edificio.edificio.rotacionColocacion)
-                                    {
-                                        eliminar = true;
-                                    }
-                                }
-
-                                if (eliminar == true)
-                                {
-                                    if (edificioEncontrado.categoria != 0)
-                                    {
-                                        ciudad.DepositoDinero(edificioEncontrado.coste / 3);
-                                    }
-
-                                    ciudad.ActualizarUI(false);
-                                    colocar.QuitarEdificio(edificioEncontrado, edificio.posicion);
-
-                                    if (edificio.edificio.id == 6)
-                                    {
-                                        edificio.edificio = edificios[11];
-                                    }
-
-                                    colocarPrevio.AñadirConstruccion(edificio.edificio, edificio.posicion);
-                                }
-                            }
-                        }
-                    }
+                        Carreteras.ColocarPrevio(edificiosSeleccionados, ciudad, edificioSeleccionado, gridPosicion, colocar, colocarPrevio, mantenerEjeX, mantenerEjeZ);
+                    }       
                 }
                 else
                 {

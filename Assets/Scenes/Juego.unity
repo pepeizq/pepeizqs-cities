@@ -7984,6 +7984,8 @@ MonoBehaviour:
   - {fileID: 450171554475984798, guid: 1ac4f07640d5d27409fedd8be2d8bf33, type: 3}
   - {fileID: 4684083772632855256, guid: 7159d683957af8e459d7e7ffd6414176, type: 3}
   - {fileID: 5995799867204118991, guid: 7b324c6eefc75b64c9e374b9f87553ba, type: 3}
+  - {fileID: -6319443127485731138, guid: 27eec2b646d46084299f298af6d626ec, type: 3}
+  - {fileID: -1809650151379731109, guid: 28a84f6b7d376c346a1528de291f4790, type: 3}
   - {fileID: 114719743380459958, guid: 3f48d98e38cd5db40a4ea6532f118478, type: 3}
   colocar: {fileID: 491194797}
   colocarPrevio: {fileID: 491194796}
