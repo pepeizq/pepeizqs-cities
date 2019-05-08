@@ -215,7 +215,7 @@ public class Juego : MonoBehaviour {
 
                         rotacionColocar = rotaciones[rotacionesPosicion];
                     }
-
+                   
                     if (Input.GetKey(teclaArrastrarConstruccion))
                     {
                         if ((edificioSeleccionado.id == 6) || (edificioSeleccionado.id == 12))
@@ -420,7 +420,7 @@ public class Juego : MonoBehaviour {
                 {
                     if (modo == 1)
                     {
-                        Carreteras.ColocarPrevio(edificiosSeleccionados, ciudad, edificioSeleccionado, gridPosicion, colocar, colocarPrevio, mantenerEjeX, mantenerEjeZ);
+                        Carreteras.ColocarPrevio(edificiosSeleccionados, ciudad, edificioSeleccionado, gridPosicion, colocar, colocarPrevio, edificios, mantenerEjeX, mantenerEjeZ);
                     }       
                 }
                 else
