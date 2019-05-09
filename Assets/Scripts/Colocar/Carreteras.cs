@@ -245,15 +245,15 @@ public static class Carreteras
             }
             else if (eje == 3)
             {
-                posicion1.x = posicion1.x + 1;
-                posicion2.x = posicion2.x - 1;
-                posicion3.z = posicion3.z + 1;
+                posicion1.z = posicion1.z + 1;
+                posicion2.x = posicion2.x + 1;
+                posicion3.x = posicion3.x - 1;
             }
             else if (eje == 4)
             {
-                posicion1.x = posicion1.x + 1;
-                posicion2.x = posicion2.x - 1;
-                posicion3.z = posicion3.z - 1;
+                posicion1.z = posicion1.z - 1;
+                posicion2.x = posicion2.x + 1;
+                posicion3.x = posicion3.x - 1;
             }
 
             carretera1 = BuscarCarretera(carretera1, colocar, colocarPrevio, carreteras, subcarretera.edificio, posicion1, eje);
@@ -262,7 +262,7 @@ public static class Carreteras
 
             if ((carretera1 == true) && (carretera2 == false) && (carretera3 == false))
             {
-
+          
             }
 
             if ((carretera1 == false) && (carretera2 == true) && (carretera3 == false))
@@ -279,18 +279,18 @@ public static class Carreteras
                 }
                 else if (eje == 3)
                 {
-
+                    subcarretera.edificio.rotacionColocacion = -180;
                 }
                 else if (eje == 4)
                 {
-
+                    subcarretera.edificio.rotacionColocacion = -270;
                 }
             }
 
             if ((carretera1 == false) && (carretera2 == false) && (carretera3 == true))
             {
                 subcarretera.edificio = edificios[39];
-
+                  
                 if (eje == 1)
                 {
                     subcarretera.edificio.rotacionColocacion = -90;
@@ -301,11 +301,11 @@ public static class Carreteras
                 }
                 else if (eje == 3)
                 {
-
+                    subcarretera.edificio.rotacionColocacion = -90;
                 }
                 else if (eje == 4)
                 {
-
+                    subcarretera.edificio.rotacionColocacion = 0;
                 }
             }
 
@@ -316,6 +316,14 @@ public static class Carreteras
                 if ((eje == 1) || (eje == 2))
                 {
                     subcarretera.edificio.rotacionColocacion = 0;
+                }
+                else if (eje == 3)
+                {
+
+                }
+                else if (eje == 4)
+                {
+
                 }
             }
 
@@ -391,13 +399,12 @@ public static class Carreteras
                             estado = true;
                         }
                     }
-                    else if (eje == 3)
+                    else if ((eje == 3) || (eje == 4))
                     {
-
-                    }
-                    else if (eje == 4)
-                    {
-
+                        if ((edificioEncontrado.rotacionColocacion == -270) || (edificioEncontrado.rotacionColocacion == -90))
+                        {
+                            estado = true;
+                        }
                     }
                 }
                 else if (edificioEncontrado.id == 10)
@@ -418,7 +425,10 @@ public static class Carreteras
                     }
                     else if (eje == 3)
                     {
-
+                        if ((edificioEncontrado.rotacionColocacion == -270) || (edificioEncontrado.rotacionColocacion == -90) || (edificioEncontrado.rotacionColocacion == 0))
+                        {
+                            estado = true;
+                        }
                     }
                     else if (eje == 4)
                     {
@@ -447,13 +457,12 @@ public static class Carreteras
                             estado = true;
                         }
                     }
-                    else if (eje == 3)
+                    else if ((eje == 3) || (eje == 4))
                     {
-
-                    }
-                    else if (eje == 4)
-                    {
-
+                        if ((edificioEncontradoPrevio.rotacionColocacion == -270) || (edificioEncontradoPrevio.rotacionColocacion == -90))
+                        {
+                            estado = true;
+                        }
                     }
                 }
                 else if (edificioEncontradoPrevio.id == 10)
@@ -474,7 +483,10 @@ public static class Carreteras
                     }
                     else if (eje == 3)
                     {
-
+                        if ((edificioEncontradoPrevio.rotacionColocacion == -270) || (edificioEncontradoPrevio.rotacionColocacion == -90) || (edificioEncontradoPrevio.rotacionColocacion == 0))
+                        {
+                            estado = true;
+                        }
                     }
                     else if (eje == 4)
                     {
@@ -501,13 +513,12 @@ public static class Carreteras
                             estado = true;
                         }
                     }
-                    else if (eje == 3)
+                    else if ((eje == 3) || (eje == 4))
                     {
-
-                    }
-                    else if (eje == 4)
-                    {
-
+                        if ((subcarretera.edificio.rotacionColocacion == -270) || (subcarretera.edificio.rotacionColocacion == -90))
+                        {
+                            estado = true;
+                        }
                     }
                 }
                 else if (subcarretera.edificio.id == 10)
@@ -528,7 +539,10 @@ public static class Carreteras
                     }
                     else if (eje == 3)
                     {
-
+                        if ((subcarretera.edificio.rotacionColocacion == -270) || (subcarretera.edificio.rotacionColocacion == -90) || (subcarretera.edificio.rotacionColocacion == 0))
+                        {
+                            estado = true;
+                        }
                     }
                     else if (eje == 4)
                     {
