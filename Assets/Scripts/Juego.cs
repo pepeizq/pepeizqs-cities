@@ -215,7 +215,7 @@ public class Juego : MonoBehaviour {
 
                         rotacionColocar = rotaciones[rotacionesPosicion];
                     }
-                   
+                    Debug.Log(rotacionColocar);
                     if (Input.GetKey(teclaArrastrarConstruccion))
                     {
                         if ((edificioSeleccionado.id == 6) || (edificioSeleccionado.id == 12))

@@ -256,9 +256,9 @@ public static class Carreteras
                 posicion3.x = posicion3.x - 1;
             }
 
-            carretera1 = BuscarCarretera(carretera1, colocar, colocarPrevio, carreteras, subcarretera.edificio, posicion1, eje);
-            carretera2 = BuscarCarretera(carretera2, colocar, colocarPrevio, carreteras, subcarretera.edificio, posicion2, eje);
-            carretera3 = BuscarCarretera(carretera3, colocar, colocarPrevio, carreteras, subcarretera.edificio, posicion3, eje);
+            carretera1 = BuscarCarreteras(carretera1, colocar, colocarPrevio, carreteras, subcarretera.edificio, posicion1, eje);
+            carretera2 = BuscarCarreteras(carretera2, colocar, colocarPrevio, carreteras, subcarretera.edificio, posicion2, eje);
+            carretera3 = BuscarCarreteras(carretera3, colocar, colocarPrevio, carreteras, subcarretera.edificio, posicion3, eje);
 
             if ((carretera1 == true) && (carretera2 == false) && (carretera3 == false))
             {
@@ -317,13 +317,9 @@ public static class Carreteras
                 {
                     subcarretera.edificio.rotacionColocacion = 0;
                 }
-                else if (eje == 3)
+                else if ((eje == 3) || (eje == 4))
                 {
-
-                }
-                else if (eje == 4)
-                {
-
+                    subcarretera.edificio.rotacionColocacion = -270;
                 }
             }
 
@@ -335,13 +331,9 @@ public static class Carreteras
                 {
                     subcarretera.edificio.rotacionColocacion = -180;
                 }
-                else if (eje == 3)
+                else if ((eje == 3) || (eje == 4))
                 {
-
-                }
-                else if (eje == 4)
-                {
-
+                    subcarretera.edificio.rotacionColocacion = -90;
                 }
             }
 
@@ -359,11 +351,11 @@ public static class Carreteras
                 }
                 else if (eje == 3)
                 {
-
+                    subcarretera.edificio.rotacionColocacion = -180;
                 }
                 else if (eje == 4)
                 {
-
+                    subcarretera.edificio.rotacionColocacion = 0;
                 }
             }
 
@@ -382,7 +374,7 @@ public static class Carreteras
         }
     }
 
-    private static bool BuscarCarretera(bool estado, Colocar colocar, ColocarPrevio colocarPrevio, List<Construccion2> carreteras, Construccion carretera, Vector3 posicion, int eje)
+    private static bool BuscarCarreteras(bool estado, Colocar colocar, ColocarPrevio colocarPrevio, List<Construccion2> carreteras, Construccion carretera, Vector3 posicion, int eje)
     {
         if (colocar.ComprobarConstruccionesPosicion(carretera, posicion) != null)
         {
@@ -409,31 +401,7 @@ public static class Carreteras
                 }
                 else if (edificioEncontrado.id == 10)
                 {
-                    if (eje == 1)
-                    {
-                        if ((edificioEncontrado.rotacionColocacion == -180) || (edificioEncontrado.rotacionColocacion == -90) || (edificioEncontrado.rotacionColocacion == 0))
-                        {
-                            estado = true;
-                        }
-                    }
-                    else if (eje == 2)
-                    {
-                        if ((edificioEncontrado.rotacionColocacion == -270) || (edificioEncontrado.rotacionColocacion == -90) || (edificioEncontrado.rotacionColocacion == 0))
-                        {
-                            estado = true;
-                        }
-                    }
-                    else if (eje == 3)
-                    {
-                        if ((edificioEncontrado.rotacionColocacion == -270) || (edificioEncontrado.rotacionColocacion == -90) || (edificioEncontrado.rotacionColocacion == 0))
-                        {
-                            estado = true;
-                        }
-                    }
-                    else if (eje == 4)
-                    {
-
-                    }
+                    estado = true;
                 }
                 else if (edificioEncontrado.id == 11)
                 {
@@ -467,31 +435,7 @@ public static class Carreteras
                 }
                 else if (edificioEncontradoPrevio.id == 10)
                 {
-                    if (eje == 1)
-                    {
-                        if ((edificioEncontradoPrevio.rotacionColocacion == -180) || (edificioEncontradoPrevio.rotacionColocacion == -90) || (edificioEncontradoPrevio.rotacionColocacion == 0))
-                        {
-                            estado = true;
-                        }
-                    }
-                    else if (eje == 2)
-                    {
-                        if ((edificioEncontradoPrevio.rotacionColocacion == -270) || (edificioEncontradoPrevio.rotacionColocacion == -90) || (edificioEncontradoPrevio.rotacionColocacion == 0))
-                        {
-                            estado = true;
-                        }
-                    }
-                    else if (eje == 3)
-                    {
-                        if ((edificioEncontradoPrevio.rotacionColocacion == -270) || (edificioEncontradoPrevio.rotacionColocacion == -90) || (edificioEncontradoPrevio.rotacionColocacion == 0))
-                        {
-                            estado = true;
-                        }
-                    }
-                    else if (eje == 4)
-                    {
-
-                    }
+                    estado = true;
                 }
                 else if (edificioEncontradoPrevio.id == 11)
                 {
@@ -515,7 +459,7 @@ public static class Carreteras
                     }
                     else if ((eje == 3) || (eje == 4))
                     {
-                        if ((subcarretera.edificio.rotacionColocacion == -270) || (subcarretera.edificio.rotacionColocacion == -90))
+                        if ((subcarretera.edificio.rotacionColocacion == -180) || (subcarretera.edificio.rotacionColocacion == 0))
                         {
                             estado = true;
                         }
@@ -523,31 +467,7 @@ public static class Carreteras
                 }
                 else if (subcarretera.edificio.id == 10)
                 {
-                    if (eje == 1)
-                    {
-                        if ((subcarretera.edificio.rotacionColocacion == -180) || (subcarretera.edificio.rotacionColocacion == -90) || (subcarretera.edificio.rotacionColocacion == 0))
-                        {
-                            estado = true;
-                        }
-                    }
-                    else if (eje == 2)
-                    {
-                        if ((subcarretera.edificio.rotacionColocacion == -270) || (subcarretera.edificio.rotacionColocacion == -90) || (subcarretera.edificio.rotacionColocacion == 0))
-                        {
-                            estado = true;
-                        }
-                    }
-                    else if (eje == 3)
-                    {
-                        if ((subcarretera.edificio.rotacionColocacion == -270) || (subcarretera.edificio.rotacionColocacion == -90) || (subcarretera.edificio.rotacionColocacion == 0))
-                        {
-                            estado = true;
-                        }
-                    }
-                    else if (eje == 4)
-                    {
-
-                    }
+                    estado = true;
                 }
                 else if (subcarretera.edificio.id == 11)
                 {
