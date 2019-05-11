@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public static class Carreteras
 {
@@ -67,7 +68,8 @@ public static class Carreteras
     }
 
     public static void ColocarPrevio(List<Construccion2> carreteras, Ciudad ciudad, Construccion carretera, Vector3 posicionCarretera,
-                                     Colocar colocar, ColocarPrevio colocarPrevio, Construccion[] edificios, bool mantenerEjeX, bool mantenerEjeZ)
+                                     Colocar colocar, ColocarPrevio colocarPrevio, Construccion[] edificios, bool mantenerEjeX, bool mantenerEjeZ,
+                                     Panel panelCoste, Text mensajeCoste, CarreterasIDs ids)
     {
         int eje = 0;
 
@@ -87,7 +89,7 @@ public static class Carreteras
             {
                 if (((carreteras[0].posicion.z == posicionCarretera.z) && (carreteras[0].posicion.x < posicionCarretera.x)) || ((carreteras[0].posicion.z == posicionCarretera.z) && (carreteras[0].posicion.x > posicionCarretera.x)))
                 {
-                    if (carretera.id == 6)
+                    if (carretera.id == ids.recta)
                     {
                         carretera.rotacionColocacion = -270;
                     }
@@ -159,7 +161,7 @@ public static class Carreteras
             {
                 if (((carreteras[0].posicion.x == posicionCarretera.x) && (carreteras[0].posicion.z < posicionCarretera.z)) || ((carreteras[0].posicion.x == posicionCarretera.x) && (carreteras[0].posicion.z > posicionCarretera.z)))
                 {
-                    if (carretera.id == 6)
+                    if (carretera.id == ids.recta)
                     {
                         carretera.rotacionColocacion = 0;
                     }
@@ -220,8 +222,11 @@ public static class Carreteras
             }
         }
 
+        int costeTotal = 0;
         foreach (Construccion2 subcarretera in carreteras)
         {
+            costeTotal = costeTotal + subcarretera.edificio.coste;
+
             bool carretera1 = false;
             Vector3 posicion1 = subcarretera.posicion;
 
@@ -256,18 +261,13 @@ public static class Carreteras
                 posicion3.x = posicion3.x - 1;
             }
 
-            carretera1 = BuscarCarreteras(carretera1, colocar, colocarPrevio, carreteras, subcarretera.edificio, posicion1, eje);
-            carretera2 = BuscarCarreteras(carretera2, colocar, colocarPrevio, carreteras, subcarretera.edificio, posicion2, eje);
-            carretera3 = BuscarCarreteras(carretera3, colocar, colocarPrevio, carreteras, subcarretera.edificio, posicion3, eje);
-
-            if ((carretera1 == true) && (carretera2 == false) && (carretera3 == false))
-            {
-          
-            }
+            carretera1 = BuscarCarreteras(carretera1, colocar, colocarPrevio, carreteras, subcarretera.edificio, posicion1, eje, ids);
+            carretera2 = BuscarCarreteras(carretera2, colocar, colocarPrevio, carreteras, subcarretera.edificio, posicion2, eje, ids);
+            carretera3 = BuscarCarreteras(carretera3, colocar, colocarPrevio, carreteras, subcarretera.edificio, posicion3, eje, ids);
 
             if ((carretera1 == false) && (carretera2 == true) && (carretera3 == false))
             {
-                subcarretera.edificio = edificios[39];
+                subcarretera.edificio = edificios[ids.curva];
 
                 if (eje == 1)
                 {
@@ -289,7 +289,7 @@ public static class Carreteras
 
             if ((carretera1 == false) && (carretera2 == false) && (carretera3 == true))
             {
-                subcarretera.edificio = edificios[39];
+                subcarretera.edificio = edificios[ids.curva];
                   
                 if (eje == 1)
                 {
@@ -311,7 +311,7 @@ public static class Carreteras
 
             if ((carretera1 == true) && (carretera2 == true) && (carretera3 == false))
             {
-                subcarretera.edificio = edificios[10];
+                subcarretera.edificio = edificios[ids.cruce3];
 
                 if ((eje == 1) || (eje == 2))
                 {
@@ -325,7 +325,7 @@ public static class Carreteras
 
             if ((carretera1 == true) && (carretera2 == false) && (carretera3 == true))
             {
-                subcarretera.edificio = edificios[10];
+                subcarretera.edificio = edificios[ids.cruce3];
 
                 if ((eje == 1) || (eje == 2))
                 {
@@ -339,7 +339,7 @@ public static class Carreteras
 
             if ((carretera1 == false) && (carretera2 == true) && (carretera3 == true))
             {
-                subcarretera.edificio = edificios[10];
+                subcarretera.edificio = edificios[ids.cruce3];
 
                 if (eje == 1)
                 {
@@ -363,7 +363,7 @@ public static class Carreteras
             {
                 if ((eje == 1) || (eje == 2) || (eje == 3) || (eje == 4))
                 {
-                    subcarretera.edificio = edificios[11];
+                    subcarretera.edificio = edificios[ids.cruce4];
                 }               
             }
        
@@ -372,9 +372,12 @@ public static class Carreteras
                 colocarPrevio.AñadirConstruccion(subcarretera.edificio, subcarretera.posicion);
             }
         }
+
+        panelCoste.gameObject.GetComponent<CanvasGroup>().alpha = 1;
+        mensajeCoste.text = string.Format("-{0} €", costeTotal);
     }
 
-    private static bool BuscarCarreteras(bool estado, Colocar colocar, ColocarPrevio colocarPrevio, List<Construccion2> carreteras, Construccion carretera, Vector3 posicion, int eje)
+    private static bool BuscarCarreteras(bool estado, Colocar colocar, ColocarPrevio colocarPrevio, List<Construccion2> carreteras, Construccion carretera, Vector3 posicion, int eje, CarreterasIDs ids)
     {
         if (colocar.ComprobarConstruccionesPosicion(carretera, posicion) != null)
         {
@@ -382,7 +385,7 @@ public static class Carreteras
 
             if (edificioEncontrado.categoria == 1)
             {
-                if (edificioEncontrado.id == 6)
+                if (edificioEncontrado.id == ids.recta)
                 {
                     if ((eje == 1) || (eje == 2))
                     {
@@ -399,11 +402,11 @@ public static class Carreteras
                         }
                     }
                 }
-                else if (edificioEncontrado.id == 10)
+                else if (edificioEncontrado.id == ids.cruce3)
                 {
                     estado = true;
                 }
-                else if (edificioEncontrado.id == 11)
+                else if (edificioEncontrado.id == ids.cruce3)
                 {
                     estado = true;
                 }
@@ -416,7 +419,7 @@ public static class Carreteras
 
             if (edificioEncontradoPrevio.categoria == 1)
             {
-                if (edificioEncontradoPrevio.id == 6)
+                if (edificioEncontradoPrevio.id == ids.recta)
                 {
                     if ((eje == 1) || (eje == 2))
                     {
@@ -433,11 +436,11 @@ public static class Carreteras
                         }
                     }
                 }
-                else if (edificioEncontradoPrevio.id == 10)
+                else if (edificioEncontradoPrevio.id == ids.cruce3)
                 {
                     estado = true;
                 }
-                else if (edificioEncontradoPrevio.id == 11)
+                else if (edificioEncontradoPrevio.id == ids.cruce4)
                 {
                     estado = true;
                 }
@@ -448,7 +451,7 @@ public static class Carreteras
         {
             if (subcarretera.posicion == posicion)
             {
-                if (subcarretera.edificio.id == 6)
+                if (subcarretera.edificio.id == ids.recta)
                 {
                     if ((eje == 1) || (eje == 2))
                     {
@@ -465,11 +468,11 @@ public static class Carreteras
                         }
                     }
                 }
-                else if (subcarretera.edificio.id == 10)
+                else if (subcarretera.edificio.id == ids.cruce3)
                 {
                     estado = true;
                 }
-                else if (subcarretera.edificio.id == 11)
+                else if (subcarretera.edificio.id == ids.cruce4)
                 {
                     estado = true;
                 }

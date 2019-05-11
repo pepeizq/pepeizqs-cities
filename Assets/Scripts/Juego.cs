@@ -70,6 +70,8 @@ public class Juego : MonoBehaviour {
     public Panel panelEdificios;
     public Panel panelGuardar;
     public Panel panelTiempo;
+    public Panel panelCoste;
+    public Text mensajeCoste;
 
     public Interfaz.Edificios panelEdificios2;
     public Panel panelCarreteras;
@@ -172,6 +174,9 @@ public class Juego : MonoBehaviour {
                     ConstruirCambiarColor();
                     ConstruirOcultarPanelEdificios();
                     colocarPrevio.QuitarTodosEdificios();
+
+                    edificioSeleccionado = null;
+                    panelCoste.gameObject.GetComponent<CanvasGroup>().alpha = 0;
                 }
 
                 if (demolerActivar == true)
@@ -215,13 +220,17 @@ public class Juego : MonoBehaviour {
 
                         rotacionColocar = rotaciones[rotacionesPosicion];
                     }
-                    Debug.Log(rotacionColocar);
+                
                     if (Input.GetKey(teclaArrastrarConstruccion))
                     {
-                        if ((edificioSeleccionado.id == 6) || (edificioSeleccionado.id == 12))
+                        if (edificioSeleccionado.id == 6)
                         {
                             ColocarEdificioPrevio(true, 1);
-                        }                           
+                        }
+                        else if (edificioSeleccionado.id == 12)
+                        {
+                            ColocarEdificioPrevio(true, 2);
+                        }
                     }
                     else
                     {
@@ -258,7 +267,16 @@ public class Juego : MonoBehaviour {
             {
                 InterfazOcultar();
             }
-        }      
+        }    
+        
+        if (panelCoste.gameObject.GetComponent<CanvasGroup>().alpha == 1)
+        {
+            Vector3 posicion = Input.mousePosition;
+            posicion.x = posicion.x + 10;
+            posicion.y = posicion.y - 35;
+
+            panelCoste.gameObject.transform.position = posicion;
+        }
     }
 
     public void Construir()
@@ -376,6 +394,8 @@ public class Juego : MonoBehaviour {
                     {
                         if (ciudad.Dinero >= edificioSeleccionado.coste)
                         {
+                            panelCoste.gameObject.GetComponent<CanvasGroup>().alpha = 0;
+
                             ciudad.DepositoDinero(-edificioSeleccionado.coste);
                             ciudad.ActualizarUI(false);
                             colocar.AñadirConstruccion(edificioSeleccionado, gridPosicion, diaNoche.EstadoEncendidoLuces());
@@ -418,9 +438,28 @@ public class Juego : MonoBehaviour {
 
                 if (mantener == true)
                 {
-                    if (modo == 1)
+                    if ((modo == 1) || (modo == 2))
                     {
-                        Carreteras.ColocarPrevio(edificiosSeleccionados, ciudad, edificioSeleccionado, gridPosicion, colocar, colocarPrevio, edificios, mantenerEjeX, mantenerEjeZ);
+                        CarreterasIDs ids = new CarreterasIDs();
+
+                        if (modo == 1)
+                        {
+                            ids.recta = 6;
+                            ids.curva = 39;
+                            ids.cruce3 = 10;
+                            ids.cruce4 = 11;
+                        }
+                        else if (modo == 2)
+                        {
+                            ids.recta = 12;
+                            ids.curva = 40;
+                            ids.cruce3 = 14;
+                            ids.cruce4 = 13;
+                        }
+
+                        Carreteras.ColocarPrevio(edificiosSeleccionados, ciudad, edificioSeleccionado, 
+                            gridPosicion, colocar, colocarPrevio, edificios, mantenerEjeX, mantenerEjeZ, 
+                            panelCoste, mensajeCoste, ids);
                     }       
                 }
                 else
@@ -428,6 +467,9 @@ public class Juego : MonoBehaviour {
                     if (edificioSeleccionado != null)
                     {
                         edificioSeleccionado.rotacionColocacion = rotacionColocar;
+
+                        panelCoste.gameObject.GetComponent<CanvasGroup>().alpha = 1;
+                        mensajeCoste.text = string.Format("-{0} €", edificioSeleccionado.coste);
                     }
 
                     if (colocar.ComprobarConstruccionesPosicion(edificioSeleccionado, gridPosicion) == null)

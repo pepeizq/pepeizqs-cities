@@ -1760,7 +1760,7 @@ MonoBehaviour:
   luzRango: 0.5
   luzProbabilidad: 100
   dimensiones: {x: 1, y: 1}
-  rotacionColocacion: -180
+  rotacionColocacion: -90
   rotacionAdicional: 0
   posicionX: 0
   posicionZ: 0

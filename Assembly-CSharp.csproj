@@ -65,6 +65,7 @@
     <Compile Include="Assets\Scripts\ArbolesInicio.cs" />
     <Compile Include="Assets\Scripts\Camara.cs" />
     <Compile Include="Assets\Scripts\Ciudad.cs" />
+    <Compile Include="Assets\Scripts\Clases\CarreterasIDs.cs" />
     <Compile Include="Assets\Scripts\Clases\Construccion.cs" />
     <Compile Include="Assets\Scripts\Clases\Construccion2.cs" />
     <Compile Include="Assets\Scripts\Clases\Guardado.cs" />
