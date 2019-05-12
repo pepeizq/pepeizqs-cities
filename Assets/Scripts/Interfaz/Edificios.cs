@@ -101,55 +101,68 @@ namespace Interfaz
 
             foreach (Construccion edificio in edificios)
             {
-                GameObject botonObjeto = Instantiate(botonEdificiosPrefab);
+                bool añadir = true;
 
-                if (edificio.categoria == 0)
+                if (edificio.categoria == 1)
                 {
-                    botonObjeto.transform.SetParent(panelDecoracion.transform, false);
-                }
-                else if (edificio.categoria == 1)
-                {
-                    botonObjeto.transform.SetParent(panelCarreteras.transform, false);
-                }
-                else if (edificio.categoria == 2)
-                {
-                    botonObjeto.transform.SetParent(panelPoblacion.transform, false);
-                }
-                else if (edificio.categoria == 3)
-                {
-                    botonObjeto.transform.SetParent(panelComida.transform, false);
-                }
-                else if (edificio.categoria == 4)
-                {
-                    botonObjeto.transform.SetParent(panelTiendas.transform, false);
-                }
-                else if (edificio.categoria == 5)
-                {
-                    botonObjeto.transform.SetParent(panelIndustria.transform, false);
+                    if ((edificio.id != 6) && (edificio.id != 12))
+                    {
+                        añadir = false;
+                    }
                 }
 
-                Image imagen = botonObjeto.GetComponent<Image>();
-                imagen.sprite = edificio.botonImagen;
-
-                Button boton = botonObjeto.GetComponent<Button>();
-                boton.onClick.AddListener(() => juego.ConstruirSeleccionarEdificio(edificio.id));
-
-                EventTrigger evento = botonObjeto.AddComponent<EventTrigger>();
-                EventTrigger.Entry pointerEnter = new EventTrigger.Entry
+                if (añadir == true)
                 {
-                    eventID = EventTriggerType.PointerEnter
-                };
+                    GameObject botonObjeto = Instantiate(botonEdificiosPrefab);
 
-                pointerEnter.callback.AddListener((data) => { CursorEntraEdificioInferior((PointerEventData)data, edificio); });
-                evento.triggers.Add(pointerEnter);
+                    if (edificio.categoria == 0)
+                    {
+                        botonObjeto.transform.SetParent(panelDecoracion.transform, false);
+                    }
+                    else if (edificio.categoria == 1)
+                    {
+                        botonObjeto.transform.SetParent(panelCarreteras.transform, false);
+                    }
+                    else if (edificio.categoria == 2)
+                    {
+                        botonObjeto.transform.SetParent(panelPoblacion.transform, false);
+                    }
+                    else if (edificio.categoria == 3)
+                    {
+                        botonObjeto.transform.SetParent(panelComida.transform, false);
+                    }
+                    else if (edificio.categoria == 4)
+                    {
+                        botonObjeto.transform.SetParent(panelTiendas.transform, false);
+                    }
+                    else if (edificio.categoria == 5)
+                    {
+                        botonObjeto.transform.SetParent(panelIndustria.transform, false);
+                    }
 
-                EventTrigger.Entry pointerExit = new EventTrigger.Entry
-                {
-                    eventID = EventTriggerType.PointerExit
-                };
+                    Image imagen = botonObjeto.GetComponent<Image>();
+                    imagen.sprite = edificio.botonImagen;
 
-                pointerExit.callback.AddListener((data) => { CursorSaleEdificioInferior((PointerEventData)data); });
-                evento.triggers.Add(pointerExit);
+                    Button boton = botonObjeto.GetComponent<Button>();
+                    boton.onClick.AddListener(() => juego.ConstruirSeleccionarEdificio(edificio.id));
+
+                    EventTrigger evento = botonObjeto.AddComponent<EventTrigger>();
+                    EventTrigger.Entry pointerEnter = new EventTrigger.Entry
+                    {
+                        eventID = EventTriggerType.PointerEnter
+                    };
+
+                    pointerEnter.callback.AddListener((data) => { CursorEntraEdificioInferior((PointerEventData)data, edificio); });
+                    evento.triggers.Add(pointerEnter);
+
+                    EventTrigger.Entry pointerExit = new EventTrigger.Entry
+                    {
+                        eventID = EventTriggerType.PointerExit
+                    };
+
+                    pointerExit.callback.AddListener((data) => { CursorSaleEdificioInferior((PointerEventData)data); });
+                    evento.triggers.Add(pointerExit);
+                }          
             }
         }
 
