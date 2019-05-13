@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4545748774784284}
   - component: {fileID: 108029095204111478}
   m_Layer: 0
-  m_Name: Luz20
+  m_Name: LuzAmarillo4A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +29,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4932834319348192}
-  m_RootOrder: 19
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &108029095204111478
 Light:
@@ -42,8 +42,8 @@ Light:
   serializedVersion: 9
   m_Type: 2
   m_Color: {r: 0.96862745, g: 1, b: 0, a: 1}
-  m_Intensity: 1
-  m_Range: 0.5
+  m_Intensity: 0
+  m_Range: 0
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 4368888718973576}
   - component: {fileID: 108925619659818518}
   m_Layer: 0
-  m_Name: Luz7
+  m_Name: LuzRojo2A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -120,7 +120,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4932834319348192}
-  m_RootOrder: 6
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &108925619659818518
 Light:
@@ -133,8 +133,8 @@ Light:
   serializedVersion: 9
   m_Type: 2
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Intensity: 1
-  m_Range: 0.5
+  m_Intensity: 0
+  m_Range: 0
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -193,7 +193,7 @@ GameObject:
   - component: {fileID: 4889659252197864}
   - component: {fileID: 108941470774896852}
   m_Layer: 0
-  m_Name: Luz21
+  m_Name: LuzVerde4A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -211,7 +211,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4932834319348192}
-  m_RootOrder: 20
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &108941470774896852
 Light:
@@ -224,8 +224,8 @@ Light:
   serializedVersion: 9
   m_Type: 2
   m_Color: {r: 0, g: 1, b: 0.02745098, a: 1}
-  m_Intensity: 1
-  m_Range: 0.5
+  m_Intensity: 0
+  m_Range: 0
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -284,7 +284,7 @@ GameObject:
   - component: {fileID: 4490877369218722}
   - component: {fileID: 108597979531003134}
   m_Layer: 0
-  m_Name: Luz2
+  m_Name: LuzAmarillo1A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -302,7 +302,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4932834319348192}
-  m_RootOrder: 1
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &108597979531003134
 Light:
@@ -315,8 +315,8 @@ Light:
   serializedVersion: 9
   m_Type: 2
   m_Color: {r: 0.96996236, g: 1, b: 0, a: 1}
-  m_Intensity: 1
-  m_Range: 0.5
+  m_Intensity: 0
+  m_Range: 0
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -375,7 +375,7 @@ GameObject:
   - component: {fileID: 4274608434798866}
   - component: {fileID: 108152956703255634}
   m_Layer: 0
-  m_Name: Luz17
+  m_Name: LuzAmarillo3B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -393,7 +393,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4932834319348192}
-  m_RootOrder: 16
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &108152956703255634
 Light:
@@ -406,8 +406,8 @@ Light:
   serializedVersion: 9
   m_Type: 2
   m_Color: {r: 0.96862745, g: 1, b: 0, a: 1}
-  m_Intensity: 1
-  m_Range: 0.5
+  m_Intensity: 0
+  m_Range: 0
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -466,7 +466,7 @@ GameObject:
   - component: {fileID: 4054738895941490}
   - component: {fileID: 108150453277283316}
   m_Layer: 0
-  m_Name: Luz24
+  m_Name: LuzVerde4B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -497,8 +497,8 @@ Light:
   serializedVersion: 9
   m_Type: 2
   m_Color: {r: 0, g: 1, b: 0.02745098, a: 1}
-  m_Intensity: 1
-  m_Range: 0.5
+  m_Intensity: 0
+  m_Range: 0
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -557,7 +557,7 @@ GameObject:
   - component: {fileID: 4979304410255244}
   - component: {fileID: 108251753521433944}
   m_Layer: 0
-  m_Name: Luz6
+  m_Name: LuzVerde1B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -575,7 +575,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4932834319348192}
-  m_RootOrder: 5
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &108251753521433944
 Light:
@@ -588,8 +588,8 @@ Light:
   serializedVersion: 9
   m_Type: 2
   m_Color: {r: 0, g: 1, b: 0.02745098, a: 1}
-  m_Intensity: 1
-  m_Range: 0.5
+  m_Intensity: 0
+  m_Range: 0
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -648,7 +648,7 @@ GameObject:
   - component: {fileID: 4348117783213158}
   - component: {fileID: 108229414338560132}
   m_Layer: 0
-  m_Name: Luz13
+  m_Name: LuzRojo3A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -666,7 +666,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4932834319348192}
-  m_RootOrder: 12
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &108229414338560132
 Light:
@@ -679,8 +679,8 @@ Light:
   serializedVersion: 9
   m_Type: 2
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Intensity: 1
-  m_Range: 0.5
+  m_Intensity: 0
+  m_Range: 0
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -739,7 +739,7 @@ GameObject:
   - component: {fileID: 4453518768694256}
   - component: {fileID: 108925225851206638}
   m_Layer: 0
-  m_Name: Luz16
+  m_Name: LuzRojo3B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -757,7 +757,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4932834319348192}
-  m_RootOrder: 15
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &108925225851206638
 Light:
@@ -770,8 +770,8 @@ Light:
   serializedVersion: 9
   m_Type: 2
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Intensity: 1
-  m_Range: 0.5
+  m_Intensity: 0
+  m_Range: 0
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -830,7 +830,7 @@ GameObject:
   - component: {fileID: 4987631343994568}
   - component: {fileID: 108688273325627632}
   m_Layer: 0
-  m_Name: Luz5
+  m_Name: LuzAmarillo1B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -848,7 +848,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4932834319348192}
-  m_RootOrder: 4
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &108688273325627632
 Light:
@@ -861,8 +861,8 @@ Light:
   serializedVersion: 9
   m_Type: 2
   m_Color: {r: 0.96862745, g: 1, b: 0, a: 1}
-  m_Intensity: 1
-  m_Range: 0.5
+  m_Intensity: 0
+  m_Range: 0
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -921,7 +921,7 @@ GameObject:
   - component: {fileID: 4850493470410976}
   - component: {fileID: 108061395437893072}
   m_Layer: 0
-  m_Name: Luz14
+  m_Name: LuzAmarillo3A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -939,7 +939,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4932834319348192}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &108061395437893072
 Light:
@@ -952,8 +952,8 @@ Light:
   serializedVersion: 9
   m_Type: 2
   m_Color: {r: 0.96862745, g: 1, b: 0, a: 1}
-  m_Intensity: 1
-  m_Range: 0.5
+  m_Intensity: 0
+  m_Range: 0
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -1012,7 +1012,7 @@ GameObject:
   - component: {fileID: 4318231690538424}
   - component: {fileID: 108133437086901694}
   m_Layer: 0
-  m_Name: Luz23
+  m_Name: LuzAmarillo4B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1030,7 +1030,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4932834319348192}
-  m_RootOrder: 22
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &108133437086901694
 Light:
@@ -1043,8 +1043,8 @@ Light:
   serializedVersion: 9
   m_Type: 2
   m_Color: {r: 0.96862745, g: 1, b: 0, a: 1}
-  m_Intensity: 1
-  m_Range: 0.5
+  m_Intensity: 0
+  m_Range: 0
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -1103,7 +1103,7 @@ GameObject:
   - component: {fileID: 4761996604807484}
   - component: {fileID: 108173192821185934}
   m_Layer: 0
-  m_Name: Luz22
+  m_Name: LuzRojo4B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1121,7 +1121,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4932834319348192}
-  m_RootOrder: 21
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &108173192821185934
 Light:
@@ -1134,8 +1134,8 @@ Light:
   serializedVersion: 9
   m_Type: 2
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Intensity: 1
-  m_Range: 0.5
+  m_Intensity: 0
+  m_Range: 0
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -1194,7 +1194,7 @@ GameObject:
   - component: {fileID: 4232538472512966}
   - component: {fileID: 108183919456407274}
   m_Layer: 0
-  m_Name: Luz11
+  m_Name: LuzAmarillo2B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1212,7 +1212,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4932834319348192}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &108183919456407274
 Light:
@@ -1225,8 +1225,8 @@ Light:
   serializedVersion: 9
   m_Type: 2
   m_Color: {r: 0.96862745, g: 1, b: 0, a: 1}
-  m_Intensity: 1
-  m_Range: 0.5
+  m_Intensity: 0
+  m_Range: 0
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -1285,7 +1285,7 @@ GameObject:
   - component: {fileID: 4540668479807204}
   - component: {fileID: 108499473866186786}
   m_Layer: 0
-  m_Name: Luz3
+  m_Name: LuzVerde1A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1303,7 +1303,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4932834319348192}
-  m_RootOrder: 2
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &108499473866186786
 Light:
@@ -1316,8 +1316,8 @@ Light:
   serializedVersion: 9
   m_Type: 2
   m_Color: {r: 0, g: 1, b: 0.027072191, a: 1}
-  m_Intensity: 1
-  m_Range: 0.5
+  m_Intensity: 0
+  m_Range: 0
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -1376,7 +1376,7 @@ GameObject:
   - component: {fileID: 4319753705684656}
   - component: {fileID: 108872909344279926}
   m_Layer: 0
-  m_Name: Luz19
+  m_Name: LuzRojo4A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1394,7 +1394,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4932834319348192}
-  m_RootOrder: 18
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &108872909344279926
 Light:
@@ -1407,8 +1407,8 @@ Light:
   serializedVersion: 9
   m_Type: 2
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Intensity: 1
-  m_Range: 0.5
+  m_Intensity: 0
+  m_Range: 0
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -1467,7 +1467,7 @@ GameObject:
   - component: {fileID: 4134465740727096}
   - component: {fileID: 108150890160794048}
   m_Layer: 0
-  m_Name: Luz4
+  m_Name: LuzRojo1B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1485,7 +1485,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4932834319348192}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &108150890160794048
 Light:
@@ -1498,8 +1498,8 @@ Light:
   serializedVersion: 9
   m_Type: 2
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Intensity: 1
-  m_Range: 0.5
+  m_Intensity: 0
+  m_Range: 0
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -1558,7 +1558,7 @@ GameObject:
   - component: {fileID: 4525387264753216}
   - component: {fileID: 108350244403522980}
   m_Layer: 0
-  m_Name: Luz1
+  m_Name: LuzRojo1A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1589,8 +1589,8 @@ Light:
   serializedVersion: 9
   m_Type: 2
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Intensity: 1
-  m_Range: 0.5
+  m_Intensity: 0
+  m_Range: 0
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -1649,7 +1649,7 @@ GameObject:
   - component: {fileID: 4373236469754258}
   - component: {fileID: 108326029740678416}
   m_Layer: 0
-  m_Name: Luz12
+  m_Name: LuzVerde2B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1667,7 +1667,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4932834319348192}
-  m_RootOrder: 11
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &108326029740678416
 Light:
@@ -1680,8 +1680,8 @@ Light:
   serializedVersion: 9
   m_Type: 2
   m_Color: {r: 0, g: 1, b: 0.02745098, a: 1}
-  m_Intensity: 1
-  m_Range: 0.5
+  m_Intensity: 0
+  m_Range: 0
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -1740,7 +1740,7 @@ GameObject:
   - component: {fileID: 4812621427339418}
   - component: {fileID: 108516403394803960}
   m_Layer: 0
-  m_Name: Luz18
+  m_Name: LuzVerde3B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1758,7 +1758,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4932834319348192}
-  m_RootOrder: 17
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &108516403394803960
 Light:
@@ -1771,8 +1771,8 @@ Light:
   serializedVersion: 9
   m_Type: 2
   m_Color: {r: 0, g: 1, b: 0.02745098, a: 1}
-  m_Intensity: 1
-  m_Range: 0.5
+  m_Intensity: 0
+  m_Range: 0
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -1831,7 +1831,7 @@ GameObject:
   - component: {fileID: 4834524137563638}
   - component: {fileID: 108565054057168036}
   m_Layer: 0
-  m_Name: Luz10
+  m_Name: LuzRojo2B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1849,7 +1849,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4932834319348192}
-  m_RootOrder: 9
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &108565054057168036
 Light:
@@ -1862,8 +1862,8 @@ Light:
   serializedVersion: 9
   m_Type: 2
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Intensity: 1
-  m_Range: 0.5
+  m_Intensity: 0
+  m_Range: 0
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -1922,7 +1922,7 @@ GameObject:
   - component: {fileID: 4629277407448762}
   - component: {fileID: 108584551981820824}
   m_Layer: 0
-  m_Name: Luz15
+  m_Name: LuzVerde3A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1940,7 +1940,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4932834319348192}
-  m_RootOrder: 14
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &108584551981820824
 Light:
@@ -1953,8 +1953,8 @@ Light:
   serializedVersion: 9
   m_Type: 2
   m_Color: {r: 0, g: 1, b: 0.02745098, a: 1}
-  m_Intensity: 1
-  m_Range: 0.5
+  m_Intensity: 0
+  m_Range: 0
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -2013,7 +2013,7 @@ GameObject:
   - component: {fileID: 4570962545569896}
   - component: {fileID: 108159098137900070}
   m_Layer: 0
-  m_Name: Luz9
+  m_Name: LuzVerde2A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2031,7 +2031,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4932834319348192}
-  m_RootOrder: 8
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &108159098137900070
 Light:
@@ -2044,8 +2044,8 @@ Light:
   serializedVersion: 9
   m_Type: 2
   m_Color: {r: 0, g: 1, b: 0.02745098, a: 1}
-  m_Intensity: 1
-  m_Range: 0.5
+  m_Intensity: 0
+  m_Range: 0
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -2104,7 +2104,7 @@ GameObject:
   - component: {fileID: 4449185551060208}
   - component: {fileID: 108787051027525166}
   m_Layer: 0
-  m_Name: Luz8
+  m_Name: LuzAmarillo2A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2122,7 +2122,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4932834319348192}
-  m_RootOrder: 7
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &108787051027525166
 Light:
@@ -2135,8 +2135,8 @@ Light:
   serializedVersion: 9
   m_Type: 2
   m_Color: {r: 0.96862745, g: 1, b: 0, a: 1}
-  m_Intensity: 1
-  m_Range: 0.5
+  m_Intensity: 0
+  m_Range: 0
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -2215,28 +2215,28 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4525387264753216}
-  - {fileID: 4490877369218722}
-  - {fileID: 4540668479807204}
   - {fileID: 4134465740727096}
-  - {fileID: 4987631343994568}
-  - {fileID: 4979304410255244}
   - {fileID: 4368888718973576}
-  - {fileID: 4449185551060208}
-  - {fileID: 4570962545569896}
   - {fileID: 4834524137563638}
-  - {fileID: 4232538472512966}
-  - {fileID: 4373236469754258}
   - {fileID: 4348117783213158}
-  - {fileID: 4850493470410976}
-  - {fileID: 4629277407448762}
   - {fileID: 4453518768694256}
-  - {fileID: 4274608434798866}
-  - {fileID: 4812621427339418}
   - {fileID: 4319753705684656}
-  - {fileID: 4545748774784284}
-  - {fileID: 4889659252197864}
   - {fileID: 4761996604807484}
+  - {fileID: 4490877369218722}
+  - {fileID: 4987631343994568}
+  - {fileID: 4449185551060208}
+  - {fileID: 4232538472512966}
+  - {fileID: 4850493470410976}
+  - {fileID: 4274608434798866}
+  - {fileID: 4545748774784284}
   - {fileID: 4318231690538424}
+  - {fileID: 4540668479807204}
+  - {fileID: 4979304410255244}
+  - {fileID: 4570962545569896}
+  - {fileID: 4373236469754258}
+  - {fileID: 4629277407448762}
+  - {fileID: 4812621427339418}
+  - {fileID: 4889659252197864}
   - {fileID: 4054738895941490}
   m_Father: {fileID: 0}
   m_RootOrder: 0

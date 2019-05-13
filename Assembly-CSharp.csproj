@@ -64,13 +64,13 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\ArbolesInicio.cs" />
     <Compile Include="Assets\Scripts\Camara.cs" />
+    <Compile Include="Assets\Scripts\Carreteras.cs" />
     <Compile Include="Assets\Scripts\Ciudad.cs" />
     <Compile Include="Assets\Scripts\Clases\CarreterasIDs.cs" />
     <Compile Include="Assets\Scripts\Clases\Construccion.cs" />
     <Compile Include="Assets\Scripts\Clases\Construccion2.cs" />
     <Compile Include="Assets\Scripts\Clases\Guardado.cs" />
     <Compile Include="Assets\Scripts\Clases\Panel.cs" />
-    <Compile Include="Assets\Scripts\Colocar\Carreteras.cs" />
     <Compile Include="Assets\Scripts\Colocar\Colocar.cs" />
     <Compile Include="Assets\Scripts\Colocar\ColocarFunciones.cs" />
     <Compile Include="Assets\Scripts\Colocar\ColocarPrevio.cs" />
@@ -86,6 +86,7 @@
     <Compile Include="Assets\Scripts\Interfaz\Opciones\Graficos.cs" />
     <Compile Include="Assets\Scripts\Interfaz\Opciones\Teclado.cs" />
     <Compile Include="Assets\Scripts\Juego.cs" />
+    <Compile Include="Assets\Scripts\Semaforos.cs" />
     <Compile Include="Assets\Scripts\Steam.cs" />
     <Compile Include="Assets\Scripts\Steamworks.NET\SteamManager.cs" />
     <None Include="Assets\Idiomas\Idiomas.xml" />
