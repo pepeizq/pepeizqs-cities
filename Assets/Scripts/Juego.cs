@@ -10,9 +10,16 @@ public class Juego : MonoBehaviour {
 
     public Canvas canvas;
 
+    [HideInInspector]
     public KeyCode teclaMenu;
+
+    [HideInInspector]
     public KeyCode teclaRotacionEdificioIzquierda;
+
+    [HideInInspector]
     public KeyCode teclaRotacionEdificioDerecha;
+
+    [HideInInspector]
     public KeyCode teclaArrastrarConstruccion;
 
     public Interfaz.MenuPrincipal menuPrincipal;
@@ -36,7 +43,7 @@ public class Juego : MonoBehaviour {
     private Ciudad ciudad;
 
     [SerializeField]
-    private Construccion[] edificios;
+    public Construccion[] edificios;
 
     [SerializeField]
     private Colocar colocar;
@@ -147,6 +154,7 @@ public class Juego : MonoBehaviour {
         ayuda.Cargar(true);
         ayuda.EstadoCajas(true);
         diaNoche.VelocidadMarchas(1);
+        colocar.CambiarLucesSemaforos(accionSemaforos);
         colocarPrevio.QuitarTodosEdificios();
         panelEdificios2.Arranque(edificios);
 
@@ -276,10 +284,10 @@ public class Juego : MonoBehaviour {
             if (tiempoSemaforos > 10)
             {
                 tiempoSemaforos = 0;
-                Semaforos.CambiarLuces(edificios, accionSemaforos);
+                colocar.CambiarLucesSemaforos(accionSemaforos);
                 accionSemaforos += 1;
 
-                if (accionSemaforos > 2)
+                if (accionSemaforos > 1)
                 {
                     accionSemaforos = 0;
                 }

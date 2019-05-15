@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
-public class Colocar : MonoBehaviour {
-
+public class Colocar : MonoBehaviour
+{
     private int contadorIds;
 
     public Construccion[,] edificios = new Construccion[100, 100];
@@ -21,7 +21,7 @@ public class Colocar : MonoBehaviour {
         posicion = ColocarFunciones.PosicionEdificio(edificio, posicion, edificio.rotacionColocacion);
         ComprobarLucesEdificio(encender, edificio);
 
-        Construccion edificioFinal = Instantiate(edificio, posicion, Quaternion.identity);      
+        Construccion edificioFinal = Instantiate(edificio, posicion, Quaternion.identity);
         edificioFinal.transform.Rotate(Vector3.up, edificio.rotacionAdicional + edificio.rotacionColocacion, Space.World);
         edificioFinal.posicionX = (int)posicion.x;
         edificioFinal.posicionZ = (int)posicion.z;
@@ -146,6 +146,107 @@ public class Colocar : MonoBehaviour {
                     luz.range = 0;
                 }
             }
-        } 
+        }
+    }
+
+    public void CambiarLucesSemaforos(int accion)
+    {
+        foreach (Construccion subedificio in edificios)
+        {
+            if (subedificio != null)
+            {
+                bool lucesCarretera = false;
+
+                if (subedificio.categoria == 1)
+                {
+                    if (subedificio.id == 10)
+                    {
+                        lucesCarretera = true;
+                    }
+                    else if (subedificio.id == 11)
+                    {
+                        lucesCarretera = true;
+                    }
+                }
+             
+                if (lucesCarretera == true)
+                {
+                    Light[] luces = subedificio.GetComponentsInChildren<Light>();
+
+                    foreach (Light luz in luces)
+                    {
+                        if (accion == 0)
+                        {
+                            bool activarLuz = false;
+
+                            if (luz.name.ToLower().Contains("luzrojo1"))
+                            {
+                                activarLuz = true;
+                            }
+                            else if (luz.name.ToLower().Contains("luzrojo3"))
+                            {
+                                activarLuz = true;
+                            }
+                            else if (luz.name.ToLower().Contains("luzverde2"))
+                            {
+                                activarLuz = true;
+                            }
+                            else if (luz.name.ToLower().Contains("luzverde4"))
+                            {
+                                activarLuz = true;
+                            }
+
+                            if (activarLuz == true)
+                            {
+                                luz.intensity = 1.0f;
+                                luz.range = 1.0f;
+                            }
+                            else
+                            {
+                                luz.intensity = 0f;
+                                luz.range = 0f;
+                            }
+                        }
+                        else if (accion == 1)
+                        {
+                            bool activarLuz = false;
+
+                            if (luz.name.ToLower().Contains("luzrojo2"))
+                            {
+                                activarLuz = true;
+                            }
+                            else if (luz.name.ToLower().Contains("luzrojo4"))
+                            {
+                                activarLuz = true;
+                            }
+                            else if (luz.name.ToLower().Contains("luzverde1"))
+                            {
+                                activarLuz = true;
+                            }
+                            else if (luz.name.ToLower().Contains("luzverde3"))
+                            {
+                                activarLuz = true;
+                            }
+
+                            if (activarLuz == true)
+                            {
+                                luz.intensity = 1.0f;
+                                luz.range = 1.0f;
+                            }
+                            else
+                            {
+                                luz.intensity = 0f;
+                                luz.range = 0f;
+                            }
+                        }
+                        else
+                        {
+                            luz.intensity = 0f;
+                            luz.range = 0f;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
