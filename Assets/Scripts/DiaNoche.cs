@@ -101,7 +101,7 @@ public class DiaNoche : MonoBehaviour {
 
         if (idioma.CogerCadena("day") != null)
         {
-            dias.text = string.Format(idioma.CogerCadena("day").ToUpper() + " {0}", Mathf.Round(tiempoTotalDias));
+            dias.text = string.Format(idioma.CogerCadena("day").ToLower() + " {0}", Mathf.Round(tiempoTotalDias));
         }       
 
         ActualizarReloj();

@@ -75,44 +75,44 @@ public class Idiomas : MonoBehaviour {
 
     public void CargarTextos()
     {
-        menuPrincipalNuevaPartida.text = CogerCadena("newGame").ToUpper();
-        menuPrincipalCargarPartida.text = CogerCadena("loadGame").ToUpper();
-        menuPrincipalOpciones.text = CogerCadena("options").ToUpper();
-        menuPrincipalSalir.text = CogerCadena("exitGame").ToUpper();
+        menuPrincipalNuevaPartida.text = CogerCadena("newGame").ToLower();
+        menuPrincipalCargarPartida.text = CogerCadena("loadGame").ToLower();
+        menuPrincipalOpciones.text = CogerCadena("options").ToLower();
+        menuPrincipalSalir.text = CogerCadena("exitGame").ToLower();
         menuPrincipalAviso.text = CogerCadena("warning");
 
-        opcionesVolver.text = CogerCadena("back");
+        opcionesVolver.text = CogerCadena("back").ToLower();
         opcionesGeneral.text = CogerCadena("general");
         opcionesGraficos.text = CogerCadena("graphics");
         opcionesTeclado.text = CogerCadena("keyboard");
 
-        opcionesIdiomas.text = CogerCadena("languages");
-        opcionesAyuda.text = CogerCadena("help");
-        opcionesSonido.text = CogerCadena("sound");
-        opcionesSonidoVolumen.text = CogerCadena("soundVolume");
-        opcionesPantalla.text = CogerCadena("screen");
+        opcionesIdiomas.text = CogerCadena("languages").ToLower();
+        opcionesAyuda.text = CogerCadena("help").ToLower();
+        opcionesSonido.text = CogerCadena("sound").ToLower();
+        opcionesSonidoVolumen.text = CogerCadena("soundVolume").ToLower();
+        opcionesPantalla.text = CogerCadena("screen").ToLower();
         TraduccionesDpPantalla();
-        opcionesResolucion.text = CogerCadena("resolution");
+        opcionesResolucion.text = CogerCadena("resolution").ToLower();
 
-        opcionesSombras.text = CogerCadena("shadows");
+        opcionesSombras.text = CogerCadena("shadows").ToLower();
         TraduccionesDpSombras();
-        opcionesSombrasCalidad.text = CogerCadena("shadowsQuality");
-        opcionesTexturas.text = CogerCadena("textures");
-        opcionesAntiAliasing.text = CogerCadena("antiAliasing");
+        opcionesSombrasCalidad.text = CogerCadena("shadowsQuality").ToLower();
+        opcionesTexturas.text = CogerCadena("textures").ToLower();
+        opcionesAntiAliasing.text = CogerCadena("antiAliasing").ToLower();
 
         opcionesTecladoCamara.text = CogerCadena("keyboardCamera");
-        opcionesTecladoIzquierda.text = CogerCadena("keyboardLeft");
-        opcionesTecladoArriba.text = CogerCadena("keyboardUp");
-        opcionesTecladoDerecha.text = CogerCadena("keyboardRight");
-        opcionesTecladoAbajo.text = CogerCadena("keyboardDown");
-        opcionesTecladoRotarIzquierda.text = CogerCadena("keyboardRotateLeft");
-        opcionesTecladoRotarDerecha.text = CogerCadena("keyboardRotateRight");
+        opcionesTecladoIzquierda.text = CogerCadena("keyboardLeft").ToLower();
+        opcionesTecladoArriba.text = CogerCadena("keyboardUp").ToLower();
+        opcionesTecladoDerecha.text = CogerCadena("keyboardRight").ToLower();
+        opcionesTecladoAbajo.text = CogerCadena("keyboardDown").ToLower();
+        opcionesTecladoRotarIzquierda.text = CogerCadena("keyboardRotateLeft").ToLower();
+        opcionesTecladoRotarDerecha.text = CogerCadena("keyboardRotateRight").ToLower();
 
         opcionesTecladoJuego.text = CogerCadena("keyboardGame");
-        opcionesTecladoEnseñarMenu.text = CogerCadena("keyboardShowMenu");
-        opcionesTecladoRotacionEdificioIzquierda.text = CogerCadena("keyboardRotateBuildingLeft");
-        opcionesTecladoRotacionEdificioDerecha.text = CogerCadena("keyboardRotateBuildingRight");
-        opcionesTecladoArrastrarConstruccion.text = CogerCadena("keyboardDragBuilding");
+        opcionesTecladoEnseñarMenu.text = CogerCadena("keyboardShowMenu").ToLower();
+        opcionesTecladoRotacionEdificioIzquierda.text = CogerCadena("keyboardRotateBuildingLeft").ToLower();
+        opcionesTecladoRotacionEdificioDerecha.text = CogerCadena("keyboardRotateBuildingRight").ToLower();
+        opcionesTecladoArrastrarConstruccion.text = CogerCadena("keyboardDragBuilding").ToLower();
 
         ayuda1.text = CogerCadena("help1");
         ayuda2.text = CogerCadena("help2");
