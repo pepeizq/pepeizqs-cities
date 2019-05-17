@@ -5,12 +5,22 @@ public class Camara : MonoBehaviour
 {
     public Canvas canvasJuego;
 
+    [HideInInspector]
     public KeyCode teclaMovimientoIzquierda;
+
+    [HideInInspector]
     public KeyCode teclaMovimientoArriba;
+
+    [HideInInspector]
     public KeyCode teclaMovimientoDerecha;
+
+    [HideInInspector]
     public KeyCode teclaMovimientoAbajo;
 
+    [HideInInspector]
     public KeyCode teclaRotacionIzquierda;
+
+    [HideInInspector]
     public KeyCode teclaRotacionDerecha;
 
     private Vector3 ratonOrigenPunto;

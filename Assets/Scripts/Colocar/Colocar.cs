@@ -199,7 +199,7 @@ public class Colocar : MonoBehaviour
                             if (activarLuz == true)
                             {
                                 luz.intensity = 1.0f;
-                                luz.range = 1.0f;
+                                luz.range = 0.3f;
                             }
                             else
                             {
@@ -231,7 +231,7 @@ public class Colocar : MonoBehaviour
                             if (activarLuz == true)
                             {
                                 luz.intensity = 1.0f;
-                                luz.range = 1.0f;
+                                luz.range = 0.3f;
                             }
                             else
                             {

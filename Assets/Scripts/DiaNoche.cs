@@ -5,22 +5,14 @@ public class DiaNoche : MonoBehaviour {
 
     public Idiomas idioma;
 
-    public Gradient luzColorDia;
-
-    public float maximaIntensidad = 1f;
-    public float minimaIntensidad = 0f;
-    public float minimoPunto = -0.2f;
-
     public Light sol;
+
+    private float segundosDia = 0f;
     public float segundosDiaVelocidad1 = 720f;
     public float segundosDiaVelocidad2 = 360f;
 
-    [Range(0, 1)]
     public float tiempoDia = 0;
     public float tiempoTotalDias = 1;
-
-    [HideInInspector]
-    public float tiempoMultiplicador = 1f;
 
     [SerializeField]
     private Colocar colocar;
@@ -62,8 +54,6 @@ public class DiaNoche : MonoBehaviour {
 
         if (velocidad != 0)
         {
-            float segundosDia = 0f;
-
             if (velocidad == 1)
             {
                 segundosDia = segundosDiaVelocidad1;
@@ -73,9 +63,9 @@ public class DiaNoche : MonoBehaviour {
                 segundosDia = segundosDiaVelocidad2;
             }
 
-            tiempoDia += (Time.deltaTime / segundosDia);
+            tiempoDia += (Time.deltaTime * segundosDia);
 
-            if (tiempoDia > 0.98f)
+            if (tiempoDia > 86400)
             {
                 tiempoDia = 0;
                 tiempoTotalDias += 1;
@@ -110,10 +100,9 @@ public class DiaNoche : MonoBehaviour {
 
     void ActualizarReloj()
     {
-        float hora = tiempoDia / 0.041666666f;
-        float minutos = tiempoDia / 0.00069444444f;
-      
-        minutos = Mathf.Round(minutos) - (Mathf.Round(hora) * 60) + 30;
+        float hora = Mathf.Round((tiempoDia * 24) / 86400);
+        float minutos = Mathf.Round((tiempoDia * 1440) / 86400);
+        minutos = minutos - (hora * 60) + 29;
 
         if (contadorHoras != (int)Mathf.Round(hora))
         {
@@ -141,15 +130,24 @@ public class DiaNoche : MonoBehaviour {
 
     void ActualizarSol()
     {
-        sol.transform.localRotation = Quaternion.Euler((tiempoDia * 360f) - 90, 0, 0);
+        sol.transform.rotation = Quaternion.Euler(new Vector3((tiempoDia - 21600) / 86400 * 360, 0, 0));
 
-        float dot = Mathf.Clamp01((Vector3.Dot(sol.transform.forward, Vector3.down) - minimoPunto) / tiempoDia);
-        float i = ((maximaIntensidad - minimaIntensidad) * dot) + minimaIntensidad;
+        if (tiempoDia < 43200)
+        {
+            sol.intensity = 1 - (43200 - tiempoDia) / 43200;
+        }
+        else
+        {
+            sol.intensity = 1 - ((43200 - tiempoDia) / 43200 * -1);
+        }
 
-        sol.intensity = i;
-        sol.color = luzColorDia.Evaluate(tiempoDia);
+        //float dot = Mathf.Clamp01((Vector3.Dot(sol.transform.forward, Vector3.down) - minimoPunto) / tiempoDia);
+        //float i = ((maximaIntensidad - minimaIntensidad) * dot) + minimaIntensidad;
 
-        RenderSettings.ambientLight = sol.color;
+        //sol.intensity = i;
+        //sol.color = luzColorDia.Evaluate(tiempoDia);
+        //Debug.Log(dot);
+        //RenderSettings.ambientLight = sol.color;
     }
 
     public void VelocidadMarchas(int nuevaVelocidad)

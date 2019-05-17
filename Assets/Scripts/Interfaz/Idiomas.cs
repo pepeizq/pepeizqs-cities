@@ -81,7 +81,7 @@ public class Idiomas : MonoBehaviour {
         menuPrincipalSalir.text = CogerCadena("exitGame").ToLower();
         menuPrincipalAviso.text = CogerCadena("warning");
 
-        opcionesVolver.text = CogerCadena("back").ToLower();
+        opcionesVolver.text = CogerCadena("back");
         opcionesGeneral.text = CogerCadena("general");
         opcionesGraficos.text = CogerCadena("graphics");
         opcionesTeclado.text = CogerCadena("keyboard");
