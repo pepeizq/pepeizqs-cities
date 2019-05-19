@@ -7,26 +7,29 @@ public class DiaNoche : MonoBehaviour {
 
     public Light sol;
 
-    private float segundosDia = 0f;
-    public float segundosDiaVelocidad1 = 720f;
-    public float segundosDiaVelocidad2 = 360f;
+    private float amanecer = 24000;
+    private float atardecer = 60000;
 
-    public float tiempoDia = 0;
+    private float segundosDia = 0f;
+    public float segundosDiaVelocidad1 = 360;
+    public float segundosDiaVelocidad2 = 720;
+
+    public float tiempoDia = 50000;
     public float tiempoTotalDias = 1;
 
     [SerializeField]
-    private Colocar colocar;
+    private Colocar colocar = null;
 
     [SerializeField]
-    private Text dias;
+    private Text dias = null;
 
     [SerializeField]
-    private Text reloj;
+    private Text reloj = null;
 
-    public int velocidad;
+    public int velocidad = 0;
 
     [SerializeField]
-    private Ciudad ciudad;
+    private Ciudad ciudad = null;
 
     private int contadorHoras = 0;
 
@@ -35,6 +38,9 @@ public class DiaNoche : MonoBehaviour {
     public Panel panelPausa;
     public Panel panelPlay1;
     public Panel panelPlay2;
+
+    private float tiempoSemaforos = 0;
+    private int accionSemaforos = 0;
 
     void Update()
     {
@@ -51,7 +57,7 @@ public class DiaNoche : MonoBehaviour {
                 velocidad = 1;
             }
         }
-
+       
         if (velocidad != 0)
         {
             if (velocidad == 1)
@@ -62,7 +68,7 @@ public class DiaNoche : MonoBehaviour {
             {
                 segundosDia = segundosDiaVelocidad2;
             }
-
+   
             tiempoDia += (Time.deltaTime * segundosDia);
 
             if (tiempoDia > 86400)
@@ -73,7 +79,7 @@ public class DiaNoche : MonoBehaviour {
          
             if (encender == true)
             {    
-                if ((tiempoDia > 0.7f && tiempoDia <= 0.99f) || (tiempoDia > 0 && tiempoDia < 0.3f))
+                if (tiempoDia > atardecer || tiempoDia < amanecer)
                 {
                     colocar.ComprobarLuces(encender);
                     encender = false;               
@@ -81,10 +87,24 @@ public class DiaNoche : MonoBehaviour {
             }
             else
             {
-                if (tiempoDia <= 0.7f && tiempoDia >= 0.3f)
+                if (tiempoDia <= atardecer && tiempoDia >= amanecer)
                 {
                     colocar.ComprobarLuces(encender);
                     encender = true;
+                }
+            }
+
+            tiempoSemaforos += (Time.deltaTime * segundosDia);
+
+            if (tiempoSemaforos > 2000)
+            {
+                tiempoSemaforos = 0;
+                colocar.CambiarLucesSemaforos(accionSemaforos);
+                accionSemaforos += 1;
+
+                if (accionSemaforos > 1)
+                {
+                    accionSemaforos = 0;
                 }
             }
         }
@@ -102,7 +122,7 @@ public class DiaNoche : MonoBehaviour {
     {
         float hora = Mathf.Round((tiempoDia * 24) / 86400);
         float minutos = Mathf.Round((tiempoDia * 1440) / 86400);
-        minutos = minutos - (hora * 60) + 29;
+        minutos = minutos - (hora * 60) + 30;
 
         if (contadorHoras != (int)Mathf.Round(hora))
         {
@@ -140,14 +160,6 @@ public class DiaNoche : MonoBehaviour {
         {
             sol.intensity = 1 - ((43200 - tiempoDia) / 43200 * -1);
         }
-
-        //float dot = Mathf.Clamp01((Vector3.Dot(sol.transform.forward, Vector3.down) - minimoPunto) / tiempoDia);
-        //float i = ((maximaIntensidad - minimaIntensidad) * dot) + minimaIntensidad;
-
-        //sol.intensity = i;
-        //sol.color = luzColorDia.Evaluate(tiempoDia);
-        //Debug.Log(dot);
-        //RenderSettings.ambientLight = sol.color;
     }
 
     public void VelocidadMarchas(int nuevaVelocidad)
@@ -181,7 +193,7 @@ public class DiaNoche : MonoBehaviour {
 
     public void ActualizarLuces()
     {
-        if ((tiempoDia > 0.7f && tiempoDia <= 0.99f) || (tiempoDia > 0 && tiempoDia < 0.25f))
+        if (tiempoDia > atardecer || tiempoDia < amanecer)
         {
             encender = true;
         }
@@ -193,7 +205,7 @@ public class DiaNoche : MonoBehaviour {
 
     public bool EstadoEncendidoLuces()
     {
-        if ((tiempoDia > 0.7f && tiempoDia <= 0.99f) || (tiempoDia > 0 && tiempoDia < 0.25f))
+        if (tiempoDia > atardecer || tiempoDia < amanecer)
         {
             return true;
         }

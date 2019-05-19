@@ -86,9 +86,6 @@ public class Juego : MonoBehaviour {
     private bool mantenerEjeX;
     private bool mantenerEjeZ;
 
-    private float tiempoSemaforos;
-    private int accionSemaforos;
-
     private void Start()
     {
         opciones.CargarInicio();
@@ -154,7 +151,7 @@ public class Juego : MonoBehaviour {
         ayuda.Cargar(true);
         ayuda.EstadoCajas(true);
         diaNoche.VelocidadMarchas(1);
-        colocar.CambiarLucesSemaforos(accionSemaforos);
+        colocar.CambiarLucesSemaforos(1);
         colocarPrevio.QuitarTodosEdificios();
         panelEdificios2.Arranque(edificios);
 
@@ -277,21 +274,7 @@ public class Juego : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.F8))
             {
                 InterfazOcultar();
-            }
-
-            tiempoSemaforos += Time.deltaTime;
-
-            if (tiempoSemaforos > 10)
-            {
-                tiempoSemaforos = 0;
-                colocar.CambiarLucesSemaforos(accionSemaforos);
-                accionSemaforos += 1;
-
-                if (accionSemaforos > 1)
-                {
-                    accionSemaforos = 0;
-                }
-            }      
+            }   
         }    
         
         if (panelCoste.gameObject.GetComponent<CanvasGroup>().alpha == 1)
