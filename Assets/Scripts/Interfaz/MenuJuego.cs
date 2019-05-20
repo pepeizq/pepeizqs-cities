@@ -15,10 +15,10 @@ namespace Interfaz
         public AudioSource sonidoBoton;
 
         [SerializeField]
-        private ColocarPrevio colocarPrevio;
+        private ColocarPrevio colocarPrevio = null;
 
         [SerializeField]
-        private DiaNoche diaNoche;
+        private DiaNoche diaNoche = null;
 
         public Panel panelGuardarMenuPrincipal;
         public Panel panelGuardarSalir;

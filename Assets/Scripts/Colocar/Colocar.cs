@@ -5,8 +5,9 @@ public class Colocar : MonoBehaviour
     private int contadorIds;
 
     public Construccion[,] edificios = new Construccion[100, 100];
-
     public Construccion edificioVacio;
+
+    public Vehiculo[] vehiculos;
 
     private void Start()
     {
@@ -245,6 +246,20 @@ public class Colocar : MonoBehaviour
                             luz.range = 0f;
                         }
                     }
+                }
+            }
+        }
+    }
+
+    public void GenerarVehiculos()
+    {
+        foreach (Construccion subedificio in edificios)
+        {
+            if (subedificio != null)
+            {
+                if (subedificio.categoria == 1)
+                {
+
                 }
             }
         }

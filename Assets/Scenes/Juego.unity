@@ -8103,6 +8103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   edificioVacio: {fileID: 114719743380459958, guid: 3f48d98e38cd5db40a4ea6532f118478,
     type: 3}
+  vehiculos: []
 --- !u!4 &491194798
 Transform:
   m_ObjectHideFlags: 0

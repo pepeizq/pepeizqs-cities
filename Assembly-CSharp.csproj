@@ -71,6 +71,7 @@
     <Compile Include="Assets\Scripts\Clases\Construccion2.cs" />
     <Compile Include="Assets\Scripts\Clases\Guardado.cs" />
     <Compile Include="Assets\Scripts\Clases\Panel.cs" />
+    <Compile Include="Assets\Scripts\Clases\Vehiculo.cs" />
     <Compile Include="Assets\Scripts\Colocar\Colocar.cs" />
     <Compile Include="Assets\Scripts\Colocar\ColocarFunciones.cs" />
     <Compile Include="Assets\Scripts\Colocar\ColocarPrevio.cs" />

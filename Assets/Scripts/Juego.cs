@@ -40,19 +40,19 @@ public class Juego : MonoBehaviour {
     public AudioSource sonidoBotonDemoler;
 
     [SerializeField]
-    private Ciudad ciudad;
+    private Ciudad ciudad = null;
 
     [SerializeField]
     public Construccion[] edificios;
 
     [SerializeField]
-    private Colocar colocar;
+    private Colocar colocar = null;
 
     [SerializeField]
-    private ColocarPrevio colocarPrevio;
+    private ColocarPrevio colocarPrevio = null;
 
     [SerializeField]
-    private DiaNoche diaNoche;
+    private DiaNoche diaNoche = null;
 
     private Construccion edificioSeleccionado;
     private List<Construccion2> edificiosSeleccionados = new List<Construccion2>();

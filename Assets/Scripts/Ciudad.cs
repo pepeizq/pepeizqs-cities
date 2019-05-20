@@ -4,19 +4,19 @@ using UnityEngine.UI;
 public class Ciudad : MonoBehaviour {
 
     [SerializeField]
-    private Colocar colocar;
+    private Colocar colocar = null;
 
     [SerializeField]
-    private Text dineroTexto;
+    private Text dineroTexto = null;
 
     [SerializeField]
-    private Text poblacionTexto;
+    private Text poblacionTexto = null;
 
     [SerializeField]
-    private Text trabajoTexto;
+    private Text trabajoTexto = null;
 
     [SerializeField]
-    private Text comidaTexto;
+    private Text comidaTexto = null;
 
     public int Dinero { get; set; }
     public float PoblacionActual { get; set; }

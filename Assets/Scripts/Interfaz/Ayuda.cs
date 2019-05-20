@@ -9,7 +9,7 @@ namespace Interfaz
         public AudioSource sonidoBoton;
 
         [SerializeField]
-        private DiaNoche diaNoche;
+        private DiaNoche diaNoche = null;
 
         public Panel ayuda1;
         public Panel ayuda2;
