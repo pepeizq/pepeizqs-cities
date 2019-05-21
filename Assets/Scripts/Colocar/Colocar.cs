@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using UnityEditor;
+using UnityEngine;
 
 public class Colocar : MonoBehaviour
 {
@@ -106,46 +107,71 @@ public class Colocar : MonoBehaviour
 
     public void ComprobarLucesEdificio(bool encender, Construccion edificio)
     {
-        bool lucesEdificio = true;
+        bool modificar = false;
+        Material material = edificio.gameObject.GetComponent<Renderer>().sharedMaterial;
 
-        if (edificio.categoria == 1)
+        if (encender == true)
         {
-            if (edificio.id == 10)
+            if (edificio.categoria == 1)
             {
-                lucesEdificio = false;
+                Light[] luces = edificio.GetComponentsInChildren<Light>();
+
+                foreach (Light luz in luces)
+                {
+                    luz.intensity = edificio.luzIntesidad;
+                    luz.range = edificio.luzRango;
+                }
             }
-            else if (edificio.id == 11)
+
+            if (edificio.categoria == 2)
             {
-                lucesEdificio = false;
+                modificar = true;
+            }
+            else if (edificio.categoria == 4)
+            {
+                modificar = true;
+            }
+            else if (edificio.categoria == 5)
+            {
+                modificar = true;
+            }
+
+            if (modificar == true)
+            {              
+                material.EnableKeyword("_EMISSION");
+                material.globalIlluminationFlags = MaterialGlobalIlluminationFlags.RealtimeEmissive;
             }
         }
-
-        if (lucesEdificio == true)
+        else
         {
-            Light[] luces = edificio.GetComponentsInChildren<Light>();
-
-            foreach (Light luz in luces)
+            if (edificio.categoria == 1)
             {
-                int azar = Random.Range(0, 100 - edificio.luzProbabilidad);
+                Light[] luces = edificio.GetComponentsInChildren<Light>();
 
-                if (encender == true)
-                {
-                    if ((edificio.luzProbabilidad == 100) || (azar > 50))
-                    {
-                        luz.intensity = edificio.luzIntesidad;
-                        luz.range = edificio.luzRango;
-                    }
-                    else
-                    {
-                        luz.intensity = 0;
-                        luz.range = 0;
-                    }
-                }
-                else
+                foreach (Light luz in luces)
                 {
                     luz.intensity = 0;
                     luz.range = 0;
                 }
+            }
+
+            if (edificio.categoria == 2)
+            {
+                modificar = true;
+            }
+            else if (edificio.categoria == 4)
+            {
+                modificar = true;
+            }
+            else if (edificio.categoria == 5)
+            {
+                modificar = true;
+            }
+
+            if (modificar == true)
+            {
+                material.DisableKeyword("_EMISSION");
+                material.globalIlluminationFlags = MaterialGlobalIlluminationFlags.EmissiveIsBlack;
             }
         }
     }
