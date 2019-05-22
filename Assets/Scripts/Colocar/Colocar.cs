@@ -1,5 +1,4 @@
-﻿using UnityEditor;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Colocar : MonoBehaviour
 {
@@ -114,12 +113,29 @@ public class Colocar : MonoBehaviour
         {
             if (edificio.categoria == 1)
             {
-                Light[] luces = edificio.GetComponentsInChildren<Light>();
+                bool lucesCarretera = true;
 
-                foreach (Light luz in luces)
+                if (edificio.categoria == 1)
                 {
-                    luz.intensity = edificio.luzIntesidad;
-                    luz.range = edificio.luzRango;
+                    if (edificio.id == 10)
+                    {
+                        lucesCarretera = false;
+                    }
+                    else if (edificio.id == 11)
+                    {
+                        lucesCarretera = false;
+                    }
+                }
+
+                if (lucesCarretera == true)
+                {
+                    Light[] luces = edificio.GetComponentsInChildren<Light>();
+
+                    foreach (Light luz in luces)
+                    {
+                        luz.intensity = edificio.luzIntesidad;
+                        luz.range = edificio.luzRango;
+                    }
                 }
             }
 
@@ -146,12 +162,29 @@ public class Colocar : MonoBehaviour
         {
             if (edificio.categoria == 1)
             {
-                Light[] luces = edificio.GetComponentsInChildren<Light>();
+                bool lucesCarretera = true;
 
-                foreach (Light luz in luces)
+                if (edificio.categoria == 1)
                 {
-                    luz.intensity = 0;
-                    luz.range = 0;
+                    if (edificio.id == 10)
+                    {
+                        lucesCarretera = false;
+                    }
+                    else if (edificio.id == 11)
+                    {
+                        lucesCarretera = false;
+                    }
+                }
+
+                if (lucesCarretera == true)
+                {
+                    Light[] luces = edificio.GetComponentsInChildren<Light>();
+
+                    foreach (Light luz in luces)
+                    {
+                        luz.intensity = 0;
+                        luz.range = 0;
+                    }
                 }
             }
 
@@ -285,7 +318,55 @@ public class Colocar : MonoBehaviour
             {
                 if (subedificio.categoria == 1)
                 {
+                    if (subedificio.id == 6)
+                    {
+                        int rotacionAzar = Random.Range(0, 2);
+                        string direccion = null;
+                        Vector3 posicion = subedificio.gameObject.transform.position;
+                        posicion.y = 0.51f;
 
+                        if (subedificio.rotacionColocacion == -270 || subedificio.rotacionColocacion == -90)
+                        {
+                            if (rotacionAzar == 0)
+                            {
+                                posicion.z = posicion.z - 0.15f;
+                                direccion = "x+";
+                            }
+                            else if (rotacionAzar == 1)
+                            {
+                                posicion.z = posicion.z + 0.15f;
+                                direccion = "x-";
+                            }
+                        }
+                        else if (subedificio.rotacionColocacion == -180 || subedificio.rotacionColocacion == 0)
+                        {
+                            if (rotacionAzar == 0)
+                            {
+                                posicion.x = posicion.x + 0.15f;
+                                direccion = "z+";
+                            }
+                            else if (rotacionAzar == 1)
+                            {
+                                posicion.x = posicion.x - 0.15f;
+                                direccion = "z-";
+                            }                               
+                        }
+
+                        int vehiculoAzar = Random.Range(0, vehiculos.Length);
+                   
+                        Vehiculo vehiculo = Instantiate(vehiculos[vehiculoAzar], posicion, Quaternion.identity);
+                        vehiculo.edificios = edificios;
+                        vehiculo.direccion = direccion;
+
+                        if (rotacionAzar == 0)
+                        {
+                            vehiculo.transform.Rotate(Vector3.up, subedificio.rotacionColocacion, Space.World);
+                        }
+                        else if (rotacionAzar == 1)
+                        {
+                            vehiculo.transform.Rotate(Vector3.up, subedificio.rotacionColocacion - 180, Space.World);
+                        }
+                    }
                 }
             }
         }

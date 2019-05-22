@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.3
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.05095721, g: 0.14088947, b: 0.11770644, a: 0.3}
+  m_IndirectSpecularColor: {r: 0.06642774, g: 0.27218333, b: 0.17238843, a: 0.3}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8103,7 +8103,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   edificioVacio: {fileID: 114719743380459958, guid: 3f48d98e38cd5db40a4ea6532f118478,
     type: 3}
-  vehiculos: []
+  vehiculos:
+  - {fileID: 8958639538878980985, guid: 0a24ddab7beb83c45823bc941fe12568, type: 3}
+  - {fileID: 5917271027506907061, guid: 34a970a692a4af349b31d2c1e86839f4, type: 3}
+  - {fileID: 6509296110133243271, guid: 821d0ff660e86914bab474e006a1518e, type: 3}
+  - {fileID: 1787979621934906318, guid: dc8d82560039b174093e36a721e71bea, type: 3}
+  - {fileID: 8533933504271117970, guid: 11accba5b32a4d04288ca87914592caa, type: 3}
 --- !u!4 &491194798
 Transform:
   m_ObjectHideFlags: 0

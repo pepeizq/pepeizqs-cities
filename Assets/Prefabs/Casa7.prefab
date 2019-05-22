@@ -1142,7 +1142,6 @@ MonoBehaviour:
   botonImagen: {fileID: 21300000, guid: 4c529483c72be5d47a5caa908894f30a, type: 3}
   luzIntesidad: 3
   luzRango: 0.5
-  luzProbabilidad: 20
   dimensiones: {x: 1, y: 1}
   rotacionColocacion: -180
   rotacionAdicional: 0

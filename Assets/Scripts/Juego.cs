@@ -152,6 +152,7 @@ public class Juego : MonoBehaviour {
         ayuda.EstadoCajas(true);
         diaNoche.VelocidadMarchas(1);
         colocar.CambiarLucesSemaforos(1);
+        colocar.GenerarVehiculos();
         colocarPrevio.QuitarTodosEdificios();
         panelEdificios2.Arranque(edificios);
 
