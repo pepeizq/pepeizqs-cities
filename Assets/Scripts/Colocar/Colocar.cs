@@ -349,7 +349,7 @@ public class Colocar : MonoBehaviour
                             {
                                 posicion.x = posicion.x - 0.15f;
                                 direccion = "z-";
-                            }                               
+                            }
                         }
 
                         int vehiculoAzar = Random.Range(0, vehiculos.Length);

@@ -7,6 +7,8 @@ public class Vehiculo : MonoBehaviour
     public int categoria;
 
     private float velocidad = 0.02f;
+    private bool movimiento = true;
+    private float contadorParado = 0.0f;
 
     [HideInInspector]
     public string direccion;
@@ -18,6 +20,7 @@ public class Vehiculo : MonoBehaviour
 
     private void Start()
     {
+        movimiento = true;
         carreteras.Clear();
 
         foreach (Construccion subedificio in edificios)
@@ -34,20 +37,7 @@ public class Vehiculo : MonoBehaviour
 
     private void Update()
     {
-        bool mover = false;
-
-        foreach (Construccion carretera in carreteras)
-        {
-            if (direccion == "x+")
-            {
-                if (((transform.position.x + velocidad) >= carretera.gameObject.transform.position.x) && ((transform.position.x + velocidad) <= carretera.gameObject.transform.position.x + 1))
-                {
-                    mover = true;
-                }
-            }
-        }
-        //Debug.Log(mover);
-        if (mover == true)
+        if (movimiento == true)
         {
             if (direccion == "x+")
             {
@@ -65,10 +55,71 @@ public class Vehiculo : MonoBehaviour
             {
                 transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - velocidad);
             }
-        }    
+        }
         else
+        {
+            contadorParado += Time.deltaTime;
+
+            if (contadorParado > 1f)
+            {
+                Destroy(gameObject);
+            }
+        }
+
+        bool destruir = true;
+
+        foreach (Construccion carretera in carreteras)
+        {
+            if (direccion == "x+")
+            {
+                if ((transform.position.x >= carretera.posicionX) && (transform.position.x <= carretera.posicionX + 1) && (transform.position.z <= carretera.posicionZ) && (transform.position.z >= carretera.posicionZ - 1))
+                { 
+                    destruir = false;
+                    break;
+                }
+            }
+            else if (direccion == "z+")
+            {
+                if ((transform.position.z >= carretera.posicionZ) && (transform.position.z <= carretera.posicionZ + 1) && (transform.position.x >= carretera.posicionX) && (transform.position.x <= carretera.posicionX + 1))
+                {
+                    destruir = false;
+                    break;
+                }
+            }
+            else if (direccion == "x-")
+            {
+                if ((transform.position.x <= carretera.posicionX) && (transform.position.x >= carretera.posicionX - 1) && (transform.position.z <= carretera.posicionZ) && (transform.position.z >= carretera.posicionZ + 1))
+                {
+                    destruir = false;
+                    break;
+                }
+            }
+            else if (direccion == "z-")
+            {
+                if ((transform.position.z <= carretera.posicionZ) && (transform.position.z >= carretera.posicionZ - 1) && (transform.position.x <= carretera.posicionX) && (transform.position.x >= carretera.posicionX - 1))
+                {
+                    destruir = false;
+                    break;
+                }
+            }
+        }
+
+        if (destruir == true)
         {
             Destroy(gameObject);
         }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.name.Contains("Coche"))
+        {
+            movimiento = false;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        movimiento = true;
     }
 }
