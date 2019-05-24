@@ -62,7 +62,7 @@ public class Vehiculo : MonoBehaviour
 
             if (contadorParado > 1f)
             {
-                Destroy(gameObject);
+                //Destroy(gameObject);
             }
         }
 
@@ -72,8 +72,17 @@ public class Vehiculo : MonoBehaviour
         {
             if (direccion == "x+")
             {
+                if (carretera.id == 10 || carretera.id == 11)
+                {
+                    if ((int)transform.position.x + 1 == carretera.posicionX)
+                    {
+                        movimiento = false;
+                    }
+                }
+
+
                 if ((transform.position.x >= carretera.posicionX) && (transform.position.x <= carretera.posicionX + 1) && (transform.position.z <= carretera.posicionZ) && (transform.position.z >= carretera.posicionZ - 1))
-                { 
+                {
                     destruir = false;
                     break;
                 }
@@ -88,7 +97,7 @@ public class Vehiculo : MonoBehaviour
             }
             else if (direccion == "x-")
             {
-                if ((transform.position.x <= carretera.posicionX) && (transform.position.x >= carretera.posicionX - 1) && (transform.position.z <= carretera.posicionZ) && (transform.position.z >= carretera.posicionZ + 1))
+                if ((transform.position.x <= carretera.posicionX) && (transform.position.x >= carretera.posicionX - 1) && (transform.position.z >= carretera.posicionZ) && (transform.position.z <= carretera.posicionZ + 1))
                 {
                     destruir = false;
                     break;
@@ -110,11 +119,52 @@ public class Vehiculo : MonoBehaviour
         }
     }
 
+    int destruirColision = 0;
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.name.Contains("Coche"))
         {
-            movimiento = false;
+            Vector3 direccion = (collision.gameObject.transform.position - transform.position).normalized;
+            Ray ray = new Ray(transform.position, direccion);
+
+            if (Physics.Raycast(ray, out RaycastHit rayGolpe))
+            {
+                if (rayGolpe.collider != null)
+                {
+                    Vector3 normal = rayGolpe.normal;
+                    normal = rayGolpe.transform.TransformDirection(normal);
+
+                    if (normal == rayGolpe.transform.forward)
+                    {
+                        movimiento = false;
+                        //destruirColision += 1;
+                    }
+                    else if (normal == -rayGolpe.transform.forward)
+                    {
+                        movimiento = false;
+                        //destruirColision += 1;
+                    }
+                    else if (normal == rayGolpe.transform.right)
+                    {
+                        movimiento = false;
+                        destruirColision += 1;
+                    }
+                    else if (normal == -rayGolpe.transform.right)
+                    {
+                        movimiento = false;
+                        destruirColision += 1;
+                    }
+
+                    if (destruirColision > 0)
+                    {
+                        Destroy(gameObject);
+
+                        Vehiculo otroVehiculo = collision.gameObject.GetComponent<Vehiculo>();
+                        otroVehiculo.movimiento = true;
+                    }
+                }
+            }
         }
     }
 
