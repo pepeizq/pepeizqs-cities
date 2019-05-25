@@ -101,6 +101,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4368888718973576}
   - component: {fileID: 108925619659818518}
+  - component: {fileID: 2390730810039794359}
   m_Layer: 0
   m_Name: LuzRojo2A
   m_TagString: Untagged
@@ -182,6 +183,19 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!65 &2390730810039794359
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1027439012232528}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.4, y: 1, z: 0.1}
+  m_Center: {x: -0.2, y: 0, z: 0.15}
 --- !u!1 &1088982316385886
 GameObject:
   m_ObjectHideFlags: 0
@@ -647,6 +661,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4348117783213158}
   - component: {fileID: 108229414338560132}
+  - component: {fileID: 4951610532676449561}
   m_Layer: 0
   m_Name: LuzRojo3A
   m_TagString: Untagged
@@ -728,6 +743,19 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!65 &4951610532676449561
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1233440386621314}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.1, y: 1, z: 0.4}
+  m_Center: {x: -0.15, y: 0, z: -0.2}
 --- !u!1 &1279827840818640
 GameObject:
   m_ObjectHideFlags: 0
@@ -1375,6 +1403,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4319753705684656}
   - component: {fileID: 108872909344279926}
+  - component: {fileID: 4657431209427993713}
   m_Layer: 0
   m_Name: LuzRojo4A
   m_TagString: Untagged
@@ -1456,6 +1485,19 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!65 &4657431209427993713
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1559746989783876}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.4, y: 1, z: 0.1}
+  m_Center: {x: 0.2, y: 0, z: -0.15}
 --- !u!1 &1744504811651048
 GameObject:
   m_ObjectHideFlags: 0
@@ -1557,6 +1599,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4525387264753216}
   - component: {fileID: 108350244403522980}
+  - component: {fileID: 4185011214327105976}
   m_Layer: 0
   m_Name: LuzRojo1A
   m_TagString: Untagged
@@ -1638,6 +1681,19 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!65 &4185011214327105976
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1762779751609982}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.1, y: 1, z: 0.4}
+  m_Center: {x: 0.15, y: 0, z: 0.2}
 --- !u!1 &1774718893690792
 GameObject:
   m_ObjectHideFlags: 0
@@ -2196,6 +2252,7 @@ GameObject:
   - component: {fileID: 33438729275572140}
   - component: {fileID: 23192693455219764}
   - component: {fileID: 114919772317944148}
+  - component: {fileID: 9194366164785016796}
   m_Layer: 0
   m_Name: Carretera6
   m_TagString: Untagged
@@ -2315,3 +2372,16 @@ MonoBehaviour:
   rotacionAdicional: 0
   posicionX: 0
   posicionZ: 0
+--- !u!65 &9194366164785016796
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1948886890569370}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.05, z: 1}
+  m_Center: {x: 0, y: -0.49, z: 0}

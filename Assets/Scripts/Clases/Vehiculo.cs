@@ -7,7 +7,7 @@ public class Vehiculo : MonoBehaviour
     public int categoria;
 
     private float velocidad = 0.02f;
-    private bool movimiento = true;
+    private bool movimiento;
     private float contadorParado = 0.0f;
 
     [HideInInspector]
@@ -60,7 +60,7 @@ public class Vehiculo : MonoBehaviour
         {
             contadorParado += Time.deltaTime;
 
-            if (contadorParado > 1f)
+            if (contadorParado > 10f)
             {
                 //Destroy(gameObject);
             }
@@ -72,15 +72,6 @@ public class Vehiculo : MonoBehaviour
         {
             if (direccion == "x+")
             {
-                if (carretera.id == 10 || carretera.id == 11)
-                {
-                    if ((int)transform.position.x + 1 == carretera.posicionX)
-                    {
-                        movimiento = false;
-                    }
-                }
-
-
                 if ((transform.position.x >= carretera.posicionX) && (transform.position.x <= carretera.posicionX + 1) && (transform.position.z <= carretera.posicionZ) && (transform.position.z >= carretera.posicionZ - 1))
                 {
                     destruir = false;
@@ -117,59 +108,75 @@ public class Vehiculo : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
 
-    int destruirColision = 0;
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.name.Contains("Coche"))
+        if (luzRojaSemaforo != null)
         {
-            Vector3 direccion = (collision.gameObject.transform.position - transform.position).normalized;
-            Ray ray = new Ray(transform.position, direccion);
-
-            if (Physics.Raycast(ray, out RaycastHit rayGolpe))
+            if (luzRojaSemaforo.intensity == 0f)
             {
-                if (rayGolpe.collider != null)
-                {
-                    Vector3 normal = rayGolpe.normal;
-                    normal = rayGolpe.transform.TransformDirection(normal);
-
-                    if (normal == rayGolpe.transform.forward)
-                    {
-                        movimiento = false;
-                        //destruirColision += 1;
-                    }
-                    else if (normal == -rayGolpe.transform.forward)
-                    {
-                        movimiento = false;
-                        //destruirColision += 1;
-                    }
-                    else if (normal == rayGolpe.transform.right)
-                    {
-                        movimiento = false;
-                        destruirColision += 1;
-                    }
-                    else if (normal == -rayGolpe.transform.right)
-                    {
-                        movimiento = false;
-                        destruirColision += 1;
-                    }
-
-                    if (destruirColision > 0)
-                    {
-                        Destroy(gameObject);
-
-                        Vehiculo otroVehiculo = collision.gameObject.GetComponent<Vehiculo>();
-                        otroVehiculo.movimiento = true;
-                    }
-                }
+                movimiento = true;
+            }
+            else
+            {
+                movimiento = false;
             }
         }
     }
 
-    private void OnCollisionExit(Collision collision)
+    private Construccion carretera;
+    private Light luzRojaSemaforo;
+    private Vehiculo otroVehiculo;
+
+    private void OnTriggerEnter(Collider other)
     {
-        movimiento = true;
+        carretera = other.gameObject.GetComponent<Construccion>();
+
+        if (carretera != null)
+        {
+            Debug.Log(carretera.id);
+        }
+
+        luzRojaSemaforo = other.gameObject.GetComponent<Light>();
+
+        if (luzRojaSemaforo != null)
+        {
+            if (luzRojaSemaforo.intensity == 0f)
+            {
+                movimiento = true;
+            }
+            else
+            {
+                movimiento = false;
+            }
+        }
+
+        otroVehiculo = other.gameObject.GetComponent<Vehiculo>();
+
+        if (otroVehiculo != null)
+        {
+            Destroy(otroVehiculo.gameObject);
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (carretera != null)
+        {
+            carretera = null;
+        }
+
+        if (luzRojaSemaforo != null)
+        {
+            luzRojaSemaforo = null;
+        }
+
+        if (otroVehiculo != null)
+        {
+            otroVehiculo = null;
+        }
     }
 }

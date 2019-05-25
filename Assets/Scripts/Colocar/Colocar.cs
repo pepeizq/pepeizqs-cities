@@ -353,7 +353,7 @@ public class Colocar : MonoBehaviour
                         }
 
                         int vehiculoAzar = Random.Range(0, vehiculos.Length);
-                   
+
                         Vehiculo vehiculo = Instantiate(vehiculos[vehiculoAzar], posicion, Quaternion.identity);
                         vehiculo.edificios = edificios;
                         vehiculo.direccion = direccion;
