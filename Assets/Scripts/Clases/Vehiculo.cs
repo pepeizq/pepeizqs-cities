@@ -17,10 +17,16 @@ public class Vehiculo : MonoBehaviour
     public Construccion[,] edificios;
 
     private List<Construccion> carreteras = new List<Construccion>();
+    private bool poderRotar;
+    private float contadorRotar = 0.0f;
+    private bool enCarretera;
 
     private void Start()
     {
         movimiento = true;
+        poderRotar = true;
+        enCarretera = true;
+
         carreteras.Clear();
 
         foreach (Construccion subedificio in edificios)
@@ -66,48 +72,64 @@ public class Vehiculo : MonoBehaviour
             }
         }
 
-        bool destruir = true;
-
-        foreach (Construccion carretera in carreteras)
+        if (poderRotar == false)
         {
-            if (direccion == "x+")
+            contadorRotar += Time.deltaTime;
+
+            if (contadorRotar > 1.5f)
             {
-                if ((transform.position.x >= carretera.posicionX) && (transform.position.x <= carretera.posicionX + 1) && (transform.position.z <= carretera.posicionZ) && (transform.position.z >= carretera.posicionZ - 1))
-                {
-                    destruir = false;
-                    break;
-                }
-            }
-            else if (direccion == "z+")
-            {
-                if ((transform.position.z >= carretera.posicionZ) && (transform.position.z <= carretera.posicionZ + 1) && (transform.position.x >= carretera.posicionX) && (transform.position.x <= carretera.posicionX + 1))
-                {
-                    destruir = false;
-                    break;
-                }
-            }
-            else if (direccion == "x-")
-            {
-                if ((transform.position.x <= carretera.posicionX) && (transform.position.x >= carretera.posicionX - 1) && (transform.position.z >= carretera.posicionZ) && (transform.position.z <= carretera.posicionZ + 1))
-                {
-                    destruir = false;
-                    break;
-                }
-            }
-            else if (direccion == "z-")
-            {
-                if ((transform.position.z <= carretera.posicionZ) && (transform.position.z >= carretera.posicionZ - 1) && (transform.position.x <= carretera.posicionX) && (transform.position.x >= carretera.posicionX - 1))
-                {
-                    destruir = false;
-                    break;
-                }
+                poderRotar = true;
+                contadorRotar = 0.0f;
             }
         }
 
-        if (destruir == true)
+        if (enCarretera == false)
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
+
+        //bool destruir = true;
+
+        //foreach (Construccion carretera in carreteras)
+        //{
+        //    if (direccion == "x+")
+        //    {
+        //        if ((transform.position.x >= carretera.posicionX) && (transform.position.x <= carretera.posicionX + 1) && (transform.position.z <= carretera.posicionZ) && (transform.position.z >= carretera.posicionZ - 1))
+        //        {
+        //            destruir = false;
+        //            break;
+        //        }
+        //    }
+        //    else if (direccion == "z+")
+        //    {
+        //        if ((transform.position.z >= carretera.posicionZ) && (transform.position.z <= carretera.posicionZ + 1) && (transform.position.x >= carretera.posicionX) && (transform.position.x <= carretera.posicionX + 1))
+        //        {
+        //            destruir = false;
+        //            break;
+        //        }
+        //    }
+        //    else if (direccion == "x-")
+        //    {
+        //        if ((transform.position.x <= carretera.posicionX) && (transform.position.x >= carretera.posicionX - 1) && (transform.position.z >= carretera.posicionZ) && (transform.position.z <= carretera.posicionZ + 1))
+        //        {
+        //            destruir = false;
+        //            break;
+        //        }
+        //    }
+        //    else if (direccion == "z-")
+        //    {
+        //        if ((transform.position.z <= carretera.posicionZ) && (transform.position.z >= carretera.posicionZ - 1) && (transform.position.x <= carretera.posicionX) && (transform.position.x >= carretera.posicionX - 1))
+        //        {
+        //            destruir = false;
+        //            break;
+        //        }
+        //    }
+        //}
+
+        //if (destruir == true)
+        //{
+        //    Destroy(gameObject);
+        //}
 
         if (luzRojaSemaforo != null)
         {
@@ -125,6 +147,7 @@ public class Vehiculo : MonoBehaviour
     private Construccion carretera;
     private Light luzRojaSemaforo;
     private Vehiculo otroVehiculo;
+    private bool otroVehiculoParado;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -132,8 +155,49 @@ public class Vehiculo : MonoBehaviour
 
         if (carretera != null)
         {
-            Debug.Log(carretera.id);
+            if (carretera.categoria == 1)
+            {
+                enCarretera = true;
+            }
         }
+
+        if (poderRotar == true)
+        {
+            if (other.gameObject.name.Contains("ColisionSemaforo"))
+            {
+                int girarAzar = Random.Range(0, 4);
+          
+                if (other.gameObject.name == "ColisionSemaforo1" || other.gameObject.name == "ColisionSemaforo4")
+                {
+                    if (girarAzar == 0)
+                    {
+                        Rotar1();
+                    }              
+                }
+                else if (other.gameObject.name == "ColisionSemaforo2" || other.gameObject.name == "ColisionSemaforo3" || other.gameObject.name == "ColisionSemaforo5" || other.gameObject.name == "ColisionSemaforo6")
+                {
+                    if (girarAzar == 1)
+                    {
+                        Rotar2();
+                    }
+                }
+                else if (other.gameObject.name == "ColisionSemaforo7")
+                {
+                    Rotar2();
+                }
+            }
+
+            if (other.gameObject.name == "ColisionCurva1")
+            {
+                Rotar1();
+            }
+            else if (other.gameObject.name == "ColisionCurva2")
+            {
+                Rotar2();
+            }
+        }
+        
+        //------------------------------------
 
         luzRojaSemaforo = other.gameObject.GetComponent<Light>();
 
@@ -149,11 +213,35 @@ public class Vehiculo : MonoBehaviour
             }
         }
 
+        //------------------------------------
+
+        if (other.gameObject.name.Contains("ParteTrasera"))
+        {
+            if (otroVehiculoParado == true)
+            {
+                movimiento = false;
+            }         
+        }
+
+      
+
         otroVehiculo = other.gameObject.GetComponent<Vehiculo>();
 
         if (otroVehiculo != null)
         {
-            Destroy(otroVehiculo.gameObject);
+            if (otroVehiculo.movimiento == false)
+            {
+                otroVehiculoParado = true;
+            }
+
+            //Destroy(otroVehiculo.gameObject);
+            //if (otroVehiculo.movimiento == true)
+            //{
+            //    if (movimiento == true)
+            //    {
+
+            //    }               
+            //}          
         }
     }
 
@@ -167,6 +255,7 @@ public class Vehiculo : MonoBehaviour
         if (carretera != null)
         {
             carretera = null;
+            enCarretera = false;
         }
 
         if (luzRojaSemaforo != null)
@@ -176,7 +265,84 @@ public class Vehiculo : MonoBehaviour
 
         if (otroVehiculo != null)
         {
+            otroVehiculo = other.gameObject.GetComponent<Vehiculo>();
+
+            if (otroVehiculo != null)
+            {
+                if (otroVehiculo.movimiento == false)
+                {
+                    if (other.gameObject.name.Contains("ParteTrasera"))
+                    {
+                        otroVehiculo.movimiento = true;
+                    }
+                }
+            }
+
             otroVehiculo = null;
+        }
+    }
+
+    private void Rotar1()
+    {
+        if (direccion == "x+")
+        {
+            transform.Rotate(Vector3.up, 90, Space.World);
+            transform.position = new Vector3(transform.position.x + (velocidad * 2), transform.position.y, transform.position.z);
+            direccion = "z-";
+            poderRotar = false;
+        }
+        else if (direccion == "x-")
+        {
+            transform.Rotate(Vector3.up, 90, Space.World);
+            transform.position = new Vector3(transform.position.x - (velocidad * 2), transform.position.y, transform.position.z);
+            direccion = "z+";
+            poderRotar = false;
+        }
+        else if (direccion == "z+")
+        {
+            transform.Rotate(Vector3.up, 90, Space.World);
+            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + (velocidad * 2));
+            direccion = "x+";
+            poderRotar = false;
+        }
+        else if (direccion == "z-")
+        {
+            transform.Rotate(Vector3.up, 90, Space.World);
+            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - (velocidad * 2));
+            direccion = "x-";
+            poderRotar = false;
+        }
+    }
+
+    private void Rotar2()
+    {
+        if (direccion == "x+")
+        {
+            transform.Rotate(Vector3.up, 270, Space.World);
+            transform.position = new Vector3(transform.position.x + (velocidad * 2), transform.position.y, transform.position.z);
+            direccion = "z+";
+            poderRotar = false;
+        }
+        else if (direccion == "x-")
+        {
+            transform.Rotate(Vector3.up, 270, Space.World);
+            transform.position = new Vector3(transform.position.x - (velocidad * 2), transform.position.y, transform.position.z);
+            direccion = "z-";
+            poderRotar = false;
+        }
+        else if (direccion == "z+")
+        {
+            transform.Rotate(Vector3.up, 270, Space.World);
+            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + (velocidad * 2));
+            direccion = "x-";
+            poderRotar = false;
+        }
+        else if (direccion == "z-")
+        {
+            transform.Rotate(Vector3.up, 270, Space.World);
+            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - (velocidad * 2));
+            direccion = "x+";
+            poderRotar = false;
         }
     }
 }

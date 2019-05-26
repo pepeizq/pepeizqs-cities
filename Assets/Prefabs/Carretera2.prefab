@@ -194,6 +194,7 @@ GameObject:
   - component: {fileID: 33745790254222436}
   - component: {fileID: 23473960572918496}
   - component: {fileID: 114272689839897104}
+  - component: {fileID: 8420003478189977869}
   m_Layer: 0
   m_Name: Carretera2
   m_TagString: Untagged
@@ -291,3 +292,16 @@ MonoBehaviour:
   rotacionAdicional: 0
   posicionX: 0
   posicionZ: 0
+--- !u!65 &8420003478189977869
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1583464564810980}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.05, z: 1}
+  m_Center: {x: 0, y: -0.49, z: 0}

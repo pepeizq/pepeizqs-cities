@@ -241,9 +241,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6740800409360656472}
   - component: {fileID: 5917271027506907061}
-  - component: {fileID: 5225589552708249997}
-  - component: {fileID: 2783156704392511136}
-  - component: {fileID: 1061263078915749113}
+  - component: {fileID: 2984825380338809682}
+  - component: {fileID: -2481121209113202496}
+  - component: {fileID: 8091211458810345869}
   m_Layer: 0
   m_Name: Coche2
   m_TagString: Untagged
@@ -284,7 +284,7 @@ MonoBehaviour:
   id: 1
   categoria: 0
   direccion: 
---- !u!65 &5225589552708249997
+--- !u!65 &2984825380338809682
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -297,7 +297,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.5, y: 2, z: 4}
   m_Center: {x: 0, y: 1, z: 0}
---- !u!65 &2783156704392511136
+--- !u!65 &-2481121209113202496
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -310,7 +310,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.5, y: 2, z: 4}
   m_Center: {x: 0, y: 1, z: 0}
---- !u!54 &1061263078915749113
+--- !u!54 &8091211458810345869
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
