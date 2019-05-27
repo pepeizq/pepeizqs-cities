@@ -1,17 +1,24 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class Colocar : MonoBehaviour
 {
-    private int contadorIds;
+    private int contadorIdsConstrucciones;
 
     public Construccion[,] edificios = new Construccion[100, 100];
     public Construccion edificioVacio;
 
     public Vehiculo[] vehiculos;
+    private List<Vehiculo> vehiculosGenerados;
+    private int contadorIdsVehiculos;
 
     private void Start()
     {
-        contadorIds = 0;
+        contadorIdsConstrucciones = 0;
+        contadorIdsVehiculos = 0;
+
+        vehiculosGenerados = new List<Vehiculo>();
+        GenerarVehiculos();
     }
 
     public void AñadirConstruccion(Construccion edificio, Vector3 posicion, bool encender)
@@ -26,8 +33,8 @@ public class Colocar : MonoBehaviour
         edificioFinal.transform.Rotate(Vector3.up, edificio.rotacionAdicional + edificio.rotacionColocacion, Space.World);
         edificioFinal.posicionX = (int)posicion.x;
         edificioFinal.posicionZ = (int)posicion.z;
-        edificioFinal.id2 = contadorIds;
-        contadorIds += 1;
+        edificioFinal.id2 = contadorIdsConstrucciones;
+        contadorIdsConstrucciones += 1;
 
         edificioVacio.id2 = edificioFinal.id2;
 
@@ -312,13 +319,41 @@ public class Colocar : MonoBehaviour
 
     public void GenerarVehiculos()
     {
+        int cantidadEdificios = 0;
+
+        foreach (Construccion subedificio in edificios)
+        {
+            if (subedificio != null)
+            {
+                if (subedificio.categoria == 2)
+                {
+                    cantidadEdificios += 1;
+                }
+            }
+        }
+
+        int i = 0;
+        while (i < cantidadEdificios)
+        {
+            GenerarVehiculo();
+            i += 1;
+        }
+    }
+
+    private void Update()
+    {
+        
+    }
+
+    public void GenerarVehiculo()
+    {
         foreach (Construccion subedificio in edificios)
         {
             if (subedificio != null)
             {
                 if (subedificio.categoria == 1)
                 {
-                    if (subedificio.id == 6)
+                    if (subedificio.id != 10 && subedificio.id != 11 && subedificio.id != 13 && subedificio.id != 14)
                     {
                         int rotacionAzar = Random.Range(0, 2);
                         string direccion = null;
@@ -357,6 +392,9 @@ public class Colocar : MonoBehaviour
                         Vehiculo vehiculo = Instantiate(vehiculos[0], posicion, Quaternion.identity);
                         vehiculo.edificios = edificios;
                         vehiculo.direccion = direccion;
+                        vehiculo.id2 = contadorIdsVehiculos;
+
+                        contadorIdsVehiculos += 1;
 
                         if (rotacionAzar == 0)
                         {
@@ -366,6 +404,9 @@ public class Colocar : MonoBehaviour
                         {
                             vehiculo.transform.Rotate(Vector3.up, subedificio.rotacionColocacion - 180, Space.World);
                         }
+
+                        vehiculosGenerados.Add(vehiculo);
+                        break;
                     }
                 }
             }

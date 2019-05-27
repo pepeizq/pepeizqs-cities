@@ -3,7 +3,13 @@ using UnityEngine;
 
 public class Vehiculo : MonoBehaviour
 {
+    public bool estado;
+
     public int id;
+
+    [HideInInspector]
+    public int id2;
+
     public int categoria;
 
     private float velocidad = 0.02f;
@@ -19,13 +25,12 @@ public class Vehiculo : MonoBehaviour
     private List<Construccion> carreteras = new List<Construccion>();
     private bool poderRotar;
     private float contadorRotar = 0.0f;
-    private bool enCarretera;
 
     private void Start()
     {
+        estado = true;
         movimiento = true;
         poderRotar = true;
-        enCarretera = true;
 
         carreteras.Clear();
 
@@ -83,53 +88,49 @@ public class Vehiculo : MonoBehaviour
             }
         }
 
-        if (enCarretera == false)
+        bool destruir = true;
+
+        foreach (Construccion carretera in carreteras)
         {
-            //Destroy(gameObject);
+            if (direccion == "x+")
+            {
+                if ((transform.position.x >= carretera.posicionX) && (transform.position.x <= carretera.posicionX + 1) && (transform.position.z <= carretera.posicionZ) && (transform.position.z >= carretera.posicionZ - 1))
+                {
+                    destruir = false;
+                    break;
+                }
+            }
+            else if (direccion == "z+")
+            {
+                if ((transform.position.z >= carretera.posicionZ) && (transform.position.z <= carretera.posicionZ + 1) && (transform.position.x >= carretera.posicionX) && (transform.position.x <= carretera.posicionX + 1))
+                {
+                    destruir = false;
+                    break;
+                }
+            }
+            else if (direccion == "x-")
+            {
+                if ((transform.position.x <= carretera.posicionX) && (transform.position.x >= carretera.posicionX - 1) && (transform.position.z >= carretera.posicionZ) && (transform.position.z <= carretera.posicionZ + 1))
+                {
+                    destruir = false;
+                    break;
+                }
+            }
+            else if (direccion == "z-")
+            {
+                if ((transform.position.z <= carretera.posicionZ) && (transform.position.z >= carretera.posicionZ - 1) && (transform.position.x <= carretera.posicionX) && (transform.position.x >= carretera.posicionX - 1))
+                {
+                    destruir = false;
+                    break;
+                }
+            }
         }
 
-        //bool destruir = true;
-
-        //foreach (Construccion carretera in carreteras)
-        //{
-        //    if (direccion == "x+")
-        //    {
-        //        if ((transform.position.x >= carretera.posicionX) && (transform.position.x <= carretera.posicionX + 1) && (transform.position.z <= carretera.posicionZ) && (transform.position.z >= carretera.posicionZ - 1))
-        //        {
-        //            destruir = false;
-        //            break;
-        //        }
-        //    }
-        //    else if (direccion == "z+")
-        //    {
-        //        if ((transform.position.z >= carretera.posicionZ) && (transform.position.z <= carretera.posicionZ + 1) && (transform.position.x >= carretera.posicionX) && (transform.position.x <= carretera.posicionX + 1))
-        //        {
-        //            destruir = false;
-        //            break;
-        //        }
-        //    }
-        //    else if (direccion == "x-")
-        //    {
-        //        if ((transform.position.x <= carretera.posicionX) && (transform.position.x >= carretera.posicionX - 1) && (transform.position.z >= carretera.posicionZ) && (transform.position.z <= carretera.posicionZ + 1))
-        //        {
-        //            destruir = false;
-        //            break;
-        //        }
-        //    }
-        //    else if (direccion == "z-")
-        //    {
-        //        if ((transform.position.z <= carretera.posicionZ) && (transform.position.z >= carretera.posicionZ - 1) && (transform.position.x <= carretera.posicionX) && (transform.position.x >= carretera.posicionX - 1))
-        //        {
-        //            destruir = false;
-        //            break;
-        //        }
-        //    }
-        //}
-
-        //if (destruir == true)
-        //{
-        //    Destroy(gameObject);
-        //}
+        if (destruir == true)
+        {
+            Destroy(gameObject);
+            estado = false;
+        }
 
         if (luzRojaSemaforo != null)
         {
@@ -147,19 +148,12 @@ public class Vehiculo : MonoBehaviour
     private Construccion carretera;
     private Light luzRojaSemaforo;
     private Vehiculo otroVehiculo;
-    private bool otroVehiculoParado;
 
     private void OnTriggerEnter(Collider other)
     {
         carretera = other.gameObject.GetComponent<Construccion>();
 
-        if (carretera != null)
-        {
-            if (carretera.categoria == 1)
-            {
-                enCarretera = true;
-            }
-        }
+        //------------------------------------
 
         if (poderRotar == true)
         {
@@ -214,34 +208,13 @@ public class Vehiculo : MonoBehaviour
         }
 
         //------------------------------------
-
-        if (other.gameObject.name.Contains("ParteTrasera"))
-        {
-            if (otroVehiculoParado == true)
-            {
-                movimiento = false;
-            }         
-        }
-
-      
-
+     
         otroVehiculo = other.gameObject.GetComponent<Vehiculo>();
 
         if (otroVehiculo != null)
         {
-            if (otroVehiculo.movimiento == false)
-            {
-                otroVehiculoParado = true;
-            }
-
-            //Destroy(otroVehiculo.gameObject);
-            //if (otroVehiculo.movimiento == true)
-            //{
-            //    if (movimiento == true)
-            //    {
-
-            //    }               
-            //}          
+            Destroy(otroVehiculo.gameObject);
+            estado = false;
         }
     }
 
@@ -255,7 +228,6 @@ public class Vehiculo : MonoBehaviour
         if (carretera != null)
         {
             carretera = null;
-            enCarretera = false;
         }
 
         if (luzRojaSemaforo != null)
@@ -265,19 +237,6 @@ public class Vehiculo : MonoBehaviour
 
         if (otroVehiculo != null)
         {
-            otroVehiculo = other.gameObject.GetComponent<Vehiculo>();
-
-            if (otroVehiculo != null)
-            {
-                if (otroVehiculo.movimiento == false)
-                {
-                    if (other.gameObject.name.Contains("ParteTrasera"))
-                    {
-                        otroVehiculo.movimiento = true;
-                    }
-                }
-            }
-
             otroVehiculo = null;
         }
     }
