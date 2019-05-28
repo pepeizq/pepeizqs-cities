@@ -116,6 +116,25 @@ public class DiaNoche : MonoBehaviour {
 
         ActualizarReloj();
         ActualizarSol();
+
+        //-----------------------------------
+
+        if (colocar.vehiculosGenerados != null)
+        {
+            if (colocar.vehiculosGenerados.Count > 0)
+            {
+                int i = 0;
+                while (i < colocar.vehiculosGenerados.Count)
+                {
+                    if (colocar.vehiculosGenerados[i].estado == false)
+                    {
+                        colocar.vehiculosGenerados.RemoveAt(i);
+                        colocar.GenerarVehiculo();
+                    }
+                    i += 1;
+                }
+            }
+        }
     }
 
     void ActualizarReloj()

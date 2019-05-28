@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Vehiculo : MonoBehaviour
 {
+    [HideInInspector]
     public bool estado;
 
     public int id;
@@ -88,49 +89,49 @@ public class Vehiculo : MonoBehaviour
             }
         }
 
-        bool destruir = true;
+        //bool destruir = true;
 
-        foreach (Construccion carretera in carreteras)
-        {
-            if (direccion == "x+")
-            {
-                if ((transform.position.x >= carretera.posicionX) && (transform.position.x <= carretera.posicionX + 1) && (transform.position.z <= carretera.posicionZ) && (transform.position.z >= carretera.posicionZ - 1))
-                {
-                    destruir = false;
-                    break;
-                }
-            }
-            else if (direccion == "z+")
-            {
-                if ((transform.position.z >= carretera.posicionZ) && (transform.position.z <= carretera.posicionZ + 1) && (transform.position.x >= carretera.posicionX) && (transform.position.x <= carretera.posicionX + 1))
-                {
-                    destruir = false;
-                    break;
-                }
-            }
-            else if (direccion == "x-")
-            {
-                if ((transform.position.x <= carretera.posicionX) && (transform.position.x >= carretera.posicionX - 1) && (transform.position.z >= carretera.posicionZ) && (transform.position.z <= carretera.posicionZ + 1))
-                {
-                    destruir = false;
-                    break;
-                }
-            }
-            else if (direccion == "z-")
-            {
-                if ((transform.position.z <= carretera.posicionZ) && (transform.position.z >= carretera.posicionZ - 1) && (transform.position.x <= carretera.posicionX) && (transform.position.x >= carretera.posicionX - 1))
-                {
-                    destruir = false;
-                    break;
-                }
-            }
-        }
+        //foreach (Construccion carretera in carreteras)
+        //{
+        //    if (direccion == "x+")
+        //    {
+        //        if ((transform.position.x >= carretera.posicionX) && (transform.position.x <= carretera.posicionX + 1) && (transform.position.z <= carretera.posicionZ) && (transform.position.z >= carretera.posicionZ - 1))
+        //        {
+        //            destruir = false;
+        //            break;
+        //        }
+        //    }
+        //    else if (direccion == "z+")
+        //    {
+        //        if ((transform.position.z >= carretera.posicionZ) && (transform.position.z <= carretera.posicionZ + 1) && (transform.position.x >= carretera.posicionX) && (transform.position.x <= carretera.posicionX + 1))
+        //        {
+        //            destruir = false;
+        //            break;
+        //        }
+        //    }
+        //    else if (direccion == "x-")
+        //    {
+        //        if ((transform.position.x <= carretera.posicionX) && (transform.position.x >= carretera.posicionX - 1) && (transform.position.z >= carretera.posicionZ) && (transform.position.z <= carretera.posicionZ + 1))
+        //        {
+        //            destruir = false;
+        //            break;
+        //        }
+        //    }
+        //    else if (direccion == "z-")
+        //    {
+        //        if ((transform.position.z <= carretera.posicionZ) && (transform.position.z >= carretera.posicionZ - 1) && (transform.position.x >= carretera.posicionX) && (transform.position.x >= carretera.posicionX + 1))
+        //        {
+        //            destruir = false;
+        //            break;
+        //        }
+        //    }
+        //}
 
-        if (destruir == true)
-        {
-            Destroy(gameObject);
-            estado = false;
-        }
+        //if (destruir == true)
+        //{
+        //    Destroy(gameObject);
+        //    estado = false;
+        //}
 
         if (luzRojaSemaforo != null)
         {
@@ -304,4 +305,5 @@ public class Vehiculo : MonoBehaviour
             poderRotar = false;
         }
     }
+  
 }

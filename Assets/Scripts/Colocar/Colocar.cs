@@ -5,20 +5,22 @@ public class Colocar : MonoBehaviour
 {
     private int contadorIdsConstrucciones;
 
+    [HideInInspector]
     public Construccion[,] edificios = new Construccion[100, 100];
+
     public Construccion edificioVacio;
 
     public Vehiculo[] vehiculos;
-    private List<Vehiculo> vehiculosGenerados;
+
+    [HideInInspector]
+    public List<Vehiculo> vehiculosGenerados = new List<Vehiculo>();
+
     private int contadorIdsVehiculos;
 
     private void Start()
     {
         contadorIdsConstrucciones = 0;
-        contadorIdsVehiculos = 0;
-
-        vehiculosGenerados = new List<Vehiculo>();
-        GenerarVehiculos();
+        contadorIdsVehiculos = 0;      
     }
 
     public void AñadirConstruccion(Construccion edificio, Vector3 posicion, bool encender)
@@ -332,84 +334,86 @@ public class Colocar : MonoBehaviour
             }
         }
 
+        cantidadEdificios = cantidadEdificios / 2;
+
         int i = 0;
         while (i < cantidadEdificios)
         {
             GenerarVehiculo();
             i += 1;
-        }
-    }
-
-    private void Update()
-    {
-        
+        }   
     }
 
     public void GenerarVehiculo()
     {
+        List<Construccion> carreteras = new List<Construccion>();
+
         foreach (Construccion subedificio in edificios)
         {
             if (subedificio != null)
             {
                 if (subedificio.categoria == 1)
                 {
-                    if (subedificio.id != 10 && subedificio.id != 11 && subedificio.id != 13 && subedificio.id != 14)
+                    if (subedificio.id != 7 && subedificio.id != 10 && subedificio.id != 11 && subedificio.id != 13 && subedificio.id != 14)
                     {
-                        int rotacionAzar = Random.Range(0, 2);
-                        string direccion = null;
-                        Vector3 posicion = subedificio.gameObject.transform.position;
-                        posicion.y = 0.51f;
-
-                        if (subedificio.rotacionColocacion == -270 || subedificio.rotacionColocacion == -90)
-                        {
-                            if (rotacionAzar == 0)
-                            {
-                                posicion.z = posicion.z - 0.15f;
-                                direccion = "x+";
-                            }
-                            else if (rotacionAzar == 1)
-                            {
-                                posicion.z = posicion.z + 0.15f;
-                                direccion = "x-";
-                            }
-                        }
-                        else if (subedificio.rotacionColocacion == -180 || subedificio.rotacionColocacion == 0)
-                        {
-                            if (rotacionAzar == 0)
-                            {
-                                posicion.x = posicion.x + 0.15f;
-                                direccion = "z+";
-                            }
-                            else if (rotacionAzar == 1)
-                            {
-                                posicion.x = posicion.x - 0.15f;
-                                direccion = "z-";
-                            }
-                        }
-
-                        int vehiculoAzar = Random.Range(0, vehiculos.Length);
-
-                        Vehiculo vehiculo = Instantiate(vehiculos[0], posicion, Quaternion.identity);
-                        vehiculo.edificios = edificios;
-                        vehiculo.direccion = direccion;
-                        vehiculo.id2 = contadorIdsVehiculos;
-
-                        contadorIdsVehiculos += 1;
-
-                        if (rotacionAzar == 0)
-                        {
-                            vehiculo.transform.Rotate(Vector3.up, subedificio.rotacionColocacion, Space.World);
-                        }
-                        else if (rotacionAzar == 1)
-                        {
-                            vehiculo.transform.Rotate(Vector3.up, subedificio.rotacionColocacion - 180, Space.World);
-                        }
-
-                        vehiculosGenerados.Add(vehiculo);
-                        break;
+                        carreteras.Add(subedificio);
                     }
                 }
             }
         }
+
+        int azarCarretera = Random.Range(0, carreteras.Count);
+
+        int rotacionAzar = Random.Range(0, 2);
+        string direccion = null;
+        Vector3 posicion = carreteras[azarCarretera].gameObject.transform.position;
+        posicion.y = 0.51f;
+
+        if (carreteras[azarCarretera].rotacionColocacion == -270 || carreteras[azarCarretera].rotacionColocacion == -90)
+        {
+            if (rotacionAzar == 0)
+            {
+                posicion.z = posicion.z - 0.15f;
+                direccion = "x+";
+            }
+            else if (rotacionAzar == 1)
+            {
+                posicion.z = posicion.z + 0.15f;
+                direccion = "x-";
+            }
+        }
+        else if (carreteras[azarCarretera].rotacionColocacion == -180 || carreteras[azarCarretera].rotacionColocacion == 0)
+        {
+            if (rotacionAzar == 0)
+            {
+                posicion.x = posicion.x + 0.15f;
+                direccion = "z+";
+            }
+            else if (rotacionAzar == 1)
+            {
+                posicion.x = posicion.x - 0.15f;
+                direccion = "z-";
+            }
+        }
+
+        int vehiculoAzar = Random.Range(0, vehiculos.Length);
+
+        Vehiculo vehiculo = Instantiate(vehiculos[vehiculoAzar], posicion, Quaternion.identity);
+        vehiculo.edificios = edificios;
+        vehiculo.direccion = direccion;
+        vehiculo.id2 = contadorIdsVehiculos;
+
+        contadorIdsVehiculos += 1;
+
+        if (rotacionAzar == 0)
+        {
+            vehiculo.transform.Rotate(Vector3.up, carreteras[azarCarretera].rotacionColocacion, Space.World);
+        }
+        else if (rotacionAzar == 1)
+        {
+            vehiculo.transform.Rotate(Vector3.up, carreteras[azarCarretera].rotacionColocacion - 180, Space.World);
+        }
+
+        vehiculosGenerados.Add(vehiculo);
     }
 }

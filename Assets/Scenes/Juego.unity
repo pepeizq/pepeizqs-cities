@@ -8109,6 +8109,7 @@ MonoBehaviour:
   - {fileID: 6509296110133243271, guid: 821d0ff660e86914bab474e006a1518e, type: 3}
   - {fileID: 1787979621934906318, guid: dc8d82560039b174093e36a721e71bea, type: 3}
   - {fileID: 8533933504271117970, guid: 11accba5b32a4d04288ca87914592caa, type: 3}
+  vehiculosGenerados: []
 --- !u!4 &491194798
 Transform:
   m_ObjectHideFlags: 0
@@ -27496,7 +27497,7 @@ MeshRenderer:
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 2
+  m_ReflectionProbeUsage: 3
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -27510,11 +27511,11 @@ MeshRenderer:
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
+  m_ImportantGI: 1
   m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxDistance: 0.1
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0

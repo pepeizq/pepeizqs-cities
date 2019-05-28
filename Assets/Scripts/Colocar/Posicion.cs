@@ -6,9 +6,8 @@ public static class Posicion
     public static Vector3 Raton()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out RaycastHit hit))
         {
             if (!EventSystem.current.IsPointerOverGameObject())
             {

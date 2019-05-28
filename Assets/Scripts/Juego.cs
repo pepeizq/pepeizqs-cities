@@ -110,6 +110,7 @@ public class Juego : MonoBehaviour {
         {
             botonCargarPartida.interactable = false;
             arbolesInicio.Colocar(colocar);
+            diaNoche.tiempoDia = 24000;
         }            
     }
 
@@ -122,7 +123,6 @@ public class Juego : MonoBehaviour {
             File.Delete(Application.persistentDataPath + "/guardado.save");
         }
 
-        diaNoche.tiempoDia = 0.4f;
         //ciudad.Dinero = 2000000;
         ciudad.Dinero = 200;
         ciudad.PoblacionActual = 0f;
@@ -250,7 +250,7 @@ public class Juego : MonoBehaviour {
                         {
                             colocarPrevio.QuitarEdificio(edificio.edificio, edificio.posicion);
                         }
-
+                    
                         edificiosSeleccionados.Clear();
                         ColocarEdificioPrevio(false, 0);
                     }
@@ -479,10 +479,7 @@ public class Juego : MonoBehaviour {
 
                         panelCoste.gameObject.GetComponent<CanvasGroup>().alpha = 1;
                         mensajeCoste.text = string.Format("-{0} €", edificioSeleccionado.coste);
-                    }
 
-                    if (colocar.ComprobarConstruccionesPosicion(edificioSeleccionado, gridPosicion) == null)
-                    {
                         if (colocarPrevio.ComprobarConstruccionesPosicion(edificioSeleccionado, gridPosicion) == null)
                         {
                             colocarPrevio.AñadirConstruccion(edificioSeleccionado, gridPosicion);
@@ -508,6 +505,7 @@ public class Juego : MonoBehaviour {
 
         colocarPrevio.QuitarTodosEdificios();
         menuJuego.CerrarPanel();
+        panelCoste.gameObject.GetComponent<CanvasGroup>().alpha = 0;
 
         if (demolerActivar == true)
         {

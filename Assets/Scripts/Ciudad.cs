@@ -92,8 +92,14 @@ public class Ciudad : MonoBehaviour {
             }
         }
 
-        float porcentajeMontante = (100 * TrabajosActual) / TrabajosTope;
-        porcentajeMontante = porcentajeMontante / 100;
+        float porcentajeMontante = 0;
+
+        if (TrabajosTope > 0)
+        {
+            porcentajeMontante = (100 * TrabajosActual) / TrabajosTope;
+            porcentajeMontante = porcentajeMontante / 100;
+        }
+    
         float montanteFinal = montante * porcentajeMontante;
 
         if (TrabajosActual >= 0)
