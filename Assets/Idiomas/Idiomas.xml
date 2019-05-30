@@ -38,7 +38,7 @@
         <string name="keyboardRotateBuildingLeft">Rotate Building Left</string>
         <string name="keyboardRotateBuildingRight">Rotate Building Right</string>
         <string name="keyboardDragBuilding">Drag Building</string>
-        <string name="help1">With the keys W, A, S, D you can move around the map, and if you want to zoom, use the mouse wheel</string>
+        <string name="help1">With these keys you can move around the map, and if you want to zoom, use the mouse wheel</string>
         <string name="help2">You can also move it by pressing the button on the mouse wheel and moving the mouse</string>
         <string name="help3">You can play/stop the time when you want clicking on this button or Space</string>
         <string name="help4">You can rotate the camera by clicking on these two buttons or using F1 and F2</string>
@@ -95,7 +95,7 @@
         <string name="keyboardRotateBuildingLeft">Rotación Edificio Izquierda</string>
         <string name="keyboardRotateBuildingRight">Rotación Edificio Derecha</string>
         <string name="keyboardDragBuilding">Arrastrar Construcción</string>
-        <string name="help1">Con las teclas W,A,S,D puedes moverte por el mapa, y si quieres hacer zoom usa la rueda del ratón</string>
+        <string name="help1">Con estas teclas puedes moverte por el mapa, y si quieres hacer zoom usa la rueda del ratón</string>
         <string name="help2">También te puedes mover pulsando el botón de la rueda del ratón y desplazando el ratón</string>
         <string name="help3">Puedes iniciar/parar el tiempo cuando quieras pulsando este botón o Espacio</string>
         <string name="help4">Puedes rotar la cámara pulsando en estos dos botones o usando F1 y F2</string>

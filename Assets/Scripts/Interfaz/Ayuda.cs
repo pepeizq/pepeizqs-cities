@@ -21,6 +21,7 @@ namespace Interfaz
         {
             if (mostrar == true)
             {
+                CargarTeclas();
                 if (PlayerPrefs.GetString("ayuda") == "true")
                 {
                     ayuda1.GetComponent<CanvasGroup>().alpha = 1;
@@ -35,6 +36,11 @@ namespace Interfaz
                     ayuda1.gameObject.SetActive(false);
                 }
             }
+        }
+
+        public void CargarTeclas()
+        {
+         
         }
 
         public void EstadoCajas(bool estado)
