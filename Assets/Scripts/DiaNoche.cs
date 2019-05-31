@@ -134,6 +134,10 @@ public class DiaNoche : MonoBehaviour {
                     i += 1;
                 }
             }
+            else if (colocar.vehiculosGenerados.Count == 0)
+            {
+                colocar.GenerarVehiculo();
+            }
         }
     }
 

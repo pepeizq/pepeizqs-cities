@@ -123,8 +123,8 @@ public class Juego : MonoBehaviour {
             File.Delete(Application.persistentDataPath + "/guardado.save");
         }
 
-        //ciudad.Dinero = 2000000;
-        ciudad.Dinero = 200;
+        ciudad.Dinero = 2000000;
+        //ciudad.Dinero = 200;
         ciudad.PoblacionActual = 0f;
         ciudad.PoblacionTope = 0f;
         ciudad.TrabajosActual = 0;

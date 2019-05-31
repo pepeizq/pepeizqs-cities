@@ -70,6 +70,7 @@ public class Vehiculo : MonoBehaviour
         }
         else
         {
+            contadorCarretera = 0;
             contadorParado += Time.deltaTime;
 
             if (contadorParado > 10f)
@@ -89,49 +90,71 @@ public class Vehiculo : MonoBehaviour
             }
         }
 
-        bool destruir = true;
+        //--------------------------------------------------
 
-        foreach (Construccion carretera in carreteras)
+        //bool destruir = true;
+
+        //foreach (Construccion carretera in carreteras)
+        //{
+        //    if (direccion == "x+")
+        //    {
+        //        if ((transform.position.x >= carretera.posicionX) && (transform.position.x <= carretera.posicionX + 1) && (transform.position.z <= carretera.posicionZ) && (transform.position.z >= carretera.posicionZ - 1))
+        //        {
+        //            destruir = false;
+        //            break;
+        //        }
+        //    }
+        //    else if (direccion == "z+")
+        //    {
+        //        if ((transform.position.z >= carretera.posicionZ) && (transform.position.z <= carretera.posicionZ + 1) && (transform.position.x >= carretera.posicionX) && (transform.position.x <= carretera.posicionX + 1))
+        //        {
+        //            destruir = false;
+        //            break;
+        //        }
+        //    }
+        //    else if (direccion == "x-")
+        //    {
+        //        if ((transform.position.x <= carretera.posicionX) && (transform.position.x >= carretera.posicionX - 1) && (transform.position.z >= carretera.posicionZ) && (transform.position.z <= carretera.posicionZ + 1))
+        //        {
+        //            destruir = false;
+        //            break;
+        //        }
+        //    }
+        //    else if (direccion == "z-")
+        //    {
+        //        if ((transform.position.z <= carretera.posicionZ) && (transform.position.z >= carretera.posicionZ - 1) && (transform.position.x >= carretera.posicionX) && (transform.position.x >= carretera.posicionX + 1))
+        //        {
+        //            destruir = false;
+        //            break;
+        //        }
+        //    }
+        //}
+
+        //if (destruir == true)
+        //{
+        //    Destroy(gameObject);
+        //    estado = false;
+        //}
+
+        if (enCarretera == false)
         {
-            if (direccion == "x+")
+            contadorCarretera += Time.deltaTime;
+
+            if (contadorCarretera > 2f && enCarretera == false)
             {
-                if ((transform.position.x >= carretera.posicionX) && (transform.position.x <= carretera.posicionX + 1) && (transform.position.z <= carretera.posicionZ) && (transform.position.z >= carretera.posicionZ - 1))
-                {
-                    destruir = false;
-                    break;
-                }
-            }
-            else if (direccion == "z+")
-            {
-                if ((transform.position.z >= carretera.posicionZ) && (transform.position.z <= carretera.posicionZ + 1) && (transform.position.x >= carretera.posicionX) && (transform.position.x <= carretera.posicionX + 1))
-                {
-                    destruir = false;
-                    break;
-                }
-            }
-            else if (direccion == "x-")
-            {
-                if ((transform.position.x <= carretera.posicionX) && (transform.position.x >= carretera.posicionX - 1) && (transform.position.z >= carretera.posicionZ) && (transform.position.z <= carretera.posicionZ + 1))
-                {
-                    destruir = false;
-                    break;
-                }
-            }
-            else if (direccion == "z-")
-            {
-                if ((transform.position.z <= carretera.posicionZ) && (transform.position.z >= carretera.posicionZ - 1) && (transform.position.x >= carretera.posicionX) && (transform.position.x >= carretera.posicionX + 1))
-                {
-                    destruir = false;
-                    break;
-                }
+                Destroy(gameObject);
+                estado = false;
+                contadorCarretera = 0;
             }
         }
-
-        if (destruir == true)
+        else if (enCarretera == true)
         {
-            Destroy(gameObject);
-            estado = false;
+            contadorCarretera = 0;
         }
+
+
+
+        //--------------------------------------------------
 
         if (luzRojaSemaforo != null)
         {
@@ -146,13 +169,22 @@ public class Vehiculo : MonoBehaviour
         }
     }
 
-    private Construccion carretera;
+    private bool enCarretera;
+    private float contadorCarretera;
     private Light luzRojaSemaforo;
     private Vehiculo otroVehiculo;
 
     private void OnTriggerEnter(Collider other)
     {
-        carretera = other.gameObject.GetComponent<Construccion>();
+        Construccion carretera = other.gameObject.GetComponent<Construccion>();
+
+        if (carretera != null)
+        {
+            if (carretera.categoria == 1)
+            {
+                enCarretera = true;
+            }
+        }           
 
         //------------------------------------
 
@@ -219,11 +251,21 @@ public class Vehiculo : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+
+    }
+
     private void OnTriggerExit(Collider other)
     {
+        Construccion carretera = other.gameObject.GetComponent<Construccion>();
+
         if (carretera != null)
         {
-            carretera = null;
+            if (carretera.categoria == 1)
+            {
+                enCarretera = false;
+            }           
         }
 
         if (luzRojaSemaforo != null)
