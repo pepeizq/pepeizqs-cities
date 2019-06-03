@@ -177,11 +177,11 @@ public class DiaNoche : MonoBehaviour {
 
         if (tiempoDia < 43200)
         {
-            sol.intensity = 1 - (43200 - tiempoDia) / 43200;
+            sol.intensity = 1f - (43200 - tiempoDia) / 43200;
         }
         else
         {
-            sol.intensity = 1 - ((43200 - tiempoDia) / 43200 * -1);
+            sol.intensity = 1f - ((43200 - tiempoDia) / 43200 * - 0.8f);
         }
     }
 
