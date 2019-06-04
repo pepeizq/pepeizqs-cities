@@ -46,6 +46,7 @@ public class Idiomas : MonoBehaviour {
 
     public Text opcionesTecladoJuego;
     public Text opcionesTecladoEnseñarMenu;
+    public Text opcionesTecladoArrancarParar;
     public Text opcionesTecladoRotacionEdificioIzquierda;
     public Text opcionesTecladoRotacionEdificioDerecha;
     public Text opcionesTecladoArrastrarConstruccion;
@@ -110,6 +111,7 @@ public class Idiomas : MonoBehaviour {
 
         opcionesTecladoJuego.text = CogerCadena("keyboardGame");
         opcionesTecladoEnseñarMenu.text = CogerCadena("keyboardShowMenu").ToLower();
+        opcionesTecladoArrancarParar.text = CogerCadena("keyboardPlayStop").ToLower();
         opcionesTecladoRotacionEdificioIzquierda.text = CogerCadena("keyboardRotateBuildingLeft").ToLower();
         opcionesTecladoRotacionEdificioDerecha.text = CogerCadena("keyboardRotateBuildingRight").ToLower();
         opcionesTecladoArrastrarConstruccion.text = CogerCadena("keyboardDragBuilding").ToLower();

@@ -5,6 +5,9 @@ public class DiaNoche : MonoBehaviour {
 
     public Idiomas idioma;
 
+    [HideInInspector]
+    public KeyCode teclaArrancarPararTiempo;
+
     public Light sol;
 
     private float amanecer = 24000;
@@ -46,7 +49,7 @@ public class DiaNoche : MonoBehaviour {
     {
         ciudad.ActualizarUI(false);
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(teclaArrancarPararTiempo))
         {
             if (velocidad != 0)
             {

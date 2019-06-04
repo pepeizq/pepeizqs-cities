@@ -26,13 +26,16 @@ namespace Interfaz.Opciones2
         public Text textoRotacionDerecha;
 
         public Juego juego;
+        public DiaNoche diaNoche;
 
         public Button botonMenuJuego;
+        public Button botonArrancarParar;
         public Button botonRotacionEdificioIzquierda;
         public Button botonRotacionEdificioDerecha;
         public Button botonArrastrarConstruccion;
 
         public Text textoMenuJuego;
+        public Text textoArrancarParar;
         public Text textoRotacionEdificioIzquierda;
         public Text textoRotacionEdificioDerecha;
         public Text textoArrastrarConstruccion;
@@ -141,6 +144,21 @@ namespace Interfaz.Opciones2
             }
 
             juego.teclaMenu = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("tecladoMenuJuego"));
+
+            //-------------------------------------
+
+            if (PlayerPrefs.HasKey("tecladoArrancarParar") == false)
+            {
+                KeyCode tecla = KeyCode.Space;
+                PlayerPrefs.SetString("tecladoArrancarParar", tecla.ToString());
+                textoArrancarParar.text = tecla.ToString();
+            }
+            else
+            {
+                textoArrancarParar.text = PlayerPrefs.GetString("tecladoArrancarParar");
+            }
+
+            diaNoche.teclaArrancarPararTiempo = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("tecladoArrancarParar"));
 
             //-------------------------------------
 

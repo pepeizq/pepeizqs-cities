@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 namespace Interfaz
 {
@@ -6,14 +7,25 @@ namespace Interfaz
     {
         public Idiomas idioma;
 
+        public Camara camara;
+        public Juego juego;
+
         public AudioSource sonidoBoton;
 
         [SerializeField]
         private DiaNoche diaNoche = null;
 
         public Panel ayuda1;
+        public Text ayuda1Tecla1;
+        public Text ayuda1Tecla2;
+        public Text ayuda1Tecla3;
+        public Text ayuda1Tecla4;
+
         public Panel ayuda2;
+
         public Panel ayuda3;
+        public Text ayuda3Tecla1;
+
         public Panel ayuda4;
         public Panel ayuda5;
 
@@ -21,9 +33,10 @@ namespace Interfaz
         {
             if (mostrar == true)
             {
-                CargarTeclas();
                 if (PlayerPrefs.GetString("ayuda") == "true")
                 {
+                    CargarTeclas();
+
                     ayuda1.GetComponent<CanvasGroup>().alpha = 1;
                     ayuda1.GetComponent<CanvasGroup>().interactable = true;
                     ayuda1.GetComponent<CanvasGroup>().blocksRaycasts = true;
@@ -40,7 +53,12 @@ namespace Interfaz
 
         public void CargarTeclas()
         {
-         
+            ayuda1Tecla1.text = camara.teclaMovimientoIzquierda.ToString();
+            ayuda1Tecla2.text = camara.teclaMovimientoArriba.ToString();
+            ayuda1Tecla3.text = camara.teclaMovimientoDerecha.ToString();
+            ayuda1Tecla4.text = camara.teclaMovimientoAbajo.ToString();
+
+            ayuda3Tecla1.text = diaNoche.teclaArrancarPararTiempo.ToString();
         }
 
         public void EstadoCajas(bool estado)
