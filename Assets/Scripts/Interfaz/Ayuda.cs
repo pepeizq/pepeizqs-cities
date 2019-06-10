@@ -27,6 +27,9 @@ namespace Interfaz
         public Text ayuda3Tecla1;
 
         public Panel ayuda4;
+        public Text ayuda4Tecla1;
+        public Text ayuda4Tecla2;
+
         public Panel ayuda5;
 
         public void Cargar(bool mostrar)
@@ -59,6 +62,9 @@ namespace Interfaz
             ayuda1Tecla4.text = camara.teclaMovimientoAbajo.ToString();
 
             ayuda3Tecla1.text = diaNoche.teclaArrancarPararTiempo.ToString();
+
+            ayuda4Tecla1.text = camara.teclaRotacionIzquierda.ToString();
+            ayuda4Tecla2.text = camara.teclaRotacionDerecha.ToString();
         }
 
         public void EstadoCajas(bool estado)
