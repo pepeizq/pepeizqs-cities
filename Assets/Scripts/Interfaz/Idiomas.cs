@@ -56,6 +56,8 @@ public class Idiomas : MonoBehaviour {
     public Text ayuda3;
     public Text ayuda4;
     public Text ayuda5;
+    public Text ayuda6;
+    public Text ayuda7;
 
     public Text edificiosCoste;
     public Text edificiosPoblacion;
@@ -121,6 +123,8 @@ public class Idiomas : MonoBehaviour {
         ayuda3.text = CogerCadena("help3");
         ayuda4.text = CogerCadena("help4");
         ayuda5.text = CogerCadena("help5");
+        ayuda6.text = CogerCadena("help6");
+        ayuda7.text = CogerCadena("help7");
 
         edificiosCoste.text = CogerCadena("cost");
         edificiosPoblacion.text = CogerCadena("population");

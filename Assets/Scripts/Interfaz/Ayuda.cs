@@ -32,6 +32,13 @@ namespace Interfaz
 
         public Panel ayuda5;
 
+        public Panel ayuda6;
+        public Text ayuda6Tecla1;
+        public Text ayuda6Tecla2;
+
+        public Panel ayuda7;
+        public Text ayuda7Tecla1;
+
         public void Cargar(bool mostrar)
         {
             if (mostrar == true)
@@ -65,6 +72,11 @@ namespace Interfaz
 
             ayuda4Tecla1.text = camara.teclaRotacionIzquierda.ToString();
             ayuda4Tecla2.text = camara.teclaRotacionDerecha.ToString();
+
+            ayuda6Tecla1.text = juego.teclaRotacionEdificioIzquierda.ToString();
+            ayuda6Tecla2.text = juego.teclaRotacionEdificioDerecha.ToString();
+
+            ayuda7Tecla1.text = juego.teclaArrastrarConstruccion.ToString();
         }
 
         public void EstadoCajas(bool estado)
@@ -74,6 +86,8 @@ namespace Interfaz
             ayuda3.gameObject.SetActive(estado);
             ayuda4.gameObject.SetActive(estado);
             ayuda5.gameObject.SetActive(estado);
+            ayuda6.gameObject.SetActive(estado);
+            ayuda7.gameObject.SetActive(estado);
         }
 
         public void CerrarAyuda1()
@@ -146,6 +160,47 @@ namespace Interfaz
             ayuda5.gameObject.SetActive(false);
 
             diaNoche.VelocidadMarchas(1);
+        }
+
+        public void AbrirAyuda6o7(int categoria)
+        {
+            if (PlayerPrefs.GetString("ayuda") == "true")
+            {
+                ayuda6.GetComponent<CanvasGroup>().alpha = 0;
+                ayuda6.GetComponent<CanvasGroup>().interactable = false;
+                ayuda6.GetComponent<CanvasGroup>().blocksRaycasts = false;
+                ayuda6.gameObject.SetActive(false);
+
+                ayuda7.GetComponent<CanvasGroup>().alpha = 0;
+                ayuda7.GetComponent<CanvasGroup>().interactable = false;
+                ayuda7.GetComponent<CanvasGroup>().blocksRaycasts = false;
+                ayuda7.gameObject.SetActive(false);
+
+                if (categoria != 1)
+                {
+                    ayuda6.GetComponent<CanvasGroup>().alpha = 1;
+                    ayuda6.GetComponent<CanvasGroup>().interactable = true;
+                    ayuda6.GetComponent<CanvasGroup>().blocksRaycasts = true;
+                    ayuda6.gameObject.SetActive(true);
+                }
+                else
+                {
+                    ayuda7.GetComponent<CanvasGroup>().alpha = 1;
+                    ayuda7.GetComponent<CanvasGroup>().interactable = true;
+                    ayuda7.GetComponent<CanvasGroup>().blocksRaycasts = true;
+                    ayuda7.gameObject.SetActive(true);
+                }
+            }
+        }
+
+        public void CerrarAyuda6o7(Panel ayuda)
+        {
+            sonidoBoton.Play();
+
+            ayuda.GetComponent<CanvasGroup>().alpha = 0;
+            ayuda.GetComponent<CanvasGroup>().interactable = false;
+            ayuda.GetComponent<CanvasGroup>().blocksRaycasts = false;
+            ayuda.gameObject.SetActive(false);
         }
     }
 }

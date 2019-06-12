@@ -334,7 +334,7 @@ public class Colocar : MonoBehaviour
             }
         }
 
-        cantidadEdificios = cantidadEdificios / 2;
+        cantidadEdificios = cantidadEdificios / 4;
 
         int i = 0;
         while (i < cantidadEdificios)
@@ -354,7 +354,7 @@ public class Colocar : MonoBehaviour
             {
                 if (subedificio.categoria == 1)
                 {
-                    if (subedificio.id != 7 && subedificio.id != 10 && subedificio.id != 11 && subedificio.id != 13 && subedificio.id != 14)
+                    if (subedificio.id == 6 || subedificio.id == 12)
                     {
                         carreteras.Add(subedificio);
                     }

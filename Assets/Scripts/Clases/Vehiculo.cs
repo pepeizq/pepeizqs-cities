@@ -140,7 +140,7 @@ public class Vehiculo : MonoBehaviour
         {
             contadorCarretera += Time.deltaTime;
 
-            if (contadorCarretera > 2f && enCarretera == false)
+            if (contadorCarretera > 0.1f && enCarretera == false)
             {
                 Destroy(gameObject);
                 estado = false;
@@ -193,22 +193,23 @@ public class Vehiculo : MonoBehaviour
             if (other.gameObject.name.Contains("ColisionSemaforo"))
             {
                 int girarAzar = Random.Range(0, 4);
-          
-                if (other.gameObject.name == "ColisionSemaforo1" || other.gameObject.name == "ColisionSemaforo4")
+
+                if (girarAzar == 0)
                 {
-                    if (girarAzar == 0)
+                    if (other.gameObject.name == "ColisionSemaforo1" || other.gameObject.name == "ColisionSemaforo4")
                     {
                         Rotar1();
-                    }              
+                    }                
                 }
-                else if (other.gameObject.name == "ColisionSemaforo2" || other.gameObject.name == "ColisionSemaforo3" || other.gameObject.name == "ColisionSemaforo5" || other.gameObject.name == "ColisionSemaforo6")
-                {
-                    if (girarAzar == 1)
+                else if (girarAzar == 1)
+                {                  
+                    if (other.gameObject.name == "ColisionSemaforo2" || other.gameObject.name == "ColisionSemaforo3" || other.gameObject.name == "ColisionSemaforo5" || other.gameObject.name == "ColisionSemaforo6")
                     {
                         Rotar2();
                     }
                 }
-                else if (other.gameObject.name == "ColisionSemaforo7")
+
+                if (other.gameObject.name == "ColisionSemaforo7")
                 {
                     Rotar2();
                 }
@@ -253,7 +254,15 @@ public class Vehiculo : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        Construccion carretera = other.gameObject.GetComponent<Construccion>();
 
+        if (carretera != null)
+        {
+            if (carretera.categoria == 1)
+            {
+                enCarretera = true;
+            }
+        }
     }
 
     private void OnTriggerExit(Collider other)

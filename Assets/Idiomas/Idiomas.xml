@@ -44,6 +44,8 @@
         <string name="help3">You can start/stop the time with these buttons</string>
         <string name="help4">You can rotate the camera by clicking with these buttons</string>
         <string name="help5">Build what you want while you have money</string>
+        <string name="help6">With these keys you can rotate the construction</string>
+        <string name="help7">With this key you can drag the road</string>
         <string name="cost">Cost</string>
         <string name="population">Population</string>
         <string name="food">Food</string>
@@ -102,6 +104,8 @@
         <string name="help3">Puedes iniciar/parar el tiempo con estos botones</string>
         <string name="help4">Puedes rotar la cámara pulsando con estos botones</string>
         <string name="help5">Construye lo que quieras mientras tengas dinero</string>
+        <string name="help6">Con estas teclas puedes rotar la construcción</string>
+        <string name="help7">Con esta tecla puedes arrastrar la carretera</string>
         <string name="cost">Coste</string>
         <string name="population">Población</string>
         <string name="food">Comida</string>

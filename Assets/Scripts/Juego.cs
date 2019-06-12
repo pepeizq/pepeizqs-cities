@@ -371,7 +371,8 @@ public class Juego : MonoBehaviour {
         construirActivar = true;
         ConstruirOcultarPanelEdificios();
 
-        edificioSeleccionado = edificios[edificio]; 
+        edificioSeleccionado = edificios[edificio];
+        ayuda.AbrirAyuda6o7(edificioSeleccionado.categoria);
         sonidoBoton.Play();
     }
 
