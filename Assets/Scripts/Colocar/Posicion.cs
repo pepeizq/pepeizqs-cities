@@ -27,12 +27,12 @@ public static class Posicion
 
             if (edificio.dimensiones.x > 1)
             {
-                posicionX = posicionX + ((edificio.dimensiones.x - 1) / 2);
+                posicionX = posicionX + (edificio.dimensiones.x / 2);
             }
 
             if (edificio.dimensiones.y > 1)
             {
-                posicionZ = posicionZ + ((edificio.dimensiones.y - 1) / 2);
+                posicionZ = posicionZ + (edificio.dimensiones.y / 2);
             }
 
             return new Vector3(Mathf.Round(posicionX), .5f, Mathf.Round(posicionZ));

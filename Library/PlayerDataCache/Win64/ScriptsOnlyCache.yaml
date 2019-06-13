@@ -19,6 +19,7 @@ ScriptsOnlyBuild:
     - Interfaz.Opciones2.Teclado
     - Juego
     - Panel
+    - Vehiculo
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.TestListCacheData
     UnityEngine.UI.dll:
@@ -64,6 +65,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 49
       Script: {instanceID: 0}
+    - Class: 54
+      Script: {instanceID: 0}
     - Class: 65
       Script: {instanceID: 0}
     - Class: 81
@@ -79,91 +82,93 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 9376}
+      Script: {instanceID: 9388}
     - Class: 114
-      Script: {instanceID: 9414}
+      Script: {instanceID: 9426}
     - Class: 114
-      Script: {instanceID: 9470}
+      Script: {instanceID: 9482}
     - Class: 114
-      Script: {instanceID: 9532}
+      Script: {instanceID: 9544}
     - Class: 114
-      Script: {instanceID: 9536}
+      Script: {instanceID: 9548}
     - Class: 114
-      Script: {instanceID: 9616}
+      Script: {instanceID: 9628}
     - Class: 114
-      Script: {instanceID: 9650}
+      Script: {instanceID: 9662}
     - Class: 114
-      Script: {instanceID: 9696}
-    - Class: 114
-      Script: {instanceID: 9698}
-    - Class: 114
-      Script: {instanceID: 9702}
-    - Class: 114
-      Script: {instanceID: 9704}
-    - Class: 114
-      Script: {instanceID: 9706}
+      Script: {instanceID: 9708}
     - Class: 114
       Script: {instanceID: 9710}
     - Class: 114
-      Script: {instanceID: 9712}
-    - Class: 114
       Script: {instanceID: 9714}
+    - Class: 114
+      Script: {instanceID: 9716}
     - Class: 114
       Script: {instanceID: 9718}
     - Class: 114
+      Script: {instanceID: 9722}
+    - Class: 114
+      Script: {instanceID: 9724}
+    - Class: 114
       Script: {instanceID: 9726}
     - Class: 114
-      Script: {instanceID: 9744}
+      Script: {instanceID: 9730}
     - Class: 114
-      Script: {instanceID: 9746}
-    - Class: 114
-      Script: {instanceID: 9752}
-    - Class: 114
-      Script: {instanceID: 9754}
+      Script: {instanceID: 9738}
     - Class: 114
       Script: {instanceID: 9756}
     - Class: 114
       Script: {instanceID: 9758}
     - Class: 114
+      Script: {instanceID: 9764}
+    - Class: 114
       Script: {instanceID: 9766}
     - Class: 114
-      Script: {instanceID: 9790}
+      Script: {instanceID: 9768}
     - Class: 114
-      Script: {instanceID: 10092}
+      Script: {instanceID: 9770}
     - Class: 114
-      Script: {instanceID: 10174}
+      Script: {instanceID: 9778}
     - Class: 114
-      Script: {instanceID: 10182}
+      Script: {instanceID: 9802}
     - Class: 114
-      Script: {instanceID: 10346}
+      Script: {instanceID: 10104}
     - Class: 114
-      Script: {instanceID: 10474}
+      Script: {instanceID: 10186}
     - Class: 114
-      Script: {instanceID: 10476}
+      Script: {instanceID: 10194}
     - Class: 114
-      Script: {instanceID: 10902}
+      Script: {instanceID: 10358}
     - Class: 114
-      Script: {instanceID: 11012}
+      Script: {instanceID: 10486}
     - Class: 114
-      Script: {instanceID: 11154}
+      Script: {instanceID: 10488}
     - Class: 114
-      Script: {instanceID: 11300}
+      Script: {instanceID: 10890}
     - Class: 114
-      Script: {instanceID: 11518}
+      Script: {instanceID: 10916}
     - Class: 114
-      Script: {instanceID: 11650}
+      Script: {instanceID: 11026}
     - Class: 114
-      Script: {instanceID: 11962}
+      Script: {instanceID: 11168}
     - Class: 114
-      Script: {instanceID: 12152}
+      Script: {instanceID: 11314}
     - Class: 114
-      Script: {instanceID: 12264}
+      Script: {instanceID: 11532}
     - Class: 114
-      Script: {instanceID: 12276}
+      Script: {instanceID: 11664}
     - Class: 114
-      Script: {instanceID: 12330}
+      Script: {instanceID: 11976}
     - Class: 114
-      Script: {instanceID: 12338}
+      Script: {instanceID: 12166}
+    - Class: 114
+      Script: {instanceID: 12278}
+    - Class: 114
+      Script: {instanceID: 12290}
+    - Class: 114
+      Script: {instanceID: 12344}
+    - Class: 114
+      Script: {instanceID: 12352}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -195,7 +200,7 @@ ScriptsOnlyBuild:
     className: PostProcessLayer
   - hash:
       serializedVersion: 2
-      Hash: e46840fc1dc66dba8e4cf1cef92a66a8
+      Hash: beb041816b0986e2cc0a3b7116ba6e90
     assemblyName: Assembly-CSharp.dll
     namespaceName: Interfaz.Opciones2
     className: Teclado
@@ -495,7 +500,7 @@ ScriptsOnlyBuild:
     className: TMP_InputField
   - hash:
       serializedVersion: 2
-      Hash: 4ffb94f7f525dc9cf19a17c964de88d7
+      Hash: 7184ccc6574dbdcf87a512ab25ad26e6
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Construccion
@@ -741,7 +746,7 @@ ScriptsOnlyBuild:
     className: TMP_SubMeshUI
   - hash:
       serializedVersion: 2
-      Hash: 1e7de45d81d51d373843330450e71ceb
+      Hash: aad0f5a4da752ba09bbace7905d6c708
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Colocar
@@ -831,13 +836,13 @@ ScriptsOnlyBuild:
     className: ControlPlayableAsset
   - hash:
       serializedVersion: 2
-      Hash: 617d27838f7839c1ce80f44c5e14c71a
+      Hash: ad7d2c4bdaa035b4d041d951d6715665
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Idiomas
   - hash:
       serializedVersion: 2
-      Hash: d56e10611b9359bf47aa421791008eb4
+      Hash: f3dabef57fe09d0e0899f1cf96db3a5e
     assemblyName: Assembly-CSharp.dll
     namespaceName: Interfaz
     className: Ayuda
@@ -889,6 +894,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: SignalTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 13b676dc0fb9c7b3dcd66a8344372433
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Vehiculo
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -951,7 +962,7 @@ ScriptsOnlyBuild:
     className: VolumeProfile
   - hash:
       serializedVersion: 2
-      Hash: e9439f3364f095ed02e4568f538098d4
+      Hash: ebad0d674e45855cbde891faa776b3c4
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: DiaNoche
@@ -1216,4 +1227,4 @@ ScriptsOnlyBuild:
   platform: 19
   scenePathNames:
   - Assets/Scenes/Juego.unity
-  playerPath: E:/Proyectos/Unity/City Builder Builds/Steam/content/pepeizq's Cities.exe
+  playerPath: F:/Proyectos/Unity/City Builder Builds/Steam/content/pepeizq's Cities.exe

@@ -481,15 +481,18 @@ public class Juego : MonoBehaviour {
                         panelCoste.gameObject.GetComponent<CanvasGroup>().alpha = 1;
                         mensajeCoste.text = string.Format("-{0} €", edificioSeleccionado.coste);
 
-                        if (colocarPrevio.ComprobarConstruccionesPosicion(edificioSeleccionado, gridPosicion) == null)
+                        if (colocar.ComprobarConstruccionesPosicion(edificioSeleccionado,gridPosicion) == null)
                         {
-                            colocarPrevio.AñadirConstruccion(edificioSeleccionado, gridPosicion);
-                        }
-                        else
-                        {
-                            colocarPrevio.QuitarEdificio(edificioSeleccionado, gridPosicion);
-                            colocarPrevio.AñadirConstruccion(edificioSeleccionado, gridPosicion);
-                        }
+                            if (colocarPrevio.ComprobarConstruccionesPosicion(edificioSeleccionado, gridPosicion) == null)
+                            {
+                                colocarPrevio.AñadirConstruccion(edificioSeleccionado, gridPosicion);
+                            }
+                            else
+                            {
+                                colocarPrevio.QuitarEdificio(edificioSeleccionado, gridPosicion);
+                                colocarPrevio.AñadirConstruccion(edificioSeleccionado, gridPosicion);
+                            }
+                        }                       
                     }
                 }                
             }
