@@ -4,9 +4,7 @@ public static class Steam
 {
     public static void Logros(string id)
     {
-        bool steamIniciado = Steamworks.SteamAPI.IsSteamRunning();
-
-        if (steamIniciado == true)
+        if (Steamworks.SteamAPI.IsSteamRunning())
         {
             if (SteamManager.Initialized)
             {
