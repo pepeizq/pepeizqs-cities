@@ -16,9 +16,7 @@ public static class Steam
 
     public static void AbrirWeb(string url)
     {
-        bool steamIniciado = Steamworks.SteamAPI.IsSteamRunning();
-
-        if (steamIniciado == true)
+        if (Steamworks.SteamAPI.IsSteamRunning())
         {
             if (SteamManager.Initialized)
             {

@@ -58,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 12869d581a1037546bab33bc40e1213d, type: 2}
+  - {fileID: 2100000, guid: 7b009a6dc52df1a458b62cf91761c1c6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -91,6 +91,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 3
+  id2: 0
   categoria: 0
   coste: 5
   nombre: arbol4
@@ -101,7 +102,8 @@ MonoBehaviour:
   botonImagen: {fileID: 21300000, guid: e0f0c9b8ad171064eb42e67906b55897, type: 3}
   luzIntesidad: 0
   luzRango: 0
-  luzProbabilidad: 0
   dimensiones: {x: 1, y: 1}
   rotacionColocacion: 0
   rotacionAdicional: 0
+  posicionX: 0
+  posicionZ: 0
