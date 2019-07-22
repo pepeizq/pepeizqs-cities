@@ -8706,6 +8706,7 @@ MonoBehaviour:
   mensajeCoste: {fileID: 933529603}
   panelEdificios2: {fileID: 491194793}
   panelCarreteras: {fileID: 473335017}
+  captura: {fileID: 0}
 --- !u!114 &491194796
 MonoBehaviour:
   m_ObjectHideFlags: 0

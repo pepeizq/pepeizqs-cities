@@ -57,6 +57,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\ArbolesInicio.cs" />
      <Compile Include="Assets\Scripts\Camara.cs" />
+     <Compile Include="Assets\Scripts\Captura.cs" />
      <Compile Include="Assets\Scripts\Carreteras.cs" />
      <Compile Include="Assets\Scripts\Ciudad.cs" />
      <Compile Include="Assets\Scripts\Clases\CarreterasIDs.cs" />
