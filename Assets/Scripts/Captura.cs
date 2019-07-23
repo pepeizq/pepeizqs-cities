@@ -204,22 +204,14 @@ public class Captura : MonoBehaviour
         return goss;
     }
 
-    /// <summary>
-    /// Prepares a prefab for taking a snapshot by creating an instance, setting its layers and applying the specified position offset, rotation, and scale to it.
-    /// </summary>
-    /// <param name="prefab">The prefab to prepare.</param>
-    /// <param name="positionOffset">The position offset relative to the SnapshotCamera to apply to the prefab.</param>
-    /// <param name="rotation">The rotation to apply to the prefab.</param>
-    /// <param name="scale">The scale to apply to the prefab.</param>
-    /// <returns>A prefab instance ready for taking a snapshot.</returns>
-    private GameObject PreparePrefab(GameObject prefab, Vector3 positionOffset, Quaternion rotation, Vector3 scale)
+    private GameObject PrepararPrefab(GameObject prefab, Vector3 positionOffset, Quaternion rotacion, Vector3 escala)
     {
-        GameObject gameObject = GameObject.Instantiate(prefab, transform.position + positionOffset, rotation) as GameObject;
-        gameObject.transform.localScale = scale;
-        //gameObject.transform.Rotate(Vector3.up, -90, Space.Self);
-        SetLayersRecursively(gameObject);
+        GameObject objeto = GameObject.Instantiate(prefab, transform.position + positionOffset, rotacion) as GameObject;
+        objeto.transform.localScale = escala;
+        //objeto.transform.Rotate(Vector3.up, -90, Space.Self);
+        SetLayersRecursively(objeto);
 
-        return gameObject;
+        return objeto;
     }
     #endregion
 
@@ -316,7 +308,7 @@ public class Captura : MonoBehaviour
     /// <returns>A Texture2D containing the captured snapshot.</returns>
     public Texture2D TakePrefabSnapshot(GameObject prefab, int width = 128, int height = 128)
     {
-        return TakePrefabSnapshot(prefab, Color.clear, defaultPositionOffset, Quaternion.Euler(defaultRotation), defaultScale, width, height);
+        return TomarCapturaPrefab(prefab, Color.clear, defaultPositionOffset, Quaternion.Euler(defaultRotation), defaultScale, width, height);
     }
 
     /// <summary>
@@ -331,7 +323,7 @@ public class Captura : MonoBehaviour
     /// <returns>A Texture2D containing the captured snapshot.</returns>
     public Texture2D TakePrefabSnapshot(GameObject prefab, Color backgroundColor, int width = 128, int height = 128)
     {
-        return TakePrefabSnapshot(prefab, backgroundColor, defaultPositionOffset, Quaternion.Euler(defaultRotation), defaultScale, width, height);
+        return TomarCapturaPrefab(prefab, backgroundColor, defaultPositionOffset, Quaternion.Euler(defaultRotation), defaultScale, width, height);
     }
 
     /// <summary>
@@ -348,35 +340,23 @@ public class Captura : MonoBehaviour
     /// <returns>A Texture2D containing the captured snapshot.</returns>
     public Texture2D TakePrefabSnapshot(GameObject prefab, Vector3 positionOffset, Quaternion rotation, Vector3 scale, int width = 128, int height = 128)
     {
-        return TakePrefabSnapshot(prefab, Color.clear, positionOffset, rotation, scale, width, height);
+        return TomarCapturaPrefab(prefab, Color.clear, positionOffset, rotation, scale, width, height);
     }
 
-    /// <summary>
-    /// Takes a snapshot of a prefab and returns it as a Texture2D.
-    /// </summary>
-    /// <param name="prefab">The prefab to snapshot.</param>
-    /// <param name="backgroundColor">The background color of the snapshot. Can be transparent.</param>
-    /// <param name="positionOffset">The position offset relative to the SnapshotCamera that will be applied to the prefab while taking the snapshot.</param>
-    /// <param name="rotation">The rotation that will be applied to the prefab while taking the snapshot.</param>
-    /// <param name="scale">The scale that will be applied to the prefab while taking the snapshot.</param>
-    /// <param name="width">The width of the snapshot image.</param>
-    /// <param name="height">The height of the snapshot image.</param>
-    /// <returns>A Texture2D containing the captured snapshot.</returns>
-    public Texture2D TakePrefabSnapshot(GameObject prefab, Color backgroundColor, Vector3 positionOffset, Quaternion rotation, Vector3 scale, int width = 128, int height = 128)
+    public Texture2D TomarCapturaPrefab(GameObject prefab, Color fondoColor, Vector3 positionOffset, Quaternion rotacion, Vector3 escala, int ancho = 128, int alto = 128)
     {
         if (prefab == null)
             throw new ArgumentNullException("prefab");
         else if (prefab.scene.name != null)
             throw new ArgumentException("prefab parameter must be a prefab! If you want to use an instance, use TakeObjectSnapshot instead.", "prefab");
 
-        // Prepare an instance of the prefab
-        GameObject instance = PreparePrefab(prefab, positionOffset, rotation, scale);
+        GameObject instancia = PrepararPrefab(prefab, positionOffset, rotacion, escala);
 
         // Take a snapshot
-        Texture2D snapshot = TakeSnapshot(backgroundColor, width, height);
+        Texture2D snapshot = TakeSnapshot(fondoColor, ancho, alto);
 
         // Destroy the instance we created
-        DestroyImmediate(instance);
+        DestroyImmediate(instancia);
 
         // Return the snapshot
         return snapshot;

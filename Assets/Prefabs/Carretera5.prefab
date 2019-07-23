@@ -1806,7 +1806,7 @@ MonoBehaviour:
   comida: 0
   trabajo: 0
   ingresos: 0
-  botonImagen: {fileID: 21300000, guid: 3caab7678a3c8dd4aa9069d019a98314, type: 3}
+  botonImagen: {fileID: 0}
   luzIntesidad: 1
   luzRango: 0.5
   dimensiones: {x: 1, y: 1}

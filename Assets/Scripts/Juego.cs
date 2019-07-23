@@ -86,8 +86,6 @@ public class Juego : MonoBehaviour {
     private bool mantenerEjeX;
     private bool mantenerEjeZ;
 
-    public Captura captura;
-
     private void Start()
     {
         opciones.CargarInicio();
@@ -115,19 +113,19 @@ public class Juego : MonoBehaviour {
             diaNoche.tiempoDia = 24000;
         }
 
-        Captura cap = Captura.MakeSnapshotCamera(6);
-        cap.defaultScale = new Vector3(0.12f, 0.12f, 0.12f);
-        cap.defaultPositionOffset = new Vector3(0, -0.5f, 20f);
+        //Captura cap = Captura.MakeSnapshotCamera(16);
+        //cap.defaultScale = new Vector3(1f, 1f, 1f);
+        //cap.defaultPositionOffset = new Vector3(0, 0, 20f);
+        
+        //GameObject objeto = edificios[12].gameObject;
+        //objeto.gameObject.transform.position = new Vector3(0, 0, 0);
 
-        GameObject objeto = edificios[25].gameObject;
-        objeto.gameObject.transform.position = new Vector3(0, 0, 0);
+        //Material material = objeto.gameObject.GetComponent<Renderer>().sharedMaterial;
+        //material.DisableKeyword("_EMISSION");
+        //material.globalIlluminationFlags = MaterialGlobalIlluminationFlags.EmissiveIsBlack;
 
-        Material material = objeto.gameObject.GetComponent<Renderer>().sharedMaterial;
-        material.DisableKeyword("_EMISSION");
-        material.globalIlluminationFlags = MaterialGlobalIlluminationFlags.EmissiveIsBlack;
-
-        Texture2D textura = cap.TakePrefabSnapshot(objeto, 512, 512);
-        Captura.SavePNG(textura);
+        //Texture2D textura = cap.TakePrefabSnapshot(objeto, 512, 512);
+        //Captura.SavePNG(textura);
     }
 
     public void NuevaPartida()
