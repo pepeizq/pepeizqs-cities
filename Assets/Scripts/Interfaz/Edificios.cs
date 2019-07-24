@@ -50,24 +50,28 @@ namespace Interfaz
         public Sprite botonDecoracionSprite1;
         public Sprite botonDecoracionSprite2;
 
-        public Panel panelCantidadDinero;
-        public Text costeCantidad;
+        //public Panel panelCantidadDinero;
+        //public Text costeCantidad;
 
-        public Panel panelCantidadPoblacion;
-        public Text poblacionCantidad;
+        //public Panel panelCantidadPoblacion;
+        //public Text poblacionCantidad;
 
-        public Panel panelCantidadComida;
-        public Text comidaCantidad;
+        //public Panel panelCantidadComida;
+        //public Text comidaCantidad;
 
-        public Panel panelCantidadTrabajo;
-        public Text trabajoCantidad;
+        //public Panel panelCantidadTrabajo;
+        //public Text trabajoCantidad;
 
         public void Arranque(Construccion[] edificios)
         {
-            panelCantidadDinero.gameObject.SetActive(false);
-            panelCantidadPoblacion.gameObject.SetActive(false);
-            panelCantidadComida.gameObject.SetActive(false);
-            panelCantidadTrabajo.gameObject.SetActive(false);
+            RectTransform rtDecoracion = panelDecoracion.GetComponent<RectTransform>();
+            rtDecoracion.sizeDelta = new Vector2(rtDecoracion.sizeDelta.x, 0);
+            float alturaDecoracion = 0;
+
+            //panelCantidadDinero.gameObject.SetActive(false);
+            //panelCantidadPoblacion.gameObject.SetActive(false);
+            //panelCantidadComida.gameObject.SetActive(false);
+            //panelCantidadTrabajo.gameObject.SetActive(false);
 
             foreach (Transform boton in panelDecoracion.gameObject.transform)
             {
@@ -118,6 +122,7 @@ namespace Interfaz
                     if (edificio.categoria == 0)
                     {
                         botonObjeto.transform.SetParent(panelDecoracion.transform, false);
+                        alturaDecoracion += 100;
                     }
                     else if (edificio.categoria == 1)
                     {
@@ -140,7 +145,9 @@ namespace Interfaz
                         botonObjeto.transform.SetParent(panelIndustria.transform, false);
                     }
 
-                    Image imagen = botonObjeto.GetComponent<Image>();
+                    GameObject panel = botonObjeto.transform.GetChild(0).gameObject;
+
+                    Image imagen = panel.transform.GetChild(0).transform.GetComponent<Image>();
                     imagen.sprite = edificio.botonImagen;
 
                     Button boton = botonObjeto.GetComponent<Button>();
@@ -164,6 +171,8 @@ namespace Interfaz
                     evento.triggers.Add(pointerExit);
                 }          
             }
+
+            rtDecoracion.sizeDelta = new Vector2(rtDecoracion.sizeDelta.x, alturaDecoracion);
         }
 
         public void ConstruirMostrarPanel(Panel panelVisible)
@@ -307,88 +316,88 @@ namespace Interfaz
 
         public void CursorEntraEdificioInferior(PointerEventData eventData, Construccion edificio)
         {
-            if (edificio.coste != 0)
-            {
-                panelCantidadDinero.gameObject.SetActive(true);
-                costeCantidad.text = string.Format("-{0} €", edificio.coste);
-                costeCantidad.color = new Color(157.0f, 0f, 0f);
-            }
-            else
-            {
-                panelCantidadDinero.gameObject.SetActive(false);
-            }
+            //if (edificio.coste != 0)
+            //{
+            //    panelCantidadDinero.gameObject.SetActive(true);
+            //    costeCantidad.text = string.Format("-{0} €", edificio.coste);
+            //    costeCantidad.color = new Color(157.0f, 0f, 0f);
+            //}
+            //else
+            //{
+            //    panelCantidadDinero.gameObject.SetActive(false);
+            //}
 
-            if (edificio.poblacion != 0)
-            {
-                panelCantidadPoblacion.gameObject.SetActive(true);
-                poblacionCantidad.text = string.Format("{0}", edificio.poblacion);
+            //if (edificio.poblacion != 0)
+            //{
+            //    panelCantidadPoblacion.gameObject.SetActive(true);
+            //    poblacionCantidad.text = string.Format("{0}", edificio.poblacion);
 
-                if (edificio.poblacion > 0)
-                {
-                    poblacionCantidad.color = new Color(0f, 157.0f, 0f);
-                }
-                else if (edificio.poblacion < 0)
-                {
-                    poblacionCantidad.color = new Color(157.0f, 0f, 0f);
-                }
-            }
-            else
-            {
-                panelCantidadPoblacion.gameObject.SetActive(false);
-            }
+            //    if (edificio.poblacion > 0)
+            //    {
+            //        poblacionCantidad.color = new Color(0f, 157.0f, 0f);
+            //    }
+            //    else if (edificio.poblacion < 0)
+            //    {
+            //        poblacionCantidad.color = new Color(157.0f, 0f, 0f);
+            //    }
+            //}
+            //else
+            //{
+            //    panelCantidadPoblacion.gameObject.SetActive(false);
+            //}
 
-            if (edificio.comida != 0)
-            {
-                panelCantidadComida.gameObject.SetActive(true);              
-                comidaCantidad.text = string.Format("{0}", edificio.comida);
+            //if (edificio.comida != 0)
+            //{
+            //    panelCantidadComida.gameObject.SetActive(true);              
+            //    comidaCantidad.text = string.Format("{0}", edificio.comida);
 
-                if (edificio.comida > 0)
-                {
-                    comidaCantidad.color = new Color(0f, 157.0f, 0f);
-                }
-                else if (edificio.comida < 0)
-                {
-                    comidaCantidad.color = new Color(157.0f, 0f, 0f);
-                }
-            }
-            else
-            {
-                panelCantidadComida.gameObject.SetActive(false);
-            }
+            //    if (edificio.comida > 0)
+            //    {
+            //        comidaCantidad.color = new Color(0f, 157.0f, 0f);
+            //    }
+            //    else if (edificio.comida < 0)
+            //    {
+            //        comidaCantidad.color = new Color(157.0f, 0f, 0f);
+            //    }
+            //}
+            //else
+            //{
+            //    panelCantidadComida.gameObject.SetActive(false);
+            //}
 
-            if (edificio.trabajo != 0)
-            {
-                panelCantidadTrabajo.gameObject.SetActive(true);
-                trabajoCantidad.text = string.Format("{0}", edificio.trabajo);
+            //if (edificio.trabajo != 0)
+            //{
+            //    panelCantidadTrabajo.gameObject.SetActive(true);
+            //    trabajoCantidad.text = string.Format("{0}", edificio.trabajo);
 
-                if (edificio.trabajo > 0)
-                {
-                    trabajoCantidad.color = new Color(0f, 157.0f, 0f);
-                }
-                else if (edificio.trabajo < 0)
-                {
-                    trabajoCantidad.color = new Color(157.0f, 0f, 0f);
-                }
-            }
-            else
-            {
-                panelCantidadTrabajo.gameObject.SetActive(false);
-            }
+            //    if (edificio.trabajo > 0)
+            //    {
+            //        trabajoCantidad.color = new Color(0f, 157.0f, 0f);
+            //    }
+            //    else if (edificio.trabajo < 0)
+            //    {
+            //        trabajoCantidad.color = new Color(157.0f, 0f, 0f);
+            //    }
+            //}
+            //else
+            //{
+            //    panelCantidadTrabajo.gameObject.SetActive(false);
+            //}
         }
 
         public void CursorSaleEdificioInferior(PointerEventData eventData)
         {
-            panelCantidadDinero.gameObject.SetActive(false);
-            costeCantidad.text = null;
+            //panelCantidadDinero.gameObject.SetActive(false);
+            //costeCantidad.text = null;
 
-            panelCantidadPoblacion.gameObject.SetActive(false);
-            poblacionCantidad.text = null;
+            //panelCantidadPoblacion.gameObject.SetActive(false);
+            //poblacionCantidad.text = null;
 
-            panelCantidadComida.gameObject.SetActive(false);
-            comidaCantidad.text = null;
+            //panelCantidadComida.gameObject.SetActive(false);
+            //comidaCantidad.text = null;
 
-            panelCantidadTrabajo.gameObject.SetActive(false);
-            trabajoCantidad.text = null;
+            //panelCantidadTrabajo.gameObject.SetActive(false);
+            //trabajoCantidad.text = null;
         }
     }
 }

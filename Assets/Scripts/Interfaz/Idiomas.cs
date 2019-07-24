@@ -59,10 +59,10 @@ public class Idiomas : MonoBehaviour {
     public Text ayuda6;
     public Text ayuda7;
 
-    public Text edificiosCoste;
-    public Text edificiosPoblacion;
-    public Text edificiosComida;
-    public Text edificiosTrabajo;
+    //public Text edificiosCoste;
+    //public Text edificiosPoblacion;
+    //public Text edificiosComida;
+    //public Text edificiosTrabajo;
 
     public Text menuJuegoGuardarPartida;
     public Text menuJuegoOpciones;
@@ -126,10 +126,10 @@ public class Idiomas : MonoBehaviour {
         ayuda6.text = CogerCadena("help6");
         ayuda7.text = CogerCadena("help7");
 
-        edificiosCoste.text = CogerCadena("cost");
-        edificiosPoblacion.text = CogerCadena("population");
-        edificiosComida.text = CogerCadena("food");
-        edificiosTrabajo.text = CogerCadena("jobs");
+        //edificiosCoste.text = CogerCadena("cost");
+        //edificiosPoblacion.text = CogerCadena("population");
+        //edificiosComida.text = CogerCadena("food");
+        //edificiosTrabajo.text = CogerCadena("jobs");
 
         menuJuegoGuardarPartida.text = CogerCadena("saveGame");
         menuJuegoOpciones.text = CogerCadena("options");
