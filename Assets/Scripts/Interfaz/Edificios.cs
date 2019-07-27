@@ -68,6 +68,26 @@ namespace Interfaz
             rtDecoracion.sizeDelta = new Vector2(rtDecoracion.sizeDelta.x, 0);
             float alturaDecoracion = 0;
 
+            RectTransform rtCarreteras = panelCarreteras.GetComponent<RectTransform>();
+            rtCarreteras.sizeDelta = new Vector2(rtCarreteras.sizeDelta.x, 0);
+            float alturaCarreteras = 0;
+
+            RectTransform rtPoblacion = panelPoblacion.GetComponent<RectTransform>();
+            rtPoblacion.sizeDelta = new Vector2(rtPoblacion.sizeDelta.x, 0);
+            float alturaPoblacion = 0;
+
+            RectTransform rtComida = panelComida.GetComponent<RectTransform>();
+            rtComida.sizeDelta = new Vector2(rtComida.sizeDelta.x, 0);
+            float alturaComida = 0;
+
+            RectTransform rtTiendas = panelTiendas.GetComponent<RectTransform>();
+            rtTiendas.sizeDelta = new Vector2(rtTiendas.sizeDelta.x, 0);
+            float alturaTiendas = 0;
+
+            RectTransform rtIndustria = panelIndustria.GetComponent<RectTransform>();
+            rtIndustria.sizeDelta = new Vector2(rtIndustria.sizeDelta.x, 0);
+            float alturaIndustria = 0;
+
             //panelCantidadDinero.gameObject.SetActive(false);
             //panelCantidadPoblacion.gameObject.SetActive(false);
             //panelCantidadComida.gameObject.SetActive(false);
@@ -127,28 +147,60 @@ namespace Interfaz
                     else if (edificio.categoria == 1)
                     {
                         botonObjeto.transform.SetParent(panelCarreteras.transform, false);
+                        alturaCarreteras += 100;
                     }
                     else if (edificio.categoria == 2)
                     {
                         botonObjeto.transform.SetParent(panelPoblacion.transform, false);
+                        alturaPoblacion += 100;
                     }
                     else if (edificio.categoria == 3)
                     {
                         botonObjeto.transform.SetParent(panelComida.transform, false);
+                        alturaComida += 100;
                     }
                     else if (edificio.categoria == 4)
                     {
                         botonObjeto.transform.SetParent(panelTiendas.transform, false);
+                        alturaTiendas += 100;
                     }
                     else if (edificio.categoria == 5)
                     {
                         botonObjeto.transform.SetParent(panelIndustria.transform, false);
+                        alturaIndustria += 100;
                     }
 
-                    GameObject panel = botonObjeto.transform.GetChild(0).gameObject;
+                    GameObject panelBoton = botonObjeto.transform.GetChild(0).gameObject;
 
-                    Image imagen = panel.transform.GetChild(0).transform.GetComponent<Image>();
+                    Image imagen = panelBoton.transform.GetChild(0).transform.GetComponent<Image>();
                     imagen.sprite = edificio.botonImagen;
+
+                    Text coste = panelBoton.transform.GetChild(1).transform.GetComponent<Text>();
+                    coste.text = string.Format("{0} €", edificio.coste);
+                    coste.color = new Color(157.0f, 0f, 0f);
+
+                    //GameObject panelBotonComida = panelBoton.transform.GetChild(2).transform.GetComponent<GameObject>();
+
+                    //if (edificio.comida != 0)
+                    //{
+                    //    panelBotonComida.SetActive(true);
+
+                    //    Text comida = panelBotonComida.transform.GetChild(1).transform.GetComponent<Text>();
+                    //    comida.text = string.Format("{0}", edificio.comida);
+
+                    //    if (edificio.comida > 0)
+                    //    {
+                    //        comida.color = new Color(0f, 157.0f, 0f);
+                    //    }
+                    //    else if (edificio.comida < 0)
+                    //    {
+                    //        comida.color = new Color(157.0f, 0f, 0f);
+                    //    }
+                    //}
+                    //else
+                    //{
+                    //    panelBotonComida.SetActive(false);
+                    //}
 
                     Button boton = botonObjeto.GetComponent<Button>();
                     boton.onClick.AddListener(() => juego.ConstruirSeleccionarEdificio(edificio.id));
@@ -173,6 +225,11 @@ namespace Interfaz
             }
 
             rtDecoracion.sizeDelta = new Vector2(rtDecoracion.sizeDelta.x, alturaDecoracion);
+            rtCarreteras.sizeDelta = new Vector2(rtCarreteras.sizeDelta.x, alturaCarreteras);
+            rtPoblacion.sizeDelta = new Vector2(rtPoblacion.sizeDelta.x, alturaPoblacion);
+            rtComida.sizeDelta = new Vector2(rtComida.sizeDelta.x, alturaComida);
+            rtTiendas.sizeDelta = new Vector2(rtTiendas.sizeDelta.x, alturaTiendas);
+            rtIndustria.sizeDelta = new Vector2(rtIndustria.sizeDelta.x, alturaIndustria);
         }
 
         public void ConstruirMostrarPanel(Panel panelVisible)
