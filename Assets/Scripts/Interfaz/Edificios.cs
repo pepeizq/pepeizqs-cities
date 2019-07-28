@@ -14,6 +14,8 @@ namespace Interfaz
 
         private int numeroEdificios;
 
+        public Panel panelInferior;
+
         public Panel panelCarreteras;
         public Button botonCarreteras;
         public Image botonCarreterasImagen;
@@ -264,36 +266,42 @@ namespace Interfaz
                 botonCarreteras.gameObject.GetComponent<Image>().color = new Color(0.08f, 0.4f, 0.58f);
                 botonCarreterasImagen.GetComponent<Image>().sprite = botonCarreterasSprite2;
                 numeroEdificios = 0;
+                panelInferior.gameObject.GetComponent<ScrollRect>().content = panelCarreteras.gameObject.GetComponent<RectTransform>();
             }
             else if (panelVisible.nombre == "casas")
             {
                 botonPoblacion.gameObject.GetComponent<Image>().color = new Color(0.08f, 0.4f, 0.58f);
                 botonPoblacionImagen.GetComponent<Image>().sprite = botonPoblacionSprite2;
                 numeroEdificios = 1;
+                panelInferior.gameObject.GetComponent<ScrollRect>().content = panelPoblacion.gameObject.GetComponent<RectTransform>();
             }
             else if (panelVisible.nombre == "comida")
             {
                 botonComida.gameObject.GetComponent<Image>().color = new Color(0.08f, 0.4f, 0.58f);
                 botonComidaImagen.GetComponent<Image>().sprite = botonComidaSprite2;
                 numeroEdificios = 2;
+                panelInferior.gameObject.GetComponent<ScrollRect>().content = panelComida.gameObject.GetComponent<RectTransform>();
             }
             else if (panelVisible.nombre == "tiendas")
             {
                 botonTiendas.gameObject.GetComponent<Image>().color = new Color(0.08f, 0.4f, 0.58f);
                 botonTiendasImagen.GetComponent<Image>().sprite = botonTiendasSprite2;
                 numeroEdificios = 3;
+                panelInferior.gameObject.GetComponent<ScrollRect>().content = panelTiendas.gameObject.GetComponent<RectTransform>();
             }
             else if (panelVisible.nombre == "industria")
             {
                 botonIndustria.gameObject.GetComponent<Image>().color = new Color(0.08f, 0.4f, 0.58f);
                 botonIndustriaImagen.GetComponent<Image>().sprite = botonIndustriaSprite2;
                 numeroEdificios = 4;
+                panelInferior.gameObject.GetComponent<ScrollRect>().content = panelIndustria.gameObject.GetComponent<RectTransform>();
             }
             else if (panelVisible.nombre == "decoracion")
             {
                 botonDecoracion.gameObject.GetComponent<Image>().color = new Color(0.08f, 0.4f, 0.58f);
                 botonDecoracionImagen.GetComponent<Image>().sprite = botonDecoracionSprite2;
                 numeroEdificios = 5;
+                panelInferior.gameObject.GetComponent<ScrollRect>().content = panelDecoracion.gameObject.GetComponent<RectTransform>();
             }
         }
 
