@@ -181,28 +181,33 @@ namespace Interfaz
                     coste.text = string.Format("{0} €", edificio.coste);
                     coste.color = new Color(157.0f, 0f, 0f);
 
-                    //GameObject panelBotonComida = panelBoton.transform.GetChild(2).transform.GetComponent<GameObject>();
+                    Panel panelBotonComida = panelBoton.transform.GetChild(2).transform.GetComponent<Panel>();
 
-                    //if (edificio.comida != 0)
-                    //{
-                    //    panelBotonComida.SetActive(true);
+                    if (panelBotonComida != null)
+                    {
+                        if (edificio.comida != 0)
+                        {
+                            panelBotonComida.gameObject.SetActive(true);
 
-                    //    Text comida = panelBotonComida.transform.GetChild(1).transform.GetComponent<Text>();
-                    //    comida.text = string.Format("{0}", edificio.comida);
+                            Text comida = panelBotonComida.transform.GetChild(1).transform.GetComponent<Text>();
+                            comida.text = string.Format("{0}", edificio.comida);
 
-                    //    if (edificio.comida > 0)
-                    //    {
-                    //        comida.color = new Color(0f, 157.0f, 0f);
-                    //    }
-                    //    else if (edificio.comida < 0)
-                    //    {
-                    //        comida.color = new Color(157.0f, 0f, 0f);
-                    //    }
-                    //}
-                    //else
-                    //{
-                    //    panelBotonComida.SetActive(false);
-                    //}
+                            if (edificio.comida > 0)
+                            {
+                                comida.text = string.Format("+{0}", comida.text);
+                                comida.color = new Color(0f, 157.0f, 0f);
+                            }
+                            else if (edificio.comida < 0)
+                            {
+                                comida.color = new Color(157.0f, 0f, 0f);
+                            }
+                        }
+                        else
+                        {
+                            panelBotonComida.gameObject.SetActive(false);
+                        }
+                    }
+                    
 
                     Button boton = botonObjeto.GetComponent<Button>();
                     boton.onClick.AddListener(() => juego.ConstruirSeleccionarEdificio(edificio.id));
