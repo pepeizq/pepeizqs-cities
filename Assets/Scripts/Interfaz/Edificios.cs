@@ -16,41 +16,49 @@ namespace Interfaz
 
         public Panel panelInferior;
 
+        public Scrollbar scrollbar;
+
         public Panel panelCarreteras;
         public Button botonCarreteras;
         public Image botonCarreterasImagen;
         public Sprite botonCarreterasSprite1;
         public Sprite botonCarreterasSprite2;
+        private float alturaCarreteras = 0;
 
         public Panel panelPoblacion;
         public Button botonPoblacion;
         public Image botonPoblacionImagen;
         public Sprite botonPoblacionSprite1;
         public Sprite botonPoblacionSprite2;
+        private float alturaPoblacion = 0;
 
         public Panel panelComida;
         public Button botonComida;
         public Image botonComidaImagen;
         public Sprite botonComidaSprite1;
         public Sprite botonComidaSprite2;
+        private float alturaComida = 0;
 
         public Panel panelTiendas;
         public Button botonTiendas;
         public Image botonTiendasImagen;
         public Sprite botonTiendasSprite1;
         public Sprite botonTiendasSprite2;
+        private float alturaTiendas = 0;
 
         public Panel panelIndustria;
         public Button botonIndustria;
         public Image botonIndustriaImagen;
         public Sprite botonIndustriaSprite1;
         public Sprite botonIndustriaSprite2;
+        private float alturaIndustria = 0;
 
         public Panel panelDecoracion;
         public Button botonDecoracion;
         public Image botonDecoracionImagen;
         public Sprite botonDecoracionSprite1;
         public Sprite botonDecoracionSprite2;
+        private float alturaDecoracion = 0;
 
         //public Panel panelCantidadDinero;
         //public Text costeCantidad;
@@ -68,27 +76,27 @@ namespace Interfaz
         {
             RectTransform rtDecoracion = panelDecoracion.GetComponent<RectTransform>();
             rtDecoracion.sizeDelta = new Vector2(rtDecoracion.sizeDelta.x, 0);
-            float alturaDecoracion = 0;
+            alturaDecoracion = 0;
 
             RectTransform rtCarreteras = panelCarreteras.GetComponent<RectTransform>();
             rtCarreteras.sizeDelta = new Vector2(rtCarreteras.sizeDelta.x, 0);
-            float alturaCarreteras = 0;
+            alturaCarreteras = 0;
 
             RectTransform rtPoblacion = panelPoblacion.GetComponent<RectTransform>();
             rtPoblacion.sizeDelta = new Vector2(rtPoblacion.sizeDelta.x, 0);
-            float alturaPoblacion = 0;
+            alturaPoblacion = 0;
 
             RectTransform rtComida = panelComida.GetComponent<RectTransform>();
             rtComida.sizeDelta = new Vector2(rtComida.sizeDelta.x, 0);
-            float alturaComida = 0;
+            alturaComida = 0;
 
             RectTransform rtTiendas = panelTiendas.GetComponent<RectTransform>();
             rtTiendas.sizeDelta = new Vector2(rtTiendas.sizeDelta.x, 0);
-            float alturaTiendas = 0;
+            alturaTiendas = 0;
 
             RectTransform rtIndustria = panelIndustria.GetComponent<RectTransform>();
             rtIndustria.sizeDelta = new Vector2(rtIndustria.sizeDelta.x, 0);
-            float alturaIndustria = 0;
+            alturaIndustria = 0;
 
             //panelCantidadDinero.gameObject.SetActive(false);
             //panelCantidadPoblacion.gameObject.SetActive(false);
@@ -239,18 +247,46 @@ namespace Interfaz
             rtIndustria.sizeDelta = new Vector2(rtIndustria.sizeDelta.x, alturaIndustria);
         }
 
-        public void ConstruirMostrarPanel(Panel panelVisible)
+        public void ConstruirMostrarPanel(Panel panelEnseñar)
         {
             sonidoBoton.Play();
 
+            panelCarreteras.gameObject.GetComponent<CanvasGroup>().alpha = 0;
+            panelCarreteras.gameObject.GetComponent<CanvasGroup>().interactable = false;
+            panelCarreteras.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
             panelCarreteras.gameObject.SetActive(false);
+
+            panelPoblacion.gameObject.GetComponent<CanvasGroup>().alpha = 0;
+            panelPoblacion.gameObject.GetComponent<CanvasGroup>().interactable = false;
+            panelPoblacion.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
             panelPoblacion.gameObject.SetActive(false);
+
+            panelComida.gameObject.GetComponent<CanvasGroup>().alpha = 0;
+            panelComida.gameObject.GetComponent<CanvasGroup>().interactable = false;
+            panelComida.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
             panelComida.gameObject.SetActive(false);
+
+            panelTiendas.gameObject.GetComponent<CanvasGroup>().alpha = 0;
+            panelTiendas.gameObject.GetComponent<CanvasGroup>().interactable = false;
+            panelTiendas.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
             panelTiendas.gameObject.SetActive(false);
+
+            panelIndustria.gameObject.GetComponent<CanvasGroup>().alpha = 0;
+            panelIndustria.gameObject.GetComponent<CanvasGroup>().interactable = false;
+            panelIndustria.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
             panelIndustria.gameObject.SetActive(false);
+
+            panelDecoracion.gameObject.GetComponent<CanvasGroup>().alpha = 0;
+            panelDecoracion.gameObject.GetComponent<CanvasGroup>().interactable = false;
+            panelDecoracion.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
             panelDecoracion.gameObject.SetActive(false);
 
-            panelVisible.gameObject.SetActive(true);
+            panelEnseñar.gameObject.GetComponent<CanvasGroup>().alpha = 1;
+            panelEnseñar.gameObject.GetComponent<CanvasGroup>().interactable = true;
+            panelEnseñar.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
+            panelEnseñar.gameObject.SetActive(true);
+
+            panelInferior.gameObject.GetComponent<ScrollRect>().content = panelEnseñar.gameObject.GetComponent<RectTransform>();
 
             botonCarreteras.gameObject.GetComponent<Image>().color = new Color(255f, 255f, 255f, 0f / 255f);
             botonPoblacion.gameObject.GetComponent<Image>().color = new Color(255f, 255f, 255f, 0f / 255f);
@@ -266,47 +302,65 @@ namespace Interfaz
             botonIndustriaImagen.GetComponent<Image>().sprite = botonIndustriaSprite1;
             botonDecoracionImagen.GetComponent<Image>().sprite = botonDecoracionSprite1;
 
-            if (panelVisible.nombre == "carreteras")
+            if (panelEnseñar.nombre == "carreteras")
             {
                 botonCarreteras.gameObject.GetComponent<Image>().color = new Color(0.08f, 0.4f, 0.58f);
                 botonCarreterasImagen.GetComponent<Image>().sprite = botonCarreterasSprite2;
                 numeroEdificios = 0;
-                panelInferior.gameObject.GetComponent<ScrollRect>().content = panelCarreteras.gameObject.GetComponent<RectTransform>();
+                EnseñarOcultarScrollbar(alturaCarreteras);
             }
-            else if (panelVisible.nombre == "casas")
+            else if (panelEnseñar.nombre == "casas")
             {
                 botonPoblacion.gameObject.GetComponent<Image>().color = new Color(0.08f, 0.4f, 0.58f);
                 botonPoblacionImagen.GetComponent<Image>().sprite = botonPoblacionSprite2;
                 numeroEdificios = 1;
-                panelInferior.gameObject.GetComponent<ScrollRect>().content = panelPoblacion.gameObject.GetComponent<RectTransform>();
+                EnseñarOcultarScrollbar(alturaPoblacion);
             }
-            else if (panelVisible.nombre == "comida")
+            else if (panelEnseñar.nombre == "comida")
             {
                 botonComida.gameObject.GetComponent<Image>().color = new Color(0.08f, 0.4f, 0.58f);
                 botonComidaImagen.GetComponent<Image>().sprite = botonComidaSprite2;
                 numeroEdificios = 2;
-                panelInferior.gameObject.GetComponent<ScrollRect>().content = panelComida.gameObject.GetComponent<RectTransform>();
+                EnseñarOcultarScrollbar(alturaComida);
             }
-            else if (panelVisible.nombre == "tiendas")
+            else if (panelEnseñar.nombre == "tiendas")
             {
                 botonTiendas.gameObject.GetComponent<Image>().color = new Color(0.08f, 0.4f, 0.58f);
                 botonTiendasImagen.GetComponent<Image>().sprite = botonTiendasSprite2;
                 numeroEdificios = 3;
-                panelInferior.gameObject.GetComponent<ScrollRect>().content = panelTiendas.gameObject.GetComponent<RectTransform>();
+                EnseñarOcultarScrollbar(alturaTiendas);
             }
-            else if (panelVisible.nombre == "industria")
+            else if (panelEnseñar.nombre == "industria")
             {
                 botonIndustria.gameObject.GetComponent<Image>().color = new Color(0.08f, 0.4f, 0.58f);
                 botonIndustriaImagen.GetComponent<Image>().sprite = botonIndustriaSprite2;
                 numeroEdificios = 4;
-                panelInferior.gameObject.GetComponent<ScrollRect>().content = panelIndustria.gameObject.GetComponent<RectTransform>();
+                EnseñarOcultarScrollbar(alturaIndustria);
             }
-            else if (panelVisible.nombre == "decoracion")
+            else if (panelEnseñar.nombre == "decoracion")
             {
                 botonDecoracion.gameObject.GetComponent<Image>().color = new Color(0.08f, 0.4f, 0.58f);
                 botonDecoracionImagen.GetComponent<Image>().sprite = botonDecoracionSprite2;
-                numeroEdificios = 5;
-                panelInferior.gameObject.GetComponent<ScrollRect>().content = panelDecoracion.gameObject.GetComponent<RectTransform>();
+                numeroEdificios = 5;              
+                EnseñarOcultarScrollbar(alturaDecoracion);
+            }
+        }
+
+        private void EnseñarOcultarScrollbar(float altura)
+        {
+            if (altura < 300)
+            {
+                scrollbar.gameObject.GetComponent<CanvasGroup>().alpha = 0;
+                scrollbar.gameObject.GetComponent<CanvasGroup>().interactable = false;
+                scrollbar.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
+                scrollbar.gameObject.SetActive(false);
+            }
+            else
+            {
+                scrollbar.gameObject.GetComponent<CanvasGroup>().alpha = 1;
+                scrollbar.gameObject.GetComponent<CanvasGroup>().interactable = true;
+                scrollbar.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
+                scrollbar.gameObject.SetActive(true);
             }
         }
 
