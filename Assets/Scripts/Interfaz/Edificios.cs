@@ -189,7 +189,10 @@ namespace Interfaz
                     coste.text = string.Format("{0} €", edificio.coste);
                     coste.color = new Color(157.0f, 0f, 0f);
 
-                    Panel panelBotonComida = panelBoton.transform.GetChild(2).transform.GetComponent<Panel>();
+                    //-----------------------------------
+
+                    Panel subpanelBoton = panelBoton.transform.GetChild(2).transform.GetComponent<Panel>();
+                    Panel panelBotonComida = subpanelBoton.gameObject.transform.GetChild(0).transform.GetComponent<Panel>();
 
                     if (panelBotonComida != null)
                     {
@@ -215,7 +218,62 @@ namespace Interfaz
                             panelBotonComida.gameObject.SetActive(false);
                         }
                     }
-                    
+
+                    Panel panelBotonPoblacion = subpanelBoton.gameObject.transform.GetChild(1).transform.GetComponent<Panel>();
+
+                    if (panelBotonPoblacion != null)
+                    {
+                        if (edificio.poblacion != 0)
+                        {
+                            panelBotonPoblacion.gameObject.SetActive(true);
+
+                            Text poblacion = panelBotonPoblacion.transform.GetChild(1).transform.GetComponent<Text>();
+                            poblacion.text = string.Format("{0}", edificio.poblacion);
+
+                            if (edificio.poblacion > 0)
+                            {
+                                poblacion.text = string.Format("+{0}", poblacion.text);
+                                poblacion.color = new Color(0f, 157.0f, 0f);
+                            }
+                            else if (edificio.poblacion < 0)
+                            {
+                                poblacion.color = new Color(157.0f, 0f, 0f);
+                            }
+                        }
+                        else
+                        {
+                            panelBotonPoblacion.gameObject.SetActive(false);
+                        }
+                    }
+
+                    Panel panelBotonTrabajo = subpanelBoton.gameObject.transform.GetChild(2).transform.GetComponent<Panel>();
+
+                    if (panelBotonTrabajo != null)
+                    {
+                        if (edificio.trabajo != 0)
+                        {
+                            panelBotonTrabajo.gameObject.SetActive(true);
+
+                            Text trabajo = panelBotonTrabajo.transform.GetChild(1).transform.GetComponent<Text>();
+                            trabajo.text = string.Format("{0}", edificio.trabajo);
+
+                            if (edificio.trabajo > 0)
+                            {
+                                trabajo.text = string.Format("+{0}", trabajo.text);
+                                trabajo.color = new Color(0f, 157.0f, 0f);
+                            }
+                            else if (edificio.trabajo < 0)
+                            {
+                                trabajo.color = new Color(157.0f, 0f, 0f);
+                            }
+                        }
+                        else
+                        {
+                            panelBotonTrabajo.gameObject.SetActive(false);
+                        }
+                    }
+
+                    //-----------------------------------
 
                     Button boton = botonObjeto.GetComponent<Button>();
                     boton.onClick.AddListener(() => juego.ConstruirSeleccionarEdificio(edificio.id));
@@ -287,6 +345,7 @@ namespace Interfaz
             panelEnseñar.gameObject.SetActive(true);
 
             panelInferior.gameObject.GetComponent<ScrollRect>().content = panelEnseñar.gameObject.GetComponent<RectTransform>();
+            panelInferior.gameObject.GetComponent<ScrollRect>().normalizedPosition = new Vector2(0, 1);
 
             botonCarreteras.gameObject.GetComponent<Image>().color = new Color(255f, 255f, 255f, 0f / 255f);
             botonPoblacion.gameObject.GetComponent<Image>().color = new Color(255f, 255f, 255f, 0f / 255f);
