@@ -24,6 +24,7 @@ namespace Interfaz
         public Sprite botonCarreterasSprite1;
         public Sprite botonCarreterasSprite2;
         private float alturaCarreteras = 0;
+        private float alturaCarreterasContador = 0;
 
         public Panel panelPoblacion;
         public Button botonPoblacion;
@@ -31,6 +32,7 @@ namespace Interfaz
         public Sprite botonPoblacionSprite1;
         public Sprite botonPoblacionSprite2;
         private float alturaPoblacion = 0;
+        private float alturaPoblacionContador = 0;
 
         public Panel panelComida;
         public Button botonComida;
@@ -38,6 +40,7 @@ namespace Interfaz
         public Sprite botonComidaSprite1;
         public Sprite botonComidaSprite2;
         private float alturaComida = 0;
+        private float alturaComidaContador = 0;
 
         public Panel panelTiendas;
         public Button botonTiendas;
@@ -45,6 +48,7 @@ namespace Interfaz
         public Sprite botonTiendasSprite1;
         public Sprite botonTiendasSprite2;
         private float alturaTiendas = 0;
+        private float alturaTiendasContador = 0;
 
         public Panel panelIndustria;
         public Button botonIndustria;
@@ -52,6 +56,7 @@ namespace Interfaz
         public Sprite botonIndustriaSprite1;
         public Sprite botonIndustriaSprite2;
         private float alturaIndustria = 0;
+        private float alturaIndustriaContador = 0;
 
         public Panel panelDecoracion;
         public Button botonDecoracion;
@@ -59,6 +64,7 @@ namespace Interfaz
         public Sprite botonDecoracionSprite1;
         public Sprite botonDecoracionSprite2;
         private float alturaDecoracion = 0;
+        private float alturaDecoracionContador = 0;
 
         //public Panel panelCantidadDinero;
         //public Text costeCantidad;
@@ -152,47 +158,102 @@ namespace Interfaz
                     if (edificio.categoria == 0)
                     {
                         botonObjeto.transform.SetParent(panelDecoracion.transform, false);
-                        alturaDecoracion += 100;
+                        alturaDecoracionContador += 1;
+
+                        if (alturaDecoracionContador == 1)
+                        {
+                            alturaDecoracion += 120;
+                        }
+                        else if (alturaDecoracionContador == 3)
+                        { 
+                            alturaDecoracionContador = 0;
+                        }                       
                     }
                     else if (edificio.categoria == 1)
                     {
                         botonObjeto.transform.SetParent(panelCarreteras.transform, false);
-                        alturaCarreteras += 100;
+                        alturaCarreterasContador += 1;
+
+                        if (alturaCarreterasContador == 1)
+                        {
+                            alturaCarreteras += 120;
+                        }
+                        else if (alturaCarreterasContador == 3)
+                        {
+                            alturaCarreterasContador = 0;
+                        }
                     }
                     else if (edificio.categoria == 2)
                     {
                         botonObjeto.transform.SetParent(panelPoblacion.transform, false);
-                        alturaPoblacion += 100;
+                        alturaPoblacionContador += 1;
+
+                        if (alturaPoblacionContador == 1)
+                        {
+                            alturaPoblacion += 120;
+                        }
+                        else if (alturaPoblacionContador == 3)
+                        {
+                            alturaPoblacionContador = 0;
+                        }
                     }
                     else if (edificio.categoria == 3)
                     {
                         botonObjeto.transform.SetParent(panelComida.transform, false);
-                        alturaComida += 100;
+                        alturaComidaContador += 1;
+
+                        if (alturaComidaContador == 1)
+                        {
+                            alturaComida += 120;
+                        }
+                        else if (alturaComidaContador == 3)
+                        {
+                            alturaComidaContador = 0;
+                        }
                     }
                     else if (edificio.categoria == 4)
                     {
                         botonObjeto.transform.SetParent(panelTiendas.transform, false);
-                        alturaTiendas += 100;
+                        alturaTiendasContador += 1;
+
+                        if (alturaTiendasContador == 1)
+                        {
+                            alturaTiendas += 120;
+                        }
+                        else if (alturaTiendasContador == 3)
+                        {
+                            alturaTiendasContador = 0;
+                        }
                     }
                     else if (edificio.categoria == 5)
                     {
                         botonObjeto.transform.SetParent(panelIndustria.transform, false);
-                        alturaIndustria += 100;
+                        alturaIndustriaContador += 1;
+
+                        if (alturaIndustriaContador == 1)
+                        {
+                            alturaIndustria += 120;
+                        }
+                        else if (alturaIndustriaContador == 3)
+                        {
+                            alturaIndustriaContador = 0;
+                        }
                     }
 
                     GameObject panelBoton = botonObjeto.transform.GetChild(0).gameObject;
 
                     Image imagen = panelBoton.transform.GetChild(0).transform.GetComponent<Image>();
                     imagen.sprite = edificio.botonImagen;
+                 
+                    //-----------------------------------
 
-                    Text coste = panelBoton.transform.GetChild(1).transform.GetComponent<Text>();
+                    Panel subpanelBoton = panelBoton.transform.GetChild(1).transform.GetComponent<Panel>();
+
+                    Text coste = subpanelBoton.transform.GetChild(0).transform.GetComponent<Text>();
                     coste.text = string.Format("{0} €", edificio.coste);
                     coste.color = new Color(157.0f, 0f, 0f);
 
-                    //-----------------------------------
-
-                    Panel subpanelBoton = panelBoton.transform.GetChild(2).transform.GetComponent<Panel>();
-                    Panel panelBotonComida = subpanelBoton.gameObject.transform.GetChild(0).transform.GetComponent<Panel>();
+                    Panel panelBotonComida = subpanelBoton.gameObject.transform.GetChild(1).transform.GetComponent<Panel>();
 
                     if (panelBotonComida != null)
                     {
@@ -219,7 +280,7 @@ namespace Interfaz
                         }
                     }
 
-                    Panel panelBotonPoblacion = subpanelBoton.gameObject.transform.GetChild(1).transform.GetComponent<Panel>();
+                    Panel panelBotonPoblacion = subpanelBoton.gameObject.transform.GetChild(2).transform.GetComponent<Panel>();
 
                     if (panelBotonPoblacion != null)
                     {
@@ -246,7 +307,7 @@ namespace Interfaz
                         }
                     }
 
-                    Panel panelBotonTrabajo = subpanelBoton.gameObject.transform.GetChild(2).transform.GetComponent<Panel>();
+                    Panel panelBotonTrabajo = subpanelBoton.gameObject.transform.GetChild(3).transform.GetComponent<Panel>();
 
                     if (panelBotonTrabajo != null)
                     {
@@ -407,7 +468,7 @@ namespace Interfaz
 
         private void EnseñarOcultarScrollbar(float altura)
         {
-            if (altura < 300)
+            if (altura < 270)
             {
                 scrollbar.gameObject.GetComponent<CanvasGroup>().alpha = 0;
                 scrollbar.gameObject.GetComponent<CanvasGroup>().interactable = false;
