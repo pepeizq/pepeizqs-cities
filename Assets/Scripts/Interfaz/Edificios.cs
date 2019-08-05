@@ -277,6 +277,7 @@ namespace Interfaz
                         else
                         {
                             panelBotonComida.gameObject.SetActive(false);
+
                         }
                     }
 
@@ -345,7 +346,7 @@ namespace Interfaz
                         eventID = EventTriggerType.PointerEnter
                     };
 
-                    pointerEnter.callback.AddListener((data) => { CursorEntraEdificioInferior((PointerEventData)data, edificio); });
+                    pointerEnter.callback.AddListener((data) => { CursorEntraEdificioInferior((PointerEventData)data, boton); });
                     evento.triggers.Add(pointerEnter);
 
                     EventTrigger.Entry pointerExit = new EventTrigger.Entry
@@ -558,8 +559,10 @@ namespace Interfaz
             }
         }
 
-        public void CursorEntraEdificioInferior(PointerEventData eventData, Construccion edificio)
+        public void CursorEntraEdificioInferior(PointerEventData eventData, Button boton)
         {
+
+
             //if (edificio.coste != 0)
             //{
             //    panelCantidadDinero.gameObject.SetActive(true);
