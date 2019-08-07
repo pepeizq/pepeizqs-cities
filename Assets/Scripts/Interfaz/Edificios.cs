@@ -6,6 +6,8 @@ namespace Interfaz
 {
     public class Edificios : MonoBehaviour
     {
+        public Cursores cursores;
+
         public AudioSource sonidoBoton;
 
         public Juego juego;
@@ -66,18 +68,6 @@ namespace Interfaz
         private float alturaDecoracion = 0;
         private float alturaDecoracionContador = 0;
 
-        //public Panel panelCantidadDinero;
-        //public Text costeCantidad;
-
-        //public Panel panelCantidadPoblacion;
-        //public Text poblacionCantidad;
-
-        //public Panel panelCantidadComida;
-        //public Text comidaCantidad;
-
-        //public Panel panelCantidadTrabajo;
-        //public Text trabajoCantidad;
-
         public void Arranque(Construccion[] edificios)
         {
             RectTransform rtDecoracion = panelDecoracion.GetComponent<RectTransform>();
@@ -103,11 +93,6 @@ namespace Interfaz
             RectTransform rtIndustria = panelIndustria.GetComponent<RectTransform>();
             rtIndustria.sizeDelta = new Vector2(rtIndustria.sizeDelta.x, 0);
             alturaIndustria = 0;
-
-            //panelCantidadDinero.gameObject.SetActive(false);
-            //panelCantidadPoblacion.gameObject.SetActive(false);
-            //panelCantidadComida.gameObject.SetActive(false);
-            //panelCantidadTrabajo.gameObject.SetActive(false);
 
             foreach (Transform boton in panelDecoracion.gameObject.transform)
             {
@@ -346,7 +331,7 @@ namespace Interfaz
                         eventID = EventTriggerType.PointerEnter
                     };
 
-                    pointerEnter.callback.AddListener((data) => { CursorEntraEdificioInferior((PointerEventData)data, boton); });
+                    pointerEnter.callback.AddListener((data) => { CursorEntraEdificioInferior((PointerEventData)data); });
                     evento.triggers.Add(pointerEnter);
 
                     EventTrigger.Entry pointerExit = new EventTrigger.Entry
@@ -487,6 +472,8 @@ namespace Interfaz
 
         public void CursorEntraEdificioSuperior(int numeroSeleccionado)
         {
+            cursores.Entra();
+
             if (numeroSeleccionado != numeroEdificios)
             {
                 if (numeroSeleccionado == 0)
@@ -524,6 +511,8 @@ namespace Interfaz
 
         public void CursorSaleEdificioSuperior(int numeroSeleccionado)
         {
+            cursores.Sale();
+
             if (numeroSeleccionado != numeroEdificios)
             {
                 if (numeroSeleccionado == 0)
@@ -559,92 +548,14 @@ namespace Interfaz
             }
         }
 
-        public void CursorEntraEdificioInferior(PointerEventData eventData, Button boton)
+        public void CursorEntraEdificioInferior(PointerEventData eventData)
         {
-
-
-            //if (edificio.coste != 0)
-            //{
-            //    panelCantidadDinero.gameObject.SetActive(true);
-            //    costeCantidad.text = string.Format("-{0} €", edificio.coste);
-            //    costeCantidad.color = new Color(157.0f, 0f, 0f);
-            //}
-            //else
-            //{
-            //    panelCantidadDinero.gameObject.SetActive(false);
-            //}
-
-            //if (edificio.poblacion != 0)
-            //{
-            //    panelCantidadPoblacion.gameObject.SetActive(true);
-            //    poblacionCantidad.text = string.Format("{0}", edificio.poblacion);
-
-            //    if (edificio.poblacion > 0)
-            //    {
-            //        poblacionCantidad.color = new Color(0f, 157.0f, 0f);
-            //    }
-            //    else if (edificio.poblacion < 0)
-            //    {
-            //        poblacionCantidad.color = new Color(157.0f, 0f, 0f);
-            //    }
-            //}
-            //else
-            //{
-            //    panelCantidadPoblacion.gameObject.SetActive(false);
-            //}
-
-            //if (edificio.comida != 0)
-            //{
-            //    panelCantidadComida.gameObject.SetActive(true);              
-            //    comidaCantidad.text = string.Format("{0}", edificio.comida);
-
-            //    if (edificio.comida > 0)
-            //    {
-            //        comidaCantidad.color = new Color(0f, 157.0f, 0f);
-            //    }
-            //    else if (edificio.comida < 0)
-            //    {
-            //        comidaCantidad.color = new Color(157.0f, 0f, 0f);
-            //    }
-            //}
-            //else
-            //{
-            //    panelCantidadComida.gameObject.SetActive(false);
-            //}
-
-            //if (edificio.trabajo != 0)
-            //{
-            //    panelCantidadTrabajo.gameObject.SetActive(true);
-            //    trabajoCantidad.text = string.Format("{0}", edificio.trabajo);
-
-            //    if (edificio.trabajo > 0)
-            //    {
-            //        trabajoCantidad.color = new Color(0f, 157.0f, 0f);
-            //    }
-            //    else if (edificio.trabajo < 0)
-            //    {
-            //        trabajoCantidad.color = new Color(157.0f, 0f, 0f);
-            //    }
-            //}
-            //else
-            //{
-            //    panelCantidadTrabajo.gameObject.SetActive(false);
-            //}
+            cursores.Entra();
         }
 
         public void CursorSaleEdificioInferior(PointerEventData eventData)
         {
-            //panelCantidadDinero.gameObject.SetActive(false);
-            //costeCantidad.text = null;
-
-            //panelCantidadPoblacion.gameObject.SetActive(false);
-            //poblacionCantidad.text = null;
-
-            //panelCantidadComida.gameObject.SetActive(false);
-            //comidaCantidad.text = null;
-
-            //panelCantidadTrabajo.gameObject.SetActive(false);
-            //trabajoCantidad.text = null;
+            cursores.Sale();
         }
     }
 }

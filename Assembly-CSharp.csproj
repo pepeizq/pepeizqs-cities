@@ -72,6 +72,7 @@
      <Compile Include="Assets\Scripts\Colocar\Posicion.cs" />
      <Compile Include="Assets\Scripts\DiaNoche.cs" />
      <Compile Include="Assets\Scripts\Interfaz\Ayuda.cs" />
+     <Compile Include="Assets\Scripts\Interfaz\Cursores.cs" />
      <Compile Include="Assets\Scripts\Interfaz\Edificios.cs" />
      <Compile Include="Assets\Scripts\Interfaz\Idiomas.cs" />
      <Compile Include="Assets\Scripts\Interfaz\MenuJuego.cs" />

@@ -58,6 +58,7 @@ namespace Interfaz
         {
             MostrarPanelColorBoton(botonGeneral, new Color(0.08f, 0.4f, 0.58f));
             panelMedio.gameObject.GetComponent<ScrollRect>().content = panelGeneral.GetComponent<RectTransform>();
+            panelMedio.gameObject.GetComponent<ScrollRect>().normalizedPosition = new Vector2(0, 1);
             panelGraficos.gameObject.SetActive(false);
             panelTeclado.gameObject.SetActive(false);
         }
@@ -101,6 +102,7 @@ namespace Interfaz
                 scrollbar.gameObject.SetActive(true);
 
                 panelMedio.gameObject.GetComponent<ScrollRect>().content = panelGeneral.GetComponent<RectTransform>();
+                panelMedio.gameObject.GetComponent<ScrollRect>().normalizedPosition = new Vector2(0, 1);
             }
             else
             {
@@ -126,6 +128,7 @@ namespace Interfaz
                 scrollbar.gameObject.SetActive(true);
 
                 panelMedio.gameObject.GetComponent<ScrollRect>().content = panelTeclado.GetComponent<RectTransform>();
+                panelMedio.gameObject.GetComponent<ScrollRect>().normalizedPosition = new Vector2(0, 1);
             }
             else
             {
