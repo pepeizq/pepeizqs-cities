@@ -3,6 +3,8 @@
 [System.Serializable]
 public class Guardado
 {
+    public List<Terreno2> terrenos = new List<Terreno2>();
+
     public List<int> edificiosID = new List<int>();
     public List<int> edificiosX = new List<int>();
     public List<int> edificiosZ = new List<int>();

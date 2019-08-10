@@ -67,7 +67,7 @@ public class Juego : MonoBehaviour {
 
     public Camera camara;
 
-    public ArbolesInicio arbolesInicio;
+    public Escenario escenario;
 
     public Panel panelConstruir;
     public Panel panelConstruirSub;
@@ -88,6 +88,8 @@ public class Juego : MonoBehaviour {
 
     private void Start()
     {
+        escenario.PonerTerreno();
+
         opciones.CargarInicio();
         opcionesGeneral.CargarInicio();
         opcionesGraficos.CargarInicio();
@@ -109,7 +111,7 @@ public class Juego : MonoBehaviour {
         else
         {
             botonCargarPartida.interactable = false;
-            arbolesInicio.Colocar(colocar);
+            escenario.PonerArboles(colocar);
             diaNoche.tiempoDia = 24000;
         }
 
@@ -147,7 +149,7 @@ public class Juego : MonoBehaviour {
 
         camara.transform.position = new Vector3(10, 60, 10);
         colocar.QuitarTodosEdificios();
-        arbolesInicio.Colocar(colocar);
+        escenario.PonerArboles(colocar);
         CargarInterfaz();
     }
 
@@ -156,7 +158,7 @@ public class Juego : MonoBehaviour {
         sonidoBoton.Play();
         colocar.QuitarTodosEdificios();
         CargarEdificios();
-        CargarInterfaz();      
+        CargarInterfaz();
     }
 
     private void CargarInterfaz()
@@ -653,6 +655,8 @@ public class Juego : MonoBehaviour {
     public void GuardarPartida()
     {
         Guardado guardado = new Guardado();
+
+        guardado.terrenos = escenario.terrenos;
 
         Construccion[,] edificiosGuardar = colocar.DevolverConstrucciones();
 
