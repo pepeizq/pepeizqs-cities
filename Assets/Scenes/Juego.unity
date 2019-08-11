@@ -9159,7 +9159,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tierra: {fileID: 1151308695920927816, guid: ce87c5f424039e94c9753dbacfbe7c1f, type: 3}
-  terrenos: []
+  rio: {fileID: 9184413067498943987, guid: 841f512e09f9c094c9970104605a41bc, type: 3}
+  terrenos:
+  - {fileID: 1151308695920927816, guid: ce87c5f424039e94c9753dbacfbe7c1f, type: 3}
+  - {fileID: 9184413067498943987, guid: 841f512e09f9c094c9970104605a41bc, type: 3}
+  terrenosID: 
+  terrenosX: 
+  terrenosZ: 
   arboles:
   - {fileID: 114580379238428524, guid: 86aa7d557c9e4a945902b0c355401665, type: 3}
   - {fileID: 114364999152907770, guid: 9ec33247f98faee49819ca143c662e4e, type: 3}

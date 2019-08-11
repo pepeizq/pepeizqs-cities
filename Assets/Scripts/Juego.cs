@@ -634,8 +634,8 @@ public class Juego : MonoBehaviour {
                 Construccion edificioGuardado = edificios[guardado.edificiosID[i]];
                 edificioGuardado.rotacionColocacion = guardado.edificiosRotacion[i];
 
-                Vector3 vector = new Vector3(guardado.edificiosX[i], 1, guardado.edificiosZ[i]);
-                colocar.AñadirConstruccion(edificioGuardado, vector, diaNoche.encender);
+                Vector3 posicion = new Vector3(guardado.edificiosX[i], 1, guardado.edificiosZ[i]);
+                colocar.AñadirConstruccion(edificioGuardado, posicion, diaNoche.encender);
 
                 i++;
             }
@@ -656,7 +656,9 @@ public class Juego : MonoBehaviour {
     {
         Guardado guardado = new Guardado();
 
-        guardado.terrenos = escenario.terrenos;
+        guardado.terrenosID = escenario.terrenosID;
+        guardado.terrenosX = escenario.terrenosX;
+        guardado.terrenosZ = escenario.terrenosZ;
 
         Construccion[,] edificiosGuardar = colocar.DevolverConstrucciones();
 
