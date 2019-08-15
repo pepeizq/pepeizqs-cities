@@ -73,6 +73,7 @@
      <Compile Include="Assets\Scripts\DiaNoche.cs" />
      <Compile Include="Assets\Scripts\Escenario.cs" />
      <Compile Include="Assets\Scripts\Interfaz\Ayuda.cs" />
+     <Compile Include="Assets\Scripts\Interfaz\CargarPartida.cs" />
      <Compile Include="Assets\Scripts\Interfaz\Cursores.cs" />
      <Compile Include="Assets\Scripts\Interfaz\Edificios.cs" />
      <Compile Include="Assets\Scripts\Interfaz\Idiomas.cs" />
@@ -83,6 +84,7 @@
      <Compile Include="Assets\Scripts\Interfaz\Opciones\Graficos.cs" />
      <Compile Include="Assets\Scripts\Interfaz\Opciones\Teclado.cs" />
      <Compile Include="Assets\Scripts\Juego.cs" />
+     <Compile Include="Assets\Scripts\Partidas.cs" />
      <Compile Include="Assets\Scripts\Steam.cs" />
      <Compile Include="Assets\Scripts\Steamworks.NET\SteamManager.cs" />
      <None Include="Assets\Idiomas\Idiomas.xml" />

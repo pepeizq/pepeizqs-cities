@@ -7,6 +7,7 @@ namespace Interfaz
         public Canvas canvas;
 
         public Juego juego;
+        public CargarPartida cargarPartida;
         public Opciones opciones;
         public Ayuda ayuda;
 
@@ -21,6 +22,21 @@ namespace Interfaz
             juego.canvas.gameObject.GetComponent<CanvasGroup>().alpha = 1;
             juego.canvas.gameObject.GetComponent<CanvasGroup>().interactable = true;
             juego.canvas.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
+        }
+
+        public void MostrarCargarPartidas()
+        {
+            sonidoBoton.Play();
+
+            canvas.gameObject.GetComponent<CanvasGroup>().alpha = 0;
+            canvas.gameObject.GetComponent<CanvasGroup>().interactable = false;
+            canvas.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
+
+            cargarPartida.canvas.gameObject.GetComponent<CanvasGroup>().alpha = 1;
+            cargarPartida.canvas.gameObject.GetComponent<CanvasGroup>().interactable = true;
+            cargarPartida.canvas.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
+
+            cargarPartida.CargarListado();
         }
 
         public void MostrarOpciones()

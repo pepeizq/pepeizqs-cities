@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Escenario : MonoBehaviour {
 
+    public Partidas partidas;
+
     public Terreno tierra;
     public Terreno rio;
 
@@ -20,136 +22,154 @@ public class Escenario : MonoBehaviour {
 
     public Construccion[] arboles;
 
-    public void PonerTerreno()
+    public void PonerTerreno(Guardado partida)
     {
-        if (rio != null)
+        if (partida != null)
         {
-            int origen = Random.Range(40, 60);
-            int primerTramo = Random.Range(20, 30);
-
-            int i = 0;
-            while (i < primerTramo)
+            if (partida.terrenosID.Count > 0)
             {
-                Vector3 posicion = new Vector3(origen, -0.5f, i);
-                GenerarTerreno(rio, posicion);
-
-                i += 1;
-            }
-
-            int positivoNegativo = Random.Range(0, 2);
-            int segundoTramo = 0;
-
-            if (positivoNegativo == 0)
-            {
-                segundoTramo = Random.Range(-10, -20);
-                i = 0;
-                while (i > segundoTramo)
+                int i = 0;
+                while (i < partida.terrenosID.Count)
                 {
-                    Vector3 posicion = new Vector3(origen + i, -0.5f, primerTramo);
-                    GenerarTerreno(rio, posicion);
-
-                    i -= 1;
-                }
-            }
-            else
-            {
-                segundoTramo = Random.Range(10, 20);
-                i = 0;
-                while (i < segundoTramo)
-                {
-                    Vector3 posicion = new Vector3(origen + i, -0.5f, primerTramo);
-                    GenerarTerreno(rio, posicion);
+                    Terreno terreno = terrenos[partida.terrenosID[i]];
+                    Vector3 posicion = new Vector3(partida.terrenosX[i], -0.5f, partida.terrenosZ[i]);
+                    GenerarTerreno(terreno, posicion);
 
                     i += 1;
                 }
-            }
-
-            int tercerTramo = Random.Range(30, 40);
-
-            i = 0;
-            while (i < tercerTramo)
-            {
-                Vector3 posicion = new Vector3(origen + segundoTramo, -0.5f, primerTramo + i);
-                GenerarTerreno(rio, posicion);
-
-                i += 1;
-            }
-
-            positivoNegativo = Random.Range(0, 2);
-            int cuartoTramo = 0;
-
-            if (positivoNegativo == 0)
-            {
-                cuartoTramo = Random.Range(-10, -20);
-                i = 0;
-                while (i > cuartoTramo)
-                {
-                    Vector3 posicion = new Vector3(origen + segundoTramo + i, -0.5f, primerTramo + tercerTramo);
-                    GenerarTerreno(rio, posicion);
-
-                    i -= 1;
-                }
-            }
-            else
-            {
-                cuartoTramo = Random.Range(10, 20);
-                i = 0;
-                while (i < cuartoTramo)
-                {
-                    Vector3 posicion = new Vector3(origen + segundoTramo + i, -0.5f, primerTramo + tercerTramo);
-                    GenerarTerreno(rio, posicion);
-
-                    i += 1;
-                }
-            }
-
-            i = 0;
-            while ((primerTramo + tercerTramo + i) < 100)
-            {
-                Vector3 posicion = new Vector3(origen + segundoTramo + cuartoTramo, -0.5f, primerTramo + tercerTramo + i);
-                GenerarTerreno(rio, posicion);
-
-                i += 1;
             }
         }
-
-        if (tierra != null)
+        else
         {
-            int i = 0;
-            while (i < 100)
+            if (rio != null)
             {
-                int j = 0;
-                while (j < 100)
-                {
-                    bool añadir = true;
-                    Vector3 posicion = new Vector3(i, -0.5f, j);
+                int origen = Random.Range(40, 60);
+                int primerTramo = Random.Range(20, 30);
 
-                    if (terrenosID .Count > 0)
+                int i = 0;
+                while (i < primerTramo)
+                {
+                    Vector3 posicion = new Vector3(origen, -0.5f, i);
+                    GenerarTerreno(rio, posicion);
+
+                    i += 1;
+                }
+
+                int positivoNegativo = Random.Range(0, 2);
+                int segundoTramo = 0;
+
+                if (positivoNegativo == 0)
+                {
+                    segundoTramo = Random.Range(-10, -20);
+                    i = 0;
+                    while (i > segundoTramo)
                     {
-                        int k = 0;
-                        while (k < terrenosID.Count)
+                        Vector3 posicion = new Vector3(origen + i, -0.5f, primerTramo);
+                        GenerarTerreno(rio, posicion);
+
+                        i -= 1;
+                    }
+                }
+                else
+                {
+                    segundoTramo = Random.Range(10, 20);
+                    i = 0;
+                    while (i < segundoTramo)
+                    {
+                        Vector3 posicion = new Vector3(origen + i, -0.5f, primerTramo);
+                        GenerarTerreno(rio, posicion);
+
+                        i += 1;
+                    }
+                }
+
+                int tercerTramo = Random.Range(30, 40);
+
+                i = 0;
+                while (i < tercerTramo)
+                {
+                    Vector3 posicion = new Vector3(origen + segundoTramo, -0.5f, primerTramo + i);
+                    GenerarTerreno(rio, posicion);
+
+                    i += 1;
+                }
+
+                positivoNegativo = Random.Range(0, 2);
+                int cuartoTramo = 0;
+
+                if (positivoNegativo == 0)
+                {
+                    cuartoTramo = Random.Range(-10, -20);
+                    i = 0;
+                    while (i > cuartoTramo)
+                    {
+                        Vector3 posicion = new Vector3(origen + segundoTramo + i, -0.5f, primerTramo + tercerTramo);
+                        GenerarTerreno(rio, posicion);
+
+                        i -= 1;
+                    }
+                }
+                else
+                {
+                    cuartoTramo = Random.Range(10, 20);
+                    i = 0;
+                    while (i < cuartoTramo)
+                    {
+                        Vector3 posicion = new Vector3(origen + segundoTramo + i, -0.5f, primerTramo + tercerTramo);
+                        GenerarTerreno(rio, posicion);
+
+                        i += 1;
+                    }
+                }
+
+                i = 0;
+                while ((primerTramo + tercerTramo + i) < 100)
+                {
+                    Vector3 posicion = new Vector3(origen + segundoTramo + cuartoTramo, -0.5f, primerTramo + tercerTramo + i);
+                    GenerarTerreno(rio, posicion);
+
+                    i += 1;
+                }
+            }
+
+            if (tierra != null)
+            {
+                int i = 0;
+                while (i < 100)
+                {
+                    int j = 0;
+                    while (j < 100)
+                    {
+                        bool añadir = true;
+                        Vector3 posicion = new Vector3(i, -0.5f, j);
+
+                        if (terrenosID.Count > 0)
                         {
-                            if (terrenosX[k] == i)
+                            int k = 0;
+                            while (k < terrenosID.Count)
                             {
-                                if (terrenosZ[k] == j)
+                                if (terrenosX[k] == i)
                                 {
-                                    añadir = false;
+                                    if (terrenosZ[k] == j)
+                                    {
+                                        añadir = false;
+                                    }
                                 }
+                                k += 1;
                             }
-                            k += 1;
                         }
-                    }
 
-                    if (añadir == true)
-                    {
-                        GenerarTerreno(tierra, posicion);
+                        if (añadir == true)
+                        {
+                            GenerarTerreno(tierra, posicion);
+                        }
+
+                        j += 1;
                     }
-                   
-                    j += 1;
+                    i += 1;
                 }
-                i += 1;
             }
-        }
+        }     
     }
 
     private void GenerarTerreno(Terreno terreno, Vector3 posicion)
@@ -192,21 +212,28 @@ public class Escenario : MonoBehaviour {
         return edificable;
     }
 
-    public void PonerArboles(Colocar colocar)
+    public void PonerArboles(Guardado partida, Colocar colocar)
     {
-        if (arboles != null)
+        if (partida != null)
         {
-            if (arboles.Length > 0)
+            if (partida.edificiosID.Count > 0)
             {
-                int arbolesColocar = 200;
-
                 int i = 0;
-                while (i < arbolesColocar)
+                while (i < partida.edificiosID.Count)
                 {
-                    Vector3 posicion = new Vector3(Random.Range(1, 99), 1, Random.Range(1, 99));
-                    int j = Random.Range(0, arboles.Length);
+                    Vector3 posicion = new Vector3(partida.edificiosX[i], 1, partida.edificiosZ[i]);
 
-                    if (arboles[j] != null)
+                    Construccion arbol = null;
+
+                    foreach (Construccion arbol2 in arboles)
+                    {
+                        if (arbol2.id == partida.edificiosID[i])
+                        {
+                            arbol = arbol2;
+                        }
+                    }
+
+                    if (arbol != null)
                     {
                         bool añadir = true;
 
@@ -215,19 +242,58 @@ public class Escenario : MonoBehaviour {
                             añadir = false;
                         }
 
-                        if (colocar.ComprobarConstruccionesPosicion(arboles[j], posicion) != null)
+                        if (colocar.ComprobarConstruccionesPosicion(arbol, posicion) != null)
                         {
                             añadir = false;
                         }
 
                         if (añadir == true)
                         {
-                            colocar.AñadirConstruccion(arboles[j], posicion, false);
+                            colocar.AñadirConstruccion(arbol, posicion, false);
                         }
                     }
-                    i++;
+
+                    i += 1;
                 }
             }
         }
+        else
+        {
+            if (arboles != null)
+            {
+                if (arboles.Length > 0)
+                {
+                    int arbolesColocar = 200;
+
+                    int i = 0;
+                    while (i < arbolesColocar)
+                    {
+                        Vector3 posicion = new Vector3(Random.Range(1, 99), 1, Random.Range(1, 99));
+                        int j = Random.Range(0, arboles.Length);
+
+                        if (arboles[j] != null)
+                        {
+                            bool añadir = true;
+
+                            if (ComprobarEdificable(posicion) == false)
+                            {
+                                añadir = false;
+                            }
+
+                            if (colocar.ComprobarConstruccionesPosicion(arboles[j], posicion) != null)
+                            {
+                                añadir = false;
+                            }
+
+                            if (añadir == true)
+                            {
+                                colocar.AñadirConstruccion(arboles[j], posicion, false);
+                            }
+                        }
+                        i++;
+                    }
+                }
+            }
+        }       
     }
 }

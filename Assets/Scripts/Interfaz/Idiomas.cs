@@ -12,6 +12,7 @@ public class Idiomas : MonoBehaviour {
     public AudioSource sonidoBoton;
 
     public Text menuPrincipalNuevaPartida;
+    public Text menuPrincipalContinuarPartida;
     public Text menuPrincipalCargarPartida;
     public Text menuPrincipalOpciones;
     public Text menuPrincipalSalir;
@@ -74,6 +75,7 @@ public class Idiomas : MonoBehaviour {
     public void CargarTextos()
     {
         menuPrincipalNuevaPartida.text = CogerCadena("newGame").ToLower();
+        menuPrincipalContinuarPartida.text = CogerCadena("continueGame").ToLower();
         menuPrincipalCargarPartida.text = CogerCadena("loadGame").ToLower();
         menuPrincipalOpciones.text = CogerCadena("options").ToLower();
         menuPrincipalSalir.text = CogerCadena("exitGame").ToLower();

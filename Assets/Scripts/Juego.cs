@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
@@ -9,6 +10,8 @@ public class Juego : MonoBehaviour {
     public Idiomas idioma;
 
     public Canvas canvas;
+
+    public Partidas partidas;
 
     [HideInInspector]
     public KeyCode teclaMenu;
@@ -32,6 +35,7 @@ public class Juego : MonoBehaviour {
 
     public Text versionTexto;
 
+    public Button botonContinuarPartida;
     public Button botonCargarPartida;
 
     public AudioSource musicaFondo;
@@ -88,7 +92,36 @@ public class Juego : MonoBehaviour {
 
     private void Start()
     {
-        escenario.PonerTerreno();
+        if (File.Exists(Application.persistentDataPath + "/guardado.save"))
+        {
+            File.Delete(Application.persistentDataPath + "/guardado.save");
+        }
+
+        //---------------------------------------
+
+        List<Guardado> partidasGuardadas = partidas.ListadoPartidas();
+
+        if (partidasGuardadas.Count > 0)
+        {
+            botonContinuarPartida.interactable = true;
+            botonCargarPartida.interactable = true;
+
+            partidasGuardadas.Sort((x, y) => x.fecha.CompareTo(y.fecha));
+
+            escenario.PonerTerreno(partidasGuardadas[0]);
+            escenario.PonerArboles(partidasGuardadas[0], colocar);
+            CargarEdificios(partidasGuardadas[0]);
+            ayuda.Cargar(false);
+        }
+        else
+        {
+            botonContinuarPartida.interactable = false;
+            botonCargarPartida.interactable = false;
+
+            escenario.PonerTerreno(null);
+            escenario.PonerArboles(null, colocar);
+            diaNoche.tiempoDia = 24000;
+        }
 
         opciones.CargarInicio();
         opcionesGeneral.CargarInicio();
@@ -97,23 +130,9 @@ public class Juego : MonoBehaviour {
 
         opcionesGeneral.Sonido();
         idioma.CargarTextos();
-
-       //File.Delete(Application.persistentDataPath + "/guardado.save");
+     
         diaNoche.VelocidadMarchas(0);
         versionTexto.text = "v" + Application.version;
-
-        if (DetectarPartidaGuardada() != null)
-        {
-            botonCargarPartida.interactable = true;
-            CargarEdificios();
-            ayuda.Cargar(false);
-        }
-        else
-        {
-            botonCargarPartida.interactable = false;
-            escenario.PonerArboles(colocar);
-            diaNoche.tiempoDia = 24000;
-        }
 
         //Captura cap = Captura.MakeSnapshotCamera(16);
         //cap.defaultScale = new Vector3(1f, 1f, 1f);
@@ -134,11 +153,6 @@ public class Juego : MonoBehaviour {
     {
         sonidoBoton.Play();
 
-        if (File.Exists(Application.persistentDataPath + "/guardado.save"))
-        {
-            File.Delete(Application.persistentDataPath + "/guardado.save");
-        }
-
         ciudad.Dinero = 2000000;
         //ciudad.Dinero = 200;
         ciudad.PoblacionActual = 0f;
@@ -148,17 +162,30 @@ public class Juego : MonoBehaviour {
         ciudad.Comida = 0f;
 
         camara.transform.position = new Vector3(10, 60, 10);
+
         colocar.QuitarTodosEdificios();
-        escenario.PonerArboles(colocar);
+        escenario.PonerTerreno(null);
+        escenario.PonerArboles(null, colocar);
+
         CargarInterfaz();
     }
 
-    public void CargarPartida()
+    public void ContinuarPartida()
     {
         sonidoBoton.Play();
         colocar.QuitarTodosEdificios();
-        CargarEdificios();
         CargarInterfaz();
+
+        List<Guardado> partidasGuardadas = partidas.ListadoPartidas();
+
+        if (partidasGuardadas.Count > 0)
+        {
+            partidasGuardadas.Sort((x, y) => x.fecha.CompareTo(y.fecha));
+
+            escenario.PonerTerreno(partidasGuardadas[0]);
+            escenario.PonerArboles(partidasGuardadas[0], colocar);
+            CargarEdificios(partidasGuardadas[0]);
+        }
     }
 
     private void CargarInterfaz()
@@ -591,50 +618,21 @@ public class Juego : MonoBehaviour {
         }
     }
 
-    public Guardado DetectarPartidaGuardada()
+    public void CargarEdificios(Guardado partida)
     {
-        if (File.Exists(Application.persistentDataPath + "/guardado.save"))
+        if (partida != null)
         {
-            BinaryFormatter bf = new BinaryFormatter();
-            FileStream fichero = File.Open(Application.persistentDataPath + "/guardado.save", FileMode.Open);
-            Guardado guardado = (Guardado)bf.Deserialize(fichero);
-            fichero.Close();
-
-            if (guardado.edificiosID.Count > 0)
-            {
-                return guardado;
-            }
-            else
-            {
-                return null;
-            }
-        }
-        else
-        {
-            return null;
-        }
-    }
-
-    public void CargarEdificios()
-    {
-        if (File.Exists(Application.persistentDataPath + "/guardado.save"))
-        {
-            BinaryFormatter bf = new BinaryFormatter();
-            FileStream fichero = File.Open(Application.persistentDataPath + "/guardado.save", FileMode.Open);
-            Guardado guardado = (Guardado)bf.Deserialize(fichero);
-            fichero.Close();
-
-            diaNoche.tiempoTotalDias = guardado.dia;
-            diaNoche.tiempoDia = guardado.hora;
+            diaNoche.tiempoTotalDias = partida.dia;
+            diaNoche.tiempoDia = partida.hora;
             diaNoche.ActualizarLuces();
 
             int i = 0;
-            while (i < guardado.edificiosID.Count)
+            while (i < partida.edificiosID.Count)
             {
-                Construccion edificioGuardado = edificios[guardado.edificiosID[i]];
-                edificioGuardado.rotacionColocacion = guardado.edificiosRotacion[i];
+                Construccion edificioGuardado = edificios[partida.edificiosID[i]];
+                edificioGuardado.rotacionColocacion = partida.edificiosRotacion[i];
 
-                Vector3 posicion = new Vector3(guardado.edificiosX[i], 1, guardado.edificiosZ[i]);
+                Vector3 posicion = new Vector3(partida.edificiosX[i], 1, partida.edificiosZ[i]);
                 colocar.AñadirConstruccion(edificioGuardado, posicion, diaNoche.encender);
 
                 i++;
@@ -643,18 +641,22 @@ public class Juego : MonoBehaviour {
             //camara.transform.position = new Vector3(guardado.camaraPosicionX, guardado.camaraPosicionY, guardado.camaraPosicionZ);
             //camara.transform.Rotate(new Vector3(guardado.camaraRotacionX, guardado.camaraRotacionY, guardado.camaraRotacionZ));
 
-            ciudad.Dinero = guardado.dinero;
-            ciudad.PoblacionActual = guardado.poblacionActual;
-            ciudad.PoblacionTope = guardado.poblacionTope;
-            ciudad.TrabajosActual = guardado.trabajosActual;
-            ciudad.TrabajosTope = guardado.trabajosTope;
-            ciudad.Comida = guardado.comida;
+            ciudad.Dinero = partida.dinero;
+            ciudad.PoblacionActual = partida.poblacionActual;
+            ciudad.PoblacionTope = partida.poblacionTope;
+            ciudad.TrabajosActual = partida.trabajosActual;
+            ciudad.TrabajosTope = partida.trabajosTope;
+            ciudad.Comida = partida.comida;
         }
     }
 
     public void GuardarPartida()
     {
         Guardado guardado = new Guardado();
+
+        guardado.nombre = "test";
+        guardado.fecha = DateTime.Now.ToString();
+        guardado.versionJuego = Application.version;
 
         guardado.terrenosID = escenario.terrenosID;
         guardado.terrenosX = escenario.terrenosX;
@@ -698,7 +700,7 @@ public class Juego : MonoBehaviour {
         guardado.comida = ciudad.Comida;
 
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream fichero = File.Create(Application.persistentDataPath + "/guardado.save");
+        FileStream fichero = File.Create(Application.persistentDataPath + "/" + guardado.nombre + ".save");
         bf.Serialize(fichero, guardado);
         fichero.Close();
     }

@@ -3,6 +3,10 @@
 [System.Serializable]
 public class Guardado
 {
+    public string nombre;
+    public string fecha;
+    public string versionJuego;
+
     public List<int> terrenosID = new List<int>();
     public List<int> terrenosX = new List<int>();
     public List<int> terrenosZ = new List<int>();

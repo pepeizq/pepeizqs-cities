@@ -2,7 +2,8 @@
 <languages>
     <English>
         <string name="newGame">New Game</string>
-        <string name="loadGame">Continue Game</string>
+        <string name="continueGame">Continue Game</string>
+        <string name="loadGame">Load Game</string>
         <string name="options">Options</string>
         <string name="exitGame">Exit</string>
         <string name="warning">The game is still in development, there are still things to add to the game and there may be bugs</string>
@@ -62,7 +63,8 @@
      
     <Spanish>
         <string name="newGame">Nueva Partida</string>
-        <string name="loadGame">Continuar Partida</string>
+        <string name="continueGame">Continuar Partida</string>
+        <string name="loadGame">Cargar Partida</string>
         <string name="options">Opciones</string>
         <string name="exitGame">Salir</string>
         <string name="warning">El juego aun se encuentra en desarrollo, quedan cosas por añadir al juego y puede haber fallos</string>

@@ -1,10 +1,13 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Interfaz
 {
     public class Opciones : MonoBehaviour
     {
+        public Partidas partidas;
+
         public MenuPrincipal menuPrincipal;
         public Juego juego;
         public MenuJuego menuJuego;
@@ -33,12 +36,16 @@ namespace Interfaz
 
             if (canvasOrigen == 1)
             {
-                if (juego.DetectarPartidaGuardada() != null)
+                List<Guardado> partidasGuardadas = partidas.ListadoPartidas();
+
+                if (partidasGuardadas.Count > 0)
                 {
+                    juego.botonContinuarPartida.interactable = true;
                     juego.botonCargarPartida.interactable = true;
                 }
                 else
                 {
+                    juego.botonContinuarPartida.interactable = false;
                     juego.botonCargarPartida.interactable = false;
                 }
 
