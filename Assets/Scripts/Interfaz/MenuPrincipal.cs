@@ -9,7 +9,7 @@ namespace Interfaz
         public Juego juego;
         public CargarPartida cargarPartida;
         public Opciones opciones;
-        public Ayuda ayuda;
+        public Info info;
 
         public AudioSource sonidoBoton;
 
@@ -54,18 +54,17 @@ namespace Interfaz
             opciones.canvasOrigen = 1;
         }
 
-        public void AbrirWeb1()
+        public void MostrarInfo()
         {
             sonidoBoton.Play();
-            Steam.AbrirWeb("https://pepeizqapps.com/");
-            Steam.Logros("pepeizqcities1");
-        }
 
-        public void AbrirWeb2()
-        {
-            sonidoBoton.Play();
-            Steam.AbrirWeb("https://pepeizqdeals.com/");
-            Steam.Logros("pepeizqcities2");
+            canvas.gameObject.GetComponent<CanvasGroup>().alpha = 0;
+            canvas.gameObject.GetComponent<CanvasGroup>().interactable = false;
+            canvas.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
+
+            info.canvas.gameObject.GetComponent<CanvasGroup>().alpha = 1;
+            info.canvas.gameObject.GetComponent<CanvasGroup>().interactable = true;
+            info.canvas.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
         }
 
         public void SalirJuego()

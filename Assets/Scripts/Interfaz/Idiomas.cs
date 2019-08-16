@@ -18,6 +18,8 @@ public class Idiomas : MonoBehaviour {
     public Text menuPrincipalSalir;
     public Text menuPrincipalAviso;
 
+    public Text cargarPartidaVolver;
+
     public Text opcionesVolver;
     public Text opcionesGeneral;
     public Text opcionesGraficos;
@@ -80,6 +82,8 @@ public class Idiomas : MonoBehaviour {
         menuPrincipalOpciones.text = CogerCadena("options").ToLower();
         menuPrincipalSalir.text = CogerCadena("exitGame").ToLower();
         menuPrincipalAviso.text = CogerCadena("warning");
+
+        cargarPartidaVolver.text = CogerCadena("back");
 
         opcionesVolver.text = CogerCadena("back");
         opcionesGeneral.text = CogerCadena("general");

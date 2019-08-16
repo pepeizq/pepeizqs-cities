@@ -1,5 +1,4 @@
-﻿using UnityEditor;
-using UnityEngine;
+﻿using UnityEngine;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,395 +6,246 @@ using System.Text.RegularExpressions;
 
 public class Captura : MonoBehaviour
 {
-    // This disables the "never assigned" warning.
-    // These fields will be assigned by the factory.
 #pragma warning disable 0649
-    /// <summary>
-    /// The Camera used internally by the SnapshotCamera.
-    /// </summary>
-    private Camera cam;
-    /// <summary>
-    /// The layer on which the SnapshotCamera takes snapshots.
-    /// </summary>
-    private int layer;
+
+    private Camera camara;
+    private int capa;
+
 #pragma warning restore 0649
 
-    /// <summary>
-    /// The default position offset applied to objects when none is specified.
-    /// </summary>
-    public Vector3 defaultPositionOffset = new Vector3(0, 0, 1);
-    /// <summary>
-    /// The default rotation applied to objects when none is specified.
-    /// </summary>
-    public Vector3 defaultRotation = new Vector3(345.8529f, 313.8297f, 14.28433f);
-    /// <summary>
-    /// The default scale applied to objects when none is specified.
-    /// </summary>
-    public Vector3 defaultScale = new Vector3(1, 1, 1);
+    public Vector3 defectoPosicionOffset = new Vector3(0, 0, 1);
+    public Vector3 defectoRotacion = new Vector3(345.8529f, 313.8297f, 14.28433f);
+    public Vector3 defectoEscala = new Vector3(1, 1, 1);
 
-    // This private constructor serves to ensure only the factory can produce new instances.
-    private Captura() { }
-
-    /// <summary>
-    /// Factory method which sets up and configures a new SnapshotCamera, then returns it.
-    /// </summary>
-    /// <param name="layer">The name of the layer on which to take snapshots.</param>
-    /// <param name="name">The name that will be given to the new GameObject the SnapshotCamera will be attached to.</param>
-    /// <returns>A new SnapshotCamera, ready for use.</returns>
-    public static Captura MakeSnapshotCamera(string layer, string name = "Snapshot Camera")
+    private Captura()
     {
-        return MakeSnapshotCamera(LayerMask.NameToLayer(layer), name);
+
     }
 
-    /// <summary>
-    /// Factory method which sets up and configures a new SnapshotCamera, then returns it.
-    /// </summary>
-    /// <param name="layer">The layer number of the layer on which to take snapshots.</param>
-    /// <param name="name">The name that will be given to the new GameObject the SnapshotCamera will be attached to.</param>
-    /// <returns>A new SnapshotCamera, ready for use.</returns>
-    public static Captura MakeSnapshotCamera(int layer = 5, string name = "Snapshot Camera")
+    public static Captura TomarCaptura(string capa, string nombre = "Captura Camara")
     {
-        if (layer < 0 || layer > 31)
+        return TomarCaptura(LayerMask.NameToLayer(capa), nombre);
+    }
+
+    public static Captura TomarCaptura(int capa = 5, string nombre = "Captura Camara")
+    {
+        if (capa < 0 || capa > 31)
             throw new ArgumentOutOfRangeException("layer", "layer argument must specify a valid layer between 0 and 31");
 
-        // Create a new GameObject to hold the camera
-        GameObject snapshotCameraGO = new GameObject(name);
-        // Add a Camera component to the GameObject
-        Camera cam = snapshotCameraGO.AddComponent<Camera>();
+        GameObject objeto = new GameObject(nombre);
 
-        // Configure the Camera
-        cam.cullingMask = 1 << layer;
-        cam.orthographic = true;
-        cam.orthographicSize = 1;
-        cam.clearFlags = CameraClearFlags.SolidColor;
-        cam.backgroundColor = Color.clear;
-        cam.nearClipPlane = 0.1f;
-        cam.enabled = false;
+        Camera camara = objeto.AddComponent<Camera>();
+        camara.cullingMask = 1 << capa;
+        camara.orthographic = true;
+        camara.orthographicSize = 1;
+        camara.clearFlags = CameraClearFlags.SolidColor;
+        camara.backgroundColor = Color.clear;
+        camara.nearClipPlane = 0.1f;
+        camara.enabled = false;
 
-        // Add a SnapshotCamera component to the GameObject
-        Captura snapshotCamera = snapshotCameraGO.AddComponent<Captura>();
+        Captura capturaCamara = objeto.AddComponent<Captura>();
+        capturaCamara.camara = camara;
+        capturaCamara.capa = capa;
 
-        // Set the SnapshotCamera's cam and layer fields
-        snapshotCamera.cam = cam;
-        snapshotCamera.layer = layer;
-
-        // Return the SnapshotCamera
-        return snapshotCamera;
+        return capturaCamara;
     }
 
-    #region PNG saving
-    /// <summary>
-    /// Sanitizes a filename string by replacing illegal characters with underscores.
-    /// </summary>
-    /// <param name="dirty">The unsanitized filename string.</param>
-    /// <returns>A sanitized filename string with illegal characters replaced with underscores.</returns>
-    private static string SanitizeFilename(string dirty)
-    {
-        string invalidFileNameChars = Regex.Escape(new string(Path.GetInvalidFileNameChars()));
-        string invalidRegStr = string.Format(@"([{0}]*\.+$)|([{0}]+)", invalidFileNameChars);
+    #region PNG guardado
 
-        return Regex.Replace(dirty, invalidRegStr, "_");
+    private static string LimpiarFicheroNombre(string nombre)
+    {
+        string invalidosChars = Regex.Escape(new string(Path.GetInvalidFileNameChars()));
+        string invalidosStrings = string.Format(@"([{0}]*\.+$)|([{0}]+)", invalidosChars);
+
+        return Regex.Replace(nombre, invalidosStrings, "_");
     }
 
-    /// <summary>
-    /// Saves a byte array of PNG data as a PNG file.
-    /// </summary>
-    /// <param name="bytes">The PNG data to write to a file.</param>
-    /// <param name="filename">The name of the file. This will be the current timestamp if not specified.</param>
-    /// <param name="directory">The directory in which to save the file. This will be the game/Snapshots directory if not specified.</param>
-    /// <returns>A FileInfo pointing to the created PNG file</returns>
-    public static FileInfo SavePNG(byte[] bytes, string filename = "", string directory = "")
+    public static FileInfo GuardarPNG(byte[] bytes, string nombreFichero = "", string directorio = "")
     {
-        directory = directory != "" ? Directory.CreateDirectory(directory).FullName : Directory.CreateDirectory(Path.Combine(Application.dataPath, "../Snapshots")).FullName;
-        filename = filename != "" ? SanitizeFilename(filename) + ".png" : System.DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss-ffff") + ".png";
-        string filepath = Path.Combine(directory, filename);
+        directorio = directorio != "" ? Directory.CreateDirectory(directorio).FullName : Directory.CreateDirectory(Path.Combine(Application.dataPath, "../Capturas")).FullName;
+        nombreFichero = nombreFichero != "" ? LimpiarFicheroNombre(nombreFichero) + ".png" : DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss-ffff") + ".png";
+
+        string ficheroDirectorio = Path.Combine(directorio, nombreFichero);
      
-        File.WriteAllBytes(filepath, bytes);
+        File.WriteAllBytes(ficheroDirectorio, bytes);
 
-        return new FileInfo(filepath);
+        return new FileInfo(ficheroDirectorio);
     }
 
-    /// <summary>
-    /// Saves a Texture2D as a PNG file.
-    /// </summary>
-    /// <param name="tex">The Texture2D to write to a file.</param>
-    /// <param name="filename">The name of the file. This will be the current timestamp if not specified.</param>
-    /// <param name="directory">The directory in which to save the file. This will be the game/Snapshots directory if not specified.</param>
-    /// <returns>A FileInfo pointing to the created PNG file</returns>
-    public static FileInfo SavePNG(Texture2D tex, string filename = "", string directory = "")
+    public static FileInfo GuardarPNG(Texture2D textura, string nombreFichero = "", string directorio = "")
     {
-        return SavePNG(tex.EncodeToPNG(), filename, directory);
+        return GuardarPNG(textura.EncodeToPNG(), nombreFichero, directorio);
     }
+
     #endregion
 
-    #region Object preparation
-    /// <summary>
-    /// This stores the a state (layers, position, rotation, and scale) of a GameObject, and provides a method to restore it.
-    /// </summary>
-    private struct GameObjectStateSnapshot
+    #region Objeto preparación
+
+    private struct ObjetoCaptura
     {
-        private GameObject gameObject;
-        private Vector3 position;
-        private Quaternion rotation;
-        private Vector3 scale;
-        private Dictionary<GameObject, int> layers;
+        private GameObject objeto;
+        private Vector3 posicion;
+        private Quaternion rotacion;
+        private Vector3 escala;
+        private Dictionary<GameObject, int> capas;
 
-        /// <summary>
-        /// Store the current state (layers, position, rotation, and scale) of a GameObject
-        /// </summary>
-        /// <param name="gameObject">The GameObject whose state to store.</param>
-        public GameObjectStateSnapshot(GameObject gameObject)
+        public ObjetoCaptura(GameObject objeto)
         {
-            this.gameObject = gameObject;
-            this.position = gameObject.transform.position;
-            this.rotation = gameObject.transform.rotation;
-            this.scale = gameObject.transform.localScale;
+            this.objeto = objeto;
+            this.posicion = objeto.transform.position;
+            this.rotacion = objeto.transform.rotation;
+            this.escala = objeto.transform.localScale;
 
-            this.layers = new Dictionary<GameObject, int>();
-            foreach (Transform t in gameObject.GetComponentsInChildren<Transform>(true))
+            this.capas = new Dictionary<GameObject, int>();
+            foreach (Transform t in objeto.GetComponentsInChildren<Transform>(true))
             {
-                this.layers.Add(t.gameObject, t.gameObject.layer);
+                this.capas.Add(t.gameObject, t.gameObject.layer);
             }
         }
 
-        /// <summary>
-        /// Restore the gameObject to the state stored in this GameObjectStateSnapshot.
-        /// </summary>
-        public void Restore()
+        public void Restaurar()
         {
-            this.gameObject.transform.position = this.position;
-            this.gameObject.transform.rotation = this.rotation;
-            this.gameObject.transform.localScale = this.scale;
+            this.objeto.transform.position = this.posicion;
+            this.objeto.transform.rotation = this.rotacion;
+            this.objeto.transform.localScale = this.escala;
 
-            foreach (KeyValuePair<GameObject, int> entry in this.layers)
+            foreach (KeyValuePair<GameObject, int> entrada in this.capas)
             {
-                entry.Key.layer = entry.Value;
+                entrada.Key.layer = entrada.Value;
             }
         }
     }
 
-    /// <summary>
-    /// Set the layers of the GameObject and all its children to the SnapshotCamera's snapshot layer so the SnapshotCamera can see it.
-    /// </summary>
-    /// <param name="gameObject">The GameObject apply the layer modifications to.</param>
-    private void SetLayersRecursively(GameObject gameObject)
+    private void EstablecerCapas(GameObject objeto)
     {
-        foreach (Transform transform in gameObject.GetComponentsInChildren<Transform>(true))
-            transform.gameObject.layer = layer;
+        foreach (Transform transform in objeto.GetComponentsInChildren<Transform>(true))
+            transform.gameObject.layer = capa;
     }
 
-    /// <summary>
-    /// Prepares an instantiated GameObject for taking a snapshot by setting its layers and applying the specified position offset, rotation, and scale to it.
-    /// </summary>
-    /// <param name="prefab">The instantiated GameObject to prepare.</param>
-    /// <param name="positionOffset">The position offset relative to the SnapshotCamera to apply to the gameObject.</param>
-    /// <param name="rotation">The rotation to apply to the gameObject.</param>
-    /// <param name="scale">The scale to apply to the gameObject.</param>
-    /// <returns>A GameObjectStateSnapshot containing the state of the gameObject prior to modifying its layers, position, rotation, and scale.</returns>
-    private GameObjectStateSnapshot PrepareObject(GameObject gameObject, Vector3 positionOffset, Quaternion rotation, Vector3 scale)
+    private ObjetoCaptura PrepararObjeto(GameObject objeto, Vector3 posicionOffset, Quaternion rotacion, Vector3 escala)
     {
-        GameObjectStateSnapshot goss = new GameObjectStateSnapshot(gameObject);
+        ObjetoCaptura oc = new ObjetoCaptura(objeto);
 
-        gameObject.transform.position = transform.position + positionOffset;
-        gameObject.transform.rotation = rotation;
-        gameObject.transform.localScale = scale;
-        SetLayersRecursively(gameObject);
+        objeto.transform.position = transform.position + posicionOffset;
+        objeto.transform.rotation = rotacion;
+        objeto.transform.localScale = escala;
+        EstablecerCapas(objeto);
 
-        return goss;
+        return oc;
     }
 
-    private GameObject PrepararPrefab(GameObject prefab, Vector3 positionOffset, Quaternion rotacion, Vector3 escala)
+    private GameObject PrepararPrefab(GameObject prefab, Vector3 posicionOffset, Quaternion rotacion, Vector3 escala)
     {
-        GameObject objeto = GameObject.Instantiate(prefab, transform.position + positionOffset, rotacion) as GameObject;
+        GameObject objeto = GameObject.Instantiate(prefab, transform.position + posicionOffset, rotacion) as GameObject;
         objeto.transform.localScale = escala;
         //objeto.transform.Rotate(Vector3.up, -90, Space.Self);
-        SetLayersRecursively(objeto);
+        EstablecerCapas(objeto);
 
         return objeto;
     }
     #endregion
 
-    #region TakeObjectSnapshot
-    /// <summary>
-    /// Takes a snapshot of an instantiated GameObject and returns it as a Texture2D.
-    /// 
-    /// Uses a completely transparent background and
-    /// applies the default position offset, rotation and scale to the gameObject while taking the snapshot, and restores them afterwards.
-    /// </summary>
-    /// <param name="gameObject">The instantiated GameObject to snapshot.</param>
-    /// <param name="width">The width of the snapshot image.</param>
-    /// <param name="height">The height of the snapshot image.</param>
-    /// <returns>A Texture2D containing the captured snapshot.</returns>
-    public Texture2D TakeObjectSnapshot(GameObject gameObject, int width = 128, int height = 128)
+    #region TomarCapturaObjeto
+
+    public Texture2D TomarCapturaObjeto(GameObject objeto, int ancho = 128, int alto = 128)
     {
-        return TakeObjectSnapshot(gameObject, Color.clear, defaultPositionOffset, Quaternion.Euler(defaultRotation), defaultScale, width, height);
+        return TomarCapturaObjeto(objeto, Color.clear, defectoPosicionOffset, Quaternion.Euler(defectoRotacion), defectoEscala, ancho, alto);
     }
 
-    /// <summary>
-    /// Takes a snapshot of an instantiated GameObject and returns it as a Texture2D.
-    /// 
-    /// Applies the default position offset, rotation and scale to the gameObject while taking the snapshot, and restores them afterwards.
-    /// </summary>
-    /// <param name="gameObject">The instantiated GameObject to snapshot.</param>
-    /// <param name="backgroundColor">The background color of the snapshot. Can be transparent.</param>
-    /// <param name="width">The width of the snapshot image.</param>
-    /// <param name="height">The height of the snapshot image.</param>
-    /// <returns>A Texture2D containing the captured snapshot.</returns>
-    public Texture2D TakeObjectSnapshot(GameObject gameObject, Color backgroundColor, int width = 128, int height = 128)
+    public Texture2D TomarCapturaObjeto(GameObject objeto, Color fondoColor, int ancho = 128, int alto = 128)
     {
-        return TakeObjectSnapshot(gameObject, backgroundColor, defaultPositionOffset, Quaternion.Euler(defaultRotation), defaultScale, width, height);
+        return TomarCapturaObjeto(objeto, fondoColor, defectoPosicionOffset, Quaternion.Euler(defectoRotacion), defectoEscala, ancho, alto);
     }
 
-    /// <summary>
-    /// Takes a snapshot of an instantiated GameObject and returns it as a Texture2D.
-    /// 
-    /// Uses a completely transparent background.
-    /// </summary>
-    /// <param name="gameObject">The instantiated GameObject to snapshot.</param>
-    /// <param name="positionOffset">The position offset relative to the SnapshotCamera that will be applied to the gameObject while taking the snapshot. Its position will be restored after taking the snapshot.</param>
-    /// <param name="rotation">The rotation that will be applied to the gameObject while taking the snapshot. Its rotation will be restored after taking the snapshot.</param>
-    /// <param name="scale">The scale that will be applied to the gameObject while taking the snapshot. Its scale will be restored after taking the snapshot.</param>
-    /// <param name="width">The width of the snapshot image.</param>
-    /// <param name="height">The height of the snapshot image.</param>
-    /// <returns>A Texture2D containing the captured snapshot.</returns>
-    public Texture2D TakeObjectSnapshot(GameObject gameObject, Vector3 positionOffset, Quaternion rotation, Vector3 scale, int width = 128, int height = 128)
+    public Texture2D TomarCapturaObjeto(GameObject objeto, Vector3 posicionOffset, Quaternion rotacion, Vector3 escala, int ancho = 128, int alto = 128)
     {
-        return TakeObjectSnapshot(gameObject, Color.clear, positionOffset, rotation, scale, width, height);
+        return TomarCapturaObjeto(objeto, Color.clear, posicionOffset, rotacion, escala, ancho, alto);
     }
 
-    /// <summary>
-    /// Takes a snapshot of an instantiated GameObject and returns it as a Texture2D.
-    /// </summary>
-    /// <param name="gameObject">The instantiated GameObject to snapshot.</param>
-    /// <param name="backgroundColor">The background color of the snapshot. Can be transparent.</param>
-    /// <param name="positionOffset">The position offset relative to the SnapshotCamera that will be applied to the gameObject while taking the snapshot. Its position will be restored after taking the snapshot.</param>
-    /// <param name="rotation">The rotation that will be applied to the gameObject while taking the snapshot. Its rotation will be restored after taking the snapshot.</param>
-    /// <param name="scale">The scale that will be applied to the gameObject while taking the snapshot. Its scale will be restored after taking the snapshot.</param>
-    /// <param name="width">The width of the snapshot image.</param>
-    /// <param name="height">The height of the snapshot image.</param>
-    /// <returns>A Texture2D containing the captured snapshot.</returns>
-    public Texture2D TakeObjectSnapshot(GameObject gameObject, Color backgroundColor, Vector3 positionOffset, Quaternion rotation, Vector3 scale, int width = 128, int height = 128)
+    public Texture2D TomarCapturaObjeto(GameObject objeto, Color fondoColor, Vector3 posicionOffset, Quaternion rotacion, Vector3 escala, int ancho = 128, int alto = 128)
     {
-        if (gameObject == null)
+        if (objeto == null)
             throw new ArgumentNullException("gameObject");
-        else if (gameObject.scene.name == null)
+        else if (objeto.scene.name == null)
             throw new ArgumentException("gameObject parameter must be an instantiated GameObject! If you want to use a prefab directly, use TakePrefabSnapshot instead.", "gameObject");
 
-        // Prepare the gameObject and save its current state so we can restore it later
-        GameObjectStateSnapshot previousState = PrepareObject(gameObject, positionOffset, rotation, scale);
+        ObjetoCaptura estadoPrevio = PrepararObjeto(objeto, posicionOffset, rotacion, escala);
 
-        // Take a snapshot
-        Texture2D snapshot = TakeSnapshot(backgroundColor, width, height);
+        Texture2D captura = GenerarCaptura(fondoColor, ancho, alto);
 
-        // Restore the gameObject to its previous state
-        previousState.Restore();
+        estadoPrevio.Restaurar();
 
-        // Return the snapshot
-        return snapshot;
+        return captura;
     }
     #endregion
 
-    #region TakePrefabSnapshot
-    /// <summary>
-    /// Takes a snapshot of a prefab and returns it as a Texture2D.
-    /// 
-    /// Uses a completely transparent background and
-    /// applies the default position offset, rotation and scale to the prefab while taking the snapshot.
-    /// </summary>
-    /// <param name="prefab">The prefab to snapshot.</param>
-    /// <param name="width">The width of the snapshot image.</param>
-    /// <param name="height">The height of the snapshot image.</param>
-    /// <returns>A Texture2D containing the captured snapshot.</returns>
-    public Texture2D TakePrefabSnapshot(GameObject prefab, int width = 128, int height = 128)
+    #region GenerarCapturaPrefab
+
+    public Texture2D GenerarCapturaPrefab(GameObject prefab, int ancho = 128, int alto = 128)
     {
-        return TomarCapturaPrefab(prefab, Color.clear, defaultPositionOffset, Quaternion.Euler(defaultRotation), defaultScale, width, height);
+        return GenerarCapturaPrefab(prefab, Color.clear, defectoPosicionOffset, Quaternion.Euler(defectoRotacion), defectoEscala, ancho, alto);
     }
 
-    /// <summary>
-    /// Takes a snapshot of a prefab and returns it as a Texture2D.
-    /// 
-    /// Applies the default position offset, rotation and scale to the prefab while taking the snapshot.
-    /// </summary>
-    /// <param name="prefab">The prefab to snapshot.</param>
-    /// <param name="backgroundColor">The background color of the snapshot. Can be transparent.</param>
-    /// <param name="width">The width of the snapshot image.</param>
-    /// <param name="height">The height of the snapshot image.</param>
-    /// <returns>A Texture2D containing the captured snapshot.</returns>
-    public Texture2D TakePrefabSnapshot(GameObject prefab, Color backgroundColor, int width = 128, int height = 128)
+    public Texture2D GenerarCapturaPrefab(GameObject prefab, Color fondoColor, int ancho = 128, int alto = 128)
     {
-        return TomarCapturaPrefab(prefab, backgroundColor, defaultPositionOffset, Quaternion.Euler(defaultRotation), defaultScale, width, height);
+        return GenerarCapturaPrefab(prefab, fondoColor, defectoPosicionOffset, Quaternion.Euler(defectoRotacion), defectoEscala, ancho, alto);
     }
 
-    /// <summary>
-    /// Takes a snapshot of a prefab and returns it as a Texture2D.
-    /// 
-    /// Uses a completely transparent background.
-    /// </summary>
-    /// <param name="prefab">The prefab to snapshot.</param>
-    /// <param name="positionOffset">The position offset relative to the SnapshotCamera that will be applied to the prefab while taking the snapshot.</param>
-    /// <param name="rotation">The rotation that will be applied to the prefab while taking the snapshot.</param>
-    /// <param name="scale">The scale that will be applied to the prefab while taking the snapshot.</param>
-    /// <param name="width">The width of the snapshot image.</param>
-    /// <param name="height">The height of the snapshot image.</param>
-    /// <returns>A Texture2D containing the captured snapshot.</returns>
-    public Texture2D TakePrefabSnapshot(GameObject prefab, Vector3 positionOffset, Quaternion rotation, Vector3 scale, int width = 128, int height = 128)
+    public Texture2D GenerarCapturaPrefab(GameObject prefab, Vector3 posicionOffset, Quaternion rotacion, Vector3 escala, int ancho = 128, int alto = 128)
     {
-        return TomarCapturaPrefab(prefab, Color.clear, positionOffset, rotation, scale, width, height);
+        return GenerarCapturaPrefab(prefab, Color.clear, posicionOffset, rotacion, escala, ancho, alto);
     }
 
-    public Texture2D TomarCapturaPrefab(GameObject prefab, Color fondoColor, Vector3 positionOffset, Quaternion rotacion, Vector3 escala, int ancho = 128, int alto = 128)
+    public Texture2D GenerarCapturaPrefab(GameObject prefab, Color fondoColor, Vector3 posicionOffset, Quaternion rotacion, Vector3 escala, int ancho = 128, int alto = 128)
     {
         if (prefab == null)
             throw new ArgumentNullException("prefab");
         else if (prefab.scene.name != null)
             throw new ArgumentException("prefab parameter must be a prefab! If you want to use an instance, use TakeObjectSnapshot instead.", "prefab");
 
-        GameObject instancia = PrepararPrefab(prefab, positionOffset, rotacion, escala);
-
-        // Take a snapshot
-        Texture2D snapshot = TakeSnapshot(fondoColor, ancho, alto);
-
-        // Destroy the instance we created
+        GameObject instancia = PrepararPrefab(prefab, posicionOffset, rotacion, escala);
+        Texture2D captura = GenerarCaptura(fondoColor, ancho, alto);
         DestroyImmediate(instancia);
 
-        // Return the snapshot
-        return snapshot;
+        return captura;
     }
+
     #endregion
 
-    /// <summary>
-    /// Takes a snapshot of whatever is in front of the camera and within the camera's culling mask and returns it as a Texture2D.
-    /// </summary>
-    /// <param name="backgroundColor">The background color to apply to the camera before taking the snapshot.</param>
-    /// <param name="width">The width of the snapshot image.</param>
-    /// <param name="height">The height of the snapshot image.</param>
-    /// <returns>A Texture2D containing the captured snapshot.</returns>
-    private Texture2D TakeSnapshot(Color backgroundColor, int width, int height)
+    private Texture2D GenerarCaptura(Color fondoColor, int ancho, int alto)
     {
-        // Set the background color of the camera
-        cam.backgroundColor = backgroundColor;
+        camara.backgroundColor = fondoColor;
+        camara.targetTexture = RenderTexture.GetTemporary(ancho, alto, 24);
+        camara.Render();
 
-        // Get a temporary render texture and render the camera
-        cam.targetTexture = RenderTexture.GetTemporary(width, height, 24);
-        cam.Render();
+        RenderTexture estadoPrevio = RenderTexture.active;
+        RenderTexture.active = camara.targetTexture;
 
-        // Activate the temporary render texture
-        RenderTexture previouslyActiveRenderTexture = RenderTexture.active;
-        RenderTexture.active = cam.targetTexture;
+        Texture2D textura = new Texture2D(camara.targetTexture.width, camara.targetTexture.height, TextureFormat.ARGB32, false);
+        textura.ReadPixels(new Rect(0, 0, camara.targetTexture.width, camara.targetTexture.height), 0, 0);
+        textura.Apply(false);
 
-        // Extract the image into a new texture without mipmaps
-        Texture2D texture = new Texture2D(cam.targetTexture.width, cam.targetTexture.height, TextureFormat.ARGB32, false);
-        texture.ReadPixels(new Rect(0, 0, cam.targetTexture.width, cam.targetTexture.height), 0, 0);
-        texture.Apply(false);
+        RenderTexture.active = estadoPrevio;
 
-        // Reactivate the previously active render texture
-        RenderTexture.active = previouslyActiveRenderTexture;
+        camara.targetTexture = null;
+        RenderTexture.ReleaseTemporary(camara.targetTexture);
 
-        // Clean up after ourselves
-        cam.targetTexture = null;
-        RenderTexture.ReleaseTemporary(cam.targetTexture);
+        return textura;
+    }
 
-        // Return the texture
-        return texture;
+    public static void Generar(GameObject objeto)
+    {
+        Captura captura = Captura.TomarCaptura(16);
+        captura.defectoEscala = new Vector3(1f, 1f, 1f);
+        captura.defectoPosicionOffset = new Vector3(0, 0, 20f);
+
+        objeto.gameObject.transform.position = new Vector3(0, 0, 0);
+
+        Material material = objeto.gameObject.GetComponent<Renderer>().sharedMaterial;
+        material.DisableKeyword("_EMISSION");
+        material.globalIlluminationFlags = MaterialGlobalIlluminationFlags.EmissiveIsBlack;
+
+        Texture2D textura = captura.GenerarCapturaPrefab(objeto, 512, 512);
+        Captura.GuardarPNG(textura);
     }
 }

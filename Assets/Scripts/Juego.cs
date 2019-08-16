@@ -106,7 +106,7 @@ public class Juego : MonoBehaviour {
             botonContinuarPartida.interactable = true;
             botonCargarPartida.interactable = true;
 
-            partidasGuardadas.Sort((x, y) => x.fecha.CompareTo(y.fecha));
+            partidasGuardadas.Sort((x, y) => y.fecha.CompareTo(x.fecha));
 
             escenario.PonerTerreno(partidasGuardadas[0]);
             escenario.PonerArboles(partidasGuardadas[0], colocar);
@@ -134,19 +134,7 @@ public class Juego : MonoBehaviour {
         diaNoche.VelocidadMarchas(0);
         versionTexto.text = "v" + Application.version;
 
-        //Captura cap = Captura.MakeSnapshotCamera(16);
-        //cap.defaultScale = new Vector3(1f, 1f, 1f);
-        //cap.defaultPositionOffset = new Vector3(0, 0, 20f);
-        
-        //GameObject objeto = edificios[12].gameObject;
-        //objeto.gameObject.transform.position = new Vector3(0, 0, 0);
-
-        //Material material = objeto.gameObject.GetComponent<Renderer>().sharedMaterial;
-        //material.DisableKeyword("_EMISSION");
-        //material.globalIlluminationFlags = MaterialGlobalIlluminationFlags.EmissiveIsBlack;
-
-        //Texture2D textura = cap.TakePrefabSnapshot(objeto, 512, 512);
-        //Captura.SavePNG(textura);
+        //Captura.Generar(edificios[12].gameObject);
     }
 
     public void NuevaPartida()
@@ -180,7 +168,7 @@ public class Juego : MonoBehaviour {
 
         if (partidasGuardadas.Count > 0)
         {
-            partidasGuardadas.Sort((x, y) => x.fecha.CompareTo(y.fecha));
+            partidasGuardadas.Sort((x, y) => y.fecha.CompareTo(x.fecha));
 
             escenario.PonerTerreno(partidasGuardadas[0]);
             escenario.PonerArboles(partidasGuardadas[0], colocar);
@@ -188,7 +176,7 @@ public class Juego : MonoBehaviour {
         }
     }
 
-    private void CargarInterfaz()
+    public void CargarInterfaz()
     {
         menuPrincipal.MostrarJuego();
         ayuda.Cargar(true);
@@ -652,9 +640,12 @@ public class Juego : MonoBehaviour {
 
     public void GuardarPartida()
     {
+        List<Guardado> partidasGuardadas = partidas.ListadoPartidas();
+        string nombreFichero = (partidasGuardadas.Count + 1).ToString();
+
         Guardado guardado = new Guardado();
 
-        guardado.nombre = "test";
+        guardado.nombre = nombreFichero;
         guardado.fecha = DateTime.Now.ToString();
         guardado.versionJuego = Application.version;
 
