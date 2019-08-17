@@ -8,6 +8,11 @@
         <string name="exitGame">Exit</string>
         <string name="warning">The game is still in development, there are still things to add to the game and there may be bugs</string>
         <string name="back">Back</string>
+        <string name="openWeb">Open Web</string>
+        <string name="infoDetails1a">Source Code</string>
+        <string name="infoDetails1b">Visit the source code of the game on Github</string>
+        <string name="infoDetails2">Look at this website the apps and games created by myself</string>
+        <string name="infoDetails3">And if you want to see the latest deals for PC games visit this website</string>
         <string name="general">General</string>
         <string name="graphics">Graphics</string>
         <string name="keyboard">Keyboard</string>
@@ -69,6 +74,11 @@
         <string name="exitGame">Salir</string>
         <string name="warning">El juego aun se encuentra en desarrollo, quedan cosas por añadir al juego y puede haber fallos</string>
         <string name="back">Volver</string>
+        <string name="openWeb">Abrir Web</string>
+        <string name="infoDetails1a">Código Fuente</string>
+        <string name="infoDetails1b">Visita el código fuente del juego en Github</string>
+        <string name="infoDetails2">Mira en esta web las apps y juegos creados por mi</string>
+        <string name="infoDetails3">Y si quieres ver las últimas ofertas para juegos de PC visita esta web</string>
         <string name="general">General</string>
         <string name="graphics">Gráficos</string>
         <string name="keyboard">Teclado</string>
