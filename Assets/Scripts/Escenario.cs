@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Construcciones;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Escenario : MonoBehaviour {
@@ -12,18 +13,24 @@ public class Escenario : MonoBehaviour {
     public Terreno[] terrenos;
 
     [HideInInspector]
-    public List<int> terrenosID = new List<int>();
-
-    [HideInInspector]
-    public List<int> terrenosX = new List<int>();
-
-    [HideInInspector]
-    public List<int> terrenosZ = new List<int>();
+    public Terreno[,] terrenos2 = new Terreno[100,100];
 
     public Construccion[] arboles;
 
     public void PonerTerreno(Guardado partida)
     {
+        for (int x = 0; x < terrenos2.GetLength(0); x++)
+        {
+            for (int z = 0; z < terrenos2.GetLength(1); z++)
+            {
+                if (terrenos2[x, z] != null)
+                {
+                    Object.Destroy(terrenos2[x, z].gameObject);
+                    terrenos2[x, z] = null;
+                }
+            }
+        }
+
         if (partida != null)
         {
             if (partida.terrenosID.Count > 0)
@@ -31,7 +38,7 @@ public class Escenario : MonoBehaviour {
                 int i = 0;
                 while (i < partida.terrenosID.Count)
                 {
-                    Terreno terreno = terrenos[partida.terrenosID[i]];
+                    Terreno terreno = terrenos[partida.terrenosID[i]];                  
                     Vector3 posicion = new Vector3(partida.terrenosX[i], -0.5f, partida.terrenosZ[i]);
                     GenerarTerreno(terreno, posicion);
 
@@ -140,29 +147,8 @@ public class Escenario : MonoBehaviour {
                     int j = 0;
                     while (j < 100)
                     {
-                        bool añadir = true;
                         Vector3 posicion = new Vector3(i, -0.5f, j);
-
-                        if (terrenosID.Count > 0)
-                        {
-                            int k = 0;
-                            while (k < terrenosID.Count)
-                            {
-                                if (terrenosX[k] == i)
-                                {
-                                    if (terrenosZ[k] == j)
-                                    {
-                                        añadir = false;
-                                    }
-                                }
-                                k += 1;
-                            }
-                        }
-
-                        if (añadir == true)
-                        {
-                            GenerarTerreno(tierra, posicion);
-                        }
+                        GenerarTerreno(tierra, posicion);
 
                         j += 1;
                     }
@@ -174,45 +160,50 @@ public class Escenario : MonoBehaviour {
 
     private void GenerarTerreno(Terreno terreno, Vector3 posicion)
     {
-        terrenosID.Add(terreno.id);
-        terrenosX.Add((int)posicion.x);
-        terrenosZ.Add((int)posicion.z);
-
-        Instantiate(terreno, posicion, Quaternion.identity);
+        if (terrenos2[(int)posicion.x, (int)posicion.z] == null)
+        {
+            Terreno terreno2 = Instantiate(terreno, posicion, Quaternion.identity);
+            terrenos2[(int)posicion.x, (int)posicion.z] = terreno2;
+        }
     }
 
-    public bool ComprobarEdificable(Vector3 posicion)
+    public bool ComprobarEdificable(Construccion edificio, Vector3 posicion)
     {
         bool edificable = true;
 
-        if (terrenosID != null)
+        for (int x = 0; x < terrenos2.GetLength(0); x++)
         {
-            if (terrenosID.Count > 0)
+            for (int z = 0; z < terrenos2.GetLength(1); z++)
             {
-                int k = 0;
-                while (k < terrenosID.Count)
+                int i = (int)posicion.x;
+                while (i < (int)posicion.x + edificio.dimensiones.x)
                 {
-                    if (terrenosX[k] == posicion.x)
+                    int j = (int)posicion.z;
+                    while (j < (int)posicion.z + edificio.dimensiones.y)
                     {
-                        if (terrenosZ[k] == posicion.z)
+                        if (i == x && j == z)
                         {
-                            Terreno terreno = terrenos[terrenosID[k]];
-
-                            if (terreno.edificable == false)
+                            if (terrenos2[x, z] != null)
                             {
-                                edificable = false;
+                                Terreno terreno = terrenos2[x, z];
+
+                                if (terreno.edificable == false)
+                                {
+                                    edificable = false;
+                                }
                             }
                         }
+                        j += 1;
                     }
-                    k += 1;
-                }
+                    i += 1;
+                }              
             }
-        }     
+        }
 
         return edificable;
     }
 
-    public void PonerArboles(Guardado partida, Colocar colocar)
+    public void PonerArboles(Guardado partida, Construir construir)
     {
         if (partida != null)
         {
@@ -237,19 +228,19 @@ public class Escenario : MonoBehaviour {
                     {
                         bool añadir = true;
 
-                        if (ComprobarEdificable(posicion) == false)
+                        if (ComprobarEdificable(arbol, posicion) == false)
                         {
                             añadir = false;
                         }
 
-                        if (colocar.ComprobarConstruccionesPosicion(arbol, posicion) != null)
+                        if (construir.ComprobarPosicion(arbol, posicion) != null)
                         {
                             añadir = false;
                         }
 
                         if (añadir == true)
                         {
-                            colocar.AñadirConstruccion(arbol, posicion, false);
+                            construir.AñadirConstruccion(arbol, posicion, false);
                         }
                     }
 
@@ -275,19 +266,19 @@ public class Escenario : MonoBehaviour {
                         {
                             bool añadir = true;
 
-                            if (ComprobarEdificable(posicion) == false)
+                            if (ComprobarEdificable(arboles[j], posicion) == false)
                             {
                                 añadir = false;
                             }
 
-                            if (colocar.ComprobarConstruccionesPosicion(arboles[j], posicion) != null)
+                            if (construir.ComprobarPosicion(arboles[j], posicion) != null)
                             {
                                 añadir = false;
                             }
 
                             if (añadir == true)
                             {
-                                colocar.AñadirConstruccion(arboles[j], posicion, false);
+                                construir.AñadirConstruccion(arboles[j], posicion, false);
                             }
                         }
                         i++;
@@ -295,5 +286,10 @@ public class Escenario : MonoBehaviour {
                 }
             }
         }       
+    }
+
+    public Terreno[,] DevolverTerrenos()
+    {
+        return terrenos2;
     }
 }

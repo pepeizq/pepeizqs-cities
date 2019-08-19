@@ -4984,7 +4984,7 @@ MonoBehaviour:
     m_Top: 10
     m_Bottom: 10
   m_ChildAlignment: 4
-  m_Spacing: 10
+  m_Spacing: 15
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
@@ -9820,8 +9820,6 @@ GameObject:
   - component: {fileID: 491194795}
   - component: {fileID: 491194799}
   - component: {fileID: 491194794}
-  - component: {fileID: 491194797}
-  - component: {fileID: 491194796}
   - component: {fileID: 491194808}
   - component: {fileID: 491194803}
   - component: {fileID: 491194810}
@@ -9833,6 +9831,8 @@ GameObject:
   - component: {fileID: 491194793}
   - component: {fileID: 491194802}
   - component: {fileID: 491194804}
+  - component: {fileID: 491194797}
+  - component: {fileID: 491194796}
   m_Layer: 0
   m_Name: Scripts
   m_TagString: Untagged
@@ -10078,9 +10078,9 @@ MonoBehaviour:
   - {fileID: 5995799867204118991, guid: 7b324c6eefc75b64c9e374b9f87553ba, type: 3}
   - {fileID: -6319443127485731138, guid: 27eec2b646d46084299f298af6d626ec, type: 3}
   - {fileID: -1809650151379731109, guid: 28a84f6b7d376c346a1528de291f4790, type: 3}
-  - {fileID: 114719743380459958, guid: 3f48d98e38cd5db40a4ea6532f118478, type: 3}
-  colocar: {fileID: 491194797}
-  colocarPrevio: {fileID: 491194796}
+  - {fileID: 7520756302465164934, guid: 6c2da48ea0fe1f54db43e0089fe30254, type: 3}
+  construir: {fileID: 491194797}
+  vistaPrevia: {fileID: 491194796}
   diaNoche: {fileID: 491194794}
   botonDemoler: {fileID: 637231877}
   camara: {fileID: 534669904}
@@ -10106,7 +10106,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 491194791}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb81e2875588bd446a9b3103ef29e3d4, type: 3}
+  m_Script: {fileID: 11500000, guid: 252a8e5d71c159b469f2225f900a8757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   edificioVacio: {fileID: 114719743380459958, guid: 3f48d98e38cd5db40a4ea6532f118478,
@@ -10120,7 +10120,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 491194791}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 843f2793d74b6274698474fc0ed528fa, type: 3}
+  m_Script: {fileID: 11500000, guid: 723c275866bb746469acc4029db9bdcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   edificioVacio: {fileID: 114719743380459958, guid: 3f48d98e38cd5db40a4ea6532f118478,
@@ -10192,9 +10192,6 @@ MonoBehaviour:
   terrenos:
   - {fileID: 1151308695920927816, guid: ce87c5f424039e94c9753dbacfbe7c1f, type: 3}
   - {fileID: 9184413067498943987, guid: 841f512e09f9c094c9970104605a41bc, type: 3}
-  terrenosID: 
-  terrenosX: 
-  terrenosZ: 
   arboles:
   - {fileID: 114580379238428524, guid: 86aa7d557c9e4a945902b0c355401665, type: 3}
   - {fileID: 114364999152907770, guid: 9ec33247f98faee49819ca143c662e4e, type: 3}
@@ -10289,6 +10286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70508cdd6ffeb6f429a9a4219e2abbbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  partidas: {fileID: 0}
   panel: {fileID: 1938532097}
   panelSub: {fileID: 279043534}
   menuPrincipal: {fileID: 491194803}

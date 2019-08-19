@@ -4,4 +4,5 @@
     public int curva;
     public int cruce3;
     public int cruce4;
+    public int puente;
 }

@@ -60,4 +60,18 @@ public class Partidas : MonoBehaviour
 
         return partidas;
     }
+
+    public void BorrarPartidas()
+    {
+        DirectoryInfo carpeta = new DirectoryInfo(Application.persistentDataPath);
+        FileInfo[] ficheros = carpeta.GetFiles();
+
+        foreach (FileInfo fichero in ficheros)
+        {
+            if (fichero.Name.Contains(".save"))
+            {
+                File.Delete(Application.persistentDataPath + "/" + fichero.Name);
+            }
+        }
+    }
 }

@@ -57,7 +57,6 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Camara.cs" />
      <Compile Include="Assets\Scripts\Captura.cs" />
-     <Compile Include="Assets\Scripts\Carreteras.cs" />
      <Compile Include="Assets\Scripts\Ciudad.cs" />
      <Compile Include="Assets\Scripts\Clases\CarreterasIDs.cs" />
      <Compile Include="Assets\Scripts\Clases\Construccion.cs" />
@@ -66,10 +65,11 @@
      <Compile Include="Assets\Scripts\Clases\Panel.cs" />
      <Compile Include="Assets\Scripts\Clases\Terreno.cs" />
      <Compile Include="Assets\Scripts\Clases\Vehiculo.cs" />
-     <Compile Include="Assets\Scripts\Colocar\Colocar.cs" />
-     <Compile Include="Assets\Scripts\Colocar\ColocarFunciones.cs" />
-     <Compile Include="Assets\Scripts\Colocar\ColocarPrevio.cs" />
-     <Compile Include="Assets\Scripts\Colocar\Posicion.cs" />
+     <Compile Include="Assets\Scripts\Construcciones\Carreteras.cs" />
+     <Compile Include="Assets\Scripts\Construcciones\Construir.cs" />
+     <Compile Include="Assets\Scripts\Construcciones\Funciones.cs" />
+     <Compile Include="Assets\Scripts\Construcciones\Posicion.cs" />
+     <Compile Include="Assets\Scripts\Construcciones\VistaPrevia.cs" />
      <Compile Include="Assets\Scripts\DiaNoche.cs" />
      <Compile Include="Assets\Scripts\Escenario.cs" />
      <Compile Include="Assets\Scripts\Interfaz\Ayuda.cs" />

@@ -1,10 +1,14 @@
-﻿using UnityEngine;
+﻿using Construcciones;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Interfaz
 {
     public class MenuJuego : MonoBehaviour
     {
+        public Partidas partidas;
+
         public Panel panel;
         public Panel panelSub;
 
@@ -15,7 +19,7 @@ namespace Interfaz
         public AudioSource sonidoBoton;
 
         [SerializeField]
-        private ColocarPrevio colocarPrevio = null;
+        private VistaPrevia colocarPrevio = null;
 
         [SerializeField]
         private DiaNoche diaNoche = null;
@@ -130,6 +134,19 @@ namespace Interfaz
             panelGuardarMenuPrincipal.gameObject.GetComponent<CanvasGroup>().interactable = false;
             panelGuardarMenuPrincipal.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
 
+            List<Guardado> partidasGuardadas = partidas.ListadoPartidas();
+
+            if (partidasGuardadas.Count > 0)
+            {
+                juego.botonContinuarPartida.interactable = true;
+                juego.botonCargarPartida.interactable = true;
+            }
+            else
+            {
+                juego.botonContinuarPartida.interactable = false;
+                juego.botonCargarPartida.interactable = false;
+            }
+
             menuPrincipal.canvas.gameObject.GetComponent<CanvasGroup>().alpha = 1;
             menuPrincipal.canvas.gameObject.GetComponent<CanvasGroup>().interactable = true;
             menuPrincipal.canvas.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
@@ -144,6 +161,19 @@ namespace Interfaz
             juego.canvas.gameObject.GetComponent<CanvasGroup>().alpha = 0;
             juego.canvas.gameObject.GetComponent<CanvasGroup>().interactable = false;
             juego.canvas.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
+
+            List<Guardado> partidasGuardadas = partidas.ListadoPartidas();
+
+            if (partidasGuardadas.Count > 0)
+            {
+                juego.botonContinuarPartida.interactable = true;
+                juego.botonCargarPartida.interactable = true;
+            }
+            else
+            {
+                juego.botonContinuarPartida.interactable = false;
+                juego.botonCargarPartida.interactable = false;
+            }
 
             menuPrincipal.canvas.gameObject.GetComponent<CanvasGroup>().alpha = 1;
             menuPrincipal.canvas.gameObject.GetComponent<CanvasGroup>().interactable = true;

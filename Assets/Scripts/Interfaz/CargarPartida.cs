@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Construcciones;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -17,7 +18,7 @@ namespace Interfaz
         public Escenario escenario;
 
         [SerializeField]
-        private Colocar colocar = null;
+        private Construir colocar = null;
 
         public GameObject botonCargarPartidaPrefab;
 

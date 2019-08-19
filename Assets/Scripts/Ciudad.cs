@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+﻿using Construcciones;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class Ciudad : MonoBehaviour {
 
     [SerializeField]
-    private Colocar colocar = null;
+    private Construir colocar = null;
 
     [SerializeField]
     private Text dineroTexto = null;

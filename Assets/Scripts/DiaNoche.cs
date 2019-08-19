@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Construcciones;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class DiaNoche : MonoBehaviour {
@@ -21,7 +22,7 @@ public class DiaNoche : MonoBehaviour {
     public float tiempoTotalDias = 1;
 
     [SerializeField]
-    private Colocar colocar = null;
+    private Construir colocar = null;
 
     [SerializeField]
     private Text dias = null;
