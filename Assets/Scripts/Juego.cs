@@ -62,7 +62,6 @@ public class Juego : MonoBehaviour {
     private Construccion edificioSeleccionado;
     private List<Construccion2> edificiosSeleccionados = new List<Construccion2>();
 
-    private int rotacionColocar = -180;
     private int rotacionesPosicion = 0;
 
     private bool construirActivar;
@@ -123,7 +122,8 @@ public class Juego : MonoBehaviour {
 
             escenario.PonerTerreno(null);
             escenario.PonerArboles(null, construir);
-            diaNoche.tiempoDia = 24000;
+
+            diaNoche.tiempoDia = 50000;
         }
 
         opciones.CargarInicio();
@@ -157,6 +157,9 @@ public class Juego : MonoBehaviour {
         construir.QuitarTodosEdificios();
         escenario.PonerTerreno(null);
         escenario.PonerArboles(null, construir);
+
+        diaNoche.tiempoDia = 50000;
+        diaNoche.tiempoTotalDias = 1;
 
         CargarInterfaz();
     }
@@ -249,7 +252,7 @@ public class Juego : MonoBehaviour {
                             rotacionesPosicion = 0;
                         }
 
-                        rotacionColocar = rotaciones[rotacionesPosicion];
+                        edificioSeleccionado.rotacionColocacion = rotaciones[rotacionesPosicion];
                     }
 
                     if (Input.GetKeyDown(teclaRotacionEdificioIzquierda))
@@ -261,7 +264,7 @@ public class Juego : MonoBehaviour {
                             rotacionesPosicion = 3;
                         }
 
-                        rotacionColocar = rotaciones[rotacionesPosicion];
+                        edificioSeleccionado.rotacionColocacion = rotaciones[rotacionesPosicion];
                     }
                 
                     if (Input.GetKey(teclaArrastrarConstruccion))
@@ -416,9 +419,9 @@ public class Juego : MonoBehaviour {
 
         if (raton != Vector3.zero)
         {
-            Vector3 gridPosicion = Posicion.Redondear(raton, edificioSeleccionado);
-
-            if (Posicion.Limites(gridPosicion, 100) == true)
+            Vector3 posicion = Posicion.Redondear(raton, edificioSeleccionado);
+            
+            if (Posicion.Limites(posicion, 100) == true)
             {
                 if (edificiosSeleccionados.Count > 0)
                 {
@@ -429,21 +432,16 @@ public class Juego : MonoBehaviour {
                 }     
                 else
                 {
-                    if (edificioSeleccionado != null)
-                    {
-                        edificioSeleccionado.rotacionColocacion = rotacionColocar;
-                    }
-
                     if (accion == 0)
                     {
                         bool añadir = true;
 
-                        if (escenario.ComprobarEdificable(edificioSeleccionado, gridPosicion) == false)
+                        if (escenario.ComprobarEdificable(edificioSeleccionado, posicion) == false)
                         {
                             añadir = false;
                         }
 
-                        if (construir.ComprobarPosicion(edificioSeleccionado, gridPosicion) != null)
+                        if (construir.ComprobarPosicion(edificioSeleccionado, posicion) != null)
                         {
                             añadir = false;
                         }
@@ -459,7 +457,7 @@ public class Juego : MonoBehaviour {
 
                             ciudad.DepositoDinero(-edificioSeleccionado.coste);
                             ciudad.ActualizarUI(false);
-                            construir.AñadirConstruccion(edificioSeleccionado, gridPosicion, diaNoche.EstadoEncendidoLuces());
+                            construir.AñadirConstruccion(edificioSeleccionado, posicion, diaNoche.EstadoEncendidoLuces());
                             sonidoBotonConstruir.Play();
                         }
                     }
@@ -476,7 +474,7 @@ public class Juego : MonoBehaviour {
                             }
 
                             ciudad.ActualizarUI(false);
-                            construir.QuitarEdificio(edificioEliminar, gridPosicion);
+                            construir.QuitarEdificio(edificioEliminar, posicion);
                             sonidoBotonDemoler.Play();
                         }
                     }
@@ -491,9 +489,9 @@ public class Juego : MonoBehaviour {
 
         if (raton != Vector3.zero)
         {
-            Vector3 gridPosicion = Posicion.Redondear(raton, edificioSeleccionado);
+            Vector3 posicion = Posicion.Redondear(raton, edificioSeleccionado);
 
-            if (Posicion.Limites(gridPosicion, 100) == true)
+            if (Posicion.Limites(posicion, 100) == true)
             {
                 vistaPrevia.QuitarTodosEdificios();
 
@@ -521,7 +519,7 @@ public class Juego : MonoBehaviour {
                         }
 
                         Carreteras.VistaPrevia(edificiosSeleccionados, ciudad, edificioSeleccionado, 
-                            gridPosicion, construir, vistaPrevia, edificios, mantenerEjeX, mantenerEjeZ, 
+                            posicion, construir, vistaPrevia, edificios, mantenerEjeX, mantenerEjeZ, 
                             panelCoste, mensajeCoste, ids, escenario);
                     }       
                 }
@@ -529,32 +527,30 @@ public class Juego : MonoBehaviour {
                 {
                     if (edificioSeleccionado != null)
                     {
-                        edificioSeleccionado.rotacionColocacion = rotacionColocar;
-
                         panelCoste.gameObject.GetComponent<CanvasGroup>().alpha = 1;
                         mensajeCoste.text = string.Format("-{0} €", edificioSeleccionado.coste);
 
                         bool mostrar = true;
 
-                        if (escenario.ComprobarEdificable(edificioSeleccionado, gridPosicion) == false)
+                        if (escenario.ComprobarEdificable(edificioSeleccionado, posicion) == false)
                         {
                             mostrar = false;
                         }
 
-                        if (construir.ComprobarPosicion(edificioSeleccionado, gridPosicion) != null)
+                        if (construir.ComprobarPosicion(edificioSeleccionado, posicion) != null)
                         {
                             mostrar = false;
                         }
 
-                        if (vistaPrevia.ComprobarPosicion(edificioSeleccionado, gridPosicion) != null)
+                        if (vistaPrevia.ComprobarPosicion(edificioSeleccionado, posicion) != null)
                         {
                             mostrar = false;
-                            vistaPrevia.QuitarEdificio(edificioSeleccionado, gridPosicion);
+                            vistaPrevia.QuitarEdificio(edificioSeleccionado, posicion);
                         }
 
                         if (mostrar == true)
                         {
-                            vistaPrevia.AñadirConstruccion(edificioSeleccionado, gridPosicion);
+                            vistaPrevia.AñadirConstruccion(edificioSeleccionado, posicion);
                         }                    
                     }
                 }                

@@ -117,156 +117,159 @@ namespace Construcciones
         {
             if (((int)posicion.x > 0) && ((int)posicion.x <= 100) && ((int)posicion.z > 0) && ((int)posicion.z <= 100))
             {
-                //int topeX = 0;
-                //int i = 0;
+                int topeX = 0;
+                int i = 0;
 
-                //if (edificio != null)
-                //{
-                //    if ((edificio.rotacionColocacion == -270) || (edificio.rotacionColocacion == -90))
-                //    {
-                //        if ((int)edificio.dimensiones.y > 1)
-                //        {
-                //            if (edificio.dimensiones.y < 4)
-                //            {
-                //                topeX = (int)Mathf.Floor(edificio.dimensiones.y / 2);
-                //                i = 0 - ((int)Mathf.Ceil(edificio.dimensiones.y / 2));
-                //            }
-                //            else
-                //            {
-                //                topeX = (int)Mathf.Round(edificio.dimensiones.y / 2) - 1;
-                //                i = 0 - ((int)Mathf.Round(edificio.dimensiones.y / 2)) - 1;
-                //            }
-                //        }
-                //        else
-                //        {
-                //            topeX = (int)edificio.dimensiones.y;
-                //        }
-                //    }
-                //    else
-                //    {
-                //        if ((int)edificio.dimensiones.x > 1)
-                //        {
-                //            if (edificio.dimensiones.x < 4)
-                //            {
-                //                topeX = (int)Mathf.Floor(edificio.dimensiones.x / 2);
-                //                i = 0 - ((int)Mathf.Ceil(edificio.dimensiones.x / 2));
-                //            }
-                //            else
-                //            {
-                //                topeX = (int)Mathf.Round(edificio.dimensiones.x / 2) - 1;
-                //                i = 0 - ((int)Mathf.Round(edificio.dimensiones.x / 2)) - 1;
-                //            }
-                //        }
-                //        else
-                //        {
-                //            topeX = (int)edificio.dimensiones.x;
-                //        }
-                //    }
-                //}
-
-                //int topeZ = 0;
-                //int j = 0;
-
-                //if (edificio != null)
-                //{
-                //    if ((edificio.rotacionColocacion == -270) || (edificio.rotacionColocacion == -90))
-                //    {
-                //        if ((int)edificio.dimensiones.x > 1)
-                //        {
-                //            if (edificio.dimensiones.x < 4)
-                //            {
-                //                topeZ = (int)Mathf.Floor(edificio.dimensiones.x / 2);
-                //                j = 0 - ((int)Mathf.Ceil(edificio.dimensiones.x / 2));
-                //            }
-                //            else
-                //            {
-                //                topeZ = (int)Mathf.Round(edificio.dimensiones.x / 2) - 1;
-                //                j = 0 - ((int)Mathf.Round(edificio.dimensiones.x / 2)) - 1;
-                //            }
-                //        }
-                //        else
-                //        {
-                //            topeZ = (int)edificio.dimensiones.x;
-                //        }
-                //    }
-                //    else
-                //    {
-                //        if ((int)edificio.dimensiones.y > 1)
-                //        {
-                //            if (edificio.dimensiones.y < 4)
-                //            {
-                //                topeZ = (int)Mathf.Floor(edificio.dimensiones.y / 2);
-                //                j = 0 - ((int)Mathf.Ceil(edificio.dimensiones.y / 2));
-                //            }
-                //            else
-                //            {
-                //                topeZ = (int)Mathf.Round(edificio.dimensiones.y / 2) - 1;
-                //                j = 0 - ((int)Mathf.Round(edificio.dimensiones.y / 2)) - 1;
-                //            }
-                //        }
-                //        else
-                //        {
-                //            topeZ = (int)edificio.dimensiones.y;
-                //        }
-                //    }
-                //}
-
-                for (int x = 0; x < edificios.GetLength(0); x++)
+                if (edificio != null)
                 {
-                    for (int z = 0; z < edificios.GetLength(1); z++)
+                    if ((edificio.rotacionColocacion == -270) || (edificio.rotacionColocacion == -90))
                     {
-                        if (edificios[x, z] != null)
+                        if ((int)edificio.dimensiones.y > 1)
                         {
-                            return edificios[x, z];
+                            if (edificio.dimensiones.y < 4)
+                            {
+                                topeX = (int)Mathf.Floor(edificio.dimensiones.y / 2);
+                                i = 0 - ((int)Mathf.Ceil(edificio.dimensiones.y / 2));
+                            }
+                            else
+                            {
+                                topeX = (int)Mathf.Round(edificio.dimensiones.y / 2) - 1;
+                                i = 0 - ((int)Mathf.Round(edificio.dimensiones.y / 2)) - 1;
+                            }
+                        }
+                        else
+                        {
+                            topeX = (int)edificio.dimensiones.y;
+                        }
+                    }
+                    else
+                    {
+                        if ((int)edificio.dimensiones.x > 1)
+                        {
+                            if (edificio.dimensiones.x < 4)
+                            {
+                                topeX = (int)Mathf.Floor(edificio.dimensiones.x / 2);
+                                i = 0 - ((int)Mathf.Ceil(edificio.dimensiones.x / 2));
+                            }
+                            else
+                            {
+                                topeX = (int)Mathf.Round(edificio.dimensiones.x / 2) - 1;
+                                i = 0 - ((int)Mathf.Round(edificio.dimensiones.x / 2)) - 1;
+                            }
+                        }
+                        else
+                        {
+                            topeX = (int)edificio.dimensiones.x;
                         }
                     }
                 }
 
+                int topeZ = 0;
+                int j = 0;
 
+                if (edificio != null)
+                {
+                    if ((edificio.rotacionColocacion == -270) || (edificio.rotacionColocacion == -90))
+                    {
+                        if ((int)edificio.dimensiones.x > 1)
+                        {
+                            if (edificio.dimensiones.x < 4)
+                            {
+                                topeZ = (int)Mathf.Floor(edificio.dimensiones.x / 2);
+                                j = 0 - ((int)Mathf.Ceil(edificio.dimensiones.x / 2));
+                            }
+                            else
+                            {
+                                topeZ = (int)Mathf.Round(edificio.dimensiones.x / 2) - 1;
+                                j = 0 - ((int)Mathf.Round(edificio.dimensiones.x / 2)) - 1;
+                            }
+                        }
+                        else
+                        {
+                            topeZ = (int)edificio.dimensiones.x;
+                        }
+                    }
+                    else
+                    {
+                        if ((int)edificio.dimensiones.y > 1)
+                        {
+                            if (edificio.dimensiones.y < 4)
+                            {
+                                topeZ = (int)Mathf.Floor(edificio.dimensiones.y / 2);
+                                j = 0 - ((int)Mathf.Ceil(edificio.dimensiones.y / 2));
+                            }
+                            else
+                            {
+                                topeZ = (int)Mathf.Round(edificio.dimensiones.y / 2) - 1;
+                                j = 0 - ((int)Mathf.Round(edificio.dimensiones.y / 2)) - 1;
+                            }
+                        }
+                        else
+                        {
+                            topeZ = (int)edificio.dimensiones.y;
+                        }
+                    }
+                }
 
-                //if (edificios[(int)posicion.x, (int)posicion.z] != null)
+                //for (int x = 0; x < edificios.GetLength(0); x++)
                 //{
-                //    return edificios[(int)posicion.x, (int)posicion.z];
-                //}
-
-                //int ib = i;
-                //int jb = j;
-
-                //while (i < topeX)
-                //{
-                //    if (edificios[(int)posicion.x + i, (int)posicion.z] != null)
+                //    for (int z = 0; z < edificios.GetLength(1); z++)
                 //    {
-                //        return edificios[(int)posicion.x + i, (int)posicion.z];
-                //    }
-
-                //    i += 1;
-                //}
-
-                //while (j < topeZ)
-                //{
-                //    if (edificios[(int)posicion.x, (int)posicion.z + j] != null)
-                //    {
-                //        return edificios[(int)posicion.x, (int)posicion.z + j];
-                //    }
-
-                //    j += 1;
-                //}
-
-                //while (ib < topeX)
-                //{
-                //    int jc = jb;
-                //    while (jc < topeZ)
-                //    {
-                //        if (edificios[(int)posicion.x + ib, (int)posicion.z + jc] != null)
+                //        if (edificios[x, z] != null)
                 //        {
-                //            return edificios[(int)posicion.x + ib, (int)posicion.z + jc];
+                //            if (posicion.x == x && posicion.z == z)
+                //            {
+                //                return edificios[x, z];
+                //            }                           
                 //        }
-
-                //        jc += 1;
                 //    }
-
-                //    ib += 1;
                 //}
+
+
+
+                if (edificios[(int)posicion.x, (int)posicion.z] != null)
+                {
+                    return edificios[(int)posicion.x, (int)posicion.z];
+                }
+
+                int ib = i;
+                int jb = j;
+
+                while (i < topeX)
+                {
+                    if (edificios[(int)posicion.x + i, (int)posicion.z] != null)
+                    {
+                        return edificios[(int)posicion.x + i, (int)posicion.z];
+                    }
+
+                    i += 1;
+                }
+
+                while (j < topeZ)
+                {
+                    if (edificios[(int)posicion.x, (int)posicion.z + j] != null)
+                    {
+                        return edificios[(int)posicion.x, (int)posicion.z + j];
+                    }
+
+                    j += 1;
+                }
+
+                while (ib < topeX)
+                {
+                    int jc = jb;
+                    while (jc < topeZ)
+                    {
+                        if (edificios[(int)posicion.x + ib, (int)posicion.z + jc] != null)
+                        {
+                            return edificios[(int)posicion.x + ib, (int)posicion.z + jc];
+                        }
+
+                        jc += 1;
+                    }
+
+                    ib += 1;
+                }
             }
 
             return null;

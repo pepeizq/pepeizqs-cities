@@ -164,43 +164,31 @@ public class Escenario : MonoBehaviour {
         {
             Terreno terreno2 = Instantiate(terreno, posicion, Quaternion.identity);
             terrenos2[(int)posicion.x, (int)posicion.z] = terreno2;
-        }
+        }       
     }
 
     public bool ComprobarEdificable(Construccion edificio, Vector3 posicion)
     {
-        bool edificable = true;
-
         for (int x = 0; x < terrenos2.GetLength(0); x++)
         {
             for (int z = 0; z < terrenos2.GetLength(1); z++)
             {
-                int i = (int)posicion.x;
-                while (i < (int)posicion.x + edificio.dimensiones.x)
+                if ((int)posicion.x == x && (int)posicion.z == z)
                 {
-                    int j = (int)posicion.z;
-                    while (j < (int)posicion.z + edificio.dimensiones.y)
+                    if (terrenos2[x, z] != null)
                     {
-                        if (i == x && j == z)
-                        {
-                            if (terrenos2[x, z] != null)
-                            {
-                                Terreno terreno = terrenos2[x, z];
+                        Terreno terreno = terrenos2[x, z];
 
-                                if (terreno.edificable == false)
-                                {
-                                    edificable = false;
-                                }
-                            }
+                        if (terreno.edificable == false)
+                        {
+                            return false;
                         }
-                        j += 1;
                     }
-                    i += 1;
-                }              
+                }
             }
         }
 
-        return edificable;
+        return true;
     }
 
     public void PonerArboles(Guardado partida, Construir construir)
@@ -226,22 +214,7 @@ public class Escenario : MonoBehaviour {
 
                     if (arbol != null)
                     {
-                        bool añadir = true;
-
-                        if (ComprobarEdificable(arbol, posicion) == false)
-                        {
-                            añadir = false;
-                        }
-
-                        if (construir.ComprobarPosicion(arbol, posicion) != null)
-                        {
-                            añadir = false;
-                        }
-
-                        if (añadir == true)
-                        {
-                            construir.AñadirConstruccion(arbol, posicion, false);
-                        }
+                        GenerarArbol(arbol, posicion, construir);
                     }
 
                     i += 1;
@@ -254,38 +227,71 @@ public class Escenario : MonoBehaviour {
             {
                 if (arboles.Length > 0)
                 {
-                    int arbolesColocar = 200;
+                    int arbolesTramo1 = 200;
 
                     int i = 0;
-                    while (i < arbolesColocar)
+                    while (i < arbolesTramo1)
                     {
-                        Vector3 posicion = new Vector3(Random.Range(1, 99), 1, Random.Range(1, 99));
+                        Vector3 posicion = new Vector3(Random.Range(0, 30), 1, Random.Range(0, 99));
                         int j = Random.Range(0, arboles.Length);
 
                         if (arboles[j] != null)
                         {
-                            bool añadir = true;
+                            GenerarArbol(arboles[j], posicion, construir);
+                        }
+                        i++;
+                    }
 
-                            if (ComprobarEdificable(arboles[j], posicion) == false)
-                            {
-                                añadir = false;
-                            }
+                    int arbolesTramo2 = 50;
+                    i = 0;
+                    while (i < arbolesTramo2)
+                    {
+                        Vector3 posicion = new Vector3(Random.Range(31, 69), 1, Random.Range(0, 99));
+                        int j = Random.Range(0, arboles.Length);
 
-                            if (construir.ComprobarPosicion(arboles[j], posicion) != null)
-                            {
-                                añadir = false;
-                            }
+                        if (arboles[j] != null)
+                        {
+                            GenerarArbol(arboles[j], posicion, construir);
+                        }
+                        i++;
+                    }
 
-                            if (añadir == true)
-                            {
-                                construir.AñadirConstruccion(arboles[j], posicion, false);
-                            }
+                    int arbolesTramo3 = 200;
+                    i = 0;
+                    while (i < arbolesTramo3)
+                    {
+                        Vector3 posicion = new Vector3(Random.Range(70, 99), 1, Random.Range(0, 99));
+                        int j = Random.Range(0, arboles.Length);
+
+                        if (arboles[j] != null)
+                        {
+                            GenerarArbol(arboles[j], posicion, construir);
                         }
                         i++;
                     }
                 }
             }
         }       
+    }
+
+    private void GenerarArbol(Construccion arbol, Vector3 posicion, Construir construir)
+    {
+        bool añadir = true;
+
+        if (ComprobarEdificable(arbol, posicion) == false)
+        {
+            añadir = false;
+        }
+
+        if (construir.ComprobarPosicion(arbol, posicion) != null)
+        {
+            añadir = false;
+        }
+
+        if (añadir == true)
+        {
+            construir.AñadirConstruccion(arbol, posicion, false);
+        }
     }
 
     public Terreno[,] DevolverTerrenos()
