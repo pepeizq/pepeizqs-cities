@@ -253,6 +253,12 @@ public class Juego : MonoBehaviour {
                         }
 
                         edificioSeleccionado.rotacionColocacion = rotaciones[rotacionesPosicion];
+
+                        int dimensiones1 = (int)edificioSeleccionado.dimensiones.x;
+                        int dimensiones2 = (int)edificioSeleccionado.dimensiones.y;
+
+                        edificioSeleccionado.dimensiones.x = dimensiones2;
+                        edificioSeleccionado.dimensiones.x = dimensiones1;
                     }
 
                     if (Input.GetKeyDown(teclaRotacionEdificioIzquierda))
@@ -265,6 +271,12 @@ public class Juego : MonoBehaviour {
                         }
 
                         edificioSeleccionado.rotacionColocacion = rotaciones[rotacionesPosicion];
+
+                        int dimensiones1 = (int)edificioSeleccionado.dimensiones.x;
+                        int dimensiones2 = (int)edificioSeleccionado.dimensiones.y;
+
+                        edificioSeleccionado.dimensiones.x = dimensiones2;
+                        edificioSeleccionado.dimensiones.x = dimensiones1;
                     }
                 
                     if (Input.GetKey(teclaArrastrarConstruccion))
@@ -490,7 +502,7 @@ public class Juego : MonoBehaviour {
         if (raton != Vector3.zero)
         {
             Vector3 posicion = Posicion.Redondear(raton, edificioSeleccionado);
-
+            
             if (Posicion.Limites(posicion, 100) == true)
             {
                 vistaPrevia.QuitarTodosEdificios();

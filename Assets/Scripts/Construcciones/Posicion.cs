@@ -25,15 +25,24 @@ public static class Posicion
             float posicionX = posicion.x;
             float posicionZ = posicion.z;
 
-            if (edificio.dimensiones.x > 1)
+            if (edificio.dimensiones.x > 1 && edificio.dimensiones.y > 1)
+            {
+                posicionX = posicionX + (edificio.dimensiones.x / 2);
+                posicionZ = posicionZ + (edificio.dimensiones.y / 2);
+            }
+          
+            if (edificio.dimensiones.x == 1 && edificio.dimensiones.y > 1)
+            {
+                posicionZ = posicionZ + (edificio.dimensiones.y / 2);
+            }
+
+            if (edificio.dimensiones.x > 1 && edificio.dimensiones.y == 1)
             {
                 posicionX = posicionX + (edificio.dimensiones.x / 2);
             }
 
-            if (edificio.dimensiones.y > 1)
-            {
-                posicionZ = posicionZ + (edificio.dimensiones.y / 2);
-            }
+            edificio.posicionX = (int)posicionX;
+            edificio.posicionZ = (int)posicionZ;
 
             return new Vector3(Mathf.Round(posicionX), .5f, Mathf.Round(posicionZ));
         }

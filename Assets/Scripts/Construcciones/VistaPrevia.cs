@@ -20,10 +20,10 @@ namespace Construcciones
 
             posicion = Funciones.PosicionEdificio(edificio, posicion);
 
-            Construccion edificioFinal = Instantiate(edificio, posicion, Quaternion.identity);
-            edificioFinal.transform.Rotate(Vector3.up, edificio.rotacionAdicional + edificio.rotacionColocacion, Space.World);
+            Construccion edificioVistaPrevia = Instantiate(edificio, posicion, Quaternion.identity);
+            edificioVistaPrevia.transform.Rotate(Vector3.up, edificio.rotacionAdicional + edificio.rotacionColocacion, Space.World);
 
-            edificiosPrevio[(int)posicion.x, (int)posicion.z] = edificioFinal;
+            edificiosPrevio[(int)posicion.x, (int)posicion.z] = edificioVistaPrevia;
             edificiosPrevio = Funciones.RellenarEdificioVacio(edificiosPrevio, edificio, posicion, edificioVacio);
 
             //---------------------------------
@@ -39,6 +39,9 @@ namespace Construcciones
             materiales[0].EnableKeyword("_ALPHAPREMULTIPLY_ON");
             materiales[0].renderQueue = 3000;
             materiales[0].color = new Color(1.0f, 1.0f, 1.0f, 0.5f);
+
+            materiales[0].DisableKeyword("_EMISSION");
+            materiales[0].globalIlluminationFlags = MaterialGlobalIlluminationFlags.EmissiveIsBlack;
 
             edificiosPrevio[(int)posicion.x, (int)posicion.z].gameObject.GetComponent<MeshRenderer>().materials = materiales;
         }

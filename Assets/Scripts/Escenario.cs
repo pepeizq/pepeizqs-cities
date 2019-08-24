@@ -169,22 +169,56 @@ public class Escenario : MonoBehaviour {
 
     public bool ComprobarEdificable(Construccion edificio, Vector3 posicion)
     {
-        for (int x = 0; x < terrenos2.GetLength(0); x++)
+        if (edificio == null)
         {
-            for (int z = 0; z < terrenos2.GetLength(1); z++)
+            for (int x = 0; x < terrenos2.GetLength(0); x++)
             {
-                if ((int)posicion.x == x && (int)posicion.z == z)
+                for (int z = 0; z < terrenos2.GetLength(1); z++)
                 {
-                    if (terrenos2[x, z] != null)
+                    if ((int)posicion.x == x && (int)posicion.z == z)
                     {
-                        Terreno terreno = terrenos2[x, z];
-
-                        if (terreno.edificable == false)
+                        if (terrenos2[x, z] != null)
                         {
-                            return false;
+                            Terreno terreno = terrenos2[x, z];
+
+                            if (terreno.edificable == false)
+                            {
+                                return false;
+                            }
                         }
                     }
                 }
+            }         
+        }
+        else
+        {
+            int i = edificio.posicionX;          
+            while (i <= (edificio.posicionX + edificio.dimensiones.x))
+            {
+                int j = edificio.posicionZ;
+                while (j <= (edificio.posicionZ + edificio.dimensiones.y))
+                {
+                    for (int x = 0; x < terrenos2.GetLength(0); x++)
+                    {
+                        for (int z = 0; z < terrenos2.GetLength(1); z++)
+                        {
+                            if (i == x && j == z)
+                            {
+                                if (terrenos2[x, z] != null)
+                                {
+                                    Terreno terreno = terrenos2[x, z];
+
+                                    if (terreno.edificable == false)
+                                    {
+                                        return false;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    j += 1;
+                }
+                i += 1;
             }
         }
 
@@ -227,7 +261,7 @@ public class Escenario : MonoBehaviour {
             {
                 if (arboles.Length > 0)
                 {
-                    int arbolesTramo1 = 200;
+                    int arbolesTramo1 = 250;
 
                     int i = 0;
                     while (i < arbolesTramo1)
@@ -242,7 +276,7 @@ public class Escenario : MonoBehaviour {
                         i++;
                     }
 
-                    int arbolesTramo2 = 50;
+                    int arbolesTramo2 = 30;
                     i = 0;
                     while (i < arbolesTramo2)
                     {
@@ -256,7 +290,7 @@ public class Escenario : MonoBehaviour {
                         i++;
                     }
 
-                    int arbolesTramo3 = 200;
+                    int arbolesTramo3 = 250;
                     i = 0;
                     while (i < arbolesTramo3)
                     {
