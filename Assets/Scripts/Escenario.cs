@@ -202,6 +202,16 @@ public class Escenario : MonoBehaviour {
                     {
                         for (int z = 0; z < terrenos2.GetLength(1); z++)
                         {
+                            if (edificio.dimensiones.x == 2)
+                            {
+                                i = i - 1;
+                            }
+
+                            if (edificio.dimensiones.y == 2)
+                            {
+                                j = j - 1;
+                            }
+
                             if (i == x && j == z)
                             {
                                 if (terrenos2[x, z] != null)
