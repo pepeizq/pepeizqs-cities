@@ -726,7 +726,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 660, y: 80}
+  m_SizeDelta: {x: 550, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &65544731
 MonoBehaviour:
@@ -3114,7 +3114,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -135}
-  m_SizeDelta: {x: 670, y: 270}
+  m_SizeDelta: {x: 700, y: 270}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &218682818
 MonoBehaviour:
@@ -3151,7 +3151,7 @@ MonoBehaviour:
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 220, y: 110}
-  m_Spacing: {x: 0, y: 10}
+  m_Spacing: {x: 10, y: 10}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!114 &218682820
@@ -10828,7 +10828,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -135}
-  m_SizeDelta: {x: 670, y: 270}
+  m_SizeDelta: {x: 700, y: 270}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &511642602
 MonoBehaviour:
@@ -10851,7 +10851,7 @@ MonoBehaviour:
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 220, y: 110}
-  m_Spacing: {x: 0, y: 10}
+  m_Spacing: {x: 10, y: 10}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!114 &511642603
@@ -19144,7 +19144,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -135}
-  m_SizeDelta: {x: 670, y: 270}
+  m_SizeDelta: {x: 700, y: 270}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &951623425
 CanvasGroup:
@@ -19179,7 +19179,7 @@ MonoBehaviour:
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 220, y: 110}
-  m_Spacing: {x: 0, y: 10}
+  m_Spacing: {x: 10, y: 10}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!114 &951623427
@@ -20615,7 +20615,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -135}
-  m_SizeDelta: {x: 670, y: 270}
+  m_SizeDelta: {x: 700, y: 270}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1036808847
 MonoBehaviour:
@@ -20652,7 +20652,7 @@ MonoBehaviour:
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 220, y: 110}
-  m_Spacing: {x: 0, y: 10}
+  m_Spacing: {x: 10, y: 10}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!114 &1036808849
@@ -23599,7 +23599,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 660, y: 270}
+  m_SizeDelta: {x: 700, y: 270}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1220778365
 MonoBehaviour:
@@ -23614,7 +23614,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.39215687}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.003921569}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -26620,7 +26620,7 @@ MonoBehaviour:
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 220, y: 110}
-  m_Spacing: {x: 0, y: 10}
+  m_Spacing: {x: 10, y: 10}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!114 &1365827943
@@ -26677,7 +26677,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -135}
-  m_SizeDelta: {x: 670, y: 270}
+  m_SizeDelta: {x: 700, y: 270}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &1365827946
 CanvasGroup:
@@ -27097,7 +27097,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -135}
-  m_SizeDelta: {x: 670, y: 270}
+  m_SizeDelta: {x: 700, y: 270}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1378280039
 MonoBehaviour:
@@ -27134,7 +27134,7 @@ MonoBehaviour:
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 220, y: 110}
-  m_Spacing: {x: 0, y: 10}
+  m_Spacing: {x: 10, y: 10}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!114 &1378280041
@@ -28189,7 +28189,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 20}
-  m_SizeDelta: {x: 680, y: 380}
+  m_SizeDelta: {x: 700, y: 380}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1417709698
 MonoBehaviour:
