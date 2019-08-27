@@ -1,0 +1,518 @@
+/target:library
+/nowarn:0169
+/out:Temp/Unity.Timeline.Editor.dll
+/debug:portable
+/optimize-
+/nostdlib+
+/preferreduilang:en-US
+/langversion:latest
+/reference:Library/ScriptAssemblies/Unity.Timeline.dll
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.ARModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.AccessibilityModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.AnimationModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.AssetBundleModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.AudioModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.ClothModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.ClusterInputModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.ClusterRendererModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.CoreModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.CrashReportingModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.DirectorModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.FileSystemHttpModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.GameCenterModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.GridModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.HotReloadModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.IMGUIModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.ImageConversionModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.InputModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.JSONSerializeModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.LocalizationModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.ParticleSystemModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.PerformanceReportingModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.PhysicsModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.Physics2DModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.ProfilerModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.ScreenCaptureModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.SharedInternalsModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.SpriteMaskModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.SpriteShapeModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.StreamingModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.StyleSheetsModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.SubstanceModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.TLSModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.TerrainModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.TerrainPhysicsModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.TextCoreModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.TextRenderingModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.TilemapModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.UIModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.UIElementsModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.UNETModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.UmbraModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.UnityAnalyticsModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.UnityConnectModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.UnityTestProtocolModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.UnityWebRequestModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.UnityWebRequestAssetBundleModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.UnityWebRequestAudioModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.UnityWebRequestTextureModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.UnityWebRequestWWWModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.VFXModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.VRModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.VehiclesModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.VideoModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.WindModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEditor.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/Unity.Locator.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/UnityExtensions/Unity/GUISystem/Editor/UnityEditor.UI.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/UnityExtensions/Unity/TestRunner/Editor/UnityEditor.TestRunner.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/UnityExtensions/Unity/TestRunner/UnityEngine.TestRunner.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/UnityExtensions/Unity/TestRunner/net35/unity-custom/nunit.framework.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/UnityExtensions/Unity/UnityVR/Editor/UnityEditor.VR.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEditor.Graphs.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/PlaybackEngines/windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/PlaybackEngines/MetroSupport/UnityEditor.UWP.Extensions.dll"
+/reference:"F:/Proyectos/Unity/City Builder/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Editor.dll"
+/reference:"F:/Proyectos/Unity/City Builder/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.StandardEvents.dll"
+/reference:"F:/Proyectos/Unity/City Builder/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Tracker.dll"
+/reference:"F:/Proyectos/Unity/City Builder/Library/PackageCache/com.unity.purchasing.udp@1.0.3-preview.3/Runtime/UDP.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/System.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/System.Core.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/System.Runtime.Serialization.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/System.Xml.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/System.Xml.Linq.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/System.Numerics.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/System.Numerics.Vectors.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/System.Net.Http.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Microsoft.CSharp.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/System.Data.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/Microsoft.Win32.Primitives.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/netstandard.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.AppContext.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Collections.Concurrent.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Collections.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Collections.NonGeneric.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Collections.Specialized.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.ComponentModel.Annotations.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.ComponentModel.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.ComponentModel.EventBasedAsync.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.ComponentModel.Primitives.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.ComponentModel.TypeConverter.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Console.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Data.Common.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Diagnostics.Contracts.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Diagnostics.Debug.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Diagnostics.FileVersionInfo.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Diagnostics.Process.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Diagnostics.StackTrace.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Diagnostics.TextWriterTraceListener.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Diagnostics.Tools.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Diagnostics.TraceSource.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Drawing.Primitives.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Dynamic.Runtime.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Globalization.Calendars.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Globalization.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Globalization.Extensions.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.IO.Compression.ZipFile.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.IO.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.IO.FileSystem.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.IO.FileSystem.DriveInfo.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.IO.FileSystem.Primitives.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.IO.FileSystem.Watcher.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.IO.IsolatedStorage.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.IO.MemoryMappedFiles.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.IO.Pipes.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.IO.UnmanagedMemoryStream.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Linq.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Linq.Expressions.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Linq.Parallel.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Linq.Queryable.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Net.Http.Rtc.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Net.NameResolution.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Net.NetworkInformation.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Net.Ping.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Net.Primitives.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Net.Requests.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Net.Security.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Net.Sockets.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Net.WebHeaderCollection.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Net.WebSockets.Client.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Net.WebSockets.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.ObjectModel.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Reflection.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Reflection.Emit.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Reflection.Emit.ILGeneration.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Reflection.Emit.Lightweight.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Reflection.Extensions.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Reflection.Primitives.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Resources.Reader.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Resources.ResourceManager.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Resources.Writer.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Runtime.CompilerServices.VisualC.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Runtime.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Runtime.Extensions.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Runtime.Handles.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Runtime.InteropServices.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Runtime.InteropServices.RuntimeInformation.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Runtime.InteropServices.WindowsRuntime.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Runtime.Numerics.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Runtime.Serialization.Formatters.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Runtime.Serialization.Json.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Runtime.Serialization.Primitives.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Runtime.Serialization.Xml.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Security.Claims.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Security.Cryptography.Algorithms.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Security.Cryptography.Csp.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Security.Cryptography.Encoding.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Security.Cryptography.Primitives.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Security.Cryptography.X509Certificates.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Security.Principal.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Security.SecureString.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.ServiceModel.Duplex.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.ServiceModel.Http.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.ServiceModel.NetTcp.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.ServiceModel.Primitives.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.ServiceModel.Security.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Text.Encoding.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Text.Encoding.Extensions.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Text.RegularExpressions.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Threading.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Threading.Overlapped.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Threading.Tasks.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Threading.Tasks.Parallel.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Threading.Thread.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Threading.ThreadPool.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Threading.Timer.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.ValueTuple.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Xml.ReaderWriter.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Xml.XDocument.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Xml.XmlDocument.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Xml.XmlSerializer.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Xml.XPath.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Xml.XPath.XDocument.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/unityscript/UnityScript.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/unityscript/UnityScript.Lang.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/MonoBleedingEdge/lib/mono/unityscript/Boo.Lang.dll"
+/define:UNITY_2019_1_0
+/define:UNITY_2019_1
+/define:UNITY_2019
+/define:UNITY_5_3_OR_NEWER
+/define:UNITY_5_4_OR_NEWER
+/define:UNITY_5_5_OR_NEWER
+/define:UNITY_5_6_OR_NEWER
+/define:UNITY_2017_1_OR_NEWER
+/define:UNITY_2017_2_OR_NEWER
+/define:UNITY_2017_3_OR_NEWER
+/define:UNITY_2017_4_OR_NEWER
+/define:UNITY_2018_1_OR_NEWER
+/define:UNITY_2018_2_OR_NEWER
+/define:UNITY_2018_3_OR_NEWER
+/define:UNITY_2019_1_OR_NEWER
+/define:PLATFORM_ARCH_64
+/define:UNITY_64
+/define:UNITY_INCLUDE_TESTS
+/define:ENABLE_AUDIO
+/define:ENABLE_CACHING
+/define:ENABLE_CLOTH
+/define:ENABLE_DUCK_TYPING
+/define:ENABLE_MICROPHONE
+/define:ENABLE_MULTIPLE_DISPLAYS
+/define:ENABLE_PHYSICS
+/define:ENABLE_SPRITES
+/define:ENABLE_GRID
+/define:ENABLE_TILEMAP
+/define:ENABLE_TERRAIN
+/define:ENABLE_TEXTURE_STREAMING
+/define:ENABLE_DIRECTOR
+/define:ENABLE_UNET
+/define:ENABLE_LZMA
+/define:ENABLE_UNITYEVENTS
+/define:ENABLE_WEBCAM
+/define:ENABLE_WWW
+/define:ENABLE_CLOUD_SERVICES_COLLAB
+/define:ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS
+/define:ENABLE_CLOUD_SERVICES_ADS
+/define:ENABLE_CLOUD_HUB
+/define:ENABLE_CLOUD_PROJECT_ID
+/define:ENABLE_CLOUD_SERVICES_USE_WEBREQUEST
+/define:ENABLE_CLOUD_SERVICES_UNET
+/define:ENABLE_CLOUD_SERVICES_BUILD
+/define:ENABLE_CLOUD_LICENSE
+/define:ENABLE_EDITOR_HUB
+/define:ENABLE_EDITOR_HUB_LICENSE
+/define:ENABLE_WEBSOCKET_CLIENT
+/define:ENABLE_DIRECTOR_AUDIO
+/define:ENABLE_DIRECTOR_TEXTURE
+/define:ENABLE_TIMELINE
+/define:ENABLE_EDITOR_METRICS
+/define:ENABLE_EDITOR_METRICS_CACHING
+/define:ENABLE_MANAGED_JOBS
+/define:ENABLE_MANAGED_TRANSFORM_JOBS
+/define:ENABLE_MANAGED_ANIMATION_JOBS
+/define:ENABLE_MANAGED_AUDIO_JOBS
+/define:INCLUDE_DYNAMIC_GI
+/define:INCLUDE_GI
+/define:ENABLE_MONO_BDWGC
+/define:PLATFORM_SUPPORTS_MONO
+/define:RENDER_SOFTWARE_CURSOR
+/define:INCLUDE_PUBNUB
+/define:ENABLE_VIDEO
+/define:ENABLE_CUSTOM_RENDER_TEXTURE
+/define:ENABLE_LOCALIZATION
+/define:PLATFORM_STANDALONE_WIN
+/define:PLATFORM_STANDALONE
+/define:UNITY_STANDALONE_WIN
+/define:UNITY_STANDALONE
+/define:ENABLE_SUBSTANCE
+/define:ENABLE_RUNTIME_GI
+/define:ENABLE_MOVIES
+/define:ENABLE_NETWORK
+/define:ENABLE_CRUNCH_TEXTURE_COMPRESSION
+/define:ENABLE_UNITYWEBREQUEST
+/define:ENABLE_CLOUD_SERVICES
+/define:ENABLE_CLOUD_SERVICES_ANALYTICS
+/define:ENABLE_CLOUD_SERVICES_PURCHASING
+/define:ENABLE_CLOUD_SERVICES_CRASH_REPORTING
+/define:ENABLE_OUT_OF_PROCESS_CRASH_HANDLER
+/define:ENABLE_SCRIPTING_GC_WBARRIERS
+/define:ENABLE_EVENT_QUEUE
+/define:ENABLE_CLUSTER_SYNC
+/define:ENABLE_CLUSTERINPUT
+/define:ENABLE_VR
+/define:ENABLE_AR
+/define:ENABLE_WEBSOCKET_HOST
+/define:ENABLE_MONO
+/define:NET_4_6
+/define:ENABLE_PROFILER
+/define:DEBUG
+/define:TRACE
+/define:UNITY_ASSERTIONS
+/define:UNITY_EDITOR
+/define:UNITY_EDITOR_64
+/define:UNITY_EDITOR_WIN
+/define:ENABLE_UNITY_COLLECTIONS_CHECKS
+/define:ENABLE_BURST_AOT
+/define:UNITY_TEAM_LICENSE
+/define:UNITY_POST_PROCESSING_STACK_V2
+/define:CSHARP_7_OR_LATER
+/define:CSHARP_7_3_OR_NEWER
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Actions\ClipsActions.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Actions\ItemAction.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Actions\MarkerActions.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Actions\Menus\MenuItem.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Actions\Menus\MenuItemActionBase.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Actions\Menus\TimelineContextMenu.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Actions\TimelineActions.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Actions\TrackActions.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Activation\ActivationTrackDrawer.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Activation\ActivationTrackInspector.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Analytics\TimelineAnalytics.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Animation\AnimationClipCurveCache.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Animation\AnimationOffsetMenu.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Animation\BindingSelector.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Animation\BindingTreeViewDataSource.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Animation\BindingTreeViewDataSourceGUI.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Animation\ClipCurveDataSource.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Animation\ClipCurveEditor.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Animation\TimelineAnimationUtilities.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Attributes\SeparatorMenuItemAttribute.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Attributes\ShortcutAttribute.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Audio\AudioClipPropertiesDrawer.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Audio\AudioPlayableAssetInspector.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Audio\AudioTrackDrawer.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Audio\AudioTrackInspector.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\CurveEditUtility.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\DirectorNamedColor.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\DirectorStyles.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Extensions\AnimatedParameterExtensions.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Extensions\AnimationTrackExtensions.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Extensions\TrackExtensions.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\inspectors\AnimationPlayableAssetInspector.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\inspectors\AnimationTrackInspector.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\inspectors\BasicAssetInspector.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\inspectors\BuiltInCurvePresets.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\inspectors\ClipInspector\ClipInspector.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\inspectors\ClipInspector\ClipInspectorCurveEditor.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\inspectors\ClipInspector\ClipInspectorSelectionInfo.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\inspectors\DirectorNamedColorInspector.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\inspectors\EditorClip.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\inspectors\EditorClipFactory.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\inspectors\GroupTrackInspector.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\inspectors\MarkerInspector.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\inspectors\TimeFieldDrawer.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\inspectors\TimelineAssetInspector.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\inspectors\TimelineInspectorUtility.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\inspectors\TrackAssetInspector.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Items\ClipItem.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Items\ItemsGroup.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Items\ItemsPerTrack.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Items\ItemsUtils.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Items\ITimelineItem.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Items\MarkerItem.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Manipulators\AddDelete\AddDeleteItemModeMix.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Manipulators\AddDelete\AddDeleteItemModeReplace.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Manipulators\AddDelete\AddDeleteItemModeRipple.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Manipulators\AddDelete\IAddDeleteItemMode.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Manipulators\Cursors\TimelineCursors.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Manipulators\EditMode.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Manipulators\EditModeInputHandler.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Manipulators\Move\IMoveItemMode.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Manipulators\Move\MoveItemHandler.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Manipulators\Move\MoveItemModeMix.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Manipulators\Move\MoveItemModeReplace.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Manipulators\Move\MoveItemModeRipple.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Manipulators\Move\MovingItems.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Manipulators\Sequence\EaseClip.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Manipulators\Sequence\Jog.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Manipulators\Sequence\MarkerHeaderContextMenu.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Manipulators\Sequence\RectangleSelect.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Manipulators\Sequence\RectangleTool.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Manipulators\Sequence\RectangleZoom.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Manipulators\Sequence\SelectAndMoveItem.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Manipulators\Sequence\TrackZoom.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Manipulators\Sequence\TrimClip.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Manipulators\TimeAreaAutoPanner.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Manipulators\TimeIndicator.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Manipulators\TimelineClipGroup.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Manipulators\Trim\ITrimItemMode.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Manipulators\Trim\TrimItemModeMix.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Manipulators\Trim\TrimItemModeReplace.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Manipulators\Trim\TrimItemModeRipple.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Manipulators\Utils\EditModeGUIUtils.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Manipulators\Utils\EditModeMixUtils.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Manipulators\Utils\EditModeReplaceUtils.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Manipulators\Utils\EditModeRippleUtils.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Manipulators\Utils\EditModeUtils.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Manipulators\Utils\PlacementValidity.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Playables\ControlPlayableInspector.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Properties\AssemblyInfo.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Recording\AnimationTrackRecorder.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Recording\TimelineRecording.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Recording\TimelineRecording_Monobehaviour.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Recording\TimelineRecording_PlayableAsset.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Recording\TimelineRecordingContextualResponder.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Recording\TrackAssetRecordingExtensions.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Shortcuts.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Signals\SignalAssetInspector.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Signals\SignalEmitterInspector.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Signals\SignalEventDrawer.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Signals\SignalManager.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Signals\SignalReceiverHeader.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Signals\SignalReceiverInspector.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Signals\SignalUtility.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Signals\Styles.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Signals\TreeView\SignalInspectorItem.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Signals\TreeView\SignalInspectorList.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Signals\TreeView\SignalList.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Signals\TreeView\SignalListFactory.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Signals\TreeView\SignalListItem.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Signals\TreeView\SignalReceiverItem.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Signals\TreeView\SignalReceiverList.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Signals\TreeView\SignalReceiverTreeView.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\State\ISequenceState.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\State\SequenceHierarchy.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\State\SequencePath.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\State\SequenceState.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\State\WindowState.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\TimelineEditor.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\TimelineHelpers.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\TimelineSelection.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\TimelineUtility.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Tooltip.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Trackhead.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\treeview\AnimationTrackKeyDataSource.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\treeview\ClipRenderer.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\treeview\Control.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\treeview\Drawers\AnimationTrackDrawer.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\treeview\Drawers\InfiniteTrackDrawer.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\treeview\Drawers\Layers\ClipsLayer.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\treeview\Drawers\Layers\ItemsLayer.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\treeview\Drawers\Layers\MarkersLayer.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\treeview\Drawers\MarkerTrackDrawer.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\treeview\Drawers\TrackDrawer.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\treeview\Drawers\TrackItemsDrawer.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\treeview\InlineCurveEditor.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\treeview\IRowGUI.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\treeview\ItemGui\ISelectable.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\treeview\ItemGui\TimelineClipGUI.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\treeview\ItemGui\TimelineItemGUI.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\treeview\ItemGui\TimelineMarkerClusterGUI.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\treeview\ItemGui\TimelineMarkerGUI.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\treeview\ManipulationsClips.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\treeview\ManipulationsTimeline.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\treeview\ManipulationsTracks.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\treeview\Manipulator.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\treeview\PickerUtils.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\treeview\Snapping\IAttractable.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\treeview\Snapping\ISnappable.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\treeview\Snapping\SnapEngine.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\treeview\TimelineClipHandle.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\treeview\TimelineClipUnion.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\treeview\TimelineDataSource.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\treeview\TimelineDragging.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\treeview\TimelineGroupGUI.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\treeview\TimelineTrackBaseGUI.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\treeview\TimelineTrackErrorGUI.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\treeview\TimelineTrackGUI.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\treeview\TimelineTreeView.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\treeview\TimelineTreeViewGUI.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Utilities\AnimatorBindingCache.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Utilities\BindingUtility.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Utilities\BreadcrumbDrawer.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Utilities\Clipboard.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Utilities\ClipModifier.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Utilities\ControlPlayableUtility.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Utilities\CustomTrackDrawerAttribute.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Utilities\DisplayNameHelper.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Utilities\Graphics.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Utilities\GUIColorOverride.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Utilities\GUIMixedValueScope.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Utilities\GUIViewportScope.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Utilities\KeyTraverser.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Utilities\MarkerModifier.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Utilities\ObjectExtension.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Utilities\ObjectReferenceField.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Utilities\PropertyCollector.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Utilities\Range.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Utilities\SpacePartitioner.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Utilities\StyleManager.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Utilities\StyleNormalColorOverride.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Utilities\TimelineKeyboardNavigation.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Utilities\TimeReferenceUtility.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Utilities\TrackModifier.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Utilities\TrackResourceCache.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Utilities\TypeUtility.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Window\Modes\TimelineActiveMode.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Window\Modes\TimelineAssetEditionMode.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Window\Modes\TimelineDisabledMode.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Window\Modes\TimelineInactiveMode.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Window\Modes\TimelineMode.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Window\Modes\TimeReferenceMode.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Window\TimelineMarkerHeaderGUI.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Window\TimelineWindow.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Window\TimelineWindow_ActiveTimeline.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Window\TimelineWindow_Breadcrumbs.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Window\TimelineWindow_Duration.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Window\TimelineWindow_EditorCallbacks.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Window\TimelineWindow_Gui.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Window\TimelineWindow_HeaderGui.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Window\TimelineWindow_Manipulators.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Window\TimelineWindow_PlayableLookup.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Window\TimelineWindow_PlayRange.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Window\TimelineWindow_PreviewPlayMode.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Window\TimelineWindow_Selection.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Window\TimelineWindow_StateChange.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Window\TimelineWindow_TimeArea.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Window\TimelineWindow_TimeCursor.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Window\TimelineWindow_TrackGui.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Window\TimelineWindowTimeControl.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Window\ViewModel\ScriptableObjectViewPrefs.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Window\ViewModel\TimelineAssetViewModel.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Window\ViewModel\TimelineWindowViewPrefs.cs"
+"C:\Program Files\Unity\Hub\Editor\2019.1.0f2\Editor\Data\Resources\PackageManager\BuiltInPackages\com.unity.timeline\Editor\Window\WindowConstants.cs"

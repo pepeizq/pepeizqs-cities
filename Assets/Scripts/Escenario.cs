@@ -56,8 +56,8 @@ public class Escenario : MonoBehaviour {
                 int i = 0;
                 while (i < primerTramo)
                 {
-                    Vector3 posicion = new Vector3(origen, -0.5f, i);
-                    GenerarTerreno(rio, posicion);
+                    GenerarTerreno(rio, new Vector3(origen, -0.5f, i));
+                    GenerarTerreno(rio, new Vector3(origen + 1, -0.5f, i));
 
                     i += 1;
                 }
@@ -71,8 +71,8 @@ public class Escenario : MonoBehaviour {
                     i = 0;
                     while (i > segundoTramo)
                     {
-                        Vector3 posicion = new Vector3(origen + i, -0.5f, primerTramo);
-                        GenerarTerreno(rio, posicion);
+                        GenerarTerreno(rio, new Vector3(origen + i, -0.5f, primerTramo));
+                        GenerarTerreno(rio, new Vector3(origen + i, -0.5f, primerTramo - 1));
 
                         i -= 1;
                     }
@@ -83,8 +83,8 @@ public class Escenario : MonoBehaviour {
                     i = 0;
                     while (i < segundoTramo)
                     {
-                        Vector3 posicion = new Vector3(origen + i, -0.5f, primerTramo);
-                        GenerarTerreno(rio, posicion);
+                        GenerarTerreno(rio, new Vector3(origen + i, -0.5f, primerTramo));
+                        GenerarTerreno(rio, new Vector3(origen + i + 1, -0.5f, primerTramo - 1));
 
                         i += 1;
                     }
@@ -95,8 +95,8 @@ public class Escenario : MonoBehaviour {
                 i = 0;
                 while (i < tercerTramo)
                 {
-                    Vector3 posicion = new Vector3(origen + segundoTramo, -0.5f, primerTramo + i);
-                    GenerarTerreno(rio, posicion);
+                    GenerarTerreno(rio, new Vector3(origen + segundoTramo, -0.5f, primerTramo + i));
+                    GenerarTerreno(rio, new Vector3(origen + segundoTramo + 1, -0.5f, primerTramo + i));
 
                     i += 1;
                 }
@@ -110,8 +110,8 @@ public class Escenario : MonoBehaviour {
                     i = 0;
                     while (i > cuartoTramo)
                     {
-                        Vector3 posicion = new Vector3(origen + segundoTramo + i, -0.5f, primerTramo + tercerTramo);
-                        GenerarTerreno(rio, posicion);
+                        GenerarTerreno(rio, new Vector3(origen + segundoTramo + i, -0.5f, primerTramo + tercerTramo));
+                        GenerarTerreno(rio, new Vector3(origen + segundoTramo + i, -0.5f, primerTramo + tercerTramo - 1));
 
                         i -= 1;
                     }
@@ -122,8 +122,8 @@ public class Escenario : MonoBehaviour {
                     i = 0;
                     while (i < cuartoTramo)
                     {
-                        Vector3 posicion = new Vector3(origen + segundoTramo + i, -0.5f, primerTramo + tercerTramo);
-                        GenerarTerreno(rio, posicion);
+                        GenerarTerreno(rio, new Vector3(origen + segundoTramo + i, -0.5f, primerTramo + tercerTramo));
+                        GenerarTerreno(rio, new Vector3(origen + segundoTramo + i + 1, -0.5f, primerTramo + tercerTramo - 1));
 
                         i += 1;
                     }
@@ -132,8 +132,8 @@ public class Escenario : MonoBehaviour {
                 i = 0;
                 while ((primerTramo + tercerTramo + i) < 100)
                 {
-                    Vector3 posicion = new Vector3(origen + segundoTramo + cuartoTramo, -0.5f, primerTramo + tercerTramo + i);
-                    GenerarTerreno(rio, posicion);
+                    GenerarTerreno(rio, new Vector3(origen + segundoTramo + cuartoTramo, -0.5f, primerTramo + tercerTramo + i));
+                    GenerarTerreno(rio, new Vector3(origen + segundoTramo + cuartoTramo + 1, -0.5f, primerTramo + tercerTramo + i));
 
                     i += 1;
                 }
@@ -192,11 +192,11 @@ public class Escenario : MonoBehaviour {
         }
         else
         {
-            int i = edificio.posicionX;          
-            while (i <= (edificio.posicionX + edificio.dimensiones.x))
+            int i = (int)posicion.x;          
+            while (i <= ((int)posicion.x + edificio.dimensiones.x))
             {
-                int j = edificio.posicionZ;
-                while (j <= (edificio.posicionZ + edificio.dimensiones.y))
+                int j = (int)posicion.z;
+                while (j <= ((int)posicion.z + edificio.dimensiones.y))
                 {
                     for (int x = 0; x < terrenos2.GetLength(0); x++)
                     {

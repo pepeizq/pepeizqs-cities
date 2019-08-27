@@ -97,7 +97,7 @@ public class Juego : MonoBehaviour {
         //    File.Delete(Application.persistentDataPath + "/guardado.save");
         //}
 
-        //partidas.BorrarPartidas();
+        partidas.BorrarPartidas();
 
         //---------------------------------------
 
@@ -108,8 +108,11 @@ public class Juego : MonoBehaviour {
             botonContinuarPartida.interactable = true;
             botonCargarPartida.interactable = true;
 
-            partidasGuardadas.Sort((x, y) => y.fecha.CompareTo(x.fecha));
-
+            if (partidasGuardadas.Count > 1)
+            {
+                partidasGuardadas.Sort((x, y) => y.fecha.CompareTo(x.fecha));
+            }
+                
             escenario.PonerTerreno(partidasGuardadas[0]);
             escenario.PonerArboles(partidasGuardadas[0], construir);
             CargarEdificios(partidasGuardadas[0]);

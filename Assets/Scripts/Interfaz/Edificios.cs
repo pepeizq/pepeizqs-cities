@@ -68,6 +68,9 @@ namespace Interfaz
         private float alturaDecoracion = 0;
         private float alturaDecoracionContador = 0;
 
+        private string colorTextoVerde = "#007700";
+        private string colorTextoRojo = "#d90000";
+
         public void Arranque(Construccion[] edificios)
         {
             RectTransform rtDecoracion = panelDecoracion.GetComponent<RectTransform>();
@@ -236,7 +239,9 @@ namespace Interfaz
 
                     Text coste = subpanelBoton.transform.GetChild(0).transform.GetComponent<Text>();
                     coste.text = string.Format("{0} €", edificio.coste);
-                    coste.color = new Color(157.0f, 0f, 0f);
+                    Color colorTextoCoste = new Color();
+                    ColorUtility.TryParseHtmlString(colorTextoRojo, out colorTextoCoste);
+                    coste.color = colorTextoCoste;
 
                     Panel panelBotonComida = subpanelBoton.gameObject.transform.GetChild(1).transform.GetComponent<Panel>();
 
@@ -248,16 +253,19 @@ namespace Interfaz
 
                             Text comida = panelBotonComida.transform.GetChild(1).transform.GetComponent<Text>();
                             comida.text = string.Format("{0}", edificio.comida);
+                            Color colorTexto = new Color();
 
                             if (edificio.comida > 0)
                             {
-                                comida.text = string.Format("+{0}", comida.text);
-                                comida.color = new Color(0f, 157.0f, 0f);
+                                comida.text = string.Format("+{0}", comida.text);                            
+                                ColorUtility.TryParseHtmlString(colorTextoVerde, out colorTexto);                                
                             }
                             else if (edificio.comida < 0)
                             {
-                                comida.color = new Color(157.0f, 0f, 0f);
+                                ColorUtility.TryParseHtmlString(colorTextoRojo, out colorTexto);
                             }
+
+                            comida.color = colorTexto;
                         }
                         else
                         {
@@ -276,16 +284,19 @@ namespace Interfaz
 
                             Text poblacion = panelBotonPoblacion.transform.GetChild(1).transform.GetComponent<Text>();
                             poblacion.text = string.Format("{0}", edificio.poblacion);
+                            Color colorTexto = new Color();
 
                             if (edificio.poblacion > 0)
                             {
                                 poblacion.text = string.Format("+{0}", poblacion.text);
-                                poblacion.color = new Color(0f, 157.0f, 0f);
+                                ColorUtility.TryParseHtmlString(colorTextoVerde, out colorTexto);
                             }
                             else if (edificio.poblacion < 0)
                             {
-                                poblacion.color = new Color(157.0f, 0f, 0f);
+                                ColorUtility.TryParseHtmlString(colorTextoRojo, out colorTexto);
                             }
+
+                            poblacion.color = colorTexto;
                         }
                         else
                         {
@@ -303,16 +314,19 @@ namespace Interfaz
 
                             Text trabajo = panelBotonTrabajo.transform.GetChild(1).transform.GetComponent<Text>();
                             trabajo.text = string.Format("{0}", edificio.trabajo);
+                            Color colorTexto = new Color();
 
                             if (edificio.trabajo > 0)
                             {
                                 trabajo.text = string.Format("+{0}", trabajo.text);
-                                trabajo.color = new Color(0f, 157.0f, 0f);
+                                ColorUtility.TryParseHtmlString(colorTextoVerde, out colorTexto);
                             }
                             else if (edificio.trabajo < 0)
                             {
-                                trabajo.color = new Color(157.0f, 0f, 0f);
+                                ColorUtility.TryParseHtmlString(colorTextoRojo, out colorTexto);
                             }
+
+                            trabajo.color = colorTexto;
                         }
                         else
                         {
