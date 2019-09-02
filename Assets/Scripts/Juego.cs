@@ -97,7 +97,7 @@ public class Juego : MonoBehaviour {
         //    File.Delete(Application.persistentDataPath + "/guardado.save");
         //}
 
-        partidas.BorrarPartidas();
+        //partidas.BorrarPartidas();
 
         //---------------------------------------
 
@@ -110,7 +110,7 @@ public class Juego : MonoBehaviour {
 
             if (partidasGuardadas.Count > 1)
             {
-                partidasGuardadas.Sort((x, y) => y.fecha.CompareTo(x.fecha));
+                partidasGuardadas.Sort((x, y) => y.id.CompareTo(x.id));
             }
                 
             escenario.PonerTerreno(partidasGuardadas[0]);
@@ -177,7 +177,7 @@ public class Juego : MonoBehaviour {
 
         if (partidasGuardadas.Count > 0)
         {
-            partidasGuardadas.Sort((x, y) => y.fecha.CompareTo(x.fecha));
+            partidasGuardadas.Sort((x, y) => y.id.CompareTo(x.id));
 
             escenario.PonerTerreno(partidasGuardadas[0]);
             escenario.PonerArboles(partidasGuardadas[0], construir);
@@ -684,7 +684,18 @@ public class Juego : MonoBehaviour {
     public void GuardarPartida()
     {
         List<Guardado> partidasGuardadas = partidas.ListadoPartidas();
-        string id = (partidasGuardadas.Count + 1).ToString();
+        string id = "0";
+
+        if (partidasGuardadas.Count > 0)
+        {
+            partidasGuardadas.Sort((x, y) => y.id.CompareTo(x.id));
+
+            id = (int.Parse(partidasGuardadas[0].id) + 1).ToString(); 
+        }
+        else
+        {
+            id = "1";
+        }
 
         Guardado guardado = new Guardado();
 

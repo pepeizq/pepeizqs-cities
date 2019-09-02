@@ -169,7 +169,22 @@ public class Escenario : MonoBehaviour {
 
     public bool ComprobarEdificable(Construccion edificio, Vector3 posicion)
     {
-        if (edificio == null)
+        bool buscarMas = false;
+
+        if (edificio != null)
+        {
+            if (edificio.dimensiones.x > 1)
+            {
+                buscarMas = true;
+            }
+
+            if (edificio.dimensiones.y > 1)
+            {
+                buscarMas = true;
+            }
+        }
+
+        if (buscarMas == false)
         {
             for (int x = 0; x < terrenos2.GetLength(0); x++)
             {
@@ -188,11 +203,11 @@ public class Escenario : MonoBehaviour {
                         }
                     }
                 }
-            }         
+            }
         }
         else
         {
-            int i = (int)posicion.x;          
+            int i = (int)posicion.x;
             while (i <= ((int)posicion.x + edificio.dimensiones.x))
             {
                 int j = (int)posicion.z;
@@ -202,12 +217,12 @@ public class Escenario : MonoBehaviour {
                     {
                         for (int z = 0; z < terrenos2.GetLength(1); z++)
                         {
-                            if (edificio.dimensiones.x == 2)
+                            if (edificio.dimensiones.x > 1)
                             {
                                 i = i - 1;
                             }
 
-                            if (edificio.dimensiones.y == 2)
+                            if (edificio.dimensiones.y > 1)
                             {
                                 j = j - 1;
                             }
