@@ -336,10 +336,10 @@ namespace Construcciones
                 }
             }
 
-            cantidadEdificios = cantidadEdificios / 4;
+            //cantidadEdificios = cantidadEdificios / 1;
 
             int i = 0;
-            while (i < cantidadEdificios)
+            while (i < 50)
             {
                 GenerarVehiculo();
                 i += 1;

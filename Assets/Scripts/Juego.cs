@@ -92,17 +92,17 @@ public class Juego : MonoBehaviour {
 
     private void Start()
     {
-        //if (File.Exists(Application.persistentDataPath + "/guardado.save"))
-        //{
-        //    File.Delete(Application.persistentDataPath + "/guardado.save");
-        //}
+        if (File.Exists(Application.persistentDataPath + "/guardado.save"))
+        {
+            File.Delete(Application.persistentDataPath + "/guardado.save");
+        }
 
         //partidas.BorrarPartidas();
 
         //---------------------------------------
 
         List<Guardado> partidasGuardadas = partidas.ListadoPartidas();
-
+       
         if (partidasGuardadas.Count > 0)
         {
             botonContinuarPartida.interactable = true;
@@ -170,8 +170,6 @@ public class Juego : MonoBehaviour {
     public void ContinuarPartida()
     {
         sonidoBoton.Play();
-        construir.QuitarTodosEdificios();
-        CargarInterfaz();
 
         List<Guardado> partidasGuardadas = partidas.ListadoPartidas();
 
@@ -183,6 +181,9 @@ public class Juego : MonoBehaviour {
             escenario.PonerArboles(partidasGuardadas[0], construir);
             CargarEdificios(partidasGuardadas[0]);
         }
+
+        construir.QuitarTodosEdificios();
+        CargarInterfaz();
     }
 
     public void CargarInterfaz()

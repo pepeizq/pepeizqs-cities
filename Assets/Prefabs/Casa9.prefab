@@ -50,7 +50,7 @@ MeshRenderer:
   m_GameObject: {fileID: 22197853}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 0
+  m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -103,7 +103,7 @@ MonoBehaviour:
   luzIntesidad: 3
   luzRango: 0.5
   dimensiones: {x: 1, y: 1}
-  rotacionColocacion: -180
+  rotacionColocacion: -270
   rotacionAdicional: 0
   posicionX: 0
   posicionZ: 0
