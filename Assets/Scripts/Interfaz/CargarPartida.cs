@@ -20,7 +20,7 @@ namespace Interfaz
         [SerializeField]
         private Construir colocar = null;
 
-        public GameObject botonCargarPartidaPrefab;
+        public GameObject cargarPartidaPrefab;
 
         public Canvas canvas;
 
@@ -71,28 +71,36 @@ namespace Interfaz
 
                 foreach (Guardado partidaGuardada in partidasGuardadas)
                 {
-                    GameObject botonObjeto = Instantiate(botonCargarPartidaPrefab);
-                    botonObjeto.transform.SetParent(panelPartidas.transform, false);
+                    GameObject panelObjeto = Instantiate(cargarPartidaPrefab);
+                    panelObjeto.transform.SetParent(panelPartidas.transform, false);
                     alturaPartidas += 40;
 
-                    Panel panelBoton = botonObjeto.transform.GetChild(0).transform.GetComponent<Panel>();
+                    Button botonCargar = panelObjeto.transform.GetChild(0).transform.GetComponent<Button>();
 
-                    Text textoNombre = panelBoton.transform.GetChild(0).transform.GetComponent<Text>();
+                    Panel subpanelBoton = botonCargar.transform.GetChild(0).transform.GetComponent<Panel>();
+
+                    Text textoNombre = subpanelBoton.transform.GetChild(0).transform.GetComponent<Text>();
                     textoNombre.text = partidaGuardada.nombre;
 
-                    Text textoFecha = panelBoton.transform.GetChild(1).transform.GetComponent<Text>();
+                    Text textoFecha = subpanelBoton.transform.GetChild(1).transform.GetComponent<Text>();
                     textoFecha.text = partidaGuardada.fecha;
 
-                    Button boton = botonObjeto.GetComponent<Button>();
-                    boton.onClick.AddListener(() => CargarPartidaSeleccionada(partidaGuardada));
+                    //-------------------------------------
 
-                    EventTrigger evento = botonObjeto.AddComponent<EventTrigger>();
+                    Button botonBorrar = panelObjeto.transform.GetChild(1).transform.GetComponent<Button>();
+                    botonBorrar.onClick.AddListener(() => BorrarPartidaSeleccionada(partidaGuardada));
+
+                    //-------------------------------------
+
+                    botonCargar.onClick.AddListener(() => CargarPartidaSeleccionada(partidaGuardada));
+
+                    EventTrigger evento = panelObjeto.AddComponent<EventTrigger>();
                     EventTrigger.Entry pointerEnter = new EventTrigger.Entry
                     {
                         eventID = EventTriggerType.PointerEnter
                     };
 
-                    pointerEnter.callback.AddListener((data) => { CursorEntra((PointerEventData)data, panelBoton); });
+                    pointerEnter.callback.AddListener((data) => { CursorEntra((PointerEventData)data, panelObjeto); });
                     evento.triggers.Add(pointerEnter);
 
                     EventTrigger.Entry pointerExit = new EventTrigger.Entry
@@ -100,7 +108,7 @@ namespace Interfaz
                         eventID = EventTriggerType.PointerExit
                     };
 
-                    pointerExit.callback.AddListener((data) => { CursorSale((PointerEventData)data, panelBoton); });
+                    pointerExit.callback.AddListener((data) => { CursorSale((PointerEventData)data, panelObjeto); });
                     evento.triggers.Add(pointerExit);
                 }
 
@@ -139,13 +147,19 @@ namespace Interfaz
             juego.canvas.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
         }
 
-        public void CursorEntra(PointerEventData eventData, Panel panel)
+        public void BorrarPartidaSeleccionada(Guardado partida)
+        {
+            partidas.BorrarPartida(partida.id);
+            CargarListado();
+        }
+
+        public void CursorEntra(PointerEventData eventData, GameObject panel)
         {
             cursores.Entra();
             panel.gameObject.GetComponent<Image>().color = new Color(255f, 255f, 255f, 140f / 255f);
         }
 
-        public void CursorSale(PointerEventData eventData, Panel panel)
+        public void CursorSale(PointerEventData eventData, GameObject panel)
         {
             cursores.Sale();
             panel.gameObject.GetComponent<Image>().color = new Color(255f, 255f, 255f, 100f / 255f);

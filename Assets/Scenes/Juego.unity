@@ -10423,7 +10423,7 @@ MonoBehaviour:
   juego: {fileID: 491194795}
   escenario: {fileID: 491194800}
   colocar: {fileID: 491194797}
-  botonCargarPartidaPrefab: {fileID: 9021823475178285933, guid: 47fb6b63674478444a1a4e5dc476c54d,
+  cargarPartidaPrefab: {fileID: 8388652811587600341, guid: ef704539fba96f4488c60287ecb6895c,
     type: 3}
   canvas: {fileID: 2016021198}
   scrollbar: {fileID: 808381526}
@@ -17584,7 +17584,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 320, y: 0}
+  m_AnchoredPosition: {x: 320, y: 40}
   m_SizeDelta: {x: 30, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &809758874

@@ -25,7 +25,7 @@ public class Escenario : MonoBehaviour {
             {
                 if (terrenos2[x, z] != null)
                 {
-                    Object.Destroy(terrenos2[x, z].gameObject);
+                    Object.DestroyImmediate(terrenos2[x, z].gameObject, true);
                     terrenos2[x, z] = null;
                 }
             }

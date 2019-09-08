@@ -136,8 +136,8 @@ MonoBehaviour:
   dimensiones: {x: 2, y: 2}
   rotacionColocacion: -270
   rotacionAdicional: 0
-  posicionX: 68
-  posicionZ: 63
+  posicionX: 0
+  posicionZ: 0
 --- !u!1001 &183858453432870966
 PrefabInstance:
   m_ObjectHideFlags: 0

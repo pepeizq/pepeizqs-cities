@@ -115,7 +115,7 @@ namespace Construcciones
 
         public static Construccion ComprobarPosicion(Construccion[,] edificios, Construccion edificio, Vector3 posicion)
         {
-            if (((int)posicion.x > 0) && ((int)posicion.x <= 100) && ((int)posicion.z > 0) && ((int)posicion.z <= 100))
+            if (Posicion.Limites(posicion, 100) == true)
             {
                 int topeX = 0;
                 int i = 0;
@@ -224,8 +224,6 @@ namespace Construcciones
                 //        }
                 //    }
                 //}
-
-
 
                 if (edificios[(int)posicion.x, (int)posicion.z] != null)
                 {

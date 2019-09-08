@@ -62,8 +62,6 @@ public class Juego : MonoBehaviour {
     private Construccion edificioSeleccionado;
     private List<Construccion2> edificiosSeleccionados = new List<Construccion2>();
 
-    private int rotacionesPosicion = 0;
-
     private bool construirActivar;
     private bool demolerActivar;
 
@@ -240,47 +238,40 @@ public class Juego : MonoBehaviour {
             {
                 if (construirActivar == true)
                 {
-                    int[] rotaciones = new int[4];
-
-                    rotaciones[0] = -180;
-                    rotaciones[1] = -270;
-                    rotaciones[2] = 0;
-                    rotaciones[3] = -90;
-
                     if (Input.GetKeyDown(teclaRotacionEdificioDerecha))
                     {
-                        rotacionesPosicion += 1;
+                        int rotacion = edificioSeleccionado.rotacionColocacion + 90;
 
-                        if (rotacionesPosicion == 4)
+                        if (rotacion > 0)
                         {
-                            rotacionesPosicion = 0;
+                            rotacion = -270;
                         }
 
-                        edificioSeleccionado.rotacionColocacion = rotaciones[rotacionesPosicion];
+                        edificioSeleccionado.rotacionColocacion = rotacion;
 
                         int dimensiones1 = (int)edificioSeleccionado.dimensiones.x;
                         int dimensiones2 = (int)edificioSeleccionado.dimensiones.y;
 
                         edificioSeleccionado.dimensiones.x = dimensiones2;
-                        edificioSeleccionado.dimensiones.x = dimensiones1;
+                        edificioSeleccionado.dimensiones.y = dimensiones1;
                     }
 
                     if (Input.GetKeyDown(teclaRotacionEdificioIzquierda))
                     {
-                        rotacionesPosicion -= 1;
+                        int rotacion = edificioSeleccionado.rotacionColocacion - 90;
 
-                        if (rotacionesPosicion == -1)
+                        if (rotacion < -270)
                         {
-                            rotacionesPosicion = 3;
+                            rotacion = 0;
                         }
 
-                        edificioSeleccionado.rotacionColocacion = rotaciones[rotacionesPosicion];
+                        edificioSeleccionado.rotacionColocacion = rotacion;
 
                         int dimensiones1 = (int)edificioSeleccionado.dimensiones.x;
                         int dimensiones2 = (int)edificioSeleccionado.dimensiones.y;
 
                         edificioSeleccionado.dimensiones.x = dimensiones2;
-                        edificioSeleccionado.dimensiones.x = dimensiones1;
+                        edificioSeleccionado.dimensiones.y = dimensiones1;
                     }
                 
                     if (Input.GetKey(teclaArrastrarConstruccion))
@@ -452,10 +443,17 @@ public class Juego : MonoBehaviour {
                     {
                         bool añadir = true;
 
-                        if (escenario.ComprobarEdificable(edificioSeleccionado, posicion) == false)
+                        //temporal-----------------------------------------------------
+
+                        if (edificioSeleccionado.dimensiones.x == 1 && edificioSeleccionado.dimensiones.y == 1)
                         {
-                            añadir = false;
+                            if (escenario.ComprobarEdificable(edificioSeleccionado, posicion) == false)
+                            {
+                                añadir = false;
+                            }
                         }
+
+                        //temporal-----------------------------------------------------
 
                         if (construir.ComprobarPosicion(edificioSeleccionado, posicion) != null)
                         {
@@ -548,10 +546,18 @@ public class Juego : MonoBehaviour {
 
                         bool mostrar = true;
 
-                        if (escenario.ComprobarEdificable(edificioSeleccionado, posicion) == false)
+                        //temporal-----------------------------------------------------
+
+                        if (edificioSeleccionado .dimensiones .x == 1 && edificioSeleccionado.dimensiones.y == 1)
                         {
-                            mostrar = false;
+                            if (escenario.ComprobarEdificable(edificioSeleccionado, posicion) == false)
+                            {
+                                mostrar = false;
+                            }
                         }
+
+                        //temporal-----------------------------------------------------
+
 
                         if (construir.ComprobarPosicion(edificioSeleccionado, posicion) != null)
                         {
@@ -685,25 +691,27 @@ public class Juego : MonoBehaviour {
     public void GuardarPartida()
     {
         List<Guardado> partidasGuardadas = partidas.ListadoPartidas();
-        string id = "0";
+        int id = 0;
 
         if (partidasGuardadas.Count > 0)
         {
             partidasGuardadas.Sort((x, y) => y.id.CompareTo(x.id));
 
-            id = (int.Parse(partidasGuardadas[0].id) + 1).ToString(); 
+            id = partidasGuardadas[0].id + 1;
+            Debug.Log(id);
         }
         else
         {
-            id = "1";
+            id = 1;
         }
 
-        Guardado guardado = new Guardado();
-
-        guardado.nombre = id;
-        guardado.id = id;
-        guardado.fecha = DateTime.Now.ToString();
-        guardado.versionJuego = Application.version;
+        Guardado guardado = new Guardado
+        {
+            nombre = id.ToString(),
+            id = id,
+            fecha = DateTime.Now.ToString(),
+            versionJuego = Application.version
+        };
 
         Terreno[,] terrenosGuardar = escenario.DevolverTerrenos();
 
@@ -758,7 +766,7 @@ public class Juego : MonoBehaviour {
         guardado.comida = ciudad.Comida;
 
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream fichero = File.Create(Application.persistentDataPath + "/" + guardado.nombre + ".save");
+        FileStream fichero = File.Create(Application.persistentDataPath + "/" + guardado.id + ".save");
         bf.Serialize(fichero, guardado);
         fichero.Close();
     }

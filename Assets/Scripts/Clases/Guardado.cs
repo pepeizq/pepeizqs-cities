@@ -4,7 +4,7 @@
 public class Guardado
 {
     public string nombre;
-    public string id;
+    public int id;
     public string fecha;
     public string versionJuego;
 

@@ -105,5 +105,5 @@ MonoBehaviour:
   dimensiones: {x: 1, y: 1}
   rotacionColocacion: -270
   rotacionAdicional: 0
-  posicionX: 68
-  posicionZ: 57
+  posicionX: 48
+  posicionZ: 44
