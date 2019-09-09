@@ -288,7 +288,7 @@ namespace Construcciones
                             int x = subedificio.posicionX;
                             int z = subedificio.posicionZ;
 
-                            Object.Destroy(subedificio.gameObject);
+                            Object.DestroyImmediate(subedificio.gameObject, true);
                             edificios[x, z] = null;
                         }
                     }

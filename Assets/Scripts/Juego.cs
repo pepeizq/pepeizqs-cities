@@ -145,8 +145,8 @@ public class Juego : MonoBehaviour {
     {
         sonidoBoton.Play();
 
-        ciudad.Dinero = 2000000;
-        //ciudad.Dinero = 200;
+        //ciudad.Dinero = 2000000;
+        ciudad.Dinero = 500;
         ciudad.PoblacionActual = 0f;
         ciudad.PoblacionTope = 0f;
         ciudad.TrabajosActual = 0;
@@ -698,7 +698,6 @@ public class Juego : MonoBehaviour {
             partidasGuardadas.Sort((x, y) => y.id.CompareTo(x.id));
 
             id = partidasGuardadas[0].id + 1;
-            Debug.Log(id);
         }
         else
         {

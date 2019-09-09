@@ -66,7 +66,7 @@ namespace Construcciones
                 {
                     if (edificiosPrevio[x, z] != null)
                     {
-                        Destroy(edificiosPrevio[x, z].gameObject);
+                        Object.DestroyImmediate(edificiosPrevio[x, z].gameObject);
                         edificiosPrevio[x, z] = null;
                     }
                 }
