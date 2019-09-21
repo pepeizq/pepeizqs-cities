@@ -124,7 +124,7 @@ public class Juego : MonoBehaviour {
             escenario.PonerTerreno(null);
             escenario.PonerArboles(null, construir);
 
-            diaNoche.tiempoDia = 50000;
+            diaNoche.arranqueDia = 50000;
         }
 
         opciones.CargarInicio();
@@ -145,8 +145,8 @@ public class Juego : MonoBehaviour {
     {
         sonidoBoton.Play();
 
-        //ciudad.Dinero = 2000000;
-        ciudad.Dinero = 500;
+        ciudad.Dinero = 2000000;
+        //ciudad.Dinero = 500;
         ciudad.PoblacionActual = 0f;
         ciudad.PoblacionTope = 0f;
         ciudad.TrabajosActual = 0;
@@ -159,8 +159,8 @@ public class Juego : MonoBehaviour {
         escenario.PonerTerreno(null);
         escenario.PonerArboles(null, construir);
 
-        diaNoche.tiempoDia = 50000;
-        diaNoche.tiempoTotalDias = 1;
+        diaNoche.arranqueDia = 90000;
+        diaNoche.contadorDias = 1;
 
         CargarInterfaz();
     }
@@ -248,12 +248,6 @@ public class Juego : MonoBehaviour {
                         }
 
                         edificioSeleccionado.rotacionColocacion = rotacion;
-
-                        int dimensiones1 = (int)edificioSeleccionado.dimensiones.x;
-                        int dimensiones2 = (int)edificioSeleccionado.dimensiones.y;
-
-                        edificioSeleccionado.dimensiones.x = dimensiones2;
-                        edificioSeleccionado.dimensiones.y = dimensiones1;
                     }
 
                     if (Input.GetKeyDown(teclaRotacionEdificioIzquierda))
@@ -266,12 +260,6 @@ public class Juego : MonoBehaviour {
                         }
 
                         edificioSeleccionado.rotacionColocacion = rotacion;
-
-                        int dimensiones1 = (int)edificioSeleccionado.dimensiones.x;
-                        int dimensiones2 = (int)edificioSeleccionado.dimensiones.y;
-
-                        edificioSeleccionado.dimensiones.x = dimensiones2;
-                        edificioSeleccionado.dimensiones.y = dimensiones1;
                     }
                 
                     if (Input.GetKey(teclaArrastrarConstruccion))
@@ -443,17 +431,10 @@ public class Juego : MonoBehaviour {
                     {
                         bool añadir = true;
 
-                        //temporal-----------------------------------------------------
-
-                        if (edificioSeleccionado.dimensiones.x == 1 && edificioSeleccionado.dimensiones.y == 1)
+                        if (escenario.ComprobarEdificable(edificioSeleccionado, posicion) == false)
                         {
-                            if (escenario.ComprobarEdificable(edificioSeleccionado, posicion) == false)
-                            {
-                                añadir = false;
-                            }
+                            añadir = false;
                         }
-
-                        //temporal-----------------------------------------------------
 
                         if (construir.ComprobarPosicion(edificioSeleccionado, posicion) != null)
                         {
@@ -546,18 +527,10 @@ public class Juego : MonoBehaviour {
 
                         bool mostrar = true;
 
-                        //temporal-----------------------------------------------------
-
-                        if (edificioSeleccionado .dimensiones .x == 1 && edificioSeleccionado.dimensiones.y == 1)
+                        if (escenario.ComprobarEdificable(edificioSeleccionado, posicion) == false)
                         {
-                            if (escenario.ComprobarEdificable(edificioSeleccionado, posicion) == false)
-                            {
-                                mostrar = false;
-                            }
+                            mostrar = false;
                         }
-
-                        //temporal-----------------------------------------------------
-
 
                         if (construir.ComprobarPosicion(edificioSeleccionado, posicion) != null)
                         {
@@ -660,8 +633,8 @@ public class Juego : MonoBehaviour {
     {
         if (partida != null)
         {
-            diaNoche.tiempoTotalDias = partida.dia;
-            diaNoche.tiempoDia = partida.hora;
+            diaNoche.contadorDias = partida.dia;
+            diaNoche.arranqueDia = partida.hora;
             diaNoche.ActualizarLuces();
 
             int i = 0;
@@ -754,8 +727,8 @@ public class Juego : MonoBehaviour {
         guardado.camaraRotacionY = camara.transform.rotation.y;
         guardado.camaraRotacionZ = camara.transform.rotation.z;
 
-        guardado.dia = (int)diaNoche.tiempoTotalDias;
-        guardado.hora = diaNoche.tiempoDia;
+        guardado.dia = (int)diaNoche.contadorDias;
+        guardado.hora = diaNoche.arranqueDia;
 
         guardado.dinero = ciudad.Dinero;
         guardado.poblacionActual = ciudad.PoblacionActual;

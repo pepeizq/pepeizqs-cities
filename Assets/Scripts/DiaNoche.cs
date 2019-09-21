@@ -11,15 +11,19 @@ public class DiaNoche : MonoBehaviour {
 
     public Light sol;
 
-    private float amanecer = 24000;
-    private float atardecer = 60000;
+    private float amanecer = 48000;
+    private float atardecer = 120000;
 
-    private float segundosDia = 0f;
-    public float segundosDiaVelocidad1 = 360;
-    public float segundosDiaVelocidad2 = 720;
+    private float segundosDia = 0;
+    private float segundiaDiaTope = 172800;
 
-    public float tiempoDia = 50000;
-    public float tiempoTotalDias = 1;
+    public float velocidad1 = 360;
+    public float velocidad2 = 1440;
+
+    public float arranqueDia = 90000;
+
+    public float contadorDias = 1;
+    private int contadorHoras = 0;
 
     [SerializeField]
     private Construir colocar = null;
@@ -35,8 +39,6 @@ public class DiaNoche : MonoBehaviour {
     [SerializeField]
     private Ciudad ciudad = null;
 
-    private int contadorHoras = 0;
-
     public bool encender;
 
     public Panel panelPausa;
@@ -44,6 +46,8 @@ public class DiaNoche : MonoBehaviour {
     public Panel panelPlay2;
 
     private float tiempoSemaforos = 0;
+    private float tiempoSemaforosTope = 4000;
+
     private int accionSemaforos = 0;
 
     void Update()
@@ -66,24 +70,24 @@ public class DiaNoche : MonoBehaviour {
         {
             if (velocidad == 1)
             {
-                segundosDia = segundosDiaVelocidad1;
+                segundosDia = velocidad1;
             }
             else if (velocidad == 2)
             {
-                segundosDia = segundosDiaVelocidad2;
+                segundosDia = velocidad2;
             }
    
-            tiempoDia += (Time.deltaTime * segundosDia);
+            arranqueDia += (Time.deltaTime * segundosDia);
 
-            if (tiempoDia > 86400)
+            if (arranqueDia > segundiaDiaTope)
             {
-                tiempoDia = 0;
-                tiempoTotalDias += 1;
+                arranqueDia = 0;
+                contadorDias += 1;
             }
          
             if (encender == true)
             {    
-                if (tiempoDia > atardecer || tiempoDia < amanecer)
+                if (arranqueDia > atardecer || arranqueDia < amanecer)
                 {
                     colocar.ComprobarLuces(encender);
                     encender = false;               
@@ -91,7 +95,7 @@ public class DiaNoche : MonoBehaviour {
             }
             else
             {
-                if (tiempoDia <= atardecer && tiempoDia >= amanecer)
+                if (arranqueDia <= atardecer && arranqueDia >= amanecer)
                 {
                     colocar.ComprobarLuces(encender);
                     encender = true;
@@ -100,7 +104,7 @@ public class DiaNoche : MonoBehaviour {
 
             tiempoSemaforos += (Time.deltaTime * segundosDia);
 
-            if (tiempoSemaforos > 2000)
+            if (tiempoSemaforos > tiempoSemaforosTope)
             {
                 tiempoSemaforos = 0;
                 colocar.CambiarLucesSemaforos(accionSemaforos);
@@ -115,7 +119,7 @@ public class DiaNoche : MonoBehaviour {
 
         if (idioma.CogerCadena("day") != null)
         {
-            dias.text = string.Format(idioma.CogerCadena("day").ToLower() + " {0}", Mathf.Round(tiempoTotalDias));
+            dias.text = string.Format(idioma.CogerCadena("day").ToLower() + " {0}", Mathf.Round(contadorDias));
         }       
 
         ActualizarReloj();
@@ -147,8 +151,8 @@ public class DiaNoche : MonoBehaviour {
 
     void ActualizarReloj()
     {
-        float hora = Mathf.Round((tiempoDia * 24) / 86400);
-        float minutos = Mathf.Round((tiempoDia * 1440) / 86400);
+        float hora = Mathf.Round((arranqueDia * 24) / segundiaDiaTope);
+        float minutos = Mathf.Round((arranqueDia * 1440) / segundiaDiaTope);
         minutos = minutos - (hora * 60) + 30;
 
         if (contadorHoras != (int)Mathf.Round(hora))
@@ -177,15 +181,15 @@ public class DiaNoche : MonoBehaviour {
 
     void ActualizarSol()
     {
-        sol.transform.rotation = Quaternion.Euler(new Vector3((tiempoDia - 21600) / 86400 * 360, 0, 0));
+        sol.transform.rotation = Quaternion.Euler(new Vector3((arranqueDia - (segundiaDiaTope / 4)) / segundiaDiaTope * 360, 0, 0));
 
-        if (tiempoDia < 43200)
+        if (arranqueDia < (segundiaDiaTope / 2))
         {
-            sol.intensity = 1f - (43200 - tiempoDia) / 43200;
+            sol.intensity = 1f - ((segundiaDiaTope / 2) - arranqueDia) / (segundiaDiaTope / 2);
         }
         else
         {
-            sol.intensity = 1f - ((43200 - tiempoDia) / 43200 * - 0.8f);
+            sol.intensity = 1f - (((segundiaDiaTope / 2) - arranqueDia) / (segundiaDiaTope / 2) * - 0.8f);
         }
     }
 
@@ -220,7 +224,7 @@ public class DiaNoche : MonoBehaviour {
 
     public void ActualizarLuces()
     {
-        if (tiempoDia > atardecer || tiempoDia < amanecer)
+        if (arranqueDia > atardecer || arranqueDia < amanecer)
         {
             encender = true;
         }
@@ -232,7 +236,7 @@ public class DiaNoche : MonoBehaviour {
 
     public bool EstadoEncendidoLuces()
     {
-        if (tiempoDia > atardecer || tiempoDia < amanecer)
+        if (arranqueDia > atardecer || arranqueDia < amanecer)
         {
             return true;
         }

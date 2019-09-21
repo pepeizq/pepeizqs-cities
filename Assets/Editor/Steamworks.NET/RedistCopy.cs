@@ -1,5 +1,5 @@
 // This file is provided under The MIT License as part of Steamworks.NET.
-// Copyright (c) 2013-2018 Riley Labrecque
+// Copyright (c) 2013-2019 Riley Labrecque
 // Please see the included LICENSE.txt for additional information.
 
 #if UNITY_ANDROID || UNITY_IOS || UNITY_TIZEN || UNITY_TVOS || UNITY_WEBGL || UNITY_WSA || UNITY_PS4 || UNITY_WII || UNITY_XBOXONE || UNITY_SWITCH
@@ -26,31 +26,41 @@ public class RedistCopy {
 		string pluginsDir;
 		switch(target)
 		{
-		case BuildTarget.StandaloneWindows:
-		case BuildTarget.StandaloneWindows64:
-			baseDir = Path.Combine(Path.GetDirectoryName(pathToBuiltProject), Path.GetFileNameWithoutExtension(pathToBuiltProject) + "_Data");
-			pluginsDir = Path.Combine(baseDir, "Plugins");
-			break;
-		case BuildTarget.StandaloneLinux:
-			baseDir = Path.Combine(Path.GetDirectoryName(pathToBuiltProject), Path.GetFileNameWithoutExtension(pathToBuiltProject) + "_Data");
-			pluginsDir = Path.Combine(Path.Combine(baseDir, "Plugins"), "x86");
-			break;
-		case BuildTarget.StandaloneLinux64:
-		case BuildTarget.StandaloneLinuxUniversal:
-			baseDir = Path.Combine(Path.GetDirectoryName(pathToBuiltProject), Path.GetFileNameWithoutExtension(pathToBuiltProject) + "_Data");
-			pluginsDir = Path.Combine(Path.Combine(baseDir, "Plugins"), "x86_64");
-			break;
-#if UNITY_2017_3_OR_NEWER
-		case BuildTarget.StandaloneOSX:
-#else
-		case BuildTarget.StandaloneOSXIntel:
-		case BuildTarget.StandaloneOSXIntel64:
-		case BuildTarget.StandaloneOSXUniversal:
+            case BuildTarget.StandaloneWindows:
+            case BuildTarget.StandaloneWindows64:
+            {
+                baseDir = Path.Combine(Path.GetDirectoryName(pathToBuiltProject), Path.GetFileNameWithoutExtension(pathToBuiltProject) + "_Data");
+                pluginsDir = Path.Combine(baseDir, "Plugins");
+                break;
+            }
+#if !UNITY_2019_2_OR_NEWER
+            case BuildTarget.StandaloneLinux:
+            {
+                baseDir = Path.Combine(Path.GetDirectoryName(pathToBuiltProject), Path.GetFileNameWithoutExtension(pathToBuiltProject) + "_Data");
+                pluginsDir = Path.Combine(Path.Combine(baseDir, "Plugins"), "x86");
+                break;
+            }
+            case BuildTarget.StandaloneLinuxUniversal:
 #endif
-			baseDir = Path.Combine(Path.GetDirectoryName(pathToBuiltProject), Path.GetFileNameWithoutExtension(pathToBuiltProject) + ".app");
-			baseDir = Path.Combine(baseDir, "Contents");
-			pluginsDir = Path.Combine(baseDir, "Plugins");
-			break;
+            case BuildTarget.StandaloneLinux64:
+            {
+                baseDir = Path.Combine(Path.GetDirectoryName(pathToBuiltProject), Path.GetFileNameWithoutExtension(pathToBuiltProject) + "_Data");
+                pluginsDir = Path.Combine(Path.Combine(baseDir, "Plugins"), "x86_64");
+                break;
+            }
+#if UNITY_2017_3_OR_NEWER
+            case BuildTarget.StandaloneOSX:
+#else
+		    case BuildTarget.StandaloneOSXIntel:
+		    case BuildTarget.StandaloneOSXIntel64:
+		    case BuildTarget.StandaloneOSXUniversal:
+#endif
+            {
+                baseDir = Path.Combine(Path.GetDirectoryName(pathToBuiltProject), Path.GetFileNameWithoutExtension(pathToBuiltProject) + ".app");
+                baseDir = Path.Combine(baseDir, "Contents");
+                pluginsDir = Path.Combine(baseDir, "Plugins");
+                break;
+            }
 		default:
 			return;
 		}

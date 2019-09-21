@@ -83,7 +83,7 @@ public class Escenario : MonoBehaviour {
                     i = 0;
                     while (i < segundoTramo)
                     {
-                        GenerarTerreno(rio, new Vector3(origen + i, -0.5f, primerTramo));
+                        GenerarTerreno(rio, new Vector3(origen + i + 1, -0.5f, primerTramo));
                         GenerarTerreno(rio, new Vector3(origen + i + 1, -0.5f, primerTramo - 1));
 
                         i += 1;
@@ -121,8 +121,12 @@ public class Escenario : MonoBehaviour {
                     cuartoTramo = Random.Range(10, 20);
                     i = 0;
                     while (i < cuartoTramo)
-                    {
-                        GenerarTerreno(rio, new Vector3(origen + segundoTramo + i, -0.5f, primerTramo + tercerTramo));
+                    {                      
+                        if (i > 0)
+                        {
+                            GenerarTerreno(rio, new Vector3(origen + segundoTramo + i, -0.5f, primerTramo + tercerTramo));
+                        }
+
                         GenerarTerreno(rio, new Vector3(origen + segundoTramo + i + 1, -0.5f, primerTramo + tercerTramo - 1));
 
                         i += 1;
@@ -217,16 +221,6 @@ public class Escenario : MonoBehaviour {
                     {
                         for (int z = 0; z < terrenos2.GetLength(1); z++)
                         {
-                            if (edificio.dimensiones.x > 1)
-                            {
-                                i = i - 1;
-                            }
-
-                            if (edificio.dimensiones.y > 1)
-                            {
-                                j = j - 1;
-                            }
-
                             if (i == x && j == z)
                             {
                                 if (terrenos2[x, z] != null)
@@ -236,6 +230,66 @@ public class Escenario : MonoBehaviour {
                                     if (terreno.edificable == false)
                                     {
                                         return false;
+                                    }
+                                }
+
+                                if (edificio.dimensiones.x > 1)
+                                {
+                                    int a = 0;
+
+                                    while (a <= (int)edificio.dimensiones.x)
+                                    {
+                                        if (terrenos2[x - a, z] != null)
+                                        {
+                                            Terreno terreno = terrenos2[x - a, z];
+
+                                            if (terreno.edificable == false)
+                                            {
+                                                return false;
+                                            }
+                                        }
+
+                                        if (terrenos2[x + a, z] != null)
+                                        {
+                                            Terreno terreno = terrenos2[x + a, z];
+
+                                            if (terreno.edificable == false)
+                                            {
+                                                return false;
+                                            }
+                                        }
+
+                                        a += 1;
+                                    }
+                                }
+
+                                if (edificio.dimensiones.y > 1)
+                                {
+                                    int a = 0;
+
+                                    while (a <= (int)edificio.dimensiones.y)
+                                    {
+                                        if (terrenos2[x, z - a] != null)
+                                        {
+                                            Terreno terreno = terrenos2[x, z - a];
+
+                                            if (terreno.edificable == false)
+                                            {
+                                                return false;
+                                            }
+                                        }
+
+                                        if (terrenos2[x, z + a] != null)
+                                        {
+                                            Terreno terreno = terrenos2[x, z + a];
+
+                                            if (terreno.edificable == false)
+                                            {
+                                                return false;
+                                            }
+                                        }
+
+                                        a += 1;
                                     }
                                 }
                             }
