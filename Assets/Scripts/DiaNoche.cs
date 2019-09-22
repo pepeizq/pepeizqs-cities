@@ -15,7 +15,7 @@ public class DiaNoche : MonoBehaviour {
     private float atardecer = 120000;
 
     private float segundosDia = 0;
-    private float segundiaDiaTope = 172800;
+    private float segundosDiaTope = 172800;
 
     public float velocidad1 = 360;
     public float velocidad2 = 1440;
@@ -26,7 +26,7 @@ public class DiaNoche : MonoBehaviour {
     private int contadorHoras = 0;
 
     [SerializeField]
-    private Construir colocar = null;
+    private Construir construir = null;
 
     [SerializeField]
     private Text dias = null;
@@ -49,6 +49,11 @@ public class DiaNoche : MonoBehaviour {
     private float tiempoSemaforosTope = 4000;
 
     private int accionSemaforos = 0;
+
+    private float tiempoVehiculos = 0;
+    private float tiempoVehiculosTope = 5000;
+
+    private Vehiculos vehiculos;
 
     void Update()
     {
@@ -79,7 +84,7 @@ public class DiaNoche : MonoBehaviour {
    
             arranqueDia += (Time.deltaTime * segundosDia);
 
-            if (arranqueDia > segundiaDiaTope)
+            if (arranqueDia > segundosDiaTope)
             {
                 arranqueDia = 0;
                 contadorDias += 1;
@@ -89,7 +94,7 @@ public class DiaNoche : MonoBehaviour {
             {    
                 if (arranqueDia > atardecer || arranqueDia < amanecer)
                 {
-                    colocar.ComprobarLuces(encender);
+                    construir.ComprobarLuces(encender);
                     encender = false;               
                 }
             }
@@ -97,7 +102,7 @@ public class DiaNoche : MonoBehaviour {
             {
                 if (arranqueDia <= atardecer && arranqueDia >= amanecer)
                 {
-                    colocar.ComprobarLuces(encender);
+                    construir.ComprobarLuces(encender);
                     encender = true;
                 }
             }
@@ -107,12 +112,45 @@ public class DiaNoche : MonoBehaviour {
             if (tiempoSemaforos > tiempoSemaforosTope)
             {
                 tiempoSemaforos = 0;
-                colocar.CambiarLucesSemaforos(accionSemaforos);
+                construir.CambiarLucesSemaforos(accionSemaforos);
                 accionSemaforos += 1;
 
                 if (accionSemaforos > 1)
                 {
                     accionSemaforos = 0;
+                }
+            }
+
+            tiempoVehiculos += (Time.deltaTime * segundosDia);
+
+            if (tiempoVehiculos > tiempoVehiculosTope)
+            {
+                tiempoVehiculos = 0;
+
+                if (vehiculos.listaVehiculos != null)
+                {
+                    if (vehiculos.listaVehiculos.Length > 0)
+                    {
+                        int cantidadEdificios = 0;
+
+                        foreach (Construccion subedificio in construir.edificios)
+                        {
+                            if (subedificio != null)
+                            {
+                                if (subedificio.categoria == 2)
+                                {
+                                    cantidadEdificios += 1;
+                                }
+                            }
+                        }
+
+                        int i = 0;
+                        while (i <= cantidadEdificios)
+                        {
+                            vehiculos.GenerarVehiculo();
+                            i += 1;
+                        }
+                    }
                 }
             }
         }
@@ -124,35 +162,13 @@ public class DiaNoche : MonoBehaviour {
 
         ActualizarReloj();
         ActualizarSol();
-
-        //-----------------------------------
-
-        if (colocar.vehiculosGenerados != null)
-        {
-            if (colocar.vehiculosGenerados.Count > 0)
-            {
-                int i = 0;
-                while (i < colocar.vehiculosGenerados.Count)
-                {
-                    if (colocar.vehiculosGenerados[i].estado == false)
-                    {
-                        colocar.vehiculosGenerados.RemoveAt(i);
-                        colocar.GenerarVehiculo();
-                    }
-                    i += 1;
-                }
-            }
-            else if (colocar.vehiculosGenerados.Count == 0)
-            {
-                colocar.GenerarVehiculo();
-            }
-        }
+        vehiculos.ArrancarPararVehiculos(velocidad);
     }
 
     void ActualizarReloj()
     {
-        float hora = Mathf.Round((arranqueDia * 24) / segundiaDiaTope);
-        float minutos = Mathf.Round((arranqueDia * 1440) / segundiaDiaTope);
+        float hora = Mathf.Round((arranqueDia * 24) / segundosDiaTope);
+        float minutos = Mathf.Round((arranqueDia * 1440) / segundosDiaTope);
         minutos = minutos - (hora * 60) + 30;
 
         if (contadorHoras != (int)Mathf.Round(hora))
@@ -181,15 +197,15 @@ public class DiaNoche : MonoBehaviour {
 
     void ActualizarSol()
     {
-        sol.transform.rotation = Quaternion.Euler(new Vector3((arranqueDia - (segundiaDiaTope / 4)) / segundiaDiaTope * 360, 0, 0));
+        sol.transform.rotation = Quaternion.Euler(new Vector3((arranqueDia - (segundosDiaTope / 4)) / segundosDiaTope * 360, 0, 0));
 
-        if (arranqueDia < (segundiaDiaTope / 2))
+        if (arranqueDia < (segundosDiaTope / 2))
         {
-            sol.intensity = 1f - ((segundiaDiaTope / 2) - arranqueDia) / (segundiaDiaTope / 2);
+            sol.intensity = 1f - ((segundosDiaTope / 2) - arranqueDia) / (segundosDiaTope / 2);
         }
         else
         {
-            sol.intensity = 1f - (((segundiaDiaTope / 2) - arranqueDia) / (segundiaDiaTope / 2) * - 0.8f);
+            sol.intensity = 1f - (((segundosDiaTope / 2) - arranqueDia) / (segundosDiaTope / 2) * - 0.8f);
         }
     }
 

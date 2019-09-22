@@ -13,8 +13,10 @@ public class Vehiculo : MonoBehaviour
 
     public int categoria;
 
-    private float velocidad = 0.02f;
-    private bool movimiento;
+    [HideInInspector]
+    public bool movimiento;
+
+    private float velocidad = 0.02f;   
     private float contadorParado = 0.0f;
 
     [HideInInspector]
