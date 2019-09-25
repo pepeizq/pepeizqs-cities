@@ -51,9 +51,9 @@ public class DiaNoche : MonoBehaviour {
     private int accionSemaforos = 0;
 
     private float tiempoVehiculos = 0;
-    private float tiempoVehiculosTope = 5000;
+    private float tiempoVehiculosTope = 2000;
 
-    private Vehiculos vehiculos;
+    public Vehiculos vehiculos;
 
     void Update()
     {
@@ -144,12 +144,24 @@ public class DiaNoche : MonoBehaviour {
                             }
                         }
 
-                        int i = 0;
-                        while (i <= cantidadEdificios)
+                        if (cantidadEdificios > 0)
                         {
-                            vehiculos.GenerarVehiculo();
-                            i += 1;
-                        }
+                            if (cantidadEdificios > 10)
+                            {
+                                cantidadEdificios = cantidadEdificios / 4;
+                            }
+                            else
+                            {
+                                cantidadEdificios = cantidadEdificios / 2;
+                            }
+                            
+                            int i = 0;
+                            while (i <= cantidadEdificios)
+                            {
+                                vehiculos.GenerarVehiculo();
+                                i += 1;
+                            }
+                        }                      
                     }
                 }
             }
