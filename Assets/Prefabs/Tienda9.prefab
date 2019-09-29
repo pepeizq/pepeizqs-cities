@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2816114735642673514}
   - component: {fileID: 3111859424436593039}
   - component: {fileID: 4692978715802379480}
+  - component: {fileID: -1703951856715461219}
   m_Layer: 0
   m_Name: Tienda9
   m_TagString: Untagged
@@ -26,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1875247261551705415}
   m_LocalRotation: {x: 0.000000021855694, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.18, y: 0.51, z: 97.216965}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -79,3 +80,32 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &-1703951856715461219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1875247261551705415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8387812f936b974381faf47fb2ca0fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 42
+  id2: 0
+  categoria: 4
+  coste: 60
+  nombre: tienda9
+  poblacion: 0
+  comida: 0
+  trabajo: 40
+  ingresos: 50
+  botonImagen: {fileID: 21300000, guid: c80edc5e8a066724a99eac9318588d01, type: 3}
+  luzIntesidad: 0
+  luzRango: 0
+  dimensiones: {x: 2, y: 3}
+  rotacionColocacion: 0
+  rotacionAdicional: 0
+  posicionX: 0
+  posicionZ: 0

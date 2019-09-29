@@ -124,7 +124,7 @@ public class Juego : MonoBehaviour {
             escenario.PonerTerreno(null);
             escenario.PonerArboles(null, construir);
 
-            diaNoche.arranqueDia = 50000;
+            diaNoche.arranqueDia = 70000;
         }
 
         opciones.CargarInicio();
@@ -138,7 +138,7 @@ public class Juego : MonoBehaviour {
         diaNoche.VelocidadMarchas(0);
         versionTexto.text = "v" + Application.version;
 
-        //Captura.Generar(edificios[12].gameObject);
+        //Captura.Generar(edificios[42].gameObject);
     }
 
     public void NuevaPartida()
@@ -159,7 +159,7 @@ public class Juego : MonoBehaviour {
         escenario.PonerTerreno(null);
         escenario.PonerArboles(null, construir);
 
-        diaNoche.arranqueDia = 90000;
+        diaNoche.arranqueDia = 70000;
         diaNoche.contadorDias = 1;
 
         CargarInterfaz();

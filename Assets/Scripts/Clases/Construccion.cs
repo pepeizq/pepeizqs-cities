@@ -7,7 +7,7 @@ public class Construccion : MonoBehaviour
     [HideInInspector]
     public int id2; //Identificador colocacion
 
-    public int categoria; //0 decoracion, 1 carreteras, 2 casas, 3 comida, 4 tiendas, 5 industria
+    public int categoria; //0 decoracion, 1 carreteras, 2 casas, 3 comida, 4 tiendas, 5 industria, 6 especial
 
     public int coste;
     public string nombre;

@@ -13,7 +13,7 @@ public class Captura : MonoBehaviour
 
 #pragma warning restore 0649
 
-    public Vector3 defectoPosicionOffset = new Vector3(0, 0, 1);
+    public Vector3 defectoPosicionOffset = new Vector3(1, 1, 1);
     public Vector3 defectoRotacion = new Vector3(345.8529f, 313.8297f, 14.28433f);
     public Vector3 defectoEscala = new Vector3(1, 1, 1);
 
@@ -138,7 +138,7 @@ public class Captura : MonoBehaviour
     {
         GameObject objeto = GameObject.Instantiate(prefab, transform.position + posicionOffset, rotacion) as GameObject;
         objeto.transform.localScale = escala;
-        //objeto.transform.Rotate(Vector3.up, -90, Space.Self);
+        objeto.transform.Rotate(Vector3.up, -90, Space.Self);
         EstablecerCapas(objeto);
 
         return objeto;
@@ -236,10 +236,10 @@ public class Captura : MonoBehaviour
     public static void Generar(GameObject objeto)
     {
         Captura captura = Captura.TomarCaptura(16);
-        captura.defectoEscala = new Vector3(1f, 1f, 1f);
+        captura.defectoEscala = new Vector3(0.045f, 0.045f, 0.045f);
         captura.defectoPosicionOffset = new Vector3(0, 0, 20f);
 
-        objeto.gameObject.transform.position = new Vector3(0, 0, 0);
+        objeto.gameObject.transform.position = new Vector3(0,00, 0);
 
         Material material = objeto.gameObject.GetComponent<Renderer>().sharedMaterial;
         material.DisableKeyword("_EMISSION");

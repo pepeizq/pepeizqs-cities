@@ -9869,6 +9869,9 @@ MonoBehaviour:
   - {fileID: -6319443127485731138, guid: 27eec2b646d46084299f298af6d626ec, type: 3}
   - {fileID: -1809650151379731109, guid: 28a84f6b7d376c346a1528de291f4790, type: 3}
   - {fileID: 7520756302465164934, guid: 6c2da48ea0fe1f54db43e0089fe30254, type: 3}
+  - {fileID: -1703951856715461219, guid: ca251c326c9c3b34e9042ef43119f6cd, type: 3}
+  - {fileID: -2213757004517975655, guid: ab076fa2dd5bb0b49af0a56f921975aa, type: 3}
+  - {fileID: 250418921892041314, guid: 8d3777ca3d73b724bbbd7b6c5e16b660, type: 3}
   construir: {fileID: 491194797}
   vistaPrevia: {fileID: 491194796}
   diaNoche: {fileID: 491194794}

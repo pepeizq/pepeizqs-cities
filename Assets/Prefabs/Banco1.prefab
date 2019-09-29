@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2732719143896698091}
   - component: {fileID: 6392744403325187805}
   - component: {fileID: 831791822460914212}
+  - component: {fileID: 250418921892041314}
   m_Layer: 0
   m_Name: Banco1
   m_TagString: Untagged
@@ -79,3 +80,32 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &250418921892041314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1420824444209315576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8387812f936b974381faf47fb2ca0fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 44
+  id2: 0
+  categoria: 6
+  coste: 25
+  nombre: banco1
+  poblacion: 0
+  comida: 0
+  trabajo: 0
+  ingresos: 0
+  botonImagen: {fileID: 21300000, guid: 17136c50d01e72b4897932c1fa43d91c, type: 3}
+  luzIntesidad: 0
+  luzRango: 0
+  dimensiones: {x: 1, y: 1}
+  rotacionColocacion: 0
+  rotacionAdicional: 0
+  posicionX: 0
+  posicionZ: 0
