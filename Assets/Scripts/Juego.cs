@@ -90,16 +90,16 @@ public class Juego : MonoBehaviour {
 
     private void Start()
     {
-        if (File.Exists(Application.persistentDataPath + "/guardado.save"))
+        List<Guardado> partidasGuardadas = new List<Guardado>();
+
+        try
         {
-            File.Delete(Application.persistentDataPath + "/guardado.save");
+            partidasGuardadas = partidas.ListadoPartidas();
         }
-
-        //partidas.BorrarPartidas();
-
-        //---------------------------------------
-
-        List<Guardado> partidasGuardadas = partidas.ListadoPartidas();
+        catch 
+        {
+            partidas.BorrarPartidas();
+        }
        
         if (partidasGuardadas.Count > 0)
         {

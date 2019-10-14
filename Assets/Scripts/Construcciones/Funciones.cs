@@ -15,27 +15,60 @@ namespace Construcciones
                 posicion.y = 0.5f;
             }
 
-            if (edificio.dimensiones.x > 1)
+            if (edificio.id == 42 || edificio.id == 43)
             {
-                if ((edificio.rotacionColocacion == -270) || (edificio.rotacionColocacion == -90))
-                {
-                    posicion.z = posicion.z - ((edificio.dimensiones.x - 1) / 2);
-                }
-                else
-                {
-                    posicion.x = posicion.x - ((edificio.dimensiones.x - 1) / 2);
-                }
+                posicion.y = 0.51f;
             }
 
-            if (edificio.dimensiones.y > 1)
+            if (edificio.dimensiones.x > 1)
             {
+                float ajuste = -0.5f;              
+
+                if (edificio.dimensiones.x > 3)
+                {
+                    ajuste = -1f;
+                }
+
                 if ((edificio.rotacionColocacion == -270) || (edificio.rotacionColocacion == -90))
                 {
-                    posicion.x = posicion.x - ((edificio.dimensiones.y - 1) / 2);
+                    posicion.x = posicion.x - Mathf.Round(edificio.dimensiones.x / 2) + ajuste;
                 }
                 else
                 {
-                    posicion.z = posicion.z - ((edificio.dimensiones.y - 1) / 2);
+                    posicion.z = posicion.z - Mathf.Round(edificio.dimensiones.x / 2) + ajuste;
+
+                    //Edificio 2x1 Comercio
+                    if (edificio.id == 32)
+                    {
+                        posicion.x = posicion.x - 1f;
+                        posicion.z = posicion.z + 2f;
+                    }
+                }
+            }
+         
+            if (edificio.dimensiones.y > 1)
+            {
+                float ajuste = -0.5f;
+
+                if (edificio.dimensiones.y > 3)
+                {
+                    ajuste = -1f;
+                }
+
+                if ((edificio.rotacionColocacion == -270) || (edificio.rotacionColocacion == -90))
+                {
+                    posicion.z = posicion.z - Mathf.Round(edificio.dimensiones.y / 2) + ajuste;
+                }
+                else
+                {
+                    posicion.x = posicion.x - Mathf.Round(edificio.dimensiones.y / 2) + ajuste;
+
+                    //Edificio 2x1 Viviendas
+                    if (edificio.dimensiones.x == 1)
+                    {
+                        posicion.x = posicion.x + 1f;
+                        posicion.z = posicion.z - Mathf.Round(edificio.dimensiones.y / 2);
+                    }
                 }
             }
 
