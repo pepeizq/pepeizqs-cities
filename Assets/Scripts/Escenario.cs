@@ -313,7 +313,7 @@ public class Escenario : MonoBehaviour {
                 int i = 0;
                 while (i < partida.edificiosID.Count)
                 {
-                    Vector3 posicion = new Vector3(partida.edificiosX[i], 1, partida.edificiosZ[i]);
+                    Vector3 posicion = new Vector3(partida.edificiosX[i], 0.5f, partida.edificiosZ[i]);
 
                     Construccion arbol = null;
 
@@ -387,7 +387,7 @@ public class Escenario : MonoBehaviour {
         }       
     }
 
-    private void GenerarArbol(Construccion arbol, Vector3 posicion, Construir construir)
+    public void GenerarArbol(Construccion arbol, Vector3 posicion, Construir construir)
     {
         bool añadir = true;
 

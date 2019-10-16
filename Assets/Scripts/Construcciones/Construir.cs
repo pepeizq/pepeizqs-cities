@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Construcciones
 {
@@ -8,7 +7,7 @@ namespace Construcciones
         private int contadorIdsConstrucciones;
 
         [HideInInspector]
-        public Construccion[,] edificios = new Construccion[100, 100];
+        public static Construccion[,] edificios = new Construccion[100, 100];
 
         public Construccion edificioVacio;
 
@@ -56,7 +55,7 @@ namespace Construcciones
                 {
                     if (edificios[x, z] != null)
                     {
-                        Object.DestroyImmediate(edificios[x, z].gameObject, true);
+                        Destroy(edificios[x, z].gameObject);
                         edificios[x, z] = null;
                     }
                 }

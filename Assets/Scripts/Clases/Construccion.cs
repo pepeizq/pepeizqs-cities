@@ -19,14 +19,19 @@ public class Construccion : MonoBehaviour
 
     public Sprite botonImagen;
 
-    public float luzIntesidad;
-    public float luzRango;
-
     public Vector2 dimensiones;
 
+    [HideInInspector]
     public int rotacionColocacion = 0;
+    
     public int rotacionAdicional;
 
+    [HideInInspector]
     public int posicionX;
+
+    [HideInInspector]
     public int posicionZ;
+
+    public float luzIntesidad;
+    public float luzRango;
 }

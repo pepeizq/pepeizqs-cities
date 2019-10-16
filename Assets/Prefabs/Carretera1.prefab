@@ -105,13 +105,13 @@ MonoBehaviour:
   trabajo: 0
   ingresos: 0
   botonImagen: {fileID: 21300000, guid: 80bd407be29368b46b4decb108abfd74, type: 3}
-  luzIntesidad: 0
-  luzRango: 0
   dimensiones: {x: 1, y: 1}
   rotacionColocacion: -270
   rotacionAdicional: -90
-  posicionX: 39
-  posicionZ: 65
+  posicionX: 77
+  posicionZ: 34
+  luzIntesidad: 0
+  luzRango: 0
 --- !u!65 &8755994857054512725
 BoxCollider:
   m_ObjectHideFlags: 0

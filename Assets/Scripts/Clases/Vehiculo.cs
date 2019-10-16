@@ -176,9 +176,9 @@ public class Vehiculo : MonoBehaviour
     private Light luzRojaSemaforo;
     private Vehiculo otroVehiculo;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider colision)
     {
-        Construccion carretera = other.gameObject.GetComponent<Construccion>();
+        Construccion carretera = colision.gameObject.GetComponent<Construccion>();
 
         if (carretera != null)
         {
@@ -192,36 +192,36 @@ public class Vehiculo : MonoBehaviour
 
         if (poderRotar == true)
         {
-            if (other.gameObject.name.Contains("ColisionSemaforo"))
+            if (colision.gameObject.name.Contains("ColisionSemaforo"))
             {
                 int girarAzar = Random.Range(0, 4);
 
                 if (girarAzar == 0)
                 {
-                    if (other.gameObject.name == "ColisionSemaforo1" || other.gameObject.name == "ColisionSemaforo4")
+                    if (colision.gameObject.name == "ColisionSemaforo1" || colision.gameObject.name == "ColisionSemaforo4")
                     {
                         Rotar1();
                     }                
                 }
                 else if (girarAzar == 1)
                 {                  
-                    if (other.gameObject.name == "ColisionSemaforo2" || other.gameObject.name == "ColisionSemaforo3" || other.gameObject.name == "ColisionSemaforo5" || other.gameObject.name == "ColisionSemaforo6")
+                    if (colision.gameObject.name == "ColisionSemaforo2" || colision.gameObject.name == "ColisionSemaforo3" || colision.gameObject.name == "ColisionSemaforo5" || colision.gameObject.name == "ColisionSemaforo6")
                     {
                         Rotar2();
                     }
                 }
 
-                if (other.gameObject.name == "ColisionSemaforo7")
+                if (colision.gameObject.name == "ColisionSemaforo7")
                 {
                     Rotar2();
                 }
             }
 
-            if (other.gameObject.name == "ColisionCurva1")
+            if (colision.gameObject.name == "ColisionCurva1")
             {
                 Rotar1();
             }
-            else if (other.gameObject.name == "ColisionCurva2")
+            else if (colision.gameObject.name == "ColisionCurva2")
             {
                 Rotar2();
             }
@@ -229,7 +229,7 @@ public class Vehiculo : MonoBehaviour
         
         //------------------------------------
 
-        luzRojaSemaforo = other.gameObject.GetComponent<Light>();
+        luzRojaSemaforo = colision.gameObject.GetComponent<Light>();
 
         if (luzRojaSemaforo != null)
         {
@@ -245,7 +245,7 @@ public class Vehiculo : MonoBehaviour
 
         //------------------------------------
      
-        otroVehiculo = other.gameObject.GetComponent<Vehiculo>();
+        otroVehiculo = colision.gameObject.GetComponent<Vehiculo>();
 
         if (otroVehiculo != null)
         {

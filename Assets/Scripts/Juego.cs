@@ -26,6 +26,9 @@ public class Juego : MonoBehaviour {
     [HideInInspector]
     public KeyCode teclaArrastrarConstruccion;
 
+    [HideInInspector]
+    public KeyCode teclaOcultarInterfaz;
+
     public Interfaz.MenuPrincipal menuPrincipal;
     public Interfaz.Opciones opciones;
     public Interfaz.Opciones2.General opcionesGeneral;
@@ -88,6 +91,9 @@ public class Juego : MonoBehaviour {
     private bool mantenerEjeX;
     private bool mantenerEjeZ;
 
+    [HideInInspector]
+    public bool ocultarEnseñarInterfaz = false;
+
     private void Start()
     {
         List<Guardado> partidasGuardadas = new List<Guardado>();
@@ -112,7 +118,6 @@ public class Juego : MonoBehaviour {
             }
                 
             escenario.PonerTerreno(partidasGuardadas[0]);
-            escenario.PonerArboles(partidasGuardadas[0], construir);
             CargarEdificios(partidasGuardadas[0]);
             ayuda.Cargar(false);
         }
@@ -156,6 +161,7 @@ public class Juego : MonoBehaviour {
         camara.transform.position = new Vector3(10, 60, 10);
 
         construir.QuitarTodosEdificios();
+
         escenario.PonerTerreno(null);
         escenario.PonerArboles(null, construir);
 
@@ -169,6 +175,8 @@ public class Juego : MonoBehaviour {
     {
         sonidoBoton.Play();
 
+        construir.QuitarTodosEdificios();
+
         List<Guardado> partidasGuardadas = partidas.ListadoPartidas();
 
         if (partidasGuardadas.Count > 0)
@@ -176,11 +184,9 @@ public class Juego : MonoBehaviour {
             partidasGuardadas.Sort((x, y) => y.id.CompareTo(x.id));
 
             escenario.PonerTerreno(partidasGuardadas[0]);
-            escenario.PonerArboles(partidasGuardadas[0], construir);
             CargarEdificios(partidasGuardadas[0]);
         }
 
-        construir.QuitarTodosEdificios();
         CargarInterfaz();
     }
 
@@ -302,13 +308,29 @@ public class Juego : MonoBehaviour {
                     EdificioConstruir(1);
                 }
             }
+        }
 
-            if (Input.GetKeyDown(KeyCode.F8))
+        //-----------------------------------------------
+
+        if (canvas.gameObject.GetComponent<CanvasGroup>().alpha == 1)
+        {
+            if (Input.GetKeyDown(teclaOcultarInterfaz))
             {
-                InterfazOcultar();
-            }   
-        }    
-        
+                ocultarEnseñarInterfaz = true;
+                canvas.gameObject.GetComponent<CanvasGroup>().alpha = 0;
+            }
+        }
+        else
+        {
+            if (Input.GetKeyDown(teclaOcultarInterfaz) && ocultarEnseñarInterfaz == true)
+            {
+                ocultarEnseñarInterfaz = false;
+                canvas.gameObject.GetComponent<CanvasGroup>().alpha = 1;
+            }
+        }
+
+        //-----------------------------------------------
+
         if (panelCoste.gameObject.GetComponent<CanvasGroup>().alpha == 1)
         {
             Vector3 posicion = Input.mousePosition;
@@ -640,10 +662,15 @@ public class Juego : MonoBehaviour {
             while (i < partida.edificiosID.Count)
             {
                 Construccion edificioGuardado = edificios[partida.edificiosID[i]];
-                edificioGuardado.rotacionColocacion = partida.edificiosRotacion[i];
 
-                Vector3 posicion = new Vector3(partida.edificiosX[i], 1, partida.edificiosZ[i]);
-                construir.AñadirConstruccion(edificioGuardado, posicion, diaNoche.encender);
+                if (edificioGuardado != null)
+                {
+                    edificioGuardado.rotacionColocacion = partida.edificiosRotacion[i];
+
+                    Vector3 posicion = new Vector3(partida.edificiosX[i], 0.5f, partida.edificiosZ[i]);
+                    posicion = Funciones.PosicionEdificio(edificioGuardado, posicion);
+                    construir.AñadirConstruccion(edificioGuardado, posicion, diaNoche.encender);
+                }
 
                 i++;
             }
@@ -740,21 +767,5 @@ public class Juego : MonoBehaviour {
         FileStream fichero = File.Create(Application.persistentDataPath + "/" + guardado.id + ".save");
         bf.Serialize(fichero, guardado);
         fichero.Close();
-    }
-
-    public void InterfazOcultar()
-    {
-        if (canvas.gameObject.GetComponent<CanvasGroup>().alpha == 1)
-        {
-            canvas.gameObject.GetComponent<CanvasGroup>().alpha = 0;
-            canvas.gameObject.GetComponent<CanvasGroup>().interactable = false;
-            canvas.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
-        }
-        else
-        {
-            canvas.gameObject.GetComponent<CanvasGroup>().alpha = 1;
-            canvas.gameObject.GetComponent<CanvasGroup>().interactable = true;
-            canvas.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
-        }
     }
 }

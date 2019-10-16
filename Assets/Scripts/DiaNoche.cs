@@ -133,7 +133,7 @@ public class DiaNoche : MonoBehaviour {
                     {
                         int cantidadEdificios = 0;
 
-                        foreach (Construccion subedificio in construir.edificios)
+                        foreach (Construccion subedificio in Construir.edificios)
                         {
                             if (subedificio != null)
                             {

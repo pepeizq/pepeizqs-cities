@@ -31,6 +31,14 @@ namespace Construcciones
                         {
                             Construccion edificioEncontrado = construir.ComprobarPosicion(subcarretera.edificio, subcarretera.posicion);
 
+                            if (edificioEncontrado.categoria == 0)
+                            {
+                                construir.QuitarEdificio(edificioEncontrado, subcarretera.posicion);
+                                construir.AñadirConstruccion(subcarretera.edificio, subcarretera.posicion, diaNoche.EstadoEncendidoLuces());
+
+                                ciudad.DepositoDinero(edificioEncontrado.coste / 2);
+                            }
+
                             if (edificioEncontrado.categoria == 1)
                             {
                                 bool eliminar = false;

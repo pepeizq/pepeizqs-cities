@@ -39,6 +39,7 @@ namespace Interfaz.Opciones2
         public Text textoRotacionEdificioIzquierda;
         public Text textoRotacionEdificioDerecha;
         public Text textoArrastrarConstruccion;
+        public Text textoOcultarInterfaz;
 
         public void CargarInicio()
         {
@@ -206,6 +207,19 @@ namespace Interfaz.Opciones2
             juego.teclaArrastrarConstruccion = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("tecladoArrastrarConstruccion"));
 
             //-------------------------------------
+
+            if (PlayerPrefs.HasKey("tecladoOcultarInterfaz") == false)
+            {
+                KeyCode tecla = KeyCode.F8;
+                PlayerPrefs.SetString("tecladoOcultarInterfaz", tecla.ToString());
+                textoOcultarInterfaz.text = tecla.ToString();
+            }
+            else
+            {
+                textoOcultarInterfaz.text = PlayerPrefs.GetString("tecladoOcultarInterfaz");
+            }
+
+            juego.teclaOcultarInterfaz = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("tecladoOcultarInterfaz"));
         }
 
         public void PulsarBoton(int botonPulsado)
@@ -253,6 +267,10 @@ namespace Interfaz.Opciones2
             else if (boton == 9)
             {
                 textoArrastrarConstruccion.text = null;
+            }
+            else if (boton == 10)
+            {
+                textoOcultarInterfaz.text = null;
             }
         }
 
@@ -326,6 +344,12 @@ namespace Interfaz.Opciones2
                         PlayerPrefs.SetString("tecladoArrastrarConstruccion", tecla.ToString());
                         textoArrastrarConstruccion.text = tecla.ToString();
                         juego.teclaArrastrarConstruccion = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("tecladoArrastrarConstruccion"));
+                    }
+                    else if (boton == 10)
+                    {
+                        PlayerPrefs.SetString("tecladoOcultarInterfaz", tecla.ToString());
+                        textoOcultarInterfaz.text = tecla.ToString();
+                        juego.teclaOcultarInterfaz = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("tecladoOcultarInterfaz"));
                     }
                 }      
             }

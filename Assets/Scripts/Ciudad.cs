@@ -5,9 +5,6 @@ using UnityEngine.UI;
 public class Ciudad : MonoBehaviour {
 
     [SerializeField]
-    private Construir colocar = null;
-
-    [SerializeField]
     private Text dineroTexto = null;
 
     [SerializeField]
@@ -46,7 +43,7 @@ public class Ciudad : MonoBehaviour {
     {
         int tope = 0;
 
-        foreach (Construccion edificio in colocar.edificios)
+        foreach (Construccion edificio in Construir.edificios)
         {
             if (edificio != null)
             {
@@ -82,7 +79,7 @@ public class Ciudad : MonoBehaviour {
     {
         int montante = 1;
 
-        foreach (Construccion edificio in colocar.edificios)
+        foreach (Construccion edificio in Construir.edificios)
         {
             if (edificio != null)
             {
@@ -131,7 +128,7 @@ public class Ciudad : MonoBehaviour {
     {
         int cantidad = 0;
 
-        foreach (Construccion edificio in colocar.edificios)
+        foreach (Construccion edificio in Construir.edificios)
         {
             if (edificio != null)
             {
@@ -155,7 +152,7 @@ public class Ciudad : MonoBehaviour {
     {
         int tope = 0;
 
-        foreach (Construccion edificio in colocar.edificios)
+        foreach (Construccion edificio in Construir.edificios)
         {
             if (edificio != null)
             {

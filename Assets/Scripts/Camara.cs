@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Camara : MonoBehaviour
 {
-    public Canvas canvasJuego;
+    public Juego juego;
 
     [HideInInspector]
     public KeyCode teclaMovimientoIzquierda;
@@ -40,7 +40,7 @@ public class Camara : MonoBehaviour
 
     void Update()
     {
-        if (canvasJuego.gameObject.GetComponent<CanvasGroup>().alpha == 1)
+        if (juego.canvas.gameObject.GetComponent<CanvasGroup>().alpha == 1 || juego.ocultarEnseñarInterfaz == true)
         {
             int velocidad = 15;
 
@@ -189,7 +189,7 @@ public class Camara : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (canvasJuego.gameObject.GetComponent<CanvasGroup>().alpha == 1)
+        if (juego.canvas.gameObject.GetComponent<CanvasGroup>().alpha == 1 || juego.ocultarEnseñarInterfaz == true)
         {
             if (rotando == false)
             {

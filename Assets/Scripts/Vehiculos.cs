@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Construcciones;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Vehiculos : MonoBehaviour
@@ -21,7 +22,7 @@ public class Vehiculos : MonoBehaviour
     {
         List<Construccion> carreteras = new List<Construccion>();
 
-        foreach (Construccion subedificio in construir.edificios)
+        foreach (Construccion subedificio in Construir.edificios)
         {
             if (subedificio != null)
             {
@@ -74,7 +75,7 @@ public class Vehiculos : MonoBehaviour
             int vehiculoAzar = Random.Range(0, listaVehiculos.Length);
 
             Vehiculo vehiculo = Instantiate(listaVehiculos[vehiculoAzar], posicion, Quaternion.identity);
-            vehiculo.edificios = construir.edificios;
+            vehiculo.edificios = Construir.edificios;
             vehiculo.direccion = direccion;
             vehiculo.id2 = contadorIdsVehiculos;
 

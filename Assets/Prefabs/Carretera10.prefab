@@ -284,13 +284,13 @@ MonoBehaviour:
   trabajo: 0
   ingresos: 0
   botonImagen: {fileID: 0}
-  luzIntesidad: 0
-  luzRango: 0
   dimensiones: {x: 1, y: 1}
   rotacionColocacion: 0
   rotacionAdicional: 0
   posicionX: 0
   posicionZ: 0
+  luzIntesidad: 0
+  luzRango: 0
 --- !u!65 &4793729111848069756
 BoxCollider:
   m_ObjectHideFlags: 0

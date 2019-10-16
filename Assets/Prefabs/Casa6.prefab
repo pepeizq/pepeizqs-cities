@@ -103,10 +103,10 @@ MonoBehaviour:
   trabajo: 0
   ingresos: 0
   botonImagen: {fileID: 21300000, guid: 3577c19e976bb314a93ae1b6be312b74, type: 3}
-  luzIntesidad: 3
-  luzRango: 0.5
   dimensiones: {x: 1, y: 1}
   rotacionColocacion: 0
   rotacionAdicional: 0
-  posicionX: 47
-  posicionZ: 56
+  posicionX: 60
+  posicionZ: 42
+  luzIntesidad: 0
+  luzRango: 0
