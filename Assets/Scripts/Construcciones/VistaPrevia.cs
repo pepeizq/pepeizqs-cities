@@ -18,7 +18,7 @@ namespace Construcciones
             edificio.GetComponent<Renderer>().receiveShadows = false;
             edificio.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
 
-            posicion = Funciones.PosicionEdificio(edificio, posicion);
+            posicion = Posicion.Edificio(edificio, posicion);
 
             Construccion edificioVistaPrevia = Instantiate(edificio, posicion, Quaternion.identity);
             edificioVistaPrevia.transform.Rotate(Vector3.up, edificio.rotacionAdicional + edificio.rotacionColocacion, Space.World);

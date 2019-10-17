@@ -10,6 +10,7 @@ namespace Construcciones
         public static Construccion[,] edificios = new Construccion[100, 100];
 
         public Construccion edificioVacio;
+        public Colisiones colisiones;
 
         private void Start()
         {
@@ -21,7 +22,7 @@ namespace Construcciones
             edificio.GetComponent<Renderer>().receiveShadows = true;
             edificio.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
 
-            posicion = Funciones.PosicionEdificio(edificio, posicion);
+            posicion = Posicion.Edificio(edificio, posicion);
             ComprobarLucesEdificio(encender, edificio);
 
             Construccion edificioConstruido = Instantiate(edificio, posicion, Quaternion.identity);
@@ -34,7 +35,8 @@ namespace Construcciones
             edificioVacio.id2 = edificioConstruido.id2;
 
             edificios[(int)posicion.x, (int)posicion.z] = edificioConstruido;
-            edificios = Funciones.RellenarEdificioVacio(edificios, edificio, posicion, edificioVacio);
+            //edificios = Funciones.RellenarEdificioVacio(edificios, edificio, posicion, edificioVacio);
+            colisiones.Añadir(edificios, edificio, posicion);
         }
 
         public Construccion ComprobarPosicion(Construccion edificio, Vector3 posicion)

@@ -668,7 +668,7 @@ public class Juego : MonoBehaviour {
                     edificioGuardado.rotacionColocacion = partida.edificiosRotacion[i];
 
                     Vector3 posicion = new Vector3(partida.edificiosX[i], 0.5f, partida.edificiosZ[i]);
-                    posicion = Funciones.PosicionEdificio(edificioGuardado, posicion);
+                    posicion = Posicion.EdificioAjusteCarga(edificioGuardado, posicion);
                     construir.AñadirConstruccion(edificioGuardado, posicion, diaNoche.encender);
                 }
 

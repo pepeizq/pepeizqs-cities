@@ -49,8 +49,8 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1001876102818620}
   m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -102,10 +102,10 @@ MonoBehaviour:
   trabajo: 0
   ingresos: 0
   botonImagen: {fileID: 21300000, guid: b7d0ff92e93b9db4187f042c4af33fff, type: 3}
-  luzIntesidad: 3
-  luzRango: 0.5
   dimensiones: {x: 1, y: 2}
-  rotacionColocacion: 0
+  rotacionColocacion: -90
   rotacionAdicional: 90
-  posicionX: 61
-  posicionZ: 35
+  posicionX: 47
+  posicionZ: 46
+  luzIntesidad: 0
+  luzRango: 0

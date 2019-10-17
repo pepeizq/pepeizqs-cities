@@ -63,4 +63,179 @@ public static class Posicion
 
         return estado;
     }
+
+    //-----------------------------------------------------
+
+    public static Vector3 Edificio(Construccion edificio, Vector3 posicion)
+    {
+        if (edificio.categoria == 1)
+        {
+            posicion.y = 1f;
+        }
+        else
+        {
+            posicion.y = 0.5f;
+        }
+
+        if (edificio.id == 42 || edificio.id == 43)
+        {
+            posicion.y = 0.51f;
+        }
+
+        if (edificio.dimensiones.x > 1)
+        {
+            float ajuste = -0.5f;
+
+            if (edificio.dimensiones.x > 3)
+            {
+                ajuste = -1f;
+            }
+
+            if ((edificio.rotacionColocacion == -270) || (edificio.rotacionColocacion == -90))
+            {
+                posicion.x = posicion.x - Mathf.Round(edificio.dimensiones.x / 2) + ajuste;
+            }
+            else
+            {
+                posicion.z = posicion.z - Mathf.Round(edificio.dimensiones.x / 2) + ajuste;
+
+                //Edificio 2x1 Comercio
+                if (edificio.id == 32)
+                {
+                    posicion.x = posicion.x - 1f;
+                    posicion.z = posicion.z + 2f;
+                }
+            }
+        }
+
+        if (edificio.dimensiones.y > 1)
+        {
+            float ajuste = -0.5f;
+
+            if (edificio.dimensiones.y > 3)
+            {
+                ajuste = -1f;
+            }
+
+            if ((edificio.rotacionColocacion == -270) || (edificio.rotacionColocacion == -90))
+            {
+                posicion.z = posicion.z - Mathf.Round(edificio.dimensiones.y / 2) + ajuste;
+            }
+            else
+            {
+                posicion.x = posicion.x - Mathf.Round(edificio.dimensiones.y / 2) + ajuste;
+
+                //Edificio 2x1 Viviendas
+                if (edificio.dimensiones.x == 1)
+                {
+                    posicion.x = posicion.x + 1f;
+                    posicion.z = posicion.z - Mathf.Round(edificio.dimensiones.y / 2);
+                }
+            }
+        }
+
+        return posicion;
+    }
+
+    public static Vector3 EdificioAjusteCarga(Construccion edificio, Vector3 posicion)
+    {
+        if (edificio.dimensiones.x > 1)
+        {
+            float ajuste = 0.5f;
+
+            if (edificio.dimensiones.x > 3)
+            {
+                ajuste = 1f;
+            }
+
+            if ((edificio.rotacionColocacion == -270) || (edificio.rotacionColocacion == -90))
+            {
+                posicion.x = posicion.x - Mathf.Round(edificio.dimensiones.x / 2) + ajuste;
+
+                if (edificio.dimensiones.x == 2 && edificio.dimensiones.y == 1)
+                {
+                    posicion.x = posicion.x + 2.5f;
+                    posicion.z = posicion.z - 1f;
+                }
+            }
+            else
+            {
+                posicion.z = posicion.z - Mathf.Round(edificio.dimensiones.x / 2) + ajuste;
+
+                if (edificio.dimensiones.x == 2 && edificio.dimensiones.y == 1)
+                {
+                    posicion.x = posicion.x + 0f;
+                    posicion.z = posicion.z + 0.5f;
+                }
+            }
+        }
+
+        if (edificio.dimensiones.y > 1)
+        {
+            float ajuste = 0.5f;
+
+            if (edificio.dimensiones.y > 3)
+            {
+                ajuste = 1f;
+            }
+
+            if ((edificio.rotacionColocacion == -270) || (edificio.rotacionColocacion == -90))
+            {
+                posicion.z = posicion.z - Mathf.Round(edificio.dimensiones.y / 2) + ajuste;
+
+                if (edificio.dimensiones.x == 2 && edificio.dimensiones.y == 2)
+                {
+                    posicion.x = posicion.x + 1.5f;
+                    posicion.z = posicion.z + 1.5f;
+                }
+
+                if (edificio.dimensiones.x == 1 && edificio.dimensiones.y == 2)
+                {
+                    posicion.z = posicion.z + 2.5f;
+                }
+
+                if (edificio.dimensiones.x == 2 && edificio.dimensiones.y == 3)
+                {
+                    posicion.x = posicion.x + 2.5f;
+                    posicion.z = posicion.z + 4.5f;
+                }
+
+                if (edificio.dimensiones.x == 4 && edificio.dimensiones.y == 3)
+                {
+                    posicion.x = posicion.x + 3f;
+                    posicion.z = posicion.z + 2f;
+                }
+            }
+            else
+            {
+                posicion.x = posicion.x - Mathf.Round(edificio.dimensiones.y / 2) + ajuste;
+              
+                if (edificio.dimensiones.x == 2 && edificio.dimensiones.y == 2)
+                {
+                    posicion.x = posicion.x + 1.5f;
+                    posicion.z = posicion.z + 1.5f;
+                }
+
+                if (edificio.dimensiones.x == 1 && edificio.dimensiones.y == 2)
+                {
+                    posicion.x = posicion.x + 1.5f;
+                    posicion.z = posicion.z + Mathf.Round(edificio.dimensiones.y / 2);
+                }
+
+                if (edificio.dimensiones.x == 2 && edificio.dimensiones.y == 3)
+                {
+                    posicion.x = posicion.x + 4.5f;
+                    posicion.z = posicion.z + 2.5f;
+                }
+
+                if (edificio.dimensiones.x == 4 && edificio.dimensiones.y == 3)
+                {
+                    posicion.x = posicion.x + 2.5f;
+                    posicion.z = posicion.z + 3f;
+                }
+            }
+        }
+
+        return posicion;
+    }
 }

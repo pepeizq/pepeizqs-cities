@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4383820232168372}
   - component: {fileID: 114719743380459958}
   - component: {fileID: 23499141227837890}
+  - component: {fileID: 2318198699308010390}
   m_Layer: 0
   m_Name: Vacio
   m_TagString: Untagged
@@ -45,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 99
+  id2: 1105
   categoria: 99
   coste: 0
   nombre: vacio
@@ -53,12 +55,13 @@ MonoBehaviour:
   trabajo: 0
   ingresos: 0
   botonImagen: {fileID: 0}
-  luzIntesidad: 0
-  luzRango: 0
-  luzProbabilidad: 0
   dimensiones: {x: 1, y: 1}
   rotacionColocacion: 0
   rotacionAdicional: 0
+  posicionX: 0
+  posicionZ: 0
+  luzIntesidad: 0
+  luzRango: 0
 --- !u!23 &23499141227837890
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -73,10 +76,11 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 508f89cb79b7a434b9a9d6f2119f995f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -84,6 +88,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -96,3 +101,11 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!33 &2318198699308010390
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1042080353085340}
+  m_Mesh: {fileID: -5840247375296202419, guid: 7c1fa373e31e86340b725acb34860061, type: 3}
