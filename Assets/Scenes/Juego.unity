@@ -9700,6 +9700,7 @@ GameObject:
   - component: {fileID: 491194797}
   - component: {fileID: 491194796}
   - component: {fileID: 491194812}
+  - component: {fileID: 491194813}
   m_Layer: 0
   m_Name: Scripts
   m_TagString: Untagged
@@ -9983,8 +9984,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 252a8e5d71c159b469f2225f900a8757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  edificioVacio: {fileID: 114719743380459958, guid: 3f48d98e38cd5db40a4ea6532f118478,
-    type: 3}
+  colisiones: {fileID: 491194813}
 --- !u!114 &491194797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9997,8 +9997,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 723c275866bb746469acc4029db9bdcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  edificioVacio: {fileID: 114719743380459958, guid: 3f48d98e38cd5db40a4ea6532f118478,
-    type: 3}
+  colisiones: {fileID: 491194813}
 --- !u!4 &491194798
 Transform:
   m_ObjectHideFlags: 0
@@ -10333,6 +10332,20 @@ MonoBehaviour:
   - {fileID: -5085644622703336575, guid: 7d26fe80f39995947b2a27b34e156e05, type: 3}
   - {fileID: -5385695587240486287, guid: acc8d3f8a0b9ab14e983d48caf98731d, type: 3}
   vehiculosGenerados: []
+--- !u!114 &491194813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 491194791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0f1f76d9896e1447bdef307fe11a2c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  edificioVacio: {fileID: 114719743380459958, guid: 3f48d98e38cd5db40a4ea6532f118478,
+    type: 3}
 --- !u!1 &504080354
 GameObject:
   m_ObjectHideFlags: 0

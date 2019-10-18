@@ -203,7 +203,7 @@ public static class Posicion
                 if (edificio.dimensiones.x == 4 && edificio.dimensiones.y == 3)
                 {
                     posicion.x = posicion.x + 3f;
-                    posicion.z = posicion.z + 2f;
+                    posicion.z = posicion.z + 2.5f;
                 }
             }
             else

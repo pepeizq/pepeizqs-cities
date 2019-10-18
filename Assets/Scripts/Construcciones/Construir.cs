@@ -9,7 +9,6 @@ namespace Construcciones
         [HideInInspector]
         public static Construccion[,] edificios = new Construccion[100, 100];
 
-        public Construccion edificioVacio;
         public Colisiones colisiones;
 
         private void Start()
@@ -32,16 +31,13 @@ namespace Construcciones
             edificioConstruido.id2 = contadorIdsConstrucciones;
             contadorIdsConstrucciones += 1;
 
-            edificioVacio.id2 = edificioConstruido.id2;
-
             edificios[(int)posicion.x, (int)posicion.z] = edificioConstruido;
-            //edificios = Funciones.RellenarEdificioVacio(edificios, edificio, posicion, edificioVacio);
             colisiones.Añadir(edificios, edificio, posicion);
         }
 
         public Construccion ComprobarPosicion(Construccion edificio, Vector3 posicion)
         {
-            return Funciones.ComprobarPosicion(edificios, edificio, posicion);
+            return colisiones.Detectar(edificios, edificio, posicion);
         }
 
         public void QuitarEdificio(Construccion edificio, Vector3 posicion)

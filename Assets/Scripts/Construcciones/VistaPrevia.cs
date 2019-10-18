@@ -6,7 +6,7 @@ namespace Construcciones
     {
         private Construccion[,] edificiosPrevio = new Construccion[100, 100];
 
-        public Construccion edificioVacio;
+        public Colisiones colisiones;
 
         public void AñadirConstruccion(Construccion edificio, Vector3 posicion)
         {
@@ -24,7 +24,7 @@ namespace Construcciones
             edificioVistaPrevia.transform.Rotate(Vector3.up, edificio.rotacionAdicional + edificio.rotacionColocacion, Space.World);
 
             edificiosPrevio[(int)posicion.x, (int)posicion.z] = edificioVistaPrevia;
-            edificiosPrevio = Funciones.RellenarEdificioVacio(edificiosPrevio, edificio, posicion, edificioVacio);
+            colisiones.Añadir(edificiosPrevio, edificio, posicion);
 
             //---------------------------------
 
@@ -48,7 +48,7 @@ namespace Construcciones
 
         public Construccion ComprobarPosicion(Construccion edificio, Vector3 posicion)
         {
-            return Funciones.ComprobarPosicion(edificiosPrevio, edificio, posicion);
+            return colisiones.Detectar(edificiosPrevio, edificio, posicion);
         }
 
         public void QuitarEdificio(Construccion edificio, Vector3 posicion)

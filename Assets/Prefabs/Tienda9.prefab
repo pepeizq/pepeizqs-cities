@@ -103,9 +103,9 @@ MonoBehaviour:
   ingresos: 50
   botonImagen: {fileID: 21300000, guid: c80edc5e8a066724a99eac9318588d01, type: 3}
   dimensiones: {x: 2, y: 3}
-  rotacionColocacion: -270
+  rotacionColocacion: 0
   rotacionAdicional: 0
-  posicionX: 65
-  posicionZ: 38
+  posicionX: 17
+  posicionZ: 77
   luzIntesidad: 0
   luzRango: 0
