@@ -1,5 +1,4 @@
 ﻿using Construcciones;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Escenario : MonoBehaviour {
@@ -16,6 +15,8 @@ public class Escenario : MonoBehaviour {
     public Terreno[,] terrenos2 = new Terreno[100,100];
 
     public Construccion[] arboles;
+
+    public Colisiones colisiones;
 
     public void PonerTerreno(Guardado partida)
     {
@@ -173,135 +174,7 @@ public class Escenario : MonoBehaviour {
 
     public bool ComprobarEdificable(Construccion edificio, Vector3 posicion)
     {
-        bool buscarMas = false;
-
-        if (edificio != null)
-        {
-            if (edificio.dimensiones.x > 1)
-            {
-                buscarMas = true;
-            }
-
-            if (edificio.dimensiones.y > 1)
-            {
-                buscarMas = true;
-            }
-        }
-
-        if (buscarMas == false)
-        {
-            for (int x = 0; x < terrenos2.GetLength(0); x++)
-            {
-                for (int z = 0; z < terrenos2.GetLength(1); z++)
-                {
-                    if ((int)posicion.x == x && (int)posicion.z == z)
-                    {
-                        if (terrenos2[x, z] != null)
-                        {
-                            Terreno terreno = terrenos2[x, z];
-
-                            if (terreno.edificable == false)
-                            {
-                                return false;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        else
-        {
-            int i = (int)posicion.x;
-            while (i <= ((int)posicion.x + edificio.dimensiones.x))
-            {
-                int j = (int)posicion.z;
-                while (j <= ((int)posicion.z + edificio.dimensiones.y))
-                {
-                    for (int x = 0; x < terrenos2.GetLength(0); x++)
-                    {
-                        for (int z = 0; z < terrenos2.GetLength(1); z++)
-                        {
-                            if (i == x && j == z)
-                            {
-                                if (terrenos2[x, z] != null)
-                                {
-                                    Terreno terreno = terrenos2[x, z];
-
-                                    if (terreno.edificable == false)
-                                    {
-                                        return false;
-                                    }
-                                }
-
-                                if (edificio.dimensiones.x > 1)
-                                {
-                                    int a = 0;
-
-                                    while (a <= (int)edificio.dimensiones.x)
-                                    {
-                                        if (terrenos2[x - a, z] != null)
-                                        {
-                                            Terreno terreno = terrenos2[x - a, z];
-
-                                            if (terreno.edificable == false)
-                                            {
-                                                return false;
-                                            }
-                                        }
-
-                                        if (terrenos2[x + a, z] != null)
-                                        {
-                                            Terreno terreno = terrenos2[x + a, z];
-
-                                            if (terreno.edificable == false)
-                                            {
-                                                return false;
-                                            }
-                                        }
-
-                                        a += 1;
-                                    }
-                                }
-
-                                if (edificio.dimensiones.y > 1)
-                                {
-                                    int a = 0;
-
-                                    while (a <= (int)edificio.dimensiones.y)
-                                    {
-                                        if (terrenos2[x, z - a] != null)
-                                        {
-                                            Terreno terreno = terrenos2[x, z - a];
-
-                                            if (terreno.edificable == false)
-                                            {
-                                                return false;
-                                            }
-                                        }
-
-                                        if (terrenos2[x, z + a] != null)
-                                        {
-                                            Terreno terreno = terrenos2[x, z + a];
-
-                                            if (terreno.edificable == false)
-                                            {
-                                                return false;
-                                            }
-                                        }
-
-                                        a += 1;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    j += 1;
-                }
-                i += 1;
-            }
-        }
-
-        return true;
+        return colisiones.Terreno(terrenos2, edificio, posicion);
     }
 
     public void PonerArboles(Guardado partida, Construir construir)

@@ -24,7 +24,7 @@ namespace Construcciones
             edificioVistaPrevia.transform.Rotate(Vector3.up, edificio.rotacionAdicional + edificio.rotacionColocacion, Space.World);
 
             edificiosPrevio[(int)posicion.x, (int)posicion.z] = edificioVistaPrevia;
-            colisiones.Añadir(edificiosPrevio, edificio, posicion);
+            //colisiones.Añadir(edificiosPrevio, edificio, posicion);
 
             //---------------------------------
 

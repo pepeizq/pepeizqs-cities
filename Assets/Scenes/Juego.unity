@@ -10049,6 +10049,7 @@ MonoBehaviour:
   arboles:
   - {fileID: 114580379238428524, guid: 86aa7d557c9e4a945902b0c355401665, type: 3}
   - {fileID: 114364999152907770, guid: 9ec33247f98faee49819ca143c662e4e, type: 3}
+  colisiones: {fileID: 491194813}
 --- !u!114 &491194801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10344,7 +10345,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0f1f76d9896e1447bdef307fe11a2c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  edificioVacio: {fileID: 114719743380459958, guid: 3f48d98e38cd5db40a4ea6532f118478,
+  "edificioVacioA\xF1adir": {fileID: 114719743380459958, guid: 3f48d98e38cd5db40a4ea6532f118478,
+    type: 3}
+  edificioVacioDetectar: {fileID: 114719743380459958, guid: 0d1464d927c077141a544e705434a1cf,
     type: 3}
 --- !u!1 &504080354
 GameObject:
