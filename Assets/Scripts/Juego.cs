@@ -150,8 +150,17 @@ public class Juego : MonoBehaviour {
     {
         sonidoBoton.Play();
 
-        ciudad.Dinero = 2000000;
-        //ciudad.Dinero = 500;
+        if (PlayerPrefs.GetString("modoFacil") == "false")
+        {
+            ciudad.Dinero = 500;
+            ciudad.ModoFacil = false;
+        }
+        else
+        {
+            ciudad.Dinero = 2000000;
+            ciudad.ModoFacil = true;
+        }
+                  
         ciudad.PoblacionActual = 0f;
         ciudad.PoblacionTope = 0f;
         ciudad.TrabajosActual = 0;
@@ -679,6 +688,7 @@ public class Juego : MonoBehaviour {
             //camara.transform.Rotate(new Vector3(guardado.camaraRotacionX, guardado.camaraRotacionY, guardado.camaraRotacionZ));
 
             ciudad.Dinero = partida.dinero;
+            ciudad.ModoFacil = partida.modoFacil;
             ciudad.PoblacionActual = partida.poblacionActual;
             ciudad.PoblacionTope = partida.poblacionTope;
             ciudad.TrabajosActual = partida.trabajosActual;
@@ -757,6 +767,7 @@ public class Juego : MonoBehaviour {
         guardado.hora = diaNoche.arranqueDia;
 
         guardado.dinero = ciudad.Dinero;
+        guardado.modoFacil = ciudad.ModoFacil;
         guardado.poblacionActual = ciudad.PoblacionActual;
         guardado.poblacionTope = ciudad.PoblacionTope;
         guardado.trabajosActual = ciudad.TrabajosActual;

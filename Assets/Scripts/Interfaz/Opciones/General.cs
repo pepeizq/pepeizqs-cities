@@ -20,6 +20,7 @@ namespace Interfaz.Opciones2
         public Sprite botonSonidoNoSprite;
 
         public Toggle toggleAyuda;
+        public Toggle toggleModoFacil;
         public Dropdown dpPantalla;
         public Dropdown dpResoluciones;
 
@@ -79,6 +80,25 @@ namespace Interfaz.Opciones2
                 else
                 {
                     toggleAyuda.isOn = false;
+                }
+            }
+
+            //-----------------------------------------------------------
+
+            if (PlayerPrefs.HasKey("modoFacil") == false)
+            {
+                PlayerPrefs.SetString("modoFacil", "false");
+                toggleModoFacil.isOn = false;
+            }
+            else
+            {
+                if (PlayerPrefs.GetString("modoFacil") == "true")
+                {
+                    toggleModoFacil.isOn = true;
+                }
+                else
+                {
+                    toggleModoFacil.isOn = false;
                 }
             }
 
@@ -147,6 +167,20 @@ namespace Interfaz.Opciones2
             else
             {
                 PlayerPrefs.SetString("ayuda", "false");
+            }
+        }
+
+        public void ActivarModoFacil()
+        {
+            sonidoBoton.Play();
+
+            if (toggleModoFacil.isOn == true)
+            {
+                PlayerPrefs.SetString("modoFacil", "true");
+            }
+            else
+            {
+                PlayerPrefs.SetString("modoFacil", "false");
             }
         }
 

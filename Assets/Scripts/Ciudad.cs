@@ -22,6 +22,7 @@ public class Ciudad : MonoBehaviour {
     public int TrabajosActual { get; set; }
     public int TrabajosTope { get; set; }
     public float Comida { get; set; }
+    public bool ModoFacil { get; set; }
 
     public void ActualizarUI(bool nuevaHora)
     {
@@ -59,19 +60,22 @@ public class Ciudad : MonoBehaviour {
         if (PoblacionActual > 0)
         {
             TrabajosActual = Mathf.Min((int)PoblacionActual, TrabajosTope);
-        }      
+        }
 
-        if (TrabajosActual >= 100 && TrabajosActual < 500)
+        if (ModoFacil == false)
         {
-            Steam.Logros("pepeizqcities6");
-        }
-        else if (TrabajosActual >= 500 && TrabajosActual < 1000)
-        {
-            Steam.Logros("pepeizqcities7");
-        }
-        else if (TrabajosActual >= 1000)
-        {
-            Steam.Logros("pepeizqcities8");
+            if (TrabajosActual >= 100 && TrabajosActual < 500)
+            {
+                Steam.Logros("pepeizqcities6");
+            }
+            else if (TrabajosActual >= 500 && TrabajosActual < 1000)
+            {
+                Steam.Logros("pepeizqcities7");
+            }
+            else if (TrabajosActual >= 1000)
+            {
+                Steam.Logros("pepeizqcities8");
+            }
         }
     }
 
@@ -105,18 +109,21 @@ public class Ciudad : MonoBehaviour {
             Dinero = Dinero + (int)montanteFinal;
         }
 
-        if (montanteFinal >= 100 && montanteFinal < 1000)
+        if (ModoFacil == false)
         {
-            Steam.Logros("pepeizqcities3");
-        }
-        else if (montanteFinal >= 1000 && montanteFinal < 10000)
-        {
-            Steam.Logros("pepeizqcities4");
-        }
-        else if (montanteFinal >= 10000)
-        {
-            Steam.Logros("pepeizqcities5");
-        }
+            if (montanteFinal >= 100 && montanteFinal < 1000)
+            {
+                Steam.Logros("pepeizqcities3");
+            }
+            else if (montanteFinal >= 1000 && montanteFinal < 10000)
+            {
+                Steam.Logros("pepeizqcities4");
+            }
+            else if (montanteFinal >= 10000)
+            {
+                Steam.Logros("pepeizqcities5");
+            }
+        }         
     }
 
     public void DepositoDinero(int cantidad)
@@ -180,17 +187,20 @@ public class Ciudad : MonoBehaviour {
             }          
         }
 
-        if (PoblacionActual >= 100 && PoblacionActual < 500)
+        if (ModoFacil == false)
         {
-            Steam.Logros("pepeizqcities9");
-        }
-        else if (PoblacionActual >= 500 && PoblacionActual < 1000)
-        {
-            Steam.Logros("pepeizqcities10");
-        }
-        else if (PoblacionActual >= 1000)
-        {
-            Steam.Logros("pepeizqcities11");
+            if (PoblacionActual >= 100 && PoblacionActual < 500)
+            {
+                Steam.Logros("pepeizqcities9");
+            }
+            else if (PoblacionActual >= 500 && PoblacionActual < 1000)
+            {
+                Steam.Logros("pepeizqcities10");
+            }
+            else if (PoblacionActual >= 1000)
+            {
+                Steam.Logros("pepeizqcities11");
+            }
         }
     }
 }
