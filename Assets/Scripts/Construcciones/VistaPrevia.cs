@@ -10,9 +10,12 @@ namespace Construcciones
 
         public void AñadirConstruccion(Construccion edificio, Vector3 posicion)
         {
-            foreach (Light luz in edificio.gameObject.GetComponentsInChildren<Light>())
+            if (edificio.gameObject.GetComponentsInChildren<Light>().Length > 0)
             {
-                luz.intensity = 0;
+                foreach (Light luz in edificio.gameObject.GetComponentsInChildren<Light>())
+                {
+                    luz.intensity = 0;
+                }
             }
 
             edificio.GetComponent<Renderer>().receiveShadows = false;

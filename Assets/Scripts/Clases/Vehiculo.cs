@@ -29,11 +29,15 @@ public class Vehiculo : MonoBehaviour
     private bool poderRotar;
     private float contadorRotar = 0.0f;
 
+    [HideInInspector]
+    public bool semaforoRojo;
+
     private void Start()
     {
         estado = true;
         movimiento = true;
         poderRotar = true;
+        semaforoRojo = false;
 
         carreteras.Clear();
 
@@ -43,7 +47,17 @@ public class Vehiculo : MonoBehaviour
             {
                 if (subedificio.categoria == 1)
                 {
-                    carreteras.Add(subedificio);
+                    bool añadir = true;
+
+                    if (subedificio.id == 10 || subedificio.id == 11)
+                    {
+                        añadir = false;
+                    }
+
+                    if (añadir == true)
+                    {
+                        carreteras.Add(subedificio);
+                    }                  
                 }              
             }
         }
@@ -51,7 +65,7 @@ public class Vehiculo : MonoBehaviour
 
     private void Update()
     {
-        if (movimiento == true)
+        if (movimiento == true && semaforoRojo == false)
         {
             if (direccion == "x+")
             {
@@ -235,11 +249,11 @@ public class Vehiculo : MonoBehaviour
         {
             if (luzRojaSemaforo.intensity == 0f)
             {
-                movimiento = true;
+                semaforoRojo = false;
             }
             else
             {
-                movimiento = false;
+                semaforoRojo = true;
             }
         }
 
@@ -254,15 +268,29 @@ public class Vehiculo : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerStay(Collider colision)
     {
-        Construccion carretera = other.gameObject.GetComponent<Construccion>();
+        Construccion carretera = colision.gameObject.GetComponent<Construccion>();
 
         if (carretera != null)
         {
             if (carretera.categoria == 1)
             {
                 enCarretera = true;
+            }
+        }
+
+        luzRojaSemaforo = colision.gameObject.GetComponent<Light>();
+
+        if (luzRojaSemaforo != null)
+        {
+            if (luzRojaSemaforo.intensity == 0f)
+            {
+                semaforoRojo = false;
+            }
+            else
+            {
+                semaforoRojo = true;
             }
         }
     }

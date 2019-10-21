@@ -1832,8 +1832,8 @@ MonoBehaviour:
   rotacionAdicional: 0
   posicionX: 0
   posicionZ: 0
-  luzIntesidad: 0
-  luzRango: 0
+  luzIntesidad: 1
+  luzRango: 2
 --- !u!65 &3166151550103392415
 BoxCollider:
   m_ObjectHideFlags: 0
