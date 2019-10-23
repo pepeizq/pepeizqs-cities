@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Vehiculos : MonoBehaviour
 {
-    public Construcciones.Construir construir;
+    public Construir construir;
 
     public Vehiculo[] listaVehiculos;
 
@@ -75,7 +75,7 @@ public class Vehiculos : MonoBehaviour
             int vehiculoAzar = Random.Range(0, listaVehiculos.Length);
 
             Vehiculo vehiculo = Instantiate(listaVehiculos[vehiculoAzar], posicion, Quaternion.identity);
-            vehiculo.edificios = Construir.edificios;
+            vehiculo.carreteras = carreteras;
             vehiculo.direccion = direccion;
             vehiculo.id2 = contadorIdsVehiculos;
 

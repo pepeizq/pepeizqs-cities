@@ -23,9 +23,8 @@ public class Vehiculo : MonoBehaviour
     public string direccion;
 
     [HideInInspector]
-    public Construccion[,] edificios;
+    public List<Construccion> carreteras = new List<Construccion>();
 
-    private List<Construccion> carreteras = new List<Construccion>();
     private bool poderRotar;
     private float contadorRotar = 0.0f;
 
@@ -38,29 +37,6 @@ public class Vehiculo : MonoBehaviour
         movimiento = true;
         poderRotar = true;
         semaforoRojo = false;
-
-        carreteras.Clear();
-
-        foreach (Construccion subedificio in edificios)
-        {
-            if (subedificio != null)
-            {
-                if (subedificio.categoria == 1)
-                {
-                    bool añadir = true;
-
-                    if (subedificio.id == 10 || subedificio.id == 11)
-                    {
-                        añadir = false;
-                    }
-
-                    if (añadir == true)
-                    {
-                        carreteras.Add(subedificio);
-                    }                  
-                }              
-            }
-        }
     }
 
     private void Update()
