@@ -156,13 +156,14 @@ namespace Interfaz
         public void CursorEntra(PointerEventData eventData, GameObject panel)
         {
             cursores.Entra();
-            panel.gameObject.GetComponent<Image>().color = new Color(255f, 255f, 255f, 140f / 255f);
+            panel.gameObject.GetComponent<Image>().color = new Color(167f, 177f, 219f, 255f / 255f);
+            Debug.Log("yolo");
         }
 
         public void CursorSale(PointerEventData eventData, GameObject panel)
         {
             cursores.Sale();
-            panel.gameObject.GetComponent<Image>().color = new Color(255f, 255f, 255f, 100f / 255f);
+            panel.gameObject.GetComponent<Image>().color = new Color(255f, 255f, 255f, 255f / 255f);
         }
     }
 }

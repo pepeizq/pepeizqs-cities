@@ -144,8 +144,6 @@ public class Vehiculo : MonoBehaviour
             contadorCarretera = 0;
         }
 
-
-
         //--------------------------------------------------
 
         if (luzRojaSemaforo != null)
