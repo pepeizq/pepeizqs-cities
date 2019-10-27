@@ -27,6 +27,10 @@ namespace Interfaz
         public Scrollbar scrollbar;
 
         public Panel panelPartidas;
+        public Panel panelPartidas2;
+
+        public Material material1;
+        public Material material2;
 
         public void Volver()
         {
@@ -76,6 +80,7 @@ namespace Interfaz
                     alturaPartidas += 40;
 
                     Button botonCargar = panelObjeto.transform.GetChild(0).transform.GetComponent<Button>();
+                    botonCargar.onClick.AddListener(() => CargarPartidaSeleccionada(partidaGuardada));
 
                     Panel subpanelBoton = botonCargar.transform.GetChild(0).transform.GetComponent<Panel>();
 
@@ -89,27 +94,6 @@ namespace Interfaz
 
                     Button botonBorrar = panelObjeto.transform.GetChild(1).transform.GetComponent<Button>();
                     botonBorrar.onClick.AddListener(() => BorrarPartidaSeleccionada(partidaGuardada));
-
-                    //-------------------------------------
-
-                    botonCargar.onClick.AddListener(() => CargarPartidaSeleccionada(partidaGuardada));
-
-                    EventTrigger evento = panelObjeto.AddComponent<EventTrigger>();
-                    EventTrigger.Entry pointerEnter = new EventTrigger.Entry
-                    {
-                        eventID = EventTriggerType.PointerEnter
-                    };
-
-                    pointerEnter.callback.AddListener((data) => { CursorEntra((PointerEventData)data, panelObjeto); });
-                    evento.triggers.Add(pointerEnter);
-
-                    EventTrigger.Entry pointerExit = new EventTrigger.Entry
-                    {
-                        eventID = EventTriggerType.PointerExit
-                    };
-
-                    pointerExit.callback.AddListener((data) => { CursorSale((PointerEventData)data, panelObjeto); });
-                    evento.triggers.Add(pointerExit);
                 }
 
                 if (alturaPartidas > 299)
@@ -128,6 +112,9 @@ namespace Interfaz
                 }
 
                 rtPartidas.sizeDelta = new Vector2(rtPartidas.sizeDelta.x, alturaPartidas);
+
+                panelPartidas2.gameObject.GetComponent<ScrollRect>().content = panelPartidas.GetComponent<RectTransform>();
+                panelPartidas2.gameObject.GetComponent<ScrollRect>().normalizedPosition = new Vector2(0, 1);
             }
         }
 
@@ -151,19 +138,6 @@ namespace Interfaz
         {
             partidas.BorrarPartida(partida.id);
             CargarListado();
-        }
-
-        public void CursorEntra(PointerEventData eventData, GameObject panel)
-        {
-            cursores.Entra();
-            panel.gameObject.GetComponent<Image>().color = new Color(167f, 177f, 219f, 255f / 255f);
-            Debug.Log("yolo");
-        }
-
-        public void CursorSale(PointerEventData eventData, GameObject panel)
-        {
-            cursores.Sale();
-            panel.gameObject.GetComponent<Image>().color = new Color(255f, 255f, 255f, 255f / 255f);
         }
     }
 }

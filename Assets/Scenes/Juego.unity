@@ -9071,7 +9071,7 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
+    m_LineSpacing: 1.2
   m_Text: 
 --- !u!1 &464663207
 GameObject:
@@ -10364,6 +10364,9 @@ MonoBehaviour:
   canvas: {fileID: 2016021198}
   scrollbar: {fileID: 808381526}
   panelPartidas: {fileID: 1363204208}
+  panelPartidas2: {fileID: 1307083430}
+  material1: {fileID: 2100000, guid: dc04b59e0e52a344fa95c3884f7578f8, type: 2}
+  material2: {fileID: 2100000, guid: a6a9e374c350d5a4a894936919a9b21f, type: 2}
 --- !u!114 &491194811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16588,7 +16591,7 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
+    m_LineSpacing: 1.2
   m_Text: 
 --- !u!1 &759195941
 GameObject:
@@ -27798,7 +27801,7 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
+    m_LineSpacing: 1.2
   m_Text: 
 --- !u!222 &1386715931
 CanvasRenderer:
