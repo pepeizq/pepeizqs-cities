@@ -1,7 +1,5 @@
-﻿using Construcciones;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Interfaz
@@ -16,9 +14,6 @@ namespace Interfaz
         public Juego juego;
 
         public Escenario escenario;
-
-        [SerializeField]
-        private Construir colocar = null;
 
         public GameObject cargarPartidaPrefab;
 
@@ -121,7 +116,6 @@ namespace Interfaz
         public void CargarPartidaSeleccionada(Guardado partida)
         {
             escenario.PonerTerreno(partida);
-            escenario.PonerArboles(partida, colocar);
             juego.CargarEdificios(partida);
             juego.CargarInterfaz();
 
