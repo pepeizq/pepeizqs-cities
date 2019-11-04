@@ -217,7 +217,7 @@ public class DiaNoche : MonoBehaviour {
         }
         else
         {
-            sol.intensity = 1f - (((segundosDiaTope / 2) - arranqueDia) / (segundosDiaTope / 2) * - 0.8f);
+            sol.intensity = 1f - (((segundosDiaTope / 2) - arranqueDia) / (segundosDiaTope / 2) * - 0.5f);
         }
     }
 
