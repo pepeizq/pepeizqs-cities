@@ -146,11 +146,11 @@ public class Juego : MonoBehaviour {
         //Captura.Generar(edificios[42].gameObject);
     }
 
-    public void NuevaPartida()
+    public void NuevaPartida(bool facil)
     {
         sonidoBoton.Play();
 
-        if (PlayerPrefs.GetString("modoFacil") == "false")
+        if (facil == false)
         {
             ciudad.Dinero = 500;
             ciudad.ModoFacil = false;
