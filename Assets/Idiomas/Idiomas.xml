@@ -13,8 +13,10 @@
         <string name="infoDetails1b">Visit the source code of the game on Github</string>
         <string name="infoDetails2">Look at this website the apps and games created by myself</string>
         <string name="infoDetails3">And if you want to see the latest deals for PC games visit this website</string>
+        <string name="newGameNormalMode">Normal Mode</string>
         <string name="newGameNormalMode1">You will start with a reasonable amount of money</string>
         <string name="newGameNormalMode2">You can get achievements</string>
+        <string name="newGameSandboxMode">Sandbox Mode</string>
         <string name="newGameSandboxMode1">You will start with a gigantic amount of money</string>
         <string name="newGameSandboxMode2">You will not be able to obtain achievements</string>
         <string name="general">General</string>
@@ -85,8 +87,10 @@
         <string name="infoDetails1b">Visita el código fuente del juego en Github</string>
         <string name="infoDetails2">Mira en esta web las apps y juegos creados por mi</string>
         <string name="infoDetails3">Y si quieres ver las últimas ofertas para juegos de PC visita esta web</string>
+        <string name="newGameNormalMode">Modo Normal</string>
         <string name="newGameNormalMode1">Empezarás con una cantidad razonable de dinero</string>
         <string name="newGameNormalMode2">Podrás obtener logros</string>
+        <string name="newGameSandboxMode">Modo Sandbox</string>
         <string name="newGameSandboxMode1">Empezarás con una cantidad gigantesca de dinero</string>
         <string name="newGameSandboxMode2">No podrás obtener logros</string>
         <string name="general">General</string>

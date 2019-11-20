@@ -64,6 +64,9 @@ public class Idiomas : MonoBehaviour {
     public Text opcionesTecladoArrastrarConstruccion;
     public Text opcionesTecladoOcultarInterfaz;
 
+    public Text nuevaPartidaModoNormal;
+    public Text nuevaPartidaModoSandbox;
+
     public Text ayuda1;
     public Text ayuda2;
     public Text ayuda3;
@@ -138,6 +141,9 @@ public class Idiomas : MonoBehaviour {
         opcionesTecladoRotacionEdificioDerecha.text = CogerCadena("keyboardRotateBuildingRight").ToLower();
         opcionesTecladoArrastrarConstruccion.text = CogerCadena("keyboardDragBuilding").ToLower();
         opcionesTecladoOcultarInterfaz.text = CogerCadena("keyboardHideInterface").ToLower();
+
+        nuevaPartidaModoNormal.text = CogerCadena("newGameNormalMode");
+        nuevaPartidaModoSandbox.text = CogerCadena("newGameSandboxMode");
 
         ayuda1.text = CogerCadena("help1");
         ayuda2.text = CogerCadena("help2");
