@@ -10124,10 +10124,10 @@ MonoBehaviour:
   opcionesTecladoRotacionEdificioDerecha: {fileID: 542322732}
   opcionesTecladoArrastrarConstruccion: {fileID: 1072045248}
   opcionesTecladoOcultarInterfaz: {fileID: 1525618721}
-  nuevaPartidaEmpezar: {fileID: 0}
+  nuevaPartidaEmpezar: {fileID: 2003980673}
   nuevaPartidaModoNormal: {fileID: 2043753068}
   nuevaPartidaModoSandbox: {fileID: 13239117}
-  nuevaPartidaAyuda: {fileID: 0}
+  nuevaPartidaAyuda: {fileID: 2038905488}
   ayuda1: {fileID: 318825993}
   ayuda2: {fileID: 1354586149}
   ayuda3: {fileID: 1462241776}
@@ -26314,14 +26314,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 491194795}
         m_MethodName: NuevaPartida
-        m_Mode: 1
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1304861104
 MonoBehaviour:
@@ -32096,7 +32096,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 491194795}
         m_MethodName: NuevaPartida
-        m_Mode: 1
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -39952,7 +39952,7 @@ GameObject:
   - component: {fileID: 2038905489}
   - component: {fileID: 2038905488}
   m_Layer: 0
-  m_Name: Label
+  m_Name: ToggleNuevaPartidaAyudaTexto
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39990,20 +39990,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_Color: {r: 0.043137256, g: 0.1254902, b: 0.16862746, a: 1}
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: ec928676f7b1d8248add729f065ee565, type: 3}
-    m_FontSize: 20
+    m_FontSize: 18
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 16
-    m_MaxSize: 24
+    m_MinSize: 5
+    m_MaxSize: 18
     m_Alignment: 4
-    m_AlignByGeometry: 0
+    m_AlignByGeometry: 1
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
