@@ -30,6 +30,7 @@ public class Juego : MonoBehaviour {
     public KeyCode teclaOcultarInterfaz;
 
     public Interfaz.MenuPrincipal menuPrincipal;
+    public Interfaz.NuevaPartida nuevaPartida;
     public Interfaz.Opciones opciones;
     public Interfaz.Opciones2.General opcionesGeneral;
     public Interfaz.Opciones2.Graficos opcionesGraficos;
@@ -176,6 +177,10 @@ public class Juego : MonoBehaviour {
 
         diaNoche.arranqueDia = 70000;
         diaNoche.contadorDias = 1;
+
+        nuevaPartida.canvas.gameObject.GetComponent<CanvasGroup>().alpha = 0;
+        nuevaPartida.canvas.gameObject.GetComponent<CanvasGroup>().interactable = false;
+        nuevaPartida.canvas.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
 
         CargarInterfaz();
     }
