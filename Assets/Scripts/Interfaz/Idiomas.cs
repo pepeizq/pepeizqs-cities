@@ -34,8 +34,6 @@ public class Idiomas : MonoBehaviour {
     public Text opcionesTeclado;
 
     public Text opcionesIdiomas;
-    public Text opcionesAyuda;
-    public Text opcionesModoFacil;
     public Text opcionesSonido;
     public Text opcionesSonidoVolumen;
     public Text opcionesPantalla;
@@ -114,8 +112,6 @@ public class Idiomas : MonoBehaviour {
         opcionesTeclado.text = CogerCadena("keyboard");
 
         opcionesIdiomas.text = CogerCadena("languages").ToLower();
-        opcionesAyuda.text = CogerCadena("help").ToLower();
-        opcionesModoFacil.text = CogerCadena("easyMode").ToLower();
         opcionesSonido.text = CogerCadena("sound").ToLower();
         opcionesSonidoVolumen.text = CogerCadena("soundVolume").ToLower();
         opcionesPantalla.text = CogerCadena("screen").ToLower();

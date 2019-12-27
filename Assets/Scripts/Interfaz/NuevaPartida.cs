@@ -5,6 +5,8 @@ namespace Interfaz
 {
     public class NuevaPartida : MonoBehaviour
     {
+        public AudioSource sonidoBoton;
+
         public Canvas canvas;
 
         public MenuPrincipal menuPrincipal;
@@ -43,6 +45,20 @@ namespace Interfaz
         {
             texto1.text = null;
             texto2.text = null;
+        }
+
+        public void ActivarAyuda(Toggle ayuda)
+        {
+            sonidoBoton.Play();
+
+            if (ayuda.isOn == true)
+            {
+                PlayerPrefs.SetString("ayuda", "true");
+            }
+            else
+            {
+                PlayerPrefs.SetString("ayuda", "false");
+            }
         }
     }
 }

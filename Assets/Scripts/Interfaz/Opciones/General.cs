@@ -19,8 +19,6 @@ namespace Interfaz.Opciones2
         public Sprite botonSonidoSiSprite;
         public Sprite botonSonidoNoSprite;
 
-        public Toggle toggleAyuda;
-        public Toggle toggleModoFacil;
         public Dropdown dpPantalla;
         public Dropdown dpResoluciones;
 
@@ -63,44 +61,6 @@ namespace Interfaz.Opciones2
             }
 
             sliderVolumen.value = PlayerPrefs.GetFloat("volumen");
-
-            //-----------------------------------------------------------
-
-            if (PlayerPrefs.HasKey("ayuda") == false)
-            {
-                PlayerPrefs.SetString("ayuda", "true");
-                toggleAyuda.isOn = true;
-            }
-            else
-            {
-                if (PlayerPrefs.GetString("ayuda") == "true")
-                {
-                    toggleAyuda.isOn = true;
-                }
-                else
-                {
-                    toggleAyuda.isOn = false;
-                }
-            }
-
-            //-----------------------------------------------------------
-
-            if (PlayerPrefs.HasKey("modoFacil") == false)
-            {
-                PlayerPrefs.SetString("modoFacil", "false");
-                toggleModoFacil.isOn = false;
-            }
-            else
-            {
-                if (PlayerPrefs.GetString("modoFacil") == "true")
-                {
-                    toggleModoFacil.isOn = true;
-                }
-                else
-                {
-                    toggleModoFacil.isOn = false;
-                }
-            }
 
             //-----------------------------------------------------------
 
@@ -153,34 +113,6 @@ namespace Interfaz.Opciones2
                 PlayerPrefs.SetString("sonido", "false");
                 sonidoParar = false;
                 panelVolumen.GetComponent<CanvasGroup>().interactable = false;
-            }
-        }
-
-        public void ActivarAyuda()
-        {
-            sonidoBoton.Play();
-
-            if (toggleAyuda.isOn == true)
-            {
-                PlayerPrefs.SetString("ayuda", "true");
-            }
-            else
-            {
-                PlayerPrefs.SetString("ayuda", "false");
-            }
-        }
-
-        public void ActivarModoFacil()
-        {
-            sonidoBoton.Play();
-
-            if (toggleModoFacil.isOn == true)
-            {
-                PlayerPrefs.SetString("modoFacil", "true");
-            }
-            else
-            {
-                PlayerPrefs.SetString("modoFacil", "false");
             }
         }
 
