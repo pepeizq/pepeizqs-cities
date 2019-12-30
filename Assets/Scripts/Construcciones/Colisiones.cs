@@ -5,11 +5,15 @@ namespace Construcciones
     public class Colisiones : MonoBehaviour
     {
         public Construccion edificioVacioAñadir;
-        public Construccion edificioVacioDetectar;
 
-        public void Añadir(Construccion[,] edificios, Construccion edificio, Vector3 posicion)
+        public void Añadir(Construccion[,] edificios, Construccion edificio, Vector3 posicion, int id)
         {
             posicion.y = 1.5f;
+
+            if (edificioVacioAñadir != null)
+            {
+                edificioVacioAñadir.id2 = id;
+            }
 
             if (edificio.dimensiones.x == 2 && edificio.dimensiones.y == 1)
             {
@@ -230,7 +234,35 @@ namespace Construcciones
             {
                 if (edificios[(int)posicion.x, (int)posicion.z] != null)
                 {
-                    return edificios[(int)posicion.x, (int)posicion.z];
+                    if (edificioVacioAñadir == null)
+                    {
+                        return edificios[(int)posicion.x, (int)posicion.z];
+                    }
+                    else
+                    {
+                        if (edificios[(int)posicion.x, (int)posicion.z].id != 99)
+                        {
+                            //Debug.Log(string.Format("{0} {1}", edificios[(int)posicion.x, (int)posicion.z].id, edificios[(int)posicion.x, (int)posicion.z].id2));
+                            return edificios[(int)posicion.x, (int)posicion.z];
+                        }
+                        else
+                        {
+                            //Debug.Log(string.Format("{0} {1}",edificios[(int)posicion.x, (int)posicion.z].id, edificios[(int)posicion.x, (int)posicion.z].id2));
+                            for (int x = 0; x < edificios.GetLength(0); x++)
+                            {
+                                for (int z = 0; z < edificios.GetLength(1); z++)
+                                {
+                                    if (edificios[x, z] != null)
+                                    {
+                                        if (edificios[x, z].id2 == edificios[(int)posicion.x, (int)posicion.z].id2)
+                                        {
+                                            return edificios[x, z];
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
 
                 return null;
@@ -463,9 +495,6 @@ namespace Construcciones
                     Vector3 posicion9 = posicion;
                     Vector3 posicion10 = posicion;
                     Vector3 posicion11 = posicion;
-
-                    //Debug.Log(edificio.rotacionColocacion);
-                    //Instantiate(edificioVacioDetectar, posicion, Quaternion.identity);
 
                     if ((edificio.rotacionColocacion == -270) || (edificio.rotacionColocacion == -90))
                     {
@@ -888,9 +917,6 @@ namespace Construcciones
                 Vector3 posicion9 = posicion;
                 Vector3 posicion10 = posicion;
                 Vector3 posicion11 = posicion;
-
-                //Debug.Log(edificio.rotacionColocacion);
-                //Instantiate(edificioVacioDetectar, posicion, Quaternion.identity);
 
                 if ((edificio.rotacionColocacion == -270) || (edificio.rotacionColocacion == -90))
                 {

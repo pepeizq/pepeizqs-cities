@@ -250,6 +250,7 @@ public class Juego : MonoBehaviour {
                 {
                     demolerActivar = false;
                     DemolerCambiarColor();
+                    construir.DemolerCambiarColores(0);
                 }
             }
 
@@ -315,7 +316,7 @@ public class Juego : MonoBehaviour {
 
             if (demolerActivar == true)
             {
-                EdificioVistaPreviaQuitar();
+                EdificioVistaPreviaDemoler();
 
                 if (Input.GetMouseButtonDown(0))
                 {
@@ -492,9 +493,9 @@ public class Juego : MonoBehaviour {
                         }
                     }
 
-                    if (edificioSeleccionado != null)
+                    if (accion == 1)
                     {
-                        if (accion == 1)
+                        if (edificioSeleccionado != null)
                         {
                             Construccion edificioEliminar = edificioSeleccionado;
 
@@ -643,7 +644,7 @@ public class Juego : MonoBehaviour {
         }
     }
 
-    void EdificioVistaPreviaQuitar()
+    void EdificioVistaPreviaDemoler()
     {
         Vector3 raton = Posicion.Raton();
 
@@ -654,12 +655,15 @@ public class Juego : MonoBehaviour {
             if (Posicion.Limites(gridPosicion, 100) == true)
             {
                 edificioSeleccionado = construir.ComprobarPosicion(null, gridPosicion);
-                construir.DemolerColorQuitar();
 
                 if (edificioSeleccionado != null)
                 {
-                    construir.DemolerColorRojo(edificioSeleccionado.id2);
+                    construir.DemolerCambiarColores(edificioSeleccionado.id2);
                 }
+                //else
+                //{
+                //    construir.DemolerCambiarColores(0);
+                //}
             }
         }
     }

@@ -29,10 +29,11 @@ namespace Construcciones
             edificioConstruido.posicionX = (int)posicion.x;
             edificioConstruido.posicionZ = (int)posicion.z;
             edificioConstruido.id2 = contadorIdsConstrucciones;
-            contadorIdsConstrucciones += 1;
-
+     
             edificios[(int)posicion.x, (int)posicion.z] = edificioConstruido;
-            colisiones.Añadir(edificios, edificio, posicion);
+            colisiones.Añadir(edificios, edificio, posicion, contadorIdsConstrucciones);
+
+            contadorIdsConstrucciones += 1;
         }
 
         public Construccion ComprobarPosicion(Construccion edificio, Vector3 posicion)
@@ -65,30 +66,24 @@ namespace Construcciones
             return edificios;
         }
 
-        public void DemolerColorRojo(int id2)
-        {
-            foreach (Construccion subedificio in edificios)
-            {
-                if (subedificio != null)
-                {
-                    if (subedificio.id != 99)
-                    {
-                        if (subedificio.id2 == id2)
-                        {
-                            subedificio.gameObject.GetComponent<MeshRenderer>().material.color = new Color(255f / 255f, 98f / 255f, 98f / 255f);
-                        }
-                    }
-                }
-            }
-        }
-
-        public void DemolerColorQuitar()
+        public void DemolerCambiarColores(int id2)
         {
             foreach (Construccion subedificio in edificios)
             {
                 if (subedificio != null)
                 {
                     subedificio.gameObject.GetComponent<MeshRenderer>().material.color = Color.white;
+
+                    if (id2 > 0)
+                    {
+                        if (subedificio.id2 == id2)
+                        {
+                            if (subedificio.gameObject.GetComponent<MeshRenderer>().material.color == Color.white)
+                            {
+                                subedificio.gameObject.GetComponent<MeshRenderer>().material.color = new Color(255f / 255f, 98f / 255f, 98f / 255f);
+                            }
+                        }
+                    }                  
                 }
             }
         }
