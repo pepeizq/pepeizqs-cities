@@ -240,24 +240,15 @@ namespace Construcciones
                     }
                     else
                     {
-                        if (edificios[(int)posicion.x, (int)posicion.z].id != 99)
+                        for (int x = 0; x < edificios.GetLength(0); x++)
                         {
-                            //Debug.Log(string.Format("{0} {1}", edificios[(int)posicion.x, (int)posicion.z].id, edificios[(int)posicion.x, (int)posicion.z].id2));
-                            return edificios[(int)posicion.x, (int)posicion.z];
-                        }
-                        else
-                        {
-                            //Debug.Log(string.Format("{0} {1}",edificios[(int)posicion.x, (int)posicion.z].id, edificios[(int)posicion.x, (int)posicion.z].id2));
-                            for (int x = 0; x < edificios.GetLength(0); x++)
+                            for (int z = 0; z < edificios.GetLength(1); z++)
                             {
-                                for (int z = 0; z < edificios.GetLength(1); z++)
+                                if (edificios[x, z] != null)
                                 {
-                                    if (edificios[x, z] != null)
+                                    if (edificios[x, z].id2 == edificios[(int)posicion.x, (int)posicion.z].id2)
                                     {
-                                        if (edificios[x, z].id2 == edificios[(int)posicion.x, (int)posicion.z].id2)
-                                        {
-                                            return edificios[x, z];
-                                        }
+                                        return edificios[x, z];
                                     }
                                 }
                             }

@@ -655,15 +655,12 @@ public class Juego : MonoBehaviour {
             if (Posicion.Limites(gridPosicion, 100) == true)
             {
                 edificioSeleccionado = construir.ComprobarPosicion(null, gridPosicion);
+                construir.DemolerCambiarColores(0);
 
                 if (edificioSeleccionado != null)
                 {
                     construir.DemolerCambiarColores(edificioSeleccionado.id2);
                 }
-                //else
-                //{
-                //    construir.DemolerCambiarColores(0);
-                //}
             }
         }
     }
