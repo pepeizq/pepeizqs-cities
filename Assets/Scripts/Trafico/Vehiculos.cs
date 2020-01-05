@@ -18,24 +18,8 @@ public class Vehiculos : MonoBehaviour
         contadorIdsVehiculos = 0;
     }
 
-    public void GenerarVehiculo()
+    public void GenerarVehiculo(List<Construccion> carreteras)
     {
-        List<Construccion> carreteras = new List<Construccion>();
-
-        foreach (Construccion subedificio in Construir.edificios)
-        {
-            if (subedificio != null)
-            {
-                if (subedificio.categoria == 1)
-                {
-                    if (subedificio.id == 6 || subedificio.id == 12)
-                    {
-                        carreteras.Add(subedificio);
-                    }
-                }
-            }
-        }
-
         if (carreteras.Count > 0)
         {
             int azarCarretera = Random.Range(0, carreteras.Count);
@@ -75,7 +59,7 @@ public class Vehiculos : MonoBehaviour
             int vehiculoAzar = Random.Range(0, listaVehiculos.Length);
 
             Vehiculo vehiculo = Instantiate(listaVehiculos[vehiculoAzar], posicion, Quaternion.identity);
-            vehiculo.carreteras = carreteras;
+            //vehiculo.carreteras = carreteras;
             vehiculo.direccion = direccion;
             vehiculo.id2 = contadorIdsVehiculos;
 

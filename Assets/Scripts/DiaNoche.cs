@@ -1,4 +1,5 @@
 ﻿using Construcciones;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -132,11 +133,20 @@ public class DiaNoche : MonoBehaviour {
                     if (vehiculos.listaVehiculos.Length > 0)
                     {
                         int cantidadEdificios = 0;
+                        List<Construccion> carreteras = new List<Construccion>();
 
                         foreach (Construccion subedificio in Construir.edificios)
                         {
                             if (subedificio != null)
                             {
+                                if (subedificio.categoria == 1)
+                                {
+                                    if (subedificio.id == 6 || subedificio.id == 12)
+                                    {
+                                        carreteras.Add(subedificio);
+                                    }
+                                }
+
                                 if (subedificio.categoria == 2)
                                 {
                                     cantidadEdificios += 1;
@@ -158,7 +168,7 @@ public class DiaNoche : MonoBehaviour {
                             int i = 0;
                             while (i <= cantidadEdificios)
                             {
-                                vehiculos.GenerarVehiculo();
+                                vehiculos.GenerarVehiculo(carreteras);
                                 i += 1;
                             }
                         }                      
