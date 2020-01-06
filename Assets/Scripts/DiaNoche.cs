@@ -108,7 +108,7 @@ public class DiaNoche : MonoBehaviour {
                 }
             }
 
-            tiempoSemaforos += (Time.deltaTime * segundosDia);
+            tiempoSemaforos += (Time.deltaTime * segundosDia) + Random.Range(1, 1000);
 
             if (tiempoSemaforos > tiempoSemaforosTope)
             {
