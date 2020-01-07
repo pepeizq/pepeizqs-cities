@@ -29,52 +29,67 @@ public class Vehiculos : MonoBehaviour
             Vector3 posicion = carreteras[azarCarretera].gameObject.transform.position;
             posicion.y = 0.51f;
 
-            if (carreteras[azarCarretera].rotacionColocacion == -270 || carreteras[azarCarretera].rotacionColocacion == -90)
+            bool añadir = true;
+
+            foreach (Vehiculo colisionVehiculo in vehiculosGenerados)
             {
+                if (colisionVehiculo != null)
+                {
+                    if (colisionVehiculo.transform.position == posicion)
+                    {
+                        añadir = false;
+                    }
+                }
+            }
+
+            if (añadir == true)
+            {
+                if (carreteras[azarCarretera].rotacionColocacion == -270 || carreteras[azarCarretera].rotacionColocacion == -90)
+                {
+                    if (rotacionAzar == 0)
+                    {
+                        posicion.z = posicion.z - 0.15f;
+                        direccion = "x+";
+                    }
+                    else if (rotacionAzar == 1)
+                    {
+                        posicion.z = posicion.z + 0.15f;
+                        direccion = "x-";
+                    }
+                }
+                else if (carreteras[azarCarretera].rotacionColocacion == -180 || carreteras[azarCarretera].rotacionColocacion == 0)
+                {
+                    if (rotacionAzar == 0)
+                    {
+                        posicion.x = posicion.x + 0.15f;
+                        direccion = "z+";
+                    }
+                    else if (rotacionAzar == 1)
+                    {
+                        posicion.x = posicion.x - 0.15f;
+                        direccion = "z-";
+                    }
+                }
+
+                int vehiculoAzar = Random.Range(0, listaVehiculos.Length);
+
+                Vehiculo vehiculo = Instantiate(listaVehiculos[vehiculoAzar], posicion, Quaternion.identity);
+                vehiculo.direccion = direccion;
+                vehiculo.id2 = contadorIdsVehiculos;
+
+                contadorIdsVehiculos += 1;
+
                 if (rotacionAzar == 0)
                 {
-                    posicion.z = posicion.z - 0.15f;
-                    direccion = "x+";
+                    vehiculo.transform.Rotate(Vector3.up, carreteras[azarCarretera].rotacionColocacion, Space.World);
                 }
                 else if (rotacionAzar == 1)
                 {
-                    posicion.z = posicion.z + 0.15f;
-                    direccion = "x-";
+                    vehiculo.transform.Rotate(Vector3.up, carreteras[azarCarretera].rotacionColocacion - 180, Space.World);
                 }
+
+                vehiculosGenerados.Add(vehiculo);
             }
-            else if (carreteras[azarCarretera].rotacionColocacion == -180 || carreteras[azarCarretera].rotacionColocacion == 0)
-            {
-                if (rotacionAzar == 0)
-                {
-                    posicion.x = posicion.x + 0.15f;
-                    direccion = "z+";
-                }
-                else if (rotacionAzar == 1)
-                {
-                    posicion.x = posicion.x - 0.15f;
-                    direccion = "z-";
-                }
-            }
-
-            int vehiculoAzar = Random.Range(0, listaVehiculos.Length);
-
-            Vehiculo vehiculo = Instantiate(listaVehiculos[vehiculoAzar], posicion, Quaternion.identity);
-            //vehiculo.carreteras = carreteras;
-            vehiculo.direccion = direccion;
-            vehiculo.id2 = contadorIdsVehiculos;
-
-            contadorIdsVehiculos += 1;
-
-            if (rotacionAzar == 0)
-            {
-                vehiculo.transform.Rotate(Vector3.up, carreteras[azarCarretera].rotacionColocacion, Space.World);
-            }
-            else if (rotacionAzar == 1)
-            {
-                vehiculo.transform.Rotate(Vector3.up, carreteras[azarCarretera].rotacionColocacion - 180, Space.World);
-            }
-
-            vehiculosGenerados.Add(vehiculo);
         }
     }
 
@@ -84,11 +99,11 @@ public class Vehiculos : MonoBehaviour
         {
             if (velocidad == 0)
             {
-                vehiculo.movimiento = false;
+                vehiculo.paradaTotal = true;
             }
             else
             {
-                vehiculo.movimiento = true;
+                vehiculo.paradaTotal = false;
             }
         }
     }

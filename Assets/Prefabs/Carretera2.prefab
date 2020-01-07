@@ -39,8 +39,9 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1007650244902262}
   m_Enabled: 1
-  serializedVersion: 9
+  serializedVersion: 10
   m_Type: 2
+  m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 3
   m_Range: 1
@@ -130,8 +131,9 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1089780253105610}
   m_Enabled: 1
-  serializedVersion: 9
+  serializedVersion: 10
   m_Type: 2
+  m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 3
   m_Range: 1
@@ -242,6 +244,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -253,6 +256,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -287,13 +291,13 @@ MonoBehaviour:
   trabajo: 0
   ingresos: 0
   botonImagen: {fileID: 0}
-  luzIntesidad: 3
-  luzRango: 1
   dimensiones: {x: 1, y: 1}
   rotacionColocacion: -180
   rotacionAdicional: 0
   posicionX: 0
   posicionZ: 0
+  luzIntesidad: 3
+  luzRango: 1
 --- !u!65 &8420003478189977869
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -305,7 +309,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.05, z: 1}
+  m_Size: {x: 1.1, y: 0.05, z: 1.1}
   m_Center: {x: 0, y: -0.49, z: 0}
 --- !u!1 &806125986388402335
 GameObject:

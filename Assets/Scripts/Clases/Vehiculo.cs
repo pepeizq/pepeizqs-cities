@@ -3,18 +3,12 @@ using UnityEngine;
 
 public class Vehiculo : MonoBehaviour
 {
-    [HideInInspector]
-    public bool estado;
-
     public int id;
 
     [HideInInspector]
     public int id2;
 
     public int categoria;
-
-    [HideInInspector]
-    public bool movimiento;
 
     private float velocidad = 0.02f;   
     private float contadorParado = 0.0f;
@@ -28,20 +22,71 @@ public class Vehiculo : MonoBehaviour
     private bool poderRotar;
     private float contadorRotar = 0.0f;
 
+    private bool movimiento;
+
     [HideInInspector]
-    public bool semaforoRojo;
+    public bool paradaTotal;
+
+    [HideInInspector]
+    public bool colisionSemaforoRojo;
+
+    private bool colisionOtroVehiculo;
+
+    private bool arrancar;
 
     private void Start()
     {
-        estado = true;
-        movimiento = true;
         poderRotar = true;
-        semaforoRojo = false;
+        movimiento = true;
+        paradaTotal = false;
+        colisionSemaforoRojo = false;
+        colisionOtroVehiculo = false;
+        arrancar = false;
     }
 
     private void Update()
     {
-        if (movimiento == true && semaforoRojo == false)
+        bool parar = false;
+
+        if (movimiento == false)
+        {
+            parar = true;
+        }
+
+        if (colisionOtroVehiculo == true)
+        {
+            parar = true;
+        }
+
+        if (colisionSemaforoRojo == true)
+        {
+            parar = true;
+        }
+
+        if (arrancar == true)
+        {
+            parar = false;
+            arrancar = false;
+        }
+
+        if (paradaTotal == true)
+        {
+            parar = true;
+        }
+
+        if (parar == true)
+        {
+            if (paradaTotal == false)
+            {
+                contadorParado += Time.deltaTime;
+
+                if (contadorParado > 5f)
+                {
+                    arrancar = true;
+                }
+            }
+        }
+        else
         {
             if (direccion == "x+")
             {
@@ -60,16 +105,8 @@ public class Vehiculo : MonoBehaviour
                 transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - velocidad);
             }
         }
-        else
-        {
-            contadorCarretera = 0;
-            contadorParado += Time.deltaTime;
 
-            if (contadorParado > 10f)
-            {
-                //Destroy(gameObject);
-            }
-        }
+        //--------------------------------------------------
 
         if (poderRotar == false)
         {
@@ -84,64 +121,9 @@ public class Vehiculo : MonoBehaviour
 
         //--------------------------------------------------
 
-        //bool destruir = true;
-
-        //foreach (Construccion carretera in carreteras)
-        //{
-        //    if (direccion == "x+")
-        //    {
-        //        if ((transform.position.x >= carretera.posicionX) && (transform.position.x <= carretera.posicionX + 1) && (transform.position.z <= carretera.posicionZ) && (transform.position.z >= carretera.posicionZ - 1))
-        //        {
-        //            destruir = false;
-        //            break;
-        //        }
-        //    }
-        //    else if (direccion == "z+")
-        //    {
-        //        if ((transform.position.z >= carretera.posicionZ) && (transform.position.z <= carretera.posicionZ + 1) && (transform.position.x >= carretera.posicionX) && (transform.position.x <= carretera.posicionX + 1))
-        //        {
-        //            destruir = false;
-        //            break;
-        //        }
-        //    }
-        //    else if (direccion == "x-")
-        //    {
-        //        if ((transform.position.x <= carretera.posicionX) && (transform.position.x >= carretera.posicionX - 1) && (transform.position.z >= carretera.posicionZ) && (transform.position.z <= carretera.posicionZ + 1))
-        //        {
-        //            destruir = false;
-        //            break;
-        //        }
-        //    }
-        //    else if (direccion == "z-")
-        //    {
-        //        if ((transform.position.z <= carretera.posicionZ) && (transform.position.z >= carretera.posicionZ - 1) && (transform.position.x >= carretera.posicionX) && (transform.position.x >= carretera.posicionX + 1))
-        //        {
-        //            destruir = false;
-        //            break;
-        //        }
-        //    }
-        //}
-
-        //if (destruir == true)
-        //{
-        //    Destroy(gameObject);
-        //    estado = false;
-        //}
-
         if (enCarretera == false)
         {
-            contadorCarretera += Time.deltaTime;
-
-            if (contadorCarretera > 0.1f && enCarretera == false)
-            {
-                Destroy(gameObject);
-                estado = false;
-                contadorCarretera = 0;
-            }
-        }
-        else if (enCarretera == true)
-        {
-            contadorCarretera = 0;
+            Destroy(gameObject);
         }
 
         //--------------------------------------------------
@@ -160,7 +142,6 @@ public class Vehiculo : MonoBehaviour
     }
 
     private bool enCarretera;
-    private float contadorCarretera;
     private Light luzRojaSemaforo;
     private Vehiculo otroVehiculo;
 
@@ -223,11 +204,11 @@ public class Vehiculo : MonoBehaviour
         {
             if (luzRojaSemaforo.intensity == 0f)
             {
-                semaforoRojo = false;
+                colisionSemaforoRojo = false;
             }
             else
             {
-                semaforoRojo = true;
+                colisionSemaforoRojo = true;
             }
         }
 
@@ -237,8 +218,7 @@ public class Vehiculo : MonoBehaviour
 
         if (otroVehiculo != null)
         {
-            Destroy(otroVehiculo.gameObject);
-            estado = false;
+            colisionOtroVehiculo = true;
         }
     }
 
@@ -260,11 +240,11 @@ public class Vehiculo : MonoBehaviour
         {
             if (luzRojaSemaforo.intensity == 0f)
             {
-                semaforoRojo = false;
+                colisionSemaforoRojo = false;
             }
             else
             {
-                semaforoRojo = true;
+                colisionSemaforoRojo = true;
             }
         }
     }
@@ -288,6 +268,7 @@ public class Vehiculo : MonoBehaviour
 
         if (otroVehiculo != null)
         {
+            colisionOtroVehiculo = false;
             otroVehiculo = null;
         }
     }

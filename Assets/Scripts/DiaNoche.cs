@@ -52,7 +52,7 @@ public class DiaNoche : MonoBehaviour {
     private int accionSemaforos = 0;
 
     private float tiempoVehiculos = 0;
-    private float tiempoVehiculosTope = 2000;
+    private float tiempoVehiculosTope = 150000;
 
     public Vehiculos vehiculos;
 
@@ -82,7 +82,9 @@ public class DiaNoche : MonoBehaviour {
             {
                 segundosDia = velocidad2;
             }
-   
+
+            //-------------------------------------------
+
             arranqueDia += (Time.deltaTime * segundosDia);
 
             if (arranqueDia > segundosDiaTope)
@@ -108,7 +110,9 @@ public class DiaNoche : MonoBehaviour {
                 }
             }
 
-            tiempoSemaforos += (Time.deltaTime * segundosDia) + Random.Range(1, 1000);
+            //-------------------------------------------
+
+            tiempoSemaforos += (Time.deltaTime * segundosDia);
 
             if (tiempoSemaforos > tiempoSemaforosTope)
             {
@@ -122,7 +126,9 @@ public class DiaNoche : MonoBehaviour {
                 }
             }
 
-            tiempoVehiculos += (Time.deltaTime * segundosDia);
+            //-------------------------------------------
+
+            tiempoVehiculos += (Time.deltaTime * segundosDia) + Random.Range(1, 1000);
 
             if (tiempoVehiculos > tiempoVehiculosTope)
             {
@@ -156,15 +162,8 @@ public class DiaNoche : MonoBehaviour {
 
                         if (cantidadEdificios > 0)
                         {
-                            if (cantidadEdificios > 10)
-                            {
-                                cantidadEdificios = cantidadEdificios / 4;
-                            }
-                            else
-                            {
-                                cantidadEdificios = cantidadEdificios / 2;
-                            }
-                            
+                            cantidadEdificios = Random.Range(1, cantidadEdificios);
+
                             int i = 0;
                             while (i <= cantidadEdificios)
                             {
