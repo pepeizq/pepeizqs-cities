@@ -32,6 +32,6 @@ public class Construccion : MonoBehaviour
     [HideInInspector]
     public int posicionZ;
 
-    public float luzIntesidad;
+    public float luzIntesidad; 
     public float luzRango;
 }
