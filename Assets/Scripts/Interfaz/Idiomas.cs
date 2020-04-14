@@ -15,7 +15,6 @@ public class Idiomas : MonoBehaviour {
     public Text menuPrincipalContinuarPartida;
     public Text menuPrincipalCargarPartida;
     public Text menuPrincipalSalir;
-    public Text menuPrincipalAviso;
 
     public Text cargarPartidaVolver;
 
@@ -93,7 +92,6 @@ public class Idiomas : MonoBehaviour {
         menuPrincipalContinuarPartida.text = CogerCadena("continueGame").ToLower();
         menuPrincipalCargarPartida.text = CogerCadena("loadGame").ToLower();
         menuPrincipalSalir.text = CogerCadena("exitGame").ToLower();
-        menuPrincipalAviso.text = CogerCadena("warning");
 
         cargarPartidaVolver.text = CogerCadena("back");
 

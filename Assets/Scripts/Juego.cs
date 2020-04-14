@@ -215,7 +215,6 @@ public class Juego : MonoBehaviour {
         panelEdificios2.Arranque(edificios);
 
         construirActivar = false;
-        ConstruirCambiarColor();
 
         demolerActivar = false;
         DemolerCambiarColor();
@@ -238,7 +237,6 @@ public class Juego : MonoBehaviour {
                 if (construirActivar == true)
                 {
                     construirActivar = false;
-                    ConstruirCambiarColor();
                     ConstruirOcultarPanelEdificios();
                     vistaPrevia.QuitarTodosEdificios();
 
@@ -398,30 +396,6 @@ public class Juego : MonoBehaviour {
         }
 
         panelEdificios2.ConstruirMostrarPanel(panelCarreteras);
-    }
-
-    public void ConstruirRatonEntra()
-    {
-        if (construirActivar == false)
-        {
-            panelConstruirSub.gameObject.GetComponent<Image>().color = new Color(118f / 255f, 118f / 255f, 118f / 255f, 255f);
-        }
-        else
-        {
-            panelConstruirSub.gameObject.GetComponent<Image>().color = new Color(255f, 255f, 255f, 50f / 255f);
-        }
-    }
-
-    public void ConstruirCambiarColor()
-    {
-        if (construirActivar == true)
-        {
-            panelConstruirSub.gameObject.GetComponent<Image>().color = new Color(118f / 255f, 118f / 255f, 118f / 255f, 255f);
-        }
-        else
-        {
-            panelConstruirSub.gameObject.GetComponent<Image>().color = new Color(255f, 255f, 255f, 50f / 255f);
-        }
     }
 
     public void ConstruirOcultarPanelEdificios()
@@ -594,7 +568,6 @@ public class Juego : MonoBehaviour {
         sonidoBoton.Play();
 
         construirActivar = false;
-        ConstruirCambiarColor();
         ConstruirOcultarPanelEdificios();
 
         vistaPrevia.QuitarTodosEdificios();
