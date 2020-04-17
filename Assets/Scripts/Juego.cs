@@ -217,7 +217,6 @@ public class Juego : MonoBehaviour {
         construirActivar = false;
 
         demolerActivar = false;
-        DemolerCambiarColor();
 
         musicaFondo.loop = true;
         musicaFondo.Play();   
@@ -247,7 +246,6 @@ public class Juego : MonoBehaviour {
                 if (demolerActivar == true)
                 {
                     demolerActivar = false;
-                    DemolerCambiarColor();
                     construir.DemolerCambiarColores(0);
                 }
             }
@@ -359,7 +357,6 @@ public class Juego : MonoBehaviour {
         sonidoBoton.Play();
 
         demolerActivar = false;
-        DemolerCambiarColor();
 
         vistaPrevia.QuitarTodosEdificios();
         menuJuego.CerrarPanel();
@@ -373,27 +370,16 @@ public class Juego : MonoBehaviour {
             construirActivar = true;
         }
 
-        if (construirActivar == true)
-        {
-            panelConstruirSub.gameObject.GetComponent<Image>().color = new Color(118f / 255f, 118f / 255f, 118f / 255f, 255f);
-        }
-        else
-        {
-            panelConstruirSub.gameObject.GetComponent<Image>().color = new Color(255f, 255f, 255f, 50f / 255f);
-        }
+        //if (construirActivar == true)
+        //{
+        //    panelConstruirSub.gameObject.GetComponent<Image>().color = new Color(118f / 255f, 118f / 255f, 118f / 255f, 255f);
+        //}
+        //else
+        //{
+        //    panelConstruirSub.gameObject.GetComponent<Image>().color = new Color(255f, 255f, 255f, 50f / 255f);
+        //}
 
-        if (panelEdificios.gameObject.GetComponent<CanvasGroup>().alpha == 0)
-        {
-            panelEdificios.gameObject.GetComponent<CanvasGroup>().alpha = 1;
-            panelEdificios.gameObject.GetComponent<CanvasGroup>().interactable = true;
-            panelEdificios.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
-        }
-        else
-        {
-            panelEdificios.gameObject.GetComponent<CanvasGroup>().alpha = 0;
-            panelEdificios.gameObject.GetComponent<CanvasGroup>().interactable = false;
-            panelEdificios.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
-        }
+       
 
         panelEdificios2.ConstruirMostrarPanel(panelCarreteras);
     }
@@ -408,7 +394,6 @@ public class Juego : MonoBehaviour {
     public void ConstruirSeleccionarEdificio(int edificio)
     {
         demolerActivar = false;
-        DemolerCambiarColor();
 
         construirActivar = true;
         ConstruirOcultarPanelEdificios();
@@ -605,18 +590,6 @@ public class Juego : MonoBehaviour {
         }
     }
 
-    public void DemolerCambiarColor()
-    {
-        if (demolerActivar == true)
-        {
-            panelDemolerSub.gameObject.GetComponent<Image>().color = new Color(255f / 255f, 98f / 255f, 98f / 255f, 255f);
-        }
-        else
-        {
-            panelDemolerSub.gameObject.GetComponent<Image>().color = new Color(255f, 255f, 255f, 50f / 255f);
-        }
-    }
-
     void EdificioVistaPreviaDemoler()
     {
         Vector3 raton = Posicion.Raton();
@@ -628,7 +601,7 @@ public class Juego : MonoBehaviour {
             if (Posicion.Limites(gridPosicion, 100) == true)
             {
                 edificioSeleccionado = construir.ComprobarPosicion(null, gridPosicion);
-                construir.DemolerCambiarColores(0);
+                //construir.DemolerCambiarColores(0);
 
                 if (edificioSeleccionado != null)
                 {

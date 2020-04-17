@@ -72,5 +72,4 @@ namespace Interfaz
             Application.Quit();
         }
     }
-
 }
