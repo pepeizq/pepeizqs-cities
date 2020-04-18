@@ -17,27 +17,19 @@ namespace Interfaz.Juego2
                 panelConstruir.gameObject.GetComponent<Image>().color = new Color(60f / 255f, 60f / 255f, 60f / 255f, 255f);
             }
 
+            if (panelEdificios.gameObject.GetComponent<CanvasGroup>().alpha == 0)
+            {
+                panelEdificios.gameObject.GetComponent<CanvasGroup>().alpha = 1;
+                panelEdificios.gameObject.GetComponent<CanvasGroup>().interactable = true;
+                panelEdificios.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
+            }
+
             Animator animacion = panelEdificios.GetComponent<Animator>();
 
             if (animacion != null)
             {
-                bool abierto = animacion.GetBool("abierto");
-
-                animacion.SetBool("abierto", !abierto);
+                animacion.Play("PanelEdificiosTipoAbrir", 0, 1f);
             }
-
-            //if (panelEdificios.gameObject.GetComponent<CanvasGroup>().alpha == 0)
-            //{
-            //    panelEdificios.gameObject.GetComponent<CanvasGroup>().alpha = 1;
-            //    panelEdificios.gameObject.GetComponent<CanvasGroup>().interactable = true;
-            //    panelEdificios.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
-            //}
-            //else
-            //{
-            //    panelEdificios.gameObject.GetComponent<CanvasGroup>().alpha = 0;
-            //    panelEdificios.gameObject.GetComponent<CanvasGroup>().interactable = false;
-            //    panelEdificios.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
-            //}
         }
 
         public void RatonEntra()

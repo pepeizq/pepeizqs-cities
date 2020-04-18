@@ -2,7 +2,7 @@
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace Interfaz
+namespace Interfaz.Juego2
 {
     public class Edificios : MonoBehaviour
     {
