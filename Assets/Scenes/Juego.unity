@@ -5428,6 +5428,7 @@ GameObject:
   - component: {fileID: 303482651}
   - component: {fileID: 303482650}
   - component: {fileID: 303482653}
+  - component: {fileID: 303482654}
   m_Layer: 5
   m_Name: BotonIndustria
   m_TagString: Untagged
@@ -5473,7 +5474,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
@@ -5562,13 +5563,13 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 491194793}
-          m_MethodName: CursorEntraEdificioSuperior
-          m_Mode: 3
+        - m_Target: {fileID: 1121589927}
+          m_MethodName: RatonEntraBotonIndustria
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 4
+            m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
@@ -5577,17 +5578,31 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 491194793}
-          m_MethodName: CursorSaleEdificioSuperior
-          m_Mode: 3
+        - m_Target: {fileID: 1121589927}
+          m_MethodName: RatonSaleBoton
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 4
+            m_ObjectArgument: {fileID: 303482654}
+            m_ObjectArgumentAssemblyTypeName: Panel, Assembly-CSharp
+            m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &303482654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 303482648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0adcd1a31e4f0c44b86fb90b8913f3dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nombre: industria
+  volverColor: 0
 --- !u!1 &312481419
 GameObject:
   m_ObjectHideFlags: 0
@@ -8250,6 +8265,7 @@ GameObject:
   - component: {fileID: 422088125}
   - component: {fileID: 422088124}
   - component: {fileID: 422088127}
+  - component: {fileID: 422088128}
   m_Layer: 5
   m_Name: BotonCarreteras
   m_TagString: Untagged
@@ -8295,7 +8311,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
@@ -8384,9 +8400,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 491194793}
-          m_MethodName: CursorEntraEdificioSuperior
-          m_Mode: 3
+        - m_Target: {fileID: 1121589927}
+          m_MethodName: RatonEntraBotonCarreteras
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -8399,17 +8415,31 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 491194793}
-          m_MethodName: CursorSaleEdificioSuperior
-          m_Mode: 3
+        - m_Target: {fileID: 1121589927}
+          m_MethodName: RatonSaleBoton
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 422088128}
+            m_ObjectArgumentAssemblyTypeName: Panel, Assembly-CSharp
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &422088128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 422088122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0adcd1a31e4f0c44b86fb90b8913f3dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nombre: carreteras
+  volverColor: 0
 --- !u!1 &425938248
 GameObject:
   m_ObjectHideFlags: 0
@@ -14123,6 +14153,7 @@ GameObject:
   - component: {fileID: 601687784}
   - component: {fileID: 601687783}
   - component: {fileID: 601687786}
+  - component: {fileID: 601687787}
   m_Layer: 5
   m_Name: BotonDecoracion
   m_TagString: Untagged
@@ -14168,7 +14199,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
@@ -14257,13 +14288,13 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 491194793}
-          m_MethodName: CursorEntraEdificioSuperior
-          m_Mode: 3
+        - m_Target: {fileID: 1121589927}
+          m_MethodName: RatonEntraBotonDecoracion
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 5
+            m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
@@ -14272,17 +14303,31 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 491194793}
-          m_MethodName: CursorSaleEdificioSuperior
-          m_Mode: 3
+        - m_Target: {fileID: 1121589927}
+          m_MethodName: RatonSaleBoton
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 5
+            m_ObjectArgument: {fileID: 601687787}
+            m_ObjectArgumentAssemblyTypeName: Panel, Assembly-CSharp
+            m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &601687787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 601687781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0adcd1a31e4f0c44b86fb90b8913f3dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nombre: decoracion
+  volverColor: 0
 --- !u!1 &613313299
 GameObject:
   m_ObjectHideFlags: 0
@@ -23270,8 +23315,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e67fb7c070da6c3459c8c5eb1ab8ac34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panelConstruir: {fileID: 1885394533}
-  panelEdificios: {fileID: 65544735}
+  botonConstruir: {fileID: 1885394533}
+  panelEdificiosTipo: {fileID: 65544735}
+  botonCarreteras: {fileID: 422088128}
+  botonPoblacion: {fileID: 1384727334}
+  botonComida: {fileID: 1672579457}
+  botonTiendas: {fileID: 1970140918}
+  botonIndustria: {fileID: 303482654}
+  botonDecoracion: {fileID: 601687787}
 --- !u!224 &1121589928
 RectTransform:
   m_ObjectHideFlags: 0
@@ -29148,6 +29199,7 @@ GameObject:
   - component: {fileID: 1384727331}
   - component: {fileID: 1384727330}
   - component: {fileID: 1384727333}
+  - component: {fileID: 1384727334}
   m_Layer: 5
   m_Name: BotonPoblacion
   m_TagString: Untagged
@@ -29193,7 +29245,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
@@ -29282,13 +29334,13 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 491194793}
-          m_MethodName: CursorEntraEdificioSuperior
-          m_Mode: 3
+        - m_Target: {fileID: 1121589927}
+          m_MethodName: RatonEntraBotonPoblacion
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 1
+            m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
@@ -29297,17 +29349,31 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 491194793}
-          m_MethodName: CursorSaleEdificioSuperior
-          m_Mode: 3
+        - m_Target: {fileID: 1121589927}
+          m_MethodName: RatonSaleBoton
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 1
+            m_ObjectArgument: {fileID: 1384727334}
+            m_ObjectArgumentAssemblyTypeName: Panel, Assembly-CSharp
+            m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &1384727334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1384727328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0adcd1a31e4f0c44b86fb90b8913f3dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nombre: poblacion
+  volverColor: 0
 --- !u!1 &1386715929
 GameObject:
   m_ObjectHideFlags: 0
@@ -33826,7 +33892,7 @@ GameObject:
   - component: {fileID: 1602609113}
   - component: {fileID: 1602609114}
   m_Layer: 5
-  m_Name: PanelDemoler
+  m_Name: BotonDemoler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34693,6 +34759,7 @@ GameObject:
   - component: {fileID: 1672579454}
   - component: {fileID: 1672579453}
   - component: {fileID: 1672579456}
+  - component: {fileID: 1672579457}
   m_Layer: 5
   m_Name: BotonComida
   m_TagString: Untagged
@@ -34738,7 +34805,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
@@ -34827,13 +34894,13 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 491194793}
-          m_MethodName: CursorEntraEdificioSuperior
-          m_Mode: 3
+        - m_Target: {fileID: 1121589927}
+          m_MethodName: RatonEntraBotonComida
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 2
+            m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
@@ -34842,17 +34909,31 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 491194793}
-          m_MethodName: CursorSaleEdificioSuperior
-          m_Mode: 3
+        - m_Target: {fileID: 1121589927}
+          m_MethodName: RatonSaleBoton
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 2
+            m_ObjectArgument: {fileID: 1672579457}
+            m_ObjectArgumentAssemblyTypeName: Panel, Assembly-CSharp
+            m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &1672579457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1672579451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0adcd1a31e4f0c44b86fb90b8913f3dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nombre: comida
+  volverColor: 0
 --- !u!1 &1673166840
 GameObject:
   m_ObjectHideFlags: 0
@@ -38055,7 +38136,7 @@ GameObject:
   - component: {fileID: 1885394534}
   - component: {fileID: 1885394535}
   m_Layer: 5
-  m_Name: PanelConstruir
+  m_Name: BotonConstruir
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38149,7 +38230,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1121589927}
-          m_MethodName: RatonEntra
+          m_MethodName: RatonEntraBotonEdificios
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -38175,11 +38256,11 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1121589927}
-          m_MethodName: RatonSale
-          m_Mode: 1
+          m_MethodName: RatonSaleBoton
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 1885394533}
+            m_ObjectArgumentAssemblyTypeName: Panel, Assembly-CSharp
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -39447,6 +39528,7 @@ GameObject:
   - component: {fileID: 1970140915}
   - component: {fileID: 1970140914}
   - component: {fileID: 1970140917}
+  - component: {fileID: 1970140918}
   m_Layer: 5
   m_Name: BotonTiendas
   m_TagString: Untagged
@@ -39492,7 +39574,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
@@ -39581,13 +39663,13 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 491194793}
-          m_MethodName: CursorEntraEdificioSuperior
-          m_Mode: 3
+        - m_Target: {fileID: 1121589927}
+          m_MethodName: RatonEntraBotonTiendas
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 3
+            m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
@@ -39596,17 +39678,31 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 491194793}
-          m_MethodName: CursorSaleEdificioSuperior
-          m_Mode: 3
+        - m_Target: {fileID: 1121589927}
+          m_MethodName: RatonSaleBoton
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 3
+            m_ObjectArgument: {fileID: 1970140918}
+            m_ObjectArgumentAssemblyTypeName: Panel, Assembly-CSharp
+            m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &1970140918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1970140912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0adcd1a31e4f0c44b86fb90b8913f3dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nombre: tiendas
+  volverColor: 0
 --- !u!1 &1978531842
 GameObject:
   m_ObjectHideFlags: 0

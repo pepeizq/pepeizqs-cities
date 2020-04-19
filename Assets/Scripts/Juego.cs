@@ -69,16 +69,10 @@ public class Juego : MonoBehaviour {
     private bool construirActivar;
     private bool demolerActivar;
 
-    public Button botonDemoler; 
-
     public Camera camara;
 
     public Escenario escenario;
 
-    public Panel panelConstruir;
-    public Panel panelConstruirSub;
-    public Panel panelDemoler;
-    public Panel panelDemolerSub;
     public Panel panelDatos;
     public Panel panelEdificios;
     public Panel panelGuardar;
@@ -86,7 +80,7 @@ public class Juego : MonoBehaviour {
     public Panel panelCoste;
     public Text mensajeCoste;
 
-    public Interfaz.Edificios panelEdificios2;
+    //public Interfaz.Juego2.Edificios panelEdificios2;
     public Panel panelCarreteras;
 
     private bool mantenerEjeX;
@@ -212,7 +206,6 @@ public class Juego : MonoBehaviour {
         diaNoche.VelocidadMarchas(1);
         construir.CambiarLucesSemaforos(1);
         vistaPrevia.QuitarTodosEdificios();
-        panelEdificios2.Arranque(edificios);
 
         construirActivar = false;
 
@@ -379,9 +372,6 @@ public class Juego : MonoBehaviour {
         //    panelConstruirSub.gameObject.GetComponent<Image>().color = new Color(255f, 255f, 255f, 50f / 255f);
         //}
 
-       
-
-        panelEdificios2.ConstruirMostrarPanel(panelCarreteras);
     }
 
     public void ConstruirOcultarPanelEdificios()
@@ -568,26 +558,6 @@ public class Juego : MonoBehaviour {
             demolerActivar = true;
         }
 
-        if (demolerActivar == true)
-        {
-            panelDemolerSub.gameObject.GetComponent<Image>().color = new Color(255f / 255f, 98f / 255f, 98f / 255f, 255f);
-        }
-        else
-        {
-            panelDemolerSub.gameObject.GetComponent<Image>().color = new Color(255f, 255f, 255f, 50f / 255f);
-        }
-    }
-
-    public void DemolerRatonEntra()
-    {
-        if (demolerActivar == false)
-        {
-            panelDemolerSub.gameObject.GetComponent<Image>().color = new Color(255f / 255f, 98f / 255f, 98f / 255f, 255f);
-        }
-        else
-        {
-            panelDemolerSub.gameObject.GetComponent<Image>().color = new Color(255f, 255f, 255f, 50f / 255f);
-        }
     }
 
     void EdificioVistaPreviaDemoler()
