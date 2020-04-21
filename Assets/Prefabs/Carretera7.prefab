@@ -104,7 +104,7 @@ MonoBehaviour:
   comida: 0
   trabajo: 0
   ingresos: 0
-  botonImagen: {fileID: 21300000, guid: 04c8e5a7f1df9224b8d8e7f3ac23a662, type: 3}
+  botonImagen: {fileID: 21300000, guid: dec97390f73096b4ea830c9e482b6d15, type: 3}
   dimensiones: {x: 1, y: 1}
   rotacionColocacion: -270
   rotacionAdicional: -90
