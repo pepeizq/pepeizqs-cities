@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -29,8 +30,8 @@ namespace Interfaz.Juego2
         public Panel panelIndustria;
         public Panel panelDecoracion;
 
-        private string colorTextoVerde = "#3cff3c";
-        private string colorTextoRojo = "#ff0101";
+        private Color colorVerde = new Color(60f / 255f, 255f / 255f, 60f / 255f, 255f);
+        private Color colorRojo = new Color(255f / 255f, 1f / 255f, 1f / 255f, 255f);
 
         private Color colorCarreteras = new Color(133f / 255f, 133f / 255f, 133f / 255f, 255f);
         private Color colorPoblacion = new Color(180f / 255f, 117f / 255f, 90f / 255f, 255f);
@@ -76,6 +77,54 @@ namespace Interfaz.Juego2
             {
                 botonConstruir.gameObject.GetComponent<Image>().color = new Color(60f / 255f, 60f / 255f, 60f / 255f, 255f);
             }            
+        }
+
+        public void RatonSaleBotonEdificios()
+        {
+            bool cambiar = true;
+
+            if (panelEdificiosTipo.gameObject.GetComponent<CanvasGroup>().alpha == 1)
+            {
+                cambiar = false;
+            }
+            else if (panelCarreteras.gameObject.GetComponent<CanvasGroup>().alpha == 1)
+            {
+                cambiar = false;
+            }
+            else if (panelPoblacion.gameObject.GetComponent<CanvasGroup>().alpha == 1)
+            {
+                cambiar = false;
+            }
+            else if (panelComida.gameObject.GetComponent<CanvasGroup>().alpha == 1)
+            {
+                cambiar = false;
+            }
+            else if (panelTiendas.gameObject.GetComponent<CanvasGroup>().alpha == 1)
+            {
+                cambiar = false;
+            }
+            else if (panelIndustria.gameObject.GetComponent<CanvasGroup>().alpha == 1)
+            {
+                cambiar = false;
+            }
+            else if (panelDecoracion.gameObject.GetComponent<CanvasGroup>().alpha == 1)
+            {
+                cambiar = false;
+            }
+            else if (juego.construirActivar == true)
+            {
+                cambiar = false;
+            }
+
+            if (cambiar == true)
+            {
+                Color colorPanel = botonConstruir.gameObject.GetComponent<Image>().color;
+
+                if (colorPanel != colorTransparente)
+                {
+                    botonConstruir.gameObject.GetComponent<Image>().color = colorTransparente;
+                }
+            }
         }
 
         public void RatonEntraBotonCarreteras()
@@ -302,9 +351,7 @@ namespace Interfaz.Juego2
 
             Text coste = subpanelBotonDatos.transform.GetChild(0).transform.GetComponent<Text>();
             coste.text = string.Format("{0} €", edificio.coste);
-            Color colorTextoCoste = new Color();
-            ColorUtility.TryParseHtmlString(colorTextoRojo, out colorTextoCoste);
-            coste.color = colorTextoCoste;
+            coste.color = colorRojo;
 
             Panel panelBotonComida = subpanelBotonDatos.gameObject.transform.GetChild(1).transform.GetComponent<Panel>();
 
@@ -314,21 +361,23 @@ namespace Interfaz.Juego2
                 {
                     panelBotonComida.gameObject.SetActive(true);
 
+                    Transform iconoT = panelBotonComida.gameObject.transform.GetChild(0);
+                    TextMeshProUGUI icono = iconoT.gameObject.GetComponent<TextMeshProUGUI>();
+
                     Text comida = panelBotonComida.transform.GetChild(1).transform.GetComponent<Text>();
                     comida.text = string.Format("{0}", edificio.comida);
-                    Color colorTexto = new Color();
 
                     if (edificio.comida > 0)
                     {
+                        icono.color = colorVerde;
                         comida.text = string.Format("+{0}", comida.text);
-                        ColorUtility.TryParseHtmlString(colorTextoVerde, out colorTexto);
+                        comida.color = colorVerde;
                     }
                     else if (edificio.comida < 0)
                     {
-                        ColorUtility.TryParseHtmlString(colorTextoRojo, out colorTexto);
+                        icono.color = colorRojo;
+                        comida.color = colorRojo;
                     }
-
-                    comida.color = colorTexto;
                 }
                 else
                 {
@@ -344,21 +393,23 @@ namespace Interfaz.Juego2
                 {
                     panelBotonPoblacion.gameObject.SetActive(true);
 
+                    Transform iconoT = panelBotonPoblacion.gameObject.transform.GetChild(0);
+                    TextMeshProUGUI icono = iconoT.gameObject.GetComponent<TextMeshProUGUI>();
+
                     Text poblacion = panelBotonPoblacion.transform.GetChild(1).transform.GetComponent<Text>();
                     poblacion.text = string.Format("{0}", edificio.poblacion);
-                    Color colorTexto = new Color();
 
                     if (edificio.poblacion > 0)
                     {
+                        icono.color = colorVerde;
                         poblacion.text = string.Format("+{0}", poblacion.text);
-                        ColorUtility.TryParseHtmlString(colorTextoVerde, out colorTexto);
+                        poblacion.color = colorVerde;
                     }
                     else if (edificio.poblacion < 0)
                     {
-                        ColorUtility.TryParseHtmlString(colorTextoRojo, out colorTexto);
+                        icono.color = colorRojo;
+                        poblacion.color = colorRojo;
                     }
-
-                    poblacion.color = colorTexto;
                 }
                 else
                 {
@@ -374,21 +425,23 @@ namespace Interfaz.Juego2
                 {
                     panelBotonTrabajo.gameObject.SetActive(true);
 
+                    Transform iconoT = panelBotonTrabajo.gameObject.transform.GetChild(0);
+                    TextMeshProUGUI icono = iconoT.gameObject.GetComponent<TextMeshProUGUI>();
+
                     Text trabajo = panelBotonTrabajo.transform.GetChild(1).transform.GetComponent<Text>();
                     trabajo.text = string.Format("{0}", edificio.trabajo);
-                    Color colorTexto = new Color();
 
                     if (edificio.trabajo > 0)
                     {
+                        icono.color = colorVerde;
                         trabajo.text = string.Format("+{0}", trabajo.text);
-                        ColorUtility.TryParseHtmlString(colorTextoVerde, out colorTexto);
+                        trabajo.color = colorVerde;
                     }
                     else if (edificio.trabajo < 0)
                     {
-                        ColorUtility.TryParseHtmlString(colorTextoRojo, out colorTexto);
+                        icono.color = colorRojo;
+                        trabajo.color = colorRojo;
                     }
-
-                    trabajo.color = colorTexto;
                 }
                 else
                 {
@@ -419,6 +472,8 @@ namespace Interfaz.Juego2
             pointerExit.callback.AddListener((data) => { CursorSaleEdificio((PointerEventData)data, boton); });
             evento.triggers.Add(pointerExit);
         }
+
+        //-----------------------------------------------------
 
         public void CursorEntraEdificio(PointerEventData eventData, Button boton, int categoria)
         {
@@ -462,6 +517,14 @@ namespace Interfaz.Juego2
             Panel subpanelBotonImagen = panelBoton.transform.GetChild(0).transform.GetComponent<Panel>();
             Image imagen = subpanelBotonImagen.gameObject.GetComponent<Image>();
             imagen.color = colorTransparente;
+        }
+
+        //-----------------------------------------------------
+
+        public void CerrarTodo()
+        {
+            CerrarPanel(panelEdificiosTipo);
+            CerrarPaneles();
         }
 
         private void CerrarPaneles()

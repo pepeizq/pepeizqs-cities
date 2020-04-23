@@ -66,22 +66,23 @@ public class Juego : MonoBehaviour {
     private Construccion edificioSeleccionado;
     private List<Construccion2> edificiosSeleccionados = new List<Construccion2>();
 
-    private bool construirActivar;
-    private bool demolerActivar;
+    [HideInInspector]
+    public bool construirActivar = false;
+
+    [HideInInspector]
+    public bool demolerActivar = false;
+
+    public Interfaz.Juego2.Construir construirInterfaz;
 
     public Camera camara;
 
     public Escenario escenario;
 
     public Panel panelDatos;
-    public Panel panelEdificios;
     public Panel panelGuardar;
     public Panel panelTiempo;
     public Panel panelCoste;
     public Text mensajeCoste;
-
-    //public Interfaz.Juego2.Edificios panelEdificios2;
-    public Panel panelCarreteras;
 
     private bool mantenerEjeX;
     private bool mantenerEjeZ;
@@ -207,10 +208,6 @@ public class Juego : MonoBehaviour {
         construir.CambiarLucesSemaforos(1);
         vistaPrevia.QuitarTodosEdificios();
 
-        construirActivar = false;
-
-        demolerActivar = false;
-
         musicaFondo.loop = true;
         musicaFondo.Play();   
     }
@@ -229,10 +226,11 @@ public class Juego : MonoBehaviour {
                 if (construirActivar == true)
                 {
                     construirActivar = false;
-                    ConstruirOcultarPanelEdificios();
                     vistaPrevia.QuitarTodosEdificios();
+                    construirInterfaz.RatonSaleBotonEdificios();
 
                     edificioSeleccionado = null;
+
                     panelCoste.gameObject.GetComponent<CanvasGroup>().alpha = 0;
                 }
 
@@ -345,48 +343,13 @@ public class Juego : MonoBehaviour {
         }
     }
 
-    public void Construir()
-    {
-        sonidoBoton.Play();
-
-        demolerActivar = false;
-
-        vistaPrevia.QuitarTodosEdificios();
-        menuJuego.CerrarPanel();
-
-        if (construirActivar == true)
-        {
-            construirActivar = false;
-        }
-        else
-        {
-            construirActivar = true;
-        }
-
-        //if (construirActivar == true)
-        //{
-        //    panelConstruirSub.gameObject.GetComponent<Image>().color = new Color(118f / 255f, 118f / 255f, 118f / 255f, 255f);
-        //}
-        //else
-        //{
-        //    panelConstruirSub.gameObject.GetComponent<Image>().color = new Color(255f, 255f, 255f, 50f / 255f);
-        //}
-
-    }
-
-    public void ConstruirOcultarPanelEdificios()
-    {
-        panelEdificios.gameObject.GetComponent<CanvasGroup>().alpha = 0;
-        panelEdificios.gameObject.GetComponent<CanvasGroup>().interactable = false;
-        panelEdificios.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
-    }
-
     public void ConstruirSeleccionarEdificio(int edificio)
     {
         demolerActivar = false;
-
         construirActivar = true;
-        ConstruirOcultarPanelEdificios();
+
+        vistaPrevia.QuitarTodosEdificios();
+        menuJuego.CerrarPanel();
 
         edificioSeleccionado = edificios[edificio];
         ayuda.AbrirAyuda6o7(edificioSeleccionado.categoria);
@@ -433,6 +396,10 @@ public class Juego : MonoBehaviour {
 
                         if (añadir == true)
                         {
+                            construirActivar = false;
+                            vistaPrevia.QuitarTodosEdificios();
+                            construirInterfaz.RatonSaleBotonEdificios();
+
                             panelCoste.gameObject.GetComponent<CanvasGroup>().alpha = 0;
 
                             ciudad.DepositoDinero(-edificioSeleccionado.coste);
@@ -542,9 +509,6 @@ public class Juego : MonoBehaviour {
     {
         sonidoBoton.Play();
 
-        construirActivar = false;
-        ConstruirOcultarPanelEdificios();
-
         vistaPrevia.QuitarTodosEdificios();
         menuJuego.CerrarPanel();
         panelCoste.gameObject.GetComponent<CanvasGroup>().alpha = 0;
@@ -571,7 +535,6 @@ public class Juego : MonoBehaviour {
             if (Posicion.Limites(gridPosicion, 100) == true)
             {
                 edificioSeleccionado = construir.ComprobarPosicion(null, gridPosicion);
-                //construir.DemolerCambiarColores(0);
 
                 if (edificioSeleccionado != null)
                 {

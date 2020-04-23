@@ -31,7 +31,6 @@ namespace Interfaz
         {
             sonidoBoton.Play();
             colocarPrevio.QuitarTodosEdificios();
-            juego.ConstruirOcultarPanelEdificios();
 
             if (panel.gameObject.GetComponent<CanvasGroup>().alpha == 0)
             {

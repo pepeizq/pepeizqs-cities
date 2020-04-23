@@ -2551,8 +2551,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -305, y: 125}
-  m_SizeDelta: {x: 260, y: 130}
+  m_AnchoredPosition: {x: -242, y: 95}
+  m_SizeDelta: {x: 386, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &159013614
 MonoBehaviour:
@@ -3513,7 +3513,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 1.25
+  m_padding: 0
   m_canvasRenderer: {fileID: 208923359}
   m_TextComponent: {fileID: 963570480}
   m_materialReferenceIndex: 1
@@ -3981,7 +3981,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -300, y: 95}
+  m_AnchoredPosition: {x: -305, y: 95}
   m_SizeDelta: {x: 260, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &226835724
@@ -7813,7 +7813,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 1.25
+  m_padding: 0
   m_canvasRenderer: {fileID: 397197807}
   m_TextComponent: {fileID: 503880876}
   m_materialReferenceIndex: 1
@@ -10051,7 +10051,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 1.25
+  m_padding: 0
   m_canvasRenderer: {fileID: 466699392}
   m_TextComponent: {fileID: 78968273}
   m_materialReferenceIndex: 1
@@ -10607,15 +10607,16 @@ MonoBehaviour:
   construir: {fileID: 491194797}
   vistaPrevia: {fileID: 491194796}
   diaNoche: {fileID: 491194794}
+  construirActivar: 0
+  demolerActivar: 0
+  construirInterfaz: {fileID: 0}
   camara: {fileID: 534669904}
   escenario: {fileID: 491194800}
   panelDatos: {fileID: 1405228899}
-  panelEdificios: {fileID: 0}
   panelGuardar: {fileID: 1187012641}
   panelTiempo: {fileID: 443282299}
   panelCoste: {fileID: 392226763}
   mensajeCoste: {fileID: 933529603}
-  panelCarreteras: {fileID: 0}
   "ocultarEnse\xF1arInterfaz": 0
 --- !u!114 &491194796
 MonoBehaviour:
@@ -14730,7 +14731,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 1.25
+  m_padding: 0
   m_canvasRenderer: {fileID: 654773043}
   m_TextComponent: {fileID: 1362402690}
   m_materialReferenceIndex: 1
@@ -15452,8 +15453,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -305, y: 125}
-  m_SizeDelta: {x: 260, y: 130}
+  m_AnchoredPosition: {x: -115, y: 130}
+  m_SizeDelta: {x: 640, y: 140}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &687673109
 MonoBehaviour:
@@ -15476,7 +15477,7 @@ MonoBehaviour:
   m_StartCorner: 2
   m_StartAxis: 0
   m_CellSize: {x: 120, y: 60}
-  m_Spacing: {x: 5, y: 0}
+  m_Spacing: {x: 5, y: 10}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!114 &687673110
@@ -17427,7 +17428,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 1.25
+  m_padding: 0
   m_canvasRenderer: {fileID: 771305727}
   m_TextComponent: {fileID: 427939626}
   m_materialReferenceIndex: 1
@@ -18958,7 +18959,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 1.25
+  m_padding: 0
   m_canvasRenderer: {fileID: 854406417}
   m_TextComponent: {fileID: 1570467061}
   m_materialReferenceIndex: 1
@@ -21385,8 +21386,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -305, y: 125}
-  m_SizeDelta: {x: 260, y: 130}
+  m_AnchoredPosition: {x: -305, y: 95}
+  m_SizeDelta: {x: 260, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1017460782
 MonoBehaviour:
@@ -23427,8 +23428,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -305, y: 125}
-  m_SizeDelta: {x: 260, y: 130}
+  m_AnchoredPosition: {x: -115, y: 130}
+  m_SizeDelta: {x: 640, y: 140}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1131502357
 MonoBehaviour:
@@ -23451,7 +23452,7 @@ MonoBehaviour:
   m_StartCorner: 2
   m_StartAxis: 0
   m_CellSize: {x: 120, y: 60}
-  m_Spacing: {x: 5, y: 0}
+  m_Spacing: {x: 5, y: 10}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!114 &1131502358
@@ -28982,7 +28983,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 1.25
+  m_padding: 0
   m_canvasRenderer: {fileID: 1404893501}
   m_TextComponent: {fileID: 1121790372}
   m_materialReferenceIndex: 1
@@ -29423,7 +29424,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 1.25
+  m_padding: 0
   m_canvasRenderer: {fileID: 1428810724}
   m_TextComponent: {fileID: 841337597}
   m_materialReferenceIndex: 1
@@ -33120,6 +33121,7 @@ GameObject:
   - component: {fileID: 1602609111}
   - component: {fileID: 1602609113}
   - component: {fileID: 1602609114}
+  - component: {fileID: 1602609115}
   m_Layer: 5
   m_Name: BotonDemoler
   m_TagString: Untagged
@@ -33262,6 +33264,60 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &1602609115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1602609109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 0
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1602609111}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1121589926}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1610657829
 GameObject:
   m_ObjectHideFlags: 0
@@ -33400,7 +33456,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 1.25
+  m_padding: 0
   m_canvasRenderer: {fileID: 1613626973}
   m_TextComponent: {fileID: 181616285}
   m_materialReferenceIndex: 1
@@ -36724,7 +36780,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 1.25
+  m_padding: 0
   m_canvasRenderer: {fileID: 1812230656}
   m_TextComponent: {fileID: 961095226}
   m_materialReferenceIndex: 1
@@ -37485,11 +37541,11 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1121589927}
-          m_MethodName: RatonSaleBoton
-          m_Mode: 2
+          m_MethodName: RatonSaleBotonEdificios
+          m_Mode: 1
           m_Arguments:
-            m_ObjectArgument: {fileID: 1885394533}
-            m_ObjectArgumentAssemblyTypeName: Panel, Assembly-CSharp
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -39046,8 +39102,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -110, y: 125}
-  m_SizeDelta: {x: 640, y: 130}
+  m_AnchoredPosition: {x: -115, y: 130}
+  m_SizeDelta: {x: 640, y: 140}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1983381628
 MonoBehaviour:
@@ -39070,7 +39126,7 @@ MonoBehaviour:
   m_StartCorner: 2
   m_StartAxis: 0
   m_CellSize: {x: 120, y: 60}
-  m_Spacing: {x: 5, y: 0}
+  m_Spacing: {x: 5, y: 10}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!114 &1983381629
@@ -41753,7 +41809,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 1.25
+  m_padding: 0
   m_canvasRenderer: {fileID: 2085130695}
   m_TextComponent: {fileID: 98309928}
   m_materialReferenceIndex: 1
@@ -43209,7 +43265,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 1.25
+  m_padding: 0
   m_canvasRenderer: {fileID: 2135972202}
   m_TextComponent: {fileID: 2086416616}
   m_materialReferenceIndex: 1

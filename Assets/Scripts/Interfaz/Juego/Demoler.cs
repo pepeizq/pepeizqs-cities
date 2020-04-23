@@ -5,27 +5,41 @@ namespace Interfaz.Juego2
 {
     public class Demoler : MonoBehaviour
     {
+        public Panel botonDemoler;
 
+        public Juego juego;
 
+        private Color colorDemoler = new Color(209f / 255f, 0f / 255f, 0f / 255f, 255f);
+        private Color colorTransparente = new Color(255f / 255f, 255f / 255f, 255f / 255f, 0f);
 
-        public void RatonEntra(Panel panel)
+        public void RatonEntra()
         {
-            Color colorPanel = panel.gameObject.GetComponent<Image>().color;
+            Color colorPanel = botonDemoler.gameObject.GetComponent<Image>().color;
 
-            if (colorPanel != new Color(209f / 255f, 0f / 255f, 0f / 255f, 255f))
+            if (colorPanel != colorDemoler)
             {
-                panel.gameObject.GetComponent<Image>().color = new Color(209f / 255f, 0f / 255f, 0f / 255f, 255f);
+                botonDemoler.gameObject.GetComponent<Image>().color = colorDemoler;
             }
         }
 
-        public void RatonSale(Panel panel)
+        public void RatonSale()
         {
-            Color colorPanel = panel.gameObject.GetComponent<Image>().color;
+            bool cambiar = true;
 
-            if (colorPanel != new Color(255f / 255f, 255f / 255f, 255f / 255f, 0f))
+            if (juego.demolerActivar == true)
             {
-                panel.gameObject.GetComponent<Image>().color = new Color(255f / 255f, 255f / 255f, 255f / 255f, 0f);
+                cambiar = false;
             }
+
+            if (cambiar == true)
+            {
+                Color colorPanel = botonDemoler.gameObject.GetComponent<Image>().color;
+
+                if (colorPanel != colorTransparente)
+                {
+                    botonDemoler.gameObject.GetComponent<Image>().color = colorTransparente;
+                }
+            }               
         }
     }
 }
