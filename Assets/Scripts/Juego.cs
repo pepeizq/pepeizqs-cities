@@ -73,6 +73,7 @@ public class Juego : MonoBehaviour {
     public bool demolerActivar = false;
 
     public Interfaz.Juego2.Construir construirInterfaz;
+    public Interfaz.Juego2.Demoler demolerInterfaz;
 
     public Camera camara;
 
@@ -413,6 +414,10 @@ public class Juego : MonoBehaviour {
                     {
                         if (edificioSeleccionado != null)
                         {
+                            demolerActivar = false;
+                            vistaPrevia.QuitarTodosEdificios();
+                            demolerInterfaz.RatonSale();
+
                             Construccion edificioEliminar = edificioSeleccionado;
 
                             if (edificioEliminar.categoria != 0)
@@ -505,7 +510,7 @@ public class Juego : MonoBehaviour {
         }
     }
 
-    public void EdificioQuitar()
+    public void Demoler()
     {
         sonidoBoton.Play();
 
@@ -521,7 +526,6 @@ public class Juego : MonoBehaviour {
         {
             demolerActivar = true;
         }
-
     }
 
     void EdificioVistaPreviaDemoler()

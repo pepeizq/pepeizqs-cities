@@ -12,7 +12,7 @@ namespace Interfaz.Juego2
         private Color colorDemoler = new Color(209f / 255f, 0f / 255f, 0f / 255f, 255f);
         private Color colorTransparente = new Color(255f / 255f, 255f / 255f, 255f / 255f, 0f);
 
-        public void RatonEntra()
+        private void RatonEntra()
         {
             Color colorPanel = botonDemoler.gameObject.GetComponent<Image>().color;
 
