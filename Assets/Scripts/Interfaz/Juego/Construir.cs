@@ -56,7 +56,7 @@ namespace Interfaz.Juego2
 
                 if (animacion != null)
                 {
-                    animacion.Play("PanelEdificiosTipoAbrir", 0, 1f);
+                    animacion.Play("PanelEdificiosTipo", 0, 1f);
                 }
             }
             else
