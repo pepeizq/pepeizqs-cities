@@ -238,24 +238,24 @@ public class DiaNoche : MonoBehaviour {
         panelPlay1.gameObject.GetComponent<Image>().color = new Color(255f, 255f, 255f, 50f / 255f);
         panelPlay2.gameObject.GetComponent<Image>().color = new Color(255f, 255f, 255f, 50f / 255f);
 
-        panelPausa.volverColor = false;
-        panelPlay1.volverColor = false;
-        panelPlay2.volverColor = false;
+        //panelPausa.volverColor = false;
+        //panelPlay1.volverColor = false;
+        //panelPlay2.volverColor = false;
 
         if (nuevaVelocidad == 0)
         {
             panelPausa.gameObject.GetComponent<Image>().color = new Color(0.08f, 0.4f, 0.58f);
-            panelPausa.volverColor = true;
+            //panelPausa.volverColor = true;
         }
         else if (nuevaVelocidad == 1)
         {
             panelPlay1.gameObject.GetComponent<Image>().color = new Color(0.08f, 0.4f, 0.58f);
-            panelPlay1.volverColor = true;
+            //panelPlay1.volverColor = true;
         }
         else if (nuevaVelocidad == 2)
         {
             panelPlay2.gameObject.GetComponent<Image>().color = new Color(0.08f, 0.4f, 0.58f);
-            panelPlay2.volverColor = true;
+            //panelPlay2.volverColor = true;
         }
     }
 

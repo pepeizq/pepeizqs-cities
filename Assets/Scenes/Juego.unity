@@ -847,7 +847,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: tipo
-  volverColor: 0
 --- !u!225 &65544736
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1338,7 +1337,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: volver
-  volverColor: 0
 --- !u!114 &91196227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2549,7 +2547,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: carreteras
-  volverColor: 0
 --- !u!225 &159013616
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -3095,7 +3092,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 491194804}
+        - m_Target: {fileID: 0}
           m_MethodName: PanelCambiarColor
           m_Mode: 2
           m_Arguments:
@@ -3121,7 +3118,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 491194804}
+        - m_Target: {fileID: 0}
           m_MethodName: PanelVolverColor
           m_Mode: 2
           m_Arguments:
@@ -3272,7 +3269,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 491194804}
+        - m_Target: {fileID: 0}
           m_MethodName: PanelCambiarColor
           m_Mode: 2
           m_Arguments:
@@ -3298,7 +3295,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 491194804}
+        - m_Target: {fileID: 0}
           m_MethodName: PanelVolverColor
           m_Mode: 2
           m_Arguments:
@@ -3566,7 +3563,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 491194804}
+      - m_Target: {fileID: 1121589930}
         m_MethodName: GuardarPartida
         m_Mode: 1
         m_Arguments:
@@ -3631,11 +3628,11 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 491194808}
-          m_MethodName: Entra
-          m_Mode: 1
+          m_MethodName: EntraBoton
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 211790142}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -3646,11 +3643,11 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 491194808}
-          m_MethodName: Sale
-          m_Mode: 1
+          m_MethodName: SaleBoton
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 211790142}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -3739,7 +3736,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 491194804}
+      - m_Target: {fileID: 1121589930}
         m_MethodName: VolverMenuPrincipal
         m_Mode: 1
         m_Arguments:
@@ -3804,11 +3801,11 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 491194808}
-          m_MethodName: Entra
-          m_Mode: 1
+          m_MethodName: EntraBoton
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 219576497}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -3819,11 +3816,11 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 491194808}
-          m_MethodName: Sale
-          m_Mode: 1
+          m_MethodName: SaleBoton
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 219576497}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -3979,7 +3976,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: carreteras
-  volverColor: 0
 --- !u!225 &226835726
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -4740,7 +4736,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: guardarMenuPrincipal
-  volverColor: 0
 --- !u!1 &268006759
 GameObject:
   m_ObjectHideFlags: 0
@@ -4796,7 +4791,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: volumen
-  volverColor: 0
 --- !u!114 &268006762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5292,121 +5286,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 275708806}
   m_CullTransparentMesh: 0
---- !u!1 &279043531
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 279043532}
-  - component: {fileID: 279043536}
-  - component: {fileID: 279043535}
-  - component: {fileID: 279043534}
-  - component: {fileID: 279043533}
-  m_Layer: 5
-  m_Name: BotonMenu
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &279043532
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 279043531}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1123789506}
-  m_Father: {fileID: 1187012637}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 60, y: 60}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &279043533
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 279043531}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Padding:
-    m_Left: 5
-    m_Right: 5
-    m_Top: 5
-    m_Bottom: 5
-  m_ChildAlignment: 4
-  m_Spacing: 0
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 0
-  m_ChildControlHeight: 0
-  m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 0
---- !u!114 &279043534
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 279043531}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0adcd1a31e4f0c44b86fb90b8913f3dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nombre: opcionesSub
-  volverColor: 0
---- !u!114 &279043535
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 279043531}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &279043536
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 279043531}
-  m_CullTransparentMesh: 0
 --- !u!1 &298899148
 GameObject:
   m_ObjectHideFlags: 0
@@ -5671,7 +5550,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: industria
-  volverColor: 0
 --- !u!1 &312481419
 GameObject:
   m_ObjectHideFlags: 0
@@ -6134,7 +6012,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: ayuda1
-  volverColor: 0
 --- !u!225 &328185949
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -6970,7 +6847,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: ayuda5
-  volverColor: 0
 --- !u!225 &365307432
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -7075,7 +6951,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 491194804}
+        - m_Target: {fileID: 0}
           m_MethodName: PanelCambiarColor
           m_Mode: 2
           m_Arguments:
@@ -7101,7 +6977,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 491194804}
+        - m_Target: {fileID: 0}
           m_MethodName: PanelVolverColor
           m_Mode: 2
           m_Arguments:
@@ -7355,7 +7231,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: coste
-  volverColor: 0
 --- !u!114 &392226764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8592,7 +8467,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: carreteras
-  volverColor: 0
 --- !u!1 &425938248
 GameObject:
   m_ObjectHideFlags: 0
@@ -9089,7 +8963,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: rotacionder
-  volverColor: 0
 --- !u!1 &443282294
 GameObject:
   m_ObjectHideFlags: 0
@@ -9209,7 +9082,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: tiempo
-  volverColor: 0
 --- !u!1 &444759771
 GameObject:
   m_ObjectHideFlags: 0
@@ -9721,7 +9593,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 491194804}
+      - m_Target: {fileID: 0}
         m_MethodName: VolverMenuPrincipalGuardarNo
         m_Mode: 1
         m_Arguments:
@@ -10087,7 +9959,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: teclado
-  volverColor: 0
 --- !u!225 &464837209
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -10661,9 +10532,7 @@ GameObject:
   - component: {fileID: 491194807}
   - component: {fileID: 491194806}
   - component: {fileID: 491194805}
-  - component: {fileID: 491194793}
   - component: {fileID: 491194802}
-  - component: {fileID: 491194804}
   - component: {fileID: 491194797}
   - component: {fileID: 491194796}
   - component: {fileID: 491194812}
@@ -10753,18 +10622,6 @@ MonoBehaviour:
   menuJuegoGuardarSalir: {fileID: 448090068}
   menuJuegoGuardarSalirSi: {fileID: 584149767}
   menuJuegoGuardarSalirNo: {fileID: 404069631}
---- !u!114 &491194793
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 491194791}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9b215f97c330b54ebc03e45503415d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &491194794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10821,7 +10678,6 @@ MonoBehaviour:
   opcionesGraficos: {fileID: 491194806}
   opcionesTeclado: {fileID: 491194805}
   ayuda: {fileID: 491194802}
-  menuJuego: {fileID: 491194804}
   versionTexto: {fileID: 1064573688}
   botonContinuarPartida: {fileID: 458968745}
   botonCargarPartida: {fileID: 1235326162}
@@ -10883,6 +10739,7 @@ MonoBehaviour:
   demolerActivar: 0
   construirInterfaz: {fileID: 1121589927}
   demolerInterfaz: {fileID: 1121589929}
+  menuAbajoIzqInterfaz: {fileID: 1121589930}
   camara: {fileID: 534669904}
   escenario: {fileID: 491194800}
   panelDatos: {fileID: 1405228899}
@@ -10984,7 +10841,6 @@ MonoBehaviour:
   partidas: {fileID: 491194809}
   menuPrincipal: {fileID: 491194803}
   juego: {fileID: 491194795}
-  menuJuego: {fileID: 491194804}
   canvas: {fileID: 2106801395}
   canvasOrigen: 0
   botonGeneral: {fileID: 1418736982}
@@ -11048,29 +10904,6 @@ MonoBehaviour:
   opciones: {fileID: 491194801}
   info: {fileID: 491194811}
   sonidoBoton: {fileID: 1088383249}
---- !u!114 &491194804
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 491194791}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70508cdd6ffeb6f429a9a4219e2abbbe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  partidas: {fileID: 491194809}
-  panel: {fileID: 0}
-  panelSub: {fileID: 279043534}
-  menuPrincipal: {fileID: 491194803}
-  juego: {fileID: 491194795}
-  opciones: {fileID: 491194801}
-  sonidoBoton: {fileID: 1088383249}
-  colocarPrevio: {fileID: 491194796}
-  diaNoche: {fileID: 491194794}
-  panelGuardarMenuPrincipal: {fileID: 262216627}
-  panelGuardarSalir: {fileID: 2075409594}
 --- !u!114 &491194805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11654,7 +11487,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: medio
-  volverColor: 0
 --- !u!1 &510135364
 GameObject:
   m_ObjectHideFlags: 0
@@ -12275,7 +12107,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: rotacionizq
-  volverColor: 0
 --- !u!114 &525479517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12420,7 +12251,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 491194804}
+      - m_Target: {fileID: 1121589930}
         m_MethodName: ReportarFallos
         m_Mode: 1
         m_Arguments:
@@ -12485,11 +12316,11 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 491194808}
-          m_MethodName: Entra
-          m_Mode: 1
+          m_MethodName: EntraBoton
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 528506120}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -12500,11 +12331,11 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 491194808}
-          m_MethodName: Sale
-          m_Mode: 1
+          m_MethodName: SaleBoton
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 528506120}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -13424,7 +13255,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 491194804}
+      - m_Target: {fileID: 0}
         m_MethodName: SalirJuegoGuardarSi
         m_Mode: 1
         m_Arguments:
@@ -13805,6 +13636,7 @@ GameObject:
   - component: {fileID: 591392035}
   - component: {fileID: 591392038}
   - component: {fileID: 591392039}
+  - component: {fileID: 591392040}
   m_Layer: 5
   m_Name: PanelMenuAbajoIzq
   m_TagString: Untagged
@@ -13820,7 +13652,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 591392033}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 211790141}
@@ -13834,7 +13666,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 146, y: 210}
-  m_SizeDelta: {x: 290, y: 0}
+  m_SizeDelta: {x: 290, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &591392035
 MonoBehaviour:
@@ -13910,7 +13742,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: menuAbajoIzq
-  volverColor: 0
 --- !u!95 &591392039
 Animator:
   serializedVersion: 3
@@ -13930,6 +13761,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!225 &591392040
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 591392033}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &594246343
 GameObject:
   m_ObjectHideFlags: 0
@@ -14135,7 +13978,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: ayuda4
-  volverColor: 0
 --- !u!1 &601687781
 GameObject:
   m_ObjectHideFlags: 0
@@ -14323,7 +14165,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: decoracion
-  volverColor: 0
 --- !u!1 &613313299
 GameObject:
   m_ObjectHideFlags: 0
@@ -14885,7 +14726,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: general
-  volverColor: 0
 --- !u!1 &647672485
 GameObject:
   m_ObjectHideFlags: 0
@@ -15786,7 +15626,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: carreteras
-  volverColor: 0
 --- !u!225 &687673111
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -16746,7 +16585,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: guardar
-  volverColor: 0
 --- !u!114 &694467152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17152,7 +16990,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 491194804}
+      - m_Target: {fileID: 1121589930}
         m_MethodName: MostrarOpciones
         m_Mode: 1
         m_Arguments:
@@ -17217,11 +17055,11 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 491194808}
-          m_MethodName: Entra
-          m_Mode: 1
+          m_MethodName: EntraBoton
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 720477259}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -17232,11 +17070,11 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 491194808}
-          m_MethodName: Sale
-          m_Mode: 1
+          m_MethodName: SaleBoton
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 720477259}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -17510,7 +17348,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 747119456}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 243162113}
@@ -17565,8 +17403,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1121589927}
-        m_MethodName: AbrirPanelEdificios
+      - m_Target: {fileID: 1121589930}
+        m_MethodName: AbrirMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -17593,12 +17431,12 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1121589927}
-          m_MethodName: RatonEntraBotonEdificios
-          m_Mode: 1
+        - m_Target: {fileID: 1121589930}
+          m_MethodName: RatonEntra
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 747119460}
+            m_ObjectArgumentAssemblyTypeName: Panel, Assembly-CSharp
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -17619,12 +17457,12 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1121589927}
-          m_MethodName: RatonSaleBotonEdificios
-          m_Mode: 1
+        - m_Target: {fileID: 1121589930}
+          m_MethodName: RatonSaleBotonMenu
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 747119460}
+            m_ObjectArgumentAssemblyTypeName: Panel, Assembly-CSharp
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -17653,8 +17491,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0adcd1a31e4f0c44b86fb90b8913f3dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nombre: construir
-  volverColor: 0
+  nombre: menu
 --- !u!114 &747119461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21390,7 +21227,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: volver
-  volverColor: 0
 --- !u!114 &994539547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21929,7 +21765,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: carreteras
-  volverColor: 0
 --- !u!225 &1017460784
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -22606,7 +22441,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: volumen
-  volverColor: 0
 --- !u!114 &1062208995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23422,7 +23256,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e67fb7c070da6c3459c8c5eb1ab8ac34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sonidoBoton: {fileID: 1088383249}
   cursores: {fileID: 491194808}
+  menuAbajoIzqInterfaz: {fileID: 1121589930}
   botonConstruir: {fileID: 1885394533}
   panelEdificiosTipo: {fileID: 65544735}
   botonCarreteras: {fileID: 422088128}
@@ -23485,10 +23321,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74173c7a6c4b5814dbe4151170458b56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sonidoBoton: {fileID: 1088383249}
   panelMenu: {fileID: 591392038}
-  juego: {fileID: 0}
-  colocarPrevio: {fileID: 0}
-  diaNoche: {fileID: 0}
+  botonMenu: {fileID: 747119460}
+  panelGuardarMenuPrincipal: {fileID: 262216627}
+  panelGuardarSalir: {fileID: 2075409594}
+  construirInterfaz: {fileID: 1121589927}
+  menuPrincipal: {fileID: 491194803}
+  juego: {fileID: 491194795}
+  opciones: {fileID: 491194801}
+  partidas: {fileID: 491194809}
+  colocarPrevio: {fileID: 491194796}
+  diaNoche: {fileID: 491194794}
 --- !u!1 &1121790370
 GameObject:
   m_ObjectHideFlags: 0
@@ -23646,200 +23490,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1121790370}
   m_CullTransparentMesh: 0
---- !u!1 &1123789505
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1123789506}
-  - component: {fileID: 1123789509}
-  - component: {fileID: 1123789508}
-  - component: {fileID: 1123789507}
-  - component: {fileID: 1123789510}
-  m_Layer: 5
-  m_Name: BotonMenu
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1123789506
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1123789505}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 279043532}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 40, y: 40}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1123789507
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1123789505}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
-    m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
-    m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Highlighted
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 1123789508}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 491194804}
-        m_MethodName: MostrarMenu
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &1123789508
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1123789505}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1ec7eed2e224f754cb36dceeb8f2312d, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 1
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &1123789509
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1123789505}
-  m_CullTransparentMesh: 0
---- !u!114 &1123789510
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1123789505}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 491194804}
-          m_MethodName: PanelCambiarColor
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 279043534}
-            m_ObjectArgumentAssemblyTypeName: Panel, Assembly-CSharp
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 491194808}
-          m_MethodName: Entra
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 1
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 491194804}
-          m_MethodName: PanelVolverColor
-          m_Mode: 2
-          m_Arguments:
-            m_ObjectArgument: {fileID: 279043534}
-            m_ObjectArgumentAssemblyTypeName: Panel, Assembly-CSharp
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 491194808}
-          m_MethodName: Sale
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &1125396997
 GameObject:
   m_ObjectHideFlags: 0
@@ -24086,7 +23736,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: guardar
-  volverColor: 0
 --- !u!114 &1126998282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24200,7 +23849,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: carreteras
-  volverColor: 0
 --- !u!225 &1131502359
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -24675,7 +24323,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 491194804}
+        - m_Target: {fileID: 0}
           m_MethodName: PanelCambiarColor
           m_Mode: 2
           m_Arguments:
@@ -24701,7 +24349,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 491194804}
+        - m_Target: {fileID: 0}
           m_MethodName: PanelVolverColor
           m_Mode: 2
           m_Arguments:
@@ -25246,14 +24894,13 @@ RectTransform:
   m_Children:
   - {fileID: 747119457}
   - {fileID: 1126998278}
-  - {fileID: 279043532}
   m_Father: {fileID: 1455404796}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 60, y: 30}
-  m_SizeDelta: {x: 120, y: 60}
+  m_AnchoredPosition: {x: 70, y: 30}
+  m_SizeDelta: {x: 140, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1187012638
 MonoBehaviour:
@@ -25329,7 +24976,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: guardar
-  volverColor: 0
 --- !u!1 &1228360359
 GameObject:
   m_ObjectHideFlags: 0
@@ -26831,7 +26477,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 491194804}
+      - m_Target: {fileID: 0}
         m_MethodName: SalirJuegoGuardarNo
         m_Mode: 1
         m_Arguments:
@@ -27170,7 +26816,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: medio
-  volverColor: 0
 --- !u!114 &1307083431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28355,7 +28000,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: cargar
-  volverColor: 0
 --- !u!114 &1363204209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28473,7 +28117,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: ayuda6
-  volverColor: 0
 --- !u!225 &1366016538
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -29025,7 +28668,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 491194804}
+        - m_Target: {fileID: 0}
           m_MethodName: PanelCambiarColor
           m_Mode: 2
           m_Arguments:
@@ -29051,7 +28694,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 491194804}
+        - m_Target: {fileID: 0}
           m_MethodName: PanelVolverColor
           m_Mode: 2
           m_Arguments:
@@ -29260,7 +28903,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: poblacion
-  volverColor: 0
 --- !u!1 &1386715929
 GameObject:
   m_ObjectHideFlags: 0
@@ -29651,7 +29293,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: datos
-  volverColor: 0
 --- !u!1 &1405262378
 GameObject:
   m_ObjectHideFlags: 0
@@ -30344,7 +29985,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: ayuda6
-  volverColor: 0
 --- !u!225 &1450262303
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -30621,8 +30261,8 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1455404792}
   m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
+  m_Alpha: 0
+  m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!1 &1462241774
@@ -31103,7 +30743,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: pausa
-  volverColor: 0
 --- !u!114 &1473876394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31331,7 +30970,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: volver
-  volverColor: 0
 --- !u!114 &1482856122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33737,7 +33375,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: demoler
-  volverColor: 0
 --- !u!114 &1602609114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34757,7 +34394,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: comida
-  volverColor: 0
 --- !u!1 &1673166840
 GameObject:
   m_ObjectHideFlags: 0
@@ -35824,7 +35460,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: graficos
-  volverColor: 0
 --- !u!1 &1731510044
 GameObject:
   m_ObjectHideFlags: 0
@@ -36207,7 +35842,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: ayuda2
-  volverColor: 0
 --- !u!1 &1748578846
 GameObject:
   m_ObjectHideFlags: 0
@@ -36275,7 +35909,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: volumen
-  volverColor: 0
 --- !u!114 &1748578850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36856,7 +36489,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: volver
-  volverColor: 0
 --- !u!114 &1770297839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37411,7 +37043,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: ayuda3
-  volverColor: 0
 --- !u!225 &1829193824
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -38035,7 +37666,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: construir
-  volverColor: 0
 --- !u!114 &1885394534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38208,7 +37838,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: pausa
-  volverColor: 0
 --- !u!114 &1889835197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38424,7 +38053,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: pausa
-  volverColor: 0
 --- !u!114 &1902478202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39398,7 +39026,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: tiendas
-  volverColor: 0
 --- !u!1 &1978531842
 GameObject:
   m_ObjectHideFlags: 0
@@ -39553,7 +39180,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: poblacion
-  volverColor: 0
 --- !u!225 &1983381630
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -39685,7 +39311,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 491194804}
+      - m_Target: {fileID: 1121589930}
         m_MethodName: SalirJuego
         m_Mode: 1
         m_Arguments:
@@ -39750,11 +39376,11 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 491194808}
-          m_MethodName: Entra
-          m_Mode: 1
+          m_MethodName: EntraBoton
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 1984217901}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -39765,11 +39391,11 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 491194808}
-          m_MethodName: Sale
-          m_Mode: 1
+          m_MethodName: SaleBoton
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 1984217901}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -40008,7 +39634,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 491194804}
+      - m_Target: {fileID: 0}
         m_MethodName: VolverMenuPrincipalGuardarSi
         m_Mode: 1
         m_Arguments:
@@ -41646,7 +41272,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: guardarSalir
-  volverColor: 0
 --- !u!225 &2075409595
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -42939,7 +42564,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nombre: volver
-  volverColor: 0
 --- !u!114 &2110141443
 MonoBehaviour:
   m_ObjectHideFlags: 0

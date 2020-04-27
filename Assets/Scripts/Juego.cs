@@ -36,7 +36,6 @@ public class Juego : MonoBehaviour {
     public Interfaz.Opciones2.Graficos opcionesGraficos;
     public Interfaz.Opciones2.Teclado opcionesTeclado;
     public Interfaz.Ayuda ayuda;
-    public Interfaz.MenuJuego menuJuego;
 
     public Text versionTexto;
 
@@ -74,6 +73,7 @@ public class Juego : MonoBehaviour {
 
     public Interfaz.Juego2.Construir construirInterfaz;
     public Interfaz.Juego2.Demoler demolerInterfaz;
+    public Interfaz.Juego2.MenuAbajoIzq menuAbajoIzqInterfaz;
 
     public Camera camara;
 
@@ -219,7 +219,7 @@ public class Juego : MonoBehaviour {
         {
             if (Input.GetKeyDown(teclaMenu))
             {
-                menuJuego.MostrarMenu();
+                menuAbajoIzqInterfaz.AbrirMenu();
             }
 
             if (Input.GetMouseButtonDown(1))
@@ -346,15 +346,16 @@ public class Juego : MonoBehaviour {
 
     public void ConstruirSeleccionarEdificio(int edificio)
     {
+        sonidoBoton.Play();
+
         demolerActivar = false;
         construirActivar = true;
 
         vistaPrevia.QuitarTodosEdificios();
-        menuJuego.CerrarPanel();
+        menuAbajoIzqInterfaz.CerrarMenu();
 
         edificioSeleccionado = edificios[edificio];
         ayuda.AbrirAyuda6o7(edificioSeleccionado.categoria);
-        sonidoBoton.Play();
     }
 
     void EdificioConstruir(int accion)
@@ -515,7 +516,7 @@ public class Juego : MonoBehaviour {
         sonidoBoton.Play();
 
         vistaPrevia.QuitarTodosEdificios();
-        menuJuego.CerrarPanel();
+        menuAbajoIzqInterfaz.CerrarMenu();
         panelCoste.gameObject.GetComponent<CanvasGroup>().alpha = 0;
 
         if (demolerActivar == true)
@@ -667,5 +668,19 @@ public class Juego : MonoBehaviour {
         FileStream fichero = File.Create(Application.persistentDataPath + "/" + guardado.id + ".save");
         bf.Serialize(fichero, guardado);
         fichero.Close();
+    }
+
+    public void AbrirCanvas()
+    {
+        canvas.gameObject.GetComponent<CanvasGroup>().alpha = 1;
+        canvas.gameObject.GetComponent<CanvasGroup>().interactable = true;
+        canvas.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
+    }
+
+    public void CerrarCanvas()
+    {
+        canvas.gameObject.GetComponent<CanvasGroup>().alpha = 0;
+        canvas.gameObject.GetComponent<CanvasGroup>().interactable = false;
+        canvas.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
     }
 }

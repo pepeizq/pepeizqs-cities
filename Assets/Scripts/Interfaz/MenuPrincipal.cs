@@ -71,5 +71,19 @@ namespace Interfaz
         {
             Application.Quit();
         }
+
+        public void AbrirCanvas()
+        {
+            canvas.gameObject.GetComponent<CanvasGroup>().alpha = 1;
+            canvas.gameObject.GetComponent<CanvasGroup>().interactable = true;
+            canvas.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
+        }
+
+        public void CerrarCanvas()
+        {
+            canvas.gameObject.GetComponent<CanvasGroup>().alpha = 0;
+            canvas.gameObject.GetComponent<CanvasGroup>().interactable = false;
+            canvas.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
+        }
     }
 }

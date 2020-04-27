@@ -7,7 +7,10 @@ namespace Interfaz.Juego2
 {
     public class Construir : MonoBehaviour
     {
+        public AudioSource sonidoBoton;
         public Cursores cursores;
+
+        public MenuAbajoIzq menuAbajoIzqInterfaz;
 
         public Panel botonConstruir;
 
@@ -44,12 +47,13 @@ namespace Interfaz.Juego2
 
         public void AbrirPanelEdificios()
         {
+            sonidoBoton.Play();
             CerrarPaneles();
+            menuAbajoIzqInterfaz.CerrarMenu();
 
             if (panelEdificiosTipo.gameObject.GetComponent<CanvasGroup>().alpha == 0)
             {
                 botonConstruir.gameObject.GetComponent<Image>().color = new Color(60f / 255f, 60f / 255f, 60f / 255f, 255f);
-
                 AbrirPanel(panelEdificiosTipo);
 
                 Animator animacion = panelEdificiosTipo.GetComponent<Animator>();
@@ -61,8 +65,7 @@ namespace Interfaz.Juego2
             }
             else
             {
-                botonConstruir.gameObject.GetComponent<Image>().color = new Color(255f / 255f, 255f / 255f, 255f / 255f, 0f);
-
+                botonConstruir.gameObject.GetComponent<Image>().color = colorTransparente;
                 CerrarPanel(panelEdificiosTipo);
             }
         }
@@ -203,6 +206,7 @@ namespace Interfaz.Juego2
         {
             if (panelCarreteras.gameObject.GetComponent<CanvasGroup>().alpha == 0)
             {
+                sonidoBoton.Play();
                 CerrarPanel(panelEdificiosTipo);              
                 AbrirPanel(panelCarreteras);
 
@@ -228,6 +232,7 @@ namespace Interfaz.Juego2
         {
             if (panelPoblacion.gameObject.GetComponent<CanvasGroup>().alpha == 0)
             {
+                sonidoBoton.Play();
                 CerrarPanel(panelEdificiosTipo);
                 AbrirPanel(panelPoblacion);
 
@@ -250,6 +255,7 @@ namespace Interfaz.Juego2
         {
             if (panelComida.gameObject.GetComponent<CanvasGroup>().alpha == 0)
             {
+                sonidoBoton.Play();
                 CerrarPanel(panelEdificiosTipo);
                 AbrirPanel(panelComida);
 
@@ -272,6 +278,7 @@ namespace Interfaz.Juego2
         {
             if (panelTiendas.gameObject.GetComponent<CanvasGroup>().alpha == 0)
             {
+                sonidoBoton.Play();
                 CerrarPanel(panelEdificiosTipo);
                 AbrirPanel(panelTiendas);
 
@@ -294,6 +301,7 @@ namespace Interfaz.Juego2
         {
             if (panelIndustria.gameObject.GetComponent<CanvasGroup>().alpha == 0)
             {
+                sonidoBoton.Play();
                 CerrarPanel(panelEdificiosTipo);
                 AbrirPanel(panelIndustria);
 
@@ -316,6 +324,7 @@ namespace Interfaz.Juego2
         {
             if (panelDecoracion.gameObject.GetComponent<CanvasGroup>().alpha == 0)
             {
+                sonidoBoton.Play();
                 CerrarPanel(panelEdificiosTipo);
                 AbrirPanel(panelDecoracion);
 
@@ -523,6 +532,7 @@ namespace Interfaz.Juego2
 
         public void CerrarTodo()
         {
+            botonConstruir.gameObject.GetComponent<Image>().color = colorTransparente;
             CerrarPanel(panelEdificiosTipo);
             CerrarPaneles();
         }

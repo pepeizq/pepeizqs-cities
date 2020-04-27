@@ -1,4 +1,5 @@
 ﻿using Construcciones;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,9 +7,20 @@ namespace Interfaz.Juego2
 {
     public class MenuAbajoIzq : MonoBehaviour
     {
-        public Panel panelMenu;
+        public AudioSource sonidoBoton;
 
+        public Panel panelMenu;
+        public Panel botonMenu;
+
+        public Panel panelGuardarMenuPrincipal;
+        public Panel panelGuardarSalir;
+
+        public Construir construirInterfaz;
+
+        public MenuPrincipal menuPrincipal;
         public Juego juego;
+        public Opciones opciones;
+        public Partidas partidas;
 
         [SerializeField]
         private VistaPrevia colocarPrevio = null;
@@ -50,11 +62,11 @@ namespace Interfaz.Juego2
 
             if (cambiar == true)
             {
-                Color colorPanel = panelMenu.gameObject.GetComponent<Image>().color;
+                Color colorPanel = botonMenu.gameObject.GetComponent<Image>().color;
 
                 if (colorPanel != colorTransparente)
                 {
-                    panelMenu.gameObject.GetComponent<Image>().color = colorTransparente;
+                    botonMenu.gameObject.GetComponent<Image>().color = colorTransparente;
                 }
             }
         }
@@ -63,11 +75,15 @@ namespace Interfaz.Juego2
 
         public void AbrirMenu()
         {
+            sonidoBoton.Play();
             colocarPrevio.QuitarTodosEdificios();
+            construirInterfaz.CerrarTodo();
 
             if (panelMenu.gameObject.GetComponent<CanvasGroup>().alpha == 0)
             {
+                botonMenu.gameObject.GetComponent<Image>().color = colorEntra;
                 AbrirPanel(panelMenu);
+                diaNoche.VelocidadMarchas(0);
 
                 Animator animacion = panelMenu.GetComponent<Animator>();
 
@@ -78,8 +94,118 @@ namespace Interfaz.Juego2
             }
             else
             {
+                botonMenu.gameObject.GetComponent<Image>().color = colorTransparente;
                 CerrarPanel(panelMenu);
+                diaNoche.VelocidadMarchas(1);
             }
+        }
+
+        public void CerrarMenu()
+        {
+            botonMenu.gameObject.GetComponent<Image>().color = colorTransparente;
+            CerrarPanel(panelMenu);
+        }
+
+        //-----------------------------------------------------
+
+        public void GuardarPartida()
+        {
+            sonidoBoton.Play();
+
+            juego.GuardarPartida();
+
+            CerrarPanel(panelMenu);
+        }
+
+        public void MostrarOpciones()
+        {
+            sonidoBoton.Play();
+
+            juego.CerrarCanvas();
+
+            opciones.AbrirCanvas();
+
+            opciones.canvasOrigen = 2;
+        }
+
+        public void VolverMenuPrincipal()
+        {
+            sonidoBoton.Play();
+            botonMenu.gameObject.GetComponent<Image>().color = colorTransparente;
+
+            CerrarPanel(panelMenu);
+
+            AbrirPanel(panelGuardarMenuPrincipal);
+        }
+
+        public void VolverMenuPrincipalGuardarSi()
+        {
+            juego.GuardarPartida();
+            juego.CerrarCanvas();
+            CerrarPanel(panelGuardarMenuPrincipal);
+
+            List<Guardado> partidasGuardadas = partidas.ListadoPartidas();
+
+            if (partidasGuardadas.Count > 0)
+            {
+                juego.botonContinuarPartida.interactable = true;
+                juego.botonCargarPartida.interactable = true;
+            }
+            else
+            {
+                juego.botonContinuarPartida.interactable = false;
+                juego.botonCargarPartida.interactable = false;
+            }
+
+            menuPrincipal.AbrirCanvas();
+        }
+
+        public void VolverMenuPrincipalGuardarNo()
+        {
+            juego.CerrarCanvas();
+            CerrarPanel(panelGuardarMenuPrincipal);
+
+            List<Guardado> partidasGuardadas = partidas.ListadoPartidas();
+
+            if (partidasGuardadas.Count > 0)
+            {
+                juego.botonContinuarPartida.interactable = true;
+                juego.botonCargarPartida.interactable = true;
+            }
+            else
+            {
+                juego.botonContinuarPartida.interactable = false;
+                juego.botonCargarPartida.interactable = false;
+            }
+
+            menuPrincipal.AbrirCanvas();
+        }
+
+        public void SalirJuego()
+        {
+            sonidoBoton.Play();
+            botonMenu.gameObject.GetComponent<Image>().color = colorTransparente;
+
+            CerrarPanel(panelMenu);
+
+            AbrirPanel(panelGuardarSalir);
+        }
+
+        public void SalirJuegoGuardarSi()
+        {
+            juego.GuardarPartida();
+
+            Application.Quit();
+        }
+
+        public void SalirJuegoGuardarNo()
+        {
+            Application.Quit();
+        }
+
+        public void ReportarFallos()
+        {
+            Steam.AbrirWeb("https://pepeizqapps.com/contact/");
         }
 
         //-----------------------------------------------------

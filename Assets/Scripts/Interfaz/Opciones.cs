@@ -10,7 +10,6 @@ namespace Interfaz
 
         public MenuPrincipal menuPrincipal;
         public Juego juego;
-        public MenuJuego menuJuego;
 
         public Canvas canvas;
         public int canvasOrigen; //1 menu principal, 2 menu juego
@@ -148,6 +147,20 @@ namespace Interfaz
             var colores = boton.colors;
             colores.normalColor = color;
             boton.colors = colores;
-        } 
+        }
+
+        public void AbrirCanvas()
+        {
+            canvas.gameObject.GetComponent<CanvasGroup>().alpha = 1;
+            canvas.gameObject.GetComponent<CanvasGroup>().interactable = true;
+            canvas.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
+        }
+
+        public void CerrarCanvas()
+        {
+            canvas.gameObject.GetComponent<CanvasGroup>().alpha = 0;
+            canvas.gameObject.GetComponent<CanvasGroup>().interactable = false;
+            canvas.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
+        }
     }
 }
