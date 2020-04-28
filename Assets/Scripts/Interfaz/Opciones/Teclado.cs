@@ -26,7 +26,7 @@ namespace Interfaz.Opciones2
         public Text textoRotacionDerecha;
 
         public Juego juego;
-        public DiaNoche diaNoche;
+        public Velocidad velocidad;
 
         public Button botonMenuJuego;
         public Button botonArrancarParar;
@@ -159,7 +159,7 @@ namespace Interfaz.Opciones2
                 textoArrancarParar.text = PlayerPrefs.GetString("tecladoArrancarParar");
             }
 
-            diaNoche.teclaArrancarPararTiempo = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("tecladoArrancarParar"));
+            velocidad.teclaArrancarPararTiempo = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("tecladoArrancarParar"));
 
             //-------------------------------------
 

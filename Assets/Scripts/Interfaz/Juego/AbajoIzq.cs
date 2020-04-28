@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace Interfaz.Juego2
 {
-    public class MenuAbajoIzq : MonoBehaviour
+    public class AbajoIzq : MonoBehaviour
     {
         public AudioSource sonidoBoton;
 
@@ -26,7 +26,7 @@ namespace Interfaz.Juego2
         private VistaPrevia colocarPrevio = null;
 
         [SerializeField]
-        private DiaNoche diaNoche = null;
+        private global::Velocidad velocidad = null;
 
         private Color colorEntra = new Color(3f / 255f, 28f / 255f, 39f / 255f, 255f);
         private Color colorTransparente = new Color(255f / 255f, 255f / 255f, 255f / 255f, 0f);
@@ -83,7 +83,7 @@ namespace Interfaz.Juego2
             {
                 botonMenu.gameObject.GetComponent<Image>().color = colorEntra;
                 AbrirPanel(panelMenu);
-                diaNoche.VelocidadMarchas(0);
+                velocidad.VelocidadMarchas(0);
 
                 Animator animacion = panelMenu.GetComponent<Animator>();
 
@@ -96,7 +96,7 @@ namespace Interfaz.Juego2
             {
                 botonMenu.gameObject.GetComponent<Image>().color = colorTransparente;
                 CerrarPanel(panelMenu);
-                diaNoche.VelocidadMarchas(1);
+                velocidad.VelocidadMarchas(1);
             }
         }
 

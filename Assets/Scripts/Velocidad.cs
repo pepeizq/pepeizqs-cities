@@ -1,11 +1,8 @@
 ﻿using Construcciones;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class DiaNoche : MonoBehaviour {
-
-    public Idiomas idioma;
+public class Velocidad : MonoBehaviour {
 
     [HideInInspector]
     public KeyCode teclaArrancarPararTiempo;
@@ -29,12 +26,6 @@ public class DiaNoche : MonoBehaviour {
     [SerializeField]
     private Construir construir = null;
 
-    [SerializeField]
-    private Text dias = null;
-
-    [SerializeField]
-    private Text reloj = null;
-
     public int velocidad = 0;
 
     [SerializeField]
@@ -42,9 +33,7 @@ public class DiaNoche : MonoBehaviour {
 
     public bool encender;
 
-    public Panel panelPausa;
-    public Panel panelPlay1;
-    public Panel panelPlay2;
+    public Interfaz.Juego2.AbajoDer abajoDerInterfaz;
 
     private float tiempoSemaforos = 0;
     private float tiempoSemaforosTope = 4000;
@@ -175,18 +164,13 @@ public class DiaNoche : MonoBehaviour {
                 }
             }
         }
-
-        if (idioma.CogerCadena("day") != null)
-        {
-            dias.text = string.Format(idioma.CogerCadena("day").ToLower() + " {0}", Mathf.Round(contadorDias));
-        }       
-
+  
         ActualizarReloj();
         ActualizarSol();
         vehiculos.ArrancarPararVehiculos(velocidad);
     }
 
-    void ActualizarReloj()
+    private void ActualizarReloj()
     {
         float hora = Mathf.Round((arranqueDia * 24) / segundosDiaTope);
         float minutos = Mathf.Round((arranqueDia * 1440) / segundosDiaTope);
@@ -213,10 +197,10 @@ public class DiaNoche : MonoBehaviour {
             minutosS = "0" + minutosS;
         }
 
-        reloj.text = string.Format("{0}:{1}",horaS,minutosS);
+        abajoDerInterfaz.TiempoActualizar(contadorDias, string.Format("{0}:{1}", horaS, minutosS));
     }
 
-    void ActualizarSol()
+    private void ActualizarSol()
     {
         sol.transform.rotation = Quaternion.Euler(new Vector3((arranqueDia - (segundosDiaTope / 4)) / segundosDiaTope * 360, 0, 0));
 
@@ -233,30 +217,7 @@ public class DiaNoche : MonoBehaviour {
     public void VelocidadMarchas(int nuevaVelocidad)
     {
         velocidad = nuevaVelocidad;
-
-        panelPausa.gameObject.GetComponent<Image>().color = new Color(255f, 255f, 255f, 50f / 255f);
-        panelPlay1.gameObject.GetComponent<Image>().color = new Color(255f, 255f, 255f, 50f / 255f);
-        panelPlay2.gameObject.GetComponent<Image>().color = new Color(255f, 255f, 255f, 50f / 255f);
-
-        //panelPausa.volverColor = false;
-        //panelPlay1.volverColor = false;
-        //panelPlay2.volverColor = false;
-
-        if (nuevaVelocidad == 0)
-        {
-            panelPausa.gameObject.GetComponent<Image>().color = new Color(0.08f, 0.4f, 0.58f);
-            //panelPausa.volverColor = true;
-        }
-        else if (nuevaVelocidad == 1)
-        {
-            panelPlay1.gameObject.GetComponent<Image>().color = new Color(0.08f, 0.4f, 0.58f);
-            //panelPlay1.volverColor = true;
-        }
-        else if (nuevaVelocidad == 2)
-        {
-            panelPlay2.gameObject.GetComponent<Image>().color = new Color(0.08f, 0.4f, 0.58f);
-            //panelPlay2.volverColor = true;
-        }
+        abajoDerInterfaz.MarcarVelocidad(nuevaVelocidad);
     }
 
     public void ActualizarLuces()

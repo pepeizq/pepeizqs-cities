@@ -13,7 +13,7 @@ namespace Interfaz
         public AudioSource sonidoBoton;
 
         [SerializeField]
-        private DiaNoche diaNoche = null;
+        private Velocidad velocidad = null;
 
         public Panel ayuda1;
         public Text ayuda1Tecla1;
@@ -52,7 +52,7 @@ namespace Interfaz
                     ayuda1.GetComponent<CanvasGroup>().blocksRaycasts = true;
                     ayuda1.gameObject.SetActive(true);
 
-                    diaNoche.VelocidadMarchas(0);
+                    velocidad.VelocidadMarchas(0);
                 }
                 else
                 {
@@ -68,7 +68,7 @@ namespace Interfaz
             ayuda1Tecla3.text = camara.teclaMovimientoDerecha.ToString();
             ayuda1Tecla4.text = camara.teclaMovimientoAbajo.ToString();
 
-            ayuda3Tecla1.text = diaNoche.teclaArrancarPararTiempo.ToString();
+            ayuda3Tecla1.text = velocidad.teclaArrancarPararTiempo.ToString();
 
             ayuda4Tecla1.text = camara.teclaRotacionIzquierda.ToString();
             ayuda4Tecla2.text = camara.teclaRotacionDerecha.ToString();
@@ -159,7 +159,7 @@ namespace Interfaz
             ayuda5.GetComponent<CanvasGroup>().blocksRaycasts = false;
             ayuda5.gameObject.SetActive(false);
 
-            diaNoche.VelocidadMarchas(1);
+            velocidad.VelocidadMarchas(1);
         }
 
         public void AbrirAyuda6o7(int categoria)

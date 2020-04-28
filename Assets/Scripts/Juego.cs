@@ -60,7 +60,7 @@ public class Juego : MonoBehaviour {
     private VistaPrevia vistaPrevia = null;
 
     [SerializeField]
-    private DiaNoche diaNoche = null;
+    private Velocidad velocidad = null;
 
     private Construccion edificioSeleccionado;
     private List<Construccion2> edificiosSeleccionados = new List<Construccion2>();
@@ -73,7 +73,7 @@ public class Juego : MonoBehaviour {
 
     public Interfaz.Juego2.Construir construirInterfaz;
     public Interfaz.Juego2.Demoler demolerInterfaz;
-    public Interfaz.Juego2.MenuAbajoIzq menuAbajoIzqInterfaz;
+    public Interfaz.Juego2.AbajoIzq abajoIzqInterfaz;
 
     public Camera camara;
 
@@ -126,7 +126,7 @@ public class Juego : MonoBehaviour {
             escenario.PonerTerreno(null);
             escenario.PonerArboles(null, construir);
 
-            diaNoche.arranqueDia = 70000;
+            velocidad.arranqueDia = 70000;
         }
 
         opciones.CargarInicio();
@@ -137,7 +137,7 @@ public class Juego : MonoBehaviour {
         opcionesGeneral.Sonido();
         idioma.CargarTextos();
      
-        diaNoche.VelocidadMarchas(0);
+        velocidad.VelocidadMarchas(0);
         versionTexto.text = "v" + Application.version;
 
         //Captura.Generar(edificios[42].gameObject);
@@ -171,8 +171,8 @@ public class Juego : MonoBehaviour {
         escenario.PonerTerreno(null);
         escenario.PonerArboles(null, construir);
 
-        diaNoche.arranqueDia = 70000;
-        diaNoche.contadorDias = 1;
+        velocidad.arranqueDia = 70000;
+        velocidad.contadorDias = 1;
 
         nuevaPartida.canvas.gameObject.GetComponent<CanvasGroup>().alpha = 0;
         nuevaPartida.canvas.gameObject.GetComponent<CanvasGroup>().interactable = false;
@@ -205,7 +205,7 @@ public class Juego : MonoBehaviour {
         menuPrincipal.MostrarJuego();
         ayuda.Cargar(true);
         ayuda.EstadoCajas(true);
-        diaNoche.VelocidadMarchas(1);
+        velocidad.VelocidadMarchas(1);
         construir.CambiarLucesSemaforos(1);
         vistaPrevia.QuitarTodosEdificios();
 
@@ -219,7 +219,7 @@ public class Juego : MonoBehaviour {
         {
             if (Input.GetKeyDown(teclaMenu))
             {
-                menuAbajoIzqInterfaz.AbrirMenu();
+                abajoIzqInterfaz.AbrirMenu();
             }
 
             if (Input.GetMouseButtonDown(1))
@@ -352,7 +352,7 @@ public class Juego : MonoBehaviour {
         construirActivar = true;
 
         vistaPrevia.QuitarTodosEdificios();
-        menuAbajoIzqInterfaz.CerrarMenu();
+        abajoIzqInterfaz.CerrarMenu();
 
         edificioSeleccionado = edificios[edificio];
         ayuda.AbrirAyuda6o7(edificioSeleccionado.categoria);
@@ -372,7 +372,7 @@ public class Juego : MonoBehaviour {
                 {
                     if (edificiosSeleccionados[0].edificio.categoria == 1)
                     {
-                        Carreteras.Construir(edificiosSeleccionados, ciudad, construir, diaNoche, edificios, sonidoBotonConstruir);
+                        Carreteras.Construir(edificiosSeleccionados, ciudad, construir, velocidad, edificios, sonidoBotonConstruir);
                     }
                 }     
                 else
@@ -406,7 +406,7 @@ public class Juego : MonoBehaviour {
 
                             ciudad.DepositoDinero(-edificioSeleccionado.coste);
                             ciudad.ActualizarUI(false);
-                            construir.AñadirConstruccion(edificioSeleccionado, posicion, diaNoche.EstadoEncendidoLuces());
+                            construir.AñadirConstruccion(edificioSeleccionado, posicion, velocidad.EstadoEncendidoLuces());
                             sonidoBotonConstruir.Play();
                         }
                     }
@@ -516,7 +516,7 @@ public class Juego : MonoBehaviour {
         sonidoBoton.Play();
 
         vistaPrevia.QuitarTodosEdificios();
-        menuAbajoIzqInterfaz.CerrarMenu();
+        abajoIzqInterfaz.CerrarMenu();
         panelCoste.gameObject.GetComponent<CanvasGroup>().alpha = 0;
 
         if (demolerActivar == true)
@@ -553,9 +553,9 @@ public class Juego : MonoBehaviour {
     {
         if (partida != null)
         {
-            diaNoche.contadorDias = partida.dia;
-            diaNoche.arranqueDia = partida.hora;
-            diaNoche.ActualizarLuces();
+            velocidad.contadorDias = partida.dia;
+            velocidad.arranqueDia = partida.hora;
+            velocidad.ActualizarLuces();
 
             int i = 0;
             while (i < partida.edificiosID.Count)
@@ -568,7 +568,7 @@ public class Juego : MonoBehaviour {
 
                     Vector3 posicion = new Vector3(partida.edificiosX[i], 0.5f, partida.edificiosZ[i]);
                     posicion = Posicion.EdificioAjusteCarga(edificioGuardado, posicion);
-                    construir.AñadirConstruccion(edificioGuardado, posicion, diaNoche.encender);
+                    construir.AñadirConstruccion(edificioGuardado, posicion, velocidad.encender);
                 }
 
                 i++;
@@ -653,8 +653,8 @@ public class Juego : MonoBehaviour {
         guardado.camaraRotacionY = camara.transform.rotation.y;
         guardado.camaraRotacionZ = camara.transform.rotation.z;
 
-        guardado.dia = (int)diaNoche.contadorDias;
-        guardado.hora = diaNoche.arranqueDia;
+        guardado.dia = (int)velocidad.contadorDias;
+        guardado.hora = velocidad.arranqueDia;
 
         guardado.dinero = ciudad.Dinero;
         guardado.modoFacil = ciudad.ModoFacil;

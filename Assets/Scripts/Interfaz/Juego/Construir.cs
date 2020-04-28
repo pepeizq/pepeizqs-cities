@@ -10,7 +10,7 @@ namespace Interfaz.Juego2
         public AudioSource sonidoBoton;
         public Cursores cursores;
 
-        public MenuAbajoIzq menuAbajoIzqInterfaz;
+        public AbajoIzq menuAbajoIzqInterfaz;
 
         public Panel botonConstruir;
 

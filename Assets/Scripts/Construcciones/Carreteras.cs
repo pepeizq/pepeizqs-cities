@@ -6,7 +6,7 @@ namespace Construcciones
 {
     public static class Carreteras
     {
-        public static void Construir(List<Construccion2> carreteras, Ciudad ciudad, Construir construir, DiaNoche diaNoche, Construccion[] edificios, AudioSource sonidoBotonConstruir)
+        public static void Construir(List<Construccion2> carreteras, Ciudad ciudad, Construir construir, Velocidad velocidad, Construccion[] edificios, AudioSource sonidoBotonConstruir)
         {
             if (carreteras.Count > 0)
             {
@@ -25,7 +25,7 @@ namespace Construcciones
                     {
                         if (construir.ComprobarPosicion(subcarretera.edificio, subcarretera.posicion) == null)
                         {
-                            construir.AñadirConstruccion(subcarretera.edificio, subcarretera.posicion, diaNoche.EstadoEncendidoLuces());
+                            construir.AñadirConstruccion(subcarretera.edificio, subcarretera.posicion, velocidad.EstadoEncendidoLuces());
                         }
                         else
                         {
@@ -34,7 +34,7 @@ namespace Construcciones
                             if (edificioEncontrado.categoria == 0)
                             {
                                 construir.QuitarEdificio(edificioEncontrado, subcarretera.posicion);
-                                construir.AñadirConstruccion(subcarretera.edificio, subcarretera.posicion, diaNoche.EstadoEncendidoLuces());
+                                construir.AñadirConstruccion(subcarretera.edificio, subcarretera.posicion, velocidad.EstadoEncendidoLuces());
 
                                 ciudad.DepositoDinero(edificioEncontrado.coste / 2);
                             }
@@ -65,7 +65,7 @@ namespace Construcciones
                                     ciudad.ActualizarUI(false);
                                     construir.QuitarEdificio(edificioEncontrado, subcarretera.posicion);
 
-                                    construir.AñadirConstruccion(subcarretera.edificio, subcarretera.posicion, diaNoche.EstadoEncendidoLuces());
+                                    construir.AñadirConstruccion(subcarretera.edificio, subcarretera.posicion, velocidad.EstadoEncendidoLuces());
                                 }
                             }
                         }
