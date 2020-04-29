@@ -44,7 +44,7 @@ namespace Interfaz.Juego2
             {
                 cambiar = false;
             }
-
+     
             if (cambiar == true)
             {
                 Color colorPanel = panel.gameObject.GetComponent<Image>().color;

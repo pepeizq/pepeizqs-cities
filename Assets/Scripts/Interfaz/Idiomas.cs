@@ -18,14 +18,14 @@ public class Idiomas : MonoBehaviour {
 
     public Text cargarPartidaVolver;
 
-    public Text infoVolver;
-    public Text infoAbrirWeb1;
-    public Text infoAbrirWeb2;
-    public Text infoAbrirWeb3;
-    public Text infoCodigoFuente;
-    public Text infoCodigoFuenteDetalles;
-    public Text infoWeb1Detalles;
-    public Text infoWeb2Detalles;
+    //public Text infoVolver;
+    //public Text infoAbrirWeb1;
+    //public Text infoAbrirWeb2;
+    //public Text infoAbrirWeb3;
+    //public Text infoCodigoFuente;
+    //public Text infoCodigoFuenteDetalles;
+    //public Text infoWeb1Detalles;
+    //public Text infoWeb2Detalles;
 
     public Text opcionesVolver;
     public Text opcionesGeneral;
@@ -95,14 +95,14 @@ public class Idiomas : MonoBehaviour {
 
         cargarPartidaVolver.text = CogerCadena("back");
 
-        infoVolver.text = CogerCadena("back");
-        infoAbrirWeb1.text = CogerCadena("openWeb");
-        infoAbrirWeb2.text = CogerCadena("openWeb");
-        infoAbrirWeb3.text = CogerCadena("openWeb");
-        infoCodigoFuente.text = CogerCadena("infoDetails1a");
-        infoCodigoFuenteDetalles.text = CogerCadena("infoDetails1b");
-        infoWeb1Detalles.text = CogerCadena("infoDetails2");
-        infoWeb2Detalles.text = CogerCadena("infoDetails3");
+        //infoVolver.text = CogerCadena("back");
+        //infoAbrirWeb1.text = CogerCadena("openWeb");
+        //infoAbrirWeb2.text = CogerCadena("openWeb");
+        //infoAbrirWeb3.text = CogerCadena("openWeb");
+        //infoCodigoFuente.text = CogerCadena("infoDetails1a");
+        //infoCodigoFuenteDetalles.text = CogerCadena("infoDetails1b");
+        //infoWeb1Detalles.text = CogerCadena("infoDetails2");
+        //infoWeb2Detalles.text = CogerCadena("infoDetails3");
 
         opcionesVolver.text = CogerCadena("back");
         opcionesGeneral.text = CogerCadena("general");

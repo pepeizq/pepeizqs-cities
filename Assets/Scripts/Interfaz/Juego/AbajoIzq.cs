@@ -26,7 +26,7 @@ namespace Interfaz.Juego2
         private VistaPrevia colocarPrevio = null;
 
         [SerializeField]
-        private global::Velocidad velocidad = null;
+        private Velocidad velocidad = null;
 
         private Color colorEntra = new Color(3f / 255f, 28f / 255f, 39f / 255f, 255f);
         private Color colorTransparente = new Color(255f / 255f, 255f / 255f, 255f / 255f, 0f);
@@ -157,7 +157,7 @@ namespace Interfaz.Juego2
                 juego.botonCargarPartida.interactable = false;
             }
 
-            menuPrincipal.AbrirCanvas();
+            menuPrincipal.AbrirCanvas(menuPrincipal.canvas);
         }
 
         public void VolverMenuPrincipalGuardarNo()
@@ -178,7 +178,7 @@ namespace Interfaz.Juego2
                 juego.botonCargarPartida.interactable = false;
             }
 
-            menuPrincipal.AbrirCanvas();
+            menuPrincipal.AbrirCanvas(menuPrincipal.canvas);
         }
 
         public void SalirJuego()

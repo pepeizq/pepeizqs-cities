@@ -35,7 +35,10 @@ public class Juego : MonoBehaviour {
     public Interfaz.Opciones2.General opcionesGeneral;
     public Interfaz.Opciones2.Graficos opcionesGraficos;
     public Interfaz.Opciones2.Teclado opcionesTeclado;
-    public Interfaz.Ayuda ayuda;
+    public Interfaz.Juego2.Construir construirInterfaz;
+    public Interfaz.Juego2.Demoler demolerInterfaz;
+    public Interfaz.Juego2.AbajoIzq abajoIzqInterfaz;
+    public Interfaz.Juego2.Ayuda ayudaInterfaz;
 
     public Text versionTexto;
 
@@ -71,17 +74,10 @@ public class Juego : MonoBehaviour {
     [HideInInspector]
     public bool demolerActivar = false;
 
-    public Interfaz.Juego2.Construir construirInterfaz;
-    public Interfaz.Juego2.Demoler demolerInterfaz;
-    public Interfaz.Juego2.AbajoIzq abajoIzqInterfaz;
-
     public Camera camara;
 
     public Escenario escenario;
 
-    public Panel panelDatos;
-    public Panel panelGuardar;
-    public Panel panelTiempo;
     public Panel panelCoste;
     public Text mensajeCoste;
 
@@ -116,7 +112,7 @@ public class Juego : MonoBehaviour {
                 
             escenario.PonerTerreno(partidasGuardadas[0]);
             CargarEdificios(partidasGuardadas[0]);
-            ayuda.Cargar(false);
+            ayudaInterfaz.Cargar(false);
         }
         else
         {
@@ -203,8 +199,7 @@ public class Juego : MonoBehaviour {
     public void CargarInterfaz()
     {
         menuPrincipal.MostrarJuego();
-        ayuda.Cargar(true);
-        ayuda.EstadoCajas(true);
+        ayudaInterfaz.Cargar(true);
         velocidad.VelocidadMarchas(1);
         construir.CambiarLucesSemaforos(1);
         vistaPrevia.QuitarTodosEdificios();
@@ -355,7 +350,7 @@ public class Juego : MonoBehaviour {
         abajoIzqInterfaz.CerrarMenu();
 
         edificioSeleccionado = edificios[edificio];
-        ayuda.AbrirAyuda6o7(edificioSeleccionado.categoria);
+        ayudaInterfaz.AbrirAyuda6o7(edificioSeleccionado.categoria);
     }
 
     void EdificioConstruir(int accion)

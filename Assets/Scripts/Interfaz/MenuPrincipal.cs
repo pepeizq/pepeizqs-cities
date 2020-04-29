@@ -15,26 +15,18 @@ namespace Interfaz
 
         public void MostrarJuego()
         {
-            canvas.gameObject.GetComponent<CanvasGroup>().alpha = 0;
-            canvas.gameObject.GetComponent<CanvasGroup>().interactable = false;
-            canvas.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
+            CerrarCanvas(canvas);
 
-            juego.canvas.gameObject.GetComponent<CanvasGroup>().alpha = 1;
-            juego.canvas.gameObject.GetComponent<CanvasGroup>().interactable = true;
-            juego.canvas.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
+            AbrirCanvas(juego.canvas);
         }
 
         public void MostrarCargarPartidas()
         {
             sonidoBoton.Play();
 
-            canvas.gameObject.GetComponent<CanvasGroup>().alpha = 0;
-            canvas.gameObject.GetComponent<CanvasGroup>().interactable = false;
-            canvas.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
+            CerrarCanvas(canvas);
 
-            cargarPartida.canvas.gameObject.GetComponent<CanvasGroup>().alpha = 1;
-            cargarPartida.canvas.gameObject.GetComponent<CanvasGroup>().interactable = true;
-            cargarPartida.canvas.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
+            AbrirCanvas(cargarPartida.canvas);
 
             cargarPartida.CargarListado();
         }
@@ -43,13 +35,9 @@ namespace Interfaz
         {
             sonidoBoton.Play();
 
-            canvas.gameObject.GetComponent<CanvasGroup>().alpha = 0;
-            canvas.gameObject.GetComponent<CanvasGroup>().interactable = false;
-            canvas.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
+            CerrarCanvas(canvas);
 
-            opciones.canvas.gameObject.GetComponent<CanvasGroup>().alpha = 1;
-            opciones.canvas.gameObject.GetComponent<CanvasGroup>().interactable = true;
-            opciones.canvas.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
+            AbrirCanvas(opciones.canvas);
 
             opciones.canvasOrigen = 1;
         }
@@ -58,13 +46,9 @@ namespace Interfaz
         {
             sonidoBoton.Play();
 
-            canvas.gameObject.GetComponent<CanvasGroup>().alpha = 0;
-            canvas.gameObject.GetComponent<CanvasGroup>().interactable = false;
-            canvas.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
+            CerrarCanvas(canvas);
 
-            info.canvas.gameObject.GetComponent<CanvasGroup>().alpha = 1;
-            info.canvas.gameObject.GetComponent<CanvasGroup>().interactable = true;
-            info.canvas.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
+            AbrirCanvas(info.canvas);
         }
 
         public void SalirJuego()
@@ -72,14 +56,36 @@ namespace Interfaz
             Application.Quit();
         }
 
-        public void AbrirCanvas()
+        public void AbrirCodigoFuente()
+        {
+            sonidoBoton.Play();
+            Steam.AbrirWeb("https://github.com/pepeizq/City-Builder");
+        }
+
+        public void AbrirWeb1()
+        {
+            sonidoBoton.Play();
+            Steam.AbrirWeb("https://pepeizqapps.com/");
+            Steam.Logros("pepeizqcities1");
+        }
+
+        public void AbrirWeb2()
+        {
+            sonidoBoton.Play();
+            Steam.AbrirWeb("https://pepeizqdeals.com/");
+            Steam.Logros("pepeizqcities2");
+        }
+
+        //-----------------------------------------------------
+
+        public void AbrirCanvas(Canvas canvas)
         {
             canvas.gameObject.GetComponent<CanvasGroup>().alpha = 1;
             canvas.gameObject.GetComponent<CanvasGroup>().interactable = true;
             canvas.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
         }
 
-        public void CerrarCanvas()
+        public void CerrarCanvas(Canvas canvas)
         {
             canvas.gameObject.GetComponent<CanvasGroup>().alpha = 0;
             canvas.gameObject.GetComponent<CanvasGroup>().interactable = false;
