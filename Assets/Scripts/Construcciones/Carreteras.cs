@@ -6,7 +6,7 @@ namespace Construcciones
 {
     public static class Carreteras
     {
-        public static void Construir(List<Construccion2> carreteras, Ciudad ciudad, Construir construir, Velocidad velocidad, Construccion[] edificios, AudioSource sonidoBotonConstruir)
+        public static void Construir(List<Construccion2> carreteras, Ciudad ciudad, Construir construir, Velocidad velocidad)
         {
             if (carreteras.Count > 0)
             {
@@ -19,8 +19,6 @@ namespace Construcciones
 
                 if (ciudad.Dinero >= coste)
                 {
-                    sonidoBotonConstruir.Play();
-
                     foreach (Construccion2 subcarretera in carreteras)
                     {
                         if (construir.ComprobarPosicion(subcarretera.edificio, subcarretera.posicion) == null)

@@ -9,7 +9,7 @@ public class Idiomas : MonoBehaviour {
 
     private Hashtable cadenas;
 
-    public AudioSource sonidoBoton;
+    public Interfaz.Opciones2.Sonido sonido;
 
     public Text menuPrincipalNuevaPartida;
     public Text menuPrincipalContinuarPartida;
@@ -18,14 +18,7 @@ public class Idiomas : MonoBehaviour {
 
     public Text cargarPartidaVolver;
 
-    //public Text infoVolver;
-    //public Text infoAbrirWeb1;
-    //public Text infoAbrirWeb2;
-    //public Text infoAbrirWeb3;
-    //public Text infoCodigoFuente;
-    //public Text infoCodigoFuenteDetalles;
-    //public Text infoWeb1Detalles;
-    //public Text infoWeb2Detalles;
+    public Text infoCodigoFuente;
 
     public Text opcionesVolver;
     public Text opcionesGeneral;
@@ -33,8 +26,8 @@ public class Idiomas : MonoBehaviour {
     public Text opcionesTeclado;
 
     public Text opcionesIdiomas;
-    public Text opcionesSonido;
-    public Text opcionesSonidoVolumen;
+    public Text opcionesSonidoVolumenEfectos;
+    public Text opcionesSonidoVolumenMusica;
     public Text opcionesPantalla;
     public Dropdown opcionesDpPantalla;
     public Text opcionesResolucion;
@@ -95,14 +88,7 @@ public class Idiomas : MonoBehaviour {
 
         cargarPartidaVolver.text = CogerCadena("back");
 
-        //infoVolver.text = CogerCadena("back");
-        //infoAbrirWeb1.text = CogerCadena("openWeb");
-        //infoAbrirWeb2.text = CogerCadena("openWeb");
-        //infoAbrirWeb3.text = CogerCadena("openWeb");
-        //infoCodigoFuente.text = CogerCadena("infoDetails1a");
-        //infoCodigoFuenteDetalles.text = CogerCadena("infoDetails1b");
-        //infoWeb1Detalles.text = CogerCadena("infoDetails2");
-        //infoWeb2Detalles.text = CogerCadena("infoDetails3");
+        infoCodigoFuente.text = CogerCadena("infoSourceCode");
 
         opcionesVolver.text = CogerCadena("back");
         opcionesGeneral.text = CogerCadena("general");
@@ -110,8 +96,8 @@ public class Idiomas : MonoBehaviour {
         opcionesTeclado.text = CogerCadena("keyboard");
 
         opcionesIdiomas.text = CogerCadena("languages").ToLower();
-        opcionesSonido.text = CogerCadena("sound").ToLower();
-        opcionesSonidoVolumen.text = CogerCadena("soundVolume").ToLower();
+        opcionesSonidoVolumenEfectos.text = CogerCadena("soundVolumeEffects").ToLower();
+        opcionesSonidoVolumenMusica.text = CogerCadena("soundVolumeMusic").ToLower();
         opcionesPantalla.text = CogerCadena("screen").ToLower();
         TraduccionesDpPantalla();
         opcionesResolucion.text = CogerCadena("resolution").ToLower();
@@ -166,7 +152,7 @@ public class Idiomas : MonoBehaviour {
 
     public void CargarEnglish()
     {
-        sonidoBoton.Play();
+        sonido.RatonClick();
         CargarIdioma(ficheroIdiomas, "English");
         PlayerPrefs.SetString("idioma", "English");
         CargarTextos();
@@ -174,7 +160,7 @@ public class Idiomas : MonoBehaviour {
 
     public void CargarSpanish()
     {
-        sonidoBoton.Play();
+        sonido.RatonClick();
         CargarIdioma(ficheroIdiomas, "Spanish");
         PlayerPrefs.SetString("idioma", "Spanish");
         CargarTextos();

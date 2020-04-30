@@ -40,15 +40,12 @@ public class Juego : MonoBehaviour {
     public Interfaz.Juego2.AbajoIzq abajoIzqInterfaz;
     public Interfaz.Juego2.Ayuda ayudaInterfaz;
 
+    public Interfaz.Opciones2.Sonido sonido;
+
     public Text versionTexto;
 
     public Button botonContinuarPartida;
     public Button botonCargarPartida;
-
-    public AudioSource musicaFondo;
-    public AudioSource sonidoBoton;
-    public AudioSource sonidoBotonConstruir;
-    public AudioSource sonidoBotonDemoler;
 
     [SerializeField]
     private Ciudad ciudad = null;
@@ -89,6 +86,8 @@ public class Juego : MonoBehaviour {
 
     private void Start()
     {
+        sonido.MusicaFondo();
+
         List<Guardado> partidasGuardadas = new List<Guardado>();
 
         try
@@ -130,7 +129,6 @@ public class Juego : MonoBehaviour {
         opcionesGraficos.CargarInicio();
         opcionesTeclado.CargarInicio();
 
-        opcionesGeneral.Sonido();
         idioma.CargarTextos();
      
         velocidad.VelocidadMarchas(0);
@@ -141,7 +139,7 @@ public class Juego : MonoBehaviour {
 
     public void NuevaPartida(bool facil)
     {
-        sonidoBoton.Play();
+        sonido.RatonClick();
 
         if (facil == false)
         {
@@ -179,7 +177,7 @@ public class Juego : MonoBehaviour {
 
     public void ContinuarPartida()
     {
-        sonidoBoton.Play();
+        sonido.RatonClick();
 
         construir.QuitarTodosEdificios();
 
@@ -203,9 +201,6 @@ public class Juego : MonoBehaviour {
         velocidad.VelocidadMarchas(1);
         construir.CambiarLucesSemaforos(1);
         vistaPrevia.QuitarTodosEdificios();
-
-        musicaFondo.loop = true;
-        musicaFondo.Play();   
     }
 
     void Update ()
@@ -341,7 +336,7 @@ public class Juego : MonoBehaviour {
 
     public void ConstruirSeleccionarEdificio(int edificio)
     {
-        sonidoBoton.Play();
+        sonido.RatonClick();
 
         demolerActivar = false;
         construirActivar = true;
@@ -367,7 +362,7 @@ public class Juego : MonoBehaviour {
                 {
                     if (edificiosSeleccionados[0].edificio.categoria == 1)
                     {
-                        Carreteras.Construir(edificiosSeleccionados, ciudad, construir, velocidad, edificios, sonidoBotonConstruir);
+                        Carreteras.Construir(edificiosSeleccionados, ciudad, construir, velocidad);
                     }
                 }     
                 else
@@ -402,7 +397,7 @@ public class Juego : MonoBehaviour {
                             ciudad.DepositoDinero(-edificioSeleccionado.coste);
                             ciudad.ActualizarUI(false);
                             construir.AñadirConstruccion(edificioSeleccionado, posicion, velocidad.EstadoEncendidoLuces());
-                            sonidoBotonConstruir.Play();
+                            sonido.Construir();
                         }
                     }
 
@@ -423,7 +418,7 @@ public class Juego : MonoBehaviour {
 
                             ciudad.ActualizarUI(false);
                             construir.QuitarEdificio(edificioEliminar, posicion);
-                            sonidoBotonDemoler.Play();
+                            sonido.Demoler();
                         }
                     }
                 }               
@@ -508,7 +503,7 @@ public class Juego : MonoBehaviour {
 
     public void Demoler()
     {
-        sonidoBoton.Play();
+        sonido.RatonClick();
 
         vistaPrevia.QuitarTodosEdificios();
         abajoIzqInterfaz.CerrarMenu();
@@ -663,19 +658,5 @@ public class Juego : MonoBehaviour {
         FileStream fichero = File.Create(Application.persistentDataPath + "/" + guardado.id + ".save");
         bf.Serialize(fichero, guardado);
         fichero.Close();
-    }
-
-    public void AbrirCanvas()
-    {
-        canvas.gameObject.GetComponent<CanvasGroup>().alpha = 1;
-        canvas.gameObject.GetComponent<CanvasGroup>().interactable = true;
-        canvas.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
-    }
-
-    public void CerrarCanvas()
-    {
-        canvas.gameObject.GetComponent<CanvasGroup>().alpha = 0;
-        canvas.gameObject.GetComponent<CanvasGroup>().interactable = false;
-        canvas.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
     }
 }

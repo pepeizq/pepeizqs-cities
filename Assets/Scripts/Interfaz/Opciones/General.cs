@@ -5,19 +5,12 @@ namespace Interfaz.Opciones2
 {
     public class General : MonoBehaviour
     {
-        public AudioSource sonidoBoton;
-        public AudioSource musicaFondo;
-
         public Idiomas idioma;
 
-        public bool sonidoParar;
+        public Sonido sonido;
 
-        public Panel panelVolumen;
-        public Slider sliderVolumen;
-
-        public Button botonSonido;
-        public Sprite botonSonidoSiSprite;
-        public Sprite botonSonidoNoSprite;
+        public Slider sliderVolumenEfectos;
+        public Slider sliderVolumenMusica;
 
         public Dropdown dpPantalla;
         public Dropdown dpResoluciones;
@@ -36,31 +29,19 @@ namespace Interfaz.Opciones2
 
             //-----------------------------------------------------------
 
-            if (PlayerPrefs.HasKey("sonido") == false)
+            if (PlayerPrefs.HasKey("volumenEfectos") == false)
             {
-                PlayerPrefs.SetString("sonido", "true");
-                sonidoParar = false;
-            }
-            else
-            {
-                if (PlayerPrefs.GetString("sonido") == "true")
-                {
-                    sonidoParar = false;
-                }
-                else
-                {
-                    sonidoParar = true;
-                }
+                PlayerPrefs.SetFloat("volumenEfectos", 0.7f);
             }
 
-            //-----------------------------------------------------------
+            sliderVolumenEfectos.value = PlayerPrefs.GetFloat("volumenEfectos");
 
-            if (PlayerPrefs.HasKey("volumen") == false)
+            if (PlayerPrefs.HasKey("volumenMusica") == false)
             {
-                PlayerPrefs.SetFloat("volumen", 0.7f);
+                PlayerPrefs.SetFloat("volumenMusica", 0);
             }
 
-            sliderVolumen.value = PlayerPrefs.GetFloat("volumen");
+            sliderVolumenMusica.value = PlayerPrefs.GetFloat("volumenMusica");
 
             //-----------------------------------------------------------
 
@@ -90,36 +71,14 @@ namespace Interfaz.Opciones2
             dpResoluciones.value = PlayerPrefs.GetInt("resolucion");
         }
 
-        public void Sonido()
+        public void ControlVolumenSonidoEfectos(Slider slider)
         {
-            if (musicaFondo != null)
-            {
-                musicaFondo.loop = true;
-                musicaFondo.Play();
-            }
-
-            if (sonidoParar == false)
-            {
-                AudioListener.pause = false;
-                botonSonido.GetComponent<Image>().sprite = botonSonidoSiSprite;
-                PlayerPrefs.SetString("sonido", "true");
-                sonidoParar = true;
-                panelVolumen.GetComponent<CanvasGroup>().interactable = true;
-            }
-            else
-            {
-                AudioListener.pause = true;
-                botonSonido.GetComponent<Image>().sprite = botonSonidoNoSprite;
-                PlayerPrefs.SetString("sonido", "false");
-                sonidoParar = false;
-                panelVolumen.GetComponent<CanvasGroup>().interactable = false;
-            }
+            sonido.EfectosVolumen(slider.value);
         }
 
-        public void ControlVolumenSonido(Slider slider)
+        public void ControlVolumenSonidoMusica(Slider slider)
         {
-            PlayerPrefs.SetFloat("volumen", slider.value);
-            AudioListener.volume = slider.value;
+            sonido.MusicaVolumen(slider.value);
         }
 
         public void ControlPantalla(Dropdown dp)

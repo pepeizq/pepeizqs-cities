@@ -54,7 +54,7 @@ namespace Interfaz.Juego2
             if (panelEdificiosTipo.gameObject.GetComponent<CanvasGroup>().alpha == 0)
             {
                 botonConstruir.gameObject.GetComponent<Image>().color = new Color(60f / 255f, 60f / 255f, 60f / 255f, 255f);
-                AbrirPanel(panelEdificiosTipo);
+                Objetos.Mostrar(panelEdificiosTipo.gameObject);
 
                 Animator animacion = panelEdificiosTipo.GetComponent<Animator>();
 
@@ -66,7 +66,7 @@ namespace Interfaz.Juego2
             else
             {
                 botonConstruir.gameObject.GetComponent<Image>().color = colorTransparente;
-                CerrarPanel(panelEdificiosTipo);
+                Objetos.Ocultar(panelEdificiosTipo.gameObject);
             }
         }
 
@@ -207,8 +207,8 @@ namespace Interfaz.Juego2
             if (panelCarreteras.gameObject.GetComponent<CanvasGroup>().alpha == 0)
             {
                 sonidoBoton.Play();
-                CerrarPanel(panelEdificiosTipo);              
-                AbrirPanel(panelCarreteras);
+                Objetos.Ocultar(panelEdificiosTipo.gameObject);
+                Objetos.Mostrar(panelCarreteras.gameObject);
 
                 foreach (Transform boton in panelCarreteras.gameObject.transform)
                 {
@@ -233,8 +233,8 @@ namespace Interfaz.Juego2
             if (panelPoblacion.gameObject.GetComponent<CanvasGroup>().alpha == 0)
             {
                 sonidoBoton.Play();
-                CerrarPanel(panelEdificiosTipo);
-                AbrirPanel(panelPoblacion);
+                Objetos.Ocultar(panelEdificiosTipo.gameObject);
+                Objetos.Mostrar(panelPoblacion.gameObject);
 
                 foreach (Transform boton in panelPoblacion.gameObject.transform)
                 {
@@ -256,8 +256,8 @@ namespace Interfaz.Juego2
             if (panelComida.gameObject.GetComponent<CanvasGroup>().alpha == 0)
             {
                 sonidoBoton.Play();
-                CerrarPanel(panelEdificiosTipo);
-                AbrirPanel(panelComida);
+                Objetos.Ocultar(panelEdificiosTipo.gameObject);
+                Objetos.Mostrar(panelComida.gameObject);
 
                 foreach (Transform boton in panelComida.gameObject.transform)
                 {
@@ -279,8 +279,8 @@ namespace Interfaz.Juego2
             if (panelTiendas.gameObject.GetComponent<CanvasGroup>().alpha == 0)
             {
                 sonidoBoton.Play();
-                CerrarPanel(panelEdificiosTipo);
-                AbrirPanel(panelTiendas);
+                Objetos.Ocultar(panelEdificiosTipo.gameObject);
+                Objetos.Mostrar(panelTiendas.gameObject);
 
                 foreach (Transform boton in panelTiendas.gameObject.transform)
                 {
@@ -302,8 +302,8 @@ namespace Interfaz.Juego2
             if (panelIndustria.gameObject.GetComponent<CanvasGroup>().alpha == 0)
             {
                 sonidoBoton.Play();
-                CerrarPanel(panelEdificiosTipo);
-                AbrirPanel(panelIndustria);
+                Objetos.Ocultar(panelEdificiosTipo.gameObject);
+                Objetos.Mostrar(panelIndustria.gameObject);
 
                 foreach (Transform boton in panelIndustria.gameObject.transform)
                 {
@@ -325,8 +325,8 @@ namespace Interfaz.Juego2
             if (panelDecoracion.gameObject.GetComponent<CanvasGroup>().alpha == 0)
             {
                 sonidoBoton.Play();
-                CerrarPanel(panelEdificiosTipo);
-                AbrirPanel(panelDecoracion);
+                Objetos.Ocultar(panelEdificiosTipo.gameObject);
+                Objetos.Mostrar(panelDecoracion.gameObject);
 
                 foreach (Transform boton in panelDecoracion.gameObject.transform)
                 {
@@ -533,32 +533,18 @@ namespace Interfaz.Juego2
         public void CerrarTodo()
         {
             botonConstruir.gameObject.GetComponent<Image>().color = colorTransparente;
-            CerrarPanel(panelEdificiosTipo);
+            Objetos.Ocultar(panelEdificiosTipo.gameObject);
             CerrarPaneles();
         }
 
         private void CerrarPaneles()
         {
-            CerrarPanel(panelCarreteras);
-            CerrarPanel(panelPoblacion);
-            CerrarPanel(panelComida);
-            CerrarPanel(panelTiendas);
-            CerrarPanel(panelIndustria);
-            CerrarPanel(panelDecoracion);
-        }
-
-        private void AbrirPanel(Panel panel)
-        {
-            panel.gameObject.GetComponent<CanvasGroup>().alpha = 1;
-            panel.gameObject.GetComponent<CanvasGroup>().interactable = true;
-            panel.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
-        }
-
-        private void CerrarPanel(Panel panel)
-        {
-            panel.gameObject.GetComponent<CanvasGroup>().alpha = 0;
-            panel.gameObject.GetComponent<CanvasGroup>().interactable = false;
-            panel.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
+            Objetos.Ocultar(panelCarreteras.gameObject);
+            Objetos.Ocultar(panelPoblacion.gameObject);
+            Objetos.Ocultar(panelComida.gameObject);
+            Objetos.Ocultar(panelTiendas.gameObject);
+            Objetos.Ocultar(panelIndustria.gameObject);
+            Objetos.Ocultar(panelDecoracion.gameObject);
         }
     }
 }

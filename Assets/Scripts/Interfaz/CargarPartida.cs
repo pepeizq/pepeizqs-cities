@@ -6,7 +6,7 @@ namespace Interfaz
 {
     public class CargarPartida : MonoBehaviour
     {
-        public Cursores cursores;
+        public Opciones2.Sonido sonido;
 
         public Partidas partidas;
 
@@ -29,9 +29,8 @@ namespace Interfaz
 
         public void Volver()
         {
-            canvas.gameObject.GetComponent<CanvasGroup>().alpha = 0;
-            canvas.gameObject.GetComponent<CanvasGroup>().interactable = false;
-            canvas.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
+            sonido.RatonClick();
+            Objetos.Ocultar(canvas.gameObject);
 
             List<Guardado> partidasGuardadas = partidas.ListadoPartidas();
 
@@ -46,9 +45,7 @@ namespace Interfaz
                 juego.botonCargarPartida.interactable = false;
             }
 
-            menuPrincipal.canvas.gameObject.GetComponent<CanvasGroup>().alpha = 1;
-            menuPrincipal.canvas.gameObject.GetComponent<CanvasGroup>().interactable = true;
-            menuPrincipal.canvas.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
+            Objetos.Mostrar(menuPrincipal.canvas.gameObject);
         }
 
         public void CargarListado()
@@ -77,12 +74,10 @@ namespace Interfaz
                     Button botonCargar = panelObjeto.transform.GetChild(0).transform.GetComponent<Button>();
                     botonCargar.onClick.AddListener(() => CargarPartidaSeleccionada(partidaGuardada));
 
-                    Panel subpanelBoton = botonCargar.transform.GetChild(0).transform.GetComponent<Panel>();
-
-                    Text textoNombre = subpanelBoton.transform.GetChild(0).transform.GetComponent<Text>();
+                    Text textoNombre = botonCargar.transform.GetChild(0).transform.GetComponent<Text>();
                     textoNombre.text = partidaGuardada.nombre;
 
-                    Text textoFecha = subpanelBoton.transform.GetChild(1).transform.GetComponent<Text>();
+                    Text textoFecha = botonCargar.transform.GetChild(1).transform.GetComponent<Text>();
                     textoFecha.text = partidaGuardada.fecha;
 
                     //-------------------------------------
@@ -115,21 +110,18 @@ namespace Interfaz
 
         public void CargarPartidaSeleccionada(Guardado partida)
         {
+            sonido.RatonClick();
             escenario.PonerTerreno(partida);
             juego.CargarEdificios(partida);
             juego.CargarInterfaz();
 
-            canvas.gameObject.GetComponent<CanvasGroup>().alpha = 0;
-            canvas.gameObject.GetComponent<CanvasGroup>().interactable = false;
-            canvas.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
-
-            juego.canvas.gameObject.GetComponent<CanvasGroup>().alpha = 1;
-            juego.canvas.gameObject.GetComponent<CanvasGroup>().interactable = true;
-            juego.canvas.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
+            Objetos.Ocultar(canvas.gameObject);
+            Objetos.Mostrar(juego.canvas.gameObject);
         }
 
         public void BorrarPartidaSeleccionada(Guardado partida)
         {
+            sonido.RatonClick();
             partidas.BorrarPartida(partida.id);
             CargarListado();
         }

@@ -24,8 +24,8 @@
         <string name="languages">Languages</string>
         <string name="help">Help</string>
         <string name="easyMode">Easy Mode</string>
-        <string name="sound">Sound</string>
-        <string name="soundVolume">Volume</string>
+        <string name="soundVolumeEffects">Effects Volume</string>
+        <string name="soundVolumeMusic">Music Volume</string>
         <string name="screen">Screen Mode</string>
         <string name="screenMode1">Full Screen</string>
         <string name="screenMode2">Maximized Window</string>
@@ -97,8 +97,8 @@
         <string name="languages">Idiomas</string>
         <string name="help">Ayuda</string>
         <string name="easyMode">Modo Fácil</string>
-        <string name="sound">Sonido</string>
-        <string name="soundVolume">Volumen</string>
+        <string name="soundVolumeEffects">Volumen Efectos</string>
+        <string name="soundVolumeMusic">Volumen Música</string>
         <string name="screen">Modo de Pantalla</string>
         <string name="screenMode1">Pantalla Completa</string>
         <string name="screenMode2">Ventana Ampliada</string>

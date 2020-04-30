@@ -47,13 +47,13 @@ namespace Interfaz.Juego2
                 {
                     CargarTeclas();
 
-                    AbrirPanel(ayuda1);
+                    Objetos.Mostrar(ayuda1.gameObject);
 
                     velocidad.VelocidadMarchas(0);
                 }
                 else
                 {
-                    CerrarPanel(ayuda1);
+                    Objetos.Ocultar(ayuda1.gameObject);
                 }
             }
         }
@@ -80,43 +80,39 @@ namespace Interfaz.Juego2
         {
             sonidoBoton.Play();
 
-            CerrarPanel(ayuda1);
-
-            AbrirPanel(ayuda2);
+            Objetos.Ocultar(ayuda1.gameObject);
+            Objetos.Mostrar(ayuda2.gameObject);
         }
 
         public void CerrarAyuda2()
         {
             sonidoBoton.Play();
 
-            CerrarPanel(ayuda2);
-
-            AbrirPanel(ayuda3);
+            Objetos.Ocultar(ayuda2.gameObject);
+            Objetos.Mostrar(ayuda3.gameObject);
         }
 
         public void CerrarAyuda3()
         {
             sonidoBoton.Play();
 
-            CerrarPanel(ayuda3);
-
-            AbrirPanel(ayuda4);
+            Objetos.Ocultar(ayuda3.gameObject);
+            Objetos.Mostrar(ayuda4.gameObject);
         }
 
         public void CerrarAyuda4()
         {
             sonidoBoton.Play();
 
-            CerrarPanel(ayuda4);
-
-            AbrirPanel(ayuda5);
+            Objetos.Ocultar(ayuda4.gameObject);
+            Objetos.Mostrar(ayuda5.gameObject);
         }
 
         public void CerrarAyuda5()
         {
             sonidoBoton.Play();
 
-            CerrarPanel(ayuda5);
+            Objetos.Ocultar(ayuda5.gameObject);
 
             velocidad.VelocidadMarchas(1);
         }
@@ -125,16 +121,16 @@ namespace Interfaz.Juego2
         {
             if (PlayerPrefs.GetString("ayuda") == "true")
             {
-                CerrarPanel(ayuda6);
-                CerrarPanel(ayuda7);
+                Objetos.Ocultar(ayuda6.gameObject);
+                Objetos.Ocultar(ayuda7.gameObject);
 
                 if (categoria != 1)
                 {
-                    AbrirPanel(ayuda6);
+                    Objetos.Mostrar(ayuda6.gameObject);
                 }
                 else
                 {
-                    AbrirPanel(ayuda7);
+                    Objetos.Mostrar(ayuda7.gameObject);
                 }
             }
         }
@@ -143,26 +139,8 @@ namespace Interfaz.Juego2
         {
             sonidoBoton.Play();
 
-            CerrarPanel(ayuda);
-        }
-
-        //-----------------------------------------------------
-
-        private void AbrirPanel(Panel panel)
-        {
-            panel.gameObject.GetComponent<CanvasGroup>().alpha = 1;
-            panel.gameObject.GetComponent<CanvasGroup>().interactable = true;
-            panel.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
-            panel.gameObject.SetActive(true);
-        }
-
-        private void CerrarPanel(Panel panel)
-        {
-            panel.gameObject.GetComponent<CanvasGroup>().alpha = 0;
-            panel.gameObject.GetComponent<CanvasGroup>().interactable = false;
-            panel.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
-            panel.gameObject.SetActive(false);
-        }
+            Objetos.Ocultar(ayuda.gameObject);
+        }        
     }
 }
 

@@ -38,17 +38,13 @@ namespace Interfaz.Opciones2
             {
                 QualitySettings.shadows = ShadowQuality.HardOnly;
 
-                panelGraficosSombrasCalidad.gameObject.GetComponent<CanvasGroup>().alpha = 1;
-                panelGraficosSombrasCalidad.gameObject.GetComponent<CanvasGroup>().interactable = true;
-                panelGraficosSombrasCalidad.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
+                Objetos.Mostrar(panelGraficosSombrasCalidad.gameObject);
             }
             else
             {
                 QualitySettings.shadows = ShadowQuality.Disable;
 
-                panelGraficosSombrasCalidad.gameObject.GetComponent<CanvasGroup>().alpha = 0;
-                panelGraficosSombrasCalidad.gameObject.GetComponent<CanvasGroup>().interactable = false;
-                panelGraficosSombrasCalidad.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
+                Objetos.Ocultar(panelGraficosSombrasCalidad.gameObject);
             }
 
             //-----------------------------------------------------------

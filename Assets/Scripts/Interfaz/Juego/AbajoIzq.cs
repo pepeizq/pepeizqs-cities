@@ -82,7 +82,7 @@ namespace Interfaz.Juego2
             if (panelMenu.gameObject.GetComponent<CanvasGroup>().alpha == 0)
             {
                 botonMenu.gameObject.GetComponent<Image>().color = colorEntra;
-                AbrirPanel(panelMenu);
+                Objetos.Mostrar(panelMenu.gameObject);
                 velocidad.VelocidadMarchas(0);
 
                 Animator animacion = panelMenu.GetComponent<Animator>();
@@ -95,7 +95,7 @@ namespace Interfaz.Juego2
             else
             {
                 botonMenu.gameObject.GetComponent<Image>().color = colorTransparente;
-                CerrarPanel(panelMenu);
+                Objetos.Ocultar(panelMenu.gameObject);
                 velocidad.VelocidadMarchas(1);
             }
         }
@@ -103,7 +103,7 @@ namespace Interfaz.Juego2
         public void CerrarMenu()
         {
             botonMenu.gameObject.GetComponent<Image>().color = colorTransparente;
-            CerrarPanel(panelMenu);
+            Objetos.Ocultar(panelMenu.gameObject);
         }
 
         //-----------------------------------------------------
@@ -114,16 +114,16 @@ namespace Interfaz.Juego2
 
             juego.GuardarPartida();
 
-            CerrarPanel(panelMenu);
+            Objetos.Ocultar(panelMenu.gameObject);
         }
 
         public void MostrarOpciones()
         {
             sonidoBoton.Play();
 
-            juego.CerrarCanvas();
+            Objetos.Ocultar(juego.canvas.gameObject);
 
-            opciones.AbrirCanvas();
+            opciones.Abrir();
 
             opciones.canvasOrigen = 2;
         }
@@ -133,16 +133,16 @@ namespace Interfaz.Juego2
             sonidoBoton.Play();
             botonMenu.gameObject.GetComponent<Image>().color = colorTransparente;
 
-            CerrarPanel(panelMenu);
+            Objetos.Ocultar(panelMenu.gameObject);
 
-            AbrirPanel(panelGuardarMenuPrincipal);
+            Objetos.Mostrar(panelGuardarMenuPrincipal.gameObject);
         }
 
         public void VolverMenuPrincipalGuardarSi()
         {
             juego.GuardarPartida();
-            juego.CerrarCanvas();
-            CerrarPanel(panelGuardarMenuPrincipal);
+            Objetos.Ocultar(juego.canvas.gameObject);
+            Objetos.Ocultar(panelGuardarMenuPrincipal.gameObject);
 
             List<Guardado> partidasGuardadas = partidas.ListadoPartidas();
 
@@ -157,13 +157,13 @@ namespace Interfaz.Juego2
                 juego.botonCargarPartida.interactable = false;
             }
 
-            menuPrincipal.AbrirCanvas(menuPrincipal.canvas);
+            Objetos.Mostrar(menuPrincipal.canvas.gameObject);
         }
 
         public void VolverMenuPrincipalGuardarNo()
         {
-            juego.CerrarCanvas();
-            CerrarPanel(panelGuardarMenuPrincipal);
+            Objetos.Ocultar(juego.canvas.gameObject);
+            Objetos.Ocultar(panelGuardarMenuPrincipal.gameObject);
 
             List<Guardado> partidasGuardadas = partidas.ListadoPartidas();
 
@@ -178,7 +178,7 @@ namespace Interfaz.Juego2
                 juego.botonCargarPartida.interactable = false;
             }
 
-            menuPrincipal.AbrirCanvas(menuPrincipal.canvas);
+            Objetos.Mostrar(menuPrincipal.canvas.gameObject);
         }
 
         public void SalirJuego()
@@ -186,9 +186,9 @@ namespace Interfaz.Juego2
             sonidoBoton.Play();
             botonMenu.gameObject.GetComponent<Image>().color = colorTransparente;
 
-            CerrarPanel(panelMenu);
+            Objetos.Ocultar(panelMenu.gameObject);
 
-            AbrirPanel(panelGuardarSalir);
+            Objetos.Mostrar(panelGuardarSalir.gameObject);
         }
 
         public void SalirJuegoGuardarSi()
@@ -206,22 +206,6 @@ namespace Interfaz.Juego2
         public void ReportarFallos()
         {
             Steam.AbrirWeb("https://pepeizqapps.com/contact/");
-        }
-
-        //-----------------------------------------------------
-
-        private void AbrirPanel(Panel panel)
-        {
-            panel.gameObject.GetComponent<CanvasGroup>().alpha = 1;
-            panel.gameObject.GetComponent<CanvasGroup>().interactable = true;
-            panel.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
-        }
-
-        private void CerrarPanel(Panel panel)
-        {
-            panel.gameObject.GetComponent<CanvasGroup>().alpha = 0;
-            panel.gameObject.GetComponent<CanvasGroup>().interactable = false;
-            panel.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
         }
     }
 }

@@ -9,46 +9,56 @@ namespace Interfaz
         public Juego juego;
         public CargarPartida cargarPartida;
         public Opciones opciones;
-        public Info info;
 
-        public AudioSource sonidoBoton;
+        public Panel panelInfo;
+
+        public Opciones2.Sonido sonido;
 
         public void MostrarJuego()
         {
-            CerrarCanvas(canvas);
-
-            AbrirCanvas(juego.canvas);
+            Objetos.Ocultar(canvas.gameObject);       
+            Objetos.Mostrar(juego.canvas.gameObject);
         }
 
         public void MostrarCargarPartidas()
         {
-            sonidoBoton.Play();
+            sonido.RatonClick();
 
-            CerrarCanvas(canvas);
-
-            AbrirCanvas(cargarPartida.canvas);
+            Objetos.Ocultar(canvas.gameObject);
+            Objetos.Mostrar(cargarPartida.canvas.gameObject);
 
             cargarPartida.CargarListado();
         }
 
         public void MostrarOpciones()
         {
-            sonidoBoton.Play();
+            sonido.RatonClick();
 
-            CerrarCanvas(canvas);
-
-            AbrirCanvas(opciones.canvas);
+            Objetos.Ocultar(canvas.gameObject);
+            Objetos.Mostrar(opciones.canvas.gameObject);
 
             opciones.canvasOrigen = 1;
         }
 
         public void MostrarInfo()
         {
-            sonidoBoton.Play();
+            sonido.RatonClick();
 
-            CerrarCanvas(canvas);
+            if (panelInfo.gameObject.GetComponent<CanvasGroup>().alpha == 0)
+            {
+                Objetos.Mostrar(panelInfo.gameObject);
 
-            AbrirCanvas(info.canvas);
+                Animator animacion = panelInfo.GetComponent<Animator>();
+
+                if (animacion != null)
+                {
+                    animacion.Play("PanelInfo", 0, 1f);
+                }
+            }
+            else
+            {
+                Objetos.Ocultar(panelInfo.gameObject);
+            }
         }
 
         public void SalirJuego()
@@ -58,38 +68,22 @@ namespace Interfaz
 
         public void AbrirCodigoFuente()
         {
-            sonidoBoton.Play();
+            sonido.RatonClick();
             Steam.AbrirWeb("https://github.com/pepeizq/City-Builder");
         }
 
         public void AbrirWeb1()
         {
-            sonidoBoton.Play();
+            sonido.RatonClick();
             Steam.AbrirWeb("https://pepeizqapps.com/");
             Steam.Logros("pepeizqcities1");
         }
 
         public void AbrirWeb2()
         {
-            sonidoBoton.Play();
+            sonido.RatonClick();
             Steam.AbrirWeb("https://pepeizqdeals.com/");
             Steam.Logros("pepeizqcities2");
-        }
-
-        //-----------------------------------------------------
-
-        public void AbrirCanvas(Canvas canvas)
-        {
-            canvas.gameObject.GetComponent<CanvasGroup>().alpha = 1;
-            canvas.gameObject.GetComponent<CanvasGroup>().interactable = true;
-            canvas.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
-        }
-
-        public void CerrarCanvas(Canvas canvas)
-        {
-            canvas.gameObject.GetComponent<CanvasGroup>().alpha = 0;
-            canvas.gameObject.GetComponent<CanvasGroup>().interactable = false;
-            canvas.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
         }
     }
 }
