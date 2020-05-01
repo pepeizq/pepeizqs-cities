@@ -71,6 +71,7 @@
         <string name="exitQuestion2">Do you want to save the game before going to the desktop?</string>
         <string name="yes">Yes</string>
         <string name="no">No</string>
+        <string name="alert1">Build farms to get food</string>
     </English>
      
     <Spanish>
@@ -144,5 +145,6 @@
         <string name="exitQuestion2">¿Quieres guardar la partida antes de salir al escritorio?</string>
         <string name="yes">Si</string>
         <string name="no">No</string>
+        <string name="alert1">Construye granjas para obtener comida</string>
     </Spanish>
 </languages>

@@ -1,4 +1,5 @@
 ﻿using Construcciones;
+using Interfaz;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,6 +25,11 @@ public class Ciudad : MonoBehaviour {
     public float Comida { get; set; }
     public bool ModoFacil { get; set; }
 
+    public Panel panelAlertas;
+    public Text textoAlertas;
+
+    public Idiomas idioma;
+
     public void ActualizarUI(bool nuevaHora)
     {
         if (nuevaHora == true)
@@ -40,7 +46,7 @@ public class Ciudad : MonoBehaviour {
         comidaTexto.text = string.Format("{0}", (int)Comida);
     }
 
-    void CalcularTrabajos()
+    private void CalcularTrabajos()
     {
         int tope = 0;
 
@@ -79,7 +85,7 @@ public class Ciudad : MonoBehaviour {
         }
     }
 
-    void CalcularIngresosDinero()
+    private void CalcularIngresosDinero()
     {
         int montante = 1;
 
@@ -131,7 +137,7 @@ public class Ciudad : MonoBehaviour {
         Dinero += cantidad;
     }
 
-    void CalcularComida()
+    private void CalcularComida()
     {
         int cantidad = 0;
 
@@ -145,17 +151,32 @@ public class Ciudad : MonoBehaviour {
                 }
             }
         }
-
+        
         if (Comida >= 0 && Comida <= 1000)
         {
             if ((Comida + cantidad) >= 0)
             {
-                Comida += cantidad;
+                Comida += cantidad;                
             }            
-        }     
+        } 
+        
+        if (cantidad < 0)
+        {
+            if (panelAlertas.gameObject.GetComponent<CanvasGroup>().alpha == 0)
+            {
+                MostrarAlerta(idioma.CogerCadena("alert1"));
+            }                
+        }
+        else 
+        {
+            if (panelAlertas.gameObject.GetComponent<CanvasGroup>().alpha == 1)
+            {
+                OcultarAlerta();
+            }
+        }
     }
 
-    void CalcularPoblacion()
+    private void CalcularPoblacion()
     {
         int tope = 0;
 
@@ -201,6 +222,25 @@ public class Ciudad : MonoBehaviour {
             {
                 Steam.Logros("pepeizqcities11");
             }
+        }       
+    }
+
+    private void MostrarAlerta(string texto)
+    {
+        Objetos.Mostrar(panelAlertas.gameObject);
+
+        Animator animacion = panelAlertas.GetComponent<Animator>();
+
+        if (animacion != null)
+        {
+            animacion.Play("PanelAlertas", 0, 1f);
         }
+
+        textoAlertas.text = texto;
+    }
+
+    private void OcultarAlerta()
+    {
+        Objetos.Ocultar(panelAlertas.gameObject);
     }
 }

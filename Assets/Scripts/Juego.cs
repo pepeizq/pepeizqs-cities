@@ -1,4 +1,5 @@
 ﻿using Construcciones;
+using Interfaz;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -29,9 +30,9 @@ public class Juego : MonoBehaviour {
     [HideInInspector]
     public KeyCode teclaOcultarInterfaz;
 
-    public Interfaz.MenuPrincipal menuPrincipal;
-    public Interfaz.NuevaPartida nuevaPartida;
-    public Interfaz.Opciones opciones;
+    public MenuPrincipal menuPrincipal;
+    public NuevaPartida nuevaPartida;
+    public Opciones opciones;
     public Interfaz.Opciones2.General opcionesGeneral;
     public Interfaz.Opciones2.Graficos opcionesGraficos;
     public Interfaz.Opciones2.Teclado opcionesTeclado;
@@ -168,9 +169,7 @@ public class Juego : MonoBehaviour {
         velocidad.arranqueDia = 70000;
         velocidad.contadorDias = 1;
 
-        nuevaPartida.canvas.gameObject.GetComponent<CanvasGroup>().alpha = 0;
-        nuevaPartida.canvas.gameObject.GetComponent<CanvasGroup>().interactable = false;
-        nuevaPartida.canvas.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
+        Objetos.Ocultar(nuevaPartida.canvas.gameObject);
 
         CargarInterfaz();
     }
@@ -310,7 +309,7 @@ public class Juego : MonoBehaviour {
             if (Input.GetKeyDown(teclaOcultarInterfaz))
             {
                 ocultarEnseñarInterfaz = true;
-                canvas.gameObject.GetComponent<CanvasGroup>().alpha = 0;
+                Objetos.Ocultar(canvas.gameObject);
             }
         }
         else
@@ -318,7 +317,7 @@ public class Juego : MonoBehaviour {
             if (Input.GetKeyDown(teclaOcultarInterfaz) && ocultarEnseñarInterfaz == true)
             {
                 ocultarEnseñarInterfaz = false;
-                canvas.gameObject.GetComponent<CanvasGroup>().alpha = 1;
+                Objetos.Mostrar(canvas.gameObject);
             }
         }
 

@@ -7,7 +7,7 @@ namespace Interfaz.Opciones2
     {
         private int boton;
         private bool poderCambiar;
-        public AudioSource sonidoBoton;
+        public Sonido sonido;
 
         public Camara camara;
 
@@ -224,7 +224,7 @@ namespace Interfaz.Opciones2
 
         public void PulsarBoton(int botonPulsado)
         {
-            sonidoBoton.Play();
+            sonido.RatonClick();
             boton = botonPulsado;
             poderCambiar = true;
 

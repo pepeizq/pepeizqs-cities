@@ -23,8 +23,7 @@ public class Velocidad : MonoBehaviour {
     public float contadorDias = 1;
     private int contadorHoras = 0;
 
-    [SerializeField]
-    private Construir construir = null;
+    public Construir construir;
 
     public int velocidad = 0;
 
@@ -41,7 +40,7 @@ public class Velocidad : MonoBehaviour {
     private int accionSemaforos = 0;
 
     private float tiempoVehiculos = 0;
-    private float tiempoVehiculosTope = 150000;
+    private float tiempoVehiculosTope = 1500000;
 
     public Vehiculos vehiculos;
 
@@ -117,7 +116,7 @@ public class Velocidad : MonoBehaviour {
 
             //-------------------------------------------
 
-            tiempoVehiculos += (Time.deltaTime * segundosDia) + Random.Range(1, 1000);
+            tiempoVehiculos += (Time.deltaTime * segundosDia) + Random.Range(1, 10000);
 
             if (tiempoVehiculos > tiempoVehiculosTope)
             {
@@ -151,8 +150,8 @@ public class Velocidad : MonoBehaviour {
 
                         if (cantidadEdificios > 0)
                         {
-                            cantidadEdificios = Random.Range(1, cantidadEdificios);
-
+                            cantidadEdificios = Random.Range(1, cantidadEdificios - (cantidadEdificios / 2));
+                        
                             int i = 0;
                             while (i <= cantidadEdificios)
                             {

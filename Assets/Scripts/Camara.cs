@@ -31,7 +31,7 @@ public class Camara : MonoBehaviour
 
     private int rotacion;
 
-    public AudioSource sonidoBoton;
+    public Interfaz.Opciones2.Sonido sonido;
 
     private void Start()
     {
@@ -128,11 +128,11 @@ public class Camara : MonoBehaviour
         }      
     }
 
-    public void RotacionIzquierda(bool sonido)
+    public void RotacionIzquierda(bool sonidob)
     {
-        if (sonido == true)
+        if (sonidob == true)
         {
-            sonidoBoton.Play();
+            sonido.RatonClick();
         }
 
         Ray ray = Camera.main.ScreenPointToRay(new Vector2(Screen.width / 2, Screen.height / 2));
@@ -152,11 +152,11 @@ public class Camara : MonoBehaviour
         }
     }
 
-    public void RotacionDerecha(bool sonido)
+    public void RotacionDerecha(bool sonidob)
     {
-        if (sonido == true)
+        if (sonidob == true)
         {
-            sonidoBoton.Play();
+            sonido.RatonClick();
         }
 
         Ray ray = Camera.main.ScreenPointToRay(new Vector2(Screen.width / 2, Screen.height / 2));
@@ -194,7 +194,7 @@ public class Camara : MonoBehaviour
             if (rotando == false)
             {
                 Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize -= Input.GetAxis("Mouse ScrollWheel") *
-                    (10f * Camera.main.orthographicSize * .1f), 2f, 15f);
+                    (10f * Camera.main.orthographicSize * .1f), 2f, 25f);
 
                 if (Input.GetMouseButton(2))
                 {

@@ -5,7 +5,7 @@ namespace Interfaz
 {
     public class NuevaPartida : MonoBehaviour
     {
-        public AudioSource sonidoBoton;
+        public Opciones2.Sonido sonido;
 
         public Canvas canvas;
 
@@ -13,22 +13,21 @@ namespace Interfaz
 
         public Idiomas idiomas;
 
+        public Panel panelNuevaPartida;
+        public Panel panelInfo;
         public Text texto1;
         public Text texto2;
 
         public void Cargar()
         {
-            menuPrincipal.canvas.gameObject.GetComponent<CanvasGroup>().alpha = 0;
-            menuPrincipal.canvas.gameObject.GetComponent<CanvasGroup>().interactable = false;
-            menuPrincipal.canvas.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = false;
-
-            canvas.gameObject.GetComponent<CanvasGroup>().alpha = 1;
-            canvas.gameObject.GetComponent<CanvasGroup>().interactable = true;
-            canvas.gameObject.GetComponent<CanvasGroup>().blocksRaycasts = true;
+            Objetos.Ocultar(menuPrincipal.canvas.gameObject);
+            Objetos.Mostrar(canvas.gameObject);
         }
 
-        public void CambiarTexto(int modo)
+        public void RatonEntra(int modo)
         {
+            Objetos.Mostrar(panelInfo.gameObject);
+
             if (modo == 0)
             {
                 texto1.text = idiomas.CogerCadena("newGameNormalMode1");
@@ -41,15 +40,17 @@ namespace Interfaz
             }
         }
 
-        public void EliminarTexto()
+        public void RatonSale()
         {
+            Objetos.Ocultar(panelInfo.gameObject);
+
             texto1.text = null;
             texto2.text = null;
         }
 
         public void ActivarAyuda(Toggle ayuda)
         {
-            sonidoBoton.Play();
+            sonido.RatonClick();
 
             if (ayuda.isOn == true)
             {

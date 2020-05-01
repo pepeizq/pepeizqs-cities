@@ -7,7 +7,7 @@ namespace Interfaz.Juego2
 {
     public class AbajoIzq : MonoBehaviour
     {
-        public AudioSource sonidoBoton;
+        public Opciones2.Sonido sonido;
 
         public Panel panelMenu;
         public Panel botonMenu;
@@ -75,7 +75,7 @@ namespace Interfaz.Juego2
 
         public void AbrirMenu()
         {
-            sonidoBoton.Play();
+            sonido.RatonClick();
             colocarPrevio.QuitarTodosEdificios();
             construirInterfaz.CerrarTodo();
 
@@ -110,7 +110,7 @@ namespace Interfaz.Juego2
 
         public void GuardarPartida()
         {
-            sonidoBoton.Play();
+            sonido.RatonClick();
 
             juego.GuardarPartida();
 
@@ -119,7 +119,7 @@ namespace Interfaz.Juego2
 
         public void MostrarOpciones()
         {
-            sonidoBoton.Play();
+            sonido.RatonClick();
 
             Objetos.Ocultar(juego.canvas.gameObject);
 
@@ -130,7 +130,7 @@ namespace Interfaz.Juego2
 
         public void VolverMenuPrincipal()
         {
-            sonidoBoton.Play();
+            sonido.RatonClick();
             botonMenu.gameObject.GetComponent<Image>().color = colorTransparente;
 
             Objetos.Ocultar(panelMenu.gameObject);
@@ -183,7 +183,7 @@ namespace Interfaz.Juego2
 
         public void SalirJuego()
         {
-            sonidoBoton.Play();
+            sonido.RatonClick();
             botonMenu.gameObject.GetComponent<Image>().color = colorTransparente;
 
             Objetos.Ocultar(panelMenu.gameObject);
