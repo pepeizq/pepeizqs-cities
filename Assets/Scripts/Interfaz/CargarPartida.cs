@@ -7,6 +7,7 @@ namespace Interfaz
     public class CargarPartida : MonoBehaviour
     {
         public Opciones2.Sonido sonido;
+        public Juego2.Ayuda ayuda;
 
         public Partidas partidas;
 
@@ -114,6 +115,7 @@ namespace Interfaz
             escenario.PonerTerreno(partida);
             juego.CargarEdificios(partida);
             juego.CargarInterfaz();
+            ayuda.Cargar(partida.ayuda);
 
             Objetos.Ocultar(canvas.gameObject);
             Objetos.Mostrar(juego.canvas.gameObject);

@@ -6,6 +6,7 @@ namespace Interfaz
     public class NuevaPartida : MonoBehaviour
     {
         public Opciones2.Sonido sonido;
+        public Juego2.Ayuda ayuda;
 
         public Canvas canvas;
 
@@ -48,17 +49,17 @@ namespace Interfaz
             texto2.text = null;
         }
 
-        public void ActivarAyuda(Toggle ayuda)
+        public void ActivarAyuda(Toggle ayudat)
         {
             sonido.RatonClick();
 
-            if (ayuda.isOn == true)
+            if (ayudat.isOn == true)
             {
-                PlayerPrefs.SetString("ayuda", "true");
+                ayuda.estadoPartida = true;
             }
             else
             {
-                PlayerPrefs.SetString("ayuda", "false");
+                ayuda.estadoPartida = false;
             }
         }
     }

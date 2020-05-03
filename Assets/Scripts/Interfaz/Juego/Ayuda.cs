@@ -7,10 +7,12 @@ namespace Interfaz.Juego2
     {
         public Idiomas idioma;
 
+        public bool estadoPartida;
+
         public Camara camara;
         public Juego juego;
 
-        public AudioSource sonidoBoton;
+        public Opciones2.Sonido sonido;
 
         [SerializeField]
         private Velocidad velocidad = null;
@@ -43,18 +45,15 @@ namespace Interfaz.Juego2
         {
             if (mostrar == true)
             {
-                if (PlayerPrefs.GetString("ayuda") == "true")
-                {
-                    CargarTeclas();
+                CargarTeclas();
 
-                    Objetos.Mostrar(ayuda1.gameObject);
+                Objetos.Mostrar(ayuda1.gameObject);
 
-                    velocidad.VelocidadMarchas(0);
-                }
-                else
-                {
-                    Objetos.Ocultar(ayuda1.gameObject);
-                }
+                velocidad.VelocidadMarchas(0);
+            }
+            else
+            {
+                Objetos.Ocultar(ayuda1.gameObject);
             }
         }
 
@@ -78,7 +77,7 @@ namespace Interfaz.Juego2
 
         public void CerrarAyuda1()
         {
-            sonidoBoton.Play();
+            sonido.RatonClick();
 
             Objetos.Ocultar(ayuda1.gameObject);
             Objetos.Mostrar(ayuda2.gameObject);
@@ -86,7 +85,7 @@ namespace Interfaz.Juego2
 
         public void CerrarAyuda2()
         {
-            sonidoBoton.Play();
+            sonido.RatonClick();
 
             Objetos.Ocultar(ayuda2.gameObject);
             Objetos.Mostrar(ayuda3.gameObject);
@@ -94,7 +93,7 @@ namespace Interfaz.Juego2
 
         public void CerrarAyuda3()
         {
-            sonidoBoton.Play();
+            sonido.RatonClick();
 
             Objetos.Ocultar(ayuda3.gameObject);
             Objetos.Mostrar(ayuda4.gameObject);
@@ -102,7 +101,7 @@ namespace Interfaz.Juego2
 
         public void CerrarAyuda4()
         {
-            sonidoBoton.Play();
+            sonido.RatonClick();
 
             Objetos.Ocultar(ayuda4.gameObject);
             Objetos.Mostrar(ayuda5.gameObject);
@@ -110,7 +109,7 @@ namespace Interfaz.Juego2
 
         public void CerrarAyuda5()
         {
-            sonidoBoton.Play();
+            sonido.RatonClick();
 
             Objetos.Ocultar(ayuda5.gameObject);
 
@@ -131,13 +130,14 @@ namespace Interfaz.Juego2
                 else
                 {
                     Objetos.Mostrar(ayuda7.gameObject);
+                    estadoPartida = false;
                 }
             }
         }
 
         public void CerrarAyuda6o7(Panel ayuda)
         {
-            sonidoBoton.Play();
+            sonido.RatonClick();
 
             Objetos.Ocultar(ayuda.gameObject);
         }        

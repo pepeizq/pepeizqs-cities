@@ -112,7 +112,6 @@ public class Juego : MonoBehaviour {
                 
             escenario.PonerTerreno(partidasGuardadas[0]);
             CargarEdificios(partidasGuardadas[0]);
-            ayudaInterfaz.Cargar(false);
         }
         else
         {
@@ -169,6 +168,8 @@ public class Juego : MonoBehaviour {
         velocidad.arranqueDia = 70000;
         velocidad.contadorDias = 1;
 
+        ayudaInterfaz.Cargar(ayudaInterfaz.estadoPartida);
+
         Objetos.Ocultar(nuevaPartida.canvas.gameObject);
 
         CargarInterfaz();
@@ -188,6 +189,7 @@ public class Juego : MonoBehaviour {
 
             escenario.PonerTerreno(partidasGuardadas[0]);
             CargarEdificios(partidasGuardadas[0]);
+            ayudaInterfaz.Cargar(partidasGuardadas[0].ayuda);
         }
 
         CargarInterfaz();
@@ -196,7 +198,6 @@ public class Juego : MonoBehaviour {
     public void CargarInterfaz()
     {
         menuPrincipal.MostrarJuego();
-        ayudaInterfaz.Cargar(true);
         velocidad.VelocidadMarchas(1);
         construir.CambiarLucesSemaforos(1);
         vistaPrevia.QuitarTodosEdificios();

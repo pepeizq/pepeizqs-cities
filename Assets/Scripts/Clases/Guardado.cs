@@ -30,6 +30,7 @@ public class Guardado
 
     public int dinero = 0;
     public bool modoFacil = false;
+    public bool ayuda = false;
     public float poblacionActual = 0;
     public float poblacionTope = 0;
     public int trabajosActual = 0;
