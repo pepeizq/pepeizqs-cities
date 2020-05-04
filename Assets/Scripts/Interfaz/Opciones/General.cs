@@ -19,8 +19,16 @@ namespace Interfaz.Opciones2
         {
             if (PlayerPrefs.HasKey("idioma") == false)
             {
-                idioma.CargarIdioma(idioma.ficheroIdiomas, "English");
-                PlayerPrefs.SetString("idioma", "English");
+                if (Application.systemLanguage == SystemLanguage.Spanish)
+                {
+                    idioma.CargarIdioma(idioma.ficheroIdiomas, "Spanish");
+                    PlayerPrefs.SetString("idioma", "Spanish");
+                }
+                else
+                {
+                    idioma.CargarIdioma(idioma.ficheroIdiomas, "English");
+                    PlayerPrefs.SetString("idioma", "English");
+                }
             }
             else
             {

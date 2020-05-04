@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Vehiculo : MonoBehaviour
 {
@@ -15,9 +14,6 @@ public class Vehiculo : MonoBehaviour
 
     [HideInInspector]
     public string direccion;
-
-    [HideInInspector]
-    public List<Construccion> carreteras = new List<Construccion>();
 
     private bool poderRotar;
     private float contadorRotar = 0.0f;

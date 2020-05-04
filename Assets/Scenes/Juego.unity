@@ -10467,6 +10467,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sonido: {fileID: 491194793}
+  ayuda: {fileID: 1121589932}
   partidas: {fileID: 491194809}
   menuPrincipal: {fileID: 491194803}
   juego: {fileID: 491194795}
@@ -10537,6 +10538,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sonido: {fileID: 491194793}
+  ayuda: {fileID: 1121589932}
   canvas: {fileID: 813400291}
   menuPrincipal: {fileID: 491194803}
   idiomas: {fileID: 491194792}
@@ -24199,9 +24201,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   idioma: {fileID: 491194792}
+  estadoPartida: 0
   camara: {fileID: 534669906}
   juego: {fileID: 491194795}
-  sonidoBoton: {fileID: 1088383249}
+  sonido: {fileID: 491194793}
   velocidad: {fileID: 491194794}
   ayuda1: {fileID: 328185948}
   ayuda1Tecla1: {fileID: 1697604796}

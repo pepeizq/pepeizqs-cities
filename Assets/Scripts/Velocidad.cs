@@ -52,12 +52,14 @@ public class Velocidad : MonoBehaviour {
         {
             if (velocidad != 0)
             {
-                velocidad = 0;
+                velocidad = 0;               
             }
             else
             {
                 velocidad = 1;
             }
+
+            vehiculos.ArrancarPararVehiculos(velocidad);
         }
        
         if (velocidad != 0)
@@ -166,7 +168,6 @@ public class Velocidad : MonoBehaviour {
   
         ActualizarReloj();
         ActualizarSol();
-        vehiculos.ArrancarPararVehiculos(velocidad);
     }
 
     private void ActualizarReloj()
