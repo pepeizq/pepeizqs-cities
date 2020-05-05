@@ -489,32 +489,65 @@ namespace Interfaz.Juego2
             cursores.Entra();
 
             GameObject panelBoton = boton.transform.GetChild(0).gameObject;
-            Panel subpanelBotonImagen = panelBoton.transform.GetChild(0).transform.GetComponent<Panel>();
-            Image imagen = subpanelBotonImagen.gameObject.GetComponent<Image>();
+            Panel subpanelBotonImagen1 = panelBoton.transform.GetChild(0).transform.GetComponent<Panel>();
+            Image imagen1 = subpanelBotonImagen1.gameObject.GetComponent<Image>();
+
+            Panel subpanelBotonImagen2 = panelBoton.transform.GetChild(1).transform.GetComponent<Panel>();
+            Image imagen2 = subpanelBotonImagen2.gameObject.GetComponent<Image>();
 
             if (categoria == 1)
             {
-                imagen.color = colorCarreteras;
+                imagen1.color = colorCarreteras;
+
+                Color color2 = colorCarreteras;
+                color2.a = 0.5f;
+
+                imagen2.color = color2;
             }
             else if (categoria == 2)
             {
-                imagen.color = colorPoblacion;
+                imagen1.color = colorPoblacion;
+
+                Color color2 = colorPoblacion;
+                color2.a = 0.5f;
+
+                imagen2.color = color2;
             }
             else if (categoria == 3)
             {
-                imagen.color = colorComida;
+                imagen1.color = colorComida;
+
+                Color color2 = colorComida;
+                color2.a = 0.5f;
+
+                imagen2.color = color2;
             }
             else if (categoria == 4)
             {
-                imagen.color = colorTiendas;
+                imagen1.color = colorTiendas;
+
+                Color color2 = colorTiendas;
+                color2.a = 0.5f;
+
+                imagen2.color = color2;
             }
             else if (categoria == 5)
             {
-                imagen.color = colorIndustria;
+                imagen1.color = colorIndustria;
+
+                Color color2 = colorIndustria;
+                color2.a = 0.5f;
+
+                imagen2.color = color2;
             }
             else if (categoria == 0)
             {
-                imagen.color = colorDecoracion;
+                imagen1.color = colorDecoracion;
+
+                Color color2 = colorDecoracion;
+                color2.a = 0.5f;
+
+                imagen2.color = color2;
             }
         }
 
@@ -523,9 +556,13 @@ namespace Interfaz.Juego2
             cursores.Sale();
 
             GameObject panelBoton = boton.transform.GetChild(0).gameObject;
-            Panel subpanelBotonImagen = panelBoton.transform.GetChild(0).transform.GetComponent<Panel>();
-            Image imagen = subpanelBotonImagen.gameObject.GetComponent<Image>();
-            imagen.color = colorTransparente;
+            Panel subpanelBotonImagen1 = panelBoton.transform.GetChild(0).transform.GetComponent<Panel>();
+            Image imagen1 = subpanelBotonImagen1.gameObject.GetComponent<Image>();
+            Panel subpanelBotonImagen2 = panelBoton.transform.GetChild(1).transform.GetComponent<Panel>();
+            Image imagen2 = subpanelBotonImagen2.gameObject.GetComponent<Image>();
+
+            imagen1.color = colorTransparente;
+            imagen2.color = colorTransparente;
         }
 
         //-----------------------------------------------------

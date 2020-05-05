@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 [System.Serializable]
 public class Guardado
@@ -6,7 +7,7 @@ public class Guardado
     public string nombre;
     public int id;
     public string fecha;
-    public string versionJuego;
+    public string versionJuego = Application.version;
 
     public List<int> terrenosID = new List<int>();
     public List<int> terrenosX = new List<int>();
