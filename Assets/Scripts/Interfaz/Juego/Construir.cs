@@ -497,56 +497,50 @@ namespace Interfaz.Juego2
 
             if (categoria == 1)
             {
-                imagen1.color = colorCarreteras;
-
                 Color color2 = colorCarreteras;
                 color2.a = 0.5f;
 
+                imagen1.color = color2;
                 imagen2.color = color2;
             }
             else if (categoria == 2)
             {
-                imagen1.color = colorPoblacion;
-
                 Color color2 = colorPoblacion;
                 color2.a = 0.5f;
 
+                imagen1.color = color2;
                 imagen2.color = color2;
             }
             else if (categoria == 3)
             {
-                imagen1.color = colorComida;
-
                 Color color2 = colorComida;
                 color2.a = 0.5f;
 
+                imagen1.color = color2;
                 imagen2.color = color2;
             }
             else if (categoria == 4)
             {
-                imagen1.color = colorTiendas;
-
                 Color color2 = colorTiendas;
                 color2.a = 0.5f;
 
+                imagen1.color = color2;
                 imagen2.color = color2;
             }
             else if (categoria == 5)
             {
-                imagen1.color = colorIndustria;
-
                 Color color2 = colorIndustria;
                 color2.a = 0.5f;
 
+                imagen1.color = color2;
                 imagen2.color = color2;
             }
             else if (categoria == 0)
             {
-                imagen1.color = colorDecoracion;
-
                 Color color2 = colorDecoracion;
                 color2.a = 0.5f;
 
+                imagen1.color = color2;
                 imagen2.color = color2;
             }
         }
