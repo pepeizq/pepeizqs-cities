@@ -1,7 +1,11 @@
 ﻿using Construcciones;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Escenario : MonoBehaviour {
+
+    [HideInInspector]
+    public int tamaño = 100;
 
     public Partidas partidas;
 
@@ -16,7 +20,20 @@ public class Escenario : MonoBehaviour {
 
     public Construccion[] arboles;
 
+    public Nube[] nubes;
+
+    [HideInInspector]
+    public List<Nube> nubesGeneradas = new List<Nube>();
+
+    private int contadorIdsNubes;
+
     public Colisiones colisiones;
+
+    private void Start()
+    {
+        terrenos2 = new Terreno[tamaño, tamaño];
+        contadorIdsNubes = 0;
+    }
 
     public void PonerTerreno(Guardado partida)
     {
@@ -147,10 +164,10 @@ public class Escenario : MonoBehaviour {
             if (tierra != null)
             {
                 int i = 0;
-                while (i < 100)
+                while (i < tamaño)
                 {
                     int j = 0;
-                    while (j < 100)
+                    while (j < tamaño)
                     {
                         Vector3 posicion = new Vector3(i, -0.5f, j);
                         GenerarTerreno(tierra, posicion);
@@ -283,5 +300,73 @@ public class Escenario : MonoBehaviour {
     public Terreno[,] DevolverTerrenos()
     {
         return terrenos2;
+    }
+
+    public void GenerarNubes()
+    {
+        int direccion = 0;
+
+        Vector3 posicion = new Vector3(-(tamaño / 4), 50, -(tamaño / 4));
+
+        if ((direccion == 0) || (direccion == 1) || (direccion == 4))
+        {
+            posicion.z = Random.Range(-(tamaño / 2), (tamaño / 2));
+        }
+        else if ((direccion == 2) || (direccion == 3))
+        {
+            posicion.z = Random.Range(0, tamaño);
+        }
+        else if (direccion == 5)
+        {
+            posicion.x = tamaño;
+            posicion.z = Random.Range(0, tamaño);
+        }
+        else if ((direccion == 6) || (direccion == 7))
+        {
+            posicion.x = Random.Range(0, tamaño);
+            posicion.z = tamaño;
+        }
+
+        int nubeAzar = Random.Range(0, nubes.Length);
+        Nube nube2 = Instantiate(nubes[nubeAzar], posicion, Quaternion.identity);
+        nube2.direccion = direccion;
+        nube2.id2 = contadorIdsNubes;
+        nube2.topeEscenario = tamaño;
+
+        //Material[] materiales = nube2.gameObject.GetComponent<MeshRenderer>().materials;
+
+        //materiales[0].SetFloat("_Mode", 3);
+        //materiales[0].SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.One);
+        //materiales[0].SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+        //materiales[0].SetInt("_ZWrite", 0);
+        //materiales[0].DisableKeyword("_ALPHATEST_ON");
+        //materiales[0].DisableKeyword("_ALPHABLEND_ON");
+        //materiales[0].EnableKeyword("_ALPHAPREMULTIPLY_ON");
+        //materiales[0].renderQueue = 3000;
+        //materiales[0].color = new Color(1.0f, 1.0f, 1.0f, 0.5f);
+
+        //materiales[0].DisableKeyword("_EMISSION");
+        //materiales[0].globalIlluminationFlags = MaterialGlobalIlluminationFlags.EmissiveIsBlack;
+
+        //nube2.gameObject.GetComponent<MeshRenderer>().materials = materiales;
+
+        contadorIdsNubes += 1;
+        Debug.Log(contadorIdsNubes);
+        nubesGeneradas.Add(nube2);
+    }
+
+    public void ArrancarPararNubes(int velocidad)
+    {
+        foreach (Nube nube in nubesGeneradas)
+        {
+            if (velocidad == 0)
+            {
+                nube.parada = true;
+            }
+            else
+            {
+                nube.parada = false;
+            }
+        }
     }
 }

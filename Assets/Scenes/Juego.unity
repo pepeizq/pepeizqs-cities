@@ -10168,6 +10168,7 @@ MonoBehaviour:
   construir: {fileID: 491194797}
   velocidad: 0
   ciudad: {fileID: 491194799}
+  escenario: {fileID: 491194800}
   encender: 0
   abajoDerInterfaz: {fileID: 1121589931}
   vehiculos: {fileID: 491194812}
@@ -10333,6 +10334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20594d7747a89ad468d1afc181f68da3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  "tama\xF1o": 100
   partidas: {fileID: 491194809}
   tierra: {fileID: 1151308695920927816, guid: ce87c5f424039e94c9753dbacfbe7c1f, type: 3}
   rio: {fileID: 9184413067498943987, guid: 841f512e09f9c094c9970104605a41bc, type: 3}
@@ -10342,6 +10344,9 @@ MonoBehaviour:
   arboles:
   - {fileID: 114580379238428524, guid: 86aa7d557c9e4a945902b0c355401665, type: 3}
   - {fileID: 114364999152907770, guid: 9ec33247f98faee49819ca143c662e4e, type: 3}
+  nubes:
+  - {fileID: 7252523339580073887, guid: 999b0a85df0de9540b456635161bcdd2, type: 3}
+  nubesGeneradas: []
   colisiones: {fileID: 491194813}
 --- !u!114 &491194801
 MonoBehaviour:
@@ -11726,12 +11731,12 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.2
+  near clip plane: 0.02
   far clip plane: 1000
   field of view: 60
   orthographic: 1
   orthographic size: 10
-  m_Depth: -1
+  m_Depth: 20
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295

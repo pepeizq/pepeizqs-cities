@@ -30,6 +30,8 @@ public class Velocidad : MonoBehaviour {
     [SerializeField]
     private Ciudad ciudad = null;
 
+    public Escenario escenario;
+
     public bool encender;
 
     public Interfaz.Juego2.AbajoDer abajoDerInterfaz;
@@ -41,6 +43,9 @@ public class Velocidad : MonoBehaviour {
 
     private float tiempoVehiculos = 0;
     private float tiempoVehiculosTope = 1500000;
+
+    private float tiempoNubes = 0;
+    private float tiempoNubesTope = 5000;
 
     public Vehiculos vehiculos;
 
@@ -60,6 +65,7 @@ public class Velocidad : MonoBehaviour {
             }
 
             vehiculos.ArrancarPararVehiculos(velocidad);
+            escenario.ArrancarPararNubes(velocidad);
         }
        
         if (velocidad != 0)
@@ -164,8 +170,18 @@ public class Velocidad : MonoBehaviour {
                     }
                 }
             }
+
+            //-------------------------------------------
+
+            tiempoNubes += (Time.deltaTime * segundosDia);
+
+            if (tiempoNubes > tiempoNubesTope)
+            {
+                tiempoNubes = 0;
+                escenario.GenerarNubes();
+            }
         }
-  
+
         ActualizarReloj();
         ActualizarSol();
     }
