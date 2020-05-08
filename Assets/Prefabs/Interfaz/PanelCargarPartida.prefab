@@ -878,5 +878,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ddeb63f89cf17b46ac8bca28d69f437, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sonido: {fileID: 0}
   cursor1: {fileID: 2800000, guid: e3c80b78419279345a1ccc2184e9f9f9, type: 3}
   cursor2: {fileID: 2800000, guid: 3333341c8dab54444b74e8a80142062b, type: 3}

@@ -351,7 +351,7 @@ public class Escenario : MonoBehaviour {
         //nube2.gameObject.GetComponent<MeshRenderer>().materials = materiales;
 
         contadorIdsNubes += 1;
-        Debug.Log(contadorIdsNubes);
+        //Debug.Log(contadorIdsNubes);
         nubesGeneradas.Add(nube2);
     }
 

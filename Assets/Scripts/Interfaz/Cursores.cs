@@ -17,7 +17,11 @@ public class Cursores : MonoBehaviour
 
     public void Entra()
     {
-        sonido.RatonEntra();
+        if (sonido != null)
+        {
+            sonido.RatonEntra();
+        }
+
         Cursor.SetCursor(cursor2, Vector2.zero, CursorMode.Auto);
     }
 
@@ -28,7 +32,11 @@ public class Cursores : MonoBehaviour
 
     public void EntraBoton(Button boton)
     {
-        sonido.RatonEntra();
+        if (sonido != null)
+        {
+            sonido.RatonEntra();
+        }
+
         Cursor.SetCursor(cursor2, Vector2.zero, CursorMode.Auto);
 
         CambiarColorBotonEntra(boton);
@@ -45,7 +53,11 @@ public class Cursores : MonoBehaviour
 
     public void EntraBoton2(Button boton)
     {
-        sonido.RatonEntra();
+        if (sonido != null)
+        {
+            sonido.RatonEntra();
+        }
+
         Cursor.SetCursor(cursor2, Vector2.zero, CursorMode.Auto);
 
         CambiarColorBotonEntra(boton);
@@ -62,7 +74,11 @@ public class Cursores : MonoBehaviour
 
     public void EntraBoton3(Button boton)
     {
-        sonido.RatonEntra();
+        if (sonido != null)
+        {
+            sonido.RatonEntra();
+        }
+
         Cursor.SetCursor(cursor2, Vector2.zero, CursorMode.Auto);
 
         CambiarColorBotonEntra(boton);
@@ -81,7 +97,11 @@ public class Cursores : MonoBehaviour
 
     public void EntraBoton4(Button boton)
     {
-        sonido.RatonEntra();
+        if (sonido != null)
+        {
+            sonido.RatonEntra();
+        }
+       
         Cursor.SetCursor(cursor2, Vector2.zero, CursorMode.Auto);
 
         CambiarColorBotonEntra(boton);

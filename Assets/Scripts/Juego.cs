@@ -89,17 +89,11 @@ public class Juego : MonoBehaviour {
     {
         sonido.MusicaFondo();
 
-        List<Guardado> partidasGuardadas = new List<Guardado>();
+        partidas.BorrarPartidasAntiguas();
 
-        try
-        {
-            partidasGuardadas = partidas.ListadoPartidas();
-        }
-        catch 
-        {
-            partidas.BorrarPartidas();
-        }
-       
+        List<Guardado> partidasGuardadas = new List<Guardado>();
+        partidasGuardadas = partidas.ListadoPartidas();
+
         if (partidasGuardadas.Count > 0)
         {
             botonContinuarPartida.interactable = true;

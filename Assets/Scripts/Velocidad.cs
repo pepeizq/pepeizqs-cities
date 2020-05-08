@@ -173,13 +173,13 @@ public class Velocidad : MonoBehaviour {
 
             //-------------------------------------------
 
-            tiempoNubes += (Time.deltaTime * segundosDia);
+            //tiempoNubes += (Time.deltaTime * segundosDia);
 
-            if (tiempoNubes > tiempoNubesTope)
-            {
-                tiempoNubes = 0;
-                escenario.GenerarNubes();
-            }
+            //if (tiempoNubes > tiempoNubesTope)
+            //{
+            //    tiempoNubes = 0;
+            //    escenario.GenerarNubes();
+            //}
         }
 
         ActualizarReloj();

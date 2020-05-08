@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
@@ -74,7 +75,7 @@ public class Partidas : MonoBehaviour
         }
     }
 
-    public void BorrarPartidas()
+    public void BorrarPartidasAntiguas()
     {
         DirectoryInfo carpeta = new DirectoryInfo(Application.persistentDataPath);
         FileInfo[] ficheros = carpeta.GetFiles();
@@ -83,7 +84,12 @@ public class Partidas : MonoBehaviour
         {
             if (fichero.Name.Contains(".save"))
             {
-                File.Delete(Application.persistentDataPath + "/" + fichero.Name);
+                DateTime fecha = fichero.LastWriteTime;
+
+                if (fecha.Year == 2019)
+                {
+                    File.Delete(Application.persistentDataPath + "/" + fichero.Name);
+                }              
             }
         }
     }

@@ -13,7 +13,7 @@ public class Nube : MonoBehaviour
     [HideInInspector]
     public bool parada;
 
-    private float velocidad = 0.01f;
+    private float velocidad = 0.04f;
 
     [HideInInspector]
     public int topeEscenario;
