@@ -629,6 +629,13 @@ namespace Construcciones
             }       
         }
 
+        public bool BuscarCarretera(Construccion[,] edificios, Construccion edificio, Vector3 posicion)
+        {
+
+
+            return false;
+        }
+
         public bool Terreno(Terreno[,] terrenos, Construccion edificio, Vector3 posicion) 
         {
             if (edificio.dimensiones.x == 1 && edificio.dimensiones.y == 1)
