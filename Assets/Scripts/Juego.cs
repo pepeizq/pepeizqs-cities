@@ -380,6 +380,11 @@ public class Juego : MonoBehaviour {
                             añadir = false;
                         }
 
+                        if (construir.ComprobarCarretera(edificioSeleccionado, posicion) == false)
+                        {
+                            añadir = false;
+                        }
+
                         if (añadir == true)
                         {
                             construirActivar = false;
@@ -483,6 +488,11 @@ public class Juego : MonoBehaviour {
                         {
                             mostrar = false;
                             vistaPrevia.QuitarEdificio(edificioSeleccionado, posicion);
+                        }
+
+                        if (construir.ComprobarCarretera(edificioSeleccionado, posicion) == false)
+                        {
+                            mostrar = false;
                         }
 
                         if (mostrar == true)

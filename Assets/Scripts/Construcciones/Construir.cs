@@ -41,6 +41,11 @@ namespace Construcciones
             return colisiones.Detectar(edificios, edificio, posicion);
         }
 
+        public bool ComprobarCarretera(Construccion edificio, Vector3 posicion)
+        {
+            return colisiones.BuscarCarretera(edificios, edificio, posicion);
+        }
+
         public void QuitarEdificio(Construccion edificio, Vector3 posicion)
         {
             edificios = Funciones.QuitarEdificios(edificios, edificio, posicion);

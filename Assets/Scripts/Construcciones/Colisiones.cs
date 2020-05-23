@@ -631,7 +631,51 @@ namespace Construcciones
 
         public bool BuscarCarretera(Construccion[,] edificios, Construccion edificio, Vector3 posicion)
         {
+            if (edificio != null)
+            {
+                if ((edificio.categoria == 0) || (edificio.categoria == 1))
+                {
+                    return true;
+                }
 
+                if (edificio.dimensiones.x == 1 && edificio.dimensiones.y == 1)
+                {
+                    if (edificios[(int)posicion.x + 1, (int)posicion.z] != null)
+                    {
+                        if (edificios[(int)posicion.x + 1, (int)posicion.z].categoria == 1)
+                        {
+                            return true;
+                        }
+                        else if (edificios[(int)posicion.x, (int)posicion.z + 1].categoria == 1)
+                        {
+                            return true;
+                        }
+                        else if (edificios[(int)posicion.x - 1, (int)posicion.z].categoria == 1)
+                        {
+                            return true;
+                        }
+                        else if (edificios[(int)posicion.x, (int)posicion.z - 1].categoria == 1)
+                        {
+                            return true;
+                        }
+                    }
+                }
+
+                if (edificio.dimensiones.x == 2 && edificio.dimensiones.y == 1)
+                {
+
+                }
+
+                if (edificio.dimensiones.x == 1 && edificio.dimensiones.y == 2)
+                {
+
+                }
+
+                if (edificio.dimensiones.x == 2 && edificio.dimensiones.y == 2)
+                {
+
+                }
+            }
 
             return false;
         }
