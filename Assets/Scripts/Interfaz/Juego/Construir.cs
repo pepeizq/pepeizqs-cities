@@ -22,6 +22,7 @@ namespace Interfaz.Juego2
         public Panel botonTiendas;
         public Panel botonIndustria;
         public Panel botonDecoracion;
+        public Panel botonEspecial;
 
         public Juego juego;
         public GameObject botonPrefab;
@@ -32,6 +33,7 @@ namespace Interfaz.Juego2
         public Panel panelTiendas;
         public Panel panelIndustria;
         public Panel panelDecoracion;
+        public Panel panelEspecial;
 
         private Color colorVerde = new Color(60f / 255f, 255f / 255f, 60f / 255f, 255f);
         private Color colorRojo = new Color(255f / 255f, 1f / 255f, 1f / 255f, 255f);
@@ -42,6 +44,7 @@ namespace Interfaz.Juego2
         private Color colorTiendas = new Color(86f / 255f, 86f / 255f, 249f / 255f, 255f);
         private Color colorIndustria = new Color(166f / 255f, 166f / 255f, 30f / 255f, 255f);
         private Color colorDecoracion = new Color(63f / 255f, 133f / 255f, 46f / 255f, 255f);
+        private Color colorEspecial = new Color(165f / 255f, 0f / 255f, 165f / 255f, 255f);
 
         private Color colorTransparente = new Color(255f / 255f, 255f / 255f, 255f / 255f, 0f);
 
@@ -187,6 +190,16 @@ namespace Interfaz.Juego2
             if (colorPanel != colorDecoracion)
             {
                 botonDecoracion.gameObject.GetComponent<Image>().color = colorDecoracion;
+            }
+        }
+
+        public void RatonEntraBotonEspecial()
+        {
+            Color colorPanel = botonEspecial.gameObject.GetComponent<Image>().color;
+
+            if (colorPanel != colorEspecial)
+            {
+                botonEspecial.gameObject.GetComponent<Image>().color = colorEspecial;
             }
         }
 
@@ -338,6 +351,29 @@ namespace Interfaz.Juego2
                     if (edificio.categoria == 0)
                     {
                         AñadirBotonEdificios(edificio, panelDecoracion);
+                    }
+                }
+            }
+        }
+
+        public void AbrirPanelEspecial()
+        {
+            if (panelEspecial.gameObject.GetComponent<CanvasGroup>().alpha == 0)
+            {
+                sonidoBoton.Play();
+                Objetos.Ocultar(panelEdificiosTipo.gameObject);
+                Objetos.Mostrar(panelEspecial.gameObject);
+
+                foreach (Transform boton in panelEspecial.gameObject.transform)
+                {
+                    GameObject.Destroy(boton.gameObject);
+                }
+
+                foreach (Construccion edificio in juego.edificios)
+                {
+                    if (edificio.categoria == 6)
+                    {
+                        AñadirBotonEdificios(edificio, panelEspecial);
                     }
                 }
             }
@@ -543,6 +579,14 @@ namespace Interfaz.Juego2
                 imagen1.color = color2;
                 imagen2.color = color2;
             }
+            else if (categoria == 6)
+            {
+                Color color2 = colorEspecial;
+                color2.a = 0.5f;
+
+                imagen1.color = color2;
+                imagen2.color = color2;
+            }
         }
 
         public void CursorSaleEdificio(PointerEventData eventData, Button boton)
@@ -576,6 +620,7 @@ namespace Interfaz.Juego2
             Objetos.Ocultar(panelTiendas.gameObject);
             Objetos.Ocultar(panelIndustria.gameObject);
             Objetos.Ocultar(panelDecoracion.gameObject);
+            Objetos.Ocultar(panelEspecial.gameObject);
         }
     }
 }

@@ -646,15 +646,27 @@ namespace Construcciones
                         {
                             return true;
                         }
-                        else if (edificios[(int)posicion.x, (int)posicion.z + 1].categoria == 1)
+                    }
+
+                    if (edificios[(int)posicion.x, (int)posicion.z + 1] != null)
+                    {
+                        if (edificios[(int)posicion.x, (int)posicion.z + 1].categoria == 1)
                         {
                             return true;
                         }
-                        else if (edificios[(int)posicion.x - 1, (int)posicion.z].categoria == 1)
+                    }
+
+                    if (edificios[(int)posicion.x - 1, (int)posicion.z] != null)
+                    {
+                        if (edificios[(int)posicion.x - 1, (int)posicion.z].categoria == 1)
                         {
                             return true;
                         }
-                        else if (edificios[(int)posicion.x, (int)posicion.z - 1].categoria == 1)
+                    }
+
+                    if (edificios[(int)posicion.x, (int)posicion.z - 1] != null)
+                    {
+                        if (edificios[(int)posicion.x, (int)posicion.z - 1].categoria == 1)
                         {
                             return true;
                         }
@@ -663,7 +675,45 @@ namespace Construcciones
 
                 if (edificio.dimensiones.x == 2 && edificio.dimensiones.y == 1)
                 {
+                    //Debug.Log(string.Format("rotacion {0} - x {1} - x {2}", edificio.rotacionColocacion,posicion.x, posicion.x - 2));
+                    if (edificio.rotacionColocacion == -270)
+                    {
+                        if (edificios[(int)posicion.x + 1, (int)posicion.z] != null)
+                        {
+                            if (edificios[(int)posicion.x + 1, (int)posicion.z].categoria == 1)
+                            {
+                                return true;
+                            }
+                        }
 
+                        if (edificios[(int)posicion.x, (int)posicion.z + 1] != null)
+                        {
+                            if (edificios[(int)posicion.x, (int)posicion.z + 1].categoria == 1)
+                            {
+                                return true;
+                            }
+                        }
+
+                        if (edificios[(int)posicion.x, (int)posicion.z - 1] != null)
+                        {
+                            if (edificios[(int)posicion.x, (int)posicion.z - 1].categoria == 1)
+                            {
+                                return true;
+                            }
+                        }
+                     
+                        if (edificios[(int)posicion.x - 3, (int)posicion.z] != null)
+                        {
+                            if (edificios[(int)posicion.x - 3, (int)posicion.z].categoria == 1)
+                            {
+                                return true;
+                            }
+                        }
+                    }
+                    else if(edificio.rotacionColocacion == -90)
+                    {
+
+                    }
                 }
 
                 if (edificio.dimensiones.x == 1 && edificio.dimensiones.y == 2)

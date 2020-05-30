@@ -44,8 +44,8 @@ public class Velocidad : MonoBehaviour {
     private float tiempoVehiculos = 0;
     private float tiempoVehiculosTope = 1500000;
 
-    private float tiempoNubes = 0;
-    private float tiempoNubesTope = 5000;
+    //private float tiempoNubes = 0;
+    //private float tiempoNubesTope = 5000;
 
     public Vehiculos vehiculos;
 

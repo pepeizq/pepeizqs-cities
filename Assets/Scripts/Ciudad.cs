@@ -24,6 +24,7 @@ public class Ciudad : MonoBehaviour {
     public int TrabajosTope { get; set; }
     public float Comida { get; set; }
     public bool ModoFacil { get; set; }
+    public bool Banco { get; set; }
 
     public Panel panelAlertas;
     public Text textoAlertas;

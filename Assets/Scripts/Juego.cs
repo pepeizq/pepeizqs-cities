@@ -380,10 +380,10 @@ public class Juego : MonoBehaviour {
                             añadir = false;
                         }
 
-                        if (construir.ComprobarCarretera(edificioSeleccionado, posicion) == false)
-                        {
-                            añadir = false;
-                        }
+                        //if (construir.ComprobarCarretera(edificioSeleccionado, posicion) == false)
+                        //{
+                        //    añadir = false;
+                        //}
 
                         if (añadir == true)
                         {
@@ -397,6 +397,11 @@ public class Juego : MonoBehaviour {
                             ciudad.ActualizarUI(false);
                             construir.AñadirConstruccion(edificioSeleccionado, posicion, velocidad.EstadoEncendidoLuces());
                             sonido.Construir();
+
+                            if (edificioSeleccionado.categoria == 6)
+                            {
+                                ciudad.Banco = true;
+                            }
                         }
                     }
 
@@ -490,10 +495,10 @@ public class Juego : MonoBehaviour {
                             vistaPrevia.QuitarEdificio(edificioSeleccionado, posicion);
                         }
 
-                        if (construir.ComprobarCarretera(edificioSeleccionado, posicion) == false)
-                        {
-                            mostrar = false;
-                        }
+                        //if (construir.ComprobarCarretera(edificioSeleccionado, posicion) == false)
+                        //{
+                        //    mostrar = false;
+                        //}
 
                         if (mostrar == true)
                         {
@@ -573,11 +578,12 @@ public class Juego : MonoBehaviour {
 
             ciudad.Dinero = partida.dinero;
             ciudad.ModoFacil = partida.modoFacil;
+            ciudad.Banco = partida.banco;
             ciudad.PoblacionActual = partida.poblacionActual;
             ciudad.PoblacionTope = partida.poblacionTope;
             ciudad.TrabajosActual = partida.trabajosActual;
             ciudad.TrabajosTope = partida.trabajosTope;
-            ciudad.Comida = partida.comida;
+            ciudad.Comida = partida.comida;      
         }
     }
 
@@ -652,6 +658,7 @@ public class Juego : MonoBehaviour {
 
         guardado.dinero = ciudad.Dinero;
         guardado.modoFacil = ciudad.ModoFacil;
+        guardado.banco = ciudad.Banco;
         guardado.poblacionActual = ciudad.PoblacionActual;
         guardado.poblacionTope = ciudad.PoblacionTope;
         guardado.trabajosActual = ciudad.TrabajosActual;

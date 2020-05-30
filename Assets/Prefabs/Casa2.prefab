@@ -105,7 +105,7 @@ MonoBehaviour:
   dimensiones: {x: 1, y: 2}
   rotacionColocacion: -90
   rotacionAdicional: 90
-  posicionX: 43
-  posicionZ: 58
+  posicionX: 62
+  posicionZ: 48
   luzIntesidad: 0
   luzRango: 0
