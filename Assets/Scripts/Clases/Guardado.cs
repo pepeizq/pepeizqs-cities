@@ -33,7 +33,14 @@ public class Guardado
     
     public bool modoFacil = false;
     public bool ayuda = false;
+
     public bool banco = false;
+    public bool bancoCredito1 = false;
+    public bool bancoCredito2 = false;
+    public bool bancoCredito3 = false;
+    public int bancoContadorTiempoCredito1 = 0;
+    public int bancoContadorTiempoCredito2 = 0;
+    public int bancoContadorTiempoCredito3 = 0;
 
     public float poblacionActual = 0;
     public float poblacionTope = 0;

@@ -183,6 +183,7 @@ public class Juego : MonoBehaviour {
 
             escenario.PonerTerreno(partidasGuardadas[0]);
             CargarEdificios(partidasGuardadas[0]);
+            ciudad.MostrarBotonBanco(ciudad.Banco);
             ayudaInterfaz.Cargar(partidasGuardadas[0].ayuda);
         }
 
@@ -401,6 +402,7 @@ public class Juego : MonoBehaviour {
                             if (edificioSeleccionado.categoria == 6)
                             {
                                 ciudad.Banco = true;
+                                ciudad.MostrarBotonBanco(ciudad.botonBanco);
                             }
                         }
                     }
@@ -578,7 +580,15 @@ public class Juego : MonoBehaviour {
 
             ciudad.Dinero = partida.dinero;
             ciudad.ModoFacil = partida.modoFacil;
+
             ciudad.Banco = partida.banco;
+            ciudad.BancoCredito1 = partida.bancoCredito1;
+            ciudad.BancoCredito2 = partida.bancoCredito2;
+            ciudad.BancoCredito3 = partida.bancoCredito3;
+            ciudad.BancoContadorTiempoCredito1 = partida.bancoContadorTiempoCredito1;
+            ciudad.BancoContadorTiempoCredito2 = partida.bancoContadorTiempoCredito2;
+            ciudad.BancoContadorTiempoCredito3 = partida.bancoContadorTiempoCredito3;
+
             ciudad.PoblacionActual = partida.poblacionActual;
             ciudad.PoblacionTope = partida.poblacionTope;
             ciudad.TrabajosActual = partida.trabajosActual;
@@ -658,7 +668,15 @@ public class Juego : MonoBehaviour {
 
         guardado.dinero = ciudad.Dinero;
         guardado.modoFacil = ciudad.ModoFacil;
+
         guardado.banco = ciudad.Banco;
+        guardado.bancoCredito1 = ciudad.BancoCredito1;
+        guardado.bancoCredito2 = ciudad.BancoCredito2;
+        guardado.bancoCredito3 = ciudad.BancoCredito3;
+        guardado.bancoContadorTiempoCredito1 = ciudad.BancoContadorTiempoCredito1;
+        guardado.bancoContadorTiempoCredito2 = ciudad.BancoContadorTiempoCredito2;
+        guardado.bancoContadorTiempoCredito3 = ciudad.BancoContadorTiempoCredito3;
+
         guardado.poblacionActual = ciudad.PoblacionActual;
         guardado.poblacionTope = ciudad.PoblacionTope;
         guardado.trabajosActual = ciudad.TrabajosActual;

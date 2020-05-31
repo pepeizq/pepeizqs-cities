@@ -24,12 +24,28 @@ public class Ciudad : MonoBehaviour {
     public int TrabajosTope { get; set; }
     public float Comida { get; set; }
     public bool ModoFacil { get; set; }
-    public bool Banco { get; set; }
-
+  
     public Panel panelAlertas;
     public Text textoAlertas;
 
     public Idiomas idioma;
+
+    public Panel botonBanco;
+    public Panel panelBanco;
+
+    public bool Banco { get; set; }
+
+    public Panel panelBancoCredito1;
+    public Panel panelBancoCredito2;
+    public Panel panelBancoCredito3;
+
+    public bool BancoCredito1 { get; set; }
+    public bool BancoCredito2 { get; set; }
+    public bool BancoCredito3 { get; set; }
+
+    public int BancoContadorTiempoCredito1 { get; set; }
+    public int BancoContadorTiempoCredito2 { get; set; }
+    public int BancoContadorTiempoCredito3 { get; set; }
 
     public void ActualizarUI(bool nuevaHora)
     {
@@ -39,6 +55,19 @@ public class Ciudad : MonoBehaviour {
             CalcularPoblacion();
             CalcularTrabajos();
             CalcularComida();
+
+            if (BancoCredito1 == true)
+            {
+                BancoContadorTiempoCredito1 += 1;
+                Dinero -= 230;
+
+                if (BancoContadorTiempoCredito1 == 24)
+                {
+                    BancoContadorTiempoCredito1 = 0;
+                    BancoCredito1 = false;
+                    panelBancoCredito1.gameObject.GetComponent<CanvasGroup>().interactable = true;
+                }
+            }
         }
 
         dineroTexto.text = string.Format("{0}", Dinero);
@@ -243,5 +272,36 @@ public class Ciudad : MonoBehaviour {
     private void OcultarAlerta()
     {
         Objetos.Ocultar(panelAlertas.gameObject);
+    }
+
+    public void MostrarBotonBanco(bool estado)
+    {
+        if (estado == true)
+        {
+            Objetos.Mostrar(botonBanco.gameObject);
+        }
+        else
+        {
+            Objetos.Ocultar(botonBanco.gameObject);
+        }
+    }
+
+    public void MostrarPanelBanco()
+    {
+        if (panelBanco.gameObject.GetComponent<CanvasGroup>().alpha == 0)
+        {
+            Objetos.Mostrar(panelBanco.gameObject);
+        }
+        else
+        {
+            Objetos.Ocultar(panelBanco.gameObject);
+        }
+    }
+
+    public void ControlBancoCredito1()
+    {
+        BancoCredito1 = true;
+        Dinero += 5000;
+        panelBancoCredito1.gameObject.GetComponent<CanvasGroup>().interactable = false;
     }
 }
