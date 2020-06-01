@@ -79,6 +79,9 @@ public class Idiomas : MonoBehaviour {
     public Text menuJuegoGuardarSalirSi;
     public Text menuJuegoGuardarSalirNo;
 
+    public Text juegoCreditos;
+    public Text juegoCreditoSolicitar1;
+
     public void CargarTextos()
     {
         menuPrincipalNuevaPartida.text = CogerCadena("newGame").ToLower();
@@ -148,6 +151,9 @@ public class Idiomas : MonoBehaviour {
         menuJuegoGuardarSalir.text = CogerCadena("exitQuestion2");
         menuJuegoGuardarSalirSi.text = CogerCadena("yes");
         menuJuegoGuardarSalirNo.text = CogerCadena("no");
+
+        juegoCreditos.text = CogerCadena("credits");
+        juegoCreditoSolicitar1.text = CogerCadena("creditRequest");
     }
 
     public void CargarEnglish()

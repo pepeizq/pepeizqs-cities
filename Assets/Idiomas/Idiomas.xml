@@ -72,6 +72,8 @@
         <string name="yes">Yes</string>
         <string name="no">No</string>
         <string name="alert1">Build farms to get food</string>
+        <string name="credits">Credits</string>
+        <string name="creditRequest">Request</string>
     </English>
      
     <Spanish>
@@ -146,5 +148,7 @@
         <string name="yes">Si</string>
         <string name="no">No</string>
         <string name="alert1">Construye granjas para obtener comida</string>
+        <string name="credits">Créditos</string>
+        <string name="creditRequest">Solicitar</string>
     </Spanish>
 </languages>

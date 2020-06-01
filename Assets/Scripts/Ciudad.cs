@@ -35,9 +35,9 @@ public class Ciudad : MonoBehaviour {
 
     public bool Banco { get; set; }
 
-    public Panel panelBancoCredito1;
-    public Panel panelBancoCredito2;
-    public Panel panelBancoCredito3;
+    public Boton botonBancoCredito1;
+    public Boton botonBancoCredito2;
+    public Boton botonBancoCredito3;
 
     public bool BancoCredito1 { get; set; }
     public bool BancoCredito2 { get; set; }
@@ -65,7 +65,39 @@ public class Ciudad : MonoBehaviour {
                 {
                     BancoContadorTiempoCredito1 = 0;
                     BancoCredito1 = false;
-                    panelBancoCredito1.gameObject.GetComponent<CanvasGroup>().interactable = true;
+
+                    botonBancoCredito1.gameObject.GetComponent<CanvasGroup>().interactable = true;
+                    botonBancoCredito1.hover = true;
+                }
+            }
+
+            if (BancoCredito2 == true)
+            {
+                BancoContadorTiempoCredito2 += 1;
+                Dinero -= 230;
+
+                if (BancoContadorTiempoCredito2 == 48)
+                {
+                    BancoContadorTiempoCredito2 = 0;
+                    BancoCredito2 = false;
+
+                    botonBancoCredito2.gameObject.GetComponent<CanvasGroup>().interactable = true;
+                    botonBancoCredito2.hover = true;
+                }
+            }
+
+            if (BancoCredito3 == true)
+            {
+                BancoContadorTiempoCredito3 += 1;
+                Dinero -= 460;
+
+                if (BancoContadorTiempoCredito3 == 48)
+                {
+                    BancoContadorTiempoCredito3 = 0;
+                    BancoCredito3 = false;
+
+                    botonBancoCredito3.gameObject.GetComponent<CanvasGroup>().interactable = true;
+                    botonBancoCredito3.hover = true;
                 }
             }
         }
@@ -291,6 +323,18 @@ public class Ciudad : MonoBehaviour {
         if (panelBanco.gameObject.GetComponent<CanvasGroup>().alpha == 0)
         {
             Objetos.Mostrar(panelBanco.gameObject);
+
+            if (BancoCredito1 == true)
+            {
+                botonBancoCredito1.gameObject.GetComponent<CanvasGroup>().interactable = false;
+                botonBancoCredito1.hover = false;
+            }
+
+            if (BancoCredito2 == true)
+            {
+                botonBancoCredito2.gameObject.GetComponent<CanvasGroup>().interactable = false;
+                botonBancoCredito2.hover = false;
+            }
         }
         else
         {
@@ -298,10 +342,30 @@ public class Ciudad : MonoBehaviour {
         }
     }
 
-    public void ControlBancoCredito1()
+    public void SolicitarBancoCredito1()
     {
         BancoCredito1 = true;
         Dinero += 5000;
-        panelBancoCredito1.gameObject.GetComponent<CanvasGroup>().interactable = false;
+        botonBancoCredito1.gameObject.GetComponent<CanvasGroup>().interactable = false;
+        botonBancoCredito1.hover = false;
+        Objetos.Ocultar(panelBanco.gameObject);
+    }
+
+    public void SolicitarBancoCredito2()
+    {
+        BancoCredito2 = true;
+        Dinero += 10000;
+        botonBancoCredito2.gameObject.GetComponent<CanvasGroup>().interactable = false;
+        botonBancoCredito2.hover = false;
+        Objetos.Ocultar(panelBanco.gameObject);
+    }
+
+    public void SolicitarBancoCredito3()
+    {
+        BancoCredito3 = true;
+        Dinero += 25000;
+        botonBancoCredito3.gameObject.GetComponent<CanvasGroup>().interactable = false;
+        botonBancoCredito3.hover = false;
+        Objetos.Ocultar(panelBanco.gameObject);
     }
 }
