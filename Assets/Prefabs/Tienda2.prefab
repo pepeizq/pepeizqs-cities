@@ -103,7 +103,7 @@ MonoBehaviour:
   ingresos: 8
   botonImagen: {fileID: 21300000, guid: 7030f8262baccdf49b48f9dc48303f51, type: 3}
   dimensiones: {x: 1, y: 1}
-  rotacionColocacion: -180
+  rotacionColocacion: 0
   rotacionAdicional: 0
   posicionX: 55
   posicionZ: 49

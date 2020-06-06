@@ -6,6 +6,7 @@ namespace Interfaz.Efectos
 {
     //Estilo 1: Boton Oscuro - Texto Normal
     //Estilo 2: Boton Transparente - Texto Pro
+    //Estilo 3: Boton Oscuro - Imagen - Texto Normal
 
     public class Botones : MonoBehaviour
     {
@@ -34,7 +35,7 @@ namespace Interfaz.Efectos
                 Cursor.SetCursor(cursor2, Vector2.zero, CursorMode.Auto);
 
                 CambiarBotonFondo(boton.gameObject.GetComponent<Button>(), colorBotonEntra);
-                CambiarTextoColor(boton.gameObject.transform.GetChild(0), colorTextoSale);
+                CambiarTextoColor(boton.gameObject.transform.GetChild(0), colorTextoEntra);
             }
         }
 
@@ -76,6 +77,35 @@ namespace Interfaz.Efectos
             }
         }
 
+        public void Estilo3Entra(Boton boton)
+        {
+            if (boton.hover == true)
+            {
+                if (sonido != null)
+                {
+                    sonido.RatonEntra();
+                }
+
+                Cursor.SetCursor(cursor2, Vector2.zero, CursorMode.Auto);
+
+                CambiarBotonFondo(boton.gameObject.GetComponent<Button>(), colorBotonEntra);
+                CambiarImagenColor(boton.gameObject.transform.GetChild(0), colorTextoEntra);
+                CambiarTextoColor(boton.gameObject.transform.GetChild(1), colorTextoEntra);
+            }
+        }
+
+        public void Estilo3Sale(Boton boton)
+        {
+            if (boton.hover == true)
+            {
+                Cursor.SetCursor(cursor1, Vector2.zero, CursorMode.Auto);
+
+                CambiarBotonFondo(boton.gameObject.GetComponent<Button>(), colorBotonSale);
+                CambiarImagenColor(boton.gameObject.transform.GetChild(0), colorTextoSale);
+                CambiarTextoColor(boton.gameObject.transform.GetChild(1), colorTextoSale);
+            }
+        }
+
         //-----------------------------------------------------
 
         private void CambiarBotonFondo(Button boton, Color fondo)
@@ -105,6 +135,16 @@ namespace Interfaz.Efectos
             if (colorTexto != textoNuevoColor)
             {
                 objeto.gameObject.GetComponent<TextMeshProUGUI>().color = textoNuevoColor;
+            }
+        }
+
+        private void CambiarImagenColor(Transform objeto, Color textoNuevoColor)
+        {
+            Color colorTexto = objeto.gameObject.GetComponent<Image>().color;
+
+            if (colorTexto != textoNuevoColor)
+            {
+                objeto.gameObject.GetComponent<Image>().color = textoNuevoColor;
             }
         }
     }

@@ -108,8 +108,8 @@ MonoBehaviour:
   dimensiones: {x: 1, y: 1}
   rotacionColocacion: -270
   rotacionAdicional: -90
-  posicionX: 39
-  posicionZ: 45
+  posicionX: 38
+  posicionZ: 51
   luzIntesidad: 0
   luzRango: 0
 --- !u!65 &8755994857054512725
